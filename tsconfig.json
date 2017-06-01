@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES2016",
-    "noLib": true,
+    "target": "es6",
+    "lib": ["es6"],
     "module": "commonjs",
     "moduleResolution": "node",
     "removeComments": true,
@@ -10,8 +10,6 @@
     "emitDecoratorMetadata": true,
     "declaration": false,
     "outDir": "dist",
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "strictNullChecks": true,
     "typeRoots": [

@@ -2,6 +2,12 @@
   "extends": "tslint:recommended",
   "rules": {
     "use-strict": true,
-    "no-console": false
+    "no-console": [false],
+    "quotemark": [true, "single", "jsx-double"],
+    "trailing-comma": [false],
+    "curly": false,
+    "object-literal-sort-keys": false,
+    "arrow-parens":false,
+    "ordered-imports": [false]
   }
 }

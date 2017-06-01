@@ -8,7 +8,7 @@ var distPath = function ( name ) {
   if ( undefined === name ) {
     return path.join('dist');
   }
-  
+
   return path.join('dist', name);
 };
 
@@ -20,7 +20,7 @@ var webpack_opts = {
     libraryTarget: "commonjs2"
   },
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: ['.ts', '.js', '.gql'],
     modules: [
       'node_modules',
       'src',
@@ -43,10 +43,11 @@ var webpack_opts = {
   ],
   devtool: 'source-map',
   module: {
-    loaders: [{
-      test: /\.ts$/,
-      loaders: 'awesome-typescript-loader'
-    }]
+    rules: [
+      { test: /\.ts$/,
+        use: 'awesome-typescript-loader'
+      }
+      ]
   },
   externals: [nodeExternals()]
 };

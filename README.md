@@ -30,18 +30,13 @@ Files explained:
 ----
     1. src                         - directory is used for typescript code that is part of the project
         1a. main.ts                - Main server file. (Starting Apollo server)
-        1b. main.spec.ts           - Tests file for main
-        1c. schema                 - Module used to build schema
+        1c. dw/schema              - Contains modules used to build dataware house schemas
             - index.ts             - simple logic to merge all modules into a schema using graphql-tools
-            - modules/             - directory for modules to be used with graphql-tools
-        1c. schema.spec.ts         - Basic test for schema.
-        1c. main.test.ts           - Main for tests runner.
+            - modules/             - directory for modules
     3. package.json                - file is used to describe the library
     4. tsconfig.json               - configuration file for the library compilation
     6. tslint.json                 - configuration file for the linter
-    7. typings.json                - typings needed for the server
     8. webpack.config.js           - configuration file of the compilation automation process for the library
-    9. webpack.config.test.js      - configuration file of the compilation when testing
     10. Dockerfile                 - Dockerfile used to describe how to make a container out of apollo server
 
 

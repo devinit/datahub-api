@@ -1,15 +1,18 @@
-import * as express from 'express';
 import * as bodyParser from 'body-parser';
-import {graphqlExpress, graphiqlExpress} from 'graphql-server-express';
-import {Schema} from './schema';
+import compression from 'compression';
 import * as cors from 'cors';
+import * as express from 'express';
+import {graphiqlExpress, graphqlExpress} from 'graphql-server-express';
 import * as helmet from 'helmet';
 import * as morgan from 'morgan';
-import {persons, findPerson, addPerson} from './data-base/person-database';
+import * as path from 'path';
+import { mergeGraphqlSchemas } from 'merge-graphql-schemas';
+
+const Schema = mergeGraphqlSchemas(path.join(__dirname, './schema'));
 
 // Default port or given one.
-export const GRAPHQL_ROUTE = "/graphql";
-export const GRAPHIQL_ROUTE = "/graphiql";
+export const GRAPHQL_ROUTE = '/graphql';
+export const GRAPHIQL_ROUTE = '/graphiql';
 
 interface IMainOptions {
   enableCors: boolean;
@@ -27,63 +30,66 @@ function verbosePrint(port, enableGraphiql) {
   }
 }
 
-export class TestConnector {
-  public get testString() {
-    return "it works from connector as well!";
-  }
-}
+const graphqlMiddleware = [
+    bodyParser.json(),
+    bodyParser.text({ type: 'application/graphql' }),
+    (req, res, next) => {
+        if (req.is('application/graphql')) {
+            req.body = { query: req.body };
+        }
+        next();
+    }
+];
 
 export function main(options: IMainOptions) {
-  let app = express();
+  const app = express();
 
   app.use(helmet());
 
   app.use(morgan(options.env));
 
-  if (true === options.enableCors) {
-    app.use(GRAPHQL_ROUTE, cors());
-  }
+  if (true === options.enableCors) app.use(GRAPHQL_ROUTE, cors());
 
-  let testConnector = new TestConnector();
-  app.use(GRAPHQL_ROUTE, bodyParser.json(), graphqlExpress({
+  if (options.env === 'production') app.use(compression);
+
+  app.use(GRAPHQL_ROUTE, ...graphqlMiddleware, graphqlExpress(request => ({
     context: {
-      testConnector,
-      persons,
-      findPerson,
-      addPerson
+      request,
+      // add dbConnection here
     },
-    schema: Schema,
-  }));
+    schema: Schema
+  })));
 
   if (true === options.enableGraphiql) {
     app.use(GRAPHIQL_ROUTE, graphiqlExpress({endpointURL: GRAPHQL_ROUTE}));
   }
 
   return new Promise((resolve, reject) => {
-    let server = app.listen(options.port, () => {
+    const server = app.listen(options.port, () => {
       /* istanbul ignore if: no need to test verbose print */
       if (options.verbose) {
         verbosePrint(options.port, options.enableGraphiql);
       }
 
       resolve(server);
-    }).on("error", (err: Error) => {
+    }).on('error', (err: Error) => {
       reject(err);
     });
   });
 }
 
 /* istanbul ignore if: main scope */
+// for testing purposes. during testing its required as a module and hence the code below wont run
 if (require.main === module) {
   const PORT = process.env.PORT || 3000;
 
   // Either to export GraphiQL (Debug Interface) or not.
-  const NODE_ENV = process.env.NODE_ENV !== "production" ? "dev" : "production";
+  const NODE_ENV = process.env.NODE_ENV !== 'production' ? 'dev' : 'production';
 
-  const EXPORT_GRAPHIQL = NODE_ENV !== "production";
+  const EXPORT_GRAPHIQL = NODE_ENV !== 'production';
 
   // Enable cors (cross-origin HTTP request) or not.
-  const ENABLE_CORS = NODE_ENV !== "production";
+  const ENABLE_CORS = NODE_ENV !== 'production';
 
   main({
     enableCors: ENABLE_CORS,
