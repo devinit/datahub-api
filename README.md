@@ -31,7 +31,6 @@ Files explained:
     1. src                         - directory is used for typescript code that is part of the project
         1a. main.ts                - Main server file. (Starting Apollo server)
         1c. dw/schema              - Contains modules used to build dataware house schemas
-            - index.ts             - simple logic to merge all modules into a schema using graphql-tools
             - modules/             - directory for modules
     3. package.json                - file is used to describe the library
     4. tsconfig.json               - configuration file for the library compilation
