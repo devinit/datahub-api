@@ -6,7 +6,7 @@ export default {
       return model.findPerson(model.persons, args.id);
     },
     persons(root, args, ctx) {
-      return ctx.persons;
+      return model.persons;
     }
   },
   Mutation: {

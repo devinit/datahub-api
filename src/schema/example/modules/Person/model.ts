@@ -16,11 +16,17 @@ const persons = [
   }
 ];
 
+interface IPerson {
+  id: string;
+  sex: string;
+  name: string;
+}
+
 const findPerson = (personsArr: any[], id: string) => {
-  return personsArr.find(person => person.id === id);
+  return personsArr.find((person) => person.id === id);
 };
 
-const addPerson = (personsArr: any[], person: any) => {
+const addPerson = (personsArr: any[], person) => {
   personsArr.push(person);
   return personsArr;
 };

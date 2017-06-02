@@ -6,9 +6,8 @@ import {graphiqlExpress, graphqlExpress} from 'graphql-server-express';
 import * as helmet from 'helmet';
 import * as morgan from 'morgan';
 import * as path from 'path';
-import { mergeGraphqlSchemas } from 'merge-graphql-schemas';
-
-const Schema = mergeGraphqlSchemas(path.join(__dirname, './schema'));
+import { makeExecutableSchema } from 'graphql-tools';
+import {resolvers, typeDefs} from './schema';
 
 // Default port or given one.
 export const GRAPHQL_ROUTE = '/graphql';
@@ -52,13 +51,12 @@ export function main(options: IMainOptions) {
 
   if (options.env === 'production') app.use(compression);
 
-  app.use(GRAPHQL_ROUTE, ...graphqlMiddleware, graphqlExpress(request => ({
-    context: {
-      request,
-      // add dbConnection here
-    },
-    schema: Schema
-  })));
+  const executableSchema = makeExecutableSchema({ typeDefs, resolvers });
+
+  app.use(GRAPHQL_ROUTE, ...graphqlMiddleware, graphqlExpress({
+    context: {},
+    schema: executableSchema
+  }));
 
   if (true === options.enableGraphiql) {
     app.use(GRAPHIQL_ROUTE, graphiqlExpress({endpointURL: GRAPHQL_ROUTE}));

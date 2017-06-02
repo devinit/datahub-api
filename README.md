@@ -23,6 +23,7 @@ Useful commands:
 How to run it:
 ----
 ```bash
+    npm install && npm dedupe
     npm start
 ```
 
