@@ -1,5 +1,5 @@
 export default `
-  type MapType {
+  type Map {
     # country code Id
     id: String
     year: Int
@@ -10,7 +10,7 @@ export default `
     getMapData(
       # map indicator type eg poverty
       type: String!,
-      startYear: Int?,
-      endYear: Int?): [MapType]
+      startYear: Int,
+      endYear: Int): [Map]
   }
 `;
