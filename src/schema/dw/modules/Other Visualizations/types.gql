@@ -1,0 +1,27 @@
+
+type Level {
+  # different continents or the whole World
+  regional: String
+  global: String
+}
+
+type Scenario {
+  #the picture of the level of poverty
+  bestCase: String
+  baseline: String
+  worstCase:String 
+}
+
+type WhereThePoorWillbe {
+  extremePoverty: Int
+  year: Int
+  level: [Level]
+  Scenario: [Scenario]
+}
+
+type Query {
+  getWhereThePoorWillbeData(
+    year: Int!
+  ): WhereThePoorWillbe
+}
+

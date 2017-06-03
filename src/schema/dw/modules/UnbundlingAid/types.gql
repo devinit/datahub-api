@@ -1,0 +1,26 @@
+type Aid {
+  year: Int
+  Value: Int
+}
+
+type AggregatedAid {
+  aids: [Aid]
+  total: Int
+}
+
+type Query {
+  getODA(
+    year: Int!,
+    type: String!,
+    ToCountry: String,
+    FromCountryOrOrg:String,
+  ):[AggregatedAid]
+
+  getOOF(
+    year: Int!,
+    type: String!,
+    ToCountry: String,
+    FromCountryOrOrg:String,
+  ):[AggregatedAid]
+}
+

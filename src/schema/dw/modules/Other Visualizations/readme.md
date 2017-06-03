@@ -1,0 +1,1 @@
+Spotlight uganda and global maps schema and resolvers
