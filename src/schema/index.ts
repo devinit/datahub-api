@@ -3,21 +3,13 @@ import {GraphQLSchema} from 'graphql';
 import { mergeGraphqlSchemas, mergeResolvers } from 'merge-graphql-schemas';
 
 
-const moduleFiles = (require as any).context('./', true, /\.ts/);
+const resolverFiles = (require as any).context('./example', true, /resolver\.ts/);
+const typeFiles = (require as any).context('./example', true, /\.gql/);
 
-const resolversLoad: any[] = [];
-const typesLoad: any[] = [];
+const resolversLoad: any[] = resolverFiles.keys()
+    .map(moduleName => resolverFiles(moduleName).default);
 
-moduleFiles.keys().map((moduleName) => {
-    if (moduleName.includes('resolver.ts')) {
-        console.log('found resolver', moduleName);
-        return resolversLoad.push(moduleFiles(moduleName).default);
-    }
-    if (moduleName.includes('types.ts')) {
-        console.log('found type', moduleName);
-        return typesLoad.push(moduleFiles(moduleName).default);
-    }
-});
+const typesLoad: any[] = typeFiles.keys().map(typeName => typeFiles(typeName));
 
 export const resolvers = resolversLoad.length > 1
     ? mergeResolvers(resolversLoad) : resolversLoad[0];

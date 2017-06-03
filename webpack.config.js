@@ -46,6 +46,10 @@ var webpack_opts = {
     rules: [
       { test: /\.ts$/,
         use: 'awesome-typescript-loader'
+      },
+      {
+        test: /\.(graphql|gql)$/,
+        loader: 'raw-loader'
       }
       ]
   },
