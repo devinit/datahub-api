@@ -1,6 +1,6 @@
 # Data hub graphql-server
 
- [![Build Status](https://travis-ci.org/DxCx/datahub-api.svg?branch=master)](https://travis-ci.org/DxCx/datahub-api) [![Coverage Status](https://coveralls.io/repos/github/DxCx/datahub-api/badge.svg?branch=master)](https://coveralls.io/github/DxCx/datahub-api?branch=master)
+ [![Build Status](https://travis-ci.org/datahub/datahub-api.svg?branch=master)](https://travis-ci.org/datahub/datahub-api) [![Coverage Status](https://coveralls.io/repos/github/datahub/datahub-api/badge.svg?branch=master)](https://coveralls.io/github/datahub/datahub-api?branch=master)
  ![Code Climate](https://codeclimate.com/github/devinit/datahub.svg)
 [![codecov](https://codecov.io/gh/devinit/datahub-api/branch/master/graph/badge.svg)](https://codecov.io/gh/devinit/datahub-api)
 [![Dependency Status](https://gemnasium.com/badges/github.com/devinit/datahub-api.svg)](https://gemnasium.com/github.com/devinit/datahub-api)
@@ -23,8 +23,11 @@ Useful commands:
 How to run it:
 ----
 ```bash
-    npm install && npm dedupe
-    npm start
+    yarn install --ignore-scripts
+    ## development mode
+    npm run dev
+    ## production
+    npm run build & npm start
 ```
 
 Files explained:
