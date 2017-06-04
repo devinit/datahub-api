@@ -10,10 +10,9 @@ type IndicatorData {
   year: Int
   Value: Int
 }
-type IndicatorLabledData {
+
+type IndicatorLabledData extends IndicatorData {
   id: String
-  year: Int
-  value: Int
 }
 
 type PovertyTab {
