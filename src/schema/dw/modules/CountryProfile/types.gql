@@ -10,6 +10,7 @@ type IndicatorData {
   year: Int
   Value: Int
 }
+
 type IndicatorValue {
   id: String
   year: Int
@@ -26,10 +27,12 @@ type PovertyTab {
 type PopulationTabDonor {
   population: Int
 }
+
 type PopulationTabRecipient {
   Urban: [IndicatorData]
   Rural: [IndicatorData]
 }
+
 type PopulationPerAge {
   age:[]
   population: Int
@@ -57,8 +60,6 @@ type InternationalResources {
   resourceInflow: [IndicatorValue]
   resourceOutflow: [IndicatorValue]
 }
-
-
 
 type Query {
   
