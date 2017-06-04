@@ -1,0 +1,22 @@
+
+type MapUnit {
+  # country code Id or distict code for case of spotlight uganda
+  id: String
+  year: Int
+  value: Int
+}
+
+type AggregatedMap {
+  map: [MapUnit]
+  total: Int 
+}
+
+type Query {
+  getMapData(
+    # map indicator type eg poverty
+    type: String!,
+    startYear: Int,
+    endYear: Int
+  ): [AggregatedMap]
+}
+

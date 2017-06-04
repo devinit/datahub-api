@@ -1,0 +1,75 @@
+type OverViewTab {
+  poorestPeople: Int
+  population: Int
+  domesticPublicResources: Int
+  internationalResources: Int
+  governmentSpendPerPerson: Int
+}
+
+type IndicatorData {
+  year: Int
+  Value: Int
+}
+type IndicatorValue {
+  id: String
+  year: Int
+  value: Int
+}
+
+type PovertyTab {
+  poverty190Trend : [IndicatorData]
+  depthOfExtremePoverty: Int
+  quintileIncomeDistBarChart: [IndicatorData]
+
+}
+
+type PopulationTabDonor {
+  population: Int
+}
+type PopulationTabRecipient {
+  Urban: [IndicatorData]
+  Rural: [IndicatorData]
+}
+type PopulationPerAge {
+  age:[]
+  population: Int
+  year: Int
+}
+
+type GovernmentFinance {
+  #Total revenue, % of GDP
+  totalRevenue: Int
+  grants: [IndicatorValue]
+  spendingAllocation: [IndicatorValue]
+  taxRevenue: [IndicatorValue]
+  nonTaxRevenue: [IndicatorValue]
+  financing: [IndicatorValue]
+}
+
+type InternationalResources {
+  GNI: Int
+  #Net ODA received, % of GNI
+  share: Int
+  #gross inflows
+  resourceOverTimeInflow: [IndicatorValue]
+  #Government finance by economic type
+  mixOfResources: [IndicatorValue]
+  resourceInflow: [IndicatorValue]
+  resourceOutflow: [IndicatorValue]
+}
+
+
+
+type Query {
+  
+  getOverViewTab(country: String!): OverViewTab
+
+  getPovertyTab(country: String): PovertyTab
+  #population data for donor countries
+  getPopulationTabD(country: String): PopulationTabDonor
+  #population data for reciepient countries
+  getPopulationTabR(country: String): 
+  getGovernmentFinanceDon(country: String): GovernmentFinanceDon 
+  getInternationalResources(country: String): InternationalResources
+}
+
