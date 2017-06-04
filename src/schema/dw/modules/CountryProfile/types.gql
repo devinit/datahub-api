@@ -10,15 +10,19 @@ type IndicatorData {
   year: Int
   Value: Int
 }
+<<<<<<< HEAD
 
 type IndicatorValue {
+=======
+type IndicatorLabledData {
+>>>>>>> c61cd9528bd888f54cfcba8f367ff79da2b7c3b2
   id: String
   year: Int
   value: Int
 }
 
 type PovertyTab {
-  poverty190Trend : [IndicatorData]
+  poverty190Trend: [IndicatorData]
   depthOfExtremePoverty: Int
   quintileIncomeDistBarChart: [IndicatorData]
 
@@ -42,11 +46,11 @@ type PopulationPerAge {
 type GovernmentFinance {
   #Total revenue, % of GDP
   totalRevenue: Int
-  grants: [IndicatorValue]
-  spendingAllocation: [IndicatorValue]
-  taxRevenue: [IndicatorValue]
-  nonTaxRevenue: [IndicatorValue]
-  financing: [IndicatorValue]
+  grants: [IndicatorLabledData]
+  spendingAllocation: [IndicatorLabledData]
+  taxRevenue: [IndicatorLabledData]
+  nonTaxRevenue: [IndicatorLabledData]
+  financing: [IndicatorLabledData]
 }
 
 type InternationalResources {
@@ -54,11 +58,11 @@ type InternationalResources {
   #Net ODA received, % of GNI
   share: Int
   #gross inflows
-  resourceOverTimeInflow: [IndicatorValue]
+  resourceOverTimeInflow: [IndicatorLabledData]
   #Government finance by economic type
-  mixOfResources: [IndicatorValue]
-  resourceInflow: [IndicatorValue]
-  resourceOutflow: [IndicatorValue]
+  mixOfResources: [IndicatorLabledData]
+  resourceInflow: [IndicatorLabledData]
+  resourceOutflow: [IndicatorLabledData]
 }
 
 type Query {

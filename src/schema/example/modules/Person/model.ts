@@ -1,32 +1,30 @@
-const persons = [
+const persons: DHschema.IPersonType[] = [
   {
+    __typename: 'person',
     id: '1',
     sex: 'male',
     name: 'miro'
   },
   {
+    __typename: 'person',
     id: '2',
     sex: 'female',
     name: 'lala'
   },
   {
+     __typename: 'person',
     id: '3',
     sex: 'male',
     name: 'joe'
   }
 ];
 
-interface IPerson {
-  id: string;
-  sex: string;
-  name: string;
-}
 
-const findPerson = (personsArr: any[], id: string) => {
+const findPerson = (personsArr: DHschema.IPersonType[], id: string): DHschema.IPersonType => {
   return personsArr.find((person) => person.id === id);
 };
 
-const addPerson = (personsArr: any[], person) => {
+const addPerson = (personsArr: DHschema.IPersonType[], person: DHschema.IPersonType) => {
   personsArr.push(person);
   return personsArr;
 };

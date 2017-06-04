@@ -14,7 +14,8 @@ export default {
       return model.addPerson(model.persons, {
         id: Math.random().toString(16).substr(2),
         name: args.name,
-        sex: args.sex
+        sex: args.sex,
+        __type: 'person'
       });
     },
   },

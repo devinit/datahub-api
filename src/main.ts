@@ -6,8 +6,8 @@ import {graphiqlExpress, graphqlExpress} from 'graphql-server-express';
 import * as helmet from 'helmet';
 import * as morgan from 'morgan';
 import * as path from 'path';
-import { makeExecutableSchema } from 'graphql-tools';
-import {resolvers, typeDefs} from './schema';
+import schema from './schema';
+
 
 // Default port or given one.
 export const GRAPHQL_ROUTE = '/graphql';
@@ -51,11 +51,9 @@ export function main(options: IMainOptions) {
 
   if (options.env === 'production') app.use(compression);
 
-  const executableSchema = makeExecutableSchema({ typeDefs, resolvers });
-
   app.use(GRAPHQL_ROUTE, ...graphqlMiddleware, graphqlExpress({
     context: {},
-    schema: executableSchema
+    schema
   }));
 
   if (true === options.enableGraphiql) {
