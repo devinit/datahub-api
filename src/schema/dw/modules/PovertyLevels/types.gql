@@ -4,7 +4,6 @@ type Level {
   regional: String
   global: String
 }
-}
 
 type Scenario {
   #the picture of the level of poverty
