@@ -1,0 +1,22 @@
+
+type Download {
+  csv: String
+  zip: String
+}
+
+type DataSources {
+  # name the type of data you inquiring about
+  name: String
+  Description: String
+  methodology: String
+  unit: String
+  source: String
+  download: [Download]
+}
+
+type Query {
+  getDataSources(
+    name: String
+  ): DataSources
+}
+

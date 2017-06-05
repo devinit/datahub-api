@@ -1,44 +1,65 @@
+type IndicatorData {
+  year: Int
+  Value: Int
+}
+
+type IndicatorLabledData {
+  year: Int
+  Value: Int
+  id: String
+}
+
+type ResourceData {
+  year: Int
+  Value: Int
+  id: String
+  category: String
+}
+
 type OverViewTab {
+  # how many of the poorest people globally live in a country
   poorestPeople: Int
+  # total population for a given country
   population: Int
   domesticPublicResources: Int
   internationalResources: Int
   governmentSpendPerPerson: Int
 }
 
-type IndicatorData {
-  year: Int
-  Value: Int
-}
-
-type IndicatorLabledData extends IndicatorData {
-  id: String
-}
-
 type PovertyTab {
+  # Poverty reduction over time area chart trend
   poverty190Trend: [IndicatorData]
+  # how deep is poverty %
   depthOfExtremePoverty: Int
-  quintileIncomeDistBarChart: [IndicatorData]
-
+  # how income is distributed, % of income received by each quintile
+  IncomeDistTrend: [IndicatorData]
 }
 
-type PopulationTabDonor {
-  population: Int
-}
-type PopulationTabRecipient {
+type PopulationDistribution {
   Urban: [IndicatorData]
   Rural: [IndicatorData]
 }
-type PopulationPerAge {
-  age:[]
+
+type PopulationPerAgeBand {
+  ageBand: String
   population: Int
   year: Int
 }
 
+type PopulationTab {
+  # total population in a country
+  population: Int
+  # Urban vs Rural population level
+  populationDistribution: [PopulationDistribution]
+  # Number of people in 3 age bands (65+, 15- 65, 0 - 14)
+  populationPerAgeBand: [PopulationPerAgeBand]
+}
+
 type GovernmentFinance {
-  #Total revenue, % of GDP
+  #Total revenue for a particular year if not available return -1
   totalRevenue: Int
-  grants: [IndicatorLabledData]
+  grants: Int
+  spendingAllocation: [IndicatorLabledData]
   spendingAllocation: [IndicatorLabledData]
   taxRevenue: [IndicatorLabledData]
   nonTaxRevenue: [IndicatorLabledData]
@@ -50,25 +71,17 @@ type InternationalResources {
   #Net ODA received, % of GNI
   share: Int
   #gross inflows
-  resourceOverTimeInflow: [IndicatorLabledData]
+  resourceOverTimeInflows(yearStart: Int!, yearEnd: Int!): [ResourceData]
   #Government finance by economic type
-  mixOfResources: [IndicatorLabledData]
-  resourceInflow: [IndicatorLabledData]
+  mixOfResources: [IndicatorData]
   resourceOutflow: [IndicatorLabledData]
 }
 
-
-
-type Query {
-  
-  getOverViewTab(country: String!): OverViewTab
-
-  getPovertyTab(country: String): PovertyTab
-  #population data for donor countries
-  getPopulationTabD(country: String): PopulationTabDonor
-  #population data for reciepient countries
-  getPopulationTabR(country: String): 
-  getGovernmentFinanceDon(country: String): GovernmentFinanceDon 
-  getInternationalResources(country: String): InternationalResources
+type Query {  
+  getOverViewTab(country: String!, year: Int!): OverViewTab
+  getPovertyTab(country: String, year: Int!): PovertyTab
+  getPopulationTab(country: String, year: Int!): PopulationTab
+  getGovernmentFinance(country: String, year: Int!): GovernmentFinance
+  getInternationalResources(country: String, year: Int!): InternationalResources
 }
 

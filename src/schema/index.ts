@@ -17,13 +17,13 @@ const typesLoad: any[] = typeFiles.keys().map(typeName => typeFiles(typeName));
 
 const resolvers = resolversLoad.length > 1
     ? mergeResolvers(resolversLoad) : resolversLoad[0];
-const typeDefs = typesLoad.length > 1 ?
+const typeDefs: string = typesLoad.length > 1 ?
     mergeGraphqlSchemas(typesLoad) : typesLoad[0];
 
 // TODO turn into webpack loader
 const generateTSTypes = () => {
     const myNamespace = generateNamespace('DHschema', typeDefs);
-    const typesPath = path.resolve('./src/typings/graphql.d.ts'));
+    const typesPath = path.resolve('./src/typings/graphql.d.ts');
     return fs.writeFile(typesPath, myNamespace);
 };
 

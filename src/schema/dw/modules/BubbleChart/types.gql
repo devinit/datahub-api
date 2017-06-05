@@ -1,0 +1,15 @@
+
+type GovtRevenuePerPerson {
+  # id is government revenue per person excluding grants
+  id: String
+  year: Int
+  value: Int
+  country: String
+}
+
+type Query {
+  getGovtRevenuePerPerson(
+    year: Int
+  ): GovtRevenuePerPerson
+}
+

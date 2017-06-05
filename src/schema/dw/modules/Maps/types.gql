@@ -8,12 +8,17 @@ type MapUnit {
 
 type AggregatedMap {
   map: [MapUnit]
+  # map indeicator user friendly label / slug
+  label: String
+  # map value unit eg US $ or %
+  unit: String
+  # map indicators total for % computations where needed
   total: Int 
 }
 
 type Query {
   getMapData(
-    # map indicator type eg poverty
+    # map indicator type id eg poverty
     type: String!,
     startYear: Int,
     endYear: Int
