@@ -22,6 +22,6 @@ type Query {
     type: String!,
     startYear: Int,
     endYear: Int
-  ): [AggregatedMap]
+  ): AggregatedMap
 }
 
