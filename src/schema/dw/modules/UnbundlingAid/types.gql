@@ -13,6 +13,11 @@ type Aid {
 type AggregatedAid {
   aids: [Aid]
   total: Int
+  # unbundling aid selection options
+  toCountries: [String]
+  fromCountries: [String]
+  channels: [String]
+  form: [String]
 }
 
 type Query {

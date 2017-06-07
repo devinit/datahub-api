@@ -12,6 +12,8 @@ type AggregatedMap {
   label: String
   # map value unit eg US $ or %
   unit: String
+  # DAC countries, used by International finance section
+  dac: [String]
   # map indicators total for % computations where needed
   total: Int 
 }
