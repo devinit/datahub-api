@@ -51,8 +51,11 @@ export function main(options: IMainOptions) {
 
   if (options.env === 'production') app.use(compression);
 
+  const logger = { log: (err) => console.error('graphql errors: ', err) };
+
   app.use(GRAPHQL_ROUTE, ...graphqlMiddleware, graphqlExpress({
     context: {},
+    // logger,
     schema
   }));
 

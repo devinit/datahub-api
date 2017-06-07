@@ -13,8 +13,7 @@
     "noFallthroughCasesInSwitch": true,
     "strictNullChecks": true,
     "typeRoots": [
-      "node_modules/@types",
-      "src/typings"
+      "node_modules/@types"
     ]
   },
   "files": [

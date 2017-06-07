@@ -32,4 +32,8 @@ if (process.env.NODE_ENV !== 'production') generateTSTypes();
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 
+// const effectiveSchema =
+//     process.env.NODE_ENV !== 'production' ?
+//         forbidUndefinedInResolve(schema) : schema;
+
 export default schema;

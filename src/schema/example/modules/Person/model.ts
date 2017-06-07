@@ -6,7 +6,7 @@ const persons: DHschema.IPersonType[] = [
     name: 'miro'
   },
   {
-    __typename: 'person',
+     __typename: 'person',
     id: '2',
     sex: 'female',
     name: 'lala'
