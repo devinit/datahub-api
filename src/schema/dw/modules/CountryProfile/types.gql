@@ -103,9 +103,6 @@ type InternationalResources {
   inflows: [String]
    # an array of outflows for a particular country
   outflows: [String]
-  #Government finance by economic type
-  mixOfResources: [IndicatorData]
-  resourceOutflow: [IndicatorLabledData]
 }
 
 type Query {  

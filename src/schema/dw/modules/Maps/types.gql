@@ -8,7 +8,7 @@ type MapUnit {
 
 type AggregatedMap {
   map: [MapUnit]
-  # map indeicator user friendly label / slug
+  # map indeicator user friendly label / slug eg Poverty
   label: String
   # map value unit eg US $ or %
   unit: String
