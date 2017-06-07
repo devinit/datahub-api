@@ -1,27 +1,20 @@
 
-type Level {
-  # different continents or the whole World
-  regional: String
-  global: String
-}
-
-type Scenario {
-  #the picture of the level of poverty
-  bestCase: String
-  baseline: String
-  worstCase:String 
+type LevelData {
+  # extreme poverty count 
+  poverty: Int 
+  # can be worst case, baseline or bestcase
+  scenario: String
+  year: Int
+  # type can be global or regional
+  __typeName: String
 }
 
 type WhereThePoorWillbe {
-  extremePoverty: Int
-  year: Int
-  level: [Level]
-  Scenario: [Scenario]
+  global: [LevelData]
+  regional: [LevelData]
 }
 
 type Query {
-  getWhereThePoorWillbeData(
-    year: Int!
-  ): WhereThePoorWillbe
+  getWhereThePoorWillbeData: WhereThePoorWillbe
 }
 

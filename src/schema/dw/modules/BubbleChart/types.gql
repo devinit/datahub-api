@@ -1,15 +1,38 @@
 
 type GovtRevenuePerPerson {
-  # id is government revenue per person excluding grants
+  # id country code
   id: String
   year: Int
   value: Int
-  country: String
+  # actual or budgeted in our case we use actual values
+  type: String 
 }
 
+type Poverty190 {
+  id: String
+  year: Int
+  value: Int
+}
+
+type BubbleSize {
+  # Indicator label
+  id: String
+  year: Int
+  value: Int
+}
+
+type revenuePerPersonAndPoverty190 {
+  id: String
+  year: Int
+  poverty: Int
+  revenuePerPerson: Int
+}
+
+type Country: String
+
 type Query {
-  getGovtRevenuePerPerson(
-    year: Int
-  ): GovtRevenuePerPerson
+  # poverty bubble chart
+  getRevenuePerPersonAndPoverty190 (yearStart: Int, yearEnd: Int)
+  getBubbleSize(!year: Int, indicator: String | country: String) [BubbleSize]
 }
 

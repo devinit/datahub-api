@@ -11,12 +11,10 @@ type DataSources {
   methodology: String
   unit: String
   source: String
-  download: [Download]
+  download: Download
 }
 
 type Query {
-  getDataSources(
-    name: String
-  ): DataSources
+  getMethodologies: [DataSources]
 }
 

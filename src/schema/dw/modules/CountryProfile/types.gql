@@ -12,8 +12,14 @@ type IndicatorLabledData {
 type ResourceData {
   year: Int
   Value: Int
+  # is the breakdown of the category eg Gross disbursements for 
+  # the ODA category
   id: String
+  # Category can be Official (oda, oof), Commercial, Private
   category: String
+  # flow type either inflow or outflow
+  # this is an optional field may not be queried in final data
+  __typeName: String
 }
 
 type OverViewTab {
@@ -55,23 +61,48 @@ type PopulationTab {
   populationPerAgeBand: [PopulationPerAgeBand]
 }
 
+type Domestic {
+  # eg value added tax
+  title: String
+  # the levels of the data i.e total-expenditure,recurrent-expenditure,compensation-of-employees
+  levels: [String]
+  # eg Actual or budget
+  budgetType: String
+  # if level 1 data comes first, 
+  # this is for the tree map and its a convenience field as it can be drived from the levels array
+  # so one may query levels or level 
+  level: Int 
+  year: Int 
+  value: Int 
+}
+
 type GovernmentFinance {
   #Total revenue for a particular year if not available return -1
   totalRevenue: Int
-  grants: Int
+  totalGrants: Int
+  # such as constnat 2015 USD
+  currencyType: String
   spendingAllocation: [IndicatorLabledData]
   spendingAllocation: [IndicatorLabledData]
-  taxRevenue: [IndicatorLabledData]
-  nonTaxRevenue: [IndicatorLabledData]
-  financing: [IndicatorLabledData]
+  revenueAndGrants: [Domestic]
+  expenditure: [Domestic]
+  financing: [Domestic]
 }
 
 type InternationalResources {
+  # Gross National Income
   GNI: Int
   #Net ODA received, % of GNI
-  share: Int
-  #gross inflows
+  netODAOfGNI: Int
+  # gross inflows for the lines chart in the  tabs section
+  # for sidebar chart in international resources section & area partition tree chart
   resourceOverTimeInflows(yearStart: Int!, yearEnd: Int!): [ResourceData]
+  # for sidebar chart in international resources section & area partition tree chart
+  resourceOverTimeOutflows(yearStart: Int!, yearEnd: Int!): [ResourceData]
+  # an array of inflows for a particular country, for area & partition chart
+  inflows: [String]
+   # an array of outflows for a particular country
+  outflows: [String]
   #Government finance by economic type
   mixOfResources: [IndicatorData]
   resourceOutflow: [IndicatorLabledData]

@@ -1,6 +1,13 @@
+enum UnbundlingAidType {
+  ODA
+  OOF
+}
+
 type Aid {
   year: Int
   Value: Int
+  # country or organisation label
+  id: String
 }
 
 type AggregatedAid {
@@ -9,18 +16,14 @@ type AggregatedAid {
 }
 
 type Query {
-  getODA(
+  getUnbundlingAid(
+    type: UnbundlingAidType
     year: Int!,
-    type: String!,
-    ToCountry: String,
-    FromCountryOrOrg:String,
-  ):[AggregatedAid]
-
-  getOOF(
-    year: Int!,
-    type: String!,
-    ToCountry: String,
-    FromCountryOrOrg:String,
+    toCountry: String,
+    fromCountryOrOrg:String,
+    sector: String,
+    inTheformOf: String,
+    channel: String
   ):[AggregatedAid]
 }
 
