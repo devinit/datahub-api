@@ -48,3 +48,11 @@ Output files explained:
     1. node_modules - directory npm creates with all the dependencies of the module (result of npm install)
     2. dist         - directory contains the compiled server (javascript)
     3. html-report  - output of npm test, code coverage html report.
+
+Development GuideLines
+
+Typescript requires types for external dependency. When you install a new run time dependency endevour to install types for it.
+```
+// eg
+$ yarn add --dev typings/fs-promise
+```

@@ -1,81 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`gql Types to Typescript types End to End test: should create typescript types from graphql files 1`] = `
-"\\"// tslint:disable
-// graphql typescript definitions
+exports[`gql Types to Typescript types End to End test: should create typescript types from graphql files 1`] = `"undefined"`;
 
-declare namespace DHschema {
-  interface IGraphQLResponseRoot {
-    data?: IQuery;
-    errors?: Array<IGraphQLResponseError>;
-  }
-
-  interface IGraphQLResponseError {
-    message: string;            // Required for all errors
-    locations?: Array<IGraphQLResponseErrorLocation>;
-    [propName: string]: any;    // 7.2.2 says 'GraphQL servers may provide additional entries to error'
-  }
-
-  interface IGraphQLResponseErrorLocation {
-    line: number;
-    column: number;
-  }
-
-  /*
-    description: 
-  */
-  interface IQuery {
-    clients: Array<IClient> | null;
-    products: Array<IProduct> | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IClient {
-    id: number;
-    name: string | null;
-    age: number | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IProduct {
-    id: number;
-    description: string | null;
-    price: number | null;
-  }
-}
-
-// tslint:enable
-\\""
-`;
-
-exports[`gql Types to Typescript types should return merged typedefs 1`] = `
-"\\"schema {
-      query: Query
-      
-      
-    }
-
-    type Query {
-     clients: [Client]  products: [Product]
-  }
-
-    
-
-    
-  type Client {
-    id: Int!
-    name: String
-    age: Int
-  }type Product {
-    id: Int!
-    description: String
-    price: Int
-  }\\""
-`;
+exports[`gql Types to Typescript types should return merged typedefs 1`] = `"undefined"`;
 
 exports[`gql Types to Typescript types should work with types with comments 1`] = `
 "\\"schema {

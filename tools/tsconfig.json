@@ -15,6 +15,9 @@
         "noUnusedParameters": true,
         "declaration": false
     },
+    "include": [
+        "gqlToTs.*"
+    ],
     "exclude": [
         "node_modules"
     ]
