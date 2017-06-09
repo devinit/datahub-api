@@ -30,7 +30,7 @@ type revenuePerPersonAndPoverty190 {
 
 type Query {
   # poverty bubble chart
-  getRevenuePerPersonAndPoverty190 (yearStart: Int, yearEnd: Int): revenuePerPersonAndPoverty190
-  getBubbleSize(!year: Int, indicator: String): [BubbleSize]
+  getRevenuePerPersonAndPoverty190 (yearStart: Int, yearEnd: Int)[revenuePerPersonAndPoverty190]
+  getBubbleSize(!year: Int, indicator: String | country: String) [BubbleSize]
 }
 
