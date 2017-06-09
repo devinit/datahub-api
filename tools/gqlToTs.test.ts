@@ -9,11 +9,11 @@ const removeAllSpaces = (str) => str.replace(/\s++/g, '');
 describe('gql Types to Typescript types', () => {
 
     it('should return merged typedefs', async () => {
-        const typeDefs = await getTypeDefs('**/simple-*.gql');
+        const typeDefs = await getTypeDefs('**/*.gql');
         expect(prettyFormat(typeDefs)).toMatchSnapshot();
     });
     it('merged types should be convertable to a GraphQLSchema', async () => {
-        const typeDefs = await getTypeDefs('**/simple-*.gql');
+        const typeDefs = await getTypeDefs('**/*.gql');
         expect(buildSchema(typeDefs)).toBeInstanceOf(GraphQLSchema);
     });
     it.skip('should work with types with comments', async () => {
@@ -23,7 +23,7 @@ describe('gql Types to Typescript types', () => {
         expect(prettyFormat(typeDefsWithComments)).toMatchSnapshot();
     });
     it ('End to End test: should create typescript types from graphql files', async () => {
-        const tsTypesNameSpace = await main({globPattern: '**/simple-*.gql'});
+        const tsTypesNameSpace = await main({globPattern: '**/*.gql'});
         expect(prettyFormat(tsTypesNameSpace)).toMatchSnapshot();
     });
 });
