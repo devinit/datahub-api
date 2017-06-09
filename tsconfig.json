@@ -10,13 +10,12 @@
     "emitDecoratorMetadata": true,
     "declaration": false,
     "outDir": "dist",
-    "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors":true,
     "noFallthroughCasesInSwitch": true,
     "strictNullChecks": true,
     "rootDirs": [
       "src"
-    ]
+    ],
+    "typeRoots" : ["./typings", "./node_modules/@types"]
   },
   "files": [
     "src/main.ts"

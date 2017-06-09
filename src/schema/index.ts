@@ -16,7 +16,7 @@ const resolvers = resolversLoad.length > 1
     ? mergeResolvers(resolversLoad) : resolversLoad[0];
 
 const createSchema = async (): Promise<GraphQLSchema> => {
-    const typeDefs = await getTypeDefs();
+    const typeDefs = await getTypeDefs('**/*.gql');
     return makeExecutableSchema({ typeDefs, resolvers });
 };
 
