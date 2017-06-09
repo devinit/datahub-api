@@ -1,6 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`gql Types to Typescript types End to End test: should create typescript types from graphql files 1`] = `"undefined"`;
+exports[`gql Types to Typescript types End to End test: should create typescript types from graphql files 1`] = `
+"\\"// tslint:disable
+// graphql typescript definitions
 
 declare namespace DHschema {
   interface IGraphQLResponseRoot {
@@ -337,7 +339,8 @@ declare namespace DHschema {
 `;
 
 exports[`gql Types to Typescript types should return merged typedefs 1`] = `
-"\\"schema {
+"\\"
+    schema {
       query: Query
       mutation: Mutation
       
@@ -535,28 +538,5 @@ exports[`gql Types to Typescript types should return merged typedefs 1`] = `
     id: Int!
     description: String
     price: Int
-  }\\""
-`;
-
-exports[`gql Types to Typescript types should work with types with comments 1`] = `
-"\\"schema {
-      query: Query
-      
-      
-    }
-
-    type Query {
-     clientWithComments: [ClientWithComments]
-  }
-
-    
-
-    
-  type ClientWithComments {
-    id: Int!
-    # name of client
-    name: String
-    # age of clients
-    age: Int
   }\\""
 `;

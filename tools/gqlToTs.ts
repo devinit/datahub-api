@@ -11,9 +11,6 @@ import { generateNamespace } from '@gql2ts/from-schema';
 import * as fs from 'fs-extra';
 import * as R from 'ramda';
 
-export const normalizeMergedTypes: (mergedTypes: string[]) => string
-    = R.compose(R.replace(/\s+/g, ''), R.join(''));
-
 export interface IgqlTsOpts {
     globPattern?: string;
     outFile?: string;
@@ -32,7 +29,7 @@ export const getTypeDefs: (globPattern?: string) => Promise<string> = async (glo
         const files: string[]  = await glob(globPattern);
         const typesLoad: string[] = await Promise.all(R.map(readFile, files));
         const mergedTypes: string[] = mergeTypes(typesLoad);
-        return normalizeMergedTypes(mergedTypes);
+        return R.join('', mergedTypes);
     } catch (error) {
         console.error(error);
     }
