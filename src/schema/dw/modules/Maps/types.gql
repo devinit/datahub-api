@@ -20,7 +20,6 @@ type AggregatedMap {
 
 type Query {
   getMapData(
-    # map indicator type id eg poverty
     type: String!,
     startYear: Int,
     endYear: Int

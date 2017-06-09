@@ -6,5 +6,6 @@
     age: Int
   }
   type Query {
+    # get client with comments
     clientWithComments: [ClientWithComments]
   }

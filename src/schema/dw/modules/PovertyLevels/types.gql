@@ -5,8 +5,8 @@ type LevelData {
   # can be worst case, baseline or bestcase
   scenario: String
   year: Int
-  # _typeName can be global or regional
-  __typeName: String
+  # typeName can be global or regional
+  typeName: String
 }
 
 type WhereThePoorWillbe {
