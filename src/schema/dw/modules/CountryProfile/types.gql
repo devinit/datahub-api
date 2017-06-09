@@ -17,7 +17,7 @@ type ResourceData {
   id: String
   # Category can be Official (oda, oof), Commercial, Private
   category: String
-  # flow type either inflow or outflow
+  # flow either inflow or outflow
   # this is an optional field may not be queried in final data
   __typeName: String
 }

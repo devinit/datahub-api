@@ -5,7 +5,7 @@ type Download {
 }
 
 type DataSources {
-  # name the type of data you inquiring about
+  # name of the data you inquiring about
   name: String
   Description: String
   methodology: String

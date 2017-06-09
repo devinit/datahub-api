@@ -6,7 +6,11 @@
   "scripts": {
     "build": "webpack",
     "build:watch": "webpack --watch",
-    "gql": "gql2ts ./src/schema/example/modules/Person/types.gql -o ./typings/graphql.d.ts",
+    "tools:build": "tsc -p tools",
+    "gqlToTs": "npm run tools:build && node dist/gqltoTs.ts",
+    "gqlToTs:watch": "concurrently \"tsc -w -p tools\"  \"node-dev dist/gqltoTs.js\"",
+    "testTools": "jest tools/** ",
+    "testTools:watch": "jest -u --watch tools/** ",
     "pretest": "npm run build",
     "test": "jest",
     "lint": "tslint",
@@ -39,9 +43,9 @@
   },
   "homepage": "https://github.com/datahub/datahub-api#readme",
   "peerDependencies": {
-    "graphql": "^0.10.0",
-    "graphql-tag": "^2.2.1",
-    "@gql2ts/types": "next"
+    "@gql2ts/types": "next",
+    "graphql": "^0.10.1",
+    "graphql-tag": "^2.2.1"
   },
   "dependencies": {
     "@gql2ts/from-schema": "^1.1.1",
@@ -51,7 +55,7 @@
     "cors": "^2.8.3",
     "dataloader": "^1.3.0",
     "express": "^4.15.2",
-    "graphql": "^0.10.0",
+    "graphql": "^0.10.1",
     "graphql-server-express": "^0.8.0",
     "graphql-tag": "^2.2.1",
     "graphql-tools": "^0.11.0",
@@ -73,10 +77,13 @@
     "@types/ramda": "^0.0.10",
     "awesome-typescript-loader": "^3.1.3",
     "concurrently": "^3.4.0",
+    "fs-promise": "^2.0.3",
     "git-pre-hooks": "^1.2.0",
+    "glob-promise": "^3.1.0",
     "jest": "^20.0.1",
     "jest-cli": "^20.0.1",
     "node-dev": "^3.1.3",
+    "pretty-format": "^20.0.3",
     "raw-loader": "^0.5.1",
     "standard-version": "^4.0.0",
     "ts-jest": "^20.0.3",
@@ -92,7 +99,7 @@
     },
     "mapCoverage": true,
     "testEnvironment": "node",
-    "testRegex": ".*\\.spec\\.ts$",
+    "testRegex": ".*\\.test\\.ts$",
     "moduleFileExtensions": [
       "ts",
       "js",
