@@ -1,8 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`gql Types to Typescript types End to End test: should create typescript types from graphql files 1`] = `
-"\\"// tslint:disable
-// graphql typescript definitions
+exports[`gql Types to Typescript types End to End test: should create typescript types from graphql files 1`] = `"undefined"`;
 
 declare namespace DHschema {
   interface IGraphQLResponseRoot {

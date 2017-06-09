@@ -1,10 +1,7 @@
 import 'jest';
 import { GraphQLSchema, buildSchema } from 'graphql';
-import { main, IgqlTsOpts, getTypeDefs, normalizeWhitespace} from './gqlToTs';
-import expectedSimple from './tests/expected-simple';
+import { main, getTypeDefs} from './gqlToTs';
 import * as prettyFormat from 'pretty-format';
-
-const removeAllSpaces = (str) => str.replace(/\s++/g, '');
 
 describe('gql Types to Typescript types', () => {
 

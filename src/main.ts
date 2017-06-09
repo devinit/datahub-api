@@ -2,11 +2,14 @@ import * as bodyParser from 'body-parser';
 import compression from 'compression';
 import * as cors from 'cors';
 import * as express from 'express';
-import {graphiqlExpress, graphqlExpress} from 'graphql-server-express';
+import {
+  graphiqlExpress,
+  graphqlExpress
+} from 'graphql-server-express';
 import * as helmet from 'helmet';
 import * as morgan from 'morgan';
 import * as path from 'path';
-import schema from './schema';
+import createSchema from './schema';
 
 
 // Default port or given one.
@@ -18,7 +21,7 @@ interface IMainOptions {
   enableGraphiql: boolean;
   env: string;
   port: number;
-  verbose?: boolean;
+  verbose ? : boolean;
 }
 
 /* istanbul ignore next: no need to test verbose print */
@@ -30,17 +33,21 @@ function verbosePrint(port, enableGraphiql) {
 }
 
 const graphqlMiddleware = [
-    bodyParser.json(),
-    bodyParser.text({ type: 'application/graphql' }),
-    (req, res, next) => {
-        if (req.is('application/graphql')) {
-            req.body = { query: req.body };
-        }
-        next();
+  bodyParser.json(),
+  bodyParser.text({
+    type: 'application/graphql'
+  }),
+  (req, res, next) => {
+    if (req.is('application/graphql')) {
+      req.body = {
+        query: req.body
+      };
     }
+    next();
+  }
 ];
 
-export function main(options: IMainOptions) {
+export async function main(options: IMainOptions) {
   const app = express();
 
   app.use(helmet());
@@ -51,30 +58,31 @@ export function main(options: IMainOptions) {
 
   if (options.env === 'production') app.use(compression);
 
-  const logger = { log: (err) => console.error('graphql errors: ', err) };
-
-  app.use(GRAPHQL_ROUTE, ...graphqlMiddleware, graphqlExpress({
-    context: {},
-    // logger,
-    schema
-  }));
-
-  if (true === options.enableGraphiql) {
-    app.use(GRAPHIQL_ROUTE, graphiqlExpress({endpointURL: GRAPHQL_ROUTE}));
-  }
-
-  return new Promise((resolve, reject) => {
-    const server = app.listen(options.port, () => {
-      /* istanbul ignore if: no need to test verbose print */
-      if (options.verbose) {
-        verbosePrint(options.port, options.enableGraphiql);
-      }
-
-      resolve(server);
-    }).on('error', (err: Error) => {
-      reject(err);
+  try {
+    const schema = await createSchema();
+    app.use(GRAPHQL_ROUTE, ...graphqlMiddleware, graphqlExpress({
+      context: {},
+      schema
+    }));
+    if (true === options.enableGraphiql) {
+      app.use(GRAPHIQL_ROUTE, graphiqlExpress({
+        endpointURL: GRAPHQL_ROUTE
+      }));
+    }
+    return new Promise((resolve) => {
+      const server = app.listen(options.port, () => {
+        /* istanbul ignore if: no need to test verbose print */
+        if (options.verbose) {
+          verbosePrint(options.port, options.enableGraphiql);
+        }
+        resolve(server);
+      }).on('error', (err: Error) => {
+        console.error(err);
+      });
     });
-  });
+  } catch (error) {
+    if (error) console.error(error);
+  }
 }
 
 /* istanbul ignore if: main scope */
@@ -91,10 +99,10 @@ if (require.main === module) {
   const ENABLE_CORS = NODE_ENV !== 'production';
 
   main({
-    enableCors: ENABLE_CORS,
-    enableGraphiql: EXPORT_GRAPHIQL,
-    env: NODE_ENV,
-    port: PORT,
-    verbose: true,
-  });
+      enableCors: ENABLE_CORS,
+      enableGraphiql: EXPORT_GRAPHIQL,
+      env: NODE_ENV,
+      port: PORT,
+      verbose: true,
+    });
 }
