@@ -13,7 +13,7 @@
     "testTools:watch": "jest -u --watch tools/** ",
     "pretest": "npm run build",
     "test": "jest",
-    "lint": "tslint",
+    "lint": "tslint ./src",
     "test:watch": "npm test -- --watch",
     "test:notify": "npm run test:watch -- --notify",
     "coverage": "npm test -- --coverage",

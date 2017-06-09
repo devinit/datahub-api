@@ -10,6 +10,8 @@
     "emitDecoratorMetadata": true,
     "declaration": false,
     "outDir": "dist",
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors":true,
     "noFallthroughCasesInSwitch": true,
     "strictNullChecks": true,
     "rootDirs": [

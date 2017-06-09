@@ -4,7 +4,7 @@ exports[`gql Types to Typescript types End to End test: should create typescript
 "\\"// tslint:disable
 // graphql typescript definitions
 
-declare namespace DHschema {
+declare namespace DH {
   interface IGraphQLResponseRoot {
     data?: IQuery | IMutation;
     errors?: Array<IGraphQLResponseError>;
