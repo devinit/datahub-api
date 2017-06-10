@@ -10,9 +10,7 @@
     "test": "jest",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "test:watch": "npm test -- --watch",
-    "test:notify": "npm run test:watch -- --notify",
-    "codecov": "tsc && jest && codecov",
-    "coverage:notify": "npm run coverage -- --watch --notify",
+    "codecov": "npm run build && npm run test & codecov",
     "start": "npm run build && node dist/main.js",
     "dev": "concurrently \"npm run build:watch\" \"node-dev dist/main.js\""
   },
