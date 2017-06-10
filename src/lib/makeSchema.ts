@@ -30,15 +30,6 @@ const getGlobbedFilesLoad: (globPattern: string) => Promise<string[]> = async (g
     return load;
 };
 
-export const getResolvers: (globPattern?: string) => Promise<any> = async (globPattern = '**/resolver.ts') => {
-    try {
-        const resolversLoad: string[] = await getGlobbedFilesLoad(globPattern);
-        return mergeResolvers(resolversLoad);
-    } catch (error) {
-        console.error(error);
-    }
-};
-
 export const getTypeDefs: (globPattern?: string) => Promise<string> = async (globPattern = '**/*.gql') => {
     try {
         const typesLoad: string[] = await getGlobbedFilesLoad(globPattern);

@@ -23,8 +23,4 @@ describe('gql Types to Typescript types', () => {
         const tsTypesNameSpace = await generateTsFromGql({globPattern: '**/*.gql'});
         expect(prettyFormat(tsTypesNameSpace)).toMatchSnapshot();
     });
-    it ('should merge all resolvers into a single resolver object', async () => {
-        const mergedResolvers = await getResolvers('**/resolver.ts');
-        expect(mergedResolvers.Query).toBeDefined();
-    });
 });
