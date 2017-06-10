@@ -54,5 +54,5 @@ Development GuideLines
 Typescript requires types for external dependency. When you install a new run time dependency endevour to install types for it.
 ```
 // eg
-$ yarn add --dev typings/fs-promise
+$ yarn add --dev @types/fs-extra
 ```
