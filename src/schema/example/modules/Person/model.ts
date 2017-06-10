@@ -16,7 +16,7 @@ const persons: DH.IPersonType[] = [
   }
 ];
 
-const findPerson = (personsArr: DH.IPersonType[], id: string): DH.IPersonType => {
+const findPerson = (personsArr: DH.IPersonType[], id: string): DH.IPersonType | undefined  => {
   return personsArr.find((person) => person.id === id);
 };
 

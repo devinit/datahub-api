@@ -15,11 +15,8 @@
     "rootDirs": [
       "src"
     ],
-    "typeRoots" : ["./typings", "./node_modules/@types"]
+    "typeRoots" : ["./src/types", "./node_modules/@types"]
   },
-  "files": [
-    "src/main.ts"
-  ],
   "exclude": [
     "node_modules"
   ]
