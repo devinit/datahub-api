@@ -8,9 +8,7 @@ import {
 } from 'graphql-server-express';
 import * as helmet from 'helmet';
 import * as morgan from 'morgan';
-import * as path from 'path';
 import createSchema from './schema';
-
 
 // Default port or given one.
 export const GRAPHQL_ROUTE = '/graphql';
@@ -37,7 +35,8 @@ const graphqlMiddleware = [
   bodyParser.text({
     type: 'application/graphql'
   }),
-  (req, res, next) => {
+  // tslint:disable-next-line:variable-name
+  (req, _res, next) => {
     if (req.is('application/graphql')) {
       req.body = {
         query: req.body

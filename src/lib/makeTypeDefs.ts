@@ -6,7 +6,7 @@
  */
 
 import * as glob from 'glob-promise';
-import { mergeResolvers, mergeTypes } from 'merge-graphql-schemas';
+import { mergeTypes } from 'merge-graphql-schemas';
 import { generateNamespace } from '@gql2ts/from-schema';
 import * as fs from 'fs-extra';
 import * as R from 'ramda';

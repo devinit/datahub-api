@@ -8,10 +8,12 @@
     "sourceMap": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "declaration": false,
+    "declaration": true,
     "outDir": "dist",
     "noFallthroughCasesInSwitch": true,
     "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "rootDirs": [
       "src"
     ],

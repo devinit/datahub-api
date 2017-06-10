@@ -2,13 +2,13 @@ import model from './model';
 
 export default {
   Query: {
-    getPerson(root, args, ctx) {
+    getPerson(_root, args) {
       return model.findPerson(model.persons, args.id);
     },
-    persons(root, args, ctx) {
+    persons() {
       return model.persons;
     },
-    getPersonWithExtra(root, args, ctx) {
+    getPersonWithExtra() {
       const tempPerson = {
         id: '2',
         sex: 'female',
@@ -28,7 +28,7 @@ export default {
     },
   },
   Mutation: {
-    addPerson(root, args, ctx) {
+    addPerson(_root, args) {
       return model.addPerson(model.persons, {
         id: Math.random().toString(16).substr(2),
         name: args.name,

@@ -8,6 +8,7 @@
     "curly": false,
     "object-literal-sort-keys": false,
     "arrow-parens":false,
+    "variable-name":false,
     "ordered-imports": [false]
   }
 }

@@ -11,6 +11,8 @@
     "declaration": false,
     "outDir": "dist",
     "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "strictNullChecks": true
   },
   "exclude": [
