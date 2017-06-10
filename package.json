@@ -6,8 +6,7 @@
   "scripts": {
     "build": "webpack",
     "build:watch": "webpack --watch",
-    "gqlToTs": "npm run build && node dist/lib/gqlToTs.js",
-    "gqlToTs:watch": "concurrently \"npm run build:watch\"  \"node-dev dist/lib/gqlToTs.js\"",
+    "gqlToTs": "tsc -p src/lib && node src/lib/cli/gqlToTs.js",
     "pretest": "npm run build",
     "test": "jest",
     "lint": "tslint ./src",
