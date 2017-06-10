@@ -13,6 +13,7 @@
     "test:watch": "npm test -- --watch",
     "test:notify": "npm run test:watch -- --notify",
     "coverage": "npm test -- --coverage",
+    "codecov": "npm run test && codecov",
     "coverage:notify": "npm run coverage -- --watch --notify",
     "start": "npm run build && node dist/main.js",
     "dev": "concurrently \"npm run build:watch\" \"node-dev dist/main.js\""
@@ -89,6 +90,8 @@
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
     "mapCoverage": true,
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true,
     "testEnvironment": "node",
     "testRegex": ".*\\.test\\.ts$",
     "moduleFileExtensions": [
