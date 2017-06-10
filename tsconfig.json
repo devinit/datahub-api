@@ -8,7 +8,7 @@
     "sourceMap": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "declaration": true,
+    "declaration": false,
     "outDir": "dist",
     "noFallthroughCasesInSwitch": true,
     "strictNullChecks": true,
