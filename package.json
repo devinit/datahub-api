@@ -4,8 +4,8 @@
   "description": "Apollo GraphQL server using webpack and typescript",
   "main": "dist/main.js",
   "scripts": {
-    "build": "tsc",
-    "build:watch": "tsc -w",
+    "build": "wepback",
+    "build:watch": "wepback --watch",
     "gqlToTs": "npm run build && node dist/lib/gqlToTs.js",
     "gqlToTs:watch": "concurrently \"npm run build:watch\"  \"node-dev dist/lib/gqlToTs.js\"",
     "pretest": "npm run build",
