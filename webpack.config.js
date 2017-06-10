@@ -20,10 +20,11 @@ var webpack_opts = {
     libraryTarget: "commonjs2"
   },
   resolve: {
-    extensions: ['.ts', '.js', '.gql'],
+    extensions: ['.ts', '.js'],
     modules: [
       'node_modules',
       'src',
+      'src/lib'
     ]
   },
   plugins: [
@@ -39,17 +40,14 @@ var webpack_opts = {
           failOnHint: true
         }
       }
-    })
+    }),
+    // new TsConfigPathsPlugin()
   ],
   devtool: 'source-map',
   module: {
     rules: [
       { test: /\.ts$/,
         use: 'awesome-typescript-loader'
-      },
-      {
-        test: /\.(graphql|gql)$/,
-        loader: 'raw-loader'
       }
       ]
   },

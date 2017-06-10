@@ -14,13 +14,20 @@
     "strictNullChecks": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "baseUrl": ".",
+    "paths":{
+      "*": ["node_modules", "src"]
+    },
     "rootDirs": [
       "src"
     ],
     "typeRoots" : ["./src/types", "./node_modules/@types"]
   },
+  "files": [
+    "src/main.ts",
+    "src/types/dh.d.ts"
+  ],
   "exclude": [
-    "node_modules",
-    "src/lib/cli"
+    "node_modules"
   ]
 }

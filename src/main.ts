@@ -14,12 +14,12 @@ import createSchema from './schema';
 export const GRAPHQL_ROUTE = '/graphql';
 export const GRAPHIQL_ROUTE = '/graphiql';
 
-interface IMainOptions {
+export interface IMainOptions {
   enableCors: boolean;
   enableGraphiql: boolean;
   env: string;
   port: number;
-  verbose ? : boolean;
+  verbose ?: boolean;
 }
 
 /* istanbul ignore next: no need to test verbose print */

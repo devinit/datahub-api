@@ -1,7 +1,6 @@
 {
   "extends": "tslint:recommended",
   "rules": {
-    "use-strict": true,
     "no-console": [false],
     "quotemark": [true, "single", "jsx-double"],
     "trailing-comma": [false],

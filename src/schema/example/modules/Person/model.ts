@@ -1,3 +1,6 @@
+// tslint:disable-next-line:no-reference
+// for vscode
+/// <reference path="../../../../types/dh.d.ts" />
 const persons: DH.IPersonType[] = [
   {
     id: '1',
