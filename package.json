@@ -4,8 +4,8 @@
   "description": "Apollo GraphQL server using webpack and typescript",
   "main": "dist/main.js",
   "scripts": {
-    "build": "wepback",
-    "build:watch": "wepback --watch",
+    "build": "webpack",
+    "build:watch": "webpack --watch",
     "gqlToTs": "npm run build && node dist/lib/gqlToTs.js",
     "gqlToTs:watch": "concurrently \"npm run build:watch\"  \"node-dev dist/lib/gqlToTs.js\"",
     "pretest": "npm run build",
@@ -80,7 +80,10 @@
     "raw-loader": "^0.5.1",
     "ts-jest": "^20.0.6",
     "tslint": "^5.4.3",
-    "typescript": "2.3.4"
+    "typescript": "2.3.4",
+    "awesome-typescript-loader": "^3.1.3",
+    "webpack": "^2.5.1",
+    "webpack-node-externals": "^1.6.0"
   },
   "jest": {
     "transform": {

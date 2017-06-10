@@ -1,8 +1,9 @@
 
 import { GraphQLSchema} from 'graphql';
 import { makeExecutableSchema } from 'graphql-tools';
-import {getTypeDefs, getResolvers} from '../lib/makeSchema';
-const resolverFiles = (require as any).context('./schema', true, /resolver\.ts/);
+import { mergeResolvers } from 'merge-graphql-schemas';
+import { getTypeDefs } from '../lib/makeSchema';
+const resolverFiles = (require as any).context('./', true, /resolver\.ts/);
 
 const resolversLoad: any[] = resolverFiles.keys()
     .map(moduleName => resolverFiles(moduleName).default);

@@ -1,6 +1,6 @@
 import 'jest';
 import { GraphQLSchema, buildSchema } from 'graphql';
-import { generateTsFromGql, getTypeDefs, getResolvers} from './makeSchema';
+import { generateTsFromGql, getTypeDefs} from './makeSchema';
 import * as prettyFormat from 'pretty-format';
 
 describe('gql Types to Typescript types', () => {
