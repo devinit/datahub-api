@@ -20,7 +20,7 @@ var webpack_opts = {
     libraryTarget: "commonjs2"
   },
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: ['.ts', '.js', '.gql'],
     modules: [
       'node_modules',
       'src',
@@ -45,7 +45,11 @@ var webpack_opts = {
   module: {
     rules: [
       { test: /\.ts$/,
-        use: 'ts-loader'
+        use: 'awesome-typescript-loader'
+      },
+      {
+        test: /\.(graphql|gql)$/,
+        loader: 'raw-loader'
       }
       ]
   },
