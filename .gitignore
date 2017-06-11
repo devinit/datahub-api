@@ -6,7 +6,7 @@ dist/
 *.tgz
 *.yaml
 .idea/
-.vscode
 .DS_Store
 package-lock.json
 yarn.lock
+src/schema/dw/config/index.ts

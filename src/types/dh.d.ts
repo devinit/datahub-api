@@ -4,7 +4,7 @@
 
 declare namespace DH {
   interface IGraphQLResponseRoot {
-    data?: IQuery | IMutation;
+    data?: IQuery;
     errors?: Array<IGraphQLResponseError>;
   }
 
@@ -34,9 +34,6 @@ declare namespace DH {
     getMethodologies: Array<IDataSources> | null;
     getWhereThePoorWillbeData: IWhereThePoorWillbe | null;
     getUnbundlingAid: Array<IAggregatedAid> | null;
-    getPerson: IPersonType | null;
-    persons: Array<IPersonType> | null;
-    getPersonWithExtra: IExtra | null;
   }
 
   /*
@@ -251,38 +248,6 @@ declare namespace DH {
     year: number | null;
     Value: number | null;
     id: string | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IPersonType {
-    name: string | null;
-    id: string | null;
-    sex: string | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IExtra {
-    speed: number | null;
-    person: IPersonType | null;
-    agility: IAgilityMeasure | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IAgilityMeasure {
-    value: number | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IMutation {
-    addPerson: IPersonType | null;
   }
 
   /*

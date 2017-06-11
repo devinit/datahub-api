@@ -11,8 +11,8 @@
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "test:watch": "npm test -- --watch",
     "codecov": "npm run build && jest && codecov",
-    "start": "npm run build && node dist/main.js",
-    "dev": "concurrently \"npm run build:watch\" \"node-dev dist/main.js\""
+    "start": "NODE_ENV=production npm run build && node dist/main.js",
+    "dev": "NODE_ENV=development concurrently \"npm run build:watch\" \"node-dev dist/main.js\""
   },
   "repository": {
     "type": "git",
@@ -50,6 +50,8 @@
     "helmet": "^3.6.0",
     "merge-graphql-schemas": "^0.0.17",
     "morgan": "^1.8.1",
+    "pg-monitor": "^0.8.0",
+    "pg-promise": "^5.9.1",
     "ramda": "^0.24.1"
   },
   "devDependencies": {

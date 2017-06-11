@@ -6,7 +6,7 @@ exports[`gql Types to Typescript types End to End test: should create typescript
 
 declare namespace DH {
   interface IGraphQLResponseRoot {
-    data?: IQuery | IMutation;
+    data?: IQuery;
     errors?: Array<IGraphQLResponseError>;
   }
 
@@ -36,9 +36,6 @@ declare namespace DH {
     getMethodologies: Array<IDataSources> | null;
     getWhereThePoorWillbeData: IWhereThePoorWillbe | null;
     getUnbundlingAid: Array<IAggregatedAid> | null;
-    getPerson: IPersonType | null;
-    persons: Array<IPersonType> | null;
-    getPersonWithExtra: IExtra | null;
   }
 
   /*
@@ -258,38 +255,6 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IPersonType {
-    name: string | null;
-    id: string | null;
-    sex: string | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IExtra {
-    speed: number | null;
-    person: IPersonType | null;
-    agility: IAgilityMeasure | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IAgilityMeasure {
-    value: number | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IMutation {
-    addPerson: IPersonType | null;
-  }
-
-  /*
-    description: 
-  */
   interface IGovtRevenuePerPerson {
     id: string | null;
     year: number | null;
@@ -315,17 +280,15 @@ exports[`gql Types to Typescript types should return merged typedefs 1`] = `
 "\\"
     schema {
       query: Query
-      mutation: Mutation
+      
       
     }
 
     type Query {
-     getRevenuePerPersonAndPoverty190 (yearStart: Int, yearEnd: Int): [revenuePerPersonAndPoverty190] getBubbleSize(year: Int!, indicatorOrCountry: String ): [BubbleSize]  getOverViewTab(country: String!, year: Int!): OverViewTab getPovertyTab(country: String, year: Int!): PovertyTab getPopulationTab(country: String, year: Int!): PopulationTab getGovernmentFinance(country: String, year: Int!): GovernmentFinance getInternationalResources(country: String, year: Int!): InternationalResources  getMapData( type: String!, startYear: Int, endYear: Int ): AggregatedMap  getMethodologies: [DataSources]  getWhereThePoorWillbeData: WhereThePoorWillbe  getUnbundlingAid( type: UnbundlingAidType year: Int!, toCountry: String, fromCountryOrOrg:String, sector: String, inTheformOf: String, channel: String ):[AggregatedAid]  getPerson(id: String!): PersonType persons: [PersonType] getPersonWithExtra: Extra
+     getRevenuePerPersonAndPoverty190 (yearStart: Int, yearEnd: Int): [revenuePerPersonAndPoverty190] getBubbleSize(year: Int!, indicatorOrCountry: String ): [BubbleSize]  getOverViewTab(country: String!, year: Int!): OverViewTab getPovertyTab(country: String, year: Int!): PovertyTab getPopulationTab(country: String, year: Int!): PopulationTab getGovernmentFinance(country: String, year: Int!): GovernmentFinance getInternationalResources(country: String, year: Int!): InternationalResources  getMapData( type: String!, startYear: Int, endYear: Int ): AggregatedMap  getMethodologies: [DataSources]  getWhereThePoorWillbeData: WhereThePoorWillbe  getUnbundlingAid( type: UnbundlingAidType year: Int!, toCountry: String, fromCountryOrOrg:String, sector: String, inTheformOf: String, channel: String ):[AggregatedAid]
   }
 
-    type Mutation {
-           addPerson(name: String!, sex: String!): PersonType
-  }
+    
 
     
   enum UnbundlingAidType {
@@ -487,15 +450,5 @@ exports[`gql Types to Typescript types should return merged typedefs 1`] = `
   fromCountries: [String]
   channels: [String]
   form: [String]
-}type PersonType {
-  name: String
-  id: String
-  sex: String
-}type AgilityMeasure {
-  value: Int
-}type Extra {
-  speed: Int
-  person: PersonType
-  agility(height: Int): AgilityMeasure
 }\\""
 `;
