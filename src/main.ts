@@ -60,8 +60,7 @@ export async function main(options: IMainOptions) {
   try {
     const schema = await createSchema();
     app.use(GRAPHQL_ROUTE, ...graphqlMiddleware, graphqlExpress({
-      context: {},
-      schema
+      ...schema
     }));
     if (true === options.enableGraphiql) {
       app.use(GRAPHIQL_ROUTE, graphiqlExpress({

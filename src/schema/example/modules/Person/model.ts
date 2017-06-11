@@ -1,35 +1,22 @@
 // tslint:disable-next-line:no-reference
 // for vscode
 /// <reference path="../../../../types/dh.d.ts" />
-const persons: DH.IPersonType[] = [
-  {
-    id: '1',
-    sex: 'male',
-    name: 'miro'
-  },
-  {
-    id: '2',
-    sex: 'female',
-    name: 'lala'
-  },
-  {
-    id: '3',
-    sex: 'male',
-    name: 'joe'
+
+class Person {
+  private db: DH.IPersonType[];
+
+  constructor(db) {
+    this.db = db;
   }
-];
 
-const findPerson = (personsArr: DH.IPersonType[], id: string): DH.IPersonType | undefined  => {
-  return personsArr.find((person) => person.id === id);
-};
+  public findPerson = (id: string): DH.IPersonType | undefined  => {
+    return this.db.find((person) => person.id === id);
+  }
 
-const addPerson = (personsArr: DH.IPersonType[], person: DH.IPersonType) => {
-  personsArr.push(person);
-  return personsArr;
-};
+  public addPerson = (person: DH.IPersonType): DH.IPersonType[]  => {
+    this.db.push(person);
+    return this.db;
+  }
+}
 
-export default {
-  persons,
-  findPerson,
-  addPerson
-};
+export default Person;
