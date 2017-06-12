@@ -31,6 +31,7 @@ declare namespace DH {
     getGovernmentFinance: IGovernmentFinance | null;
     getInternationalResources: IInternationalResources | null;
     getMapData: IAggregatedMap | null;
+    getDACCountries: Array<string> | null;
     getMethodologies: Array<IDataSources> | null;
     getWhereThePoorWillbeData: IWhereThePoorWillbe | null;
     getUnbundlingAid: Array<IAggregatedAid> | null;
@@ -173,7 +174,6 @@ declare namespace DH {
     map: Array<IMapUnit> | null;
     label: string | null;
     unit: string | null;
-    dac: Array<string> | null;
     total: number | null;
   }
 

@@ -27,6 +27,18 @@ const db = pgp(dwConfig) as IDatabase<IExtensions> & IExtensions;
 
 diagnostics.init(options);
 
+process.on('exit', (code) => {
+  // kill db
+  pgp.end();
+  console.log(`About to exit with code: ${code}, closed DB connection`);
+});
+
+process.on('SIGINT', () => {
+    // kill db
+    pgp.end();
+    console.log('Ctrl-C... forced termination closed DB connection');
+});
+
 // If you ever need access to the library's root (pgp object), you can do it via db.$config.pgp
 // See: http://vitaly-t.github.io/pg-promise/Database.html#.$config
 export default db;
