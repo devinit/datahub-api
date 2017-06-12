@@ -1,4 +1,6 @@
 import {IDatabase} from 'pg-promise';
+import {getTotal} from '../../../../utils';
+
 
 interface IgetMapDataOpts {
     indicatorType: string;
@@ -18,8 +20,7 @@ export default class Maps {
         const label: string = opts.indicatorType;
         const unit: string = '%';
         const dac: string[] = await this.getDAC();
-        // TODO: getTotal function
-        const total: number = 100;
+        const total: number = getTotal(map);
         return {map, label, unit, dac, total};
     }
     private createIndicatorQuery() {
@@ -28,12 +29,13 @@ export default class Maps {
     private getIndicatorData(opts: IgetMapDataOpts): Promise<DH.IMapUnit[]> {
         return this.db.any(this.createIndicatorQuery(), opts);
     }
-    private createDACQuery() {
+    private createDACQuery(): string {
         return 'SELECT * FROM dimension.iso_3166_1';
     }
-    private getDAC(): Promise<string[]> {
+    private async getDAC(): Promise<string[]> {
         // TODO: post process
-        return this.db.many(this.createDACQuery());
+        const data: Array<{id: string}> = await this.db.many(this.createDACQuery());
+        return data.map(obj => obj.id);
     }
 
 }
