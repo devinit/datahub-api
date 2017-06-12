@@ -3,7 +3,7 @@ type MapUnit {
   # country code Id or distict code for case of spotlight uganda
   id: String
   year: Int
-  value: Int
+  value: Float
 }
 
 type AggregatedMap {
@@ -13,7 +13,7 @@ type AggregatedMap {
   # map value unit eg US $ or %
   unit: String
   # map indicators total for % computations where needed
-  total: Int 
+  total: Float 
 }
 
 type Query {

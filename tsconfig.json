@@ -16,7 +16,8 @@
     "noUnusedParameters": true,
     "baseUrl": ".",
     "paths":{
-      "*": ["node_modules", "src"]
+      "*": ["node_modules", "src"],
+      "utils": ["src/utils/index.ts"]
     },
     "rootDirs": [
       "src"

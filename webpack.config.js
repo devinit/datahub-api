@@ -24,6 +24,7 @@ var webpack_opts = {
     modules: [
       'node_modules',
       'src',
+      'src/utils'
     ]
   },
   plugins: [
