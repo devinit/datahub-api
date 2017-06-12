@@ -13,13 +13,14 @@ const options: IOptions<IExtensions> = {
     // Extending the database protocol with our custom modules
     // API: http://vitaly-t.github.io/pg-promise/global.html#event:extend
     extend: (obj: IExtensions) => {
-        obj.maps = new Maps(obj, pgp);
+        obj.maps = new Maps(obj);
     }
 };
 
 const pgp: IMain = pgPromise(options);
 
 // Create the database instance with extensions:
+
 const db = pgp(dwConfig) as IDatabase<IExtensions> & IExtensions;
 
 // Load and initialize optional diagnostics:

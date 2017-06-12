@@ -20,7 +20,7 @@ type AggregatedMap {
 
 type Query {
   getMapData(
-    type: String!,
+    indicatorType: String!,
     startYear: Int,
     endYear: Int
   ): AggregatedMap

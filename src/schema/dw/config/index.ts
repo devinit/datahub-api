@@ -4,7 +4,7 @@ import {IConfig} from 'pg-promise';
 
 export const dwConfig: IConfig = {
     user: process.env.DB_USER,
-    database: process.env.DB_database,
+    database: process.env.DB_DATABASE,
     host: process.env.DB_HOST,
     port: Number(process.env.DB_PORT),
     password: process.env.DB_PASSWORD
