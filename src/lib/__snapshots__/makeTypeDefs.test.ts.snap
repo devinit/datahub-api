@@ -175,7 +175,6 @@ declare namespace DH {
     map: Array<IMapUnit> | null;
     label: string | null;
     unit: string | null;
-    dac: Array<string> | null;
     total: number | null;
   }
 
@@ -285,7 +284,7 @@ exports[`gql Types to Typescript types should return merged typedefs 1`] = `
     }
 
     type Query {
-     getRevenuePerPersonAndPoverty190 (yearStart: Int, yearEnd: Int): [revenuePerPersonAndPoverty190] getBubbleSize(year: Int!, indicatorOrCountry: String ): [BubbleSize]  getOverViewTab(country: String!, year: Int!): OverViewTab getPovertyTab(country: String, year: Int!): PovertyTab getPopulationTab(country: String, year: Int!): PopulationTab getGovernmentFinance(country: String, year: Int!): GovernmentFinance getInternationalResources(country: String, year: Int!): InternationalResources  getMapData( indicatorType: String!, startYear: Int, endYear: Int ): AggregatedMap  getMethodologies: [DataSources]  getWhereThePoorWillbeData: WhereThePoorWillbe  getUnbundlingAid( type: UnbundlingAidType year: Int!, toCountry: String, fromCountryOrOrg:String, sector: String, inTheformOf: String, channel: String ):[AggregatedAid]
+     getRevenuePerPersonAndPoverty190 (yearStart: Int, yearEnd: Int): [revenuePerPersonAndPoverty190] getBubbleSize(year: Int!, indicatorOrCountry: String ): [BubbleSize]  getOverViewTab(country: String!, year: Int!): OverViewTab getPovertyTab(country: String, year: Int!): PovertyTab getPopulationTab(country: String, year: Int!): PopulationTab getGovernmentFinance(country: String, year: Int!): GovernmentFinance getInternationalResources(country: String, year: Int!): InternationalResources  getMapData( indicatorType: String!, startYear: Int, endYear: Int, DACOnly: Boolean ): AggregatedMap  getMethodologies: [DataSources]  getWhereThePoorWillbeData: WhereThePoorWillbe  getUnbundlingAid( type: UnbundlingAidType year: Int!, toCountry: String, fromCountryOrOrg:String, sector: String, inTheformOf: String, channel: String ):[AggregatedAid]
   }
 
     
@@ -404,17 +403,15 @@ exports[`gql Types to Typescript types should return merged typedefs 1`] = `
   # country code Id or distict code for case of spotlight uganda
   id: String
   year: Int
-  value: Int
+  value: Float
 }type AggregatedMap {
   map: [MapUnit]
   # map indeicator user friendly label / slug eg Poverty
   label: String
   # map value unit eg US $ or %
   unit: String
-  # DAC countries, used by International finance section
-  dac: [String]
   # map indicators total for % computations where needed
-  total: Int 
+  total: Float 
 }type Download {
   csv: String
   zip: String

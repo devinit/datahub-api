@@ -1,5 +1,5 @@
 import {IDatabase} from 'pg-promise';
-import {getTotal} from 'utils';
+import {getTotal} from '../../../../utils';
 
 interface IgetMapDataOpts {
     indicatorType: string;

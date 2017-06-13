@@ -12,6 +12,6 @@ describe('gql Types to Typescript types', () => {
             {value: 2000, id: 'pl', countryName: 'Poland'}
             ];
         const onlyDacCountries = Maps.DACOnlyData(dacCountries, data);
-        expect(onlyDacCountries.length).toBe(2);
+        expect(onlyDacCountries.length).toBe(3);
     });
 });
