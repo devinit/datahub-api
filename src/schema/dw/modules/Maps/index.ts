@@ -1,5 +1,6 @@
 import {IDatabase} from 'pg-promise';
 import {getTotal} from '../../../../utils';
+import * as R from 'ramda';
 
 interface IgetMapDataOpts {
     indicatorType: string;
@@ -10,8 +11,8 @@ interface IgetMapDataOpts {
 
 export default class Maps {
     public static DACOnlyData(DACCountries, indicatorData): DH.IMapUnit[] {
-        console.log('dac-countries', DACCountries);
-        return indicatorData;
+       return DACCountries.map(countryName => 
+            R.find(obj => obj.countryName === countryName, indicatorData));
     }
 
     private db: IDatabase<any>;
