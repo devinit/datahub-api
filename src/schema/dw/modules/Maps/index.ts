@@ -5,9 +5,14 @@ interface IgetMapDataOpts {
     indicatorType: string;
     startYear: number;
     endYear: number;
+    DACOnly: boolean;
 }
 
 export default class Maps {
+    public static DACOnlyData(DACCountries, indicatorData): DH.IMapUnit[] {
+        console.log('dac-countries', DACCountries);
+        return indicatorData;
+    }
 
     private db: IDatabase<any>;
 
@@ -15,15 +20,18 @@ export default class Maps {
         this.db = db;
     }
     public async getMapData(opts: IgetMapDataOpts): Promise<DH.IAggregatedMap> {
-        const map: DH.IMapUnit[] = await this.getIndicatorData(opts);
-        // console.log('map unit:', map[0]);
+        const indicatorData: DH.IMapUnit[] = await this.getIndicatorData(opts);
         const label: string = opts.indicatorType;
         // TODO: Get unit value from refrence file
         const unit: string = '%';
-        const total: number = getTotal(map);
-        return {map, label, unit, total};
+        console.log(indicatorData[0]);
+        const DACcountries = await this.getDACCountries();
+        const mapData = opts.DACOnly ? Maps.DACOnlyData(DACcountries, indicatorData) : indicatorData;
+        const total: number = getTotal(mapData);
+        return {map: mapData, label, unit, total};
     }
-    public async getDACCountries(): Promise<string[]> {
+
+    private async getDACCountries(): Promise<string[]> {
         const donors: Array<{donor_name: string}> = await this.db.many(this.createDACQuery(), 'DAC');
         return donors
             .map(donor => donor.donor_name);

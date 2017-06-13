@@ -20,8 +20,8 @@ type Query {
   getMapData(
     indicatorType: String!,
     startYear: Int,
-    endYear: Int
+    endYear: Int,
+    DACOnly: Boolean
   ): AggregatedMap
-  getDACCountries: [String]
 }
 
