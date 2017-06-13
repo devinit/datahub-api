@@ -1,7 +1,7 @@
 # Data hub graphql-server
 
-[![Build Status](https://travis-ci.org/devinit/datahub-api.svg?branch=master)](https://travis-ci.org/devinit/datahub-api)
-![Code Climate](https://codeclimate.com/github/devinit/datahub-api.svg)
+ [![Build Status](https://travis-ci.org/datahub/datahub-api.svg?branch=master)](https://travis-ci.org/datahub/datahub-api) [![Coverage Status](https://coveralls.io/repos/github/datahub/datahub-api/badge.svg?branch=master)](https://coveralls.io/github/datahub/datahub-api?branch=master)
+ ![Code Climate](https://codeclimate.com/github/devinit/datahub.svg)
 [![codecov](https://codecov.io/gh/devinit/datahub-api/branch/master/graph/badge.svg)](https://codecov.io/gh/devinit/datahub-api)
 [![Dependency Status](https://gemnasium.com/badges/github.com/devinit/datahub-api.svg)](https://gemnasium.com/github.com/devinit/datahub-api)
 
@@ -48,11 +48,3 @@ Output files explained:
     1. node_modules - directory npm creates with all the dependencies of the module (result of npm install)
     2. dist         - directory contains the compiled server (javascript)
     3. html-report  - output of npm test, code coverage html report.
-
-Development GuideLines
-
-Typescript requires types for external dependency. When you install a new run time dependency endevour to install types for it.
-```
-// eg
-$ yarn add --dev @types/fs-extra
-```

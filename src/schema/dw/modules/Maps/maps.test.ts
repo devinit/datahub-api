@@ -2,7 +2,7 @@ import 'jest';
 import * as prettyFormat from 'pretty-format';
 import Maps from '.';
 
-describe('gql Types to Typescript types', () => {
+describe('Maps module tests', () => {
 
     it('should return merged typedefs', async () => {
         const dacCountries = ['Spain', 'England'];
@@ -12,6 +12,6 @@ describe('gql Types to Typescript types', () => {
             {value: 2000, id: 'pl', countryName: 'Poland'}
             ];
         const onlyDacCountries = Maps.DACOnlyData(dacCountries, data);
-        expect(onlyDacCountries.length).toBe(3);
+        expect(onlyDacCountries.length).toBe(2);
     });
 });
