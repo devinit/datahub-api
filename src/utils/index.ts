@@ -29,3 +29,4 @@ export const getTotal = (data: Isummable[]): number =>
         if (obj.value) sum += obj.value;
         return sum;
     }, 0, data);
+// redis caching decorator function

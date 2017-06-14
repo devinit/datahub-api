@@ -1,5 +1,3 @@
-import 'jest';
-import * as prettyFormat from 'pretty-format';
 import Maps from '.';
 
 describe('Maps module tests', () => {

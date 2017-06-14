@@ -181,6 +181,7 @@ declare namespace DH {
   */
   interface IMapUnit {
     id: string | null;
+    countryName: string | null;
     year: number | null;
     value: number | null;
   }

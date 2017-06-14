@@ -10,9 +10,9 @@ interface IgetMapDataOpts {
 }
 
 export default class Maps {
-    public static DACOnlyData(DACCountries, indicatorData): DH.IMapUnit[] {
-       return DACCountries.map(countryName => 
-            R.find(obj => obj.countryName === countryName, indicatorData));
+    public static DACOnlyData(DACCountries: string[], indicatorData: DH.IMapUnit[]): DH.IMapUnit[] {
+       return DACCountries.map(countryName =>
+            R.find((obj: DH.IMapUnit) => obj.countryName === countryName, indicatorData));
     }
 
     private db: IDatabase<any>;
@@ -25,7 +25,7 @@ export default class Maps {
         const label: string = opts.indicatorType;
         // TODO: Get unit value from refrence file
         const unit: string = '%';
-        console.log(indicatorData[0]);
+        // console.log(indicatorData[0]);
         const DACcountries = await this.getDACCountries();
         const mapData = opts.DACOnly ? Maps.DACOnlyData(DACcountries, indicatorData) : indicatorData;
         const total: number = getTotal(mapData);
@@ -43,7 +43,7 @@ export default class Maps {
     private createIndicatorQuery() {
         return 'SELECT * FROM data_series.${indicatorType^} WHERE year >= ${startYear} AND year <= ${endYear}';
     }
-    private createDACQuery(): string {
+    private createDACQuery() {
         return 'SELECT donor_name FROM dimension.oecd_donor where donor_type = $1';
     }
 }

@@ -1,7 +1,9 @@
 
 type MapUnit {
-  # country code Id or distict code for case of spotlight uganda
+  # country code Id in DW this is di_id
   id: String
+  # countryName derived from entity.csv
+  countryName: String
   year: Int
   value: Float
 }
@@ -19,9 +21,8 @@ type AggregatedMap {
 type Query {
   getMapData(
     indicatorType: String!,
-    startYear: Int,
-    endYear: Int,
     DACOnly: Boolean
   ): AggregatedMap
 }
 
+ 

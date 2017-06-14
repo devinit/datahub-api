@@ -183,6 +183,7 @@ declare namespace DH {
   */
   interface IMapUnit {
     id: string | null;
+    countryName: string | null;
     year: number | null;
     value: number | null;
   }
@@ -284,7 +285,7 @@ exports[`gql Types to Typescript types should return merged typedefs 1`] = `
     }
 
     type Query {
-     getRevenuePerPersonAndPoverty190 (yearStart: Int, yearEnd: Int): [revenuePerPersonAndPoverty190] getBubbleSize(year: Int!, indicatorOrCountry: String ): [BubbleSize]  getOverViewTab(country: String!, year: Int!): OverViewTab getPovertyTab(country: String, year: Int!): PovertyTab getPopulationTab(country: String, year: Int!): PopulationTab getGovernmentFinance(country: String, year: Int!): GovernmentFinance getInternationalResources(country: String, year: Int!): InternationalResources  getMapData( indicatorType: String!, startYear: Int, endYear: Int, DACOnly: Boolean ): AggregatedMap  getMethodologies: [DataSources]  getWhereThePoorWillbeData: WhereThePoorWillbe  getUnbundlingAid( type: UnbundlingAidType year: Int!, toCountry: String, fromCountryOrOrg:String, sector: String, inTheformOf: String, channel: String ):[AggregatedAid]
+     getRevenuePerPersonAndPoverty190 (yearStart: Int, yearEnd: Int): [revenuePerPersonAndPoverty190] getBubbleSize(year: Int!, indicatorOrCountry: String ): [BubbleSize]  getOverViewTab(country: String!, year: Int!): OverViewTab getPovertyTab(country: String, year: Int!): PovertyTab getPopulationTab(country: String, year: Int!): PopulationTab getGovernmentFinance(country: String, year: Int!): GovernmentFinance getInternationalResources(country: String, year: Int!): InternationalResources  getMapData( indicatorType: String!, DACOnly: Boolean ): AggregatedMap  getMethodologies: [DataSources]  getWhereThePoorWillbeData: WhereThePoorWillbe  getUnbundlingAid( type: UnbundlingAidType year: Int!, toCountry: String, fromCountryOrOrg:String, sector: String, inTheformOf: String, channel: String ):[AggregatedAid] 
   }
 
     
@@ -400,8 +401,10 @@ exports[`gql Types to Typescript types should return merged typedefs 1`] = `
    # an array of outflows for a particular country
   outflows: [String]
 }type MapUnit {
-  # country code Id or distict code for case of spotlight uganda
+  # country code Id in DW this is di_id
   id: String
+  # countryName derived from entity.csv
+  countryName: String
   year: Int
   value: Float
 }type AggregatedMap {

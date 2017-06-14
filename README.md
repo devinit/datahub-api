@@ -48,3 +48,11 @@ Output files explained:
     1. node_modules - directory npm creates with all the dependencies of the module (result of npm install)
     2. dist         - directory contains the compiled server (javascript)
     3. html-report  - output of npm test, code coverage html report.
+
+On data caching
+-----
+
+Every new instance of this node app starts with a fresh LRUcache which will be populated by items that get requested through the lifecycle of the application.
+If the remote data thats getting cached changes you currently have to restart the app so thats it has a new fresh cache. This is ok in development but not good for production.
+
+TODO: create a function that listens to the github repo so that it refetches cached keys
