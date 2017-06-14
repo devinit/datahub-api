@@ -1,5 +1,6 @@
 import {IDatabase} from 'pg-promise';
 import {getTotal} from '../../../../utils';
+import {Icms} from '../../../cms/';
 import * as R from 'ramda';
 
 interface IgetMapDataOpts {
@@ -20,7 +21,8 @@ export default class Maps {
     constructor(db: any) {
         this.db = db;
     }
-    public async getMapData(opts: IgetMapDataOpts): Promise<DH.IAggregatedMap> {
+    public async getMapData(opts: IgetMapDataOpts, cms: Icms): Promise<DH.IAggregatedMap> {
+        console.info(cms);
         const indicatorData: DH.IMapUnit[] = await this.getIndicatorData(opts);
         const label: string = opts.indicatorType;
         // TODO: Get unit value from refrence file

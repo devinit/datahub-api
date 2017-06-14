@@ -4,7 +4,7 @@ import { makeExecutableSchema } from 'graphql-tools';
 import { mergeResolvers } from 'merge-graphql-schemas';
 import { getTypeDefs } from '../lib/makeTypeDefs';
 import db from './dw/db';
-import github from './github';
+import github from './cms';
 
 const resolverFiles = (require as any).context('./', true, /resolver\.ts/);
 
@@ -19,7 +19,7 @@ const resolvers = resolversLoad.length > 1
 const createSchema = async (): Promise<any> => {
     const typeDefs = await getTypeDefs();
     const schema: GraphQLSchema = makeExecutableSchema({ typeDefs, resolvers });
-    return { schema, context: {dw: db, github} };
+    return { schema, context: {dw: db, cms} };
 };
 
 export default createSchema;
