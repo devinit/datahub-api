@@ -1,6 +1,6 @@
 # Data hub graphql-server
 
- [![Build Status](https://travis-ci.org/datahub/datahub-api.svg?branch=master)](https://travis-ci.org/datahub/datahub-api)
+ [![Build Status](https://travis-ci.org/devinit/datahub-api.svg?branch=master)](https://travis-ci.org/devinit/datahub-api)
  ![Code Climate](https://codeclimate.com/github/devinit/datahub.svg)
 [![codecov](https://codecov.io/gh/devinit/datahub-api/branch/master/graph/badge.svg)](https://codecov.io/gh/devinit/datahub-api)
 [![Dependency Status](https://gemnasium.com/badges/github.com/devinit/datahub-api.svg)](https://gemnasium.com/github.com/devinit/datahub-api)
