@@ -4,7 +4,7 @@ import { makeExecutableSchema } from 'graphql-tools';
 import { mergeResolvers } from 'merge-graphql-schemas';
 import { getTypeDefs } from '../lib/makeTypeDefs';
 import db from './dw/db';
-import github from './cms';
+import cms from './cms';
 
 const resolverFiles = (require as any).context('./', true, /resolver\.ts/);
 

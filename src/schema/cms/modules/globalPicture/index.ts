@@ -1,7 +1,7 @@
 import {get} from '../../connector';
 import * as R from 'ramda';
 
-interface ITheme {
+export interface ITheme {
     id: string;
     name: string;
     default: string;
@@ -10,16 +10,12 @@ interface ITheme {
 
 export const getThemes = async (): Promise<ITheme[]> => get<ITheme>('global-picture/themes.csv');
 
-export const getTheme = async (id: string): Promise<ITheme> =>
-    R.pipeP(getThemes, R.find(R.propEq('id', id)))();
+export const getTheme: (id: string) => Promise<ITheme> = async (id) => {
+    const entites: ITheme[] = await getThemes();
+    return R.find(R.propEq('id', id), entites) as ITheme;
+};
 
-interface IglobalPicture {
-    getTheme: any;
-    getThemes: any;
-}
-
-const globalPicture: IglobalPicture = {
+export default {
     getTheme,
     getThemes
 };
-export default globalPicture;

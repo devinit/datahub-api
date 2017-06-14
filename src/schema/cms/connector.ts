@@ -15,12 +15,12 @@ export const cache = LRU({
     maxAge: 1000 * 60 * 60
 });
 
-export const csvToJson = <T> (csvStr: string): Promise<T[]>  =>
+export const csvToJson = <T extends {}> (csvStr: string): Promise<T[]>  =>
     new Promise(<T>(resolve, reject) => {
         const data: T[] = [];
         converter({workerNum: 2})
         .fromString(csvStr)
-        .on('json', (json: T) => {
+        .on('json', (json) => {
             data.push(json);
         })
         .on('done', (error) => {
@@ -29,14 +29,13 @@ export const csvToJson = <T> (csvStr: string): Promise<T[]>  =>
         });
     });
 
-export const get = async <T> (endPoint: string): Promise <T[]> => {
+export const get = async <T extends {}> (endPoint: string): Promise <T[]> => {
     const api = createUrl(endPoint);
-    // if (cache.has(endPoint))  {
-    //     const cached: T[] = cache.get(endPoint);
-    //     return cached;
-    // }
+    if (cache.has(endPoint))  {
+        return cache.get(endPoint) as T[];
+    }
     const csvStr = await httpGet(api);
     const data: T[] = await csvToJson<T>(csvStr);
-    // cache.set(endPoint, data);
+    cache.set(endPoint, data);
     return data;
 };

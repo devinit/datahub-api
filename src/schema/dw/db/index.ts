@@ -23,7 +23,7 @@ const options: IOptions<IExtensions> = {
         obj.maps = new Maps(obj);
     },
     // caching
-    receive: (data, result, event) => {
+    receive: (data, _result, event) => {
         // TODO: Test cache works
         console.log(event.query, data[0]);
         // dbCache.set(event.query, data);

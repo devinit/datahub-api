@@ -7,7 +7,7 @@ describe('Site Global narratives and refrence module', () => {
         expect(entities.length).toBeGreaterThan(30);
     });
     it('should return an entity', async () => {
-        const entities = await getEntity('AR');
-        expect(entities.name).toBe('Argentina');
+        const entity = await getEntity('AR');
+        expect(entity.name).toBe('Argentina');
     });
 });

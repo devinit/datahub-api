@@ -1,7 +1,7 @@
 import {get} from '../../connector';
 import * as R from 'ramda';
 
-interface IEntity {
+export interface IEntity {
     id: string;
     type: string;
     name: string;
@@ -9,17 +9,13 @@ interface IEntity {
 
 export const getEntities = (): Promise<IEntity[]> => get<IEntity>('global/entity.csv');
 
-export const getEntity = (id: string): Promise<IEntity> =>
-    R.pipeP(getEntities, R.find(R.propEq('id', id)))();
+// TODO: try to make work with pipeP or composeP
+export const getEntity = async (id: string): Promise<IEntity> => {
+    const entites: IEntity[] = await getEntities();
+    return R.find(R.propEq('id', id), entites) as IEntity;
+};
 
-export interface Iglobal {
-    getEntity: any;
-    getEntities: any;
-}
-
-const global: Iglobal = {
+export default {
     getEntities,
     getEntity
 };
-
-export default global;
