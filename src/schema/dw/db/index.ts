@@ -25,7 +25,7 @@ const options: IOptions<IExtensions> = {
     // caching
     receive: (data, _result, event) => {
         // TODO: Test cache works
-        console.log(event.query, data[0]);
+        console.log('event:  ',  event.query, 'data:  ', data[0]);
         // dbCache.set(event.query, data);
     }
 };

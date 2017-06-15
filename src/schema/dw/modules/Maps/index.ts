@@ -1,5 +1,5 @@
 import {IDatabase} from 'pg-promise';
-import {getTotal} from '../../../../utils';
+import {getTotal, toId, IhasdiId, toNumericValue} from '../../../../utils';
 import {Icms} from '../../../cms/';
 import * as R from 'ramda';
 
@@ -11,9 +11,15 @@ interface IgetMapDataOpts {
 }
 
 export default class Maps {
+
     public static DACOnlyData(DACCountries: string[], indicatorData: DH.IMapUnit[]): DH.IMapUnit[] {
        return DACCountries.map(countryName =>
             R.find((obj: DH.IMapUnit) => obj.countryName === countryName, indicatorData));
+    }
+
+    public static process(data: IhasdiId[], DACcountries: string[]): DH.IMapUnit[] {
+        const indicatorData = R.pipe(toNumericValue, toId)(data) as DH.IMapUnit[];
+        return DACcountries.length ? Maps.DACOnlyData(DACcountries, indicatorData) : indicatorData;
     }
 
     private db: IDatabase<any>;
@@ -22,14 +28,14 @@ export default class Maps {
         this.db = db;
     }
     public async getMapData(opts: IgetMapDataOpts, cms: Icms): Promise<DH.IAggregatedMap> {
-        console.info(cms);
-        const indicatorData: DH.IMapUnit[] = await this.getIndicatorData(opts);
+        console.info('cms object:  ', cms.global);
+        opts.startYear = 2000;
+        opts.endYear = 2015;
         const label: string = opts.indicatorType;
-        // TODO: Get unit value from refrence file
         const unit: string = '%';
-        // console.log(indicatorData[0]);
-        const DACcountries = await this.getDACCountries();
-        const mapData = opts.DACOnly ? Maps.DACOnlyData(DACcountries, indicatorData) : indicatorData;
+        const data: any [] = await this.getIndicatorData(opts);
+        const DACcountries = opts.DACOnly ? await this.getDACCountries() : [];
+        const mapData: DH.IMapUnit[] = Maps.process(data, DACcountries);
         const total: number = getTotal(mapData);
         return {map: mapData, label, unit, total};
     }

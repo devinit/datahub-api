@@ -1,10 +1,5 @@
 import * as R from 'ramda';
 
-export const getCurrentYear = () => {
-    const date = new Date();
-    return date.getFullYear();
-};
-
 export interface Isummable {
     value: number | null;
 }
@@ -16,6 +11,24 @@ export interface IhasdiId {
 export interface IhasId {
     id: string | null;
 }
+
+export interface IhasStringValue {
+    value: string | null;
+}
+
+export interface IhasNumericValue extends IhasId {
+    value: number | null;
+}
+
+export const getCurrentYear = () => {
+    const date = new Date();
+    return date.getFullYear();
+};
+
+const parse = (value: string | null): number | null => value ? Number(value) : null;
+
+export const toNumericValue: (data: IhasStringValue[]) => IhasNumericValue[] =
+    R.map((obj: IhasStringValue) => Object.assign(obj, {value: parse(obj.value) }));
 
 export const toId: (data: IhasdiId[] ) => IhasId[] =
     R.map((obj: IhasdiId) => {
