@@ -1,5 +1,5 @@
 import {IDatabase} from 'pg-promise';
-import {getTotal, toId, IhasdiId, toNumericValue} from '../../../../utils';
+import {getTotal, toId, IhasDiId, toNumericValue} from '../../../../utils';
 import {Icms} from '../../../cms/';
 import * as R from 'ramda';
 
@@ -17,8 +17,8 @@ export default class Maps {
             R.find((obj: DH.IMapUnit) => obj.countryName === countryName, indicatorData));
     }
 
-    public static process(data: IhasdiId[], DACcountries: string[]): DH.IMapUnit[] {
-        const indicatorData = R.pipe(toNumericValue, toId)(data) as DH.IMapUnit[];
+    public static process(data: IhasDiId[], DACcountries: string[]): DH.IMapUnit[] {
+        const indicatorData = R.compose(toNumericValue, toId)(data) as DH.IMapUnit[];
         return DACcountries.length ? Maps.DACOnlyData(DACcountries, indicatorData) : indicatorData;
     }
 

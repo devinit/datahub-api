@@ -4,7 +4,7 @@ export interface Isummable {
     value: number | null;
 }
 
-export interface IhasdiId {
+export interface IhasDiId {
     di_id: string | null;
 }
 
@@ -12,7 +12,7 @@ export interface IhasStringValue {
     value: string | null;
 }
 
-export const getCurrentYear = () => {
+export const getCurrentYear = (): number => {
     const date = new Date();
     return date.getFullYear();
 };
@@ -23,7 +23,7 @@ export const toNumericValue: (data: any[]) => any[] =
     R.map((obj: IhasStringValue) => Object.assign(obj, {value: parse(obj.value) }));
 
 export const toId: (data: any[] ) => any[] =
-    R.map((obj: IhasdiId) => {
+    R.map((obj: IhasDiId) => {
         const id = obj.di_id;
         R.omit(['di_id'], obj);
         return Object.assign({}, obj, { id });
