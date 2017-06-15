@@ -5,28 +5,32 @@ import diagnostics from './diagnostics';
 import * as pgPromise from 'pg-promise';
 import * as LRU from 'lru-cache';
 
-interface IExtensions {
+export interface IExtensions {
     maps: Maps;
+    manyCacheable: (query: string, values: any) => Promise<any>;
 }
 
 export const dbCache = LRU({
     max: 500,
-    maxAge: 1000 * 60 * 60
+    maxAge: 1000 * 60 * 60 * 60 // TODO: create time constant
 });
 
 // pg-promise initialization options:
 const options: IOptions<IExtensions> = {
     // Extending the database protocol with our custom modules
     // API: http://vitaly-t.github.io/pg-promise/global.html#event:extend
-    extend: (obj: IExtensions) => {
-        // TODO: pass in cache
+    extend: (obj: IExtensions & IDatabase<IExtensions>) => {
+        obj.manyCacheable = (query, values) => {
+            const getQuery = pgPromise.as.format(query, values);
+            if (dbCache.has(getQuery)) return Promise.resolve(dbCache.get(getQuery));
+            return obj.many(getQuery);
+        };
         obj.maps = new Maps(obj);
     },
     // caching
     receive: (data, _result, event) => {
-        // TODO: Test cache works
-        console.log('event:  ',  event.query, 'data:  ', data[0]);
-        // dbCache.set(event.query, data);
+        // cache recieved
+        if (!dbCache.has(event.query)) dbCache.set(event.query, data);
     }
 };
 
@@ -38,7 +42,7 @@ const db = pgp(dwConfig) as IDatabase<IExtensions> & IExtensions;
 
 // Load and initialize optional diagnostics:
 
-diagnostics.init(options);
+if (process.env.NODE_ENV === 'production') diagnostics.init(options);
 
 process.on('exit', (code) => {
   // kill db

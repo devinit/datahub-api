@@ -10,10 +10,8 @@ export interface ITheme {
 
 export const getThemes = async (): Promise<ITheme[]> => get<ITheme>('global-picture/themes.csv');
 
-export const getTheme: (id: string) => Promise<ITheme> = async (id) => {
-    const entites: ITheme[] = await getThemes();
-    return R.find(R.propEq('id', id), entites) as ITheme;
-};
+export const getTheme: (id: string, themes: ITheme[]) => ITheme = (id, themes) =>
+    R.find(R.propEq('id', id), themes) as ITheme;
 
 export default {
     getTheme,

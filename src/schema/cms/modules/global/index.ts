@@ -9,11 +9,8 @@ export interface IEntity {
 
 export const getEntities = (): Promise<IEntity[]> => get<IEntity>('global/entity.csv');
 
-// TODO: try to make work with pipeP or composeP
-export const getEntity = async (id: string): Promise<IEntity> => {
-    const entites: IEntity[] = await getEntities();
-    return R.find(R.propEq('id', id), entites) as IEntity;
-};
+export const getEntity = (id: string, entities: IEntity[]): IEntity =>
+    R.find(R.propEq('id', id), entities) as IEntity;
 
 export default {
     getEntities,

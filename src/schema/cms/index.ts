@@ -1,11 +1,11 @@
 import global from './modules/global';
 import globalPicture from './modules/globalPicture';
 
-export interface Icms {
+export interface ICms {
     global;
     globalPicture;
 }
-const cms: Icms = {
+const cms: ICms = {
     global,
     globalPicture
 };

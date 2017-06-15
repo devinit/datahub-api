@@ -1,11 +1,16 @@
 import * as R from 'ramda';
+import {IEntity, getEntity} from '../schema/cms/modules/global';
 
 export interface Isummable {
     value: number | null;
 }
 
 export interface IhasDiId {
-    di_id: string | null;
+    di_id: string;
+}
+
+export interface IhasId {
+    id: string;
 }
 
 export interface IhasStringValue {
@@ -19,19 +24,22 @@ export const getCurrentYear = (): number => {
 
 const parse = (value: string | null): number | null => value && value.length ? Number(value) : null;
 
-export const toNumericValue: (data: any[]) => any[] =
-    R.map((obj: IhasStringValue) => Object.assign(obj, {value: parse(obj.value) }));
+export const addCountryName = (obj: IhasId, entites: IEntity[]): any => {
+    const entity = getEntity(obj.id, entites);
+    return {...obj, countryName: entity.name};
+};
 
-export const toId: (data: any[] ) => any[] =
-    R.map((obj: IhasDiId) => {
-        const id = obj.di_id;
-        R.omit(['di_id'], obj);
-        return Object.assign({}, obj, { id });
-    });
+export const toNumericValue: (obj: IhasStringValue) => any =
+    (obj) => ({...obj, value: parse(obj.value)});
+
+export const toId: (obj: IhasDiId ) => any = (obj) => {
+    const id = obj.di_id;
+    const newObj = R.omit(['di_id'], obj);
+    return {...newObj, id };
+};
 
 export const getTotal = (data: Isummable[]): number =>
     R.reduce((sum: number, obj: Isummable): number => {
         if (obj.value) sum += obj.value;
         return sum;
     }, 0, data);
-
