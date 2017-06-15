@@ -8,16 +8,8 @@ export interface IhasdiId {
     di_id: string | null;
 }
 
-export interface IhasId {
-    id: string | null;
-}
-
 export interface IhasStringValue {
     value: string | null;
-}
-
-export interface IhasNumericValue extends IhasId {
-    value: number | null;
 }
 
 export const getCurrentYear = () => {
@@ -25,12 +17,12 @@ export const getCurrentYear = () => {
     return date.getFullYear();
 };
 
-const parse = (value: string | null): number | null => value ? Number(value) : null;
+const parse = (value: string | null): number | null => value && value.length ? Number(value) : null;
 
-export const toNumericValue: (data: IhasStringValue[]) => IhasNumericValue[] =
+export const toNumericValue: (data: any[]) => any[] =
     R.map((obj: IhasStringValue) => Object.assign(obj, {value: parse(obj.value) }));
 
-export const toId: (data: IhasdiId[] ) => IhasId[] =
+export const toId: (data: any[] ) => any[] =
     R.map((obj: IhasdiId) => {
         const id = obj.di_id;
         R.omit(['di_id'], obj);
@@ -42,4 +34,4 @@ export const getTotal = (data: Isummable[]): number =>
         if (obj.value) sum += obj.value;
         return sum;
     }, 0, data);
-// redis caching decorator function
+
