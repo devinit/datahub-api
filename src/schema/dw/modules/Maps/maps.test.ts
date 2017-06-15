@@ -2,7 +2,7 @@ import Maps from '.';
 
 describe('Maps module tests', () => {
 
-    it('should return merged typedefs', async () => {
+    it('should return only DAC countries from the data', async () => {
         const dacCountries = ['Spain', 'England'];
         const data = [
             {value: 2000, id: 'sp', countryName: 'Spain'},
