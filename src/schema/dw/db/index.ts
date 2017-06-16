@@ -4,16 +4,19 @@ import Maps from '../modules/Maps';
 import diagnostics from './diagnostics';
 import * as pgPromise from 'pg-promise';
 import * as LRU from 'lru-cache';
+import {queue, MAX_AGE} from '../../../utils';
 
 export interface IExtensions {
     maps: Maps;
     manyCacheable: (query: string, values: any) => Promise<any>;
 }
 
-export const dbCache = LRU({
+const lruOpts: LRU.Options<any> = {
     max: 500,
-    maxAge: 1000 * 60 * 60 * 60 // TODO: create time constant
-});
+    maxAge: MAX_AGE
+};
+
+export const dbCache: LRU.Cache<any> = LRU(lruOpts);
 
 // pg-promise initialization options:
 const options: IOptions<IExtensions> = {
@@ -22,7 +25,12 @@ const options: IOptions<IExtensions> = {
     extend: (obj: IExtensions & IDatabase<IExtensions>) => {
         obj.manyCacheable = (query, values) => {
             const getQuery = pgPromise.as.format(query, values);
-            if (dbCache.has(getQuery)) return Promise.resolve(dbCache.get(getQuery));
+            if (dbCache.has(getQuery)) {
+                // add to queue so that we always have freshest data
+                // makes same query in 15 minutes so as to update cache
+                queue(getQuery, 'dw', dbCache, obj.many);
+                return Promise.resolve(dbCache.get(getQuery));
+            }
             return obj.many(getQuery);
         };
         obj.maps = new Maps(obj);

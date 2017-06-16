@@ -36,6 +36,10 @@ How to run it:
     npm run build & npm start
 ```
 
+When you install a new dependency add its types from definetly typed typescript incase it doesnt come with any
+
+eg ```  yarn add --dev @types/ramda ```
+
 Files explained:
 ----
     1. src                         - directory is used for typescript code that is part of the project
@@ -59,10 +63,10 @@ On data caching
 -----
 
 Every new instance of this node app starts with a fresh LRUcache which will be populated by items that get requested through the lifecycle of the application.
-If the remote data thats getting cached changes you currently have to restart the app in order to have new fresh cache. This is ok in development but not good for production.
 
-TODO: create a function that listens to the github repo so that it refetches cached keys
+The app also persists queries on each data requests and does pre-caching of these queries on app boot.
 
+Inorder to keep having fresh data, every data request is added to a queue as it gets served from the cache. This queue is ran in the background and updates after an hour of the request with new data if any.
 
 Development Experience Issues
 -----
