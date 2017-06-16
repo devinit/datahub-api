@@ -1,3 +1,0 @@
-For some strange reason ctrl-c doesnt completely kill off the server
-
-find process with ```lsof -i tcp:3000``` and kill it

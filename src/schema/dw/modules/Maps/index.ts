@@ -2,7 +2,7 @@ import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
 import {getTotal, toId, IhasDiId, toNumericValue, addCountryName} from '../../../../utils';
 import {IEntity, getEntities} from '../../../cms/modules/global';
-import {ICms} from '../../../cms';
+// import {ICms} from '../../../cms';
 import * as R from 'ramda';
 
 interface IgetMapDataOpts {
@@ -37,8 +37,7 @@ export default class Maps {
         this.db = db;
     }
 
-    public async getMapData(opts: IgetMapDataOpts, cms: ICms): Promise<DH.IAggregatedMap> {
-        console.info('cms object:', cms.global);
+    public async getMapData(opts: IgetMapDataOpts): Promise<DH.IAggregatedMap> {
         opts.startYear = 2000;
         opts.endYear = 2015;
         const label: string = opts.indicatorType;
