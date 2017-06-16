@@ -8,7 +8,6 @@ script:
   - npm run lint
   - npm run codecov
 cache:
-  - yarn
   - node_modules
 
 # Allow Travis tests to run in containers.
