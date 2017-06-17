@@ -87,13 +87,6 @@
     "webpack": "^2.5.1",
     "webpack-node-externals": "^1.6.0"
   },
-  "git-pre-hooks": {
-    "pre-push": [
-      "npm run lint",
-      "npm run build",
-      "npm run test"
-    ]
-  },
   "jest": {
     "transform": {
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
