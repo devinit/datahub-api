@@ -2,8 +2,7 @@ import axios from 'axios';
 import * as R from 'ramda';
 import * as LRU from 'lru-cache';
 import * as converter from 'csvtojson';
-import {queue} from '../../utils';
-import {precache} from '../../lib/cache';
+import {queue} from '../../lib/cache';
 
 const baseUrl = 'https://raw.githubusercontent.com/devinit/datahub-cms/master';
 
@@ -37,12 +36,10 @@ export const get = async <T extends {}> (endPoint: string): Promise <T[]> => {
     if (cache.has(endPoint))  {
         // add to queue so that we always have freshest data
         queue(endPoint, 'cms', cache, get); // makes same query in 15 minutes so as to update cache
-        return cache.get(api) as T[];
+        return cache.get(endPoint) as T[];
     }
     const csvStr = await httpGet(api);
     const data: T[] = await csvToJson<T>(csvStr);
     cache.set(endPoint, data);
     return data;
 };
-
-export const initPrecache = () => precache(cache, {cms: get});

@@ -10,5 +10,9 @@ exports[`cache module tests should read precache file and return an array of JS 
     \\"key\\": \\"global/entity.csv\\",
     \\"type\\": \\"cms\\",
   },
+  Object {
+    \\"key\\": \\"SELECT * FROM data_series.depth_of_extreme_poverty_190 WHERE year >= 2000 AND year <= 2015\\",
+    \\"type\\": \\"dw\\",
+  },
 ]"
 `;

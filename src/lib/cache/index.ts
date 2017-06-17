@@ -4,7 +4,7 @@
  */
 import * as LRU from 'lru-cache';
 import * as fs from 'fs-extra';
-import {isError} from '../isType';
+import {isError, isUndefined} from '../isType';
 
 export interface IIsCached {
     key: string;
@@ -16,36 +16,36 @@ export interface ICached {
 }
 
 export interface IFetchFnObj {
-    [key: string]: (string) => Promise<any>;
+    dw: (query: string, values?: any) => Promise<any>;
+    cms: (query: string) => Promise<any>;
 }
-// it would be cool and less error prone if this returned a maybe data type eg Just(promise) or Nothing
-// TODO: Investigate how to incoporate maybe data structure
+
 export const readCacheData: (file?: string) => Promise<ICached[]> | Error =
     async (file = '.cache') => {
         try {
             const data: string = await fs.readFile(file, 'utf-8');
             return data.split('\n')
                 .map(line => {
-                    const lineArr = line.split(/\s/);
+                    const lineArr = line.split(/:/g);
                     return {key: lineArr[0], type: lineArr[1]};
-                });
+                })
+                .filter(obj => !isUndefined(obj.type));
         } catch (error) {
             if (error) console.error(error);
             return error;
         }
     };
 
-export const precache: (cache: LRU.Cache<any>, fetchFnObj: IFetchFnObj, cacheFile?: string) =>
-    Promise< Array<Promise<IIsCached>> > | Error = async (cache, fetchFnObj, cacheFile = '.cache') => {
+export const precache = async (fetchFnObj: IFetchFnObj, cacheFile: string = '.cache'):
+    Promise< Array<Promise<IIsCached>> | Error > => {
          try {
             const fileExist: boolean = fs.existsSync(cacheFile);
-            if (!fileExist) throw new Error('file doesnt exist');
+            if (!fileExist) throw new Error('cache file doesnt exist');
             const cachedData: ICached[] | Error = await readCacheData();
-            if (isError(cachedData)) throw new Error('Error reading cache file');
+            if (isError(cachedData)) throw new Error('Unknown Error reading cache file');
             const result: Array<Promise<IIsCached>> = cachedData.map( async ({key, type}: ICached) => {
                 try {
-                    const data = await fetchFnObj[type](key);
-                    cache.set(key, data);
+                    await fetchFnObj[type](key); // NOTE: the fetch functions have cache set functions
                     return { key, isCached: true};
                 } catch (error) {
                     if (error) console.error(error);
@@ -57,4 +57,45 @@ export const precache: (cache: LRU.Cache<any>, fetchFnObj: IFetchFnObj, cacheFil
            if (error) console.error(error);
            return error;
         }
+    };
+// in production we wait for 10 minutes in development
+const CACHE_DELAY: number = process.env.NODE_ENV === 'production' ? 1000 * 60 * 10 : 1000 * 10;
+
+export const isKeyInCacheFile = async (key: string, file: string = '.cache' ): Promise <boolean | Error> => {
+    try {
+            const data: string = await fs.readFile(file, 'utf-8');
+            return data.split(/\n/g).some(line => line.includes(key));
+        } catch (error) {
+            if (error) console.error(error);
+            return error;
+        }
+};
+
+// writes a new key entry if no already there
+export const writeKeyToCacheFile = async (key: string, cacheType: string, file: string = '.cache'):
+    Promise<void> => {
+        const isKeyInCache = await isKeyInCacheFile(key, file);
+        if (isError(isKeyInCache)) throw Error('possibly cache file doesnt exit');
+        if (!isKeyInCache) fs.appendFile('.cache', `${key}-${cacheType}\n`);
+        console.info('Key already exists in cache no need to re-add it');
+    };
+
+export const queue: (key: string, cacheType: string, cache: LRU.Cache<any>, cb: (string) => Promise<any>) =>
+    Promise<boolean> = async (key, cacheType, cache, cb) => {
+        return new Promise((resolve, reject) => {
+            setTimeout(async () => {
+                try {
+                    // remove key from cache
+                    // so that we dont go into a never ending loop of updating a key's data
+                    cache.del(key);
+                    await cb(key); // data gets cached again in the callback
+                    writeKeyToCacheFile(key, cacheType);
+                    console.info('ran queue after a delay and added new fresh data for :', key);
+                    resolve(true);
+                } catch (error) {
+                    if (error) console.error(error);
+                    reject(false);
+                }
+            }, CACHE_DELAY);
+        });
     };

@@ -4,7 +4,7 @@ import Maps from '../modules/Maps';
 import diagnostics from './diagnostics';
 import * as pgPromise from 'pg-promise';
 import * as LRU from 'lru-cache';
-import {queue, MAX_AGE} from '../../../utils';
+import {queue} from '../../../lib/cache';
 
 export interface IExtensions {
     maps: Maps;
@@ -13,7 +13,7 @@ export interface IExtensions {
 
 const lruOpts: LRU.Options<any> = {
     max: 500,
-    maxAge: MAX_AGE
+    maxAge: 1000 * 60 * 60 * 60
 };
 
 export const dbCache: LRU.Cache<any> = LRU(lruOpts);
@@ -23,8 +23,8 @@ const options: IOptions<IExtensions> = {
     // Extending the database protocol with our custom modules
     // API: http://vitaly-t.github.io/pg-promise/global.html#event:extend
     extend: (obj: IExtensions & IDatabase<IExtensions>) => {
-        obj.manyCacheable = (query, values) => {
-            const getQuery = pgPromise.as.format(query, values);
+        obj.manyCacheable = (query: string, values?: any) => {
+            const getQuery = values ? pgPromise.as.format(query, values) : query;
             if (dbCache.has(getQuery)) {
                 // add to queue so that we always have freshest data
                 // makes same query in 15 minutes so as to update cache

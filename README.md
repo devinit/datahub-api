@@ -68,8 +68,13 @@ The app also persists queries on each data requests and does pre-caching of thes
 
 Inorder to keep having fresh data, every data request is added to a queue as it gets served from the cache. This queue is ran in the background and updates after an hour of the request with new data if any.
 
+```.cache```  file contains all the queries occuring in the life time of the app. Its in git history so that we can precache those queries on app boot. (TODO: Make this run in another process)
+
 Development Experience Issues
 -----
 
 For some strange reason ctrl-c doesnt completely kill off the server, this is possibly a webpack or node-dev issue
 To kill the process find it with ```lsof -i tcp:3000``` if on linux and then kill it with ``` kill 9 <PID>```
+
+TODO
+- [ ] remove console.info & console.error and replace with function that logs to an info & error file
