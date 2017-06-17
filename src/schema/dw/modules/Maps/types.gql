@@ -24,5 +24,3 @@ type Query {
     DACOnly: Boolean
   ): AggregatedMap
 }
-
- 

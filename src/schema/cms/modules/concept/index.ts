@@ -1,6 +1,17 @@
 import {get} from '../../connector';
 
-export const getConceptData = (moduleName: string): Promise <DH.IConcept[]> => {
+export interface IConcept {
+    id: string;
+    theme: string;
+    name: string;
+    description: string;
+    uom: string;
+    uomDisplay: string;
+    startYear: number;
+    endYear: number;
+}
+
+export const getConceptData = (moduleName: string): Promise <IConcept[]> => {
     const endPoint: string = `${moduleName}/concept.csv`;
-    return get<DH.IConcept>(endPoint);
+    return get<IConcept>(endPoint);
 };
