@@ -6,5 +6,5 @@ describe('Country profile module tests', () => {
         const pageData: DH.IPage[] = await getCountryProfilePageData('usa');
         expect(pageData.length).toBeGreaterThan(2);
         expect(prettyFormat(pageData)).toMatchSnapshot();
-    }, 10000);
+    }, 15000);
 });
