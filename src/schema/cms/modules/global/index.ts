@@ -15,4 +15,3 @@ export const getEntityById = (id: string, entities: IEntity[]): IEntity =>
 
 export const getEntityBySlug = (slug: string, entities: IEntity[]): IEntity =>
     R.find(R.propEq('slug', slug), entities) as IEntity;
-
