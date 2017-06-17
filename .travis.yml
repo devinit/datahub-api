@@ -6,7 +6,7 @@ install:
   - npm install -g codecov
 script:
   - npm run lint
-  - npm run codecov -- -u
+  - npm run codecov
 cache:
   - node_modules
 
