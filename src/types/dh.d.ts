@@ -23,6 +23,8 @@ declare namespace DH {
     description: 
   */
   interface IQuery {
+    getCountryProfilePageData: Array<IPage> | null;
+    getGlobalPicturePageData: Array<IPage> | null;
     getRevenuePerPersonAndPoverty190: Array<IRevenuePerPersonAndPoverty190> | null;
     getBubbleSize: Array<IBubbleSize> | null;
     getOverViewTab: IOverViewTab | null;
@@ -34,6 +36,15 @@ declare namespace DH {
     getMethodologies: Array<IDataSources> | null;
     getWhereThePoorWillbeData: IWhereThePoorWillbe | null;
     getUnbundlingAid: Array<IAggregatedAid> | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IPage {
+    id: string | null;
+    title: string | null;
+    narrative: string | null;
   }
 
   /*
