@@ -253,6 +253,30 @@ declare namespace DH {
   /*
     description: 
   */
+  interface IConcept {
+    id: string;
+    theme: string | null;
+    name: string | null;
+    description: string | null;
+    uom: string | null;
+    uomDisplay: string | null;
+    startYear: number;
+    endYear: number | null;
+    countryType: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IPage {
+    id: string | null;
+    title: string | null;
+    narrative: string | null;
+  }
+
+  /*
+    description: 
+  */
   interface IGovtRevenuePerPerson {
     id: string | null;
     year: number | null;

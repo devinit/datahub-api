@@ -1,0 +1,11 @@
+type Concept {
+    id: String!
+    theme: String
+    name: String
+    description: String
+    uom: String
+    uomDisplay: String
+    startYear: Int!
+    endYear: Int
+    countryType: String
+}

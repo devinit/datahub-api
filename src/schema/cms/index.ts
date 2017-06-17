@@ -1,13 +1,7 @@
-import global from './modules/global';
-import globalPicture from './modules/globalPicture';
+import {getGlobalPicturePageData} from './modules/globalPicture';
 
-export interface ICms {
-    global;
-    globalPicture;
-}
-const cms: ICms = {
-    global,
-    globalPicture
+const cms = {
+    getGlobalPicturePageData
 };
 
 export default cms;
