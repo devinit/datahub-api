@@ -1,4 +1,4 @@
-const makeTypeDefs = require('../dist/makeTypeDefs');
+const makeTypeDefs = require('../dist');
 
 try {
     makeTypeDefs.generateTsFromGql({outFile: 'src/types/dh.d.ts'});
