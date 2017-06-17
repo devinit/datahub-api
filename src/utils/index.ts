@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import {IEntity, getEntity} from '../schema/cms/modules/global';
+import {IEntity, getEntityById} from '../schema/cms/modules/global';
 import * as LRU from 'lru-cache';
 import * as fs from 'fs-extra';
 
@@ -49,7 +49,7 @@ export const getCurrentYear = (): number => {
 const parse = (value: string | null): number | null => value && value.length ? Number(value) : null;
 
 export const addCountryName = (obj: IhasId, entites: IEntity[]): any => {
-    const entity = getEntity(obj.id, entites);
+    const entity = getEntityById(obj.id, entites);
     return {...obj, countryName: entity.name};
 };
 

@@ -5,14 +5,13 @@ export interface IEntity {
     id: string;
     type: string;
     name: string;
+    slug: string;
 }
 
 export const getEntities = (): Promise<IEntity[]> => get<IEntity>('global/entity.csv');
 
-export const getEntity = (id: string, entities: IEntity[]): IEntity =>
+export const getEntityById = (id: string, entities: IEntity[]): IEntity =>
     R.find(R.propEq('id', id), entities) as IEntity;
 
-export default {
-    getEntities,
-    getEntity
-};
+export const getEntityBySlug = (slug: string, entities: IEntity[]): IEntity =>
+    R.find(R.propEq('slug', slug), entities) as IEntity;
