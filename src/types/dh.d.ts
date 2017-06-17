@@ -23,6 +23,8 @@ declare namespace DH {
     description: 
   */
   interface IQuery {
+    getCountryProfilePageData: Array<IPage> | null;
+    getGlobalPicturePageData: Array<IPage> | null;
     getRevenuePerPersonAndPoverty190: Array<IRevenuePerPersonAndPoverty190> | null;
     getBubbleSize: Array<IBubbleSize> | null;
     getOverViewTab: IOverViewTab | null;
@@ -34,6 +36,15 @@ declare namespace DH {
     getMethodologies: Array<IDataSources> | null;
     getWhereThePoorWillbeData: IWhereThePoorWillbe | null;
     getUnbundlingAid: Array<IAggregatedAid> | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IPage {
+    id: string | null;
+    title: string | null;
+    narrative: string | null;
   }
 
   /*
@@ -248,30 +259,6 @@ declare namespace DH {
     year: number | null;
     Value: number | null;
     id: string | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IConcept {
-    id: string;
-    theme: string | null;
-    name: string | null;
-    description: string | null;
-    uom: string | null;
-    uomDisplay: string | null;
-    startYear: number;
-    endYear: number | null;
-    countryType: string | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IPage {
-    id: string | null;
-    title: string | null;
-    narrative: string | null;
   }
 
   /*

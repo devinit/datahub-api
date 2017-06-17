@@ -1,5 +1,0 @@
-type Page {
-    id: String
-    title: String
-    narrative: String
-}
