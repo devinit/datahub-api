@@ -1,5 +1,5 @@
 import {getCountryProfilePageData} from '.';
-// import * as prettyFormat from 'pretty-format';
+import * as prettyFormat from 'pretty-format';
 
 describe('Country profile module tests', () => {
     it('should return page data for a country slug', async () => {
