@@ -4,6 +4,7 @@
  */
 import * as LRU from 'lru-cache';
 import * as fs from 'fs-extra';
+import {isError} from '../isType';
 
 export interface IIsCached {
     key: string;
@@ -19,14 +20,19 @@ export interface IFetchFnObj {
 }
 // it would be cool and less error prone if this returned a maybe data type eg Just(promise) or Nothing
 // TODO: Investigate how to incoporate maybe data structure
-export const readCacheData: (file?: string) => Promise<ICached[]> =
+export const readCacheData: (file?: string) => Promise<ICached[]> | Error =
     async (file = '.cache') => {
-        const data: string = await fs.readFile(file, 'utf-8');
-        return data.split('\n')
-            .map(line => {
-                const lineArr = line.split(/\s/);
-                return {key: lineArr[0], type: lineArr[1]};
-            });
+        try {
+            const data: string = await fs.readFile(file, 'utf-8');
+            return data.split('\n')
+                .map(line => {
+                    const lineArr = line.split(/\s/);
+                    return {key: lineArr[0], type: lineArr[1]};
+                });
+        } catch (error) {
+            if (error) console.error(error);
+            return error;
+        }
     };
 
 export const precache: (cache: LRU.Cache<any>, fetchFnObj: IFetchFnObj, cacheFile?: string) =>
@@ -34,7 +40,8 @@ export const precache: (cache: LRU.Cache<any>, fetchFnObj: IFetchFnObj, cacheFil
          try {
             const fileExist: boolean = fs.existsSync(cacheFile);
             if (!fileExist) throw new Error('file doesnt exist');
-            const cachedData: ICached[] = await readCacheData();
+            const cachedData: ICached[] | Error = await readCacheData();
+            if (isError(cachedData)) throw new Error('Error reading cache file');
             const result: Array<Promise<IIsCached>> = cachedData.map( async ({key, type}: ICached) => {
                 try {
                     const data = await fetchFnObj[type](key);
