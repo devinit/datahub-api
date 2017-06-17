@@ -13,7 +13,7 @@ const httpGet: (api: string) => Promise < string > = R.composeP(R.prop('data'), 
 
 const lruOpts: LRU.Options<any> = {
     max: 300,
-    maxAge: 1000 * 60 * 60 * 60 // TODO: create time constant
+    maxAge: 1000 * 60 * 60 * 24 * 60 // TODO: create time constant (60 days -- 2 months)
 };
 
 export const cache: LRU.Cache<any> = LRU(lruOpts);

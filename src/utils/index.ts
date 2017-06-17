@@ -19,8 +19,7 @@ export interface IhasStringValue {
     value: string | null;
 }
 
-const CACHE_DELAY: number = process.env.NODE_ENV === 'production' ? 1000 * 60 * 60 : 1000 * 60;
-export const MAX_AGE: number =  1000 * 60 * 60 * 60;
+const CACHE_DELAY: number = process.env.NODE_ENV === 'production' ? 1000 * 60 * 10 : 1000 * 30 ;
 
 export const writeKeyToFile = (key: string, cacheType: string): Promise<void> =>
     fs.appendFile('src/lib/cache/cache.json', `${key} ${cacheType}\n`);
