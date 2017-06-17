@@ -34,7 +34,6 @@ export const csvToJson = <T extends {}> (csvStr: string): Promise<T[]>  =>
 
 export const get = async <T extends {}> (endPoint: string): Promise <T[]> => {
     const api = createUrl(endPoint);
-    console.log('api: ', api);
     if (cache.has(endPoint))  {
         // add to queue so that we always have freshest data
         queue(endPoint, 'cms', cache, get); // makes same query in 15 minutes so as to update cache

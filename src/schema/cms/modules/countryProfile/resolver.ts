@@ -1,7 +1,7 @@
 export default {
     Query: {
-        async getGlobalPicturePageData(_root, _args, ctx) {
-           return ctx.cms.getGlobalPicturePageData();
+        async getGlobalPicturePageData(_root, args, ctx) {
+           return ctx.cms.getCountryProfilePageData(args.countrySlug);
         }
     }
 };
