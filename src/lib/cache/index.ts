@@ -17,9 +17,10 @@ export interface ICached {
 export interface IFetchFnObj {
     [key: string]: (string) => Promise<any>;
 }
-
+// it would be cool and less error prone if this returned a maybe data type eg Just(promise) or Nothing
+// TODO: Investigate how to incoporate maybe data structure
 export const readCacheData: (file?: string) => Promise<ICached[]> =
-    async (file = './cache.json') => {
+    async (file = '.cache') => {
         const data: string = await fs.readFile(file, 'utf-8');
         return data.split('\n')
             .map(line => {
@@ -29,7 +30,7 @@ export const readCacheData: (file?: string) => Promise<ICached[]> =
     };
 
 export const precache: (cache: LRU.Cache<any>, fetchFnObj: IFetchFnObj, cacheFile?: string) =>
-    Promise< Array<Promise<IIsCached>> > | Error = async (cache, fetchFnObj, cacheFile = './cache.json') => {
+    Promise< Array<Promise<IIsCached>> > | Error = async (cache, fetchFnObj, cacheFile = '.cache') => {
          try {
             const fileExist: boolean = fs.existsSync(cacheFile);
             if (!fileExist) throw new Error('file doesnt exist');

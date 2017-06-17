@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cache module tests should read precache file and return an array of JS objects 1`] = `
+"Array [
+  Object {
+    \\"key\\": \\"global-picture/themes.csv\\",
+    \\"type\\": \\"cms\\",
+  },
+  Object {
+    \\"key\\": \\"global/entity.csv\\",
+    \\"type\\": \\"cms\\",
+  },
+]"
+`;
