@@ -38,7 +38,7 @@ export const get = async <T extends {}> (endPoint: string): Promise <T[]> => {
         queue(endPoint, 'cms', cache, get); // makes same query in 15 minutes so as to update cache
         return cache.get(endPoint) as T[];
     }
-    const csvStr = await httpGet(api);
+    const csvStr = await httpGet(api); // TODO: if github is down, fetch from a cache dumb
     const data: T[] = await csvToJson<T>(csvStr);
     cache.set(endPoint, data);
     return data;

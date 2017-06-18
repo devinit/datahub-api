@@ -10,17 +10,23 @@ type MapUnit {
 
 type AggregatedMap {
   map: [MapUnit]
-  # map indeicator user friendly label / slug eg Poverty
-  label: String
+  # map indicator user friendly label / slug eg Poverty
+  name: String
   # map value unit eg US $ or %
-  unit: String
+  uomDisplay: String
+  uom: String
+  startYear: Int
+  endYear: Int 
+  description: String
+  theme: String
+  color: String
   # map indicators total for % computations where needed
   total: Float 
 }
 
 type Query {
   getMapData(
-    indicatorType: String!,
+    id: String!,
     DACOnly: Boolean
   ): AggregatedMap
 }

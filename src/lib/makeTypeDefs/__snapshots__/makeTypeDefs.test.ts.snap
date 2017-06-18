@@ -184,8 +184,14 @@ declare namespace DH {
   */
   interface IAggregatedMap {
     map: Array<IMapUnit> | null;
-    label: string | null;
-    unit: string | null;
+    name: string | null;
+    uomDisplay: string | null;
+    uom: string | null;
+    startYear: number | null;
+    endYear: number | null;
+    description: string | null;
+    theme: string | null;
+    color: string | null;
     total: number | null;
   }
 
@@ -296,7 +302,7 @@ exports[`gql Types to Typescript types should return merged typedefs 1`] = `
     }
 
     type Query {
-     getCountryProfilePageData(countrySlug: String!): [Page]  getGlobalPicturePageData: [Page]   getRevenuePerPersonAndPoverty190 (yearStart: Int, yearEnd: Int): [revenuePerPersonAndPoverty190] getBubbleSize(year: Int!, indicatorOrCountry: String ): [BubbleSize]  getOverViewTab(country: String!, year: Int!): OverViewTab getPovertyTab(country: String, year: Int!): PovertyTab getPopulationTab(country: String, year: Int!): PopulationTab getGovernmentFinance(country: String, year: Int!): GovernmentFinance getInternationalResources(country: String, year: Int!): InternationalResources  getMapData( indicatorType: String!, DACOnly: Boolean ): AggregatedMap  getMethodologies: [DataSources]  getWhereThePoorWillbeData: WhereThePoorWillbe  getUnbundlingAid( type: UnbundlingAidType year: Int!, toCountry: String, fromCountryOrOrg:String, sector: String, inTheformOf: String, channel: String ):[AggregatedAid]
+     getCountryProfilePageData(countrySlug: String!): [Page]  getGlobalPicturePageData: [Page]   getRevenuePerPersonAndPoverty190 (yearStart: Int, yearEnd: Int): [revenuePerPersonAndPoverty190] getBubbleSize(year: Int!, indicatorOrCountry: String ): [BubbleSize]  getOverViewTab(country: String!, year: Int!): OverViewTab getPovertyTab(country: String, year: Int!): PovertyTab getPopulationTab(country: String, year: Int!): PopulationTab getGovernmentFinance(country: String, year: Int!): GovernmentFinance getInternationalResources(country: String, year: Int!): InternationalResources  getMapData( id: String!, DACOnly: Boolean ): AggregatedMap  getMethodologies: [DataSources]  getWhereThePoorWillbeData: WhereThePoorWillbe  getUnbundlingAid( type: UnbundlingAidType year: Int!, toCountry: String, fromCountryOrOrg:String, sector: String, inTheformOf: String, channel: String ):[AggregatedAid]
   }
 
     
@@ -425,9 +431,15 @@ exports[`gql Types to Typescript types should return merged typedefs 1`] = `
 }type AggregatedMap {
   map: [MapUnit]
   # map indeicator user friendly label / slug eg Poverty
-  label: String
+  name: String
   # map value unit eg US $ or %
-  unit: String
+  uomDisplay: String
+  uom: String
+  startYear: Int
+  endYear: Int 
+  description: String
+  theme: String
+  color: String
   # map indicators total for % computations where needed
   total: Float 
 }type Download {

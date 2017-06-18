@@ -1,3 +1,11 @@
+type Theme {
+  id: String
+  name: String
+  default: String
+  order: Int
+}
+
 type Query {
   getGlobalPicturePageData: [Page]
+  getGlobalPictureThemes: [Theme]
 }

@@ -1,3 +1,4 @@
 global-picture/themes.csv:cms
 global/entity.csv:cms
-SELECT * FROM data_series.depth_of_extreme_poverty_190 WHERE year >= 2000 AND year <= 2015:dw
+global-picture/concept.csv:cms
+SELECT * FROM data_series.depth_of_extreme_poverty_190 WHERE year >= '1981' AND year <= 2017:dw

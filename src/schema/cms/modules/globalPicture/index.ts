@@ -2,16 +2,9 @@ import {get} from '../../connector';
 import * as R from 'ramda';
 import {getPageData} from '../page';
 
-export interface ITheme {
-    id: string;
-    name: string;
-    default: string;
-    order: number;
-}
+export const getGlobalPictureThemes = (): Promise<DH.ITheme[]> => get<DH.ITheme>('global-picture/themes.csv');
 
-export const getThemes = (): Promise<ITheme[]> => get<ITheme>('global-picture/themes.csv');
-
-export const getTheme: (id: string, themes: ITheme[]) => ITheme = (id, themes) =>
-    R.find(R.propEq('id', id), themes) as ITheme;
+export const getTheme: (id: string, themes: DH.ITheme[]) => DH.ITheme = (id, themes) =>
+    R.find(R.propEq('id', id), themes) as DH.ITheme;
 
 export const getGlobalPicturePageData = (): Promise<DH.IPage[]> => getPageData('global-picture');

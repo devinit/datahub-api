@@ -76,7 +76,7 @@ export const writeKeyToCacheFile = async (key: string, cacheType: string, file: 
     Promise<void> => {
         const isKeyInCache = await isKeyInCacheFile(key, file);
         if (isError(isKeyInCache)) throw Error('possibly cache file doesnt exit');
-        if (!isKeyInCache) fs.appendFile('.cache', `${key}-${cacheType}\n`);
+        if (!isKeyInCache) fs.appendFile('.cache', `${key}:${cacheType}\n`);
         console.info('Key already exists in cache no need to re-add it');
     };
 

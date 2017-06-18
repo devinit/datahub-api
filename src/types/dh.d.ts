@@ -25,6 +25,7 @@ declare namespace DH {
   interface IQuery {
     getCountryProfilePageData: Array<IPage> | null;
     getGlobalPicturePageData: Array<IPage> | null;
+    getGlobalPictureThemes: Array<ITheme> | null;
     getRevenuePerPersonAndPoverty190: Array<IRevenuePerPersonAndPoverty190> | null;
     getBubbleSize: Array<IBubbleSize> | null;
     getOverViewTab: IOverViewTab | null;
@@ -45,6 +46,16 @@ declare namespace DH {
     id: string | null;
     title: string | null;
     narrative: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface ITheme {
+    id: string | null;
+    name: string | null;
+    default: string | null;
+    order: number | null;
   }
 
   /*
@@ -182,8 +193,14 @@ declare namespace DH {
   */
   interface IAggregatedMap {
     map: Array<IMapUnit> | null;
-    label: string | null;
-    unit: string | null;
+    name: string | null;
+    uomDisplay: string | null;
+    uom: string | null;
+    startYear: number | null;
+    endYear: number | null;
+    description: string | null;
+    theme: string | null;
+    color: string | null;
     total: number | null;
   }
 
