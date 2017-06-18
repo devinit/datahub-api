@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Country profile module tests should return page data for a country slug 1`] = `
+exports[`country profile module tests should return page data for a country slug 1`] = `
 "Array [
   Object {
     \\"id\\": \\"introduction\\",
