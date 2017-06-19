@@ -16,6 +16,6 @@ describe('Github connector', () => {
         const themes = await get<{id: string}>('global-picture/themes.csv');
         expect(themes.length).toBeGreaterThan(4);
         expect(themes[0].id).toBe('poorest20pct');
-    }, 10000);
+    }, );
 
 });

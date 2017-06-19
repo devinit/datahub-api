@@ -6,5 +6,5 @@ describe('Github page data tests', () => {
         const pageData: DH.IPage[] = await getPageData('global-picture');
         expect(pageData.length).toBeGreaterThan(2);
         expect(pageData[0].id).toBe('introduction');
-    }, 10000);
+    }, );
 });

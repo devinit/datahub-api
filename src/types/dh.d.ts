@@ -26,6 +26,7 @@ declare namespace DH {
     getCountryProfilePageData: Array<IPage> | null;
     getGlobalPicturePageData: Array<IPage> | null;
     getGlobalPictureThemes: Array<ITheme> | null;
+    getodaDonorBubbleChartPageData: Array<IPage> | null;
     getRevenuePerPersonAndPoverty190: Array<IRevenuePerPersonAndPoverty190> | null;
     getBubbleSize: Array<IBubbleSize> | null;
     getOverViewTab: IOverViewTab | null;

@@ -7,9 +7,9 @@ describe('Github concept data tests', () => {
         const concept: IConcept = getConcept('avg_income_of_extreme_poor', conceptsData);
         expect(conceptsData.length).toBeGreaterThan(2);
         expect(conceptsData[0].id).toBe('avg_income_of_extreme_poor');
-    }, 5000);
+    }, );
     it('should get data from concept.csv of an Id in a module', async () => {
         const concept: IConcept = await getConceptAsync('global-picture', 'avg_income_of_extreme_poor');
         expect(concept.id).toBe('avg_income_of_extreme_poor');
-    }, 5000);
+    }, );
 });

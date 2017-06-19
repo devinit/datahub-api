@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unbundling OOf module tests should return page data for  Unbundling OOf 1`] = `
+"Array [
+  Object {
+    \\"id\\": \\"Unbundling aid\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"Explore and compare funding priorities for other official flows (OOFs)\\",
+    \\"title\\": \\"Unbundling aid\\",
+  },
+]"
+`;
