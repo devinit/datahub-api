@@ -311,72 +311,100 @@ declare namespace DH {
 `;
 
 exports[`gql Types to Typescript types should return merged typedefs 1`] = `
-"\\"
-    schema {
-      query: Query
-      
-      
-    }
+"\\"schema {
+  query: Query
+}
 
-    type Query {
-     getCountryProfilePageData(countrySlug: String!): [Page]  getGlobalPicturePageData: [Page] getGlobalPictureThemes: [Theme]  getodaDonorBubbleChartPageData: [Page]   getPovertyBubbleChartPageData: [Page]  getSpotlightUgandaPageData: [Page]  getUnbundlingOdaPageData: [Page]  getUnbundlingOOfPageData: [Page]  getWhereThePoorPageData: [Page]  getRevenuePerPersonAndPoverty190 (yearStart: Int, yearEnd: Int): [revenuePerPersonAndPoverty190] getBubbleSize(year: Int!, indicatorOrCountry: String ): [BubbleSize]  getOverViewTab(country: String!, year: Int!): OverViewTab getPovertyTab(country: String, year: Int!): PovertyTab getPopulationTab(country: String, year: Int!): PopulationTab getGovernmentFinance(country: String, year: Int!): GovernmentFinance getInternationalResources(country: String, year: Int!): InternationalResources  getMapData( id: String!, DACOnly: Boolean ): AggregatedMap  getMethodologies: [DataSources]  getWhereThePoorWillbeData: WhereThePoorWillbe  getUnbundlingAid( type: UnbundlingAidType year: Int!, toCountry: String, fromCountryOrOrg:String, sector: String, inTheformOf: String, channel: String ):[AggregatedAid]
-  }
+type Query {
+  getCountryProfilePageData(countrySlug: String!): [Page]
+  getGlobalPicturePageData: [Page]
+  getGlobalPictureThemes: [Theme]
+  getodaDonorBubbleChartPageData: [Page]
+  getPovertyBubbleChartPageData: [Page]
+  getSpotlightUgandaPageData: [Page]
+  getUnbundlingOdaPageData: [Page]
+  getUnbundlingOOfPageData: [Page]
+  getWhereThePoorPageData: [Page]
+  getRevenuePerPersonAndPoverty190(yearStart: Int, yearEnd: Int): [revenuePerPersonAndPoverty190]
+  getBubbleSize(year: Int!, indicatorOrCountry: String): [BubbleSize]
+  getOverViewTab(country: String!, year: Int!): OverViewTab
+  getPovertyTab(country: String, year: Int!): PovertyTab
+  getPopulationTab(country: String, year: Int!): PopulationTab
+  getGovernmentFinance(country: String, year: Int!): GovernmentFinance
+  getInternationalResources(country: String, year: Int!): InternationalResources
+  getMapData(id: String!, DACOnly: Boolean): AggregatedMap
+  getMethodologies: [DataSources]
+  getWhereThePoorWillbeData: WhereThePoorWillbe
+  getUnbundlingAid(type: UnbundlingAidType, year: Int!, toCountry: String, fromCountryOrOrg: String, sector: String, inTheformOf: String, channel: String): [AggregatedAid]
+}
 
-    
-
-    
-  enum UnbundlingAidType {
-  ODA
-  OOF
-}type Theme {
+type Theme {
   id: String
   name: String
   default: String
   order: Int
-}type Page {
-    id: String
-    title: String
-    narrative: String
-}type GovtRevenuePerPerson {
+}
+
+type Page {
+  id: String
+  title: String
+  narrative: String
+}
+
+type GovtRevenuePerPerson {
   # id country code
   id: String
   year: Int
   value: Int
   # actual or budgeted in our case we use actual values
-  type: String 
-}type Poverty190 {
+  type: String
+}
+
+type Poverty190 {
   id: String
   year: Int
   value: Int
-}type BubbleSize {
+}
+
+type BubbleSize {
   # Indicator label
   id: String
   year: Int
   value: Int
-}type revenuePerPersonAndPoverty190 {
+}
+
+type revenuePerPersonAndPoverty190 {
   id: String
   year: Int
   poverty: Int
   revenuePerPerson: Int
-}type IndicatorData {
+}
+
+type IndicatorData {
   year: Int
   Value: Int
-}type IndicatorLabledData {
+}
+
+type IndicatorLabledData {
   year: Int
   Value: Int
   id: String
-}type ResourceData {
+}
+
+type ResourceData {
   year: Int
   Value: Int
   # is the breakdown of the category eg Gross disbursements for 
-  # the ODA category
+   # the ODA category
   id: String
   # Category can be Official (oda, oof), Commercial, Private
   category: String
   # flow either inflow or outflow
-  # this is an optional field may not be queried in final data
+   # this is an optional field may not be queried in final data
   typeName: String
-}type OverViewTab {
+}
+
+type OverViewTab {
   # how many of the poorest people globally live in a country
   poorestPeople: Int
   # total population for a given country
@@ -384,28 +412,38 @@ exports[`gql Types to Typescript types should return merged typedefs 1`] = `
   domesticPublicResources: Int
   internationalResources: Int
   governmentSpendPerPerson: Int
-}type PovertyTab {
+}
+
+type PovertyTab {
   # Poverty reduction over time area chart trend
   poverty190Trend: [IndicatorData]
   # how deep is poverty %
   depthOfExtremePoverty: Int
   # how income is distributed, % of income received by each quintile
   IncomeDistTrend: [IndicatorData]
-}type PopulationDistribution {
+}
+
+type PopulationDistribution {
   Urban: [IndicatorData]
   Rural: [IndicatorData]
-}type PopulationPerAgeBand {
+}
+
+type PopulationPerAgeBand {
   ageBand: String
   population: Int
   year: Int
-}type PopulationTab {
+}
+
+type PopulationTab {
   # total population in a country
   population: Int
   # Urban vs Rural population level
   populationDistribution: [PopulationDistribution]
   # Number of people in 3 age bands (65+, 15- 65, 0 - 14)
   populationPerAgeBand: [PopulationPerAgeBand]
-}type Domestic {
+}
+
+type Domestic {
   # eg value added tax
   title: String
   # the levels of the data i.e total-expenditure,recurrent-expenditure,compensation-of-employees
@@ -413,13 +451,15 @@ exports[`gql Types to Typescript types should return merged typedefs 1`] = `
   # eg Actual or budget
   budgetType: String
   # if level 1 data comes first, 
-  # this is for the tree map and its a convenience field as it can be drived from the levels array
-  # so one may query levels or level 
-  level: Int 
-  year: Int 
-  value: Int 
-}type GovernmentFinance {
-  #Total revenue for a particular year if not available return -1
+   # this is for the tree map and its a convenience field as it can be drived from the levels array
+   # so one may query levels or level 
+  level: Int
+  year: Int
+  value: Int
+}
+
+type GovernmentFinance {
+  # Total revenue for a particular year if not available return -1
   totalRevenue: Int
   totalGrants: Int
   # such as constnat 2015 USD
@@ -429,28 +469,34 @@ exports[`gql Types to Typescript types should return merged typedefs 1`] = `
   revenueAndGrants: [Domestic]
   expenditure: [Domestic]
   financing: [Domestic]
-}type InternationalResources {
+}
+
+type InternationalResources {
   # Gross National Income
   GNI: Int
-  #Net ODA received, % of GNI
+  # Net ODA received, % of GNI
   netODAOfGNI: Int
   # gross inflows for the lines chart in the  tabs section
-  # for sidebar chart in international resources section & area partition tree chart
+   # for sidebar chart in international resources section & area partition tree chart
   resourceOverTimeInflows(yearStart: Int!, yearEnd: Int!): [ResourceData]
   # for sidebar chart in international resources section & area partition tree chart
   resourceOverTimeOutflows(yearStart: Int!, yearEnd: Int!): [ResourceData]
   # an array of inflows for a particular country, for area & partition chart
   inflows: [String]
-   # an array of outflows for a particular country
+  # an array of outflows for a particular country
   outflows: [String]
-}type MapUnit {
+}
+
+type MapUnit {
   # country code Id in DW this is di_id
   id: String
   # countryName derived from entity.csv
   countryName: String
   year: Int
   value: Float
-}type AggregatedMap {
+}
+
+type AggregatedMap {
   map: [MapUnit]
   # map indicator user friendly label / slug eg Poverty
   name: String
@@ -458,16 +504,20 @@ exports[`gql Types to Typescript types should return merged typedefs 1`] = `
   uomDisplay: String
   uom: String
   startYear: Int
-  endYear: Int 
+  endYear: Int
   description: String
   theme: String
   color: String
   # map indicators total for % computations where needed
-  total: Float 
-}type Download {
+  total: Float
+}
+
+type Download {
   csv: String
   zip: String
-}type DataSources {
+}
+
+type DataSources {
   # name of the data you inquiring about
   name: String
   Description: String
@@ -475,23 +525,36 @@ exports[`gql Types to Typescript types should return merged typedefs 1`] = `
   unit: String
   source: String
   download: Download
-}type LevelData {
+}
+
+type LevelData {
   # extreme poverty count 
-  poverty: Int 
+  poverty: Int
   # can be worst case, baseline or bestcase
   scenario: String
   year: Int
   # typeName can be global or regional
   typeName: String
-}type WhereThePoorWillbe {
+}
+
+type WhereThePoorWillbe {
   global: [LevelData]
   regional: [LevelData]
-}type Aid {
+}
+
+enum UnbundlingAidType {
+  ODA
+  OOF
+}
+
+type Aid {
   year: Int
   Value: Int
   # country or organisation label
   id: String
-}type AggregatedAid {
+}
+
+type AggregatedAid {
   aids: [Aid]
   total: Int
   # unbundling aid selection options
@@ -499,5 +562,6 @@ exports[`gql Types to Typescript types should return merged typedefs 1`] = `
   fromCountries: [String]
   channels: [String]
   form: [String]
-}\\""
+}
+\\""
 `;

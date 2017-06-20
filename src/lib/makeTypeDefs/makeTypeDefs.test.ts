@@ -13,13 +13,7 @@ describe('gql Types to Typescript types', () => {
         const typeDefs = await getTypeDefs('**/*.gql');
         expect(buildSchema(typeDefs)).toBeInstanceOf(GraphQLSchema);
     });
-    it.skip('should work with types with comments', async () => {
-        // currently doesnt work with comments in the query type sections of schema
-        const typeDefsWithComments =  await getTypeDefs('**/*.gql');
-        expect(buildSchema(typeDefsWithComments)).toBeInstanceOf(GraphQLSchema);
-        expect(prettyFormat(typeDefsWithComments)).toMatchSnapshot();
-    });
-    it ('End to End test: should create typescript types from graphql files', async () => {
+    it('End to End test: should create typescript types from graphql files', async () => {
         const tsTypesNameSpace = await generateTsFromGql({globPattern: '**/*.gql'});
         expect(prettyFormat(tsTypesNameSpace)).toMatchSnapshot();
     });

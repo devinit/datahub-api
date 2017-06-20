@@ -33,8 +33,7 @@ const getGlobbedFilesLoad: (globPattern: string) => Promise<string[]> = async (g
 export const getTypeDefs: (globPattern?: string) => Promise<string> = async (globPattern = '**/*.gql') => {
     try {
         const typesLoad: string[] = await getGlobbedFilesLoad(globPattern);
-        const mergedTypes: string[] = mergeTypes(typesLoad);
-        return R.join('', mergedTypes);
+        return mergeTypes(typesLoad);
     } catch (error) {
         console.error(error);
     }
