@@ -325,13 +325,13 @@ type Query {
   getUnbundlingOdaPageData: [Page]
   getUnbundlingOOfPageData: [Page]
   getWhereThePoorPageData: [Page]
-  getRevenuePerPersonAndPoverty190(yearStart: Int, yearEnd: Int): [revenuePerPersonAndPoverty190]
+  getRevenuePerPersonAndPoverty190: [revenuePerPersonAndPoverty190]
   getBubbleSize(year: Int!, indicatorOrCountry: String): [BubbleSize]
-  getOverViewTab(country: String!, year: Int!): OverViewTab
-  getPovertyTab(country: String, year: Int!): PovertyTab
-  getPopulationTab(country: String, year: Int!): PopulationTab
-  getGovernmentFinance(country: String, year: Int!): GovernmentFinance
-  getInternationalResources(country: String, year: Int!): InternationalResources
+  getOverViewTab(id: String!): OverViewTab
+  getPovertyTab(id: String!): PovertyTab
+  getPopulationTab(id: String!): PopulationTab
+  getGovernmentFinance(id: String!): GovernmentFinance
+  getInternationalResources(id: String!): InternationalResources
   getMapData(id: String!, DACOnly: Boolean): AggregatedMap
   getMethodologies: [DataSources]
   getWhereThePoorWillbeData: WhereThePoorWillbe
