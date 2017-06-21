@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import {IEntity, getEntityById} from '../schema/cms/modules/global';
+import {IEntity, getEntityById, getEntities} from '../schema/cms/modules/global';
 
 export interface Isummable {
     value: number | null;
@@ -27,6 +27,14 @@ const parse = (value: string | null): number | null => value && value.length ? N
 export const addCountryName = (obj: IhasId, entites: IEntity[]): any => {
     const entity = getEntityById(obj.id, entites);
     return {...obj, countryName: entity.name};
+};
+
+export const indicatorDataProcessing = async (data: IhasDiId[]): Promise<DH.IMapUnit[]> => {
+    const entities = await getEntities();
+    return data
+            .map(toId)
+            .map((obj) => addCountryName(obj, entities))
+            .map(toNumericValue);
 };
 
 export const toNumericValue: (obj: IhasStringValue) => any =

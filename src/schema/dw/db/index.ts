@@ -31,7 +31,7 @@ const options: IOptions<IExtensions> = {
                 queue(getQuery, 'dw', dbCache, obj.many);
                 return Promise.resolve(dbCache.get(getQuery));
             }
-            return obj.many(getQuery);
+            return obj.any(getQuery);
         };
         obj.maps = new Maps(obj);
     },

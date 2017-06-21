@@ -21,8 +21,7 @@
     },
     "rootDirs": [
       "src"
-    ],
-    "typeRoots" : ["./src/types", "./node_modules/@types"]
+    ]  
   },
   "files": [
     "src/main.ts",

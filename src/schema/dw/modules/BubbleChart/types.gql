@@ -29,7 +29,7 @@ type revenuePerPersonAndPoverty190 {
 }
 
 type Query {
-  getRevenuePerPersonAndPoverty190 (yearStart: Int, yearEnd: Int): [revenuePerPersonAndPoverty190]
+  getRevenuePerPersonAndPoverty190: [revenuePerPersonAndPoverty190]
   getBubbleSize(year: Int!, indicatorOrCountry: String ): [BubbleSize]
 }
 

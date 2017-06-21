@@ -106,10 +106,10 @@ type InternationalResources {
 }
 
 type Query {  
-  getOverViewTab(country: String!, year: Int!): OverViewTab
-  getPovertyTab(country: String, year: Int!): PovertyTab
-  getPopulationTab(country: String, year: Int!): PopulationTab
-  getGovernmentFinance(country: String, year: Int!): GovernmentFinance
-  getInternationalResources(country: String, year: Int!): InternationalResources
+  getOverViewTab(id: String!): OverViewTab
+  getPovertyTab(id: String!): PovertyTab
+  getPopulationTab(id: String!): PopulationTab
+  getGovernmentFinance(id: String!): GovernmentFinance
+  getInternationalResources(id: String!): InternationalResources
 }
 
