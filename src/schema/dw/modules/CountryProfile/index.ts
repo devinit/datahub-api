@@ -42,7 +42,7 @@ export default class CountryProfile {
         return R.keys(this.overVierTab).reduce(async (accumulatedTab, key) => {
             const obj = overViewTab[key];
             const concept: IConcept = await getConceptAsync('country-profile', obj.conceptId);
-            const ondicatorVaue = this.getIndicatorValue(countryId, obj.query, concept);
+            const indicatorVaue = this.getIndicatorValue(countryId, obj.query, concept);
             return {...accumulatedTab, key: indicatorValue};
         }, {});
     }
