@@ -6,30 +6,49 @@ import {isNumber} from '../../../../lib/isType';
 import sql from './sql';
 import * as R from 'ramda';
 
-interface IgetMapDataOpts {
-    id: string;
-    startYear: number;
-    endYear: number;
-    DACOnly: boolean;
-}
-
 export default class CountryProfile {
 
     private db: IDatabase<IExtensions> & IExtensions;
 
+    private overViewTab = {
+        population: {
+            query: sql.population,
+            conceptId: 'fact.population'
+        },
+        domesticPublicResources: {
+            query: sql.domesticPublicResources,
+            conceptId: 'domestic'
+        },
+        internationalResources: {
+            query: sql.internationalResources,
+            conceptId: 'intl_flows_recipients'
+        },
+        governmentSpendPerPerson: {
+            query: sql.governmentSpendPerPerson,
+            conceptId: 'govt_spend_pc'
+        },
+        poorestPeople: {
+            query: sql.poorestPeople,
+            conceptId: 'poorest_20_percent'
+        }
+
+    };
+
     constructor(db: any) {
         this.db = db;
     }
-    public async getOverViewTab(opts) {
-        const population: number = await this.getPopulation(opts.id);
+    public async getOverViewTab(opts): DH.IOverViewTab {
+        const countryId = opts.id;
+        return R.keys(this.overVierTab).reduce(async (accumulatedTab, key) => {
+            const obj = overViewTab[key];
+            const concept: IConcept = await getConceptAsync('country-profile', obj.conceptId);
+            const ondicatorVaue = this.getIndicatorValue(countryId, obj.query, concept);
+            return {...accumulatedTab, key: indicatorValue};
+        }, {});
     }
-    /**
-     *
-     * @param id : id is country id
-     */
-    private async getPopulation(id) {
-        const concept: IConcept = await getConceptAsync('country-profile', 'fact.population_total');
-        const data: {value: string} = await this.db.manyCacheable(sql.population, {startYear: concept.startYear, id});
+    private async getIndicatorValue(id, sqlQuery, concept) {
+        const data: {value: string} =
+            await this.db.manyCacheable(sqlQuery, {startYear: concept.startYear, id});
         return Number(data.value);
     }
 }
