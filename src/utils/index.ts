@@ -2,7 +2,7 @@ import * as R from 'ramda';
 import {IEntity, getEntityById, getEntities} from '../schema/cms/modules/global';
 
 export interface Isummable {
-    value: number | null;
+    value: number | string | null;
 }
 
 export interface IhasDiId {
@@ -48,6 +48,20 @@ export const toId: (obj: IhasDiId ) => any = (obj) => {
 
 export const getTotal = (data: Isummable[]): number =>
     R.reduce((sum: number, obj: Isummable): number => {
-        if (obj.value) sum += obj.value;
+        if (obj.value) sum += Number(obj.value);
         return sum;
     }, 0, data);
+
+export const formatNumbers = (value: number, precision: number = 0): string => {
+    const absValue = Math.abs(value);
+    if (absValue < 1e6) {
+        const newValue = value / 1e3;
+        return `${newValue.toFixed(precision)}k`;
+    } else if (absValue >= 1e6 && absValue < 1e9) {
+        const newValue = value / 1e6;
+        return `${newValue.toFixed(precision)}m`;
+    } else {
+        const newValue = value / 1e9;
+        return `${newValue.toFixed(precision)}bn`;
+    }
+};

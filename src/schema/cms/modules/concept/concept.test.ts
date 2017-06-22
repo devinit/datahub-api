@@ -9,8 +9,8 @@ describe('Github concept data tests', () => {
         expect(conceptsData.length).toBeGreaterThan(2);
         expect(prettyFormat(concept)).toMatchSnapshot();
     });
-    it('should get data from concept.csv of an Id in a module', async () => {
-        const concept: IConcept = await getConceptAsync('global-picture', 'avg_income_of_extreme_poor');
-        expect(concept.id).toBe('avg_income_of_extreme_poor');
+    it('should get data from concept.csv of an Id in a module Async', async () => {
+        const concept: IConcept = await getConceptAsync('country-profile', 'domestic');
+        expect(prettyFormat(concept)).toMatchSnapshot();
     });
 });

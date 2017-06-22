@@ -27,6 +27,11 @@ declare namespace DH {
     getGlobalPicturePageData: Array<IPage> | null;
     getGlobalPictureThemes: Array<ITheme> | null;
     getodaDonorBubbleChartPageData: Array<IPage> | null;
+    getPovertyBubbleChartPageData: Array<IPage> | null;
+    getSpotlightUgandaPageData: Array<IPage> | null;
+    getUnbundlingOdaPageData: Array<IPage> | null;
+    getUnbundlingOOfPageData: Array<IPage> | null;
+    getWhereThePoorPageData: Array<IPage> | null;
     getRevenuePerPersonAndPoverty190: Array<IRevenuePerPersonAndPoverty190> | null;
     getBubbleSize: Array<IBubbleSize> | null;
     getOverViewTab: IOverViewTab | null;
@@ -82,19 +87,12 @@ declare namespace DH {
     description: 
   */
   interface IOverViewTab {
-    poorestPeople: number | null;
-    population: number | null;
-    domesticPublicResources: number | null;
-    internationalResources: number | null;
-    governmentSpendPerPerson: number | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IPovertyTab {
-    poverty190Trend: Array<IIndicatorData> | null;
-    depthOfExtremePoverty: number | null;
+    poorestPeople: string | null;
+    population: string | null;
+    domesticPublicResources: string | null;
+    internationalResources: string | null;
+    governmentSpendPerPerson: string | null;
+    averageIncomerPerPerson: Array<IIndicatorData> | null;
     IncomeDistTrend: Array<IIndicatorData> | null;
   }
 
@@ -104,6 +102,15 @@ declare namespace DH {
   interface IIndicatorData {
     year: number | null;
     Value: number | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IPovertyTab {
+    poverty190Trend: Array<IIndicatorData> | null;
+    depthOfExtremePoverty: number | null;
+    IncomeDistTrend: Array<IIndicatorData> | null;
   }
 
   /*

@@ -1,15 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Github concept data tests should get data from concept.csv of a module on github 1`] = `
-"Object {
-  \\"color\\": \\"\\",
-  \\"description\\": \\"Average income ($PPP) of people living on less than $1.90 a day\\",
-  \\"endYear\\": \\"\\",
-  \\"id\\": \\"avg_income_of_extreme_poor\\",
-  \\"name\\": \\"Average income of extreme poor\\",
-  \\"startYear\\": \\"\\",
-  \\"theme\\": \\"poorest20pct\\",
-  \\"uom\\": \\"US$\\",
-  \\"uomDisplay\\": \\"US$\\",
-}"
-`;
+exports[`Github concept data tests should get data from concept.csv of a module on github 1`] = `"undefined"`;
+
+exports[`Github concept data tests should get data from concept.csv of an Id in a module Async 1`] = `"undefined"`;

@@ -89,19 +89,12 @@ declare namespace DH {
     description: 
   */
   interface IOverViewTab {
-    poorestPeople: number | null;
-    population: number | null;
-    domesticPublicResources: number | null;
-    internationalResources: number | null;
-    governmentSpendPerPerson: number | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IPovertyTab {
-    poverty190Trend: Array<IIndicatorData> | null;
-    depthOfExtremePoverty: number | null;
+    poorestPeople: string | null;
+    population: string | null;
+    domesticPublicResources: string | null;
+    internationalResources: string | null;
+    governmentSpendPerPerson: string | null;
+    averageIncomerPerPerson: Array<IIndicatorData> | null;
     IncomeDistTrend: Array<IIndicatorData> | null;
   }
 
@@ -111,6 +104,15 @@ declare namespace DH {
   interface IIndicatorData {
     year: number | null;
     Value: number | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IPovertyTab {
+    poverty190Trend: Array<IIndicatorData> | null;
+    depthOfExtremePoverty: number | null;
+    IncomeDistTrend: Array<IIndicatorData> | null;
   }
 
   /*
@@ -406,12 +408,17 @@ type ResourceData {
 
 type OverViewTab {
   # how many of the poorest people globally live in a country
-  poorestPeople: Int
+  poorestPeople: String
   # total population for a given country
-  population: Int
-  domesticPublicResources: Int
-  internationalResources: Int
-  governmentSpendPerPerson: Int
+  population: String
+  domesticPublicResources: String
+  internationalResources: String
+  # recipient countries $PPP
+  governmentSpendPerPerson: String
+  # donor: gross nation income per capit GNI
+  averageIncomerPerPerson: [IndicatorData]
+  # donor: gross nation income per capit GNI
+  IncomeDistTrend: [IndicatorData]
 }
 
 type PovertyTab {
@@ -419,7 +426,7 @@ type PovertyTab {
   poverty190Trend: [IndicatorData]
   # how deep is poverty %
   depthOfExtremePoverty: Int
-  # how income is distributed, % of income received by each quintile
+  # Recipients: how income is distributed, % of income received by each quintil
   IncomeDistTrend: [IndicatorData]
 }
 
