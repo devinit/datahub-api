@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`country profile DW module tests should return overview tab data for uganda 1`] = `
+"Object {
+  \\"internationalResources\\": \\"4.4bn\\",
+}"
+`;
