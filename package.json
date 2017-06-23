@@ -84,7 +84,7 @@
     "ts-jest": "^20.0.6",
     "tslint": "^5.4.3",
     "typescript": "2.3.4",
-    "webpack": "^2.5.1",
+    "webpack": "^3.0.0",
     "webpack-node-externals": "^1.6.0"
   },
   "git-pre-hooks": {
