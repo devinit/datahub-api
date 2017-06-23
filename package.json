@@ -10,7 +10,7 @@
     "test": "jest",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "test:watch": "npm test -- --watch",
-    "codecov": "npm run build && jest -u && codecov",
+    "codecov": "npm run build && jest && codecov",
     "start": "NODE_ENV=production npm run build && node dist/main.js",
     "dev": "NODE_ENV=development concurrently \"npm run build:watch\" \"node-dev dist/main.js\""
   },

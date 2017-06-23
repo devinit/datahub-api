@@ -12,10 +12,9 @@ describe('Github connector', () => {
         expect(data[0].name).toBe('allan');
     });
 
-    it.skip('should get data from github and return it as json', async () => {
+    it('should get data from github and return it as json', async () => {
         const themes = await get<{id: string}>('global-picture/themes.csv');
         expect(themes.length).toBeGreaterThan(4);
         expect(themes[0].id).toBe('poorest20pct');
-    },5000);
-
+    }, 5000);
 });
