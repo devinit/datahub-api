@@ -90,8 +90,7 @@
   "git-pre-hooks": {
     "pre-push": [
       "npm run lint",
-      "npm run build",
-      "npm run test"
+      "npm run build"
     ]
   },
   "jest": {
