@@ -34,7 +34,7 @@ declare namespace DH {
     getWhereThePoorPageData: Array<IPage> | null;
     getRevenuePerPersonAndPoverty190: Array<IRevenuePerPersonAndPoverty190> | null;
     getBubbleSize: Array<IBubbleSize> | null;
-    getOverViewTab: IOverViewTab | null;
+    getOverViewTab: OverViewTab | null;
     getPovertyTab: IPovertyTab | null;
     getPopulationTab: IPopulationTab | null;
     getGovernmentFinance: IGovernmentFinance | null;
@@ -86,11 +86,25 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IOverViewTab {
+  type OverViewTab = IOverViewTabRecipients | IOverViewTabDonors;
+
+
+
+  /*
+    description: 
+  */
+  interface IOverViewTabRecipients {
     poorestPeople: string | null;
     population: string | null;
     domesticPublicResources: string | null;
     internationalResources: string | null;
+    governmentSpendPerPerson: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IOverViewTabDonors {
     governmentSpendPerPerson: string | null;
     averageIncomerPerPerson: Array<IIndicatorData> | null;
     IncomeDistTrend: Array<IIndicatorData> | null;

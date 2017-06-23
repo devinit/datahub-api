@@ -50,7 +50,7 @@ const db = pgp(dwConfig) as IDatabase<IExtensions> & IExtensions;
 
 // Load and initialize optional diagnostics:
 
-if (process.env.NODE_ENV === 'production') diagnostics.init(options);
+diagnostics.init(options);
 
 process.on('exit', (code) => {
   // kill db

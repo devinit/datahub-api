@@ -2,6 +2,10 @@
 
 exports[`country profile DW module tests should return overview tab data for uganda 1`] = `
 "Object {
+  \\"domesticPublicResources\\": \\"3.1bn\\",
+  \\"governmentSpendPerPerson\\": \\"365\\",
   \\"internationalResources\\": \\"4.4bn\\",
+  \\"poorestPeople\\": \\"19.6m\\",
+  \\"population\\": \\"39m\\",
 }"
 `;
