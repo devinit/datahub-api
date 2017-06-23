@@ -28,7 +28,7 @@ declare namespace DH {
     getCountryProfilePageData: Array<IPage> | null;
     getGlobalPicturePageData: Array<IPage> | null;
     getGlobalPictureThemes: Array<ITheme> | null;
-    getodaDonorBubbleChartPageData: Array<IPage> | null;
+    getOdaDonorBubbleChartPageData: Array<IPage> | null;
     getPovertyBubbleChartPageData: Array<IPage> | null;
     getSpotlightUgandaPageData: Array<IPage> | null;
     getUnbundlingOdaPageData: Array<IPage> | null;
@@ -335,7 +335,7 @@ type Query {
   getCountryProfilePageData(countrySlug: String!): [Page]
   getGlobalPicturePageData: [Page]
   getGlobalPictureThemes: [Theme]
-  getodaDonorBubbleChartPageData: [Page]
+  getOdaDonorBubbleChartPageData: [Page]
   getPovertyBubbleChartPageData: [Page]
   getSpotlightUgandaPageData: [Page]
   getUnbundlingOdaPageData: [Page]

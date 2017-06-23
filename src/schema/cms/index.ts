@@ -2,8 +2,8 @@ import {getGlobalPicturePageData, getGlobalPictureThemes} from './modules/global
 import {getCountryProfilePageData} from './modules/countryProfile';
 import {getOdaDonorBubbleChartPageData} from './modules/odaDonorBubbleChart';
 import {getPovertyBubbleChartPageData} from './modules/povertyBubbleChart';
-import {getUnbundlingOdaPageData} from './modules/UnbundlingOda';
-import {getUnbundlingOOfPageData} from './modules/UnbundlingOOf';
+import {getUnbundlingOdaPageData} from './modules/unbundlingOda';
+import {getUnbundlingOOfPageData} from './modules/unbundlingOOf';
 import {getWhereThePoorPageData} from './modules/whereThePoor';
 import {get} from './connector';
 
