@@ -78,3 +78,5 @@ To kill the process find it with ```lsof -i tcp:3000``` if on linux and then kil
 
 TODO
 - [ ] remove console.info & console.error and replace with function that logs to an info & error file
+- [ ] fix testing on travis
+- [ ] integrate uglify-es into webpack

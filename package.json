@@ -2,16 +2,16 @@
   "name": "datahub-api",
   "version": "0.0.1",
   "description": "Apollo GraphQL server using webpack and typescript",
-  "main": "dist/main.js",
+  "main": "dist/main.min.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack && uglifyjs dist/main.js -c -o dist/main.min.js",
     "build:watch": "webpack --watch",
     "gqlToTs": "tsc -p src/lib/makeTypeDefs && node src/lib/makeTypeDefs/cli/gqlToTs.js",
     "test": "jest",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "test:watch": "npm test -- --watch",
     "codecov": "npm run build && jest && codecov",
-    "start": "NODE_ENV=production npm run build && node dist/main.js",
+    "start": "NODE_ENV=production npm run build && node dist/main.min.js",
     "dev": "NODE_ENV=development concurrently \"npm run build:watch\" \"node-dev dist/main.js\""
   },
   "repository": {
@@ -35,7 +35,8 @@
   "peerDependencies": {
     "@gql2ts/types": "next",
     "graphql": "^0.10.1",
-    "graphql-tag": "^2.2.1"
+    "graphql-tag": "^2.2.1",
+    "uglify-es": "^3.0.19"
   },
   "dependencies": {
     "axios": "^0.16.2",
@@ -84,6 +85,8 @@
     "ts-jest": "^20.0.6",
     "tslint": "^5.4.3",
     "typescript": "2.3.4",
+    "uglify-es": "^3.0.19",
+    "uglifyjs-webpack-plugin": "^0.4.6",
     "webpack": "^3.0.0",
     "webpack-node-externals": "^1.6.0"
   },

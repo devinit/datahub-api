@@ -2,6 +2,7 @@ var nodeExternals = require('webpack-node-externals');
 var webpack = require('webpack');
 var path = require('path');
 var fs = require('fs');
+// var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 /* helper function to get into build directory */
 var distPath = function ( name ) {
@@ -41,7 +42,7 @@ var webpack_opts = {
         }
       }
     }),
-    // new TsConfigPathsPlugin()
+    new webpack.optimize.ModuleConcatenationPlugin()
   ],
   devtool: 'source-map',
   module: {
