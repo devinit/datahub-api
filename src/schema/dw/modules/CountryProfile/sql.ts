@@ -7,5 +7,6 @@ export default {
     governmentSpendPerPerson: 'SELECT value FROM data_series.govt_spend_pc WHERE di_id = ${id} AND year = ${startYear}',
     poorestPeople: 'SELECT value FROM data_series.poorest_20_percent WHERE di_id = ${id} AND year = ${startYear}',
     // tslint:disable-next-line:max-line-length
-    averageIncomerPerPerson: 'SELECT value, year FROM fact.gni_pc_usd_2015 WHERE di_id = ${id} AND year >= ${startYear} AND year <= ${endYear}'
+    averageIncomerPerPerson: 'SELECT value, year, di_id FROM fact.gni_pc_usd_2015 WHERE di_id = ${id} AND year >= ${startYear} AND year <= ${endYear}',
+    incomeDistTrend: 'SELECT * FROM fact.income_share_by_quintile WHERE di_id = ${id} AND year >= ${startYear}'
 };

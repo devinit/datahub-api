@@ -1,5 +1,223 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`country profile DW module tests should return overview tab data for Austria 1`] = `
+"Object {
+  \\"averageIncomerPerPerson\\": Array [
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 47410,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 42526.39,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 43543.15,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 45059.11,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 42855.89,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 44915.97,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 42658.3,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 41207.23,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 40812.68,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 42523.58,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 40757.56,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 36577.17,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 34020.43,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 36852.26,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 39809.23,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 41512.09,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 37166.4,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 36648.38,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 38403.04,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 34302.92,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 30804.85,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 32903.33,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 32758.83,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 31285.07,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 30549.21,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 29209.85,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 32784.44,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 29483.17,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 24477.1,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 23584.09,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 28301.28,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 28074.77,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 27338.63,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 29138.65,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 30743.1,
+      \\"year\\": null,
+    },
+    Object {
+      \\"id\\": \\"AT\\",
+      \\"value\\": 27360.55,
+      \\"year\\": null,
+    },
+  ],
+  \\"governmentSpendPerPerson\\": \\"24274\\",
+  \\"incomeDistTrend\\": Array [
+    Object {
+      \\"quintileName\\": \\"di_id\\",
+      \\"value\\": NaN,
+    },
+    Object {
+      \\"quintileName\\": \\"year\\",
+      \\"value\\": 2015,
+    },
+    Object {
+      \\"quintileName\\": \\"value_bottom_20pc\\",
+      \\"value\\": 0,
+    },
+    Object {
+      \\"quintileName\\": \\"value_2nd_quintile\\",
+      \\"value\\": 0,
+    },
+    Object {
+      \\"quintileName\\": \\"value_3rd_quintile\\",
+      \\"value\\": 0,
+    },
+    Object {
+      \\"quintileName\\": \\"value_4th_quintile\\",
+      \\"value\\": 0,
+    },
+    Object {
+      \\"quintileName\\": \\"value_5th_quintile\\",
+      \\"value\\": 0,
+    },
+  ],
+}"
+`;
+
 exports[`country profile DW module tests should return overview tab data for uganda 1`] = `
 "Object {
   \\"domesticPublicResources\\": \\"3.1bn\\",

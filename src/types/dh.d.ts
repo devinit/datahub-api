@@ -26,7 +26,7 @@ declare namespace DH {
     getCountryProfilePageData: Array<IPage> | null;
     getGlobalPicturePageData: Array<IPage> | null;
     getGlobalPictureThemes: Array<ITheme> | null;
-    getodaDonorBubbleChartPageData: Array<IPage> | null;
+    getOdaDonorBubbleChartPageData: Array<IPage> | null;
     getPovertyBubbleChartPageData: Array<IPage> | null;
     getSpotlightUgandaPageData: Array<IPage> | null;
     getUnbundlingOdaPageData: Array<IPage> | null;
@@ -107,7 +107,7 @@ declare namespace DH {
   interface IOverViewTabDonors {
     governmentSpendPerPerson: string | null;
     averageIncomerPerPerson: Array<IIndicatorData> | null;
-    IncomeDistTrend: Array<IIndicatorData> | null;
+    incomeDistTrend: Array<IQuintile> | null;
   }
 
   /*
@@ -116,6 +116,15 @@ declare namespace DH {
   interface IIndicatorData {
     year: number | null;
     Value: number | null;
+    id: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IQuintile {
+    value: number | null;
+    quintileName: string | null;
   }
 
   /*
@@ -160,19 +169,10 @@ declare namespace DH {
     totalRevenue: number | null;
     totalGrants: number | null;
     currencyType: string | null;
-    spendingAllocation: Array<IIndicatorLabledData> | null;
+    spendingAllocation: Array<IIndicatorData> | null;
     revenueAndGrants: Array<IDomestic> | null;
     expenditure: Array<IDomestic> | null;
     financing: Array<IDomestic> | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IIndicatorLabledData {
-    year: number | null;
-    Value: number | null;
-    id: string | null;
   }
 
   /*

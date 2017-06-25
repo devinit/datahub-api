@@ -1,12 +1,12 @@
 type IndicatorData {
   year: Int
-  Value: Int
+  Value: Float
+  id: String
 }
 
-type IndicatorLabledData {
-  year: Int
-  Value: Int
-  id: String
+type Quintile {
+  value: Float
+  quintileName: String
 }
 
 type ResourceData {
@@ -37,8 +37,8 @@ type OverViewTabDonors {
   governmentSpendPerPerson: String
   # donor: gross nation income per capit GNI
   averageIncomerPerPerson: [IndicatorData]
-  # donor: gross nation income per capit GNI
-  IncomeDistTrend: [IndicatorData]
+  # donor: Income share by quintile
+  incomeDistTrend: [Quintile]
 }
 
 union OverViewTab = OverViewTabRecipients | OverViewTabDonors
@@ -93,8 +93,8 @@ type GovernmentFinance {
   totalGrants: Int
   # such as constnat 2015 USD
   currencyType: String
-  spendingAllocation: [IndicatorLabledData]
-  spendingAllocation: [IndicatorLabledData]
+  spendingAllocation: [IndicatorData]
+  spendingAllocation: [IndicatorData]
   revenueAndGrants: [Domestic]
   expenditure: [Domestic]
   financing: [Domestic]
