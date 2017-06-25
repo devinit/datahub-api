@@ -1,6 +1,6 @@
 import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
-import OverViewTab from './OverviewTab';
+import OverViewTab from './OverViewTab';
 
 export default class CountryProfile {
     public overViewTab: OverViewTab;
