@@ -2,7 +2,7 @@ import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
 import {IRAW, getIndicatorDataSimple, getTotal, indicatorDataProcessing} from '../utils';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
-import sql from './sql';
+import sql, {DAC} from './sql';
 import * as R from 'ramda';
 
 interface IgetMapDataOpts {
@@ -26,7 +26,7 @@ export default class Maps {
     public async getMapData(opts: IgetMapDataOpts): Promise<DH.IAggregatedMap> {
         const concept: IConcept = await getConceptAsync('global-picture', opts.id);
         // we merge concept and graphql qery options, they have startYear and endYear variables
-        const data: IRAW [] = await getIndicatorDataSimple({...opts, ...concept, sql});
+        const data: IRAW [] = await getIndicatorDataSimple({...opts, ...concept, sql, db: this.db});
         const DACCountries = opts.DACOnly ? await this.getDACCountries() : [];
         const processedData: DH.IMapUnit[] = await indicatorDataProcessing(data);
         const mapData = DACCountries.length ? Maps.DACOnlyData(DACCountries, processedData) : processedData;
@@ -35,7 +35,7 @@ export default class Maps {
     }
 
     private async getDACCountries(): Promise<string[]> {
-        const donors: Array<{donor_name: string}> = await this.db.manyCacheable(sql.DAC, 'DAC');
+        const donors: Array<{donor_name: string}> = await this.db.manyCacheable(DAC, 'DAC');
         return donors
             .map(donor => donor.donor_name);
     }

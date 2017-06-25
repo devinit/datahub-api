@@ -3,16 +3,8 @@ import CountryProfile from '.';
 import db from '../../db';
 
 describe('country profile DW module tests', () => {
-    let overview = null;
-
-    beforeAll(() => {
-        const countryProfile = new CountryProfile(db);
-        overview = countryProfile.overViewTab;
-        // waiting for DB to connect, timer
-        return setTimeout(() => {
-            return overview;
-        }, 1000);
-    });
+    const countryProfile = new CountryProfile(db);
+    const overview = countryProfile.overViewTab;
 
     it('should return overview tab data for uganda', async () => {
         const overViewTab = await overview.getOverViewTab({id: 'UG'});
