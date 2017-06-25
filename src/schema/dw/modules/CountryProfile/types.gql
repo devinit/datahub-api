@@ -53,19 +53,20 @@ type PovertyTab {
 }
 
 type PopulationDistribution {
-  Urban: [IndicatorData]
-  Rural: [IndicatorData]
+  group: String
+  value: Int 
+  year: Int
 }
 
 type PopulationPerAgeBand {
-  ageBand: String
-  population: Int
+  band: String
+  value: Int
   year: Int
 }
 
 type PopulationTab {
   # total population in a country
-  population: Int
+  population: String
   # Urban vs Rural population level
   populationDistribution: [PopulationDistribution]
   # Number of people in 3 age bands (65+, 15- 65, 0 - 14)

@@ -2,7 +2,7 @@ import {IDatabase} from 'pg-promise';
 import * as R from 'ramda';
 import {IExtensions} from '../../db';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
-import {IEntity, getEntityById, getEntities} from '../../../cms/modules/global';
+import {IEntity, getEntityById, getEntities, getEntityByIdAsync} from '../../../cms/modules/global';
 import {parse} from '../../../../utils';
 import {isNumber} from '../../../../lib/isType';
 
@@ -10,8 +10,21 @@ export interface IGetIndicatorArgs {
     id: string;
     table: string;
     query: string;
-    theme: string;
+    theme?: string;
     db: IDatabase<IExtensions> & IExtensions;
+}
+export interface IRAWPopulationGroup {
+    di_id: string;
+    value_rural: string;
+    value_urban: string;
+    year: string;
+}
+export interface IRAWPopulationAgeBand {
+    di_id: string;
+    value_0_14: string;
+    value_15_64: string;
+    value_65_and_above: string;
+    year: string;
 }
 interface ISqlSimple {
     indicator: string;
@@ -51,7 +64,7 @@ export interface IhasId {
     id: string | null;
 }
 export const toNumericValue: (obj) => any =
-    (obj) => ({...obj, value: parse(obj.value), year: parse(obj.year)});
+    (obj) => ({...obj, value: Number(obj.value), year: Number(obj.year)});
 
 export const toId: (obj: IhasDiId ) => any = (obj) => {
     const id = obj.di_id;
@@ -92,4 +105,14 @@ export const indicatorDataProcessingSimple = <T extends {}>(data: IhasDiId[]): T
     return data
             .map(toId)
             .map(toNumericValue);
+};
+export const isDonor = async (id: string): Promise<boolean>  => {
+    const {donorRecipientType}: IEntity = await getEntityByIdAsync(id);
+    if (donorRecipientType === DONOR) return true;
+    return false;
+};
+
+export const normalizeKeyName = (columnName: string): string => {
+    const str = columnName.split(/value\_/)[1];
+    return str.replace(/\_/g, '-');
 };

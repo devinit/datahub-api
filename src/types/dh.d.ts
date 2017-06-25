@@ -140,7 +140,7 @@ declare namespace DH {
     description: 
   */
   interface IPopulationTab {
-    population: number | null;
+    population: string | null;
     populationDistribution: Array<IPopulationDistribution> | null;
     populationPerAgeBand: Array<IPopulationPerAgeBand> | null;
   }
@@ -149,16 +149,17 @@ declare namespace DH {
     description: 
   */
   interface IPopulationDistribution {
-    Urban: Array<IIndicatorData> | null;
-    Rural: Array<IIndicatorData> | null;
+    group: string | null;
+    value: number | null;
+    year: number | null;
   }
 
   /*
     description: 
   */
   interface IPopulationPerAgeBand {
-    ageBand: string | null;
-    population: number | null;
+    band: string | null;
+    value: number | null;
     year: number | null;
   }
 

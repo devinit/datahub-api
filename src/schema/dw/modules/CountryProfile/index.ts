@@ -1,10 +1,10 @@
 import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
-import OverViewTab from './OverViewTab';
+import CountryProfileTabs from './CountryProfileTabs';
 
 export default class CountryProfile {
-    public overViewTab: OverViewTab;
+    public tabs: CountryProfileTabs;
     constructor(db: IDatabase<IExtensions> & IExtensions) {
-        this.overViewTab = new OverViewTab(db);
+        this.tabs = new CountryProfileTabs(db);
     }
 }

@@ -6,213 +6,205 @@ exports[`country profile DW module tests should return overview tab data for Aus
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 47410,
-      \\"year\\": null,
+      \\"year\\": 2015,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 42526.39,
-      \\"year\\": null,
+      \\"year\\": 2014,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 43543.15,
-      \\"year\\": null,
+      \\"year\\": 2013,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 45059.11,
-      \\"year\\": null,
+      \\"year\\": 2012,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 42855.89,
-      \\"year\\": null,
+      \\"year\\": 2011,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 44915.97,
-      \\"year\\": null,
+      \\"year\\": 2010,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 42658.3,
-      \\"year\\": null,
+      \\"year\\": 2009,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 41207.23,
-      \\"year\\": null,
+      \\"year\\": 2008,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 40812.68,
-      \\"year\\": null,
+      \\"year\\": 2007,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 42523.58,
-      \\"year\\": null,
+      \\"year\\": 2006,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 40757.56,
-      \\"year\\": null,
+      \\"year\\": 2005,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 36577.17,
-      \\"year\\": null,
+      \\"year\\": 2004,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 34020.43,
-      \\"year\\": null,
+      \\"year\\": 2003,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 36852.26,
-      \\"year\\": null,
+      \\"year\\": 2002,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 39809.23,
-      \\"year\\": null,
+      \\"year\\": 2001,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 41512.09,
-      \\"year\\": null,
+      \\"year\\": 2000,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 37166.4,
-      \\"year\\": null,
+      \\"year\\": 1999,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 36648.38,
-      \\"year\\": null,
+      \\"year\\": 1998,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 38403.04,
-      \\"year\\": null,
+      \\"year\\": 1997,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 34302.92,
-      \\"year\\": null,
+      \\"year\\": 1996,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 30804.85,
-      \\"year\\": null,
+      \\"year\\": 1995,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 32903.33,
-      \\"year\\": null,
+      \\"year\\": 1994,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 32758.83,
-      \\"year\\": null,
+      \\"year\\": 1993,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 31285.07,
-      \\"year\\": null,
+      \\"year\\": 1992,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 30549.21,
-      \\"year\\": null,
+      \\"year\\": 1991,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 29209.85,
-      \\"year\\": null,
+      \\"year\\": 1990,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 32784.44,
-      \\"year\\": null,
+      \\"year\\": 1989,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 29483.17,
-      \\"year\\": null,
+      \\"year\\": 1988,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 24477.1,
-      \\"year\\": null,
+      \\"year\\": 1987,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 23584.09,
-      \\"year\\": null,
+      \\"year\\": 1986,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 28301.28,
-      \\"year\\": null,
+      \\"year\\": 1985,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 28074.77,
-      \\"year\\": null,
+      \\"year\\": 1984,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 27338.63,
-      \\"year\\": null,
+      \\"year\\": 1983,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 29138.65,
-      \\"year\\": null,
+      \\"year\\": 1982,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 30743.1,
-      \\"year\\": null,
+      \\"year\\": 1981,
     },
     Object {
       \\"id\\": \\"AT\\",
       \\"value\\": 27360.55,
-      \\"year\\": null,
+      \\"year\\": 1980,
     },
   ],
   \\"governmentSpendPerPerson\\": \\"24274\\",
   \\"incomeDistTrend\\": Array [
     Object {
-      \\"quintileName\\": \\"di_id\\",
-      \\"value\\": NaN,
-    },
-    Object {
-      \\"quintileName\\": \\"year\\",
-      \\"value\\": 2015,
-    },
-    Object {
       \\"quintileName\\": \\"value_bottom_20pc\\",
-      \\"value\\": 0,
+      \\"value\\": 7.78,
     },
     Object {
       \\"quintileName\\": \\"value_2nd_quintile\\",
-      \\"value\\": 0,
+      \\"value\\": 13.29,
     },
     Object {
       \\"quintileName\\": \\"value_3rd_quintile\\",
-      \\"value\\": 0,
+      \\"value\\": 17.5,
     },
     Object {
       \\"quintileName\\": \\"value_4th_quintile\\",
-      \\"value\\": 0,
+      \\"value\\": 23.01,
     },
     Object {
       \\"quintileName\\": \\"value_5th_quintile\\",
-      \\"value\\": 0,
+      \\"value\\": 38.41,
     },
   ],
 }"
@@ -225,5 +217,1415 @@ exports[`country profile DW module tests should return overview tab data for uga
   \\"internationalResources\\": \\"4.4bn\\",
   \\"poorestPeople\\": \\"19.6m\\",
   \\"population\\": \\"39m\\",
+}"
+`;
+
+exports[`country profile DW module tests should return population tab data for Austria 1`] = `
+"Object {
+  \\"population\\": \\"9m\\",
+  \\"populationDistribution\\": Array [
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2930353,
+      \\"year\\": 2015,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5680735,
+      \\"year\\": 2015,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2910969,
+      \\"year\\": 2014,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5630606,
+      \\"year\\": 2014,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2893163,
+      \\"year\\": 2013,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5586212,
+      \\"year\\": 2013,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2877999,
+      \\"year\\": 2012,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5551992,
+      \\"year\\": 2012,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2864907,
+      \\"year\\": 2011,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5526736,
+      \\"year\\": 2011,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2856102,
+      \\"year\\": 2010,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5507302,
+      \\"year\\": 2010,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2849245,
+      \\"year\\": 2009,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5494078,
+      \\"year\\": 2009,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2842623,
+      \\"year\\": 2008,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5478873,
+      \\"year\\": 2008,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2834568,
+      \\"year\\": 2007,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5461749,
+      \\"year\\": 2007,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2825395,
+      \\"year\\": 2006,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5443246,
+      \\"year\\": 2006,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2812272,
+      \\"year\\": 2005,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5415557,
+      \\"year\\": 2005,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2793178,
+      \\"year\\": 2004,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5378788,
+      \\"year\\": 2004,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2776715,
+      \\"year\\": 2003,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5344708,
+      \\"year\\": 2003,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2763221,
+      \\"year\\": 2002,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5318736,
+      \\"year\\": 2002,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2750464,
+      \\"year\\": 2001,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5291829,
+      \\"year\\": 2001,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2739956,
+      \\"year\\": 2000,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5271610,
+      \\"year\\": 2000,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2733375,
+      \\"year\\": 1999,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5258949,
+      \\"year\\": 1999,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2728062,
+      \\"year\\": 1998,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5248727,
+      \\"year\\": 1998,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2725070,
+      \\"year\\": 1997,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5242971,
+      \\"year\\": 1997,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2721984,
+      \\"year\\": 1996,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5237033,
+      \\"year\\": 1996,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2718311,
+      \\"year\\": 1995,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5229967,
+      \\"year\\": 1995,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2714152,
+      \\"year\\": 1994,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5221966,
+      \\"year\\": 1994,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2703726,
+      \\"year\\": 1993,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5201907,
+      \\"year\\": 1993,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2681522,
+      \\"year\\": 1992,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5159187,
+      \\"year\\": 1992,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2652173,
+      \\"year\\": 1991,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5102718,
+      \\"year\\": 1991,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2628896,
+      \\"year\\": 1990,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5049722,
+      \\"year\\": 1990,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2611988,
+      \\"year\\": 1989,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 5008341,
+      \\"year\\": 1989,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2602522,
+      \\"year\\": 1988,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4982795,
+      \\"year\\": 1988,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2601870,
+      \\"year\\": 1987,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4972716,
+      \\"year\\": 1987,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2603252,
+      \\"year\\": 1986,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4966542,
+      \\"year\\": 1986,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2604624,
+      \\"year\\": 1985,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4960361,
+      \\"year\\": 1985,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2606426,
+      \\"year\\": 1984,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4955008,
+      \\"year\\": 1984,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2609615,
+      \\"year\\": 1983,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4952295,
+      \\"year\\": 1983,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2616865,
+      \\"year\\": 1982,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4957275,
+      \\"year\\": 1982,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2618774,
+      \\"year\\": 1981,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4950693,
+      \\"year\\": 1981,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2612859,
+      \\"year\\": 1980,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4936574,
+      \\"year\\": 1980,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2613611,
+      \\"year\\": 1979,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4935814,
+      \\"year\\": 1979,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2618826,
+      \\"year\\": 1978,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4943479,
+      \\"year\\": 1978,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2621704,
+      \\"year\\": 1977,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4946726,
+      \\"year\\": 1977,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2621454,
+      \\"year\\": 1976,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4944071,
+      \\"year\\": 1976,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2626848,
+      \\"year\\": 1975,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4952055,
+      \\"year\\": 1975,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2634586,
+      \\"year\\": 1974,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4964452,
+      \\"year\\": 1974,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2630865,
+      \\"year\\": 1973,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4955250,
+      \\"year\\": 1973,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2617083,
+      \\"year\\": 1972,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4927118,
+      \\"year\\": 1972,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2602667,
+      \\"year\\": 1971,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4897815,
+      \\"year\\": 1971,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2594066,
+      \\"year\\": 1970,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4873020,
+      \\"year\\": 1970,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2588743,
+      \\"year\\": 1969,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4852312,
+      \\"year\\": 1969,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2583526,
+      \\"year\\": 1968,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4831877,
+      \\"year\\": 1968,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2573835,
+      \\"year\\": 1967,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4803163,
+      \\"year\\": 1967,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2558330,
+      \\"year\\": 1966,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4763736,
+      \\"year\\": 1966,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2544084,
+      \\"year\\": 1965,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4726805,
+      \\"year\\": 1965,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2531220,
+      \\"year\\": 1964,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4692581,
+      \\"year\\": 1964,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2517992,
+      \\"year\\": 1963,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4657819,
+      \\"year\\": 1963,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2505434,
+      \\"year\\": 1962,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4624430,
+      \\"year\\": 1962,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2493669,
+      \\"year\\": 1961,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4592630,
+      \\"year\\": 1961,
+    },
+    Object {
+      \\"group\\": \\"rural\\",
+      \\"value\\": 2486372,
+      \\"year\\": 1960,
+    },
+    Object {
+      \\"group\\": \\"urban\\",
+      \\"value\\": 4561167,
+      \\"year\\": 1960,
+    },
+  ],
+  \\"populationPerAgeBand\\": Array [
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1223636,
+      \\"year\\": 2015,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5772012,
+      \\"year\\": 2015,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1615440,
+      \\"year\\": 2015,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1219737,
+      \\"year\\": 2014,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5733105,
+      \\"year\\": 2014,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1588733,
+      \\"year\\": 2014,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1217638,
+      \\"year\\": 2013,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5699836,
+      \\"year\\": 2013,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1561901,
+      \\"year\\": 2013,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1218134,
+      \\"year\\": 2012,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5675070,
+      \\"year\\": 2012,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1537630,
+      \\"year\\": 2012,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1222662,
+      \\"year\\": 2011,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5657646,
+      \\"year\\": 2011,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1512174,
+      \\"year\\": 2011,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1231929,
+      \\"year\\": 2010,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5646970,
+      \\"year\\": 2010,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1484504,
+      \\"year\\": 2010,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1247327,
+      \\"year\\": 2009,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5640086,
+      \\"year\\": 2009,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1456744,
+      \\"year\\": 2009,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1265700,
+      \\"year\\": 2008,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5631156,
+      \\"year\\": 2008,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1424640,
+      \\"year\\": 2008,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1286630,
+      \\"year\\": 2007,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5618533,
+      \\"year\\": 2007,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1390324,
+      \\"year\\": 2007,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1304792,
+      \\"year\\": 2006,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5606965,
+      \\"year\\": 2006,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1357711,
+      \\"year\\": 2006,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1315630,
+      \\"year\\": 2005,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5585050,
+      \\"year\\": 2005,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1327149,
+      \\"year\\": 2005,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1323858,
+      \\"year\\": 2004,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5548765,
+      \\"year\\": 2004,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1299343,
+      \\"year\\": 2004,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1327853,
+      \\"year\\": 2003,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5516883,
+      \\"year\\": 2003,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1276688,
+      \\"year\\": 2003,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1331098,
+      \\"year\\": 2002,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5492498,
+      \\"year\\": 2002,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1258361,
+      \\"year\\": 2002,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1336629,
+      \\"year\\": 2001,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5463934,
+      \\"year\\": 2001,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1241730,
+      \\"year\\": 2001,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1349148,
+      \\"year\\": 2000,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5435046,
+      \\"year\\": 2000,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1227372,
+      \\"year\\": 2000,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1361892,
+      \\"year\\": 1999,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5410004,
+      \\"year\\": 1999,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1220428,
+      \\"year\\": 1999,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1379187,
+      \\"year\\": 1998,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5381940,
+      \\"year\\": 1998,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1214865,
+      \\"year\\": 1998,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1398391,
+      \\"year\\": 1997,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5358508,
+      \\"year\\": 1997,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1211939,
+      \\"year\\": 1997,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1409542,
+      \\"year\\": 1996,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5342092,
+      \\"year\\": 1996,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1207383,
+      \\"year\\": 1996,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1409230,
+      \\"year\\": 1995,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5337269,
+      \\"year\\": 1995,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1201780,
+      \\"year\\": 1995,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1398344,
+      \\"year\\": 1994,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5336246,
+      \\"year\\": 1994,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1201528,
+      \\"year\\": 1994,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1375580,
+      \\"year\\": 1993,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5333140,
+      \\"year\\": 1993,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1196913,
+      \\"year\\": 1993,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1343898,
+      \\"year\\": 1992,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5312864,
+      \\"year\\": 1992,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1183947,
+      \\"year\\": 1992,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1315230,
+      \\"year\\": 1991,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5275652,
+      \\"year\\": 1991,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1164009,
+      \\"year\\": 1991,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1300628,
+      \\"year\\": 1990,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5237061,
+      \\"year\\": 1990,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1140161,
+      \\"year\\": 1990,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1296850,
+      \\"year\\": 1989,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5201116,
+      \\"year\\": 1989,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1120838,
+      \\"year\\": 1989,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1306950,
+      \\"year\\": 1988,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5177737,
+      \\"year\\": 1988,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1100629,
+      \\"year\\": 1988,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1327825,
+      \\"year\\": 1987,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5165110,
+      \\"year\\": 1987,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1082408,
+      \\"year\\": 1987,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1350451,
+      \\"year\\": 1986,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5150488,
+      \\"year\\": 1986,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1068855,
+      \\"year\\": 1986,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1370775,
+      \\"year\\": 1985,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5129060,
+      \\"year\\": 1985,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1064393,
+      \\"year\\": 1985,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1401134,
+      \\"year\\": 1984,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5086577,
+      \\"year\\": 1984,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1073724,
+      \\"year\\": 1984,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1435251,
+      \\"year\\": 1983,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 5034720,
+      \\"year\\": 1983,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1092696,
+      \\"year\\": 1983,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1473928,
+      \\"year\\": 1982,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 4982269,
+      \\"year\\": 1982,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1117186,
+      \\"year\\": 1982,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1512228,
+      \\"year\\": 1981,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 4920418,
+      \\"year\\": 1981,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1136063,
+      \\"year\\": 1981,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1549899,
+      \\"year\\": 1980,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 4856550,
+      \\"year\\": 1980,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1142984,
+      \\"year\\": 1980,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1593684,
+      \\"year\\": 1979,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 4805209,
+      \\"year\\": 1979,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1150532,
+      \\"year\\": 1979,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1640264,
+      \\"year\\": 1978,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 4771814,
+      \\"year\\": 1978,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1150227,
+      \\"year\\": 1978,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1683976,
+      \\"year\\": 1977,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 4743135,
+      \\"year\\": 1977,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1141319,
+      \\"year\\": 1977,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1723427,
+      \\"year\\": 1976,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 4714835,
+      \\"year\\": 1976,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1127263,
+      \\"year\\": 1976,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1765884,
+      \\"year\\": 1975,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 4698920,
+      \\"year\\": 1975,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1114099,
+      \\"year\\": 1975,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1802492,
+      \\"year\\": 1974,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 4687087,
+      \\"year\\": 1974,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1109460,
+      \\"year\\": 1974,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1826736,
+      \\"year\\": 1973,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 4660909,
+      \\"year\\": 1973,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1098469,
+      \\"year\\": 1973,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1837767,
+      \\"year\\": 1972,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 4624595,
+      \\"year\\": 1972,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1081838,
+      \\"year\\": 1972,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1839868,
+      \\"year\\": 1971,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 4597795,
+      \\"year\\": 1971,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1062818,
+      \\"year\\": 1971,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1835410,
+      \\"year\\": 1970,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 4588524,
+      \\"year\\": 1970,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1043152,
+      \\"year\\": 1970,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1822314,
+      \\"year\\": 1969,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 4590387,
+      \\"year\\": 1969,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1029098,
+      \\"year\\": 1969,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1800460,
+      \\"year\\": 1968,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 4601258,
+      \\"year\\": 1968,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 1013686,
+      \\"year\\": 1968,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1769004,
+      \\"year\\": 1967,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 4612099,
+      \\"year\\": 1967,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 995157,
+      \\"year\\": 1967,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1733865,
+      \\"year\\": 1966,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 4615098,
+      \\"year\\": 1966,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 973835,
+      \\"year\\": 1966,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1700661,
+      \\"year\\": 1965,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 4619196,
+      \\"year\\": 1965,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 951032,
+      \\"year\\": 1965,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1668698,
+      \\"year\\": 1964,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 4623233,
+      \\"year\\": 1964,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 931870,
+      \\"year\\": 1964,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1639673,
+      \\"year\\": 1963,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 4624093,
+      \\"year\\": 1963,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 912046,
+      \\"year\\": 1963,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1614201,
+      \\"year\\": 1962,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 4623004,
+      \\"year\\": 1962,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 892659,
+      \\"year\\": 1962,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1590874,
+      \\"year\\": 1961,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 4621684,
+      \\"year\\": 1961,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 873741,
+      \\"year\\": 1961,
+    },
+    Object {
+      \\"band\\": \\"0-14\\",
+      \\"value\\": 1565963,
+      \\"year\\": 1960,
+    },
+    Object {
+      \\"band\\": \\"15-64\\",
+      \\"value\\": 4626005,
+      \\"year\\": 1960,
+    },
+    Object {
+      \\"band\\": \\"65-and-above\\",
+      \\"value\\": 855571,
+      \\"year\\": 1960,
+    },
+  ],
 }"
 `;
