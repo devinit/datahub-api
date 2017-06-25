@@ -3,7 +3,6 @@ import * as R from 'ramda';
 import {IExtensions} from '../../db';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import {IEntity, getEntityById, getEntities, getEntityByIdAsync} from '../../../cms/modules/global';
-import {parse} from '../../../../utils';
 import {isNumber} from '../../../../lib/isType';
 
 export interface IGetIndicatorArgs {
