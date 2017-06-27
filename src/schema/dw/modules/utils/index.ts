@@ -41,6 +41,12 @@ export interface IRAW {
     value: string;
     year: string;
 }
+export interface IRAWMulti {
+    di_id: string;
+    value_2: string;
+    value_1: string;
+    year: string;
+}
 export interface IRAWQuintile {
     value_bottom_20pc: string;
     value_2nd_quintile: string;
@@ -62,8 +68,11 @@ export interface IhasDiId {
 export interface IhasId {
     id: string | null;
 }
-export const toNumericValue: (obj) => any =
-    (obj) => ({...obj, value: Number(obj.value), year: Number(obj.year)});
+export const toNumericFields: (obj: any, valueField: string) => any = (obj, valueField = 'value') => {
+    const newObj = {...obj, value: Number(obj[valueField]), year: Number(obj.year)};
+    if (valueField !== 'value') return R.omit([valueField], newObj);
+    return newObj;
+};
 
 export const toId: (obj: IhasDiId ) => any = (obj) => {
     const id = obj.di_id;
@@ -100,10 +109,10 @@ export const indicatorDataProcessing = async (data: IhasDiId[]): Promise<DH.IMap
     return processed.map((obj) => addCountryName(obj, entities));
 };
 
-export const indicatorDataProcessingSimple = <T extends {}>(data: IhasDiId[]): T[] => {
+export const indicatorDataProcessingSimple = <T extends {}>(data: IhasDiId[], valueField: string = 'value'): T[] => {
     return data
             .map(toId)
-            .map(toNumericValue);
+            .map(obj => toNumericFields(obj, valueField));
 };
 export const isDonor = async (id: string): Promise<boolean>  => {
     const {donorRecipientType}: IEntity = await getEntityByIdAsync(id);

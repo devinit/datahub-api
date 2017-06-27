@@ -44,7 +44,7 @@ declare namespace DH {
     getMapData: IAggregatedMap | null;
     getMethodologies: Array<IDataSources> | null;
     getWhereThePoorWillbeData: IWhereThePoorWillbe | null;
-    getUnbundlingAid: Array<IAggregatedAid> | null;
+    getUnbundlingAid: Array<IUnbundlingAid> | null;
   }
 
   /*
@@ -135,7 +135,7 @@ declare namespace DH {
   interface IPovertyTab {
     poverty190Trend: Array<IIndicatorData> | null;
     depthOfExtremePoverty: number | null;
-    IncomeDistTrend: Array<IIndicatorData> | null;
+    incomeDistTrend: Array<IQuintile> | null;
   }
 
   /*
@@ -196,8 +196,8 @@ declare namespace DH {
   interface IInternationalResources {
     GNI: number | null;
     netODAOfGNI: number | null;
-    resourceOverTimeInflows: Array<IResourceData> | null;
-    resourceOverTimeOutflows: Array<IResourceData> | null;
+    resourcesOverTime: Array<IResourceData> | null;
+    mixOfResources: Array<IMixOfResourcesData> | null;
     inflows: Array<string> | null;
     outflows: Array<string> | null;
   }
@@ -207,10 +207,19 @@ declare namespace DH {
   */
   interface IResourceData {
     year: number | null;
-    Value: number | null;
-    id: string | null;
-    category: string | null;
-    typeName: string | null;
+    value: number | null;
+    flowName: string | null;
+    flowCategory: string | null;
+    flowType: string | null;
+    direction: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IMixOfResourcesData {
+    value: number | null;
+    name: string | null;
   }
 
   /*
@@ -280,12 +289,12 @@ declare namespace DH {
   /*
     description: 
   */
-  type IUnbundlingAidTypeEnum = 'ODA' | 'OOF';
+  type IAidTypesEnum = 'ODA' | 'OOF';
 
   /*
     description: 
   */
-  interface IAggregatedAid {
+  interface IUnbundlingAid {
     aids: Array<IAid> | null;
     total: number | null;
     toCountries: Array<string> | null;
@@ -352,7 +361,7 @@ type Query {
   getMapData(id: String!, DACOnly: Boolean): AggregatedMap
   getMethodologies: [DataSources]
   getWhereThePoorWillbeData: WhereThePoorWillbe
-  getUnbundlingAid(type: UnbundlingAidType, year: Int!, toCountry: String, fromCountryOrOrg: String, sector: String, inTheformOf: String, channel: String): [AggregatedAid]
+  getUnbundlingAid(type: AidTypes, year: Int!, toCountry: String, fromCountryOrOrg: String, sector: String, inTheformOf: String, channel: String): [UnbundlingAid]
 }
 
 type Theme {
@@ -410,15 +419,19 @@ type Quintile {
 
 type ResourceData {
   year: Int
-  Value: Int
-  # is the breakdown of the category eg Gross disbursements for 
-   # the ODA category
-  id: String
-  # Category can be Official (oda, oof), Commercial, Private
-  category: String
+  value: Int
+  flowName: String
+  # Category i.e FDI, ODA
+  flowCategory: String
   # flow either inflow or outflow
-   # this is an optional field may not be queried in final data
-  typeName: String
+  flowType: String
+  # in or out
+  direction: String
+}
+
+type MixOfResourcesData {
+  value: Int
+  name: String
 }
 
 type OverViewTabRecipients {
@@ -448,7 +461,7 @@ type PovertyTab {
   # how deep is poverty %
   depthOfExtremePoverty: Int
   # Recipients: how income is distributed, % of income received by each quintil
-  IncomeDistTrend: [IndicatorData]
+  incomeDistTrend: [Quintile]
 }
 
 type PopulationDistribution {
@@ -491,7 +504,7 @@ type GovernmentFinance {
   # Total revenue for a particular year if not available return -1
   totalRevenue: Int
   totalGrants: Int
-  # such as constnat 2015 USD
+  # such as constant 2015 USD
   currencyType: String
   spendingAllocation: [IndicatorData]
   spendingAllocation: [IndicatorData]
@@ -503,13 +516,13 @@ type GovernmentFinance {
 type InternationalResources {
   # Gross National Income
   GNI: Int
-  # Net ODA received, % of GNI
+  # Net ODA received, % of GNI for recipient countries
   netODAOfGNI: Int
-  # gross inflows for the lines chart in the  tabs section
-   # for sidebar chart in international resources section & area partition tree chart
-  resourceOverTimeInflows(yearStart: Int!, yearEnd: Int!): [ResourceData]
-  # for sidebar chart in international resources section & area partition tree chart
-  resourceOverTimeOutflows(yearStart: Int!, yearEnd: Int!): [ResourceData]
+  # for sidebar chart in international resources section & area partition tree chart & line chart in the  tabs section
+  resourcesOverTime: [ResourceData]
+  # Whats the mix of resources can be for donors (out flows) or receipient (in flows)
+   # this is for the donut chart
+  mixOfResources: [MixOfResourcesData]
   # an array of inflows for a particular country, for area & partition chart
   inflows: [String]
   # an array of outflows for a particular country
@@ -571,7 +584,7 @@ type WhereThePoorWillbe {
   regional: [LevelData]
 }
 
-enum UnbundlingAidType {
+enum AidTypes {
   ODA
   OOF
 }
@@ -583,7 +596,7 @@ type Aid {
   id: String
 }
 
-type AggregatedAid {
+type UnbundlingAid {
   aids: [Aid]
   total: Int
   # unbundling aid selection options

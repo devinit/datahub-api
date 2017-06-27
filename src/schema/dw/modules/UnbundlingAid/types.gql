@@ -1,4 +1,4 @@
-enum UnbundlingAidType {
+enum AidTypes {
   ODA
   OOF
 }
@@ -10,7 +10,7 @@ type Aid {
   id: String
 }
 
-type AggregatedAid {
+type UnbundlingAid {
   aids: [Aid]
   total: Int
   # unbundling aid selection options
@@ -22,13 +22,13 @@ type AggregatedAid {
 
 type Query {
   getUnbundlingAid(
-    type: UnbundlingAidType
+    type: AidTypes
     year: Int!,
     toCountry: String,
     fromCountryOrOrg:String,
     sector: String,
     inTheformOf: String,
     channel: String
-  ):[AggregatedAid]
+  ):[UnbundlingAid]
 }
 

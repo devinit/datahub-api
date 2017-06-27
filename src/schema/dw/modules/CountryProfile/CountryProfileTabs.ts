@@ -1,5 +1,3 @@
- // tslint:disable-next-line:no-reference
- /// <reference path="../../../../types/dh.d.ts" />
 import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
 import {formatNumbers} from '../../../../utils';
@@ -7,7 +5,7 @@ import sql from './sql';
 import * as R from 'ramda';
 import {getIndicatorData, RECIPIENT, DONOR, IGetIndicatorArgs, isDonor,
         IRAWPopulationAgeBand, normalizeKeyName, IRAW, IRAWQuintile,
-        indicatorDataProcessingSimple, getTotal, IRAWPopulationGroup} from '../utils';
+        indicatorDataProcessingSimple, getTotal, IRAWPopulationGroup, IRAWMulti} from '../utils';
 
 export default class CountryProfileTabs {
     private db: IDatabase<IExtensions> & IExtensions;
@@ -32,6 +30,16 @@ export default class CountryProfileTabs {
             population,
             populationDistribution,
             populationPerAgeBand
+        };
+    }
+    public async getPovertyTab({id}): Promise<any> {
+        const poverty190Trend = await this.getPoverty190Trend(id);
+        const depthOfExtremePoverty = await this.getDepthOfExtremePoverty(id);
+        const incomeDistTrend = await this.getIncomeDistTrend(id);
+        return {
+            poverty190Trend,
+            depthOfExtremePoverty,
+            incomeDistTrend
         };
     }
 
@@ -164,5 +172,25 @@ export default class CountryProfileTabs {
                 .map(key => ({band: normalizeKeyName(key), value: Number(row[key]), year: Number(row.year) }));
             return [...acc, ...groups];
         }, []);
+    }
+    private async getPoverty190Trend(id): Promise<DH.IIndicatorData[]> {
+        const indicatorArgs: IGetIndicatorArgs = {
+            table: 'data_series.poverty_190',
+            query: sql.poverty190Trend,
+            id,
+            db: this.db
+        };
+        const data: IRAWMulti[] = await getIndicatorData<IRAWMulti>(indicatorArgs);
+        return indicatorDataProcessingSimple<DH.IIndicatorData>(data, 'value_2');
+    }
+    private async getDepthOfExtremePoverty(id): Promise<number> {
+        const indicatorArgs: IGetIndicatorArgs = {
+            ...this.defaultRecipientArgs,
+            table: 'data_series.depth_of_extreme_poverty_190',
+            query: sql.depthOfExtremePoverty,
+            id
+        };
+        const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
+        return Math.round(Number(data[0].value));
     }
 }

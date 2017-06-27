@@ -42,7 +42,7 @@ declare namespace DH {
     getMapData: IAggregatedMap | null;
     getMethodologies: Array<IDataSources> | null;
     getWhereThePoorWillbeData: IWhereThePoorWillbe | null;
-    getUnbundlingAid: Array<IAggregatedAid> | null;
+    getUnbundlingAid: Array<IUnbundlingAid> | null;
   }
 
   /*
@@ -133,7 +133,7 @@ declare namespace DH {
   interface IPovertyTab {
     poverty190Trend: Array<IIndicatorData> | null;
     depthOfExtremePoverty: number | null;
-    IncomeDistTrend: Array<IIndicatorData> | null;
+    incomeDistTrend: Array<IQuintile> | null;
   }
 
   /*
@@ -194,8 +194,8 @@ declare namespace DH {
   interface IInternationalResources {
     GNI: number | null;
     netODAOfGNI: number | null;
-    resourceOverTimeInflows: Array<IResourceData> | null;
-    resourceOverTimeOutflows: Array<IResourceData> | null;
+    resourcesOverTime: Array<IResourceData> | null;
+    mixOfResources: Array<IMixOfResourcesData> | null;
     inflows: Array<string> | null;
     outflows: Array<string> | null;
   }
@@ -205,10 +205,19 @@ declare namespace DH {
   */
   interface IResourceData {
     year: number | null;
-    Value: number | null;
-    id: string | null;
-    category: string | null;
-    typeName: string | null;
+    value: number | null;
+    flowName: string | null;
+    flowCategory: string | null;
+    flowType: string | null;
+    direction: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IMixOfResourcesData {
+    value: number | null;
+    name: string | null;
   }
 
   /*
@@ -278,12 +287,12 @@ declare namespace DH {
   /*
     description: 
   */
-  type IUnbundlingAidTypeEnum = 'ODA' | 'OOF';
+  type IAidTypesEnum = 'ODA' | 'OOF';
 
   /*
     description: 
   */
-  interface IAggregatedAid {
+  interface IUnbundlingAid {
     aids: Array<IAid> | null;
     total: number | null;
     toCountries: Array<string> | null;

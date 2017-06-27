@@ -18,6 +18,14 @@ describe('country profile DW module tests', () => {
         const populationTab = await tab.getPopulationTab({id: 'AT'});
         expect(prettyFormat(populationTab)).toMatchSnapshot();
     }, 10000);
+    it('should return population tab data for Uganda', async () => {
+        const populationTab = await tab.getPopulationTab({id: 'UG'});
+        expect(prettyFormat(populationTab)).toMatchSnapshot();
+    }, 10000);
+    it('should return poverty tab data for Uganda', async () => {
+        const populationTab = await tab.getPovertyTab({id: 'UG'});
+        expect(prettyFormat(populationTab)).toMatchSnapshot();
+    }, 10000);
 
     afterAll(() => {
        db.$config.pgp.end();
