@@ -6,8 +6,9 @@ enum AidTypes {
 type Aid {
   year: Int
   Value: Int
-  # country or organisation label
   id: String
+  # country or organisation name
+  name: String
 }
 
 type UnbundlingAid {
