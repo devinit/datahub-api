@@ -14,5 +14,5 @@ type Indicator {
 type Query {
   getGlobalPicturePageData: [Page]
   getGlobalPictureThemes: [Theme]
-  getGlobalPictureIndicators: [Indicator]
+  getGlobalPictureIndicators(theme: String!): [Indicator]
 }
