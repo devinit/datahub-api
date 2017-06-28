@@ -11,7 +11,12 @@ interface IflowTypes {
     inflows: DH.IFlow[];
     outflows: DH.IFlow[];
 }
-
+interface ISingleResourceArgs {
+    resourceId: string;
+    countryId: string;
+    direction: string;
+    groupById: string;
+}
 export default class Resources {
     private db: IDatabase<IExtensions> & IExtensions;
     private defaultDonorArgs;
@@ -41,7 +46,8 @@ export default class Resources {
         };
     }
     // internation resource
-    public async getSingleResource({resourceId, countryId, direction}): Promise<DH.ISingleResourceData> {
+    public async getSingleResource({resourceId, countryId, direction}: ISingleResourceArgs):
+        Promise<DH.ISingleResourceData> {
     }
     public async getGovernmentFinance(id: string): Promise<DH.IGovernmentFinance>{}
     private async getGNI(id: string): Promise<string> {}

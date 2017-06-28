@@ -156,9 +156,10 @@ type Query {
   getInternationalResources(id: String!): InternationalResources
   # for area tree map chart dropdown selectoion
   getSingleResource(
-    resourceId: String!,
-    countryId: String!,
-    direction: String
+    resourceId: String!, # oda
+    countryId: String!, # ug
+    direction: String!,
+    groupById: String # 
     ): SingleResourceData
 }
 
