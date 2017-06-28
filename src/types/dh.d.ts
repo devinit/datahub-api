@@ -128,6 +128,7 @@ declare namespace DH {
     year: number | null;
     Value: number | null;
     id: string | null;
+    name: string | null;
   }
 
   /*
@@ -194,6 +195,7 @@ declare namespace DH {
     year: number | null;
     Value: number | null;
     id: string | null;
+    name: string | null;
     color: string | null;
   }
 
@@ -212,10 +214,11 @@ declare namespace DH {
     description: 
   */
   interface IInternationalResources {
-    GNI: number | null;
-    netODAOfGNI: number | null;
+    GNI: string | null;
+    netODAOfGNIIn: number | null;
+    netODAOfGNIOut: number | null;
     resourcesOverTime: Array<IResourceData> | null;
-    mixOfResources: Array<IMixOfResourcesData> | null;
+    mixOfResources: Array<IIndicatorData> | null;
     inflows: Array<IFlow> | null;
     outflows: Array<IFlow> | null;
   }
@@ -232,14 +235,6 @@ declare namespace DH {
     direction: string | null;
     percentage: number | null;
     color: string | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IMixOfResourcesData {
-    value: number | null;
-    name: string | null;
   }
 
   /*

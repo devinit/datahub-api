@@ -5,6 +5,7 @@ import db from '../../db';
 describe('country profile DW module tests', () => {
     const countryProfile = new CountryProfile(db);
     const tab = countryProfile.tabs;
+    const resources = countryProfile.resources;
 
     it('should return overview tab data for uganda', async () => {
         const overViewTab = await tab.getOverViewTab({id: 'UG'});
@@ -23,8 +24,20 @@ describe('country profile DW module tests', () => {
         expect(prettyFormat(populationTab)).toMatchSnapshot();
     }, 10000);
     it('should return poverty tab data for Uganda', async () => {
-        const populationTab = await tab.getPovertyTab({id: 'UG'});
-        expect(prettyFormat(populationTab)).toMatchSnapshot();
+        const povertyTab = await tab.getPovertyTab({id: 'UG'});
+        expect(prettyFormat(povertyTab)).toMatchSnapshot();
+    }, 10000);
+    it('should return international resources tab & charts data for Uganda', async () => {
+        const international = await resources.getInternationalResources({id: 'UG'});
+        expect(prettyFormat(international)).toMatchSnapshot();
+    }, 10000);
+    it('should return international resources tab & charts data for Austria', async () => {
+        const international  = await resources.getInternationalResources({id: 'AT'});
+        expect(prettyFormat(international)).toMatchSnapshot();
+    }, 10000);
+    it('should return government resources tab & charts data for Uganda', async () => {
+        const government = await resources.getInternationalResources({id: 'UG'});
+        expect(prettyFormat(government)).toMatchSnapshot();
     }, 10000);
 
     afterAll(() => {

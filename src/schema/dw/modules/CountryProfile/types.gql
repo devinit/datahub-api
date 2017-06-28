@@ -2,12 +2,14 @@ type IndicatorData {
   year: Int
   Value: Float
   id: String
+  name: String
 }
 
 type IndicatorDataColored {
   year: Int
   Value: Float
   id: String
+  name: String
   color: String
 }
 
@@ -29,11 +31,6 @@ type ResourceData {
   # percentage of the total 
   percentage: Int
   color: String
-}
-
-type MixOfResourcesData {
-  value: Int
-  name: String
 }
 
 type OverViewTabRecipients {
@@ -128,15 +125,17 @@ type Flow {
 
 type InternationalResources {
   # Gross National Income
-  GNI: Int
+  GNI: String
   #Net ODA received, % of GNI for recipient countries
-  netODAOfGNI: Int
+  netODAOfGNIIn: Int
+  #Net ODA out, % of GNI for recipient countries
+  netODAOfGNIOut: Int
   # for sidebar chart in international resources section & area partition tree chart default data
   # & line chart in the  tabs section
   resourcesOverTime: [ResourceData]
   # Whats the mix of resources can be for donors (out flows) or receipient (in flows)
   # this is for the donut chart
-  mixOfResources: [MixOfResourcesData]
+  mixOfResources: [IndicatorData]
   # an array of inflows for a particular country, for area & partition chart
   inflows: [Flow]
    # an array of outflows for a particular country
@@ -157,8 +156,9 @@ type Query {
   getInternationalResources(id: String!): InternationalResources
   # for area tree map chart dropdown selectoion
   getSingleResource(
-    id: String!,
+    resourceId: String!,
+    countryId: String!,
     direction: String
-    ): [SingleResourceData]
+    ): SingleResourceData
 }
 
