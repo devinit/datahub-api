@@ -23,7 +23,7 @@ export default class Maps {
         this.db = db;
     }
 
-    public async getMapData(opts: IgetMapDataOpts): Promise<DH.IAggregatedMap> {
+    public async getMapData(opts: IgetMapDataOpts): Promise<DH.IMapData> {
         const concept: IConcept = await getConceptAsync('global-picture', opts.id);
         // we merge concept and graphql qery options, they have startYear and endYear variables
         const data: IRAW [] = await getIndicatorDataSimple({...opts, ...concept, sql, db: this.db});

@@ -4,21 +4,31 @@ type IndicatorData {
   id: String
 }
 
+type IndicatorDataColored {
+  year: Int
+  Value: Float
+  id: String
+  color: String
+}
+
 type Quintile {
   value: Float
   quintileName: String
 }
 
 type ResourceData {
-  year: Int
-  value: Int
-  flowName: String
+  year: Int!
+  value: Float!
+  name: String!
   # Category i.e FDI, ODA
   flowCategory: String
   # flow either inflow or outflow
   flowType: String
   # in or out
   direction: String
+  # percentage of the total 
+  percentage: Int
+  color: String
 }
 
 type MixOfResourcesData {
@@ -79,7 +89,7 @@ type PopulationTab {
 
 type Domestic {
   # eg value added tax
-  title: String
+  name: String
   # the levels of the data i.e total-expenditure,recurrent-expenditure,compensation-of-employees
   levels: [String]
   # eg Actual or budget
@@ -87,22 +97,33 @@ type Domestic {
   # if level 1 data comes first, 
   # this is for the tree map and its a convenience field as it can be drived from the levels array
   # so one may query levels or level 
-  level: Int 
   year: Int 
-  value: Int 
+  value: Float
 }
 
 type GovernmentFinance {
-  #Total revenue for a particular year if not available return -1
-  totalRevenue: Int
+  #Total revenue for a particular year if not available return -1 
+  totalRevenue: String
   totalGrants: Int
-  # such as constant 2015 USD
-  currencyType: String
-  spendingAllocation: [IndicatorData]
-  spendingAllocation: [IndicatorData]
+  # for donut chart
+  spendingAllocation: [IndicatorDataColored]
+  # such as constant 2015 USD for tree map
+  currencyCode: String
+  # for treemap
   revenueAndGrants: [Domestic]
   expenditure: [Domestic]
   financing: [Domestic]
+}
+
+type FlowSelection {
+  name: String
+  id: String
+}
+
+type Flow {
+  name: String
+  id: String
+  selections: [FlowSelection]
 }
 
 type InternationalResources {
@@ -110,15 +131,22 @@ type InternationalResources {
   GNI: Int
   #Net ODA received, % of GNI for recipient countries
   netODAOfGNI: Int
-  # for sidebar chart in international resources section & area partition tree chart & line chart in the  tabs section
+  # for sidebar chart in international resources section & area partition tree chart default data
+  # & line chart in the  tabs section
   resourcesOverTime: [ResourceData]
   # Whats the mix of resources can be for donors (out flows) or receipient (in flows)
   # this is for the donut chart
   mixOfResources: [MixOfResourcesData]
   # an array of inflows for a particular country, for area & partition chart
-  inflows: [String]
+  inflows: [Flow]
    # an array of outflows for a particular country
-  outflows: [String]
+  outflows: [Flow]
+}
+
+type SingleResourceData {
+  resources: [ResourceData]
+  # in dollars
+  total: String
 }
 
 type Query {  
@@ -127,5 +155,10 @@ type Query {
   getPopulationTab(id: String!): PopulationTab
   getGovernmentFinance(id: String!): GovernmentFinance
   getInternationalResources(id: String!): InternationalResources
+  # for area tree map chart dropdown selectoion
+  getSingleResource(
+    id: String!,
+    direction: String
+    ): [SingleResourceData]
 }
 

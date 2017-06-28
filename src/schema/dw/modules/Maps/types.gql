@@ -8,7 +8,7 @@ type MapUnit {
   value: Float
 }
 
-type AggregatedMap {
+type MapData {
   map: [MapUnit]
   # map indicator user friendly label / slug eg Poverty
   name: String
@@ -28,5 +28,5 @@ type Query {
   getMapData(
     id: String!,
     DACOnly: Boolean
-  ): AggregatedMap
+  ): MapData
 }

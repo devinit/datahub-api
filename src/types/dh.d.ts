@@ -26,6 +26,7 @@ declare namespace DH {
     getCountryProfilePageData: Array<IPage> | null;
     getGlobalPicturePageData: Array<IPage> | null;
     getGlobalPictureThemes: Array<ITheme> | null;
+    getGlobalPictureIndicators: Array<IIndicator> | null;
     getOdaDonorBubbleChartPageData: Array<IPage> | null;
     getPovertyBubbleChartPageData: Array<IPage> | null;
     getSpotlightUgandaPageData: Array<IPage> | null;
@@ -39,7 +40,8 @@ declare namespace DH {
     getPopulationTab: IPopulationTab | null;
     getGovernmentFinance: IGovernmentFinance | null;
     getInternationalResources: IInternationalResources | null;
-    getMapData: IAggregatedMap | null;
+    getSingleResource: Array<ISingleResourceData> | null;
+    getMapData: IMapData | null;
     getMethodologies: Array<IDataSources> | null;
     getWhereThePoorWillbeData: IWhereThePoorWillbe | null;
     getUnbundlingAid: Array<IUnbundlingAid> | null;
@@ -61,6 +63,15 @@ declare namespace DH {
     id: string | null;
     name: string | null;
     default: string | null;
+    order: number | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IIndicator {
+    id: string | null;
+    name: string | null;
     order: number | null;
   }
 
@@ -167,10 +178,10 @@ declare namespace DH {
     description: 
   */
   interface IGovernmentFinance {
-    totalRevenue: number | null;
+    totalRevenue: string | null;
     totalGrants: number | null;
-    currencyType: string | null;
-    spendingAllocation: Array<IIndicatorData> | null;
+    spendingAllocation: Array<IIndicatorDataColored> | null;
+    currencyCode: string | null;
     revenueAndGrants: Array<IDomestic> | null;
     expenditure: Array<IDomestic> | null;
     financing: Array<IDomestic> | null;
@@ -179,11 +190,20 @@ declare namespace DH {
   /*
     description: 
   */
+  interface IIndicatorDataColored {
+    year: number | null;
+    Value: number | null;
+    id: string | null;
+    color: string | null;
+  }
+
+  /*
+    description: 
+  */
   interface IDomestic {
-    title: string | null;
+    name: string | null;
     levels: Array<string> | null;
     budgetType: string | null;
-    level: number | null;
     year: number | null;
     value: number | null;
   }
@@ -196,20 +216,22 @@ declare namespace DH {
     netODAOfGNI: number | null;
     resourcesOverTime: Array<IResourceData> | null;
     mixOfResources: Array<IMixOfResourcesData> | null;
-    inflows: Array<string> | null;
-    outflows: Array<string> | null;
+    inflows: Array<IFlow> | null;
+    outflows: Array<IFlow> | null;
   }
 
   /*
     description: 
   */
   interface IResourceData {
-    year: number | null;
-    value: number | null;
-    flowName: string | null;
+    year: number;
+    value: number;
+    name: string;
     flowCategory: string | null;
     flowType: string | null;
     direction: string | null;
+    percentage: number | null;
+    color: string | null;
   }
 
   /*
@@ -223,7 +245,32 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IAggregatedMap {
+  interface IFlow {
+    name: string | null;
+    id: string | null;
+    selections: Array<IFlowSelection> | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IFlowSelection {
+    name: string | null;
+    id: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface ISingleResourceData {
+    resources: Array<IResourceData> | null;
+    total: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IMapData {
     map: Array<IMapUnit> | null;
     name: string | null;
     uomDisplay: string | null;
