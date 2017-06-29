@@ -21,7 +21,7 @@ type UnbundlingAidSelections {
 input UnbundlingAidQuery {
     # oda or oof 
     aidType: String!
-    years: [Int]!
+    year: Int!
     # eg channel, bundle
     groupBy: String!
     toCountry: String
