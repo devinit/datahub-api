@@ -21,7 +21,7 @@ export default class UnbundlingAid {
     constructor(db: any) {
         this.db = db;
     }
-    public getUnbundlingAid(args: DH.IUnbundlingAidQuery): Promise<any> {
-
+    public getUnbundlingSelectionData(args: DH.IUnbundlingAidQuery): Promise<DH.UnbundlingAidSelections> {
+        
     }
 }
