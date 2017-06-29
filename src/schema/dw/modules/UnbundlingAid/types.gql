@@ -3,6 +3,7 @@ type AidUnit {
   value: Float
   # country or organisation or channel or bundle name
   name: String
+  color: String
 }
 type IdNamePair {
   id: String

@@ -96,6 +96,7 @@ type Domestic {
   # so one may query levels or level 
   year: Int 
   value: Float
+  valueNcu: Float
 }
 
 type GovernmentFinance {

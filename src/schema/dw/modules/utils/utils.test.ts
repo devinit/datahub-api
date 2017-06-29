@@ -25,20 +25,22 @@ describe('Utility functions test', () => {
         const entity = addCountryName(dataB[1], entities);
         expect(entity.countryName).toBe('England');
     });
-    it('should create an aggregate sql query', () => {
+    it('should create an aggregate sql query for a single year', () => {
         const argsA = {
             from_di_id: 'afdb',
             to_di_id: 'UG',
-            years: [2013]
-        };
-        const argsB = {
-            from_di_id: 'afdb',
-            to_di_id: 'UG',
-            years: [2013, 2015]
+            year: 2013
         };
         const queryA = makeSqlAggregateQuery(argsA, 'sector', 'fact.oda');
-        const queryB = makeSqlAggregateQuery(argsA, 'bundle', 'fact.oda');
         expect(prettyFormat(queryA)).toMatchSnapshot();
-        expect(prettyFormat(queryB)).toMatchSnapshot();
+    });
+    it('should create an aggregate sql query for multiple years', () => {
+    const argsB = {
+        from_di_id: 'afdb',
+        to_di_id: 'UG',
+        years: [2013, 2015]
+    };
+    const queryB = makeSqlAggregateQuery(argsB, 'bundle', 'fact.oda');
+    expect(prettyFormat(queryB)).toMatchSnapshot();
     });
 });
