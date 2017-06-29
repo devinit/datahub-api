@@ -54,6 +54,16 @@ export interface IRAWQuintile {
     value_4th_quintile: string;
     value_5th_quintile: string;
 }
+
+export interface IRAWODA {
+    id?: string;
+    from_di_id?: string;
+    to_di_id?: string;
+    year?: number;
+    sector?: string;
+    bundle?: string;
+    channel?: string;
+}
 export const RECIPIENT = 'recipient';
 export const DONOR = 'donor';
 
@@ -124,3 +134,15 @@ export const normalizeKeyName = (columnName: string): string => {
     const str = columnName.split(/value\_/)[1];
     return str.replace(/\_/g, '-');
 };
+
+export const makeSqlAggregateQuery = (queryArgs: any, groupByField: string, table: string): string =>
+    R.keys(queryArgs).reduce((query, field, index) => {
+        const AND = index + 1 < queryArgs.length ? 'AND' : '';
+        if (field === 'years' && queryArgs.years.length === 2) {
+            return `${query} year >= ${queryArgs.years[0]} AND year <= ${queryArgs.years[1]} ${AND}`;
+        }
+        if (field === 'years' && queryArgs.years.length === 1) {
+            return `${query} year = ${queryArgs.years[0]} ${AND}`;
+         }
+        return `${query} ${field} = ${queryArgs[field]} ${AND}`;
+    }, `SELECT ${groupByField}, total(value) from ${table}`);

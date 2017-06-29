@@ -1,4 +1,5 @@
-import {toId, getTotal, addCountryName, DONOR, RECIPIENT} from '.';
+import {toId, getTotal, addCountryName, DONOR, RECIPIENT, makeSqlAggregateQuery} from '.';
+import * as prettyFormat from 'pretty-format';
 
 const dataA = [
         {di_id: 'AL', value: 3000, year: 2000},
@@ -23,5 +24,21 @@ describe('Utility functions test', () => {
     it('should return countryname using entities data', () => {
         const entity = addCountryName(dataB[1], entities);
         expect(entity.countryName).toBe('England');
+    });
+    it('should create an aggregate sql query', () => {
+        const argsA = {
+            from_di_id: 'afdb',
+            to_di_id: 'UG',
+            years: [2013]
+        };
+        const argsB = {
+            from_di_id: 'afdb',
+            to_di_id: 'UG',
+            years: [2013, 2015]
+        };
+        const queryA = makeSqlAggregateQuery(argsA, 'sector', 'fact.oda');
+        const queryB = makeSqlAggregateQuery(argsA, 'bundle', 'fact.oda');
+        expect(prettyFormat(queryA)).toMatchSnapshot();
+        expect(prettyFormat(queryB)).toMatchSnapshot();
     });
 });

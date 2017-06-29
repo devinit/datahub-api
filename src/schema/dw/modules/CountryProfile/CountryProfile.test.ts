@@ -27,15 +27,15 @@ describe('country profile DW module tests', () => {
         const povertyTab = await tab.getPovertyTab({id: 'UG'});
         expect(prettyFormat(povertyTab)).toMatchSnapshot();
     }, 10000);
-    it('should return international resources tab & charts data for Uganda', async () => {
+    it.skip('should return international resources tab & charts data for Uganda', async () => {
         const international = await resources.getInternationalResources({id: 'UG'});
         expect(prettyFormat(international)).toMatchSnapshot();
     }, 10000);
-    it('should return international resources tab & charts data for Austria', async () => {
+    it.skip('should return international resources tab & charts data for Austria', async () => {
         const international  = await resources.getInternationalResources({id: 'AT'});
         expect(prettyFormat(international)).toMatchSnapshot();
     }, 10000);
-    it('should return government resources tab & charts data for Uganda', async () => {
+    it.skip('should return government resources tab & charts data for Uganda', async () => {
         const government = await resources.getInternationalResources({id: 'UG'});
         expect(prettyFormat(government)).toMatchSnapshot();
     }, 10000);

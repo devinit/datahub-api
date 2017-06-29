@@ -35,16 +35,16 @@ declare namespace DH {
     getWhereThePoorPageData: Array<IPage> | null;
     getRevenuePerPersonAndPoverty190: Array<IRevenuePerPersonAndPoverty190> | null;
     getBubbleSize: Array<IBubbleSize> | null;
-    getOverViewTab: OverViewTab | null;
+    getOverViewTab: IOverViewTabRegional | null;
     getPovertyTab: IPovertyTab | null;
     getPopulationTab: IPopulationTab | null;
     getGovernmentFinance: IGovernmentFinance | null;
     getInternationalResources: IInternationalResources | null;
-    getSingleResource: Array<ISingleResourceData> | null;
+    getSingleResource: ISingleResourceData | null;
     getMapData: IMapData | null;
     getMethodologies: Array<IDataSources> | null;
-    getWhereThePoorWillbeData: IWhereThePoorWillbe | null;
-    getUnbundlingAid: Array<IUnbundlingAid> | null;
+    getUnbundlingAidData: Array<IAidUnit> | null;
+    getUnbundlingSelectionData: IUnbundlingAidSelections | null;
   }
 
   /*
@@ -97,27 +97,30 @@ declare namespace DH {
   /*
     description: 
   */
-  type OverViewTab = IOverViewTabRecipients | IOverViewTabDonors;
-
-
-
-  /*
-    description: 
-  */
-  interface IOverViewTabRecipients {
+  interface IOverViewTabRegional {
     poorestPeople: string | null;
-    population: string | null;
-    domesticPublicResources: string | null;
-    internationalResources: string | null;
-    governmentSpendPerPerson: string | null;
+    regionalResources: string | null;
+    regionalResourcesBreakdown: Array<IIndicatorDataColored> | null;
+    localGovernmentSpendPerPerson: string | null;
   }
 
   /*
     description: 
   */
-  interface IOverViewTabDonors {
-    governmentSpendPerPerson: string | null;
-    averageIncomerPerPerson: Array<IIndicatorData> | null;
+  interface IIndicatorDataColored {
+    year: number | null;
+    Value: number | null;
+    id: string | null;
+    name: string | null;
+    color: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IPovertyTab {
+    poverty190Trend: Array<IIndicatorData> | null;
+    depthOfExtremePoverty: number | null;
     incomeDistTrend: Array<IQuintile> | null;
   }
 
@@ -137,15 +140,6 @@ declare namespace DH {
   interface IQuintile {
     value: number | null;
     quintileName: string | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IPovertyTab {
-    poverty190Trend: Array<IIndicatorData> | null;
-    depthOfExtremePoverty: number | null;
-    incomeDistTrend: Array<IQuintile> | null;
   }
 
   /*
@@ -186,17 +180,6 @@ declare namespace DH {
     revenueAndGrants: Array<IDomestic> | null;
     expenditure: Array<IDomestic> | null;
     financing: Array<IDomestic> | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IIndicatorDataColored {
-    year: number | null;
-    Value: number | null;
-    id: string | null;
-    name: string | null;
-    color: string | null;
   }
 
   /*
@@ -311,45 +294,42 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IWhereThePoorWillbe {
-    global: Array<ILevelData> | null;
-    regional: Array<ILevelData> | null;
+  interface IUnbundlingAidQuery {
+    aidType: string;
+    years: Array<number>;
+    groupBy: string;
+    toCountry?: string | null;
+    fromCountryOrOrg?: string | null;
+    sector?: string | null;
+    form?: string | null;
+    channel?: string | null;
   }
 
   /*
     description: 
   */
-  interface ILevelData {
-    poverty: number | null;
-    scenario: string | null;
-    year: number | null;
-    typeName: string | null;
+  interface IAidUnit {
+    value: number | null;
+    name: string | null;
   }
 
   /*
     description: 
   */
-  type IAidTypesEnum = 'ODA' | 'OOF';
-
-  /*
-    description: 
-  */
-  interface IUnbundlingAid {
-    aids: Array<IAid> | null;
-    total: number | null;
-    toCountries: Array<string> | null;
-    fromCountries: Array<string> | null;
-    channels: Array<string> | null;
-    form: Array<string> | null;
+  interface IUnbundlingAidSelections {
+    toCountries: Array<IIdNamePair> | null;
+    fromCountriesAndOrgs: Array<IIdNamePair> | null;
+    channels: Array<IIdNamePair> | null;
+    sectors: Array<IIdNamePair> | null;
+    form: Array<IIdNamePair> | null;
   }
 
   /*
     description: 
   */
-  interface IAid {
-    year: number | null;
-    Value: number | null;
+  interface IIdNamePair {
     id: string | null;
+    name: string | null;
   }
 
   /*
@@ -370,6 +350,33 @@ declare namespace DH {
     year: number | null;
     value: number | null;
   }
+
+  /*
+    description: 
+  */
+  interface IOverViewTabRecipients {
+    poorestPeople: string | null;
+    population: string | null;
+    domesticPublicResources: string | null;
+    internationalResources: string | null;
+    governmentSpendPerPerson: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IOverViewTabDonors {
+    governmentSpendPerPerson: string | null;
+    averageIncomerPerPerson: Array<IIndicatorData> | null;
+    incomeDistTrend: Array<IQuintile> | null;
+  }
+
+  /*
+    description: 
+  */
+  type OverViewTab = IOverViewTabRecipients | IOverViewTabDonors;
+
+
 }
 
 // tslint:enable
