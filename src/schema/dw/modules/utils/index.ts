@@ -140,7 +140,7 @@ export const makeSqlAggregateQuery = <T extends {}>
         return queryArgsKeys.reduce((query, field, index) => {
             const AND = index + 1 < queryArgsKeys.length ? 'AND' : '';
             return `${query} ${field} = ${queryArgs[field]} ${AND}`;
-        }, `SELECT ${groupByField}, total(value) from ${table}`);
+        }, `SELECT ${groupByField}, sum(value) from ${table}`);
 };
 
 export const makeSqlAggregateRangeQuery = <T extends {years: number[]}>
@@ -155,5 +155,5 @@ export const makeSqlAggregateRangeQuery = <T extends {years: number[]}>
                 return `${query} year = ${queryArgs.years[0]} ${AND}`;
             }
             return `${query} ${field} = ${queryArgs[field]} ${AND}`;
-        }, `SELECT ${groupByField}, total(value) from ${table}`);
+        }, `SELECT ${groupByField}, sum(value) from ${table}`);
 };
