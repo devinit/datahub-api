@@ -1,12 +1,20 @@
 import {get} from '../../connector';
 import * as R from 'ramda';
 
-export interface IEntity {
+export interface IEntityBasic {
     id: string;
-    type: string;
+    color?: string;
     name: string;
+}
+export interface IEntity extends IEntityBasic {
+    type: string;
     slug: string;
     donorRecipientType: string;
+}
+export interface IRegional extends IEntityBasic {
+    dacContinentCode: string;
+    dacId: string;
+    dacContinent: string;
 }
 
 export const getEntities = (): Promise<IEntity[]> => get<IEntity>('global/entity.csv');
@@ -21,3 +29,8 @@ export const getEntityByIdAsync = async (id: string): Promise<IEntity> => {
     const entities: IEntity[] = await getEntities();
     return R.find(R.propEq('id', id), entities) as IEntity;
 };
+
+export const getSectors = (): Promise<IEntityBasic[]> => get<IEntityBasic>('global/sector.csv');
+export const getChannels = (): Promise<IEntityBasic[]> => get<IEntityBasic>('global/channel.csv');
+export const getBundles = (): Promise<IEntityBasic[]> => get<IEntityBasic>('global/bundle.csv');
+export const getRegional = (): Promise<IEntityBasic[]> => get<IEntityBasic>('global/regional.csv');

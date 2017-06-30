@@ -39,7 +39,7 @@ export const getFlows = (): Promise<IFlowRaw[]> => get<IFlowRaw>('country-profil
 export const getFlowById = (id: string, flows: IFlowRaw[]): IFlowRaw =>
     R.find(R.propEq('id', id), flows) as IFlowRaw;
 
-export const getEntityByIdAsync = async (id: string): Promise<IFlowRaw> => {
+export const getFlowByIdAsync = async (id: string): Promise<IFlowRaw> => {
     const flows: IFlowRaw[] = await getFlows();
     return R.find(R.propEq('id', id), flows) as IFlowRaw;
 };
@@ -50,10 +50,10 @@ export const getAllFlowSelections = (): Promise<IFlowSelectionRaw[]> =>
 // selections for a flow / resource id
 export const getFlowSelectionsByIdAsync = async (id: string): Promise <IFlowSelectionRaw[]> => {
     const flowSelections: IFlowSelectionRaw[] = await getAllFlowSelections();
-    return  flowSelections.filter(obj => obj.id === 'id');
+    return  flowSelections.filter(obj => obj.id === id);
 };
 
-export const getFlowSelectionAsync = async (selection: string): Promise<IFlowSelectionRaw> => {
+export const getFlowSelectionAsync = async (selection: string): Promise<IFlowSelectionRaw | undefined> => {
     const flowSelections: IFlowSelectionRaw[] = await getAllFlowSelections();
-    return flowSelections.find(obj => obj.groupById === 'selection');
+    return flowSelections.find(obj => obj.groupById === selection);
 };

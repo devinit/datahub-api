@@ -296,7 +296,7 @@ declare namespace DH {
   */
   interface IUnbundlingAidQuery {
     aidType: string;
-    years: Array<number>;
+    year: number;
     groupBy: string;
     toCountry?: string | null;
     fromCountryOrOrg?: string | null;
@@ -311,6 +311,7 @@ declare namespace DH {
   interface IAidUnit {
     value: number | null;
     name: string | null;
+    color: string | null;
   }
 
   /*
