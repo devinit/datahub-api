@@ -115,13 +115,13 @@ export default class Resources {
       const indicatorArgs: IGetIndicatorArgs = {
             db: this.db,
             table: 'fact.in_oda_net_2015',
-            query: sql. ODANetOut,
+            query: sql.ODANetOut,
             id
         };
       const data: IRAWFlow[] = await getIndicatorData<IRAWFlow>(indicatorArgs);
 
     }
     private async getMixOfResources(id: string): Promise<DH.IIndicatorData[]> {
-        
+
     }
 }
