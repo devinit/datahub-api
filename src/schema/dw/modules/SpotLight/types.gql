@@ -5,8 +5,10 @@ type OverViewTabRegional {
   # can be no data or '12%'
   poorestPeople: String
   # WHAT RESOURCES ARE AVAILABLE TO LOCAL GOVERNMENTS IN WAKISO? eg 3.6m or 2.7bn
+  # this is a total of local, donor and central government resources
   regionalResources: String
   # IndicatorDataColored is defined in country profile types
+  # has local government, donor and central government
   regionalResourcesBreakdown: [IndicatorDataColored]
   # HOW MUCH DOES THE LOCAL GOVERNMENT SPEND PER PERSON?
   localGovernmentSpendPerPerson: String
@@ -28,8 +30,8 @@ type PopulationTabRegional {
   populationDensity: String
    # Urban vs Rural population level
   populationDistribution: [PopulationDistribution]
-  #Compared with the all-district average:113.4
   averageDependencyRatio: String
+  allAverageDependencyRatio: String
 }
 
 type EducationTabRegional {
@@ -39,7 +41,7 @@ type EducationTabRegional {
   #WHAT PERCENTAGE OF STUDENTS PASS THE PRIMARY LEAVING EXAM? 
   studentsPass: String
   #HOW MUCH PRIMARY EDUCATION FUNDING IS THERE? 
-  funding: String
+  primaryEducationfunding: String
 }
 
 type HealthTabRegional {
@@ -53,6 +55,7 @@ type HealthTabRegional {
 
 
 type LocalGovernmentFinance {
+  # come from finance file
   revenue: [Domestic]
   expenditure: [Domestic]
 }
