@@ -5,7 +5,12 @@ import {IExtensions} from '../../db';
 import {formatNumbers} from '../../../../utils';
 import sql from './sql';
 import * as R from 'ramda';
-import {getIndicatorData, RECIPIENT, DONOR, IGetIndicatorArgs, isDonor, IRAW} from '../utils';
+import {getIndicatorData, RECIPIENT, DONOR, IGetIndicatorArgs, isDonor, IRAW, IRAWFlow} from '../utils';
+import {
+    getFlowByTypeAsync,
+    getAllFlowSelections,
+    IFlowRaw,
+    IFlowSelectionRaw} from '../../../cms/modules/countryProfile';
 
 interface IflowTypes {
     inflows: DH.IFlow[];
@@ -50,10 +55,73 @@ export default class Resources {
         Promise<DH.ISingleResourceData> {
     }
     public async getGovernmentFinance(id: string): Promise<DH.IGovernmentFinance>{}
-    private async getGNI(id: string): Promise<string> {}
-    private async getNetODAOfGNIIn(id: string): Promise<number> {}
-    private async getNetODAOfGNIOut(id: string): Promise<number> {}
-    private async getFlows(id: string): Promise<IflowTypes> {}
-    private async getResourcesOverTime(id: string): Promise<DH.IResourceData[]> {}
-    private async getMixOfResources(id: string): Promise<DH.IIndicatorData[]> {}
+
+    private async getGNI(id: string): Promise<string> {
+        const indicatorArgs: IGetIndicatorArgs = {
+            db: this.db,
+            table: 'fact.gni_usd_2015',
+            query: sql.GNI,
+            id
+        };
+        const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
+        return formatNumbers(Number(data[0].value), 1);
+    }
+    private async getNetODAOfGNIIn(id: string): Promise<number> {
+        const indicatorArgs: IGetIndicatorArgs = {
+            db: this.db,
+            table: 'fact.in_oda_net_2015',
+            query: sql.ODANetIn,
+            id
+        };
+        const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
+        return Number(data[0].value);
+    }
+    private async getNetODAOfGNIOut(id: string): Promise<number> {
+         const indicatorArgs: IGetIndicatorArgs = {
+            db: this.db,
+            table: 'fact.in_oda_net_2015',
+            query: sql. ODANetOut,
+            id
+        };
+         const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
+         return Number(data[0].value);
+    }
+    private async getFlows(id: string): Promise<IflowTypes> {
+        // find out whether donor or not using isDonor
+        const countryType = isDonor(id) ? DONOR : RECIPIENT;
+        const flows: IFlowRaw[] = await getFlowByTypeAsync(countryType);
+        const flowSelections: IFlowSelectionRaw[] = await getAllFlowSelections();
+        return flows.reduce ((flowTypes: any, flow) => {
+            const selections = flowSelections
+                .filter(selection => selection.id === flow.id)
+                .map(obj => ({id: obj.groupById, name: obj.name}));
+            const obj = {name: flow.name, id: flow.id, selections};
+            if (flow.direction === 'in') {
+                return flowTypes.inflows.push(obj);
+            }
+            return  flowTypes.outflows.push(obj);
+        }, {inflows: [], outflows: []}) as IflowTypes;
+    }
+    private async getResourcesOverTime(id: string): Promise<DH.IResourceData[]> {
+      let countryType = '';
+      let resourceSql = '';
+      if (isDonor(id)) {
+        countryType = DONOR;
+        resourceSql = sql.resourcesDonors;
+      } else {
+        countryType = RECIPIENT;
+        resourceSql = sql.resourcesRecipient;
+      }
+      const indicatorArgs: IGetIndicatorArgs = {
+            db: this.db,
+            table: 'fact.in_oda_net_2015',
+            query: sql. ODANetOut,
+            id
+        };
+      const data: IRAWFlow[] = await getIndicatorData<IRAWFlow>(indicatorArgs);
+
+    }
+    private async getMixOfResources(id: string): Promise<DH.IIndicatorData[]> {
+        
+    }
 }

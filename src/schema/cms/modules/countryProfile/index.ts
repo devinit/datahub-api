@@ -11,6 +11,7 @@ export interface IFlowRaw {
     flowType: string;
     name: string;
     usedInAreaTreemapChart: boolean;
+    direction: string;
     concept: string;
 }
 
@@ -36,24 +37,24 @@ export const getCountryProfilePageData = async (countrySlug: string): Promise<DH
 
 export const getFlows = (): Promise<IFlowRaw[]> => get<IFlowRaw>('country-profile/flow-name.csv');
 
-export const getFlowById = (id: string, flows: IFlowRaw[]): IFlowRaw =>
-    R.find(R.propEq('id', id), flows) as IFlowRaw;
+export const getFlowByType = (countryType: string, flows: IFlowRaw[]): IFlowRaw[] =>
+    R.filter(R.propEq('type', countryType), flows) as IFlowRaw[];
 
-export const getFlowByIdAsync = async (id: string): Promise<IFlowRaw> => {
+export const getFlowByTypeAsync = async (countryType: string): Promise<IFlowRaw[]> => {
     const flows: IFlowRaw[] = await getFlows();
-    return R.find(R.propEq('id', id), flows) as IFlowRaw;
+    return R.filter(R.propEq('type', countryType), flows) as IFlowRaw[];
 };
 
 export const getAllFlowSelections = (): Promise<IFlowSelectionRaw[]> =>
     get<IFlowSelectionRaw>('country-profile/flow-selections.csv');
 
 // selections for a flow / resource id
-export const getFlowSelectionsByIdAsync = async (id: string): Promise <IFlowSelectionRaw[]> => {
-    const flowSelections: IFlowSelectionRaw[] = await getAllFlowSelections();
-    return  flowSelections.filter(obj => obj.id === id);
-};
+// export const getFlowSelectionsByIdAsync = async (id: string): Promise <IFlowSelectionRaw[]> => {
+//     const flowSelections: IFlowSelectionRaw[] = await getAllFlowSelections();
+//     return  flowSelections.filter(obj => obj.id === id);
+// };
 
-export const getFlowSelectionAsync = async (selection: string): Promise<IFlowSelectionRaw | undefined> => {
-    const flowSelections: IFlowSelectionRaw[] = await getAllFlowSelections();
-    return flowSelections.find(obj => obj.groupById === selection);
-};
+// export const getFlowSelectionAsync = async (selection: string): Promise<IFlowSelectionRaw | undefined> => {
+//     const flowSelections: IFlowSelectionRaw[] = await getAllFlowSelections();
+//     return flowSelections.find(obj => obj.groupById === selection);
+// };

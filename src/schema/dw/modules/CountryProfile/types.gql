@@ -115,6 +115,7 @@ type GovernmentFinance {
 
 type FlowSelection {
   name: String
+  # this is the group ID
   id: String
 }
 
@@ -136,7 +137,7 @@ type InternationalResources {
   resourcesOverTime: [ResourceData]
   # Whats the mix of resources can be for donors (out flows) or receipient (in flows)
   # this is for the donut chart
-  mixOfResources: [IndicatorData]
+  mixOfResources: [IndicatorDataColored]
   # an array of inflows for a particular country, for area & partition chart
   inflows: [Flow]
    # an array of outflows for a particular country
