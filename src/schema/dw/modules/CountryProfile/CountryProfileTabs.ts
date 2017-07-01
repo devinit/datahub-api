@@ -1,3 +1,4 @@
+// TODO: handle no-data values
 import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
 import {formatNumbers} from '../../../../utils';
@@ -18,8 +19,8 @@ export default class CountryProfileTabs {
         this.defaultRecipientArgs = {db: this.db, theme: RECIPIENT};
     }
     public async getOverViewTab({id}): Promise<DH.OverViewTab> {
-        const IsDonor =  await isDonor(id);
-        if (IsDonor) return this.getOverViewTabDonors(id);
+        const isDonorCountry =  await isDonor(id);
+        if (isDonorCountry) return this.getOverViewTabDonors(id);
         return this.getOverViewTabRecipients(id);
     }
     public async getPopulationTab({id}): Promise<DH.IPopulationTab> {

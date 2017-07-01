@@ -101,13 +101,17 @@ type Domestic {
 
 type GovernmentFinance {
   #Total revenue for a particular year if not available return -1 
+  # // to add sql
   totalRevenue: String
-  totalGrants: Int
-  # for donut chart
+  # // to add sql
+  totalGrants: String
+  # for donut chart 
+  # // to add sql, IRAW
   spendingAllocation: [IndicatorDataColored]
   # such as constant 2015 USD for tree map
   currencyCode: String
   # for treemap
+  # use resourcesRecipient sql
   revenueAndGrants: [Domestic]
   expenditure: [Domestic]
   financing: [Domestic]

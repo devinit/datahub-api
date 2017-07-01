@@ -50,7 +50,9 @@ export default class Resources {
         Promise<DH.ISingleResourceData> {
     }
     // TODO: check if entity hasDomestic data from entity file before making any request
-    public async getGovernmentFinance(id: string): Promise<DH.IGovernmentFinance>{}
+    public async getGovernmentFinance(id: string): Promise<DH.IGovernmentFinance>{
+        
+    }
     private async getGNI(id: string): Promise<string> {}
     private async getNetODAOfGNIIn(id: string): Promise<number> {}
     private async getNetODAOfGNIOut(id: string): Promise<number> {}

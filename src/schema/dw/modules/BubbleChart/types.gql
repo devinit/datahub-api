@@ -30,7 +30,8 @@ type revenuePerPersonAndPoverty190 {
 
 type Query {
   getRevenuePerPersonAndPoverty190: [revenuePerPersonAndPoverty190]
-  getBubbleSize(indicatorOrCountry: String ): [BubbleSize]
+  # we return data for the entire year range
+  getBubbleSize(indicatorOrCountry: String): [BubbleSize]
   # IdNamePair is defined in unbundling aid types 
   # this list feeds off oda table from countries and global/concept file
   getIndicatorsList: [IdNamePair]
