@@ -28,6 +28,7 @@ declare namespace DH {
     getCountryProfilePageData: Array<IPage> | null;
     getGlobalPicturePageData: Array<IPage> | null;
     getGlobalPictureThemes: Array<ITheme> | null;
+    getGlobalPictureIndicators: Array<IIndicator> | null;
     getOdaDonorBubbleChartPageData: Array<IPage> | null;
     getPovertyBubbleChartPageData: Array<IPage> | null;
     getSpotlightUgandaPageData: Array<IPage> | null;
@@ -41,7 +42,8 @@ declare namespace DH {
     getPopulationTab: IPopulationTab | null;
     getGovernmentFinance: IGovernmentFinance | null;
     getInternationalResources: IInternationalResources | null;
-    getMapData: IAggregatedMap | null;
+    getSingleResource: Array<ISingleResourceData> | null;
+    getMapData: IMapData | null;
     getMethodologies: Array<IDataSources> | null;
     getWhereThePoorWillbeData: IWhereThePoorWillbe | null;
     getUnbundlingAid: Array<IUnbundlingAid> | null;
@@ -63,6 +65,15 @@ declare namespace DH {
     id: string | null;
     name: string | null;
     default: string | null;
+    order: number | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IIndicator {
+    id: string | null;
+    name: string | null;
     order: number | null;
   }
 
@@ -169,10 +180,10 @@ declare namespace DH {
     description: 
   */
   interface IGovernmentFinance {
-    totalRevenue: number | null;
+    totalRevenue: string | null;
     totalGrants: number | null;
-    currencyType: string | null;
-    spendingAllocation: Array<IIndicatorData> | null;
+    spendingAllocation: Array<IIndicatorDataColored> | null;
+    currencyCode: string | null;
     revenueAndGrants: Array<IDomestic> | null;
     expenditure: Array<IDomestic> | null;
     financing: Array<IDomestic> | null;
@@ -181,11 +192,20 @@ declare namespace DH {
   /*
     description: 
   */
+  interface IIndicatorDataColored {
+    year: number | null;
+    Value: number | null;
+    id: string | null;
+    color: string | null;
+  }
+
+  /*
+    description: 
+  */
   interface IDomestic {
-    title: string | null;
+    name: string | null;
     levels: Array<string> | null;
     budgetType: string | null;
-    level: number | null;
     year: number | null;
     value: number | null;
   }
@@ -198,20 +218,22 @@ declare namespace DH {
     netODAOfGNI: number | null;
     resourcesOverTime: Array<IResourceData> | null;
     mixOfResources: Array<IMixOfResourcesData> | null;
-    inflows: Array<string> | null;
-    outflows: Array<string> | null;
+    inflows: Array<IFlow> | null;
+    outflows: Array<IFlow> | null;
   }
 
   /*
     description: 
   */
   interface IResourceData {
-    year: number | null;
-    value: number | null;
-    flowName: string | null;
+    year: number;
+    value: number;
+    name: string;
     flowCategory: string | null;
     flowType: string | null;
     direction: string | null;
+    percentage: number | null;
+    color: string | null;
   }
 
   /*
@@ -225,7 +247,32 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IAggregatedMap {
+  interface IFlow {
+    name: string | null;
+    id: string | null;
+    selections: Array<IFlowSelection> | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IFlowSelection {
+    name: string | null;
+    id: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface ISingleResourceData {
+    resources: Array<IResourceData> | null;
+    total: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IMapData {
     map: Array<IMapUnit> | null;
     name: string | null;
     uomDisplay: string | null;
@@ -345,6 +392,7 @@ type Query {
   getCountryProfilePageData(countrySlug: String!): [Page]
   getGlobalPicturePageData: [Page]
   getGlobalPictureThemes: [Theme]
+  getGlobalPictureIndicators(theme: String!): [Indicator]
   getOdaDonorBubbleChartPageData: [Page]
   getPovertyBubbleChartPageData: [Page]
   getSpotlightUgandaPageData: [Page]
@@ -358,7 +406,9 @@ type Query {
   getPopulationTab(id: String!): PopulationTab
   getGovernmentFinance(id: String!): GovernmentFinance
   getInternationalResources(id: String!): InternationalResources
-  getMapData(id: String!, DACOnly: Boolean): AggregatedMap
+  # for area tree map chart dropdown selectoion
+  getSingleResource(id: String!, direction: String): [SingleResourceData]
+  getMapData(id: String!, DACOnly: Boolean): MapData
   getMethodologies: [DataSources]
   getWhereThePoorWillbeData: WhereThePoorWillbe
   getUnbundlingAid(type: AidTypes, year: Int!, toCountry: String, fromCountryOrOrg: String, sector: String, inTheformOf: String, channel: String): [UnbundlingAid]
@@ -368,6 +418,12 @@ type Theme {
   id: String
   name: String
   default: String
+  order: Int
+}
+
+type Indicator {
+  id: String
+  name: String
   order: Int
 }
 
@@ -412,21 +468,31 @@ type IndicatorData {
   id: String
 }
 
+type IndicatorDataColored {
+  year: Int
+  Value: Float
+  id: String
+  color: String
+}
+
 type Quintile {
   value: Float
   quintileName: String
 }
 
 type ResourceData {
-  year: Int
-  value: Int
-  flowName: String
+  year: Int!
+  value: Float!
+  name: String!
   # Category i.e FDI, ODA
   flowCategory: String
   # flow either inflow or outflow
   flowType: String
   # in or out
   direction: String
+  # percentage of the total 
+  percentage: Int
+  color: String
 }
 
 type MixOfResourcesData {
@@ -487,7 +553,7 @@ type PopulationTab {
 
 type Domestic {
   # eg value added tax
-  title: String
+  name: String
   # the levels of the data i.e total-expenditure,recurrent-expenditure,compensation-of-employees
   levels: [String]
   # eg Actual or budget
@@ -495,22 +561,33 @@ type Domestic {
   # if level 1 data comes first, 
    # this is for the tree map and its a convenience field as it can be drived from the levels array
    # so one may query levels or level 
-  level: Int
   year: Int
-  value: Int
+  value: Float
 }
 
 type GovernmentFinance {
-  # Total revenue for a particular year if not available return -1
-  totalRevenue: Int
+  # Total revenue for a particular year if not available return -1 
+  totalRevenue: String
   totalGrants: Int
-  # such as constant 2015 USD
-  currencyType: String
-  spendingAllocation: [IndicatorData]
-  spendingAllocation: [IndicatorData]
+  # for donut chart
+  spendingAllocation: [IndicatorDataColored]
+  # such as constant 2015 USD for tree map
+  currencyCode: String
+  # for treemap
   revenueAndGrants: [Domestic]
   expenditure: [Domestic]
   financing: [Domestic]
+}
+
+type FlowSelection {
+  name: String
+  id: String
+}
+
+type Flow {
+  name: String
+  id: String
+  selections: [FlowSelection]
 }
 
 type InternationalResources {
@@ -518,15 +595,22 @@ type InternationalResources {
   GNI: Int
   # Net ODA received, % of GNI for recipient countries
   netODAOfGNI: Int
-  # for sidebar chart in international resources section & area partition tree chart & line chart in the  tabs section
+  # for sidebar chart in international resources section & area partition tree chart default data
+   # & line chart in the  tabs section
   resourcesOverTime: [ResourceData]
   # Whats the mix of resources can be for donors (out flows) or receipient (in flows)
    # this is for the donut chart
   mixOfResources: [MixOfResourcesData]
   # an array of inflows for a particular country, for area & partition chart
-  inflows: [String]
+  inflows: [Flow]
   # an array of outflows for a particular country
-  outflows: [String]
+  outflows: [Flow]
+}
+
+type SingleResourceData {
+  resources: [ResourceData]
+  # in dollars
+  total: String
 }
 
 type MapUnit {
@@ -538,7 +622,7 @@ type MapUnit {
   value: Float
 }
 
-type AggregatedMap {
+type MapData {
   map: [MapUnit]
   # map indicator user friendly label / slug eg Poverty
   name: String

@@ -36,13 +36,16 @@ declare namespace DH {
     getRevenuePerPersonAndPoverty190: Array<IRevenuePerPersonAndPoverty190> | null;
     getBubbleSize: Array<IBubbleSize> | null;
     getOverViewTab: IOverViewTabRegional | null;
-    getPovertyTab: IPovertyTab | null;
-    getPopulationTab: IPopulationTab | null;
+    getPovertyTab: IPovertyTabRegional | null;
+    getPopulationTab: IPopulationTabRegional | null;
     getGovernmentFinance: IGovernmentFinance | null;
     getInternationalResources: IInternationalResources | null;
     getSingleResource: ISingleResourceData | null;
     getMapData: IMapData | null;
     getMethodologies: Array<IDataSources> | null;
+    getEducationTab: IEducationTabRegional | null;
+    getHealthTab: IHealthTabRegional | null;
+    getLocalGovernmentFinance: ILocalGovernmentFinance | null;
     getUnbundlingAidData: Array<IAidUnit> | null;
     getUnbundlingSelectionData: IUnbundlingAidSelections | null;
   }
@@ -118,37 +121,21 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IPovertyTab {
-    poverty190Trend: Array<IIndicatorData> | null;
-    depthOfExtremePoverty: number | null;
-    incomeDistTrend: Array<IQuintile> | null;
+  interface IPovertyTabRegional {
+    poorestPeople: string | null;
+    lifeExpectancy: string | null;
+    stdOfLiving: string | null;
   }
 
   /*
     description: 
   */
-  interface IIndicatorData {
-    year: number | null;
-    Value: number | null;
-    id: string | null;
-    name: string | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IQuintile {
-    value: number | null;
-    quintileName: string | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IPopulationTab {
-    population: string | null;
+  interface IPopulationTabRegional {
+    totalPopulation: string | null;
+    populationDensity: string | null;
     populationDistribution: Array<IPopulationDistribution> | null;
-    populationPerAgeBand: Array<IPopulationPerAgeBand> | null;
+    averageDependencyRatio: string | null;
+    allAverageDependencyRatio: string | null;
   }
 
   /*
@@ -156,15 +143,6 @@ declare namespace DH {
   */
   interface IPopulationDistribution {
     group: string | null;
-    value: number | null;
-    year: number | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IPopulationPerAgeBand {
-    band: string | null;
     value: number | null;
     year: number | null;
   }
@@ -191,6 +169,7 @@ declare namespace DH {
     budgetType: string | null;
     year: number | null;
     value: number | null;
+    valueNcu: number | null;
   }
 
   /*
@@ -218,6 +197,16 @@ declare namespace DH {
     direction: string | null;
     percentage: number | null;
     color: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IIndicatorData {
+    year: number | null;
+    Value: number | null;
+    id: string | null;
+    name: string | null;
   }
 
   /*
@@ -294,6 +283,33 @@ declare namespace DH {
   /*
     description: 
   */
+  interface IEducationTabRegional {
+    pupilTeacherRatioGovtSchl: string | null;
+    pupilTeacherRatioOtherSchl: string | null;
+    studentsPass: string | null;
+    primaryEducationfunding: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IHealthTabRegional {
+    districtPerformance: string | null;
+    treatmeantOfTb: string | null;
+    healthCareFunding: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface ILocalGovernmentFinance {
+    revenue: Array<IDomestic> | null;
+    expenditure: Array<IDomestic> | null;
+  }
+
+  /*
+    description: 
+  */
   interface IUnbundlingAidQuery {
     aidType: string;
     year: number;
@@ -355,6 +371,14 @@ declare namespace DH {
   /*
     description: 
   */
+  interface IQuintile {
+    value: number | null;
+    quintileName: string | null;
+  }
+
+  /*
+    description: 
+  */
   interface IOverViewTabRecipients {
     poorestPeople: string | null;
     population: string | null;
@@ -378,6 +402,33 @@ declare namespace DH {
   type OverViewTab = IOverViewTabRecipients | IOverViewTabDonors;
 
 
+
+  /*
+    description: 
+  */
+  interface IPovertyTab {
+    poverty190Trend: Array<IIndicatorData> | null;
+    depthOfExtremePoverty: number | null;
+    incomeDistTrend: Array<IQuintile> | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IPopulationPerAgeBand {
+    band: string | null;
+    value: number | null;
+    year: number | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IPopulationTab {
+    population: string | null;
+    populationDistribution: Array<IPopulationDistribution> | null;
+    populationPerAgeBand: Array<IPopulationPerAgeBand> | null;
+  }
 }
 
 // tslint:enable
