@@ -35,6 +35,7 @@ declare namespace DH {
     getWhereThePoorPageData: Array<IPage> | null;
     getRevenuePerPersonAndPoverty190: Array<IRevenuePerPersonAndPoverty190> | null;
     getBubbleSize: Array<IBubbleSize> | null;
+    getIndicatorsList: Array<IIdNamePair> | null;
     getOverViewTab: IOverViewTabRegional | null;
     getPovertyTab: IPovertyTabRegional | null;
     getPopulationTab: IPopulationTabRegional | null;
@@ -100,6 +101,14 @@ declare namespace DH {
   /*
     description: 
   */
+  interface IIdNamePair {
+    id: string | null;
+    name: string | null;
+  }
+
+  /*
+    description: 
+  */
   interface IOverViewTabRegional {
     poorestPeople: string | null;
     regionalResources: string | null;
@@ -152,7 +161,7 @@ declare namespace DH {
   */
   interface IGovernmentFinance {
     totalRevenue: string | null;
-    totalGrants: number | null;
+    totalGrants: string | null;
     spendingAllocation: Array<IIndicatorDataColored> | null;
     currencyCode: string | null;
     revenueAndGrants: Array<IDomestic> | null;
@@ -180,7 +189,7 @@ declare namespace DH {
     netODAOfGNIIn: number | null;
     netODAOfGNIOut: number | null;
     resourcesOverTime: Array<IResourceData> | null;
-    mixOfResources: Array<IIndicatorData> | null;
+    mixOfResources: Array<IIndicatorDataColored> | null;
     inflows: Array<IFlow> | null;
     outflows: Array<IFlow> | null;
   }
@@ -197,16 +206,6 @@ declare namespace DH {
     direction: string | null;
     percentage: number | null;
     color: string | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IIndicatorData {
-    year: number | null;
-    Value: number | null;
-    id: string | null;
-    name: string | null;
   }
 
   /*
@@ -344,14 +343,6 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IIdNamePair {
-    id: string | null;
-    name: string | null;
-  }
-
-  /*
-    description: 
-  */
   interface IGovtRevenuePerPerson {
     id: string | null;
     year: number | null;
@@ -366,6 +357,16 @@ declare namespace DH {
     id: string | null;
     year: number | null;
     value: number | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IIndicatorData {
+    year: number | null;
+    Value: number | null;
+    id: string | null;
+    name: string | null;
   }
 
   /*

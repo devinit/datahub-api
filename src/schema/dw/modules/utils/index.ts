@@ -10,6 +10,7 @@ export interface IGetIndicatorArgs {
     table: string;
     query: string;
     theme?: string;
+    conceptType: string; // folder with concept file
     db: IDatabase<IExtensions> & IExtensions;
 }
 export interface IRAWPopulationGroup {
@@ -54,7 +55,14 @@ export interface IRAWQuintile {
     value_4th_quintile: string;
     value_5th_quintile: string;
 }
-
+export interface IRAWFlow {
+    di_id: string;
+    year: string;
+    direction: string;
+    flow_type: string;
+    flow_name: string;
+    value: string;
+}
 export const RECIPIENT = 'recipient';
 export const DONOR = 'donor';
 
@@ -87,9 +95,12 @@ export const getTotal = (data: Isummable[]): number =>
         return sum;
     }, 0, data);
 
-export async function getIndicatorData<T>({db, table, query, id, theme}: IGetIndicatorArgs): Promise<T[]> {
-    const concept: IConcept = await getConceptAsync('country-profile', table, theme);
-    const queryArgs = {...concept, id};
+export async function getIndicatorData<T>({db, table, query, id, theme, conceptType}: IGetIndicatorArgs): Promise<T[]> {
+    // TODO: handle entity type here
+    const concept: IConcept = await getConceptAsync(conceptType, table, theme);
+    const queryArgs = conceptType === 'spotlight-uganda' ?
+        {...concept, id, country: 'uganda', schema: 'spotlight_on_uganda'}
+        : {...concept, id};
     return db.manyCacheable(query, queryArgs);
 }
 export const getIndicatorDataSimple =

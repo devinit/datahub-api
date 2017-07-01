@@ -22,6 +22,9 @@ export default {
     resourcesDonors: 'SELECT * FROM data_series.intl_flows_donors WHERE di_id = ${id} AND year = ${startYear} AND direction = \'out\'',
     // tslint:disable-next-line:max-line-length
     resourcesRecipient: 'SELECT * FROM data_series.intl_flows_recipients WHERE di_id = ${id} AND direction = \'in\' AND year = ${startYear}',
+    resourcesDonorsMix: '',
+    // tslint:disable-next-line:max-line-length
+    resourcesRecipientMix: '',
     singleResources: 'SELECT * FROM ${^table} WHERE di_id = ${id}',
     singleResourcesWithDirection: 'SELECT * FROM ${^id} WHERE di_id = ${id} AND direction = {}',
     // tslint:disable-next-line:max-line-length
