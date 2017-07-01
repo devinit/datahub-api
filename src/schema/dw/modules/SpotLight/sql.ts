@@ -1,5 +1,5 @@
 export default {
-    // tslint:disable-next-line:max-line-length
+    // tslint:disable-next-line:max-line-length, spotlight_on_uganda.uganda_poverty
     poorestPeople: 'select * from ${^schema}.${country}_poverty_headcount where district_id = ${id} and year = ${startYear}',
     // tslint:disable-next-line:max-line-length
     localGovernmentSpendPerPerson: 'select * from ${^schema}.${^country}_gov_spend_pp district_id = ${id} and year = ${startYear}',

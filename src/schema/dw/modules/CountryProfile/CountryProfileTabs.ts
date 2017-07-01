@@ -11,9 +11,11 @@ export default class CountryProfileTabs {
     private db: IDatabase<IExtensions> & IExtensions;
     private defaultDonorArgs;
     private defaultRecipientArgs;
+    private defaultArgs;
 
     constructor(db: any) {
         this.db = db;
+        this.defaultArgs = {db: this.db, conceptType: 'country-profile'};
         this.defaultDonorArgs = {db: this.db, theme: DONOR};
         this.defaultRecipientArgs = {db: this.db, theme: RECIPIENT};
     }
@@ -91,7 +93,7 @@ export default class CountryProfileTabs {
     }
     private async getPopulation(id): Promise<string> {
         const indicatorArgs: IGetIndicatorArgs = {
-            db: this.db,
+            ...this.defaultArgs,
             table: 'fact.population_total',
             query: sql.population,
             id
@@ -116,7 +118,7 @@ export default class CountryProfileTabs {
             table: 'data_series.govt_spend_pc',
             query: sql.governmentSpendPerPerson,
             id,
-            db: this.db,
+            ...this.defaultArgs,
             theme
         };
         const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
@@ -146,7 +148,7 @@ export default class CountryProfileTabs {
     }
     private async getPopulationDistribution(id): Promise<DH.IPopulationDistribution[]> {
         const indicatorArgs: IGetIndicatorArgs = {
-            db: this.db,
+            ...this.defaultArgs,
             table: 'fact.population_rural_urban',
             query: sql.populationDistribution,
             id
@@ -160,7 +162,7 @@ export default class CountryProfileTabs {
     }
     private async getPopulationPerAgeBand(id): Promise<DH.IPopulationPerAgeBand[]> {
         const indicatorArgs: IGetIndicatorArgs = {
-            db: this.db,
+            ...this.defaultArgs,
             table: 'fact.population_by_age',
             query: sql.populationPerAgeBand,
             id
@@ -178,7 +180,7 @@ export default class CountryProfileTabs {
             table: 'data_series.poverty_190',
             query: sql.poverty190Trend,
             id,
-            db: this.db
+            ...this.defaultArgs
         };
         const data: IRAWMulti[] = await getIndicatorData<IRAWMulti>(indicatorArgs);
         return indicatorDataProcessingSimple<DH.IIndicatorData>(data, 'value_2');

@@ -26,6 +26,7 @@ export default class Resources {
     private db: IDatabase<IExtensions> & IExtensions;
     private defaultDonorArgs;
     private defaultRecipientArgs;
+    private defaultArgs;
 
     constructor(db: any) {
         this.db = db;
@@ -58,7 +59,7 @@ export default class Resources {
 
     private async getGNI(id: string): Promise<string> {
         const indicatorArgs: IGetIndicatorArgs = {
-            db: this.db,
+            ...this.defaultArgs,
             table: 'fact.gni_usd_2015',
             query: sql.GNI,
             id
@@ -68,7 +69,7 @@ export default class Resources {
     }
     private async getNetODAOfGNIIn(id: string): Promise<number> {
         const indicatorArgs: IGetIndicatorArgs = {
-            db: this.db,
+            ...this.defaultArgs,
             table: 'fact.in_oda_net_2015',
             query: sql.ODANetIn,
             id
@@ -78,7 +79,7 @@ export default class Resources {
     }
     private async getNetODAOfGNIOut(id: string): Promise<number> {
          const indicatorArgs: IGetIndicatorArgs = {
-            db: this.db,
+            ...this.defaultArgs,
             table: 'fact.in_oda_net_2015',
             query: sql. ODANetOut,
             id
@@ -108,18 +109,18 @@ export default class Resources {
       if (isDonor(id)) {
         countryType = DONOR;
         resourceSql = sql.resourcesDonors;
-      } else {
+      } else {private defaultArgs;
         countryType = RECIPIENT;
         resourceSql = sql.resourcesRecipient;
       }
       const indicatorArgs: IGetIndicatorArgs = {
-            db: this.db,
-            table: 'fact.in_oda_net_2015',
-            query: sql.ODANetOut,
+            ...this.defaultArgs,
+            table: 'data_series.intl_flows_donors',
+            query: sql.resourcesDonors,
             id
         };
       const data: IRAWFlow[] = await getIndicatorData<IRAWFlow>(indicatorArgs);
-
+      return Number(data[0].value);
     }
     private async getMixOfResources(id: string): Promise<DH.IIndicatorData[]> {
 
