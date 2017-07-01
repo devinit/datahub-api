@@ -2,6 +2,7 @@ import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
 import {IRAW, getIndicatorDataSimple, getTotal, indicatorDataProcessing} from '../utils';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
+import {isError} from '../../../../lib/isType';
 import sql, {DAC} from './sql';
 import * as R from 'ramda';
 
@@ -26,7 +27,7 @@ export default class Maps {
     public async getMapData(opts: IgetMapDataOpts): Promise<DH.IMapData> {
         const concept: IConcept = await getConceptAsync('global-picture', opts.id);
         // we merge concept and graphql qery options, they have startYear and endYear variables
-        const data: IRAW [] = await getIndicatorDataSimple({...opts, ...concept, sql, db: this.db});
+        const data: IRAW [] = await getIndicatorDataSimple({...concept, sql, db: this.db});
         const DACCountries = opts.DACOnly ? await this.getDACCountries() : [];
         const processedData: DH.IMapUnit[] = await indicatorDataProcessing(data);
         const mapData = DACCountries.length ? Maps.DACOnlyData(DACCountries, processedData) : processedData;

@@ -73,7 +73,6 @@ export default class CountryProfileTabs {
     private async getInternationalResources(id): Promise<string> {
         const indicatorArgs: IGetIndicatorArgs = {
             ...this.defaultRecipientArgs,
-            table: 'data_series.intl_flows_recipients',
             query: sql.internationalResources,
             id,
         };
@@ -84,7 +83,6 @@ export default class CountryProfileTabs {
     private async getDomesticPublicResources(id): Promise<string> {
         const indicatorArgs: IGetIndicatorArgs = {
             ...this.defaultRecipientArgs,
-            table: 'data_series.domestic',
             query: sql.domesticPublicResources,
             id
         };
@@ -106,7 +104,6 @@ export default class CountryProfileTabs {
     private async getPoorestPeople(id): Promise<string> {
         const indicatorArgs: IGetIndicatorArgs = {
             ...this.defaultRecipientArgs,
-            table: 'data_series.poorest_20_percent',
             query: sql.poorestPeople,
             id
         };
@@ -116,7 +113,6 @@ export default class CountryProfileTabs {
     }
     private async getGovernmentSpendPerPerson(id, theme): Promise<string> {
         const indicatorArgs: IGetIndicatorArgs = {
-            table: 'data_series.govt_spend_pc',
             query: sql.governmentSpendPerPerson,
             id,
             ...this.defaultArgs,
@@ -129,7 +125,6 @@ export default class CountryProfileTabs {
     private async getAverageIncomerPerPerson(id): Promise<DH.IIndicatorData[]> {
          const indicatorArgs: IGetIndicatorArgs = {
             ...this.defaultDonorArgs,
-            table: 'fact.gni_pc_usd_2015',
             query: sql.averageIncomerPerPerson,
             id
         };
@@ -139,7 +134,6 @@ export default class CountryProfileTabs {
     private async getIncomeDistTrend(id): Promise<DH.IQuintile[]> {
         const indicatorArgs: IGetIndicatorArgs = {
             ...this.defaultDonorArgs,
-            table: 'fact.income_share_by_quintile',
             query: sql.incomeDistTrend,
             id
         };
@@ -150,7 +144,6 @@ export default class CountryProfileTabs {
     private async getPopulationDistribution(id): Promise<DH.IPopulationDistribution[]> {
         const indicatorArgs: IGetIndicatorArgs = {
             ...this.defaultArgs,
-            table: 'fact.population_rural_urban',
             query: sql.populationDistribution,
             id
         };
@@ -164,7 +157,6 @@ export default class CountryProfileTabs {
     private async getPopulationPerAgeBand(id): Promise<DH.IPopulationPerAgeBand[]> {
         const indicatorArgs: IGetIndicatorArgs = {
             ...this.defaultArgs,
-            table: 'fact.population_by_age',
             query: sql.populationPerAgeBand,
             id
         };
@@ -178,7 +170,6 @@ export default class CountryProfileTabs {
     }
     private async getPoverty190Trend(id): Promise<DH.IIndicatorData[]> {
         const indicatorArgs: IGetIndicatorArgs = {
-            table: 'data_series.poverty_190',
             query: sql.poverty190Trend,
             id,
             ...this.defaultArgs
@@ -189,7 +180,6 @@ export default class CountryProfileTabs {
     private async getDepthOfExtremePoverty(id): Promise<number> {
         const indicatorArgs: IGetIndicatorArgs = {
             ...this.defaultRecipientArgs,
-            table: 'data_series.depth_of_extreme_poverty_190',
             query: sql.depthOfExtremePoverty,
             id
         };

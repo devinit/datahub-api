@@ -3,11 +3,10 @@ import * as R from 'ramda';
 import {IExtensions} from '../../db';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import {IEntity, getEntityById, getEntities, getEntityByIdAsync} from '../../../cms/modules/global';
-import {isNumber} from '../../../../lib/isType';
+import {isNumber, isError} from '../../../../lib/isType';
 
 export interface IGetIndicatorArgs {
     id: string;
-    table: string;
     query: string;
     theme?: string;
     conceptType: string; // folder with concept file
@@ -31,11 +30,12 @@ interface ISqlSimple {
     indicatorRange: string;
 }
 interface IGetIndicatorArgsSimple {
-    id: string; // table
-    startYear: number;
-    endYear: number;
-    sql: ISqlSimple;
+    id?: string;
     db: IDatabase<IExtensions> & IExtensions;
+    startYear?: number;
+    endYear?: number;
+    sql?: ISqlSimple;
+    query?: string;
 }
 export interface IRAW {
     di_id: string;
@@ -95,18 +95,33 @@ export const getTotal = (data: Isummable[]): number =>
         return sum;
     }, 0, data);
 
-export async function getIndicatorData<T>({db, table, query, id, theme, conceptType}: IGetIndicatorArgs): Promise<T[]> {
+export const getTableNameFromSql = (sql: string): string | Error => {
+    const matcheCaps = sql.match(/(?<=FROM)(.*)(?=WHERE)/);
+    if (matcheCaps && matcheCaps[0].length) return matcheCaps[0];
+    const matches = sql.match(/(?<=from)(.*)(?=where)/);
+    if (matches && matches[0].length) return matches[0];
+    return new Error('couldnt get table name from sql string');
+};
+
+export async function getIndicatorData<T>({db, query, id, theme, conceptType}: IGetIndicatorArgs): Promise<T[]> {
     // TODO: handle entity type here
+    const table = getTableNameFromSql(query);
+    if (isError(table)) throw table;
     const concept: IConcept = await getConceptAsync(conceptType, table, theme);
     const queryArgs = conceptType === 'spotlight-uganda' ?
         {...concept, id, country: 'uganda', schema: 'spotlight_on_uganda'}
         : {...concept, id};
     return db.manyCacheable(query, queryArgs);
 }
-export const getIndicatorDataSimple =
-    async ({id, startYear, endYear, sql, db}: IGetIndicatorArgsSimple): Promise<IRAW[]> => {
-        const query = !isNumber(endYear) ? sql.indicator : sql.indicatorRange;
-        return db.manyCacheable(query, {id, startYear, endYear});
+export const getIndicatorDataSimple = async (opts: IGetIndicatorArgsSimple): Promise<IRAW[]> => {
+        const {id, sql, db, query, startYear, endYear } = opts;
+        let queryStr = '';
+        if (!query && sql) queryStr = !isNumber(endYear) ? sql.indicator : sql.indicatorRange;
+        if (query) queryStr = query;
+        const table = getTableNameFromSql(queryStr);
+        if (isError(table)) console.error('get table name error: ', table);
+        if (!queryStr.length) console.error('invalid query string');
+        return db.manyCacheable(queryStr, {startYear, endYear, table, id});
 };
 
 export const addCountryName = (obj: IhasId, entites: IEntity[]): any => {

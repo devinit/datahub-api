@@ -78,14 +78,14 @@ export default class Resources {
         return Number(data[0].value);
     }
     private async getNetODAOfGNIOut(id: string): Promise<number> {
-         const indicatorArgs: IGetIndicatorArgs = {
+        const indicatorArgs: IGetIndicatorArgs = {
             ...this.defaultArgs,
             table: 'fact.in_oda_net_2015',
             query: sql. ODANetOut,
             id
         };
-         const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
-         return Number(data[0].value);
+        const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
+        return Number(data[0].value);
     }
     private async getFlows(id: string): Promise<IflowTypes> {
         // find out whether donor or not using isDonor
@@ -109,7 +109,7 @@ export default class Resources {
       if (isDonor(id)) {
         countryType = DONOR;
         resourceSql = sql.resourcesDonors;
-      } else {private defaultArgs;
+      } else {
         countryType = RECIPIENT;
         resourceSql = sql.resourcesRecipient;
       }
@@ -122,7 +122,7 @@ export default class Resources {
       const data: IRAWFlow[] = await getIndicatorData<IRAWFlow>(indicatorArgs);
       return Number(data[0].value);
     }
-    private async getMixOfResources(id: string): Promise<DH.IIndicatorData[]> {
+    private async; getMixOfResources(id: string);: Promise<DH.IIndicatorData[]> {
 
-    }
+    };
 }
