@@ -12,6 +12,7 @@ export interface IFlowRaw {
     name: string;
     usedInAreaTreemapChart: boolean;
     direction: string;
+    color: string;
     concept: string;
 }
 
@@ -43,6 +44,11 @@ export const getFlowByType = (countryType: string, flows: IFlowRaw[]): IFlowRaw[
 export const getFlowByTypeAsync = async (countryType: string): Promise<IFlowRaw[]> => {
     const flows: IFlowRaw[] = await getFlows();
     return R.filter(R.propEq('type', countryType), flows) as IFlowRaw[];
+};
+
+export const getFlowByIdAsync = async (countryType: string): Promise<IFlowRaw> => {
+    const flows: IFlowRaw[] = await getFlows();
+    return R.find(R.propEq('id', countryType), flows) as IFlowRaw;
 };
 
 export const getAllFlowSelections = (): Promise<IFlowSelectionRaw[]> =>

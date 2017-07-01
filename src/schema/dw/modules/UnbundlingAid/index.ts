@@ -1,8 +1,8 @@
 import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
-import {makeSqlAggregateQuery} from '../utils';
+import {makeSqlAggregateQuery, entitesFnMap} from '../utils';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
-import {getEntities, getSectors, getBundles, getChannels} from '../../../cms/modules/global';
+
 import * as R from 'ramda';
 
 interface IUnbundlingAidQueryTemp {
@@ -37,14 +37,6 @@ export default class UnbundlingAid {
     }
 
     private db: IDatabase<IExtensions> & IExtensions;
-    // TODO: add entity fn
-    private entitesFnMap = {
-        sector: getSectors,
-        channel: getChannels,
-        bundle: getBundles,
-        toCountry: getEntities,
-        fromCountryOrOrg: getEntities,
-    };
 
     private groupByMap = {
         channel: 'channel_web_id',
@@ -60,7 +52,7 @@ export default class UnbundlingAid {
         const queryStr: string =
             makeSqlAggregateQuery<IUnbundlingAidQuery>(queryArgs, args.groupBy, `fact.${args.aidType}`);
         const raw: IUnbundlingAidResult[] = await this.db.manyCacheable(queryStr, null);
-        const entites: IUnbundlingEnitity[] = await this.entitesFnMap[args.groupBy]();
+        const entites: IUnbundlingEnitity[] = await entitesFnMap[args.groupBy]();
         const groupByAsColumnName = this.groupByMap[args.groupBy] ? this.groupByMap[args.groupBy] : args.groupBy;
         return raw.map(obj => {
             const entity: IUnbundlingEnitity = entites.find(item => obj[groupByAsColumnName] === item.id);

@@ -2,7 +2,8 @@ import {IDatabase} from 'pg-promise';
 import * as R from 'ramda';
 import {IExtensions} from '../../db';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
-import {IEntity, getEntityById, getEntities, getEntityByIdAsync} from '../../../cms/modules/global';
+import {IEntity, getEntityById, getEntities, getEntityByIdAsync,
+    getSectors, getBundles, getChannels} from '../../../cms/modules/global';
 import {isNumber, isError} from '../../../../lib/isType';
 
 export interface IGetIndicatorArgs {
@@ -41,6 +42,11 @@ export interface IRAW {
     di_id: string;
     value: string;
     year: string;
+}
+export interface IProcessedSimple {
+    id: string;
+    value: number;
+    year: number;
 }
 export interface IRAWMulti {
     di_id: string;
@@ -156,16 +162,16 @@ export const makeSqlAggregateQuery = <T extends {}>
     (queryArgs: T, groupByField: string, table: string): string => {
         const queryArgsKeys = R.keys(queryArgs);
         return queryArgsKeys.reduce((query, field, index) => {
-            const AND = index + 1 < queryArgsKeys.length ? 'AND' : '';
+            const AND = index + 1 < queryArgsKeys.length ? 'AND' : `GROUP BY ${groupByField}`;
             return `${query} ${field} = ${queryArgs[field]} ${AND}`;
-        }, `SELECT ${groupByField}, sum(value) from ${table}`);
+        }, `SELECT ${groupByField}, sum(value) AS value from ${table}`);
 };
 
 export const makeSqlAggregateRangeQuery = <T extends {years: number[]}>
     (queryArgs: T, groupByField: string, table: string): string => {
         const queryArgsKeys = R.keys(queryArgs);
         return queryArgsKeys.reduce((query, field, index) => {
-            const AND = index + 1 < queryArgsKeys.length ? 'AND' : '';
+            const AND = index + 1 < queryArgsKeys.length ? 'AND' : `GROUP BY ${groupByField}`;
             if (field === 'years' && queryArgs.years.length === 2) {
                  return `${query} year >= ${queryArgs.years[0]} AND year <= ${queryArgs.years[1]} ${AND}`;
             }
@@ -174,4 +180,14 @@ export const makeSqlAggregateRangeQuery = <T extends {years: number[]}>
             }
             return `${query} ${field} = ${queryArgs[field]} ${AND}`;
         }, `SELECT ${groupByField}, sum(value) from ${table}`);
+};
+
+export const entitesFnMap = {
+    sector: getSectors,
+    channel: getChannels,
+    bundle: getBundles,
+    toCountry: getEntities,
+    from_di_id:  getEntities,
+    to_di_id: getEntities,
+    fromCountryOrOrg: getEntities,
 };

@@ -229,8 +229,19 @@ declare namespace DH {
     description: 
   */
   interface ISingleResourceData {
-    resources: Array<IResourceData> | null;
+    resources: Array<IIndicatorData> | null;
+    color: string | null;
     total: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IIndicatorData {
+    year: number | null;
+    value: number | null;
+    id: string | null;
+    name: string | null;
   }
 
   /*
@@ -357,16 +368,6 @@ declare namespace DH {
     id: string | null;
     year: number | null;
     value: number | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IIndicatorData {
-    year: number | null;
-    Value: number | null;
-    id: string | null;
-    name: string | null;
   }
 
   /*

@@ -25,8 +25,8 @@ export default {
     resourcesDonorsMix: '',
     // tslint:disable-next-line:max-line-length
     resourcesRecipientMix: '',
-    singleResources: 'SELECT * FROM ${^table} WHERE di_id = ${id}',
-    singleResourcesWithDirection: 'SELECT * FROM ${^id} WHERE di_id = ${id} AND direction = {}',
+    singleResourcesIn: 'SELECT * FROM ${^table} WHERE di_id = ${id} AND year >= ${startYear}  AND year <= ${endYear} AND direction = ${direction}',
+    singleResourcesOut: 'SELECT * FROM ${^id} WHERE di_id = ${id} AND direction = {}',
     // tslint:disable-next-line:max-line-length
     govenmentFinance: 'SELECT value FROM data_series.domestic WHERE di_id =${id} AND year >= ${startYear} AND year <= ${endYear}',
 };

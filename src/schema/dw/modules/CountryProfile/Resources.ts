@@ -4,10 +4,14 @@ import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
 import {formatNumbers} from '../../../../utils';
 import sql from './sql';
+import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import * as R from 'ramda';
-import {getIndicatorData, RECIPIENT, DONOR, IGetIndicatorArgs, isDonor, IRAW, IRAWFlow} from '../utils';
+import {getIndicatorData, RECIPIENT, DONOR, IGetIndicatorArgs,
+        indicatorDataProcessingSimple, getTotal, makeSqlAggregateRangeQuery,
+        isDonor, IRAW, IRAWFlow, IProcessedSimple, entitesFnMap, formatNumber} from '../utils';
 import {
     getFlowByTypeAsync,
+    getFlowByIdAsync,
     getAllFlowSelections,
     IFlowRaw,
     IFlowSelectionRaw} from '../../../cms/modules/countryProfile';
@@ -52,9 +56,36 @@ export default class Resources {
         };
     }
     // internation resource
-    public async getSingleResource({resourceId, countryId, direction}: ISingleResourceArgs):
-        Promise<DH.ISingleResourceData> {
+    public async getSingleResource(opts: ISingleResourceArgs): Promise<DH.ISingleResourceData> {
+        const {resourceId, countryId, groupById} = opts;
+        // get flow resoure entity
+        const flow: IFlowRaw =  await getFlowByIdAsync(resourceId);
+        const concept: IConcept = await getConceptAsync('country-profile', flow.id);
+        let args = {
+            years: [concept.startYear, concept.endYear],
+        };
+        if (flow.donorRecipientType === DONOR) args = {...args, di_id_from: countryId};
+        if (flow.donorRecipientType === RECIPIENT) args = {...args, di_id_to: countryId};
+        if (flow.id === 'data_series.intl_flows_recipients' || flow.id === 'data_series.intl_flows_donors') {
+            args = {...args, flow_name: resourceId};
+        }
+        const sqlQuery = makeSqlAggregateRangeQuery(args, groupById, flow.id);
+        const data: IRAW[] = await this.db.manyCacheable(sqlQuery, null);
+        const processedData: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(data);
+        const entities = entitesFnMap[groupById]();
+        // TODO: write extensive tests
+        const resources = processedData.map(obj => {
+            const entity = R.find(R.propEq(groupById, obj.id), entities) as  {name: string};
+            return {...obj, name: entity.name };
+        });
+        const total =  R.compose(formatNumber, getTotal)(resources) as string;
+        return {
+            resources,
+            color: flow.color,
+            total
+        };
     }
+
     public async getGovernmentFinance(id: string): Promise<DH.IGovernmentFinance>{}
 
     private async getGNI(id: string): Promise<string> {
