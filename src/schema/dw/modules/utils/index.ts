@@ -3,7 +3,7 @@ import * as R from 'ramda';
 import {IExtensions} from '../../db';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import {IEntity, getEntityById, getEntities, getEntityByIdAsync,
-    getSectors, getBundles, getChannels} from '../../../cms/modules/global';
+       getEntityBySlugAsync, getSectors, getBundles, getChannels} from '../../../cms/modules/global';
 import {isNumber, isError} from '../../../../lib/isType';
 
 export interface IGetIndicatorArgs {
@@ -69,9 +69,15 @@ export interface IRAWFlow {
     flow_name: string;
     value: string;
 }
-export const RECIPIENT = 'recipient';
-export const DONOR = 'donor';
-
+export interface IRAWDomestic {
+    di_id: string;
+    year: string;
+    budget_type: string;
+    l1: string;
+    l2: string;
+    l3: string;
+    l4: string;
+}
 export interface Isummable {
     value: number | string | null;
 }
@@ -83,6 +89,25 @@ export interface IhasDiId {
 export interface IhasId {
     id: string | null;
 }
+
+export const RECIPIENT = 'recipient';
+export const DONOR = 'donor';
+export const domesticLevelMap = {
+    l1: 'type',
+    l2: 'parentCategory',
+    l3: 'category',
+    l4: 'subCategory'
+};
+export const entitesFnMap = {
+    sector: getSectors,
+    channel: getChannels,
+    bundle: getBundles,
+    toCountry: getEntities,
+    from_di_id:  getEntities,
+    to_di_id: getEntities,
+    fromCountryOrOrg: getEntities,
+};
+
 export const toNumericFields: (obj: any, valueField: string) => any = (obj, valueField = 'value') => {
     const newObj = {...obj, value: Number(obj[valueField]), year: Number(obj.year)};
     if (valueField !== 'value') return R.omit([valueField], newObj);
@@ -109,16 +134,20 @@ export const getTableNameFromSql = (sql: string): string | Error => {
     return new Error('couldnt get table name from sql string');
 };
 
+// used by country profile and spotlights
 export async function getIndicatorData<T>({db, query, id, theme, conceptType}: IGetIndicatorArgs): Promise<T[]> {
     // TODO: handle entity type here
     const table = getTableNameFromSql(query);
     if (isError(table)) throw table;
+    const entity = conceptType === 'country-profile' ? await getEntityBySlugAsync(id) : {id};
     const concept: IConcept = await getConceptAsync(conceptType, table, theme);
     const queryArgs = conceptType === 'spotlight-uganda' ?
-        {...concept, id, country: 'uganda', schema: 'spotlight_on_uganda'}
-        : {...concept, id};
+        {...concept, id: entity.id, country: 'uganda', schema: 'spotlight_on_uganda'}
+        : {...concept, id: entity.id};
     return db.manyCacheable(query, queryArgs);
 }
+
+// used by maps module
 export const getIndicatorDataSimple = async (opts: IGetIndicatorArgsSimple): Promise<IRAW[]> => {
         const {id, sql, db, query, startYear, endYear } = opts;
         let queryStr = '';
@@ -145,17 +174,42 @@ export const indicatorDataProcessing = async (data: IhasDiId[]): Promise<DH.IMap
 export const indicatorDataProcessingSimple = <T extends {}>(data: IhasDiId[], valueField: string = 'value'): T[] => {
     return data
             .map(toId)
+            .map(normalizeKeyNames)
             .map(obj => toNumericFields(obj, valueField));
 };
+export const domesticDataProcessing = (data: IRAWDomestic[]): DH.IDomestic[] => {
+    return indicatorDataProcessingSimple(data)
+            .map(obj => {
+                const levelKeys = R.keys(obj).filter(key => key.includes('l'));
+                return levelKeys.reduce((acc, key) => {
+                    return {...acc, [domesticLevelMap[key]]: obj[key] };
+                }, {...obj}) as DH.IDomestic;
+            });
+};
+
 export const isDonor = async (id: string): Promise<boolean>  => {
     const {donorRecipientType}: IEntity = await getEntityByIdAsync(id);
     if (donorRecipientType === DONOR) return true;
     return false;
 };
 
-export const normalizeKeyName = (columnName: string): string => {
-    const str = columnName.split(/value\_/)[1];
-    return str.replace(/\_/g, '-');
+export const normalizeKeyName = (columnName: string, replace?: string): string => {
+    const str = columnName.includes('value_') ? columnName.split(/value\_/)[1] : columnName;
+    if (replace === '-')return str.replace(/\_/g, '-');
+    const tokenize = str.split(/\_/g);
+    return tokenize.reduce((name, current, index) => {
+        const tail = R.tail(current);
+        if (index) return name + current[0].toUpperCase + tail;
+        return current; // skip first word
+    }, '');
+};
+
+export const normalizeKeyNames = (obj: {}) => {
+    return R.keys(obj).reduce((acc, key) => {
+        const newKeyName = key.includes('_') ? normalizeKeyName(key) : key;
+        const newObj = key.includes('_') ? R.omit([key], obj) : acc;
+        return {...newObj, [newKeyName]: obj[newKeyName]};
+    }, {});
 };
 
 export const makeSqlAggregateQuery = <T extends {}>
@@ -180,14 +234,4 @@ export const makeSqlAggregateRangeQuery = <T extends {years: number[]}>
             }
             return `${query} ${field} = ${queryArgs[field]} ${AND}`;
         }, `SELECT ${groupByField}, sum(value) from ${table}`);
-};
-
-export const entitesFnMap = {
-    sector: getSectors,
-    channel: getChannels,
-    bundle: getBundles,
-    toCountry: getEntities,
-    from_di_id:  getEntities,
-    to_di_id: getEntities,
-    fromCountryOrOrg: getEntities,
 };

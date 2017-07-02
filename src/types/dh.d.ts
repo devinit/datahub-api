@@ -121,7 +121,7 @@ declare namespace DH {
   */
   interface IIndicatorDataColored {
     year: number | null;
-    Value: number | null;
+    value: number | null;
     id: string | null;
     name: string | null;
     color: string | null;
@@ -161,21 +161,32 @@ declare namespace DH {
   */
   interface IGovernmentFinance {
     totalRevenue: string | null;
-    totalGrants: string | null;
-    spendingAllocation: Array<IIndicatorDataColored> | null;
+    grantsAsPcOfRevenue: string | null;
+    spendingAllocation: Array<ISpendingAllocation> | null;
     currencyCode: string | null;
-    revenueAndGrants: Array<IDomestic> | null;
     expenditure: Array<IDomestic> | null;
-    financing: Array<IDomestic> | null;
+    revenueAndGrants: Array<IDomestic> | null;
+    finance: Array<IDomestic> | null;
+  }
+
+  /*
+    description: 
+  */
+  interface ISpendingAllocation {
+    value: number | null;
+    name: string | null;
+    color: string | null;
   }
 
   /*
     description: 
   */
   interface IDomestic {
-    name: string | null;
-    levels: Array<string> | null;
     budgetType: string | null;
+    type: string | null;
+    parentCategory: string | null;
+    category: string | null;
+    subCategory: string | null;
     year: number | null;
     value: number | null;
     valueNcu: number | null;
@@ -189,7 +200,7 @@ declare namespace DH {
     netODAOfGNIIn: number | null;
     netODAOfGNIOut: number | null;
     resourcesOverTime: Array<IResourceData> | null;
-    mixOfResources: Array<IIndicatorDataColored> | null;
+    mixOfResources: Array<IResourceData> | null;
     inflows: Array<IFlow> | null;
     outflows: Array<IFlow> | null;
   }
@@ -201,10 +212,10 @@ declare namespace DH {
     year: number;
     value: number;
     name: string;
+    shortName: string | null;
     flowCategory: string | null;
     flowType: string | null;
     direction: string | null;
-    percentage: number | null;
     color: string | null;
   }
 
@@ -384,7 +395,7 @@ declare namespace DH {
   interface IOverViewTabRecipients {
     poorestPeople: string | null;
     population: string | null;
-    domesticPublicResources: string | null;
+    domesticResources: string | null;
     internationalResources: string | null;
     governmentSpendPerPerson: string | null;
   }

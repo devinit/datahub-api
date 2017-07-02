@@ -3,17 +3,25 @@ import {getPageData} from '../page';
 import {get} from '../../connector';
 import {getEntities, getEntityBySlug, IEntity} from '../global';
 
-export interface IFlowRaw {
+export interface IFlowRef {
     id: string;
     flowCategory: string;
     flowCategoryOrder: number;
     donorRecipientType: string;
     flowType: string;
     name: string;
+    shortName: string;
     usedInAreaTreemapChart: boolean;
     direction: string;
     color: string;
     concept: string;
+}
+
+export interface IFlowTypeRef {
+    id: string;
+    name: string;
+    concept: string;
+    color: string;
 }
 
 export interface IFlowSelectionRaw {
@@ -23,6 +31,12 @@ export interface IFlowSelectionRaw {
     position: number;
 }
 
+export interface IBudgetLevelRef {
+    id: string;
+    level: number;
+    name: string;
+    color: string;
+}
 export const getCountryProfilePageData = async (countrySlug: string): Promise<DH.IPage[]> => {
     const data: DH.IPage[] = await getPageData('country-profile');
     const entities: IEntity[] = await getEntities();
@@ -36,19 +50,24 @@ export const getCountryProfilePageData = async (countrySlug: string): Promise<DH
     }, data);
 };
 
-export const getFlows = (): Promise<IFlowRaw[]> => get<IFlowRaw>('country-profile/flow-name.csv');
+export const getFlows = (): Promise<IFlowRef[]> => get<IFlowRef>('country-profile/flow-name.csv');
 
-export const getFlowByType = (countryType: string, flows: IFlowRaw[]): IFlowRaw[] =>
-    R.filter(R.propEq('type', countryType), flows) as IFlowRaw[];
+export const getBudgetLevels = (): Promise<IBudgetLevelRef[]> =>
+    get<IBudgetLevelRef>('country-profile/domestic-budget-level.csv');
 
-export const getFlowByTypeAsync = async (countryType: string): Promise<IFlowRaw[]> => {
-    const flows: IFlowRaw[] = await getFlows();
-    return R.filter(R.propEq('type', countryType), flows) as IFlowRaw[];
+export const getFlowTypes = (): Promise<IFlowRef[]> => get<IFlowTypeRef>('country-profile/flow-type.csv');
+
+export const getFlowByType = (type: string, flows: IFlowRef[]): IFlowRef[] =>
+    R.filter(R.propEq('type', type), flows) as IFlowRef[];
+
+export const getFlowByTypeAsync = async (type: string): Promise<IFlowRef[]> => {
+    const flows: IFlowRef[] = await getFlows();
+    return R.filter(R.propEq('type', type), flows) as IFlowRef[];
 };
 
-export const getFlowByIdAsync = async (countryType: string): Promise<IFlowRaw> => {
-    const flows: IFlowRaw[] = await getFlows();
-    return R.find(R.propEq('id', countryType), flows) as IFlowRaw;
+export const getFlowByIdAsync = async (countryType: string): Promise<IFlowRef> => {
+    const flows: IFlowRef[] = await getFlows();
+    return R.find(R.propEq('id', countryType), flows) as IFlowRef;
 };
 
 export const getAllFlowSelections = (): Promise<IFlowSelectionRaw[]> =>

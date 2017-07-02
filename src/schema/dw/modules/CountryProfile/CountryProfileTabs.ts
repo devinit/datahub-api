@@ -83,7 +83,7 @@ export default class CountryProfileTabs {
     private async getDomesticPublicResources(id): Promise<string> {
         const indicatorArgs: IGetIndicatorArgs = {
             ...this.defaultRecipientArgs,
-            query: sql.domesticPublicResources,
+            query: sql.domesticResources,
             id
         };
         const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);

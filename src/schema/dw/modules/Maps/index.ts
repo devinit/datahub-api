@@ -2,7 +2,6 @@ import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
 import {IRAW, getIndicatorDataSimple, getTotal, indicatorDataProcessing} from '../utils';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
-import {isError} from '../../../../lib/isType';
 import sql, {DAC} from './sql';
 import * as R from 'ramda';
 

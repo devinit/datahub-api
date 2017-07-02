@@ -1,4 +1,11 @@
 
+type IndicatorDataColored {
+  year: Int
+  value: Float
+  id: String
+  name: String
+  color: String
+}
 
 type OverViewTabRegional {
   # WHAT PERCENTAGE OF PEOPLE IN WAKISO LIVE BELOW THE NATIONAL POVERTY LINE? 

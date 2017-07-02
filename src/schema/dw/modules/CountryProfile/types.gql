@@ -5,13 +5,12 @@ type IndicatorData {
   name: String
 }
 
-type IndicatorDataColored {
-  year: Int
-  Value: Float
-  id: String
+type SpendingAllocation {
+  value: Float
   name: String
   color: String
 }
+
 
 type Quintile {
   value: Float
@@ -22,14 +21,13 @@ type ResourceData {
   year: Int!
   value: Float!
   name: String!
+  shortName: String
   # Category i.e FDI, ODA
   flowCategory: String
   # flow either inflow or outflow
   flowType: String
   # in or out
   direction: String
-  # percentage of the total 
-  percentage: Int
   color: String
 }
 
@@ -38,7 +36,7 @@ type OverViewTabRecipients {
   poorestPeople: String
   # total population for a given country
   population: String
-  domesticPublicResources: String
+  domesticResources: String
   internationalResources: String
   # recipient countries $PPP
   governmentSpendPerPerson: String
@@ -85,15 +83,16 @@ type PopulationTab {
 }
 
 type Domestic {
-  # eg value added tax
-  name: String
-  # the levels of the data i.e total-expenditure,recurrent-expenditure,compensation-of-employees
-  levels: [String]
   # eg Actual or budget
   budgetType: String
-  # if level 1 data comes first, 
-  # this is for the tree map and its a convenience field as it can be drived from the levels array
-  # so one may query levels or level 
+  # eg total_revenue and grants --> l1
+  type: String
+  # eg revenue --> l2
+  parentCategory: String
+  # eg tax revenue --> l3
+  category: String
+  # eg value-added tax  --> l4
+  subCategory: String
   year: Int 
   value: Float
   valueNcu: Float
@@ -101,20 +100,18 @@ type Domestic {
 
 type GovernmentFinance {
   #Total revenue for a particular year if not available return -1 
-  # // to add sql
+  # uses gdp
   totalRevenue: String
-  # // to add sql
-  totalGrants: String
+  grantsAsPcOfRevenue: String
   # for donut chart 
-  # // to add sql, IRAW
-  spendingAllocation: [IndicatorDataColored]
+  spendingAllocation: [SpendingAllocation]
+  # for treemap
   # such as constant 2015 USD for tree map
   currencyCode: String
-  # for treemap
   # use resourcesRecipient sql
-  revenueAndGrants: [Domestic]
   expenditure: [Domestic]
-  financing: [Domestic]
+  revenueAndGrants: [Domestic]
+  finance: [Domestic]
 }
 
 type FlowSelection {
@@ -141,7 +138,7 @@ type InternationalResources {
   resourcesOverTime: [ResourceData]
   # Whats the mix of resources can be for donors (out flows) or receipient (in flows)
   # this is for the donut chart
-  mixOfResources: [IndicatorDataColored]
+  mixOfResources: [ResourceData]
   # an array of inflows for a particular country, for area & partition chart
   inflows: [Flow]
    # an array of outflows for a particular country
