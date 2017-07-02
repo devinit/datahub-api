@@ -2,6 +2,7 @@ import {IDatabase} from 'pg-promise';
 import * as R from 'ramda';
 import {IExtensions} from '../../db';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
+import {getDistrictBySlugAsync} from '../../../cms/modules/spotlight';
 import {IEntity, getEntityById, getEntities, getEntityByIdAsync,
        getEntityBySlugAsync, getSectors, getBundles, getChannels} from '../../../cms/modules/global';
 import {isNumber, isError} from '../../../../lib/isType';
@@ -10,6 +11,7 @@ export interface IGetIndicatorArgs {
     id: string;
     query: string;
     theme?: string;
+    country?: string;
     conceptType: string; // folder with concept file
     db: IDatabase<IExtensions> & IExtensions;
 }
@@ -135,14 +137,16 @@ export const getTableNameFromSql = (sql: string): string | Error => {
 };
 
 // used by country profile and spotlights
-export async function getIndicatorData<T>({db, query, id, theme, conceptType}: IGetIndicatorArgs): Promise<T[]> {
-    // TODO: handle entity type here
+export async function getIndicatorData<T>(opts: IGetIndicatorArgs): Promise<T[]> {
+    const {db, query, id, theme, conceptType, country} = opts;
     const table = getTableNameFromSql(query);
     if (isError(table)) throw table;
-    const entity = conceptType === 'country-profile' ? await getEntityBySlugAsync(id) : {id};
+    let entity = {id: ''};
+    if ( conceptType === 'country-profile') entity =  await getEntityBySlugAsync(id);
+    if ( conceptType === 'spotlight' && country) entity =  await getDistrictBySlugAsync(country, id);
     const concept: IConcept = await getConceptAsync(conceptType, table, theme);
-    const queryArgs = conceptType === 'spotlight-uganda' ?
-        {...concept, id: entity.id, country: 'uganda', schema: 'spotlight_on_uganda'}
+    const queryArgs = conceptType === 'spotlight' ?
+        {...concept, id: entity.id, country, schema: `spotlight_on_${country}`}
         : {...concept, id: entity.id};
     return db.manyCacheable(query, queryArgs);
 }
@@ -207,8 +211,11 @@ export const normalizeKeyName = (columnName: string, replace?: string): string =
 export const normalizeKeyNames = (obj: {}) => {
     return R.keys(obj).reduce((acc, key) => {
         const newKeyName = key.includes('_') ? normalizeKeyName(key) : key;
-        const newObj = key.includes('_') ? R.omit([key], obj) : acc;
-        return {...newObj, [newKeyName]: obj[newKeyName]};
+        if (newKeyName) {
+            const newObj = R.omit([key], obj);
+            return {...newObj, [newKeyName]: obj[newKeyName]};
+        }
+        return {...acc, [key]: obj[key]}; // return to default
     }, {});
 };
 

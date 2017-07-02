@@ -29,8 +29,6 @@ type PovertyTabRegional {
   stdOfLiving: String
 }
 
-
-
 type PopulationTabRegional {
   #The total population of a given district and the population density in per sq km
   totalPopulation: String
@@ -68,12 +66,11 @@ type LocalGovernmentFinance {
 }
 
 type Query {  
-  # id is district id
-  getOverViewTab(id: String!):OverViewTabRegional
-  getPovertyTab(id: String!): PovertyTabRegional
-  getPopulationTab(id: String!):PopulationTabRegional
-  getEducationTab(id: String!): EducationTabRegional
-  getHealthTab(id: String!): HealthTabRegional 
-  getLocalGovernmentFinance(id: String!): LocalGovernmentFinance
+  # id is district slug
+  getOverViewTab(id: String!, country: String!):OverViewTabRegional
+  getPovertyTab(id: String!, country: String!): PovertyTabRegional
+  getPopulationTab(id: String!, country: String!):PopulationTabRegional
+  getEducationTab(id: String!, country: String!): EducationTabRegional
+  getHealthTab(id: String!, country: String!): HealthTabRegional 
+  getLocalGovernmentFinance(id: String!, country: String!): LocalGovernmentFinance
 }
-
