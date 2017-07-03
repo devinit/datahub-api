@@ -5,6 +5,7 @@ type AidUnit {
   name: String
   color: String
 }
+
 type IdNamePair {
   id: String
   name: String
