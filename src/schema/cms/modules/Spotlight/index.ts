@@ -1,3 +1,6 @@
+/**
+ * regional / district entities
+ */
 import {get} from '../../connector';
 import * as R from 'ramda';
 
