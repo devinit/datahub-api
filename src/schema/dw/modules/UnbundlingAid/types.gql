@@ -12,11 +12,12 @@ type IdNamePair {
 
 type UnbundlingAidSelections {
   # unbundling aid selection options
-  toCountries: [IdNamePair]
-  fromCountriesAndOrgs: [IdNamePair]
+  to: [IdNamePair]
+  from: [IdNamePair]
   channels: [IdNamePair]
   sectors: [IdNamePair]
   form: [IdNamePair]
+  years: [Int]
 }
 
 input UnbundlingAidQuery {

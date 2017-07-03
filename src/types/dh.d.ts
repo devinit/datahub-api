@@ -355,11 +355,12 @@ declare namespace DH {
     description: 
   */
   interface IUnbundlingAidSelections {
-    toCountries: Array<IIdNamePair> | null;
-    fromCountriesAndOrgs: Array<IIdNamePair> | null;
+    to: Array<IIdNamePair> | null;
+    from: Array<IIdNamePair> | null;
     channels: Array<IIdNamePair> | null;
     sectors: Array<IIdNamePair> | null;
     form: Array<IIdNamePair> | null;
+    years: Array<number> | null;
   }
 
   /*

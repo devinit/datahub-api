@@ -2,7 +2,7 @@ import {IDatabase} from 'pg-promise';
 import * as R from 'ramda';
 import {IExtensions} from '../../db';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
-import {getDistrictBySlugAsync, IDistrict} from '../../../cms/modules/spotlight';
+import {getDistrictBySlugAsync} from '../../../cms/modules/spotlight';
 import {IEntity, getEntityById, getEntities, getEntityByIdAsync,
        getEntityBySlugAsync, getSectors, getBundles, getChannels} from '../../../cms/modules/global';
 import {isNumber, isError} from '../../../../lib/isType';
@@ -93,6 +93,9 @@ export interface IhasId {
 
 export const RECIPIENT = 'recipient';
 export const DONOR = 'donor';
+export const MULTILATERAL = 'multilateral';
+export const  CROSSOVER = 'crossover';
+
 export const domesticLevelMap = {
     l1: 'type',
     l2: 'parentCategory',
@@ -103,10 +106,10 @@ export const entitesFnMap = {
     sector: getSectors,
     channel: getChannels,
     bundle: getBundles,
-    toCountry: getEntities,
+    to: getEntities,
     from_di_id:  getEntities,
     to_di_id: getEntities,
-    fromCountryOrOrg: getEntities,
+    from: getEntities,
 };
 
 export const toNumericFields: (obj: any, valueField: string) => any = (obj, valueField = 'value') => {

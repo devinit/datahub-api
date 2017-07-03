@@ -1,8 +1,9 @@
 import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
-import {makeSqlAggregateQuery, entitesFnMap} from '../utils';
+import {makeSqlAggregateQuery, entitesFnMap, DONOR, RECIPIENT, MULTILATERAL, CROSSOVER} from '../utils';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
-
+import {IEntity, getEntities, getEntityByIdAsync,
+        getSectors, getBundles, getChannels} from '../../../cms/modules/global';
 import * as R from 'ramda';
 
 interface IUnbundlingAidQueryTemp {
@@ -19,6 +20,11 @@ interface IUnbundlingAidQuery {
     form?: string;
     channel_web_id?: string;
 }
+interface IUnBundlingAidCountries {
+    to: DH.IIdNamePair[];
+    from: DH.IIdNamePair[];
+}
+
 interface IUnbundlingEnitity {
     id: string;
     color?: string;
@@ -37,11 +43,12 @@ export default class UnbundlingAid {
     }
 
     private db: IDatabase<IExtensions> & IExtensions;
-
+    private donorsBlackList = ['country-unspecified', 'region-unspecified', 'organisation-unspecified',
+                    'arab-fund', 'afesd', 'idb-sp-fund'];
     private groupByMap = {
         channel: 'channel_web_id',
-        toCountry: 'to_di_id',
-        fromCountryOrOrg: 'from_di_id',
+        to: 'to_di_id',
+        from: 'from_di_id',
     };
 
     constructor(db: any) {
@@ -59,10 +66,41 @@ export default class UnbundlingAid {
             return { value: obj.total, name: entity.name, color: entity.color};
         });
     }
-     // TODO: add selection data fn
-    public async getUnbundlingSelectionData(): Promise<DH.UnbundlingAidSelections> {
-        // import the functions for getting the required data from the cms/global modules.
+
+    public async getUnbundlingSelectionData({aidType}): Promise<DH.IUnbundlingAidSelections> {
+        const concept: IConcept = await getConceptAsync(`unbundling-${aidType}`,  `fact.${aidType}`);
+        const years = R.range(concept.startYear, concept.startYear - 10);
+        const countries = await this.getCountries();
+        const channels = await getChannels();
+        const sectors = await getSectors();
+        const form = await getBundles();
+        return {
+            years,
+            ...countries,
+            channels,
+            sectors,
+            form
+        };
     }
+    private async getCountries(): Promise<IUnBundlingAidCountries> {
+        const entites: IEntity[] = await getEntities();
+        return entites.reduce((countries: IUnBundlingAidCountries, entity) => {
+            let result = {};
+            if (entity.donorRecipientType === RECIPIENT || entity.region === MULTILATERAL
+                || entity.donorRecipientType === CROSSOVER ) {
+                const to = R.append(entity, countries.to);
+                result = {...countries, to};
+            }
+            if (entity.donorRecipientType === DONOR || entity.region === MULTILATERAL
+                || entity.donorRecipientType === CROSSOVER) {
+                const from = R.contains(entity.id, this.donorsBlackList) ? countries.from :
+                    R.append(entity, countries.from);
+                result = {...countries, from};
+            }
+            return result as IUnBundlingAidCountries;
+        }, {to: [], from: []});
+    }
+
     private getSqlQueryArgs(args: DH.IUnbundlingAidQuery): IUnbundlingAidQuery {
         const transformed = this.transformQueryArgs(args);
         return R.omit(['groupBy', 'aidType'], transformed);

@@ -16,6 +16,7 @@ export interface IEntity extends IEntityBasic {
     slug: string;
     id: string;
     name: string;
+    region: string;
     donorRecipientType: string;
 }
 export interface IRegional extends IEntityBasic {
