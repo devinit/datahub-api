@@ -2,13 +2,14 @@ import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
 import {formatNumbers} from '../../../../utils';
 import sql from './sql';
-import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
+import {getConceptAsync, IConcept, getConcepts} from '../../../cms/modules/concept';
 import * as R from 'ramda';
 import {isError} from '../../../../lib/isType';
+import {IEntity, getEntities, getEntityById, getEntityByIdAsync} from '../../../cms/modules/global';
 import {getIndicatorData, RECIPIENT, DONOR, IGetIndicatorArgs, isDonor, IProcessedSimple,
         IRAWPopulationAgeBand, normalizeKeyName, IRAW, IRAWQuintile, getTableNameFromSql,
         indicatorDataProcessingSimple, getTotal, IRAWPopulationGroup, IRAWDomestic,
-        domesticDataProcessing} from '../utils';
+        domesticDataProcessing, makeSqlAggregateRangeQuery} from '../utils';
 
 interface ISpotlightArgs {
     id: string;
@@ -19,6 +20,11 @@ interface IRegionalResources {
     regionalResources: string;
     regionalResourcesBreakdown: DH.IIndicatorDataColored[];
 }
+interface IBubbleSizeResults {
+    to_di_id: string;
+    value: string;
+    year: string;
+}
 
 export default class BubbleChart {
     private db: IDatabase<IExtensions> & IExtensions;
@@ -26,119 +32,81 @@ export default class BubbleChart {
 
     constructor(db: any) {
         this.db = db;
-        this.defaultArgs = {db: this.db, conceptType: 'spotlight'};
-    }
-    // id eg uganda or kenya
-    public async  getRevenuePerPersonAndPoverty(opts: ISpotlightArgs): Promise<DH.IOverViewTabRegional> {
-        const regionalResources = await this.getRegionalResources(opts);
-        const [poorestPeople, localGovernmentSpendPerPerson] = await
-            this.getIndicatorsGeneric(opts, [sql.poorestPeople, sql.localGovernmentSpendPerPerson]);
-        return {
-            ...regionalResources,
-            poorestPeople,
-            localGovernmentSpendPerPerson
-        };
-    }
-    public async getPopulationTabRegional(opts: ISpotlightArgs): Promise<DH.IPopulationTabRegional> {
-        const [totalPopulation, populationDensity, averageDependencyRatio, allAverageDependencyRatio]
-             = await this.getIndicatorsGeneric(opts,
-                [sql.totalPopulation, sql.populationDensity,
-                sql.averageDependencyRatio, sql.allAverageDependencyRatio]);
-        const populationDistribution = await this.getPopulationDistribution(opts);
-        return {
-            totalPopulation,
-            populationDensity,
-            populationDistribution,
-            averageDependencyRatio,
-            allAverageDependencyRatio
-        };
-    }
-    public async getPovertyTabRegional(opts: ISpotlightArgs): Promise<DH.IPovertyTabRegional> {
-        const [poorestPeople, lifeExpectancy, stdOfLiving] =
-            await this.getIndicatorsGeneric(opts, [sql.poorestPeople, sql.lifeExpectancy, sql.stdOfLiving]);
-        return {
-            poorestPeople,
-            lifeExpectancy,
-            stdOfLiving
-        };
-    }
-    public async getEducationTabRegional(opts: ISpotlightArgs): Promise<DH.IEducationTabRegional> {
-        const [pupilTeacherRatioGovtSchl, pupilTeacherRatioOtherSchl, studentsPass, primaryEducationfunding] =
-            await this.getIndicatorsGeneric(opts,
-                [sql.pupilTeacherRatioGovtSchl, sql.pupilTeacherRatioOtherSchl,
-                sql.studentsPass, sql.primaryEducationfunding]);
-        return {
-            pupilTeacherRatioGovtSchl,
-            pupilTeacherRatioOtherSchl,
-            studentsPass,
-            primaryEducationfunding
-        };
-    }
-    public async getHealthTabRegional(opts): Promise<DH.IHealthTabRegional> {
-        const [districtPerformance, treatmeantOfTb, healthCareFunding] =
-            await this.getIndicatorsGeneric(opts,
-                [sql.districtHealthPerformance, sql.treatmeantOfTb, sql.healthCareFunding]);
-        return {
-            districtPerformance,
-            treatmeantOfTb,
-            healthCareFunding
-        };
+        this.defaultArgs = {db: this.db, conceptType: 'bubble-chart'};
     }
 
-    public async getLocalGovernmentFinance(id): Promise<DH.ILocalGovernmentFinance> {
-        const indicatorArgs: IGetIndicatorArgs[] = ['total-expenditure', 'total-revenue-and-grants']
-            .map(level => ({
-                ...this.defaultArgs,
-                l1: level,
-                query: sql.localGovernmentFinance,
-                id
-            }));
-        const resourcesRaw: IRAWDomestic[][]  =
-            await Promise.all(indicatorArgs.map((args) => getIndicatorData<IRAWDomestic>(args)));
-        const resources: DH.IDomestic[][] = resourcesRaw.map(domesticDataProcessing);
+    public async getRevenuePerPerson(): Promise<DH.IBubbleChartOda> {
+        const [revenuePerPerson, numberInExtremePoverty] =
+            await this.getIndicatorsGeneric([sql.govtRevenuePerPerson, sql.numberInExtremePoverty]);
         return {
-            revenueAndGrants: resources[1],
-            expenditure: resources[0]
+            revenuePerPerson,
+            numberInExtremePoverty
         };
     }
-    private async getRegionalResources(opts): Promise<IRegionalResources> {
-        const indicatorArgs = [sql.lGFResources, sql.crResources, sql.dResources]
-            .map(query => ({query, ...this.defaultArgs, ...opts}));
-        const resourcesRaw: IRAW[][] = await Promise.all(indicatorArgs.map(args => getIndicatorData<IRAW>(args)));
-        const resourcesSum = resourcesRaw.reduce((sum, data) => Number(data[0].value) + sum, 0);
-        const resourceWithConceptPromises: Array<Promise<DH.IIndicatorDataColored>> = indicatorArgs
-            .map(async (query, index) => {
-                const conceptId = getTableNameFromSql(query);
-                if (isError(conceptId)) throw conceptId;
-                const concept = await getConceptAsync(`spotlight-${opts.country}`, conceptId);
-                const resource: IRAW = resourcesRaw[index][0];
-                return {...concept, value: Number(resource.value), year: concept.startYear};
-            });
-        const resources: DH.IIndicatorDataColored[] = await Promise.all(resourceWithConceptPromises);
+    public async getBubbleChartPoverty(): Promise<DH.IBubbleChartPoverty> {
+        const [revenuePerPerson, percentageInExtremePoverty] =
+            await this.getIndicatorsGeneric([sql.govtRevenuePerPerson, sql.percentageInExtremePoverty]);
         return {
-            regionalResources: formatNumbers(resourcesSum, 1),
-            regionalResourcesBreakdown: resources
+            revenuePerPerson,
+            percentageInExtremePoverty
         };
     }
-    private async getIndicatorsGeneric(opts: ISpotlightArgs, sqlList: string[])
-        : Promise<string[]>  {
+    /**
+     *
+     * @param id: donor country id or indicator table name
+     */
+    public async getBubbleSize({id}): Promise<DH.IIndicatorData[]> {
+        const entities: IEntity[] =  await getEntities();
+        const entity = entities.find(obj => obj.id === id);
+        if (!entity) return this.getSingleIndicatorGeneric(sql.indicator, id);
+        const years = await this.getYears();
+        const queryArgs = {from_di_id: id, years};
+        const queryStr: string =
+                makeSqlAggregateRangeQuery(queryArgs, ' to_di_id', 'fact.oda');
+        const raw: IBubbleSizeResults[] = await this.db.manyCacheable(queryStr, null);
+        return raw.map(obj => {
+            const details = getEntityById(obj.to_di_id, entities);
+            return { ...details, value: 2000, year: 2000};
+        });
+    }
+
+    public async getBubbleChartIndicatorsList(): Promise<DH.IIdNamePair[]> {
+        const args = {...this.defaultArgs, query: sql.odaFrom};
+        const odaFromRaw: Array<{ from_di_id: string}> = await getIndicatorData<{ from_di_id: string}>(args);
+        const entities: IEntity[] =  await getEntities();
+        const concepts: IConcept[] = await getConcepts('global-picture');
+        const odaFrom = odaFromRaw.map(obj => getEntityById(obj.from_di_id, entities));
+        const otherIndicators = concepts.filter(obj => Number(obj.appear_in_bubble_chart) === 1);
+        return R.append(odaFrom, otherIndicators);
+    }
+
+    private async getSingleIndicatorGeneric(query: string, table: string): Promise<DH.IIndicatorData[]> {
+        const args = {...this.defaultArgs, query, table};
+        const raw: IRAW[] = await getIndicatorData<IRAW>(args);
+        const processed: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(raw);
+        const entities: IEntity[] =  await getEntities();
+        return processed.map(obj => {
+             const entity = getEntityById(obj.id, entities);
+             return {...obj, ...entity};
+        });
+    }
+    private async getYears(): Promise<number[]> {
+        // we are using the year range for one of the persistent indicators
+        // there could be a better way
+        const concept: IConcept = await getConceptAsync('bubble-chart-oda',  'data_series.non_grant_revenue_ppp_pc');
+        return R.range(concept.startYear, concept.startYear - 10);
+    }
+    private async getIndicatorsGeneric(sqlList: string[]): Promise<DH.IIndicatorData[][]>  {
         const indicatorArgs: IGetIndicatorArgs[] =
-            sqlList.map(query => ({...this.defaultArgs, query, ...opts}));
+            sqlList.map(query => ({...this.defaultArgs, query}));
         const indicatorRaw: IRAW[][] = await Promise.all(indicatorArgs.map(args => getIndicatorData<IRAW>(args)));
-       //  if (!format) return indicatorRaw.map(data => indicatorDataProcessingSimple<IProcessedSimple>(data));
-        return indicatorRaw.map(data => formatNumbers(data[0].value, 1));
-    }
-    private async getPopulationDistribution(opts): Promise<DH.IPopulationDistribution[]> {
-        const indicatorArgs: IGetIndicatorArgs = {
-            ...this.defaultArgs,
-            query: sql.populationDistribution,
-            ...opts
-        };
-        const data: IRAWPopulationGroup[] = await getIndicatorData<IRAWPopulationGroup>(indicatorArgs);
-        return data.reduce((acc: DH.IPopulationDistribution[], row) => {
-            const rural = {group: 'rural', value: Number(row.value_rural), year: Number(row.year) };
-            const urban = {group: 'urban', value: Number(row.value_urban),  year: Number(row.year) };
-            return [...acc, rural, urban];
-        }, []);
+        const processed: IProcessedSimple[][]  =
+            indicatorRaw.map(data => indicatorDataProcessingSimple<IProcessedSimple>(data));
+        const entities: IEntity[] =  await getEntities();
+        return processed.map(indicatorData =>
+            indicatorData.map(obj => {
+             const entity = getEntityById(obj.id, entities);
+             return {...obj, ...entity};
+        }));
     }
 }

@@ -11,6 +11,7 @@ export interface IConcept {
     startYear: number;
     color: string;
     endYear: number;
+    appear_in_bubble_chart: string | number;
 }
 
 export const getConcepts = (moduleName: string): Promise <IConcept[]> => {

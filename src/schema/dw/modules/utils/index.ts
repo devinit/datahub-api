@@ -11,6 +11,7 @@ export interface IGetIndicatorArgs {
     id: string;
     query: string;
     country?: string;
+    table?: string;
     conceptType: string; // folder with concept file
     db: IDatabase<IExtensions> & IExtensions;
 }
@@ -131,27 +132,28 @@ export const getTotal = (data: Isummable[]): number =>
     }, 0, data);
 
 export const getTableNameFromSql = (sql: string): string | Error => {
-    const matcheCaps = sql.match(/(?<=FROM)(.*)(?=WHERE)/);
-    if (matcheCaps && matcheCaps[0].length) return matcheCaps[0];
-    const matches = sql.match(/(?<=from)(.*)(?=where)/);
-    if (matches && matches[0].length) return matches[0];
+    const matches = sql.match(/FROM(.*)WHERE/);
+    if (matches && matches.length) {
+        return matches[0].split(/\s/)[1];
+    }
     return new Error('couldnt get table name from sql string');
 };
 
 // used by country profile and spotlights
 export async function getIndicatorData<T>(opts: IGetIndicatorArgs): Promise<T[]> {
-    const {db, query, id, conceptType, country} = opts;
-    const table = getTableNameFromSql(query);
-    if (isError(table)) throw table;
+    const {db, query, id, conceptType, country, table} = opts;
+    const tableName = !table ? getTableNameFromSql(query) : table;
+    if (isError(tableName)) throw table;
     let countryEntity = {id: '', donorRecipientType: ''};
     let spotlightEntity = {id: ''};
     if ( conceptType === 'country-profile') countryEntity =  await getEntityBySlugAsync(id);
     if ( conceptType === 'spotlight' && country) spotlightEntity =  await getDistrictBySlugAsync(country, id);
     const theme =  conceptType === 'country-profile' ? countryEntity.donorRecipientType : undefined;
-    const concept: IConcept = await getConceptAsync(conceptType, table, theme);
+    const concept: IConcept = await getConceptAsync(conceptType, tableName, theme);
+    const baseQueryArgs = {...concept, table: tableName };
     const queryArgs = conceptType === 'spotlight' ?
-        {...concept, id: spotlightEntity.id, country, schema: `spotlight_on_${country}`}
-        : {...concept, id: countryEntity.id};
+        {...baseQueryArgs, id: spotlightEntity.id, country, schema: `spotlight_on_${country}`}
+        : {...baseQueryArgs, id: countryEntity.id};
     return db.manyCacheable(query, queryArgs);
 }
 
@@ -244,5 +246,5 @@ export const makeSqlAggregateRangeQuery = <T extends {years: number[]}>
                 return `${query} year = ${queryArgs.years[0]} ${AND}`;
             }
             return `${query} ${field} = ${queryArgs[field]} ${AND}`;
-        }, `SELECT ${groupByField}, sum(value) from ${table}`);
+        }, `SELECT ${groupByField}, sum(value) As value from ${table}`);
 };

@@ -1,7 +1,7 @@
 import * as R from 'ramda';
 import {getPageData} from '../page';
 import {get} from '../../connector';
-import {getEntities, getEntityBySlug, IEntity} from '../global';
+import {getEntities, IEntity} from '../global';
 
 export interface IFlowRef {
     id: string;
@@ -40,7 +40,8 @@ export interface IBudgetLevelRef {
 export const getCountryProfilePageData = async (countrySlug: string): Promise<DH.IPage[]> => {
     const data: DH.IPage[] = await getPageData('country-profile');
     const entities: IEntity[] = await getEntities();
-    const entity: IEntity = getEntityBySlug(countrySlug, entities);
+    const entity: IEntity | undefined = entities.find(obj => obj.slug === countrySlug);
+    if (!entity) throw Error('entity is undefined');
     return R.map((obj: DH.IPage) => {
         const title = obj.title && obj.title.includes('${country}') ?
             obj.title.replace('${country}', entity.name) : obj.title;

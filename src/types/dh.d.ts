@@ -33,9 +33,10 @@ declare namespace DH {
     getUnbundlingOdaPageData: Array<IPage> | null;
     getUnbundlingOOfPageData: Array<IPage> | null;
     getWhereThePoorPageData: Array<IPage> | null;
-    getRevenuePerPersonAndPoverty: Array<IRevenuePerPersonAndPoverty190> | null;
-    getBubbleSize: Array<IBubbleSize> | null;
-    getIndicatorsList: Array<IIdNamePair> | null;
+    getBubbleChartOda: IBubbleChartOda | null;
+    getBubbleChartPoverty: IBubbleChartPoverty | null;
+    getBubbleSize: Array<IIndicatorData> | null;
+    getBubbleChartIndicatorsList: Array<IIdNamePair> | null;
     getOverViewTab: IOverViewTabRegional | null;
     getPovertyTab: IPovertyTabRegional | null;
     getPopulationTab: IPopulationTabRegional | null;
@@ -82,20 +83,27 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IRevenuePerPersonAndPoverty190 {
-    id: string | null;
-    year: number | null;
-    poverty: number | null;
-    revenuePerPerson: number | null;
+  interface IBubbleChartOda {
+    revenuePerPerson: Array<IIndicatorData> | null;
+    numberInExtremePoverty: Array<IIndicatorData> | null;
   }
 
   /*
     description: 
   */
-  interface IBubbleSize {
-    id: string | null;
+  interface IIndicatorData {
     year: number | null;
     value: number | null;
+    id: string | null;
+    name: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IBubbleChartPoverty {
+    revenuePerPerson: Array<IIndicatorData> | null;
+    percentageInExtremePoverty: Array<IIndicatorData> | null;
   }
 
   /*
@@ -248,16 +256,6 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IIndicatorData {
-    year: number | null;
-    value: number | null;
-    id: string | null;
-    name: string | null;
-  }
-
-  /*
-    description: 
-  */
   interface IMapData {
     map: Array<IMapUnit> | null;
     name: string | null;
@@ -361,25 +359,6 @@ declare namespace DH {
     sectors: Array<IIdNamePair> | null;
     form: Array<IIdNamePair> | null;
     years: Array<number> | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IGovtRevenuePerPerson {
-    id: string | null;
-    year: number | null;
-    value: number | null;
-    type: string | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IPoverty190 {
-    id: string | null;
-    year: number | null;
-    value: number | null;
   }
 
   /*

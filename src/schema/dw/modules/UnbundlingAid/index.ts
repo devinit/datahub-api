@@ -32,7 +32,7 @@ interface IUnbundlingEnitity {
 }
 
 interface IUnbundlingAidResult extends IUnbundlingAidQuery {
-    total: number;
+    value: string;
 }
 
 export default class UnbundlingAid {
@@ -63,7 +63,7 @@ export default class UnbundlingAid {
         const groupByAsColumnName = this.groupByMap[args.groupBy] ? this.groupByMap[args.groupBy] : args.groupBy;
         return raw.map(obj => {
             const entity: IUnbundlingEnitity = entites.find(item => obj[groupByAsColumnName] === item.id);
-            return { value: obj.total, name: entity.name, color: entity.color};
+            return { value: Number(obj.value), name: entity.name, color: entity.color};
         });
     }
     public async getUnbundlingSelectionData({aidType}): Promise<DH.IUnbundlingAidSelections> {

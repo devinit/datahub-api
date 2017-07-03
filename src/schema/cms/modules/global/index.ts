@@ -27,6 +27,7 @@ export interface IRegional extends IEntityBasic {
 
 export const getEntities = (): Promise<IEntity[]> => get<IEntity>('global/entity.csv');
 
+// TODO: refactor so that it returns Error if entity is not found
 export const getEntityById = (id: string, entities: IEntity[]): IEntity =>
     R.find(R.propEq('id', id), entities) as IEntity;
 
