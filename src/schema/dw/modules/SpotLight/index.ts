@@ -20,7 +20,7 @@ interface IRegionalResources {
     regionalResourcesBreakdown: DH.IIndicatorDataColored[];
 }
 
-export default class Profile {
+export default class SpotLight {
     private db: IDatabase<IExtensions> & IExtensions;
     private defaultArgs;
 

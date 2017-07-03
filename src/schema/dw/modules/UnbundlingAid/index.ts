@@ -66,7 +66,6 @@ export default class UnbundlingAid {
             return { value: obj.total, name: entity.name, color: entity.color};
         });
     }
-
     public async getUnbundlingSelectionData({aidType}): Promise<DH.IUnbundlingAidSelections> {
         const concept: IConcept = await getConceptAsync(`unbundling-${aidType}`,  `fact.${aidType}`);
         const years = R.range(concept.startYear, concept.startYear - 10);
@@ -100,12 +99,10 @@ export default class UnbundlingAid {
             return result as IUnBundlingAidCountries;
         }, {to: [], from: []});
     }
-
     private getSqlQueryArgs(args: DH.IUnbundlingAidQuery): IUnbundlingAidQuery {
         const transformed = this.transformQueryArgs(args);
         return R.omit(['groupBy', 'aidType'], transformed);
     }
-
     private transformQueryArgs(args: DH.IUnbundlingAidQuery): IUnbundlingAidQuery {
         return R.keys(args).reduce((acc, key) => {
             if (this.groupByMap[key]) {

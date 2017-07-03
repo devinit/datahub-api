@@ -33,7 +33,7 @@ declare namespace DH {
     getUnbundlingOdaPageData: Array<IPage> | null;
     getUnbundlingOOfPageData: Array<IPage> | null;
     getWhereThePoorPageData: Array<IPage> | null;
-    getRevenuePerPersonAndPoverty190: Array<IRevenuePerPersonAndPoverty190> | null;
+    getRevenuePerPersonAndPoverty: Array<IRevenuePerPersonAndPoverty190> | null;
     getBubbleSize: Array<IBubbleSize> | null;
     getIndicatorsList: Array<IIdNamePair> | null;
     getOverViewTab: IOverViewTabRegional | null;

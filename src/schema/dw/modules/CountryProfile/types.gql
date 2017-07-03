@@ -11,7 +11,6 @@ type SpendingAllocation {
   color: String
 }
 
-
 type Quintile {
   value: Float
   quintileName: String

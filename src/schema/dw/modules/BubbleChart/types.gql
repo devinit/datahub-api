@@ -1,37 +1,10 @@
-
-type GovtRevenuePerPerson {
-  # id country code
-  id: String
-  year: Int
-  value: Int
-  # actual or budgeted in our case we use actual values
-  type: String 
-}
-
-type Poverty190 {
-  id: String
-  year: Int
-  value: Int
-}
-
-type BubbleSize {
-  # Indicator label
-  id: String
-  year: Int
-  value: Int
-}
-
-type revenuePerPersonAndPoverty190 {
-  id: String
-  year: Int
-  poverty: Int
-  revenuePerPerson: Int
-}
-
 type Query {
-  getRevenuePerPersonAndPoverty190: [revenuePerPersonAndPoverty190]
+  # indicatorData is defined in country profiles type file
+  getRevenuePerPerson: [IndicatorData]
+  getNumberInExtremePoverty: [IndicatorData]
+  getPercentageInExtremePoverty: [IndicatorData]
   # we return data for the entire year range
-  getBubbleSize(indicatorOrCountry: String): [BubbleSize]
+  getBubbleSize(indicatorOrCountry: String): [IndicatorData]
   # IdNamePair is defined in unbundling aid types 
   # this list feeds off oda table from countries and global/concept file
   getIndicatorsList: [IdNamePair]
