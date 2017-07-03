@@ -56,7 +56,7 @@ type PovertyTab {
   # Poverty reduction over time area chart trend
   poverty190Trend: [IndicatorData]
   # how deep is poverty %
-  depthOfExtremePoverty: Int
+  depthOfExtremePoverty: String
   # Recipients: how income is distributed, % of income received by each quintil
   incomeDistTrend: [Quintile]
 }

@@ -2,7 +2,7 @@ import {IDatabase} from 'pg-promise';
 import * as R from 'ramda';
 import {IExtensions} from '../../db';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
-import {getDistrictBySlugAsync} from '../../../cms/modules/spotlight';
+import {getDistrictBySlugAsync, IDistrict} from '../../../cms/modules/spotlight';
 import {IEntity, getEntityById, getEntities, getEntityByIdAsync,
        getEntityBySlugAsync, getSectors, getBundles, getChannels} from '../../../cms/modules/global';
 import {isNumber, isError} from '../../../../lib/isType';
@@ -10,7 +10,6 @@ import {isNumber, isError} from '../../../../lib/isType';
 export interface IGetIndicatorArgs {
     id: string;
     query: string;
-    theme?: string;
     country?: string;
     conceptType: string; // folder with concept file
     db: IDatabase<IExtensions> & IExtensions;
@@ -138,16 +137,18 @@ export const getTableNameFromSql = (sql: string): string | Error => {
 
 // used by country profile and spotlights
 export async function getIndicatorData<T>(opts: IGetIndicatorArgs): Promise<T[]> {
-    const {db, query, id, theme, conceptType, country} = opts;
+    const {db, query, id, conceptType, country} = opts;
     const table = getTableNameFromSql(query);
     if (isError(table)) throw table;
-    let entity = {id: ''};
-    if ( conceptType === 'country-profile') entity =  await getEntityBySlugAsync(id);
-    if ( conceptType === 'spotlight' && country) entity =  await getDistrictBySlugAsync(country, id);
+    let countryEntity = {id: '', donorRecipientType: ''};
+    let spotlightEntity = {id: ''};
+    if ( conceptType === 'country-profile') countryEntity =  await getEntityBySlugAsync(id);
+    if ( conceptType === 'spotlight' && country) spotlightEntity =  await getDistrictBySlugAsync(country, id);
+    const theme =  conceptType === 'country-profile' ? countryEntity.donorRecipientType : undefined;
     const concept: IConcept = await getConceptAsync(conceptType, table, theme);
     const queryArgs = conceptType === 'spotlight' ?
-        {...concept, id: entity.id, country, schema: `spotlight_on_${country}`}
-        : {...concept, id: entity.id};
+        {...concept, id: spotlightEntity.id, country, schema: `spotlight_on_${country}`}
+        : {...concept, id: countryEntity.id};
     return db.manyCacheable(query, queryArgs);
 }
 

@@ -421,7 +421,7 @@ declare namespace DH {
   */
   interface IPovertyTab {
     poverty190Trend: Array<IIndicatorData> | null;
-    depthOfExtremePoverty: number | null;
+    depthOfExtremePoverty: string | null;
     incomeDistTrend: Array<IQuintile> | null;
   }
 

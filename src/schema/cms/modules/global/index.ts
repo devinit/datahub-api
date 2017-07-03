@@ -14,6 +14,8 @@ export interface ICurrency {
 export interface IEntity extends IEntityBasic {
     type: string;
     slug: string;
+    id: string;
+    name: string;
     donorRecipientType: string;
 }
 export interface IRegional extends IEntityBasic {

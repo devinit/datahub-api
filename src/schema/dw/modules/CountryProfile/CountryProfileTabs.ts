@@ -1,32 +1,29 @@
-// TODO: handle no-data values
 import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
 import {formatNumbers} from '../../../../utils';
 import sql from './sql';
 import * as R from 'ramda';
-import {getIndicatorData, RECIPIENT, DONOR, IGetIndicatorArgs, isDonor,
+import {getIndicatorData, IGetIndicatorArgs, isDonor,
         IRAWPopulationAgeBand, normalizeKeyName, IRAW, IRAWQuintile,
-        indicatorDataProcessingSimple, getTotal, IRAWPopulationGroup, IRAWMulti} from '../utils';
+        indicatorDataProcessingSimple, IRAWPopulationGroup, IRAWMulti} from '../utils';
 
 export default class CountryProfileTabs {
     private db: IDatabase<IExtensions> & IExtensions;
     private defaultDonorArgs;
-    private defaultRecipientArgs;
     private defaultArgs;
 
     constructor(db: any) {
         this.db = db;
         this.defaultArgs = {db: this.db, conceptType: 'country-profile'};
-        this.defaultDonorArgs = {db: this.db, theme: DONOR};
-        this.defaultRecipientArgs = {db: this.db, theme: RECIPIENT};
     }
+
     public async getOverViewTab({id}): Promise<DH.OverViewTab> {
         const isDonorCountry =  await isDonor(id);
         if (isDonorCountry) return this.getOverViewTabDonors(id);
         return this.getOverViewTabRecipients(id);
     }
     public async getPopulationTab({id}): Promise<DH.IPopulationTab> {
-        const population = await this.getPopulation(id);
+        const [population] = await this.getIndicatorsGeneric(id, [sql.population]);
         const populationDistribution = await this.getPopulationDistribution(id);
         const populationPerAgeBand = await this.getPopulationPerAgeBand(id);
         return {
@@ -37,7 +34,7 @@ export default class CountryProfileTabs {
     }
     public async getPovertyTab({id}): Promise<any> {
         const poverty190Trend = await this.getPoverty190Trend(id);
-        const depthOfExtremePoverty = await this.getDepthOfExtremePoverty(id);
+        const [depthOfExtremePoverty] = await this.getIndicatorsGeneric(id, [sql.depthOfExtremePoverty]);
         const incomeDistTrend = await this.getIncomeDistTrend(id);
         return {
             poverty190Trend,
@@ -47,21 +44,20 @@ export default class CountryProfileTabs {
     }
 
     public async getOverViewTabRecipients(countryId: string): Promise<DH.IOverViewTabRecipients> {
-        const internationalResources  = await this.getInternationalResources(countryId);
-        const domesticPublicResources = await this.getDomesticPublicResources(countryId);
-        const population = await this.getPopulation(countryId);
-        const poorestPeople = await this.getPoorestPeople(countryId);
-        const governmentSpendPerPerson = await this.getGovernmentSpendPerPerson(countryId, RECIPIENT);
+        const [internationalResources, domesticResources, population, poorestPeople, governmentSpendPerPerson]
+            = await this.getIndicatorsGeneric(countryId,
+                [sql.internationalResources, sql.domesticRevenue, sql.population,
+                sql.poorestPeople, sql.governmentSpendPerPerson]);
         return {
             internationalResources,
-            domesticPublicResources,
+            domesticResources,
             population,
             poorestPeople,
             governmentSpendPerPerson
         };
     }
     public async getOverViewTabDonors(countryId: string): Promise<DH.IOverViewTabDonors> {
-        const governmentSpendPerPerson = await this.getGovernmentSpendPerPerson(countryId, DONOR);
+        const [governmentSpendPerPerson] = await this.getIndicatorsGeneric(countryId, [sql.governmentSpendPerPerson]);
         const averageIncomerPerPerson = await this.getAverageIncomerPerPerson(countryId);
         const incomeDistTrend = await this.getIncomeDistTrend(countryId);
         return {
@@ -70,58 +66,14 @@ export default class CountryProfileTabs {
             incomeDistTrend
         };
     }
-    private async getInternationalResources(id): Promise<string> {
-        const indicatorArgs: IGetIndicatorArgs = {
-            ...this.defaultRecipientArgs,
-            query: sql.internationalResources,
-            id,
-        };
-        const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
-        const totalResources: number = getTotal(data);
-        return formatNumbers(totalResources, 1);
+    private async getIndicatorsGeneric(id: string, sqlList: string[])
+        : Promise<string[]>  {
+        const indicatorArgs: IGetIndicatorArgs[] =
+            sqlList.map(query => ({...this.defaultArgs, query, id}));
+        const indicatorRaw: IRAW[][] = await Promise.all(indicatorArgs.map(args => getIndicatorData<IRAW>(args)));
+        return indicatorRaw.map(data => formatNumbers(data[0].value, 1));
     }
-    private async getDomesticPublicResources(id): Promise<string> {
-        const indicatorArgs: IGetIndicatorArgs = {
-            ...this.defaultRecipientArgs,
-            query: sql.domesticResources,
-            id
-        };
-        const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
-        const domesticRevenue: number = Number(data[0].value);
-        return formatNumbers(domesticRevenue, 1);
-    }
-    private async getPopulation(id): Promise<string> {
-        const indicatorArgs: IGetIndicatorArgs = {
-            ...this.defaultArgs,
-            table: 'fact.population_total',
-            query: sql.population,
-            id
-        };
-        const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
-        const totalPopulation: number = Number(data[0].value);
-        return formatNumbers(totalPopulation, 0);
-    }
-    private async getPoorestPeople(id): Promise<string> {
-        const indicatorArgs: IGetIndicatorArgs = {
-            ...this.defaultRecipientArgs,
-            query: sql.poorestPeople,
-            id
-        };
-        const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
-        const poorestPeople: number = Number(data[0].value);
-        return formatNumbers(poorestPeople, 1);
-    }
-    private async getGovernmentSpendPerPerson(id, theme): Promise<string> {
-        const indicatorArgs: IGetIndicatorArgs = {
-            query: sql.governmentSpendPerPerson,
-            id,
-            ...this.defaultArgs,
-            theme
-        };
-        const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
-        const poorestPeople: number = Number(data[0].value);
-        return poorestPeople.toFixed(0);
-    }
+
     private async getAverageIncomerPerPerson(id): Promise<DH.IIndicatorData[]> {
          const indicatorArgs: IGetIndicatorArgs = {
             ...this.defaultDonorArgs,
@@ -176,14 +128,5 @@ export default class CountryProfileTabs {
         };
         const data: IRAWMulti[] = await getIndicatorData<IRAWMulti>(indicatorArgs);
         return indicatorDataProcessingSimple<DH.IIndicatorData>(data, 'value_2');
-    }
-    private async getDepthOfExtremePoverty(id): Promise<number> {
-        const indicatorArgs: IGetIndicatorArgs = {
-            ...this.defaultRecipientArgs,
-            query: sql.depthOfExtremePoverty,
-            id
-        };
-        const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
-        return Math.round(Number(data[0].value));
     }
 }
