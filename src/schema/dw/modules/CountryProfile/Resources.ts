@@ -161,8 +161,7 @@ export default class Resources {
             id
         };
         const gdp: IRAW[] = await getIndicatorData<IRAW>(indicatorArgsGdp);
-        if (gdp[0].value) return formatNumber(Number(gdp[0].value), 1);
-        return 'No data';
+        return formatNumbers(gdp[0].value, 1);
     }
     private async getGrantsAsPcOfRevenue(id: string): Promise<string> {
         const indicatorArgs: IGetIndicatorArgs[] = [sql.totalDomesticRevenueAndGrants, sql.grants]
@@ -188,7 +187,6 @@ export default class Resources {
     private async getNetODAOfGNIIn(id: string): Promise<number> {
         const indicatorArgs: IGetIndicatorArgs = {
             ...this.defaultArgs,
-            table: 'fact.in_oda_net_2015',
             query: sql.ODANetIn,
             id
         };

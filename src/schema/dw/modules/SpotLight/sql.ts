@@ -28,5 +28,5 @@ export default {
     crResources: 'SELECT value FROM ${^schema}.${^country}_central_resources WHERE district_id =${id} AND year = ${startYear}',
     // tslint:disable-next-line:max-line-length
     dResources: 'SELECT value FROM ${^schema}.${^country}_donor_resources WHERE district_id = ${id} AND year = ${startYear}',
-    localGovernmentFinance: 'SELECT value FROM ${^schema}.${^country}_finance WHERE district_id = ${id} AND year >= ${startYear} AND year <= ${endYear}'
+    localGovernmentFinance: 'SELECT * FROM ${^schema}.${^country}_finance WHERE district_id = ${id} AND l1 = ${l1} AND year >= ${startYear} AND year <= ${endYear}'
 };

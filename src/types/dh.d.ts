@@ -324,7 +324,7 @@ declare namespace DH {
     description: 
   */
   interface ILocalGovernmentFinance {
-    revenue: Array<IDomestic> | null;
+    revenueAndGrants: Array<IDomestic> | null;
     expenditure: Array<IDomestic> | null;
   }
 

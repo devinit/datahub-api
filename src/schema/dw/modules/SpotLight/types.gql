@@ -61,7 +61,7 @@ type HealthTabRegional {
 
 type LocalGovernmentFinance {
   # come from finance file
-  revenue: [Domestic]
+  revenueAndGrants: [Domestic]
   expenditure: [Domestic]
 }
 

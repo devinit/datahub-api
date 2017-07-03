@@ -7,7 +7,8 @@ import * as R from 'ramda';
 import {isError} from '../../../../lib/isType';
 import {getIndicatorData, RECIPIENT, DONOR, IGetIndicatorArgs, isDonor, IProcessedSimple,
         IRAWPopulationAgeBand, normalizeKeyName, IRAW, IRAWQuintile, getTableNameFromSql,
-        indicatorDataProcessingSimple, getTotal, IRAWPopulationGroup, } from '../utils';
+        indicatorDataProcessingSimple, getTotal, IRAWPopulationGroup, IRAWDomestic,
+        domesticDataProcessing} from '../utils';
 
 interface ISpotlightArgs {
     id: string;
@@ -85,13 +86,20 @@ export default class Profile {
     }
 
     public async getLocalGovernmentFinance(id): Promise<DH.ILocalGovernmentFinance> {
-        const indicatorArgs: IGetIndicatorArgs = {
-            ...this.defaultArgs,
-            query: sql.localGovernmentFinance,
-            id
+        const indicatorArgs: IGetIndicatorArgs[] = ['total-expenditure', 'total-revenue-and-grants']
+            .map(level => ({
+                ...this.defaultArgs,
+                l1: level,
+                query: sql.localGovernmentFinance,
+                id
+            }));
+        const resourcesRaw: IRAWDomestic[][]  =
+            await Promise.all(indicatorArgs.map((args) => getIndicatorData<IRAWDomestic>(args)));
+        const resources: DH.IDomestic[][] = resourcesRaw.map(domesticDataProcessing);
+        return {
+            revenueAndGrants: resources[1],
+            expenditure: resources[0]
         };
-        const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
-
     }
     private async getRegionalResources(opts): Promise<IRegionalResources> {
         const indicatorArgs = [sql.lGFResources, sql.crResources, sql.dResources]
