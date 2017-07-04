@@ -38,6 +38,7 @@ interface IGetIndicatorArgsSimple {
     start_year?: number;
     end_year?: number;
     sql?: ISqlSimple;
+    table?: string;
     query?: string;
 }
 export interface IRAW {
@@ -159,14 +160,14 @@ export async function getIndicatorData<T>(opts: IGetIndicatorArgs): Promise<T[]>
 
 // used by maps module
 export const getIndicatorDataSimple = async (opts: IGetIndicatorArgsSimple): Promise<IRAW[]> => {
-        const {id, sql, db, query, start_year, end_year } = opts;
+        const {table, sql, db, query, start_year, end_year} = opts;
         let queryStr = '';
         if (!query && sql) queryStr = !isNumber(end_year) ? sql.indicator : sql.indicatorRange;
         if (query) queryStr = query;
-        const table = getTableNameFromSql(queryStr);
-        if (isError(table)) console.error('get table name error: ', table);
-        if (!queryStr.length) console.error('invalid query string');
-        return db.manyCacheable(queryStr, {start_year, end_year, table, id});
+        const tableName = !table ? getTableNameFromSql(queryStr) : table;
+        if (isError(tableName)) throw Error('No valid table name provided');
+        if (!queryStr.length) throw Error('invalid query string');
+        return db.manyCacheable(queryStr, {start_year, end_year, table: tableName});
 };
 
 export const addCountryName = (obj: IhasId, entites: IEntity[]): any => {
@@ -231,7 +232,7 @@ export const makeSqlAggregateQuery = <T extends {}>
         return queryArgsKeys.reduce((query, field, index) => {
             const AND = index + 1 < queryArgsKeys.length ? 'AND' : `GROUP BY ${groupByField}`;
             return `${query} ${field} = ${queryArgs[field]} ${AND}`;
-        }, `SELECT ${groupByField}, sum(value) AS value from ${table}`);
+        }, `SELECT ${groupByField}, sum(value) AS value from ${table^}`);
 };
 
 export const makeSqlAggregateRangeQuery = <T extends {years: number[]}>
@@ -246,5 +247,5 @@ export const makeSqlAggregateRangeQuery = <T extends {years: number[]}>
                 return `${query} year = ${queryArgs.years[0]} ${AND}`;
             }
             return `${query} ${field} = ${queryArgs[field]} ${AND}`;
-        }, `SELECT ${groupByField}, sum(value) As value from ${table}`);
+        }, `SELECT ${groupByField}, sum(value) As value from ${table^}`);
 };

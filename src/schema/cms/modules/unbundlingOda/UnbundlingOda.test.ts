@@ -6,5 +6,5 @@ describe('Unbundling Oda module tests', () => {
         const pageData: DH.IPage[] = await getUnbundlingOdaPageData();
         expect(pageData.length).toBeGreaterThan(0);
         expect(prettyFormat(pageData)).toMatchSnapshot();
-    }, );
+    }, 10000);
 });

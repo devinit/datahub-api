@@ -10,8 +10,8 @@ const dataB = [
     {id: 'UK', value: 3000, year: 2000}
     ];
 const entities = [
-    {id: 'UK', name: 'England', type: 'donor', slug: 'uk', donorRecipientType: DONOR},
-    {id: 'UG', name: 'Uganda', type: 'recipient', slug: 'uganda', donorRecipientType: RECIPIENT}
+    {id: 'UK', name: 'England', type: 'donor', slug: 'uk', donor_recipient_type: DONOR},
+    {id: 'UG', name: 'Uganda', type: 'recipient', slug: 'uganda', donor_recipien_type: RECIPIENT}
     ];
 describe('Utility functions test', () => {
     it('should remove di_id field in objects and replace with id', () => {
@@ -23,7 +23,7 @@ describe('Utility functions test', () => {
     });
     it('should return countryname using entities data', () => {
         const entity = addCountryName(dataB[1], entities);
-        expect(entity.countryName).toBe('England');
+        expect(entity.name).toBe('England');
     });
     it('should create an aggregate sql query for a single year', () => {
         const argsA = {

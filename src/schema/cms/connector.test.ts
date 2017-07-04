@@ -1,5 +1,6 @@
 import 'jest';
 import {csvToJson, get} from './connector';
+import * as prettyFormat from 'pretty-format';
 
 describe('Github connector', () => {
 
@@ -13,8 +14,8 @@ describe('Github connector', () => {
     });
 
     it('should get data from github and return it as json', async () => {
-        const themes = await get<{id: string}>('global-picture/themes.csv');
+        const themes = await get<{id: string}>('global-picture/theme.csv');
         expect(themes.length).toBeGreaterThan(4);
-        expect(themes[0].id).toBe('poorest20pct');
+        expect(prettyFormat(themes)).toMatchSnapshot();
     }, 5000);
 });

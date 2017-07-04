@@ -2,7 +2,7 @@ import * as prettyFormat from 'pretty-format';
 import CountryProfile from '.';
 import db from '../../db';
 
-describe('country profile DW module tests', () => {
+describe.skip('country profile DW module tests', () => {
     const countryProfile = new CountryProfile(db);
     const tab = countryProfile.tabs;
     const resources = countryProfile.resources;
