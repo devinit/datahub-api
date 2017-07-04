@@ -16,15 +16,20 @@ type Quintile {
   quintileName: String
 }
 
+type ToolTip {
+  indicator: String
+  message: String
+}
+
 type ResourceData {
   year: Int!
   value: Float!
-  name: String!
-  shortName: String
+  flow_name: String!
+  short_name: String
   # Category i.e FDI, ODA
-  flowCategory: String
+  flow_category: String
   # flow either inflow or outflow
-  flowType: String
+  flow_type: String
   # in or out
   direction: String
   color: String
@@ -39,6 +44,7 @@ type OverViewTabRecipients {
   internationalResources: String
   # recipient countries $PPP
   governmentSpendPerPerson: String
+  # TODO: toolTips: [ToolTips]
 }
 
 type OverViewTabDonors {

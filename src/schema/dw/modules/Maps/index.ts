@@ -13,8 +13,8 @@ interface IgetMapDataOpts {
 export default class Maps {
 
     public static DACOnlyData(DACCountries: string[], indicatorData: DH.IMapUnit[]): DH.IMapUnit[] {
-       return DACCountries.map(countryName =>
-            R.find((obj: DH.IMapUnit) => obj.countryName === countryName, indicatorData));
+       return DACCountries.map(name =>
+            R.find((obj: DH.IMapUnit) => obj.name === name, indicatorData));
     }
 
     private db: IDatabase<IExtensions> & IExtensions;

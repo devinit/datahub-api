@@ -35,8 +35,8 @@ interface ISqlSimple {
 interface IGetIndicatorArgsSimple {
     id?: string;
     db: IDatabase<IExtensions> & IExtensions;
-    startYear?: number;
-    endYear?: number;
+    start_year?: number;
+    end_year?: number;
     sql?: ISqlSimple;
     query?: string;
 }
@@ -144,11 +144,11 @@ export async function getIndicatorData<T>(opts: IGetIndicatorArgs): Promise<T[]>
     const {db, query, id, conceptType, country, table} = opts;
     const tableName = !table ? getTableNameFromSql(query) : table;
     if (isError(tableName)) throw table;
-    let countryEntity = {id: '', donorRecipientType: ''};
+    let countryEntity = {id: '', donor_recipient_type: ''};
     let spotlightEntity = {id: ''};
     if ( conceptType === 'country-profile') countryEntity =  await getEntityBySlugAsync(id);
     if ( conceptType === 'spotlight' && country) spotlightEntity =  await getDistrictBySlugAsync(country, id);
-    const theme =  conceptType === 'country-profile' ? countryEntity.donorRecipientType : undefined;
+    const theme =  conceptType === 'country-profile' ? countryEntity.donor_recipient_type : undefined;
     const concept: IConcept = await getConceptAsync(conceptType, tableName, theme);
     const baseQueryArgs = {...concept, table: tableName };
     const queryArgs = conceptType === 'spotlight' ?
@@ -159,20 +159,20 @@ export async function getIndicatorData<T>(opts: IGetIndicatorArgs): Promise<T[]>
 
 // used by maps module
 export const getIndicatorDataSimple = async (opts: IGetIndicatorArgsSimple): Promise<IRAW[]> => {
-        const {id, sql, db, query, startYear, endYear } = opts;
+        const {id, sql, db, query, start_year, end_year } = opts;
         let queryStr = '';
-        if (!query && sql) queryStr = !isNumber(endYear) ? sql.indicator : sql.indicatorRange;
+        if (!query && sql) queryStr = !isNumber(end_year) ? sql.indicator : sql.indicatorRange;
         if (query) queryStr = query;
         const table = getTableNameFromSql(queryStr);
         if (isError(table)) console.error('get table name error: ', table);
         if (!queryStr.length) console.error('invalid query string');
-        return db.manyCacheable(queryStr, {startYear, endYear, table, id});
+        return db.manyCacheable(queryStr, {start_year, end_year, table, id});
 };
 
 export const addCountryName = (obj: IhasId, entites: IEntity[]): any => {
     if (obj.id === null) return obj;
     const entity = getEntityById(obj.id, entites);
-    return {...obj, countryName: entity.name};
+    return {...obj, name: entity.name};
 };
 
 export const indicatorDataProcessing = async (data: IhasDiId[]): Promise<DH.IMapUnit[]> => {
@@ -198,8 +198,8 @@ export const domesticDataProcessing = (data: IRAWDomestic[]): DH.IDomestic[] => 
 };
 
 export const isDonor = async (id: string): Promise<boolean>  => {
-    const {donorRecipientType}: IEntity = await getEntityByIdAsync(id);
-    if (donorRecipientType === DONOR) return true;
+    const {donor_recipient_type}: IEntity = await getEntityByIdAsync(id);
+    if (donor_recipient_type === DONOR) return true;
     return false;
 };
 

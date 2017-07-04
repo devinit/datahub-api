@@ -17,12 +17,12 @@ export interface IEntity extends IEntityBasic {
     id: string;
     name: string;
     region: string;
-    donorRecipientType: string;
+    donor_recipient_type: string;
 }
 export interface IRegional extends IEntityBasic {
-    dacContinentCode: string;
-    dacId: string;
-    dacContinent: string;
+    dac_continent_code: string;
+    dac_id: string;
+    dac_continent: string;
 }
 
 export const getEntities = (): Promise<IEntity[]> => get<IEntity>('global/entity.csv');

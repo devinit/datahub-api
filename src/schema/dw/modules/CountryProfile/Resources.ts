@@ -31,8 +31,8 @@ interface IFlowProcessed {
   year: number;
   id: string;
   value: number;
-  flowType: string;
-  flowName: string;
+  flow_type: string;
+  flow_name: string;
   direction: string;
 }
 
@@ -79,10 +79,10 @@ export default class Resources {
         const flow: IFlowRef =  await getFlowByIdAsync(resourceId);
         const concept: IConcept = await getConceptAsync('country-profile', flow.id);
         let args = {
-            years: [concept.startYear, concept.endYear],
+            years: [concept.start_year, concept.end_year],
         };
-        if (flow.donorRecipientType === DONOR) args = {...args, di_id_from: countryId};
-        if (flow.donorRecipientType === RECIPIENT) args = {...args, di_id_to: countryId};
+        if (flow.type === DONOR) args = {...args, di_id_from: countryId};
+        if (flow.type === RECIPIENT) args = {...args, di_id_to: countryId};
         if (flow.id === 'data_series.intl_flows_recipients' || flow.id === 'data_series.intl_flows_donors') {
             args = {...args, flow_name: resourceId};
         }
@@ -210,7 +210,7 @@ export default class Resources {
         return flows.reduce ((flowTypes: any, flow) => {
             const selections = flowSelections
                 .filter(selection => selection.id === flow.id)
-                .map(obj => ({id: obj.groupById, name: obj.name}));
+                .map(obj => ({id: obj.group_by_id, name: obj.name}));
             const obj = {...flow, selections};
             if (flow.direction === 'in') return flowTypes.inflows.push(obj);
             return flowTypes.outflows.push(obj);
@@ -240,9 +240,9 @@ export default class Resources {
     }
     private async processResourceData(data: IRAWFlow[]): Promise<DH.IResourceData[]> {
         const processed: IFlowProcessed[] = indicatorDataProcessingSimple<IFlowProcessed>(data);
-        const flows: IFlowRef[] = await getFlows();
+        const flowRefs: IFlowRef[] = await getFlows();
         return processed.map(obj => {
-            const flow = R.find(R.propEq('id', obj.flowName), flows) as IFlowRef;
+            const flow = flowRefs.find(flowRef => flowRef.id === obj.flow_name);
             return {...obj, ...flow};
         });
     }

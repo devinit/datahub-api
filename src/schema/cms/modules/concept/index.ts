@@ -7,11 +7,15 @@ export interface IConcept {
     name: string;
     description: string;
     uom: string;
-    uomDisplay: string;
-    startYear: number;
+    uom_display: string;
+    start_year: number;
+    include_in_methodology_page: number;
     color: string;
-    endYear: number;
-    appear_in_bubble_chart: string | number;
+    end_year: number;
+    heading: string;
+    source: string;
+    source_link: string;
+    appear_in_bubble_chart: number;
 }
 
 export const getConcepts = (moduleName: string): Promise <IConcept[]> => {

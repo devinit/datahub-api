@@ -219,10 +219,10 @@ declare namespace DH {
   interface IResourceData {
     year: number;
     value: number;
-    name: string;
-    shortName: string | null;
-    flowCategory: string | null;
-    flowType: string | null;
+    flow_name: string;
+    short_name: string | null;
+    flow_category: string | null;
+    flow_type: string | null;
     direction: string | null;
     color: string | null;
   }
@@ -259,13 +259,16 @@ declare namespace DH {
   interface IMapData {
     map: Array<IMapUnit> | null;
     name: string | null;
-    uomDisplay: string | null;
+    uom_display: string | null;
     uom: string | null;
-    startYear: number | null;
-    endYear: number | null;
+    start_year: number | null;
+    end_year: number | null;
     description: string | null;
+    source: string | null;
+    source_link: string | null;
     theme: string | null;
     color: string | null;
+    heading: string | null;
     total: number | null;
   }
 
@@ -274,7 +277,7 @@ declare namespace DH {
   */
   interface IMapUnit {
     id: string | null;
-    countryName: string | null;
+    name: string | null;
     year: number | null;
     value: number | null;
   }
@@ -367,6 +370,14 @@ declare namespace DH {
   interface IQuintile {
     value: number | null;
     quintileName: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IToolTip {
+    indicator: string | null;
+    message: string | null;
   }
 
   /*
