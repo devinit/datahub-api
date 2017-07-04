@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Github connector should get data from github and return it as json 1`] = `
+"Array [
+  Object {
+    \\"default\\": \\"poor-people-190\\",
+    \\"id\\": \\"poverty\\",
+    \\"name\\": \\"Poverty\\",
+    \\"position\\": \\"1\\",
+  },
+  Object {
+    \\"default\\": \\"fragile-states\\",
+    \\"id\\": \\"vulnerability\\",
+    \\"name\\": \\"Vulnerability\\",
+    \\"position\\": \\"2\\",
+  },
+  Object {
+    \\"default\\": \\"non-grant-revenue-ppp-pc\\",
+    \\"id\\": \\"government-finance\\",
+    \\"name\\": \\"Government finance\\",
+    \\"position\\": \\"3\\",
+  },
+  Object {
+    \\"default\\": \\"largest-intl-flow\\",
+    \\"id\\": \\"international-finance\\",
+    \\"name\\": \\"International finance\\",
+    \\"position\\": \\"4\\",
+  },
+  Object {
+    \\"default\\": \\"warehouse/fact/in_oda_gross_2015\\",
+    \\"id\\": \\"international-official-finance\\",
+    \\"name\\": \\"International official finance\\",
+    \\"position\\": \\"5\\",
+  },
+  Object {
+    \\"default\\": \\"in-ha\\",
+    \\"id\\": \\"humanitarian-finance\\",
+    \\"name\\": \\"Humanitarian finance\\",
+    \\"position\\": \\"6\\",
+  },
+  Object {
+    \\"default\\": \\"latest-census\\",
+    \\"id\\": \\"data-revolution\\",
+    \\"name\\": \\"Data revolution\\",
+    \\"position\\": \\"7\\",
+  },
+  Object {
+    \\"default\\": \\"iati/iati-budgets-gb\\",
+    \\"id\\": \\"forward-looking-oda\\",
+    \\"name\\": \\"Forward looking ODA\\",
+    \\"position\\": \\"8\\",
+  },
+]"
+`;

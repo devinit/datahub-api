@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Utility functions test should create an aggregate sql query for a single year 1`] = `"\\"SELECT sector, sum(value) AS value from fact.oda from_di_id = afdb AND to_di_id = UG AND year = 2013 GROUP BY sector\\""`;
+
+exports[`Utility functions test should create an aggregate sql query for multiple years 1`] = `"\\"SELECT bundle, sum(value) AS value from fact.oda from_di_id = afdb AND to_di_id = UG AND years = 2013,2015 GROUP BY bundle\\""`;
