@@ -41,9 +41,13 @@ export const getEntityByIdAsync = async (id: string): Promise<IEntity> => {
     return R.find(R.propEq('id', id), entities) as IEntity;
 };
 
+// TODO: refactor so that it returns Error if entity is not found
+export const getEntityByIdGeneric = <T extends {id: string}>(id: string, entities: T[]): T | undefined =>
+    entities.find(obj => obj.id === id);
+
 export const getSectors = (): Promise<IEntityBasic[]> => get<IEntityBasic>('global/sector.csv');
 export const getChannels = (): Promise<IEntityBasic[]> => get<IEntityBasic>('global/channel.csv');
 export const getBundles = (): Promise<IEntityBasic[]> => get<IEntityBasic>('global/bundle.csv');
-export const getRegional = (): Promise<IEntityBasic[]> => get<IEntityBasic>('global/regional.csv');
-export const getCurrency = (): Promise<ICurrency[]> => get<IEntityBasic>('global/currency.csv');
+export const getRegional = (): Promise<IRegional[]> => get<IRegional>('global/regional.csv');
+export const getCurrency = (): Promise<ICurrency[]> => get<ICurrency>('global/currency.csv');
 export const getColors = (): Promise<IEntityBasic[]> => get<IEntityBasic>('global/colors.csv');

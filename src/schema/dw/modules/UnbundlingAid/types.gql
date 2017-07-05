@@ -4,6 +4,8 @@ type AidUnit {
   # country or organisation or channel or bundle name
   name: String
   color: String
+  id: String
+  year: Int
 }
 
 type IdNamePair {

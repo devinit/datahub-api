@@ -252,7 +252,6 @@ declare namespace DH {
   interface ISingleResourceData {
     resources: Array<IIndicatorData> | null;
     color: string | null;
-    total: string | null;
   }
 
   /*
@@ -352,6 +351,8 @@ declare namespace DH {
     value: number | null;
     name: string | null;
     color: string | null;
+    id: string | null;
+    year: number | null;
   }
 
   /*
@@ -668,8 +669,6 @@ type InternationalResources {
 type SingleResourceData {
   resources: [IndicatorData]
   color: String
-  # in dollars
-  total: String
 }
 
 type MapUnit {
@@ -786,6 +785,8 @@ type AidUnit {
   # country or organisation or channel or bundle name
   name: String
   color: String
+  id: String
+  year: Int
 }
 
 type IdNamePair {

@@ -15,13 +15,13 @@ exports[`Github connector should get data from github and return it as json 1`] 
     \\"position\\": \\"2\\",
   },
   Object {
-    \\"default\\": \\"non-grant-revenue-ppp-pc\\",
+    \\"default\\": \\"non_grant_revenue_ppp_pc\\",
     \\"id\\": \\"government-finance\\",
     \\"name\\": \\"Government finance\\",
     \\"position\\": \\"3\\",
   },
   Object {
-    \\"default\\": \\"largest-intl-flow\\",
+    \\"default\\": \\"largest_intl_flow\\",
     \\"id\\": \\"international-finance\\",
     \\"name\\": \\"International finance\\",
     \\"position\\": \\"4\\",
@@ -33,19 +33,19 @@ exports[`Github connector should get data from github and return it as json 1`] 
     \\"position\\": \\"5\\",
   },
   Object {
-    \\"default\\": \\"in-ha\\",
+    \\"default\\": \\"in_ha\\",
     \\"id\\": \\"humanitarian-finance\\",
     \\"name\\": \\"Humanitarian finance\\",
     \\"position\\": \\"6\\",
   },
   Object {
-    \\"default\\": \\"latest-census\\",
+    \\"default\\": \\"latest_census\\",
     \\"id\\": \\"data-revolution\\",
     \\"name\\": \\"Data revolution\\",
     \\"position\\": \\"7\\",
   },
   Object {
-    \\"default\\": \\"data_series.iati-budgets-gb\\",
+    \\"default\\": \\"data_series.iati_budgets_gb\\",
     \\"id\\": \\"forward-looking-oda\\",
     \\"name\\": \\"Forward looking ODA\\",
     \\"position\\": \\"8\\",

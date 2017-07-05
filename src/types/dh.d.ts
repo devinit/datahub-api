@@ -349,6 +349,8 @@ declare namespace DH {
     value: number | null;
     name: string | null;
     color: string | null;
+    id: string | null;
+    year: number | null;
   }
 
   /*

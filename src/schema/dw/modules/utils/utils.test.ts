@@ -1,5 +1,5 @@
 import {toId, getTotal, addCountryName, DONOR, RECIPIENT,
-        makeSqlAggregateQuery, normalizeKeyName, isDonor} from '.';
+        makeSqlAggregateQuery, normalizeKeyName, isDonor, makeSqlAggregateRangeQuery} from '.';
 import * as prettyFormat from 'pretty-format';
 
 const dataA = [
@@ -26,20 +26,20 @@ describe('Utility functions test', () => {
         const entity = addCountryName(dataB[1], entities);
         expect(entity.name).toBe('England');
     });
-    it('should create an aggregate sql query for a single year', () => {
-        const argsA = {
-            from_di_id: 'afdb',
-            to_di_id: 'UG',
-            year: 2013
-        };
-        const queryA = makeSqlAggregateQuery(argsA, 'sector', 'fact.oda');
-        expect(prettyFormat(queryA)).toMatchSnapshot();
-    });
     it('should create an aggregate sql query for multiple years', () => {
         const argsB = {
             from_di_id: 'afdb',
             to_di_id: 'UG',
             years: [2013, 2015]
+        };
+        const queryB = makeSqlAggregateRangeQuery(argsB, 'bundle', 'fact.oda');
+        expect(prettyFormat(queryB)).toMatchSnapshot();
+    });
+    it('should create an aggregate sql query for a single year i.e unbundling aid', () => {
+        const argsB = {
+            from_di_id: 'afdb',
+            to_di_id: 'UG',
+            year: 2013
         };
         const queryB = makeSqlAggregateQuery(argsB, 'bundle', 'fact.oda');
         expect(prettyFormat(queryB)).toMatchSnapshot();
@@ -53,5 +53,5 @@ describe('Utility functions test', () => {
         const isDonorCountryB = await isDonor('austria');
         expect(isDonorCountryA).toBe(false);
         expect(isDonorCountryB).toBe(true);
-    });
+    }, 10000);
 });

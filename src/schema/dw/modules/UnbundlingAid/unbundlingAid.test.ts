@@ -3,11 +3,30 @@ import UnbundlingAid from '.';
 import db from '../../db';
 
 describe('Unbundling aid DW module tests', () => {
-    const countryProfile = new UnbundlingAid(db);
+    const unbundlingAid = new UnbundlingAid(db);
 
-    it.skip('unbundling aid 1', async () => {
-        expect(true).toBe(true);
-    }, 10000);
+    it('getting unbundling aid data for all receipient countries', async () => {
+        const argsA = {
+            aidType: 'oda',
+            year: 2015,
+            groupBy: 'to_di_id'
+        };
+        const data = await unbundlingAid.getUnbundlingAidData(argsA);
+        expect(prettyFormat(data)).toMatchSnapshot();
+    }, 30000);
+    it('should create sql query args for getting data', () => {
+        const argsA = {
+            aidType: 'oda',
+            year: 2015,
+            groupBy: 'to_di_id'
+        };
+        const formatted = unbundlingAid.getSqlQueryArgs(argsA);
+        expect(prettyFormat(formatted)).toMatchSnapshot();
+    });
+    it('getting unbundling aid selection options', async () => {
+        const data = await unbundlingAid.getUnbundlingSelectionData({aidType: 'oda'});
+        expect(prettyFormat(data)).toMatchSnapshot();
+    }, 30000);
 
     afterAll(() => {
        db.$config.pgp.end();

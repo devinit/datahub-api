@@ -22,7 +22,7 @@ export const getConcepts = (moduleName: string): Promise <IConcept[]> => {
     const endPoint: string = `${moduleName}/concept.csv`;
     return get<IConcept>(endPoint);
 };
-
+ // TODO: getConceptAsync should return a union type
 export const getConceptAsync = async (moduleName: string, id: string, theme?: string): Promise <IConcept> => {
     const allConcepts: IConcept[]  = await getConcepts(moduleName);
     const concepts  = R.filter(R.propEq('id', id), allConcepts) as IConcept[];

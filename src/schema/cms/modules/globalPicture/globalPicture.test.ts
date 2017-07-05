@@ -8,5 +8,5 @@ describe('Site global Picture narratives and refrence module', () => {
         expect(themes[0].id).toBeDefined();
         expect(themes.length).toBeGreaterThan(4);
         expect(prettyFormat(theme)).toMatchSnapshot();
-    }, );
+    }, 20000);
 });
