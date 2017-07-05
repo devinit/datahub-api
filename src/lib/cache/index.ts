@@ -59,7 +59,7 @@ export const precache = async (fetchFnObj: IFetchFnObj, cacheFile: string = '.ca
         }
     };
 // in production we wait for 10 minutes in development
-const CACHE_DELAY: number = process.env.NODE_ENV === 'production' ? 1000 * 60 * 10 : 1000 * 10;
+const CACHE_DELAY: number = process.env.NODE_ENV === 'production' ? 1000 * 60 * 30 : 1000 * 60 * 10;
 
 export const isKeyInCacheFile = async (key: string, file: string = '.cache' ): Promise <boolean | Error> => {
     try {

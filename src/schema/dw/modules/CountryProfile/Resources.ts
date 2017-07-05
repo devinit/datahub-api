@@ -20,7 +20,6 @@ interface IflowTypes {
 interface ISingleResourceArgs {
     resourceId: string;
     countryId: string;
-    direction: string;
     groupById: string;
 }
 interface IRAWSpending {
@@ -69,34 +68,33 @@ export default class Resources {
             outflows
         };
     }
-    // internation resource
+    // international resource
     public async getSingleResource(opts: ISingleResourceArgs): Promise<DH.ISingleResourceData> {
         const {resourceId, countryId, groupById} = opts;
         // get flow resoure entity
         const flow: IFlowRef =  await getFlowByIdAsync(resourceId);
-        const concept: IConcept = await getConceptAsync('country-profile', flow.id);
+        const concept: IConcept = await getConceptAsync('country-profile', flow.concept);
         let args = {
             years: [concept.start_year, concept.end_year],
         };
-        if (flow.type === DONOR) args = {...args, di_id_from: countryId};
-        if (flow.type === RECIPIENT) args = {...args, di_id_to: countryId};
-        if (flow.id === 'data_series.intl_flows_recipients' || flow.id === 'data_series.intl_flows_donors') {
+        if (flow.type === DONOR) args = {...args, from_di_id: `'${countryId}'`};
+        if (flow.type === RECIPIENT) args = {...args, to_di_id: `'${countryId}'` };
+        if (flow.concept === 'data_series.intl_flows_recipients' || flow.concept === 'data_series.intl_flows_donors') {
             args = {...args, flow_name: resourceId};
         }
         const sqlQuery = makeSqlAggregateRangeQuery(args, groupById, flow.concept);
         const data: IRAW[] = await this.db.manyCacheable(sqlQuery, null);
         const processedData: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(data);
-        const entities = entitesFnMap[groupById]();
-        // TODO: write extensive tests
+        // TODO: types for  entitesFnMap
+        const entities = await entitesFnMap[groupById]();
         const resources = processedData.map(obj => {
-            const entity = R.find(R.propEq(groupById, obj.id), entities) as  {name: string};
-            return {...obj, name: entity.name };
+            const details: {name: string} | undefined = entities.find(entity => entity.id === obj[groupById]);
+            if (!details) throw Error('Error finding resource entity details');
+            return {...obj, ...details};
         });
-        const total =  R.compose(formatNumbers, getTotal)(resources) as string;
         return {
             resources,
             color: flow.color,
-            total
         };
     }
 

@@ -250,7 +250,6 @@ declare namespace DH {
   interface ISingleResourceData {
     resources: Array<IIndicatorData> | null;
     color: string | null;
-    total: string | null;
   }
 
   /*

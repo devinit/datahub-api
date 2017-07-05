@@ -37,11 +37,6 @@ interface IUnbundlingAidResult extends IUnbundlingAidQuery {
 
 export default class UnbundlingAid {
 
-    public static DACOnlyData(DACCountries: string[], indicatorData: DH.IMapUnit[]): DH.IMapUnit[] {
-       return DACCountries.map(countryName =>
-            R.find((obj: DH.IMapUnit) => obj.countryName === countryName, indicatorData));
-    }
-
     private db: IDatabase<IExtensions> & IExtensions;
     private donorsBlackList = ['country-unspecified', 'region-unspecified', 'organisation-unspecified',
                     'arab-fund', 'afesd', 'idb-sp-fund'];
@@ -68,7 +63,7 @@ export default class UnbundlingAid {
     }
     public async getUnbundlingSelectionData({aidType}): Promise<DH.IUnbundlingAidSelections> {
         const concept: IConcept = await getConceptAsync(`unbundling-${aidType}`,  `fact.${aidType}`);
-        const years = R.range(concept.startYear, concept.startYear - 10);
+        const years = R.range(concept.start_year, concept.start_year - 10);
         const countries = await this.getCountries();
         const channels = await getChannels();
         const sectors = await getSectors();
@@ -85,13 +80,13 @@ export default class UnbundlingAid {
         const entites: IEntity[] = await getEntities();
         return entites.reduce((countries: IUnBundlingAidCountries, entity) => {
             let result = {};
-            if (entity.donorRecipientType === RECIPIENT || entity.region === MULTILATERAL
-                || entity.donorRecipientType === CROSSOVER ) {
+            if (entity.donor_recipient_type === RECIPIENT || entity.region === MULTILATERAL
+                || entity.donor_recipient_type === CROSSOVER ) {
                 const to = R.append(entity, countries.to);
                 result = {...countries, to};
             }
-            if (entity.donorRecipientType === DONOR || entity.region === MULTILATERAL
-                || entity.donorRecipientType === CROSSOVER) {
+            if (entity.donor_recipient_type === DONOR || entity.region === MULTILATERAL
+                || entity.donor_recipient_type === CROSSOVER) {
                 const from = R.contains(entity.id, this.donorsBlackList) ? countries.from :
                     R.append(entity, countries.from);
                 result = {...countries, from};

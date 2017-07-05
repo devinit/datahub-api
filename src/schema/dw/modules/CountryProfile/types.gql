@@ -153,8 +153,6 @@ type InternationalResources {
 type SingleResourceData {
   resources: [IndicatorData]
   color: String
-  # in dollars
-  total: String
 }
 
 type Query {  

@@ -7,7 +7,7 @@ describe('country profile DW module tests', () => {
     const tab = countryProfile.tabs;
     const resources = countryProfile.resources;
 
-    it.skip('should return overview tab data for uganda', async () => {
+    it('should return overview tab data for uganda', async () => {
         const overViewTab = await tab.getOverViewTab({id: 'uganda'});
         expect(prettyFormat(overViewTab)).toMatchSnapshot();
     }, 10000);
@@ -38,6 +38,16 @@ describe('country profile DW module tests', () => {
     it('should return government resources tab & charts data for Uganda', async () => {
         const government = await resources.getGovernmentFinance({id: 'uganda'});
         expect(prettyFormat(government)).toMatchSnapshot();
+    }, 10000);
+    it('should return single resource FDI data for use in international resources chart', async () => {
+        const singleResourceFDIout = await resources.getSingleResource(
+            { resourceId: 'fdi-out', countryId: 'UG', groupById: 'from_di_id'});
+        expect(prettyFormat(singleResourceFDIout)).toMatchSnapshot();
+    }, 10000);
+    it('should return single resource ODA data for use in international resources chart', async () => {
+        const singleResourceODA = await resources.getSingleResource(
+            { resourceId: 'oda-in', countryId: 'UG', groupById: 'sector'});
+        expect(prettyFormat(singleResourceODA)).toMatchSnapshot();
     }, 10000);
 
     afterAll(() => {

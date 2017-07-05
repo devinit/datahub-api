@@ -3,7 +3,7 @@ import * as R from 'ramda';
 import {IExtensions} from '../../db';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import {getDistrictBySlugAsync} from '../../../cms/modules/spotlight';
-import {IEntity, getEntityById, getEntities,getEntityBySlugAsync,
+import {IEntity, getEntityById, getEntities, getEntityBySlugAsync,
         getSectors, getBundles, getChannels} from '../../../cms/modules/global';
 import {isNumber, isError} from '../../../../lib/isType';
 import {getBudgetLevels, IBudgetLevelRef} from '../../../cms/modules/countryProfile';
@@ -233,27 +233,24 @@ export const normalizeKeyNames = (obj: {}) => {
         return {...acc, [key]: obj[key]}; // return to default
     }, {});
 };
-
+// TODO: unify  makeSqlAggregateQuery & makeSqlAggregateRangeQuery into one function
 export const makeSqlAggregateQuery = <T extends {}>
     (queryArgs: T, groupByField: string, table: string): string => {
         const queryArgsKeys = R.keys(queryArgs);
         return queryArgsKeys.reduce((query, field, index) => {
-            const AND = index + 1 < queryArgsKeys.length ? 'AND' : `GROUP BY ${groupByField}`;
+            const AND = index + 1 < queryArgsKeys.length ? 'AND' : `GROUP BY ${groupByField}, year`;
             return `${query} ${field} = ${queryArgs[field]} ${AND}`;
-        }, `SELECT ${groupByField}, sum(value) AS value from ${table}`);
+        }, `SELECT ${groupByField}, sum(value) AS value from ${table} WHERE value > 0 AND`);
 };
 
 export const makeSqlAggregateRangeQuery = <T extends {years: number[]}>
     (queryArgs: T, groupByField: string, table: string): string => {
         const queryArgsKeys = R.keys(queryArgs);
         return queryArgsKeys.reduce((query, field, index) => {
-            const AND = index + 1 < queryArgsKeys.length ? 'AND' : `GROUP BY ${groupByField}`;
+            const AND = index + 1 < queryArgsKeys.length ? 'AND' : `GROUP BY ${groupByField}, year`;
             if (field === 'years' && queryArgs.years.length === 2) {
-                 return `${query} year >= ${queryArgs.years[0]} AND year <= ${queryArgs.years[1]} ${AND}`;
-            }
-            if (field === 'years' && queryArgs.years.length === 1) {
-                return `${query} year = ${queryArgs.years[0]} ${AND}`;
+                 return `${query} year > ${queryArgs.years[0]} AND year < ${queryArgs.years[1]} ${AND}`;
             }
             return `${query} ${field} = ${queryArgs[field]} ${AND}`;
-        }, `SELECT ${groupByField}, sum(value) As value from ${table}`);
+        }, `SELECT ${groupByField}, year, sum(value) As value from ${table} WHERE value > 0 AND`);
 };
