@@ -83,22 +83,25 @@ export default class UnbundlingAid {
     private getUnbundlingAidDataTable(aidType) {
         return aidType === 'oda' ? 'fact.oda_2015' : 'data_series.oof';
     }
+
     private async getCountries(): Promise<IUnBundlingAidCountries> {
         const entites: IEntity[] = await getEntities();
         return entites.reduce((countries: IUnBundlingAidCountries, entity) => {
-            let result = {};
+            let to: any = [];
+            let from: any = [];
             if (entity.donor_recipient_type === RECIPIENT || entity.region === MULTILATERAL
                 || entity.donor_recipient_type === CROSSOVER ) {
-                const to = R.append(entity, countries.to);
-                result = {...countries, to};
+                to = R.append({id: entity.id, name: entity.name}, countries.to);
             }
             if (entity.donor_recipient_type === DONOR || entity.region === MULTILATERAL
                 || entity.donor_recipient_type === CROSSOVER) {
-                const from = R.contains(entity.id, this.donorsBlackList) ? countries.from :
-                    R.append(entity, countries.from);
-                result = {...countries, from};
+                from = R.contains(entity.id, this.donorsBlackList) ? countries.from :
+                    R.append({id: entity.id, name: entity.name}, countries.from);
             }
-            return result as IUnBundlingAidCountries;
+            if (to.length && from.length) return {to, from};
+            if (to.length)  return {...countries, to};
+            if (from.length)  return {...countries, from};
+            return countries;
         }, {to: [], from: []});
     }
 
