@@ -1,6 +1,7 @@
 import {IMain, IDatabase, IOptions} from 'pg-promise';
 import {dwConfig} from '../config';
 import Maps from '../modules/Maps';
+import UnbundlingAid from '../modules/UnbundlingAid';
 import CountryProfile from '../modules/CountryProfile';
 import diagnostics from './diagnostics';
 import * as pgPromise from 'pg-promise';
@@ -9,6 +10,7 @@ import {queue} from '../../../lib/cache';
 
 export interface IExtensions {
     maps: Maps;
+    unbundlingAid: UnbundlingAid;
     countryProfile: CountryProfile;
     manyCacheable: (query: string, values: any) => Promise<any>;
 }
@@ -37,6 +39,7 @@ const options: IOptions<IExtensions> = {
         };
         obj.maps = new Maps(obj);
         obj.countryProfile = new CountryProfile(obj);
+        obj.unbundlingAid = new UnbundlingAid(obj);
     },
     // caching
     receive: (data, _result, event) => {

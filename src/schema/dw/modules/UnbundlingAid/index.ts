@@ -2,15 +2,9 @@ import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
 import {makeSqlAggregateQuery, entitesFnMap, DONOR, RECIPIENT, MULTILATERAL, CROSSOVER} from '../utils';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
-import {IEntity, getEntities, getEntityByIdAsync, getRegional, IRegional, getEntityByIdGeneric,
+import {IEntity, getEntities, getRegional, IRegional, getEntityByIdGeneric,
         getSectors, getBundles, getChannels} from '../../../cms/modules/global';
 import * as R from 'ramda';
-
-interface IUnbundlingAidQueryTemp {
-    toCountry?: string;
-    fromCountryOrOrg?: string;
-    channel?: string;
-}
 
 interface IUnbundlingAidQuery {
     from_di_id?: string;
@@ -55,11 +49,11 @@ export default class UnbundlingAid {
         const regions: IRegional[] = await getRegional();
         return raw.map((obj) => {
             const entity: IUnbundlingEnitity | undefined = entites.find(item => obj[args.groupBy] === item.id);
-            let color = entity.color;
             if (!entity) throw new Error('error getting unbundling aid entity');
-            if (entity.type) {
+            let color = '';
+            if (entity.type && entity.region) {
                 const region: IRegional | undefined = getEntityByIdGeneric<IRegional>(entity.region, regions);
-                color = region ? region.color : 'grey';
+                if (region && region.color) color = region ? region.color : 'grey';
             }
             return {id: entity.id, value: Number(obj.value), name: entity.name,
                     color, year: Number(obj.year)};
@@ -84,7 +78,7 @@ export default class UnbundlingAid {
         };
     }
     public getSqlQueryArgs(args: DH.IUnbundlingAidQuery): IUnbundlingAidQuery {
-        return R.omit(['groupBy', 'aidType'], args);
+        return R.omit(['groupBy', 'aidType'], args) as IUnbundlingAidQuery;
     }
     private getUnbundlingAidDataTable(aidType) {
         return aidType === 'oda' ? 'fact.oda_2015' : 'data_series.oof';

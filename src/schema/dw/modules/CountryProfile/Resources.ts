@@ -1,5 +1,3 @@
- // tslint:disable-next-line:no-reference
- /// <reference path="../../../../types/dh.d.ts" />
 import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
 import {formatNumbers} from '../../../../utils';
@@ -8,7 +6,7 @@ import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import * as R from 'ramda';
 import {ICurrency, getCurrency, getEntityBySlugAsync, IEntity} from '../../../cms/modules/global';
 import {getIndicatorData, RECIPIENT, DONOR, IGetIndicatorArgs,
-        indicatorDataProcessingSimple, getTotal, makeSqlAggregateRangeQuery,
+        indicatorDataProcessingSimple, makeSqlAggregateRangeQuery,
         isDonor, IRAW, IRAWFlow, IProcessedSimple, entitesFnMap, IRAWDomestic, domesticDataProcessing} from '../utils';
 import {getFlowByTypeAsync, getFlows, getFlowByIdAsync, getBudgetLevels, IBudgetLevelRef,
         getAllFlowSelections, IFlowRef, IFlowSelectionRaw} from '../../../cms/modules/countryProfile';
