@@ -2,3 +2,6 @@ global-picture/themes.csv:cms
 global/entity.csv:cms
 global-picture/concept.csv:cms
 SELECT * FROM data_series.depth_of_extreme_poverty_190 WHERE year >= '1981' AND year <= 2017:dw
+country-profile/concept.csv:cms
+country-profile/flow-name.csv:cms
+country-profile/flow-selections.csv:cms

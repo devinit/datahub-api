@@ -207,8 +207,8 @@ declare namespace DH {
   */
   interface IInternationalResources {
     GNI: string | null;
-    netODAOfGNIIn: number | null;
-    netODAOfGNIOut: number | null;
+    netODAOfGNIIn: string | null;
+    netODAOfGNIOut: string | null;
     resourcesOverTime: Array<IResourceData> | null;
     mixOfResources: Array<IResourceData> | null;
     inflows: Array<IFlow> | null;
@@ -650,9 +650,9 @@ type InternationalResources {
   # Gross National Income
   GNI: String
   # Net ODA received, % of GNI for recipient countries
-  netODAOfGNIIn: Int
+  netODAOfGNIIn: String
   # Net ODA out, % of GNI for recipient countries
-  netODAOfGNIOut: Int
+  netODAOfGNIOut: String
   # for sidebar chart in international resources section & area partition tree chart default data
    # & line chart in the  tabs section
   resourcesOverTime: [ResourceData]

@@ -3,9 +3,10 @@ import * as R from 'ramda';
 import {IExtensions} from '../../db';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import {getDistrictBySlugAsync} from '../../../cms/modules/spotlight';
-import {IEntity, getEntityById, getEntities, getEntityByIdAsync,
-       getEntityBySlugAsync, getSectors, getBundles, getChannels} from '../../../cms/modules/global';
+import {IEntity, getEntityById, getEntities,getEntityBySlugAsync,
+        getSectors, getBundles, getChannels} from '../../../cms/modules/global';
 import {isNumber, isError} from '../../../../lib/isType';
+import {getBudgetLevels, IBudgetLevelRef} from '../../../cms/modules/countryProfile';
 
 export interface IGetIndicatorArgs {
     id: string;
@@ -151,7 +152,7 @@ export async function getIndicatorData<T>(opts: IGetIndicatorArgs): Promise<T[]>
     if ( conceptType === 'spotlight' && country) spotlightEntity =  await getDistrictBySlugAsync(country, id);
     const theme =  conceptType === 'country-profile' ? countryEntity.donor_recipient_type : undefined;
     const concept: IConcept = await getConceptAsync(conceptType, tableName, theme);
-    const baseQueryArgs = {...concept, table: tableName };
+    const baseQueryArgs = {...concept, ...opts, table: tableName };
     const queryArgs = conceptType === 'spotlight' ?
         {...baseQueryArgs, id: spotlightEntity.id, country, schema: `spotlight_on_${country}`}
         : {...baseQueryArgs, id: countryEntity.id};
@@ -185,34 +186,41 @@ export const indicatorDataProcessing = async (data: IhasDiId[]): Promise<DH.IMap
 export const indicatorDataProcessingSimple = <T extends {}>(data: IhasDiId[], valueField: string = 'value'): T[] => {
     return data
             .map(toId)
-            .map(normalizeKeyNames)
+            // .map(normalizeKeyNames)
             .map(obj => toNumericFields(obj, valueField));
 };
-export const domesticDataProcessing = (data: IRAWDomestic[]): DH.IDomestic[] => {
+export const indicatorDataProcessingNamed = async (data: IhasDiId[], valueField: string = 'value'):
+    Promise<DH.IIndicatorData[]> => {
+    const processed: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(data, valueField);
+    const entities: IEntity[] =  await getEntities();
+    return processed.map(obj => {
+        const entity = getEntityById(obj.id, entities);
+        return {...obj, name: entity.name};
+    });
+};
+
+export const domesticDataProcessing = async (data: IRAWDomestic[]): Promise<DH.IDomestic[]> => {
+    const budgetRefs: IBudgetLevelRef[] = await getBudgetLevels();
     return indicatorDataProcessingSimple(data)
             .map(obj => {
                 const levelKeys = R.keys(obj).filter(key => key.includes('l'));
                 return levelKeys.reduce((acc, key) => {
-                    return {...acc, [domesticLevelMap[key]]: obj[key] };
+                    const budgetLevel: IBudgetLevelRef | undefined = budgetRefs.find(ref => ref.id === obj[key]);
+                    const budgetLevelName = budgetLevel ? budgetLevel.name : obj[key];
+                    return {...acc, [domesticLevelMap[key]]: budgetLevelName };
                 }, {...obj}) as DH.IDomestic;
             });
 };
 
-export const isDonor = async (id: string): Promise<boolean>  => {
-    const {donor_recipient_type}: IEntity = await getEntityByIdAsync(id);
+export const isDonor = async (slug: string): Promise<boolean>  => {
+    const {donor_recipient_type}: IEntity = await getEntityBySlugAsync(slug);
     if (donor_recipient_type === DONOR) return true;
     return false;
 };
 
-export const normalizeKeyName = (columnName: string, replace?: string): string => {
+export const normalizeKeyName = (columnName: string): string => {
     const str = columnName.includes('value_') ? columnName.split(/value\_/)[1] : columnName;
-    if (replace === '-')return str.replace(/\_/g, '-');
-    const tokenize = str.split(/\_/g);
-    return tokenize.reduce((name, current, index) => {
-        const tail = R.tail(current);
-        if (index) return name + current[0].toUpperCase + tail;
-        return current; // skip first word
-    }, '');
+    return str.replace(/\_/g, '-');
 };
 
 export const normalizeKeyNames = (obj: {}) => {
@@ -232,7 +240,7 @@ export const makeSqlAggregateQuery = <T extends {}>
         return queryArgsKeys.reduce((query, field, index) => {
             const AND = index + 1 < queryArgsKeys.length ? 'AND' : `GROUP BY ${groupByField}`;
             return `${query} ${field} = ${queryArgs[field]} ${AND}`;
-        }, `SELECT ${groupByField}, sum(value) AS value from ${table^}`);
+        }, `SELECT ${groupByField}, sum(value) AS value from ${table}`);
 };
 
 export const makeSqlAggregateRangeQuery = <T extends {years: number[]}>
@@ -247,5 +255,5 @@ export const makeSqlAggregateRangeQuery = <T extends {years: number[]}>
                 return `${query} year = ${queryArgs.years[0]} ${AND}`;
             }
             return `${query} ${field} = ${queryArgs[field]} ${AND}`;
-        }, `SELECT ${groupByField}, sum(value) As value from ${table^}`);
+        }, `SELECT ${groupByField}, sum(value) As value from ${table}`);
 };

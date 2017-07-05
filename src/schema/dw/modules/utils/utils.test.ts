@@ -1,4 +1,5 @@
-import {toId, getTotal, addCountryName, DONOR, RECIPIENT, makeSqlAggregateQuery} from '.';
+import {toId, getTotal, addCountryName, DONOR, RECIPIENT,
+        makeSqlAggregateQuery, normalizeKeyName, isDonor} from '.';
 import * as prettyFormat from 'pretty-format';
 
 const dataA = [
@@ -35,12 +36,22 @@ describe('Utility functions test', () => {
         expect(prettyFormat(queryA)).toMatchSnapshot();
     });
     it('should create an aggregate sql query for multiple years', () => {
-    const argsB = {
-        from_di_id: 'afdb',
-        to_di_id: 'UG',
-        years: [2013, 2015]
-    };
-    const queryB = makeSqlAggregateQuery(argsB, 'bundle', 'fact.oda');
-    expect(prettyFormat(queryB)).toMatchSnapshot();
+        const argsB = {
+            from_di_id: 'afdb',
+            to_di_id: 'UG',
+            years: [2013, 2015]
+        };
+        const queryB = makeSqlAggregateQuery(argsB, 'bundle', 'fact.oda');
+        expect(prettyFormat(queryB)).toMatchSnapshot();
+    });
+    it('should normalize colum name ie remove _ where necessry', () => {
+        const ageBand = normalizeKeyName('value_0_14');
+        expect(ageBand).toBe('0-14');
+    });
+    it('should return whether country is donor or not', async () => {
+        const isDonorCountryA = await isDonor('uganda');
+        const isDonorCountryB = await isDonor('austria');
+        expect(isDonorCountryA).toBe(false);
+        expect(isDonorCountryB).toBe(true);
     });
 });

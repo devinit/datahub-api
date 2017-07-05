@@ -205,8 +205,8 @@ declare namespace DH {
   */
   interface IInternationalResources {
     GNI: string | null;
-    netODAOfGNIIn: number | null;
-    netODAOfGNIOut: number | null;
+    netODAOfGNIIn: string | null;
+    netODAOfGNIOut: string | null;
     resourcesOverTime: Array<IResourceData> | null;
     mixOfResources: Array<IResourceData> | null;
     inflows: Array<IFlow> | null;

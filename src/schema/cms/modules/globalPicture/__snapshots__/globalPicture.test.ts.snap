@@ -2,7 +2,7 @@
 
 exports[`Site global Picture narratives and refrence module should return all themes 1`] = `
 "Object {
-  \\"default\\": \\"poor-people-190\\",
+  \\"default\\": \\"data_series.poor_people_190\\",
   \\"id\\": \\"poverty\\",
   \\"name\\": \\"Poverty\\",
   \\"position\\": \\"1\\",

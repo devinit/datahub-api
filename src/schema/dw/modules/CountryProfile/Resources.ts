@@ -44,24 +44,21 @@ interface IDomesticResourcesOverTime {
 
 export default class Resources {
     private db: IDatabase<IExtensions> & IExtensions;
-    private defaultDonorArgs;
-    private defaultRecipientArgs;
     private defaultArgs;
 
     constructor(db: any) {
         this.db = db;
         this.defaultArgs = {db: this.db, conceptType: 'country-profile'};
-        this.defaultDonorArgs = {...this.defaultArgs, theme: DONOR};
-        this.defaultRecipientArgs = {...this.defaultArgs, theme: RECIPIENT};
     }
-    public async getInternationalResources({id}): Promise<any> {
+    public async getInternationalResources({id}): Promise<DH.IInternationalResources> {
         const isDonorCountry =  await isDonor(id);
-        const netODAOfGNIIn = isDonorCountry ? null : await this.getNetODAOfGNIIn(id);
         const netODAOfGNIOut = isDonorCountry ? await this.getNetODAOfGNIOut(id) : null;
-        const GNI = this.getGNI(id);
+        const GNI = await this.getGNI(id);
+        const netODAOfGNIIn = isDonorCountry ? null : await this.getNetODAOfGNIIn(id, Number(GNI));
         const {outflows, inflows}  = await this.getFlows(id);
-        const resourcesOverTime = await this.getResourcesOverTime(id);
-        const mixOfResources = await this.getMixOfResources(id);
+        const resourcesSql = isDonorCountry ? [sql.resourcesDonors, sql.resourcesDonorsMix] :
+            [sql.resourcesRecipient, sql.resourcesRecipientMix];
+        const [resourcesOverTime, mixOfResources] = await this.getResourcesGeneric(id, resourcesSql);
         return {
             GNI,
             netODAOfGNIIn,
@@ -103,7 +100,7 @@ export default class Resources {
         };
     }
 
-    public async getGovernmentFinance(id: string): Promise<DH.IGovernmentFinance> {
+    public async getGovernmentFinance({id}): Promise<DH.IGovernmentFinance> {
         const currencyCode = await this.getCurrencyCode(id);
         const totalRevenue = await this.getTotalRevenue(id);
         const grantsAsPcOfRevenue = await this.getGrantsAsPcOfRevenue(id);
@@ -126,23 +123,24 @@ export default class Resources {
     private async getDomesticResourcesOvertime(id: string): Promise<IDomesticResourcesOverTime> {
         const indicatorArgs: IGetIndicatorArgs[] = ['financing', 'total-expenditure', 'total-revenue-and-grants']
             .map(level => ({
-                ...this.defaultRecipientArgs,
+                ...this.defaultArgs,
                 l1: level,
                 query: sql.domesticResourcesOverTime,
                 id
             }));
         const resourcesRaw: IRAWDomestic[][]  =
             await Promise.all(indicatorArgs.map((args) => getIndicatorData<IRAWDomestic>(args)));
-        const resources: DH.IDomestic[][] = resourcesRaw.map(domesticDataProcessing);
+        const resources: DH.IDomestic[][] = await Promise.all(resourcesRaw.map(domesticDataProcessing));
         return {
             finance: resources[0],
-            revenueAndGrants: resources[1],
-            expenditure: resources[2]};
+            expenditure: resources[1],
+            revenueAndGrants: resources[2],
+           };
     }
 
     private async getSpendingAllocation(id: string): Promise<DH.ISpendingAllocation[]> {
         const indicatorArgsGdp: IGetIndicatorArgs = {
-            ...this.defaultRecipientArgs,
+            ...this.defaultArgs,
             query: sql.spendingAllocation,
             id
         };
@@ -155,17 +153,17 @@ export default class Resources {
     }
 
     private async getTotalRevenue(id: string): Promise<string> {
-        const indicatorArgsGdp: IGetIndicatorArgs = {
+        const indicatorArgs: IGetIndicatorArgs = {
             ...this.defaultArgs,
             query: sql.gdp,
             id
         };
-        const gdp: IRAW[] = await getIndicatorData<IRAW>(indicatorArgsGdp);
+        const gdp: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
         return formatNumbers(gdp[0].value, 1);
     }
     private async getGrantsAsPcOfRevenue(id: string): Promise<string> {
         const indicatorArgs: IGetIndicatorArgs[] = [sql.totalDomesticRevenueAndGrants, sql.grants]
-            .map(query => ({query, ...this.defaultRecipientArgs, id}));
+            .map(query => ({query, ...this.defaultArgs, id}));
         const totalRevenueAndGrants: IRAW[] =  await getIndicatorData<IRAW>(indicatorArgs[0]);
         const grants: IRAW[] =  await getIndicatorData<IRAW>(indicatorArgs[1]);
         if (totalRevenueAndGrants[0].value && grants[0].value) {
@@ -184,59 +182,47 @@ export default class Resources {
         const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
         return formatNumbers(Number(data[0].value), 1);
     }
-    private async getNetODAOfGNIIn(id: string): Promise<number> {
+    private async getNetODAOfGNIIn(id: string, gni: number): Promise<string> {
         const indicatorArgs: IGetIndicatorArgs = {
             ...this.defaultArgs,
             query: sql.ODANetIn,
             id
         };
         const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
-        return Number(data[0].value);
+        if (!data[0].value) return 'No data';
+        if (!gni) return 'No data';
+        return ((Number(data[0].value) / gni) * 100).toFixed(2);
     }
-    private async getNetODAOfGNIOut(id: string): Promise<number> {
+    private async getNetODAOfGNIOut(id: string): Promise<string> {
         const indicatorArgs: IGetIndicatorArgs = {
             ...this.defaultArgs,
-            query: sql. ODANetOut,
+            query: sql.ODANetOut,
             id
         };
         const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
-        return Number(data[0].value);
+        return data[0].value ? Number(data[0].value).toFixed(1) : 'No data';
     }
     private async getFlows(id: string): Promise<IflowTypes> {
         // find out whether donor or not using isDonor
         const countryType = isDonor(id) ? DONOR : RECIPIENT;
         const flows: IFlowRef[] = await getFlowByTypeAsync(countryType);
         const flowSelections: IFlowSelectionRaw[] = await getAllFlowSelections();
-        return flows.reduce ((flowTypes: any, flow) => {
+        return flows.reduce((flowTypes: IflowTypes, flow) => {
             const selections = flowSelections
                 .filter(selection => selection.id === flow.id)
                 .map(obj => ({id: obj.group_by_id, name: obj.name}));
-            const obj = {...flow, selections};
-            if (flow.direction === 'in') return flowTypes.inflows.push(obj);
-            return flowTypes.outflows.push(obj);
-        }, {inflows: [], outflows: []}) as IflowTypes;
+            const obj = {name: flow.flow_name, id: flow.id, selections};
+            if (flow.direction === 'in') flowTypes.inflows.push(obj);
+            if (flow.direction === 'out') flowTypes.outflows.push(obj);
+            return flowTypes;
+        }, {inflows: [], outflows: []});
     }
-    private async getResourcesOverTime(id: string): Promise<DH.IResourceData[]> {
-        const sqlQuery = isDonor(id) ? sql.resourcesDonors : sql.resourcesRecipient;
-        const indicatorArgs: IGetIndicatorArgs = {
-            ...this.defaultArgs,
-            query: sqlQuery,
-            id,
-            theme: isDonor(id) ? DONOR : RECIPIENT
-        };
-        const data: IRAWFlow[] = await getIndicatorData<IRAWFlow>(indicatorArgs);
-        return this.processResourceData(data);
-    }
-    private async getMixOfResources(id: string): Promise<DH.IResourceData[]> {
-        const sqlQuery = isDonor(id) ? sql.resourcesDonorsMix : sql.resourcesRecipientMix;
-        const indicatorArgs: IGetIndicatorArgs = {
-            ...this.defaultArgs,
-            query: sqlQuery,
-            id,
-            theme: isDonor(id) ? DONOR : RECIPIENT
-        };
-        const data: IRAWFlow[] = await getIndicatorData<IRAWFlow>(indicatorArgs);
-        return this.processResourceData(data);
+     private async getResourcesGeneric(id: string, sqlList: string[]): Promise<DH.IResourceData[][]> {
+        const indicatorArgs: IGetIndicatorArgs[] = sqlList
+            .map(query => ({query, ...this.defaultArgs, id}));
+        const allRaw: IRAWFlow[][] =
+            await Promise.all(indicatorArgs.map(args => getIndicatorData<IRAWFlow>(args)));
+        return await Promise.all(allRaw.map(raw => this.processResourceData(raw)));
     }
     private async processResourceData(data: IRAWFlow[]): Promise<DH.IResourceData[]> {
         const processed: IFlowProcessed[] = indicatorDataProcessingSimple<IFlowProcessed>(data);

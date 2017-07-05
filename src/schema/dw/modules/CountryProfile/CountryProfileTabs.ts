@@ -3,13 +3,12 @@ import {IExtensions} from '../../db';
 import {formatNumbers} from '../../../../utils';
 import sql from './sql';
 import * as R from 'ramda';
-import {getIndicatorData, IGetIndicatorArgs, isDonor,
+import {getIndicatorData, IGetIndicatorArgs, isDonor, indicatorDataProcessingNamed,
         IRAWPopulationAgeBand, normalizeKeyName, IRAW, IRAWQuintile,
-        indicatorDataProcessingSimple, IRAWPopulationGroup, IRAWMulti} from '../utils';
+        IRAWPopulationGroup, IRAWMulti} from '../utils';
 
 export default class CountryProfileTabs {
     private db: IDatabase<IExtensions> & IExtensions;
-    private defaultDonorArgs;
     private defaultArgs;
 
     constructor(db: any) {
@@ -34,7 +33,7 @@ export default class CountryProfileTabs {
     }
     public async getPovertyTab({id}): Promise<any> {
         const poverty190Trend = await this.getPoverty190Trend(id);
-        const [depthOfExtremePoverty] = await this.getIndicatorsGeneric(id, [sql.depthOfExtremePoverty]);
+        const [depthOfExtremePoverty] = await this.getIndicatorsGeneric(id, [sql.depthOfExtremePoverty], false);
         const incomeDistTrend = await this.getIncomeDistTrend(id);
         return {
             poverty190Trend,
@@ -66,26 +65,26 @@ export default class CountryProfileTabs {
             incomeDistTrend
         };
     }
-    private async getIndicatorsGeneric(id: string, sqlList: string[])
+    private async getIndicatorsGeneric(id: string, sqlList: string[], format: boolean = true)
         : Promise<string[]>  {
         const indicatorArgs: IGetIndicatorArgs[] =
             sqlList.map(query => ({...this.defaultArgs, query, id}));
         const indicatorRaw: IRAW[][] = await Promise.all(indicatorArgs.map(args => getIndicatorData<IRAW>(args)));
-        return indicatorRaw.map(data => formatNumbers(data[0].value, 1));
+        return indicatorRaw.map(data => format ? formatNumbers(data[0].value, 1) : (data[0].value));
     }
 
     private async getAverageIncomerPerPerson(id): Promise<DH.IIndicatorData[]> {
          const indicatorArgs: IGetIndicatorArgs = {
-            ...this.defaultDonorArgs,
+            ...this.defaultArgs,
             query: sql.averageIncomerPerPerson,
             id
         };
          const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
-         return indicatorDataProcessingSimple<DH.IIndicatorData>(data);
+         return indicatorDataProcessingNamed(data);
     }
     private async getIncomeDistTrend(id): Promise<DH.IQuintile[]> {
         const indicatorArgs: IGetIndicatorArgs = {
-            ...this.defaultDonorArgs,
+            ...this.defaultArgs,
             query: sql.incomeDistTrend,
             id
         };
@@ -127,6 +126,6 @@ export default class CountryProfileTabs {
             ...this.defaultArgs
         };
         const data: IRAWMulti[] = await getIndicatorData<IRAWMulti>(indicatorArgs);
-        return indicatorDataProcessingSimple<DH.IIndicatorData>(data, 'value_2');
+        return indicatorDataProcessingNamed(data, 'value_2');
     }
 }

@@ -19,4 +19,7 @@ describe('Maps module tests', () => {
         const data = await maps.getMapData({id: 'data_series.depth_of_extreme_poverty_190', DACOnly: false});
         expect(prettyFormat(data)).toMatchSnapshot();
     }, 20000);
+    afterAll(() => {
+       db.$config.pgp.end();
+    });
 });
