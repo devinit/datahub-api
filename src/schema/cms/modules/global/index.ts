@@ -32,9 +32,9 @@ export const getEntities = (): Promise<IEntity[]> => get<IEntity>('global/entity
 export const getEntityById = (id: string, entities: IEntity[]): IEntity =>
     R.find(R.propEq('id', id), entities) as IEntity;
 
-export const getEntityBySlugAsync = async (slug: string): Promise<IEntity> => {
+export const getEntityBySlugAsync = async (slug: string): Promise<IEntity | undefined> => {
      const entities: IEntity[] = await getEntities();
-     return R.find(R.propEq('slug', slug), entities) as IEntity;
+     return entities.find(obj => obj.slug === slug);
 };
 
 export const getEntityByIdAsync = async (id: string): Promise<IEntity> => {

@@ -31,15 +31,20 @@ export default class CountryProfileTabs {
             populationPerAgeBand
         };
     }
-    public async getPovertyTab({id}): Promise<any> {
-        const poverty190Trend = await this.getPoverty190Trend(id);
-        const [depthOfExtremePoverty] = await this.getIndicatorsGeneric(id, [sql.depthOfExtremePoverty], false);
-        const incomeDistTrend = await this.getIncomeDistTrend(id);
-        return {
-            poverty190Trend,
-            depthOfExtremePoverty,
-            incomeDistTrend
-        };
+    public async getPovertyTab({id}): Promise<DH.IPovertyTab> {
+        try {
+            const poverty190Trend = await this.getPoverty190Trend(id);
+            const [depthOfExtremePoverty] = await this.getIndicatorsGeneric(id, [sql.depthOfExtremePoverty], false);
+            const incomeDistTrend = await this.getIncomeDistTrend(id);
+            return {
+                poverty190Trend,
+                depthOfExtremePoverty,
+                incomeDistTrend
+            };
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
     }
 
     public async getOverViewTabRecipients(countryId: string): Promise<DH.IOverViewTabRecipients> {

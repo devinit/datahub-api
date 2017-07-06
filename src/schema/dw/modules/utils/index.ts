@@ -220,8 +220,9 @@ export const domesticDataProcessing = async (data: IRAWDomestic[]): Promise<DH.I
 };
 
 export const isDonor = async (slug: string): Promise<boolean>  => {
-    const {donor_recipient_type}: IEntity = await getEntityBySlugAsync(slug);
-    if (donor_recipient_type === DONOR) return true;
+    const obj: IEntity | undefined = await getEntityBySlugAsync(slug);
+    if (!obj) throw new Error('Error in isDonor function, entity is undefined');
+    if (obj.donor_recipient_type === DONOR) return true;
     return false;
 };
 
