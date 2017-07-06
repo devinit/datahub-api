@@ -17,7 +17,7 @@ export interface IConcept {
     source_link: string;
     appear_in_bubble_chart: number;
 }
-
+// TODO: parse start_year as a number
 export const getConcepts = (moduleName: string): Promise <IConcept[]> => {
     const endPoint: string = `${moduleName}/concept.csv`;
     return get<IConcept>(endPoint);

@@ -5,11 +5,11 @@ import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import {getDistrictBySlugAsync} from '../../../cms/modules/spotlight';
 import {IEntity, getEntityById, getEntities, getEntityBySlugAsync,
         getSectors, getBundles, getChannels} from '../../../cms/modules/global';
-import {isNumber, isError} from '../../../../lib/isType';
+import {isNumber, isError, isUndefined} from '../../../../lib/isType';
 import {getBudgetLevels, IBudgetLevelRef} from '../../../cms/modules/countryProfile';
 
 export interface IGetIndicatorArgs {
-    id: string;
+    id?: string;
     query: string;
     country?: string;
     table?: string;
@@ -122,6 +122,7 @@ export const toNumericFields: (obj: any, valueField: string) => any = (obj, valu
 };
 
 export const toId: (obj: IhasDiId ) => any = (obj) => {
+    if (!obj.di_id) return obj;
     const id = obj.di_id;
     const newObj = R.omit(['di_id'], obj);
     return {...newObj, id };
@@ -145,22 +146,28 @@ export const getTableNameFromSql = (sql: string): string | Error => {
 export async function getIndicatorData<T>(opts: IGetIndicatorArgs): Promise<T[]> {
     const {db, query, id, conceptType, country, table} = opts;
     const tableName = !table ? getTableNameFromSql(query) : table;
-    if (isError(tableName)) throw table;
-    let countryEntity = {id: '', donor_recipient_type: ''};
-    let spotlightEntity = {id: ''};
-    if ( conceptType === 'country-profile') countryEntity =  await getEntityBySlugAsync(id);
-    if ( conceptType === 'spotlight' && country) spotlightEntity =  await getDistrictBySlugAsync(country, id);
+    if (isError(tableName) || isUndefined(tableName)) throw Error(`error getting table name: ${tableName}`);
+    let countryEntity: any = {};
+    let spotlightEntity: any = {};
+    if ( conceptType === 'country-profile' && id) countryEntity =  await getEntityBySlugAsync(id);
+    if ( conceptType === 'spotlight' && country && id) spotlightEntity =  await getDistrictBySlugAsync(country, id);
     const theme =  conceptType === 'country-profile' ? countryEntity.donor_recipient_type : undefined;
     const concept: IConcept = await getConceptAsync(conceptType, tableName, theme);
     const baseQueryArgs = {...concept, ...opts, table: tableName };
-    const queryArgs = conceptType === 'spotlight' ?
-        {...baseQueryArgs, id: spotlightEntity.id, country, schema: `spotlight_on_${country}`}
-        : {...baseQueryArgs, id: countryEntity.id};
-    return db.manyCacheable(query, queryArgs);
+    if (conceptType === 'spotlight') {
+        const queryArgs = {...baseQueryArgs, id: spotlightEntity.id, country, schema: `spotlight_on_${country}`};
+        return db.manyCacheable(query, queryArgs);
+    }
+    if (conceptType === 'country-profile') {
+        const queryArgs = {...baseQueryArgs, id: countryEntity.id};
+        return db.manyCacheable(query, queryArgs);
+    }
+    // console.log(conceptType, '\n', query, '\n', baseQueryArgs);
+    return db.manyCacheable(query, baseQueryArgs);
 }
 
 // used by maps module
-export const getIndicatorDataSimple = async (opts: IGetIndicatorArgsSimple): Promise<IRAW[]> => {
+export const getIndicatorDataSimple = async <T extends {}> (opts: IGetIndicatorArgsSimple): Promise<T[]> => {
         const {table, sql, db, query, start_year, end_year} = opts;
         let queryStr = '';
         if (!query && sql) queryStr = !isNumber(end_year) ? sql.indicator : sql.indicatorRange;

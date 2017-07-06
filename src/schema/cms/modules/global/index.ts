@@ -17,6 +17,7 @@ export interface IEntity extends IEntityBasic {
     id: string;
     name: string;
     region: string;
+    income_group: string;
     donor_recipient_type: string;
 }
 export interface IRegional extends IEntityBasic {

@@ -35,7 +35,7 @@ declare namespace DH {
     getWhereThePoorPageData: Array<IPage> | null;
     getBubbleChartOda: IBubbleChartOda | null;
     getBubbleChartPoverty: IBubbleChartPoverty | null;
-    getBubbleSize: Array<IIndicatorData> | null;
+    getBubbleSize: Array<IBubbleChartData> | null;
     getBubbleChartIndicatorsList: Array<IIdNamePair> | null;
     getOverViewTab: IOverViewTabRegional | null;
     getPovertyTab: IPovertyTabRegional | null;
@@ -84,26 +84,28 @@ declare namespace DH {
     description: 
   */
   interface IBubbleChartOda {
-    revenuePerPerson: Array<IIndicatorData> | null;
-    numberInExtremePoverty: Array<IIndicatorData> | null;
+    revenuePerPerson: Array<IBubbleChartData> | null;
+    numberInExtremePoverty: Array<IBubbleChartData> | null;
   }
 
   /*
     description: 
   */
-  interface IIndicatorData {
+  interface IBubbleChartData {
     year: number | null;
     value: number | null;
     id: string | null;
     name: string | null;
+    income_group: string | null;
+    region: string | null;
   }
 
   /*
     description: 
   */
   interface IBubbleChartPoverty {
-    revenuePerPerson: Array<IIndicatorData> | null;
-    percentageInExtremePoverty: Array<IIndicatorData> | null;
+    revenuePerPerson: Array<IBubbleChartData> | null;
+    percentageInExtremePoverty: Array<IBubbleChartData> | null;
   }
 
   /*
@@ -250,6 +252,16 @@ declare namespace DH {
   interface ISingleResourceData {
     resources: Array<IIndicatorData> | null;
     color: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IIndicatorData {
+    year: number | null;
+    value: number | null;
+    id: string | null;
+    name: string | null;
   }
 
   /*

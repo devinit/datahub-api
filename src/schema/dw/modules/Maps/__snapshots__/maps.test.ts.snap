@@ -8,7 +8,7 @@ exports[`Maps module tests should return poverty indicator data 1`] = `
   \\"end_year\\": \\"2013\\",
   \\"heading\\": \\"Moderate poverty rate (% of the population living on less than $3.10 a day)\\",
   \\"id\\": \\"data_series.depth_of_extreme_poverty_190\\",
-  \\"include_in_methodology_page\\": \\"1\\",
+  \\"include_in_methodology_page\\": \\"\\",
   \\"map\\": Array [
     Object {
       \\"id\\": \\"AL\\",

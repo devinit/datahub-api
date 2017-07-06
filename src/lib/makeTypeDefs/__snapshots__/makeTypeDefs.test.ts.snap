@@ -37,7 +37,7 @@ declare namespace DH {
     getWhereThePoorPageData: Array<IPage> | null;
     getBubbleChartOda: IBubbleChartOda | null;
     getBubbleChartPoverty: IBubbleChartPoverty | null;
-    getBubbleSize: Array<IIndicatorData> | null;
+    getBubbleSize: Array<IBubbleChartData> | null;
     getBubbleChartIndicatorsList: Array<IIdNamePair> | null;
     getOverViewTab: IOverViewTabRegional | null;
     getPovertyTab: IPovertyTabRegional | null;
@@ -86,26 +86,28 @@ declare namespace DH {
     description: 
   */
   interface IBubbleChartOda {
-    revenuePerPerson: Array<IIndicatorData> | null;
-    numberInExtremePoverty: Array<IIndicatorData> | null;
+    revenuePerPerson: Array<IBubbleChartData> | null;
+    numberInExtremePoverty: Array<IBubbleChartData> | null;
   }
 
   /*
     description: 
   */
-  interface IIndicatorData {
+  interface IBubbleChartData {
     year: number | null;
     value: number | null;
     id: string | null;
     name: string | null;
+    income_group: string | null;
+    region: string | null;
   }
 
   /*
     description: 
   */
   interface IBubbleChartPoverty {
-    revenuePerPerson: Array<IIndicatorData> | null;
-    percentageInExtremePoverty: Array<IIndicatorData> | null;
+    revenuePerPerson: Array<IBubbleChartData> | null;
+    percentageInExtremePoverty: Array<IBubbleChartData> | null;
   }
 
   /*
@@ -252,6 +254,16 @@ declare namespace DH {
   interface ISingleResourceData {
     resources: Array<IIndicatorData> | null;
     color: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IIndicatorData {
+    year: number | null;
+    value: number | null;
+    id: string | null;
+    name: string | null;
   }
 
   /*
@@ -462,7 +474,7 @@ type Query {
   getBubbleChartPoverty: BubbleChartPoverty
   # indicatorData is defined in country profiles type file
    # we return data for the entire year range for a given indicator id eg donor country ID or indicator table name
-  getBubbleSize(id: String): [IndicatorData]
+  getBubbleSize(id: String): [BubbleChartData]
   # IdNamePair is defined in unbundling aid types 
    # this list feeds off oda table from countries and global/concept file
   getBubbleChartIndicatorsList: [IdNamePair]
@@ -505,14 +517,23 @@ type Page {
   narrative: String
 }
 
+type BubbleChartData {
+  year: Int
+  value: Float
+  id: String
+  name: String
+  income_group: String
+  region: String
+}
+
 type BubbleChartOda {
-  revenuePerPerson: [IndicatorData]
-  numberInExtremePoverty: [IndicatorData]
+  revenuePerPerson: [BubbleChartData]
+  numberInExtremePoverty: [BubbleChartData]
 }
 
 type BubbleChartPoverty {
-  revenuePerPerson: [IndicatorData]
-  percentageInExtremePoverty: [IndicatorData]
+  revenuePerPerson: [BubbleChartData]
+  percentageInExtremePoverty: [BubbleChartData]
 }
 
 type IndicatorData {
