@@ -26,23 +26,30 @@ declare namespace DH {
     getCountryProfilePageData: Array<IPage> | null;
     getGlobalPicturePageData: Array<IPage> | null;
     getGlobalPictureThemes: Array<ITheme> | null;
-    getodaDonorBubbleChartPageData: Array<IPage> | null;
+    getGlobalPictureIndicators: Array<IIndicator> | null;
+    getOdaDonorBubbleChartPageData: Array<IPage> | null;
     getPovertyBubbleChartPageData: Array<IPage> | null;
     getSpotlightUgandaPageData: Array<IPage> | null;
     getUnbundlingOdaPageData: Array<IPage> | null;
     getUnbundlingOOfPageData: Array<IPage> | null;
     getWhereThePoorPageData: Array<IPage> | null;
-    getRevenuePerPersonAndPoverty190: Array<IRevenuePerPersonAndPoverty190> | null;
-    getBubbleSize: Array<IBubbleSize> | null;
-    getOverViewTab: IOverViewTab | null;
-    getPovertyTab: IPovertyTab | null;
-    getPopulationTab: IPopulationTab | null;
+    getBubbleChartOda: IBubbleChartOda | null;
+    getBubbleChartPoverty: IBubbleChartPoverty | null;
+    getBubbleSize: Array<IBubbleChartData> | null;
+    getBubbleChartIndicatorsList: Array<IIdNamePair> | null;
+    getOverViewTab: IOverViewTabRegional | null;
+    getPovertyTab: IPovertyTabRegional | null;
+    getPopulationTab: IPopulationTabRegional | null;
     getGovernmentFinance: IGovernmentFinance | null;
     getInternationalResources: IInternationalResources | null;
-    getMapData: IAggregatedMap | null;
+    getSingleResource: ISingleResourceData | null;
+    getMapData: IMapData | null;
     getMethodologies: Array<IDataSources> | null;
-    getWhereThePoorWillbeData: IWhereThePoorWillbe | null;
-    getUnbundlingAid: Array<IAggregatedAid> | null;
+    getEducationTab: IEducationTabRegional | null;
+    getHealthTab: IHealthTabRegional | null;
+    getLocalGovernmentFinance: ILocalGovernmentFinance | null;
+    getUnbundlingAidData: Array<IAidUnit> | null;
+    getUnbundlingSelectionData: IUnbundlingAidSelections | null;
   }
 
   /*
@@ -67,75 +74,95 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IRevenuePerPersonAndPoverty190 {
+  interface IIndicator {
     id: string | null;
-    year: number | null;
-    poverty: number | null;
-    revenuePerPerson: number | null;
+    name: string | null;
+    order: number | null;
   }
 
   /*
     description: 
   */
-  interface IBubbleSize {
-    id: string | null;
+  interface IBubbleChartOda {
+    revenuePerPerson: Array<IBubbleChartData> | null;
+    numberInExtremePoverty: Array<IBubbleChartData> | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IBubbleChartData {
     year: number | null;
     value: number | null;
+    id: string | null;
+    name: string | null;
+    income_group: string | null;
+    region: string | null;
   }
 
   /*
     description: 
   */
-  interface IOverViewTab {
+  interface IBubbleChartPoverty {
+    revenuePerPerson: Array<IBubbleChartData> | null;
+    percentageInExtremePoverty: Array<IBubbleChartData> | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IIdNamePair {
+    id: string | null;
+    name: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IOverViewTabRegional {
     poorestPeople: string | null;
-    population: string | null;
-    domesticPublicResources: string | null;
-    internationalResources: string | null;
-    governmentSpendPerPerson: string | null;
-    averageIncomerPerPerson: Array<IIndicatorData> | null;
-    IncomeDistTrend: Array<IIndicatorData> | null;
+    regionalResources: string | null;
+    regionalResourcesBreakdown: Array<IIndicatorDataColored> | null;
+    localGovernmentSpendPerPerson: string | null;
   }
 
   /*
     description: 
   */
-  interface IIndicatorData {
+  interface IIndicatorDataColored {
     year: number | null;
-    Value: number | null;
+    value: number | null;
+    id: string | null;
+    name: string | null;
+    color: string | null;
   }
 
   /*
     description: 
   */
-  interface IPovertyTab {
-    poverty190Trend: Array<IIndicatorData> | null;
-    depthOfExtremePoverty: number | null;
-    IncomeDistTrend: Array<IIndicatorData> | null;
+  interface IPovertyTabRegional {
+    poorestPeople: string | null;
+    lifeExpectancy: string | null;
+    stdOfLiving: string | null;
   }
 
   /*
     description: 
   */
-  interface IPopulationTab {
-    population: number | null;
+  interface IPopulationTabRegional {
+    totalPopulation: string | null;
+    populationDensity: string | null;
     populationDistribution: Array<IPopulationDistribution> | null;
-    populationPerAgeBand: Array<IPopulationPerAgeBand> | null;
+    averageDependencyRatio: string | null;
+    allAverageDependencyRatio: string | null;
   }
 
   /*
     description: 
   */
   interface IPopulationDistribution {
-    Urban: Array<IIndicatorData> | null;
-    Rural: Array<IIndicatorData> | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IPopulationPerAgeBand {
-    ageBand: string | null;
-    population: number | null;
+    group: string | null;
+    value: number | null;
     year: number | null;
   }
 
@@ -143,72 +170,116 @@ declare namespace DH {
     description: 
   */
   interface IGovernmentFinance {
-    totalRevenue: number | null;
-    totalGrants: number | null;
-    currencyType: string | null;
-    spendingAllocation: Array<IIndicatorLabledData> | null;
-    revenueAndGrants: Array<IDomestic> | null;
+    totalRevenue: string | null;
+    grantsAsPcOfRevenue: string | null;
+    spendingAllocation: Array<ISpendingAllocation> | null;
+    currencyCode: string | null;
     expenditure: Array<IDomestic> | null;
-    financing: Array<IDomestic> | null;
+    revenueAndGrants: Array<IDomestic> | null;
+    finance: Array<IDomestic> | null;
   }
 
   /*
     description: 
   */
-  interface IIndicatorLabledData {
-    year: number | null;
-    Value: number | null;
-    id: string | null;
+  interface ISpendingAllocation {
+    value: number | null;
+    name: string | null;
+    color: string | null;
   }
 
   /*
     description: 
   */
   interface IDomestic {
-    title: string | null;
-    levels: Array<string> | null;
     budgetType: string | null;
-    level: number | null;
+    type: string | null;
+    parentCategory: string | null;
+    category: string | null;
+    subCategory: string | null;
     year: number | null;
     value: number | null;
+    valueNcu: number | null;
   }
 
   /*
     description: 
   */
   interface IInternationalResources {
-    GNI: number | null;
-    netODAOfGNI: number | null;
-    resourceOverTimeInflows: Array<IResourceData> | null;
-    resourceOverTimeOutflows: Array<IResourceData> | null;
-    inflows: Array<string> | null;
-    outflows: Array<string> | null;
+    GNI: string | null;
+    netODAOfGNIIn: string | null;
+    netODAOfGNIOut: string | null;
+    resourcesOverTime: Array<IResourceData> | null;
+    mixOfResources: Array<IResourceData> | null;
+    inflows: Array<IFlow> | null;
+    outflows: Array<IFlow> | null;
   }
 
   /*
     description: 
   */
   interface IResourceData {
-    year: number | null;
-    Value: number | null;
-    id: string | null;
-    category: string | null;
-    typeName: string | null;
+    year: number;
+    value: number;
+    flow_name: string;
+    short_name: string | null;
+    flow_category: string | null;
+    flow_type: string | null;
+    direction: string | null;
+    color: string | null;
   }
 
   /*
     description: 
   */
-  interface IAggregatedMap {
+  interface IFlow {
+    name: string | null;
+    id: string | null;
+    selections: Array<IFlowSelection> | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IFlowSelection {
+    name: string | null;
+    id: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface ISingleResourceData {
+    resources: Array<IIndicatorData> | null;
+    color: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IIndicatorData {
+    year: number | null;
+    value: number | null;
+    id: string | null;
+    name: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IMapData {
     map: Array<IMapUnit> | null;
     name: string | null;
-    uomDisplay: string | null;
+    uom_display: string | null;
     uom: string | null;
-    startYear: number | null;
-    endYear: number | null;
+    start_year: number | null;
+    end_year: number | null;
     description: string | null;
+    source: string | null;
+    source_link: string | null;
     theme: string | null;
     color: string | null;
+    heading: string | null;
     total: number | null;
   }
 
@@ -217,7 +288,7 @@ declare namespace DH {
   */
   interface IMapUnit {
     id: string | null;
-    countryName: string | null;
+    name: string | null;
     year: number | null;
     value: number | null;
   }
@@ -245,64 +316,135 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IWhereThePoorWillbe {
-    global: Array<ILevelData> | null;
-    regional: Array<ILevelData> | null;
+  interface IEducationTabRegional {
+    pupilTeacherRatioGovtSchl: string | null;
+    pupilTeacherRatioOtherSchl: string | null;
+    studentsPass: string | null;
+    primaryEducationfunding: string | null;
   }
 
   /*
     description: 
   */
-  interface ILevelData {
-    poverty: number | null;
-    scenario: string | null;
-    year: number | null;
-    typeName: string | null;
+  interface IHealthTabRegional {
+    districtPerformance: string | null;
+    treatmeantOfTb: string | null;
+    healthCareFunding: string | null;
   }
 
   /*
     description: 
   */
-  type IUnbundlingAidTypeEnum = 'ODA' | 'OOF';
-
-  /*
-    description: 
-  */
-  interface IAggregatedAid {
-    aids: Array<IAid> | null;
-    total: number | null;
-    toCountries: Array<string> | null;
-    fromCountries: Array<string> | null;
-    channels: Array<string> | null;
-    form: Array<string> | null;
+  interface ILocalGovernmentFinance {
+    revenueAndGrants: Array<IDomestic> | null;
+    expenditure: Array<IDomestic> | null;
   }
 
   /*
     description: 
   */
-  interface IAid {
-    year: number | null;
-    Value: number | null;
-    id: string | null;
+  interface IUnbundlingAidQuery {
+    aidType: string;
+    year: number;
+    groupBy: string;
+    toCountry?: string | null;
+    fromCountryOrOrg?: string | null;
+    sector?: string | null;
+    form?: string | null;
+    channel?: string | null;
   }
 
   /*
     description: 
   */
-  interface IGovtRevenuePerPerson {
-    id: string | null;
-    year: number | null;
+  interface IAidUnit {
     value: number | null;
-    type: string | null;
+    name: string | null;
+    color: string | null;
+    id: string | null;
+    year: number | null;
   }
 
   /*
     description: 
   */
-  interface IPoverty190 {
-    id: string | null;
-    year: number | null;
+  interface IUnbundlingAidSelections {
+    to: Array<IIdNamePair> | null;
+    from: Array<IIdNamePair> | null;
+    channels: Array<IIdNamePair> | null;
+    sectors: Array<IIdNamePair> | null;
+    form: Array<IIdNamePair> | null;
+    years: Array<number> | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IQuintile {
     value: number | null;
+    quintileName: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IToolTip {
+    indicator: string | null;
+    message: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IOverViewTabRecipients {
+    poorestPeople: string | null;
+    population: string | null;
+    domesticResources: string | null;
+    internationalResources: string | null;
+    governmentSpendPerPerson: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IOverViewTabDonors {
+    governmentSpendPerPerson: string | null;
+    averageIncomerPerPerson: Array<IIndicatorData> | null;
+    incomeDistTrend: Array<IQuintile> | null;
+  }
+
+  /*
+    description: 
+  */
+  type OverViewTab = IOverViewTabRecipients | IOverViewTabDonors;
+
+
+
+  /*
+    description: 
+  */
+  interface IPovertyTab {
+    poverty190Trend: Array<IIndicatorData> | null;
+    depthOfExtremePoverty: string | null;
+    incomeDistTrend: Array<IQuintile> | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IPopulationPerAgeBand {
+    band: string | null;
+    value: number | null;
+    year: number | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IPopulationTab {
+    population: string | null;
+    populationDistribution: Array<IPopulationDistribution> | null;
+    populationPerAgeBand: Array<IPopulationPerAgeBand> | null;
   }
 }
 

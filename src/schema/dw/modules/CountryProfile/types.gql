@@ -1,65 +1,86 @@
 type IndicatorData {
   year: Int
-  Value: Int
+  value: Float
+  id: String
+  name: String
 }
 
-type IndicatorLabledData {
-  year: Int
-  Value: Int
-  id: String
+type SpendingAllocation {
+  value: Float
+  name: String
+  color: String
+}
+
+type Quintile {
+  value: Float
+  quintileName: String
+}
+
+type ToolTip {
+  indicator: String
+  message: String
 }
 
 type ResourceData {
-  year: Int
-  Value: Int
-  # is the breakdown of the category eg Gross disbursements for 
-  # the ODA category
-  id: String
-  # Category can be Official (oda, oof), Commercial, Private
-  category: String
+  year: Int!
+  value: Float!
+  flow_name: String!
+  short_name: String
+  # Category i.e FDI, ODA
+  flow_category: String
   # flow either inflow or outflow
-  # this is an optional field may not be queried in final data
-  typeName: String
+  flow_type: String
+  # in or out
+  direction: String
+  color: String
 }
 
-type OverViewTab {
+type OverViewTabRecipients {
   # how many of the poorest people globally live in a country
   poorestPeople: String
   # total population for a given country
   population: String
-  domesticPublicResources: String
+  domesticResources: String
   internationalResources: String
   # recipient countries $PPP
   governmentSpendPerPerson: String
+  # TODO: toolTips: [ToolTips]
+}
+
+type OverViewTabDonors {
+  governmentSpendPerPerson: String
   # donor: gross nation income per capit GNI
   averageIncomerPerPerson: [IndicatorData]
-  # donor: gross nation income per capit GNI
-  IncomeDistTrend: [IndicatorData]
+  # donor: Income share by quintile
+  incomeDistTrend: [Quintile]
 }
+
+union OverViewTab = OverViewTabRecipients | OverViewTabDonors
 
 type PovertyTab {
   # Poverty reduction over time area chart trend
   poverty190Trend: [IndicatorData]
   # how deep is poverty %
-  depthOfExtremePoverty: Int
+  depthOfExtremePoverty: String
   # Recipients: how income is distributed, % of income received by each quintil
-  IncomeDistTrend: [IndicatorData]
+  incomeDistTrend: [Quintile]
 }
 
 type PopulationDistribution {
-  Urban: [IndicatorData]
-  Rural: [IndicatorData]
+  group: String
+  value: Int 
+  year: Int
 }
 
 type PopulationPerAgeBand {
-  ageBand: String
-  population: Int
+  band: String
+  value: Int
   year: Int
 }
 
 type PopulationTab {
   # total population in a country
-  population: Int
+  population: String
   # Urban vs Rural population level
   populationDistribution: [PopulationDistribution]
   # Number of people in 3 age bands (65+, 15- 65, 0 - 14)
@@ -67,47 +88,71 @@ type PopulationTab {
 }
 
 type Domestic {
-  # eg value added tax
-  title: String
-  # the levels of the data i.e total-expenditure,recurrent-expenditure,compensation-of-employees
-  levels: [String]
   # eg Actual or budget
   budgetType: String
-  # if level 1 data comes first, 
-  # this is for the tree map and its a convenience field as it can be drived from the levels array
-  # so one may query levels or level 
-  level: Int 
+  # eg total_revenue and grants --> l1
+  type: String
+  # eg revenue --> l2
+  parentCategory: String
+  # eg tax revenue --> l3
+  category: String
+  # eg value-added tax  --> l4
+  subCategory: String
   year: Int 
-  value: Int 
+  value: Float
+  valueNcu: Float
 }
 
 type GovernmentFinance {
-  #Total revenue for a particular year if not available return -1
-  totalRevenue: Int
-  totalGrants: Int
-  # such as constnat 2015 USD
-  currencyType: String
-  spendingAllocation: [IndicatorLabledData]
-  spendingAllocation: [IndicatorLabledData]
-  revenueAndGrants: [Domestic]
+  #Total revenue for a particular year if not available return -1 
+  # uses gdp
+  totalRevenue: String
+  grantsAsPcOfRevenue: String
+  # for donut chart 
+  spendingAllocation: [SpendingAllocation]
+  # for treemap
+  # such as constant 2015 USD for tree map
+  currencyCode: String
+  # use resourcesRecipient sql
   expenditure: [Domestic]
-  financing: [Domestic]
+  revenueAndGrants: [Domestic]
+  finance: [Domestic]
+}
+
+type FlowSelection {
+  name: String
+  # this is the group ID
+  id: String
+}
+
+type Flow {
+  name: String
+  id: String
+  selections: [FlowSelection]
 }
 
 type InternationalResources {
   # Gross National Income
-  GNI: Int
-  #Net ODA received, % of GNI
-  netODAOfGNI: Int
-  # gross inflows for the lines chart in the  tabs section
-  # for sidebar chart in international resources section & area partition tree chart
-  resourceOverTimeInflows(yearStart: Int!, yearEnd: Int!): [ResourceData]
-  # for sidebar chart in international resources section & area partition tree chart
-  resourceOverTimeOutflows(yearStart: Int!, yearEnd: Int!): [ResourceData]
+  GNI: String
+  #Net ODA received, % of GNI for recipient countries
+  netODAOfGNIIn: String
+  #Net ODA out, % of GNI for recipient countries
+  netODAOfGNIOut: String
+  # for sidebar chart in international resources section & area partition tree chart default data
+  # & line chart in the  tabs section
+  resourcesOverTime: [ResourceData]
+  # Whats the mix of resources can be for donors (out flows) or receipient (in flows)
+  # this is for the donut chart
+  mixOfResources: [ResourceData]
   # an array of inflows for a particular country, for area & partition chart
-  inflows: [String]
+  inflows: [Flow]
    # an array of outflows for a particular country
-  outflows: [String]
+  outflows: [Flow]
+}
+
+type SingleResourceData {
+  resources: [IndicatorData]
+  color: String
 }
 
 type Query {  
@@ -116,5 +161,11 @@ type Query {
   getPopulationTab(id: String!): PopulationTab
   getGovernmentFinance(id: String!): GovernmentFinance
   getInternationalResources(id: String!): InternationalResources
+  # for area tree map chart dropdown selectoion
+  getSingleResource(
+    resourceId: String!, #fdi-devcountries --> gets has concept
+    countryId: String!, # AT
+    groupById: String # id-to
+    ): SingleResourceData
 }
 

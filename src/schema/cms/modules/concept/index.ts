@@ -7,20 +7,27 @@ export interface IConcept {
     name: string;
     description: string;
     uom: string;
-    uomDisplay: string;
-    startYear: number;
+    uom_display: string;
+    start_year: number;
+    include_in_methodology_page: number;
     color: string;
-    endYear: number;
+    end_year: number;
+    heading: string;
+    source: string;
+    source_link: string;
+    appear_in_bubble_chart: number;
 }
-
+// TODO: parse start_year as a number
 export const getConcepts = (moduleName: string): Promise <IConcept[]> => {
     const endPoint: string = `${moduleName}/concept.csv`;
     return get<IConcept>(endPoint);
 };
-
-export const getConceptAsync = async (moduleName: string, id: string): Promise <IConcept> => {
+ // TODO: getConceptAsync should return a union type
+export const getConceptAsync = async (moduleName: string, id: string, theme?: string): Promise <IConcept> => {
     const allConcepts: IConcept[]  = await getConcepts(moduleName);
-    return R.find(R.propEq('id', id), allConcepts) as IConcept;
+    const concepts  = R.filter(R.propEq('id', id), allConcepts) as IConcept[];
+    if (theme) return R.find(R.propEq('theme', theme), concepts) as IConcept;
+    return concepts[0];
 };
 
 export const getConcept = (id: string, concepts: IConcept[]): IConcept =>

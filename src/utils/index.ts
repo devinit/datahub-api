@@ -1,67 +1,22 @@
-import * as R from 'ramda';
-import {IEntity, getEntityById, getEntities} from '../schema/cms/modules/global';
-
-export interface Isummable {
-    value: number | string | null;
-}
-
-export interface IhasDiId {
-    di_id: string;
-}
-
-export interface IhasId {
-    id: string;
-}
-
-export interface IhasStringValue {
-    value: string | null;
-}
-
 export const getCurrentYear = (): number => {
     const date = new Date();
     return date.getFullYear();
 };
 
-const parse = (value: string | null): number | null => value && value.length ? Number(value) : null;
+export const parse = (value: string | null): number | null => value && value.length ? Number(value) : null;
 
-export const addCountryName = (obj: IhasId, entites: IEntity[]): any => {
-    const entity = getEntityById(obj.id, entites);
-    return {...obj, countryName: entity.name};
-};
-
-export const indicatorDataProcessing = async (data: IhasDiId[]): Promise<DH.IMapUnit[]> => {
-    const entities = await getEntities();
-    return data
-            .map(toId)
-            .map((obj) => addCountryName(obj, entities))
-            .map(toNumericValue);
-};
-
-export const toNumericValue: (obj: IhasStringValue) => any =
-    (obj) => ({...obj, value: parse(obj.value)});
-
-export const toId: (obj: IhasDiId ) => any = (obj) => {
-    const id = obj.di_id;
-    const newObj = R.omit(['di_id'], obj);
-    return {...newObj, id };
-};
-
-export const getTotal = (data: Isummable[]): number =>
-    R.reduce((sum: number, obj: Isummable): number => {
-        if (obj.value) sum += Number(obj.value);
-        return sum;
-    }, 0, data);
-
-export const formatNumbers = (value: number, precision: number = 0): string => {
-    const absValue = Math.abs(value);
+export const formatNumbers = (value: number | string | undefined | null, precision: number = 0): string => {
+    if (value === undefined || value === null) return 'No data';
+    const val = Number(value);
+    const absValue = Math.abs(val);
     if (absValue < 1e6) {
-        const newValue = value / 1e3;
+        const newValue = val / 1e3;
         return `${newValue.toFixed(precision)}k`;
     } else if (absValue >= 1e6 && absValue < 1e9) {
-        const newValue = value / 1e6;
+        const newValue = val / 1e6;
         return `${newValue.toFixed(precision)}m`;
     } else {
-        const newValue = value / 1e9;
+        const newValue = val / 1e9;
         return `${newValue.toFixed(precision)}bn`;
     }
 };

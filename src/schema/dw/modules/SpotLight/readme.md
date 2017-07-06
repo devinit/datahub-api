@@ -1,0 +1,1 @@
+Spotlight module focusing on sub regional API data, the maps API are handeled in the Maps module.

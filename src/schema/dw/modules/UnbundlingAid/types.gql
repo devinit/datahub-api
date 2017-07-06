@@ -1,34 +1,43 @@
-enum UnbundlingAidType {
-  ODA
-  OOF
-}
-
-type Aid {
-  year: Int
-  Value: Int
-  # country or organisation label
+type AidUnit {
+  # this will usually be a summed up aggregate value
+  value: Float
+  # country or organisation or channel or bundle name
+  name: String
+  color: String
   id: String
+  year: Int
 }
 
-type AggregatedAid {
-  aids: [Aid]
-  total: Int
+type IdNamePair {
+  id: String
+  name: String
+}
+
+type UnbundlingAidSelections {
   # unbundling aid selection options
-  toCountries: [String]
-  fromCountries: [String]
-  channels: [String]
-  form: [String]
+  to: [IdNamePair]
+  from: [IdNamePair]
+  channels: [IdNamePair]
+  sectors: [IdNamePair]
+  form: [IdNamePair]
+  years: [Int]
+}
+
+input UnbundlingAidQuery {
+    # oda or oof 
+    aidType: String!
+    year: Int!
+    # eg channel, bundle
+    groupBy: String!
+    toCountry: String
+    fromCountryOrOrg: String
+    sector: String
+    form: String
+    channel: String
 }
 
 type Query {
-  getUnbundlingAid(
-    type: UnbundlingAidType
-    year: Int!,
-    toCountry: String,
-    fromCountryOrOrg:String,
-    sector: String,
-    inTheformOf: String,
-    channel: String
-  ):[AggregatedAid]
+  getUnbundlingAidData(args: UnbundlingAidQuery):[AidUnit]
+  getUnbundlingSelectionData: UnbundlingAidSelections
 }
 

@@ -3,23 +3,26 @@ type MapUnit {
   # country code Id in DW this is di_id
   id: String
   # countryName derived from entity.csv
-  countryName: String
+  name: String
   year: Int
   value: Float
 }
 
-type AggregatedMap {
+type MapData {
   map: [MapUnit]
   # map indicator user friendly label / slug eg Poverty
   name: String
   # map value unit eg US $ or %
-  uomDisplay: String
+  uom_display: String
   uom: String
-  startYear: Int
-  endYear: Int 
+  start_year: Int
+  end_year: Int 
   description: String
+  source: String
+  source_link: String
   theme: String
   color: String
+  heading: String
   # map indicators total for % computations where needed
   total: Float 
 }
@@ -28,5 +31,5 @@ type Query {
   getMapData(
     id: String!,
     DACOnly: Boolean
-  ): AggregatedMap
+  ): MapData
 }

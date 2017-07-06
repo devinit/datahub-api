@@ -1,23 +1,20 @@
 import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
-import {getTotal, indicatorDataProcessing, getCurrentYear} from '../../../../utils';
+import {IRAW, getIndicatorDataSimple, getTotal, indicatorDataProcessing} from '../utils';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
-import sql from './sql';
-import {isNumber} from '../../../../lib/isType';
+import sql, {DAC} from './sql';
 import * as R from 'ramda';
 
 interface IgetMapDataOpts {
     id: string;
-    startYear: number;
-    endYear: number;
     DACOnly: boolean;
 }
 
 export default class Maps {
 
     public static DACOnlyData(DACCountries: string[], indicatorData: DH.IMapUnit[]): DH.IMapUnit[] {
-       return DACCountries.map(countryName =>
-            R.find((obj: DH.IMapUnit) => obj.countryName === countryName, indicatorData));
+       return DACCountries.map(name =>
+            R.find((obj: DH.IMapUnit) => obj.name === name, indicatorData));
     }
 
     private db: IDatabase<IExtensions> & IExtensions;
@@ -26,24 +23,20 @@ export default class Maps {
         this.db = db;
     }
 
-    public async getMapData(opts: IgetMapDataOpts): Promise<DH.IAggregatedMap> {
+    public async getMapData(opts: IgetMapDataOpts): Promise<DH.IMapData> {
         const concept: IConcept = await getConceptAsync('global-picture', opts.id);
         // we merge concept and graphql qery options, they have startYear and endYear variables
-        const data: any [] = await this.getIndicatorData({...opts, ...concept});
+        const data: IRAW [] = await getIndicatorDataSimple<IRAW>({...concept, sql, db: this.db, table: opts.id});
         const DACCountries = opts.DACOnly ? await this.getDACCountries() : [];
-        const processedData = await indicatorDataProcessing(data);
+        const processedData: DH.IMapUnit[] = await indicatorDataProcessing(data);
         const mapData = DACCountries.length ? Maps.DACOnlyData(DACCountries, processedData) : processedData;
         const total: number = getTotal(mapData);
         return {map: mapData, total, ...concept};
     }
 
     private async getDACCountries(): Promise<string[]> {
-        const donors: Array<{donor_name: string}> = await this.db.manyCacheable(sql.DAC, 'DAC');
+        const donors: Array<{donor_name: string}> = await this.db.manyCacheable(DAC, 'DAC');
         return donors
             .map(donor => donor.donor_name);
-    }
-    private getIndicatorData(opts: IgetMapDataOpts): Promise<DH.IMapUnit[]> {
-        const endYear = !isNumber(opts.endYear) ? getCurrentYear() : opts.endYear;
-        return this.db.manyCacheable(sql.indicator, {...opts, endYear});
     }
 }

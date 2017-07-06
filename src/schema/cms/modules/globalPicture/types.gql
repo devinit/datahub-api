@@ -5,7 +5,14 @@ type Theme {
   order: Int
 }
 
+type Indicator {
+  id: String
+  name: String
+  order: Int
+}
+
 type Query {
   getGlobalPicturePageData: [Page]
   getGlobalPictureThemes: [Theme]
+  getGlobalPictureIndicators(theme: String!): [Indicator]
 }

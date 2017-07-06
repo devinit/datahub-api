@@ -28,23 +28,30 @@ declare namespace DH {
     getCountryProfilePageData: Array<IPage> | null;
     getGlobalPicturePageData: Array<IPage> | null;
     getGlobalPictureThemes: Array<ITheme> | null;
-    getodaDonorBubbleChartPageData: Array<IPage> | null;
+    getGlobalPictureIndicators: Array<IIndicator> | null;
+    getOdaDonorBubbleChartPageData: Array<IPage> | null;
     getPovertyBubbleChartPageData: Array<IPage> | null;
     getSpotlightUgandaPageData: Array<IPage> | null;
     getUnbundlingOdaPageData: Array<IPage> | null;
     getUnbundlingOOfPageData: Array<IPage> | null;
     getWhereThePoorPageData: Array<IPage> | null;
-    getRevenuePerPersonAndPoverty190: Array<IRevenuePerPersonAndPoverty190> | null;
-    getBubbleSize: Array<IBubbleSize> | null;
-    getOverViewTab: IOverViewTab | null;
-    getPovertyTab: IPovertyTab | null;
-    getPopulationTab: IPopulationTab | null;
+    getBubbleChartOda: IBubbleChartOda | null;
+    getBubbleChartPoverty: IBubbleChartPoverty | null;
+    getBubbleSize: Array<IBubbleChartData> | null;
+    getBubbleChartIndicatorsList: Array<IIdNamePair> | null;
+    getOverViewTab: IOverViewTabRegional | null;
+    getPovertyTab: IPovertyTabRegional | null;
+    getPopulationTab: IPopulationTabRegional | null;
     getGovernmentFinance: IGovernmentFinance | null;
     getInternationalResources: IInternationalResources | null;
-    getMapData: IAggregatedMap | null;
+    getSingleResource: ISingleResourceData | null;
+    getMapData: IMapData | null;
     getMethodologies: Array<IDataSources> | null;
-    getWhereThePoorWillbeData: IWhereThePoorWillbe | null;
-    getUnbundlingAid: Array<IAggregatedAid> | null;
+    getEducationTab: IEducationTabRegional | null;
+    getHealthTab: IHealthTabRegional | null;
+    getLocalGovernmentFinance: ILocalGovernmentFinance | null;
+    getUnbundlingAidData: Array<IAidUnit> | null;
+    getUnbundlingSelectionData: IUnbundlingAidSelections | null;
   }
 
   /*
@@ -69,75 +76,95 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IRevenuePerPersonAndPoverty190 {
+  interface IIndicator {
     id: string | null;
-    year: number | null;
-    poverty: number | null;
-    revenuePerPerson: number | null;
+    name: string | null;
+    order: number | null;
   }
 
   /*
     description: 
   */
-  interface IBubbleSize {
-    id: string | null;
+  interface IBubbleChartOda {
+    revenuePerPerson: Array<IBubbleChartData> | null;
+    numberInExtremePoverty: Array<IBubbleChartData> | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IBubbleChartData {
     year: number | null;
     value: number | null;
+    id: string | null;
+    name: string | null;
+    income_group: string | null;
+    region: string | null;
   }
 
   /*
     description: 
   */
-  interface IOverViewTab {
+  interface IBubbleChartPoverty {
+    revenuePerPerson: Array<IBubbleChartData> | null;
+    percentageInExtremePoverty: Array<IBubbleChartData> | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IIdNamePair {
+    id: string | null;
+    name: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IOverViewTabRegional {
     poorestPeople: string | null;
-    population: string | null;
-    domesticPublicResources: string | null;
-    internationalResources: string | null;
-    governmentSpendPerPerson: string | null;
-    averageIncomerPerPerson: Array<IIndicatorData> | null;
-    IncomeDistTrend: Array<IIndicatorData> | null;
+    regionalResources: string | null;
+    regionalResourcesBreakdown: Array<IIndicatorDataColored> | null;
+    localGovernmentSpendPerPerson: string | null;
   }
 
   /*
     description: 
   */
-  interface IIndicatorData {
+  interface IIndicatorDataColored {
     year: number | null;
-    Value: number | null;
+    value: number | null;
+    id: string | null;
+    name: string | null;
+    color: string | null;
   }
 
   /*
     description: 
   */
-  interface IPovertyTab {
-    poverty190Trend: Array<IIndicatorData> | null;
-    depthOfExtremePoverty: number | null;
-    IncomeDistTrend: Array<IIndicatorData> | null;
+  interface IPovertyTabRegional {
+    poorestPeople: string | null;
+    lifeExpectancy: string | null;
+    stdOfLiving: string | null;
   }
 
   /*
     description: 
   */
-  interface IPopulationTab {
-    population: number | null;
+  interface IPopulationTabRegional {
+    totalPopulation: string | null;
+    populationDensity: string | null;
     populationDistribution: Array<IPopulationDistribution> | null;
-    populationPerAgeBand: Array<IPopulationPerAgeBand> | null;
+    averageDependencyRatio: string | null;
+    allAverageDependencyRatio: string | null;
   }
 
   /*
     description: 
   */
   interface IPopulationDistribution {
-    Urban: Array<IIndicatorData> | null;
-    Rural: Array<IIndicatorData> | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IPopulationPerAgeBand {
-    ageBand: string | null;
-    population: number | null;
+    group: string | null;
+    value: number | null;
     year: number | null;
   }
 
@@ -145,72 +172,116 @@ declare namespace DH {
     description: 
   */
   interface IGovernmentFinance {
-    totalRevenue: number | null;
-    totalGrants: number | null;
-    currencyType: string | null;
-    spendingAllocation: Array<IIndicatorLabledData> | null;
-    revenueAndGrants: Array<IDomestic> | null;
+    totalRevenue: string | null;
+    grantsAsPcOfRevenue: string | null;
+    spendingAllocation: Array<ISpendingAllocation> | null;
+    currencyCode: string | null;
     expenditure: Array<IDomestic> | null;
-    financing: Array<IDomestic> | null;
+    revenueAndGrants: Array<IDomestic> | null;
+    finance: Array<IDomestic> | null;
   }
 
   /*
     description: 
   */
-  interface IIndicatorLabledData {
-    year: number | null;
-    Value: number | null;
-    id: string | null;
+  interface ISpendingAllocation {
+    value: number | null;
+    name: string | null;
+    color: string | null;
   }
 
   /*
     description: 
   */
   interface IDomestic {
-    title: string | null;
-    levels: Array<string> | null;
     budgetType: string | null;
-    level: number | null;
+    type: string | null;
+    parentCategory: string | null;
+    category: string | null;
+    subCategory: string | null;
     year: number | null;
     value: number | null;
+    valueNcu: number | null;
   }
 
   /*
     description: 
   */
   interface IInternationalResources {
-    GNI: number | null;
-    netODAOfGNI: number | null;
-    resourceOverTimeInflows: Array<IResourceData> | null;
-    resourceOverTimeOutflows: Array<IResourceData> | null;
-    inflows: Array<string> | null;
-    outflows: Array<string> | null;
+    GNI: string | null;
+    netODAOfGNIIn: string | null;
+    netODAOfGNIOut: string | null;
+    resourcesOverTime: Array<IResourceData> | null;
+    mixOfResources: Array<IResourceData> | null;
+    inflows: Array<IFlow> | null;
+    outflows: Array<IFlow> | null;
   }
 
   /*
     description: 
   */
   interface IResourceData {
-    year: number | null;
-    Value: number | null;
-    id: string | null;
-    category: string | null;
-    typeName: string | null;
+    year: number;
+    value: number;
+    flow_name: string;
+    short_name: string | null;
+    flow_category: string | null;
+    flow_type: string | null;
+    direction: string | null;
+    color: string | null;
   }
 
   /*
     description: 
   */
-  interface IAggregatedMap {
+  interface IFlow {
+    name: string | null;
+    id: string | null;
+    selections: Array<IFlowSelection> | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IFlowSelection {
+    name: string | null;
+    id: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface ISingleResourceData {
+    resources: Array<IIndicatorData> | null;
+    color: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IIndicatorData {
+    year: number | null;
+    value: number | null;
+    id: string | null;
+    name: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IMapData {
     map: Array<IMapUnit> | null;
     name: string | null;
-    uomDisplay: string | null;
+    uom_display: string | null;
     uom: string | null;
-    startYear: number | null;
-    endYear: number | null;
+    start_year: number | null;
+    end_year: number | null;
     description: string | null;
+    source: string | null;
+    source_link: string | null;
     theme: string | null;
     color: string | null;
+    heading: string | null;
     total: number | null;
   }
 
@@ -219,7 +290,7 @@ declare namespace DH {
   */
   interface IMapUnit {
     id: string | null;
-    countryName: string | null;
+    name: string | null;
     year: number | null;
     value: number | null;
   }
@@ -247,64 +318,135 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IWhereThePoorWillbe {
-    global: Array<ILevelData> | null;
-    regional: Array<ILevelData> | null;
+  interface IEducationTabRegional {
+    pupilTeacherRatioGovtSchl: string | null;
+    pupilTeacherRatioOtherSchl: string | null;
+    studentsPass: string | null;
+    primaryEducationfunding: string | null;
   }
 
   /*
     description: 
   */
-  interface ILevelData {
-    poverty: number | null;
-    scenario: string | null;
-    year: number | null;
-    typeName: string | null;
+  interface IHealthTabRegional {
+    districtPerformance: string | null;
+    treatmeantOfTb: string | null;
+    healthCareFunding: string | null;
   }
 
   /*
     description: 
   */
-  type IUnbundlingAidTypeEnum = 'ODA' | 'OOF';
-
-  /*
-    description: 
-  */
-  interface IAggregatedAid {
-    aids: Array<IAid> | null;
-    total: number | null;
-    toCountries: Array<string> | null;
-    fromCountries: Array<string> | null;
-    channels: Array<string> | null;
-    form: Array<string> | null;
+  interface ILocalGovernmentFinance {
+    revenueAndGrants: Array<IDomestic> | null;
+    expenditure: Array<IDomestic> | null;
   }
 
   /*
     description: 
   */
-  interface IAid {
-    year: number | null;
-    Value: number | null;
-    id: string | null;
+  interface IUnbundlingAidQuery {
+    aidType: string;
+    year: number;
+    groupBy: string;
+    toCountry?: string | null;
+    fromCountryOrOrg?: string | null;
+    sector?: string | null;
+    form?: string | null;
+    channel?: string | null;
   }
 
   /*
     description: 
   */
-  interface IGovtRevenuePerPerson {
-    id: string | null;
-    year: number | null;
+  interface IAidUnit {
     value: number | null;
-    type: string | null;
+    name: string | null;
+    color: string | null;
+    id: string | null;
+    year: number | null;
   }
 
   /*
     description: 
   */
-  interface IPoverty190 {
-    id: string | null;
-    year: number | null;
+  interface IUnbundlingAidSelections {
+    to: Array<IIdNamePair> | null;
+    from: Array<IIdNamePair> | null;
+    channels: Array<IIdNamePair> | null;
+    sectors: Array<IIdNamePair> | null;
+    form: Array<IIdNamePair> | null;
+    years: Array<number> | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IQuintile {
     value: number | null;
+    quintileName: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IToolTip {
+    indicator: string | null;
+    message: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IOverViewTabRecipients {
+    poorestPeople: string | null;
+    population: string | null;
+    domesticResources: string | null;
+    internationalResources: string | null;
+    governmentSpendPerPerson: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IOverViewTabDonors {
+    governmentSpendPerPerson: string | null;
+    averageIncomerPerPerson: Array<IIndicatorData> | null;
+    incomeDistTrend: Array<IQuintile> | null;
+  }
+
+  /*
+    description: 
+  */
+  type OverViewTab = IOverViewTabRecipients | IOverViewTabDonors;
+
+
+
+  /*
+    description: 
+  */
+  interface IPovertyTab {
+    poverty190Trend: Array<IIndicatorData> | null;
+    depthOfExtremePoverty: string | null;
+    incomeDistTrend: Array<IQuintile> | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IPopulationPerAgeBand {
+    band: string | null;
+    value: number | null;
+    year: number | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IPopulationTab {
+    population: string | null;
+    populationDistribution: Array<IPopulationDistribution> | null;
+    populationPerAgeBand: Array<IPopulationPerAgeBand> | null;
   }
 }
 
@@ -321,23 +463,39 @@ type Query {
   getCountryProfilePageData(countrySlug: String!): [Page]
   getGlobalPicturePageData: [Page]
   getGlobalPictureThemes: [Theme]
-  getodaDonorBubbleChartPageData: [Page]
+  getGlobalPictureIndicators(theme: String!): [Indicator]
+  getOdaDonorBubbleChartPageData: [Page]
   getPovertyBubbleChartPageData: [Page]
   getSpotlightUgandaPageData: [Page]
   getUnbundlingOdaPageData: [Page]
   getUnbundlingOOfPageData: [Page]
   getWhereThePoorPageData: [Page]
-  getRevenuePerPersonAndPoverty190: [revenuePerPersonAndPoverty190]
-  getBubbleSize(year: Int!, indicatorOrCountry: String): [BubbleSize]
+  getBubbleChartOda: BubbleChartOda
+  getBubbleChartPoverty: BubbleChartPoverty
+  # indicatorData is defined in country profiles type file
+   # we return data for the entire year range for a given indicator id eg donor country ID or indicator table name
+  getBubbleSize(id: String): [BubbleChartData]
+  # IdNamePair is defined in unbundling aid types 
+   # this list feeds off oda table from countries and global/concept file
+  getBubbleChartIndicatorsList: [IdNamePair]
   getOverViewTab(id: String!): OverViewTab
   getPovertyTab(id: String!): PovertyTab
   getPopulationTab(id: String!): PopulationTab
   getGovernmentFinance(id: String!): GovernmentFinance
   getInternationalResources(id: String!): InternationalResources
-  getMapData(id: String!, DACOnly: Boolean): AggregatedMap
+  # for area tree map chart dropdown selectoion
+  getSingleResource(resourceId: String!, countryId: String!, groupById: String): SingleResourceData
+  getMapData(id: String!, DACOnly: Boolean): MapData
   getMethodologies: [DataSources]
-  getWhereThePoorWillbeData: WhereThePoorWillbe
-  getUnbundlingAid(type: UnbundlingAidType, year: Int!, toCountry: String, fromCountryOrOrg: String, sector: String, inTheformOf: String, channel: String): [AggregatedAid]
+  # id is district slug
+  getOverViewTab(id: String!, country: String!): OverViewTabRegional
+  getPovertyTab(id: String!, country: String!): PovertyTabRegional
+  getPopulationTab(id: String!, country: String!): PopulationTabRegional
+  getEducationTab(id: String!, country: String!): EducationTabRegional
+  getHealthTab(id: String!, country: String!): HealthTabRegional
+  getLocalGovernmentFinance(id: String!, country: String!): LocalGovernmentFinance
+  getUnbundlingAidData(args: UnbundlingAidQuery): [AidUnit]
+  getUnbundlingSelectionData: UnbundlingAidSelections
 }
 
 type Theme {
@@ -347,103 +505,119 @@ type Theme {
   order: Int
 }
 
+type Indicator {
+  id: String
+  name: String
+  order: Int
+}
+
 type Page {
   id: String
   title: String
   narrative: String
 }
 
-type GovtRevenuePerPerson {
-  # id country code
-  id: String
+type BubbleChartData {
   year: Int
-  value: Int
-  # actual or budgeted in our case we use actual values
-  type: String
+  value: Float
+  id: String
+  name: String
+  income_group: String
+  region: String
 }
 
-type Poverty190 {
-  id: String
-  year: Int
-  value: Int
+type BubbleChartOda {
+  revenuePerPerson: [BubbleChartData]
+  numberInExtremePoverty: [BubbleChartData]
 }
 
-type BubbleSize {
-  # Indicator label
-  id: String
-  year: Int
-  value: Int
-}
-
-type revenuePerPersonAndPoverty190 {
-  id: String
-  year: Int
-  poverty: Int
-  revenuePerPerson: Int
+type BubbleChartPoverty {
+  revenuePerPerson: [BubbleChartData]
+  percentageInExtremePoverty: [BubbleChartData]
 }
 
 type IndicatorData {
   year: Int
-  Value: Int
+  value: Float
+  id: String
+  name: String
 }
 
-type IndicatorLabledData {
-  year: Int
-  Value: Int
-  id: String
+type SpendingAllocation {
+  value: Float
+  name: String
+  color: String
+}
+
+type Quintile {
+  value: Float
+  quintileName: String
+}
+
+type ToolTip {
+  indicator: String
+  message: String
 }
 
 type ResourceData {
-  year: Int
-  Value: Int
-  # is the breakdown of the category eg Gross disbursements for 
-   # the ODA category
-  id: String
-  # Category can be Official (oda, oof), Commercial, Private
-  category: String
+  year: Int!
+  value: Float!
+  flow_name: String!
+  short_name: String
+  # Category i.e FDI, ODA
+  flow_category: String
   # flow either inflow or outflow
-   # this is an optional field may not be queried in final data
-  typeName: String
+  flow_type: String
+  # in or out
+  direction: String
+  color: String
 }
 
-type OverViewTab {
+type OverViewTabRecipients {
   # how many of the poorest people globally live in a country
   poorestPeople: String
   # total population for a given country
   population: String
-  domesticPublicResources: String
+  domesticResources: String
   internationalResources: String
   # recipient countries $PPP
   governmentSpendPerPerson: String
+}
+
+type OverViewTabDonors {
+  governmentSpendPerPerson: String
   # donor: gross nation income per capit GNI
   averageIncomerPerPerson: [IndicatorData]
-  # donor: gross nation income per capit GNI
-  IncomeDistTrend: [IndicatorData]
+  # donor: Income share by quintile
+  incomeDistTrend: [Quintile]
 }
+
+union OverViewTab = OverViewTabRecipients | OverViewTabDonors
 
 type PovertyTab {
   # Poverty reduction over time area chart trend
   poverty190Trend: [IndicatorData]
   # how deep is poverty %
-  depthOfExtremePoverty: Int
+  depthOfExtremePoverty: String
   # Recipients: how income is distributed, % of income received by each quintil
-  IncomeDistTrend: [IndicatorData]
+  incomeDistTrend: [Quintile]
 }
 
 type PopulationDistribution {
-  Urban: [IndicatorData]
-  Rural: [IndicatorData]
+  group: String
+  value: Int
+  year: Int
 }
 
 type PopulationPerAgeBand {
-  ageBand: String
-  population: Int
+  band: String
+  value: Int
   year: Int
 }
 
 type PopulationTab {
   # total population in a country
-  population: Int
+  population: String
   # Urban vs Rural population level
   populationDistribution: [PopulationDistribution]
   # Number of people in 3 age bands (65+, 15- 65, 0 - 14)
@@ -451,70 +625,97 @@ type PopulationTab {
 }
 
 type Domestic {
-  # eg value added tax
-  title: String
-  # the levels of the data i.e total-expenditure,recurrent-expenditure,compensation-of-employees
-  levels: [String]
   # eg Actual or budget
   budgetType: String
-  # if level 1 data comes first, 
-   # this is for the tree map and its a convenience field as it can be drived from the levels array
-   # so one may query levels or level 
-  level: Int
+  # eg total_revenue and grants --> l1
+  type: String
+  # eg revenue --> l2
+  parentCategory: String
+  # eg tax revenue --> l3
+  category: String
+  # eg value-added tax  --> l4
+  subCategory: String
   year: Int
-  value: Int
+  value: Float
+  valueNcu: Float
 }
 
 type GovernmentFinance {
-  # Total revenue for a particular year if not available return -1
-  totalRevenue: Int
-  totalGrants: Int
-  # such as constnat 2015 USD
-  currencyType: String
-  spendingAllocation: [IndicatorLabledData]
-  spendingAllocation: [IndicatorLabledData]
-  revenueAndGrants: [Domestic]
+  # Total revenue for a particular year if not available return -1 
+   #  uses gdp
+  totalRevenue: String
+  grantsAsPcOfRevenue: String
+  # for donut chart 
+  spendingAllocation: [SpendingAllocation]
+  # for treemap
+   # such as constant 2015 USD for tree map
+  currencyCode: String
+  # use resourcesRecipient sql
   expenditure: [Domestic]
-  financing: [Domestic]
+  revenueAndGrants: [Domestic]
+  finance: [Domestic]
+}
+
+type FlowSelection {
+  name: String
+  # this is the group ID
+  id: String
+}
+
+type Flow {
+  name: String
+  id: String
+  selections: [FlowSelection]
 }
 
 type InternationalResources {
   # Gross National Income
-  GNI: Int
-  # Net ODA received, % of GNI
-  netODAOfGNI: Int
-  # gross inflows for the lines chart in the  tabs section
-   # for sidebar chart in international resources section & area partition tree chart
-  resourceOverTimeInflows(yearStart: Int!, yearEnd: Int!): [ResourceData]
-  # for sidebar chart in international resources section & area partition tree chart
-  resourceOverTimeOutflows(yearStart: Int!, yearEnd: Int!): [ResourceData]
+  GNI: String
+  # Net ODA received, % of GNI for recipient countries
+  netODAOfGNIIn: String
+  # Net ODA out, % of GNI for recipient countries
+  netODAOfGNIOut: String
+  # for sidebar chart in international resources section & area partition tree chart default data
+   # & line chart in the  tabs section
+  resourcesOverTime: [ResourceData]
+  # Whats the mix of resources can be for donors (out flows) or receipient (in flows)
+   # this is for the donut chart
+  mixOfResources: [ResourceData]
   # an array of inflows for a particular country, for area & partition chart
-  inflows: [String]
+  inflows: [Flow]
   # an array of outflows for a particular country
-  outflows: [String]
+  outflows: [Flow]
+}
+
+type SingleResourceData {
+  resources: [IndicatorData]
+  color: String
 }
 
 type MapUnit {
   # country code Id in DW this is di_id
   id: String
   # countryName derived from entity.csv
-  countryName: String
+  name: String
   year: Int
   value: Float
 }
 
-type AggregatedMap {
+type MapData {
   map: [MapUnit]
   # map indicator user friendly label / slug eg Poverty
   name: String
   # map value unit eg US $ or %
-  uomDisplay: String
+  uom_display: String
   uom: String
-  startYear: Int
-  endYear: Int
+  start_year: Int
+  end_year: Int
   description: String
+  source: String
+  source_link: String
   theme: String
   color: String
+  heading: String
   # map indicators total for % computations where needed
   total: Float
 }
@@ -534,41 +735,105 @@ type DataSources {
   download: Download
 }
 
-type LevelData {
-  # extreme poverty count 
-  poverty: Int
-  # can be worst case, baseline or bestcase
-  scenario: String
+type IndicatorDataColored {
   year: Int
-  # typeName can be global or regional
-  typeName: String
-}
-
-type WhereThePoorWillbe {
-  global: [LevelData]
-  regional: [LevelData]
-}
-
-enum UnbundlingAidType {
-  ODA
-  OOF
-}
-
-type Aid {
-  year: Int
-  Value: Int
-  # country or organisation label
+  value: Float
   id: String
+  name: String
+  color: String
 }
 
-type AggregatedAid {
-  aids: [Aid]
-  total: Int
+type OverViewTabRegional {
+  # WHAT PERCENTAGE OF PEOPLE IN WAKISO LIVE BELOW THE NATIONAL POVERTY LINE? 
+   # can be no data or '12%'
+  poorestPeople: String
+  # WHAT RESOURCES ARE AVAILABLE TO LOCAL GOVERNMENTS IN WAKISO? eg 3.6m or 2.7bn
+   # this is a total of local, donor and central government resources
+  regionalResources: String
+  # IndicatorDataColored is defined in country profile types
+   # has local government, donor and central government
+  regionalResourcesBreakdown: [IndicatorDataColored]
+  # HOW MUCH DOES THE LOCAL GOVERNMENT SPEND PER PERSON?
+  localGovernmentSpendPerPerson: String
+}
+
+type PovertyTabRegional {
+  poorestPeople: String
+  # WHAT IS THE AVERAGE LIFE EXPECTANCY? 
+  lifeExpectancy: String
+  # WHAT IS THE STANDARD OF LIVING SCORE? 
+  stdOfLiving: String
+}
+
+type PopulationTabRegional {
+  # The total population of a given district and the population density in per sq km
+  totalPopulation: String
+  populationDensity: String
+  # Urban vs Rural population level
+  populationDistribution: [PopulationDistribution]
+  averageDependencyRatio: String
+  allAverageDependencyRatio: String
+}
+
+type EducationTabRegional {
+  # WHAT IS THE PUPIL–TEACHER RATIO IN PRIMARY EDUCATION?...in government schools  and...in all schools 
+  pupilTeacherRatioGovtSchl: String
+  pupilTeacherRatioOtherSchl: String
+  # WHAT PERCENTAGE OF STUDENTS PASS THE PRIMARY LEAVING EXAM? 
+  studentsPass: String
+  # HOW MUCH PRIMARY EDUCATION FUNDING IS THERE? 
+  primaryEducationfunding: String
+}
+
+type HealthTabRegional {
+  # WHAT IS THE DISTRICT LEAGUE HEALTH PERFORMANCE SCORE?
+  districtPerformance: String
+  # WHAT PERCENTAGE OF TUBERCULOSIS CASES HAVE BEEN SUCCESSFULLY TREATED? 
+  treatmeantOfTb: String
+  # HOW MUCH LOCAL GOVERNMENT HEALTHCARE FUNDING IS THERE? 
+  healthCareFunding: String
+}
+
+type LocalGovernmentFinance {
+  # come from finance file
+  revenueAndGrants: [Domestic]
+  expenditure: [Domestic]
+}
+
+type AidUnit {
+  # this will usually be a summed up aggregate value
+  value: Float
+  # country or organisation or channel or bundle name
+  name: String
+  color: String
+  id: String
+  year: Int
+}
+
+type IdNamePair {
+  id: String
+  name: String
+}
+
+type UnbundlingAidSelections {
   # unbundling aid selection options
-  toCountries: [String]
-  fromCountries: [String]
-  channels: [String]
-  form: [String]
+  to: [IdNamePair]
+  from: [IdNamePair]
+  channels: [IdNamePair]
+  sectors: [IdNamePair]
+  form: [IdNamePair]
+  years: [Int]
+}
+
+input UnbundlingAidQuery {
+  aidType: String!
+  year: Int!
+  groupBy: String!
+  toCountry: String
+  fromCountryOrOrg: String
+  sector: String
+  form: String
+  channel: String
 }
 \\""
 `;

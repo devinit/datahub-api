@@ -2,16 +2,16 @@
   "name": "datahub-api",
   "version": "0.0.1",
   "description": "Apollo GraphQL server using webpack and typescript",
-  "main": "dist/main.js",
+  "main": "dist/main.min.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack && uglifyjs dist/main.js -c -o dist/main.min.js",
     "build:watch": "webpack --watch",
     "gqlToTs": "tsc -p src/lib/makeTypeDefs && node src/lib/makeTypeDefs/cli/gqlToTs.js",
     "test": "jest",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "test:watch": "npm test -- --watch",
-    "codecov": "npm run build && jest -u && codecov",
-    "start": "NODE_ENV=production npm run build && node dist/main.js",
+    "codecov": "npm run build && jest && codecov",
+    "start": "NODE_ENV=production npm run build && node dist/main.min.js",
     "dev": "NODE_ENV=development concurrently \"npm run build:watch\" \"node-dev dist/main.js\""
   },
   "repository": {
@@ -66,7 +66,7 @@
     "@types/fs-extra": "^3.0.3",
     "@types/graphql": "^0.9.1",
     "@types/helmet": "^0.0.35",
-    "@types/jest": "^19.2.4",
+    "@types/jest": "^20.0.2",
     "@types/lru-cache": "^4.0.0",
     "@types/morgan": "^1.7.32",
     "@types/node": "7.0.28",
@@ -84,7 +84,9 @@
     "ts-jest": "^20.0.6",
     "tslint": "^5.4.3",
     "typescript": "2.3.4",
-    "webpack": "^2.5.1",
+    "uglify-es": "^3.0.19",
+    "uglifyjs-webpack-plugin": "^0.4.6",
+    "webpack": "^3.0.0",
     "webpack-node-externals": "^1.6.0"
   },
   "jest": {

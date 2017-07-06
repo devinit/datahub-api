@@ -8,9 +8,9 @@ describe('Github concept data tests', () => {
         const concept: IConcept = getConcept('avg_income_of_extreme_poor', conceptsData);
         expect(conceptsData.length).toBeGreaterThan(2);
         expect(prettyFormat(concept)).toMatchSnapshot();
-    });
+    }, 50000);
     it('should get data from concept.csv of an Id in a module Async', async () => {
         const concept: IConcept = await getConceptAsync('country-profile', 'domestic');
         expect(prettyFormat(concept)).toMatchSnapshot();
-    });
+    }, 50000);
 });

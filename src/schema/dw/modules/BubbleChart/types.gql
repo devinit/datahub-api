@@ -1,35 +1,29 @@
-
-type GovtRevenuePerPerson {
-  # id country code
-  id: String
+type BubbleChartData {
   year: Int
-  value: Int
-  # actual or budgeted in our case we use actual values
-  type: String 
+  value: Float
+  id: String
+  name: String
+  income_group: String
+  region: String
+}
+type BubbleChartOda {
+  revenuePerPerson: [BubbleChartData]
+  numberInExtremePoverty: [BubbleChartData]
 }
 
-type Poverty190 {
-  id: String
-  year: Int
-  value: Int
-}
-
-type BubbleSize {
-  # Indicator label
-  id: String
-  year: Int
-  value: Int
-}
-
-type revenuePerPersonAndPoverty190 {
-  id: String
-  year: Int
-  poverty: Int
-  revenuePerPerson: Int
+type BubbleChartPoverty {
+  revenuePerPerson: [BubbleChartData]
+  percentageInExtremePoverty: [BubbleChartData]
 }
 
 type Query {
-  getRevenuePerPersonAndPoverty190: [revenuePerPersonAndPoverty190]
-  getBubbleSize(year: Int!, indicatorOrCountry: String ): [BubbleSize]
+  getBubbleChartOda: BubbleChartOda
+  getBubbleChartPoverty: BubbleChartPoverty
+  # indicatorData is defined in country profiles type file
+  # we return data for the entire year range for a given indicator id eg donor country ID or indicator table name
+  getBubbleSize (id: String): [BubbleChartData]
+  # IdNamePair is defined in unbundling aid types 
+  # this list feeds off oda table from countries and global/concept file
+  getBubbleChartIndicatorsList: [IdNamePair]
 }
 

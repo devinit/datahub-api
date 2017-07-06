@@ -6,5 +6,5 @@ describe('Unbundling OOf module tests', () => {
         const pageData: DH.IPage[] = await getUnbundlingOOfPageData();
         expect(pageData.length).toBeGreaterThan(0);
         expect(prettyFormat(pageData)).toMatchSnapshot();
-    }, );
+    }, 10000);
 });

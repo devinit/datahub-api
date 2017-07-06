@@ -7,5 +7,5 @@ describe('ODA donor bubble chart module tests', () => {
       //  console.log(pageData[0]);
         expect(pageData.length).toBeGreaterThan(0);
         expect(prettyFormat(pageData)).toMatchSnapshot();
-    }, );
+    }, 10000);
 });

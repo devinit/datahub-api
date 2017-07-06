@@ -1,0 +1,76 @@
+
+type IndicatorDataColored {
+  year: Int
+  value: Float
+  id: String
+  name: String
+  color: String
+}
+
+type OverViewTabRegional {
+  # WHAT PERCENTAGE OF PEOPLE IN WAKISO LIVE BELOW THE NATIONAL POVERTY LINE? 
+  # can be no data or '12%'
+  poorestPeople: String
+  # WHAT RESOURCES ARE AVAILABLE TO LOCAL GOVERNMENTS IN WAKISO? eg 3.6m or 2.7bn
+  # this is a total of local, donor and central government resources
+  regionalResources: String
+  # IndicatorDataColored is defined in country profile types
+  # has local government, donor and central government
+  regionalResourcesBreakdown: [IndicatorDataColored]
+  # HOW MUCH DOES THE LOCAL GOVERNMENT SPEND PER PERSON?
+  localGovernmentSpendPerPerson: String
+}
+
+type PovertyTabRegional {
+  poorestPeople: String
+  #WHAT IS THE AVERAGE LIFE EXPECTANCY? 
+  lifeExpectancy: String
+  #WHAT IS THE STANDARD OF LIVING SCORE? 
+  stdOfLiving: String
+}
+
+type PopulationTabRegional {
+  #The total population of a given district and the population density in per sq km
+  totalPopulation: String
+  populationDensity: String
+   # Urban vs Rural population level
+  populationDistribution: [PopulationDistribution]
+  averageDependencyRatio: String
+  allAverageDependencyRatio: String
+}
+
+type EducationTabRegional {
+  #WHAT IS THE PUPIL–TEACHER RATIO IN PRIMARY EDUCATION?...in government schools  and...in all schools 
+  pupilTeacherRatioGovtSchl: String
+  pupilTeacherRatioOtherSchl: String
+  #WHAT PERCENTAGE OF STUDENTS PASS THE PRIMARY LEAVING EXAM? 
+  studentsPass: String
+  #HOW MUCH PRIMARY EDUCATION FUNDING IS THERE? 
+  primaryEducationfunding: String
+}
+
+type HealthTabRegional {
+  #WHAT IS THE DISTRICT LEAGUE HEALTH PERFORMANCE SCORE?
+  districtPerformance: String
+  #WHAT PERCENTAGE OF TUBERCULOSIS CASES HAVE BEEN SUCCESSFULLY TREATED? 
+  treatmeantOfTb: String
+  #HOW MUCH LOCAL GOVERNMENT HEALTHCARE FUNDING IS THERE? 
+  healthCareFunding: String
+}
+
+
+type LocalGovernmentFinance {
+  # come from finance file
+  revenueAndGrants: [Domestic]
+  expenditure: [Domestic]
+}
+
+type Query {  
+  # id is district slug
+  getOverViewTab(id: String!, country: String!):OverViewTabRegional
+  getPovertyTab(id: String!, country: String!): PovertyTabRegional
+  getPopulationTab(id: String!, country: String!):PopulationTabRegional
+  getEducationTab(id: String!, country: String!): EducationTabRegional
+  getHealthTab(id: String!, country: String!): HealthTabRegional 
+  getLocalGovernmentFinance(id: String!, country: String!): LocalGovernmentFinance
+}
