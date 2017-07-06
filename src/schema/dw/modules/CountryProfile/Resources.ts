@@ -75,22 +75,20 @@ export default class Resources {
     public async getSingleResource(opts: ISingleResourceArgs): Promise<DH.ISingleResourceData> {
         try {
             const {resourceId, countryId, groupById} = opts;
-        // get flow resoure entity
+            // get flow resoure entity
             const flow: IFlowRef =  await getFlowByIdAsync(resourceId);
             const concept: IConcept = await getConceptAsync('country-profile', flow.concept);
-            let args = {
-            years: [concept.start_year, concept.end_year],
-        };
+            let args = {years: [concept.start_year, concept.end_year]};
             if (flow.type === DONOR) args = {...args, from_di_id: `'${countryId}'`};
             if (flow.type === RECIPIENT) args = {...args, to_di_id: `'${countryId}'` };
             // tslint:disable-next-line:max-line-length
             if (flow.concept === 'data_series.intl_flows_recipients' || flow.concept === 'data_series.intl_flows_donors') {
-            args = {...args, flow_name: resourceId};
-        }
+                args = {...args, flow_name: resourceId};
+            }
             const sqlQuery = makeSqlAggregateRangeQuery(args, groupById, flow.concept);
             const data: IRAW[] = await this.db.manyCacheable(sqlQuery, null);
             const processedData: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(data);
-        // TODO: types for  entitesFnMap
+            // TODO: types for  entitesFnMap
             const entities = await entitesFnMap[groupById]();
             const resources = processedData.map(obj => {
             const details: {name: string} | undefined = entities.find(entity => entity.id === obj[groupById]);
@@ -193,7 +191,7 @@ export default class Resources {
     private async getGrantsAsPcOfRevenue(id: string): Promise<string> {
         try {
             const indicatorArgs: IGetIndicatorArgs[] = [sql.totalDomesticRevenueAndGrants, sql.grants]
-            .map(query => ({query, ...this.defaultArgs, id}));
+                .map(query => ({query, ...this.defaultArgs, id}));
             const totalRevenueAndGrants: IRAW[] =  await getIndicatorData<IRAW>(indicatorArgs[0]);
             const grants: IRAW[] =  await getIndicatorData<IRAW>(indicatorArgs[1]);
             if (totalRevenueAndGrants[0].value && grants[0].value) {
@@ -222,10 +220,10 @@ export default class Resources {
     private async getNetODAOfGNIIn(id: string, gni: number): Promise<string> {
         try {
             const indicatorArgs: IGetIndicatorArgs = {
-            ...this.defaultArgs,
-            query: sql.ODANetIn,
-            id
-        };
+                ...this.defaultArgs,
+                query: sql.ODANetIn,
+                id
+                };
             const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
             if (!data[0].value) return 'No data';
             if (!gni) return 'No data';
@@ -237,10 +235,10 @@ export default class Resources {
     private async getNetODAOfGNIOut(id: string): Promise<string> {
         try {
             const indicatorArgs: IGetIndicatorArgs = {
-            ...this.defaultArgs,
-            query: sql.ODANetOut,
-            id
-        };
+                ...this.defaultArgs,
+                query: sql.ODANetOut,
+                id
+            };
             const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
             return data[0].value ? Number(data[0].value).toFixed(1) : 'No data';
         } catch (error) {

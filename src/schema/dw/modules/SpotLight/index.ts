@@ -160,7 +160,6 @@ export default class SpotLight {
             const indicatorArgs: IGetIndicatorArgs[] =
             sqlList.map(query => ({...this.defaultArgs, query, ...opts}));
             const indicatorRaw: IRAW[][] = await Promise.all(indicatorArgs.map(args => getIndicatorData<IRAW>(args)));
-       //  if (!format) return indicatorRaw.map(data => indicatorDataProcessingSimple<IProcessedSimple>(data));
             return indicatorRaw.map(data => formatNumbers(data[0].value, 1));
       } catch (error) {
           throw error;
@@ -172,7 +171,7 @@ export default class SpotLight {
             ...this.defaultArgs,
             query: sql.populationDistribution,
             ...opts
-        };
+            };
             const data: IRAWPopulationGroup[] = await getIndicatorData<IRAWPopulationGroup>(indicatorArgs);
             return data.reduce((acc: DH.IPopulationDistribution[], row) => {
             const rural = {group: 'rural', value: Number(row.value_rural), year: Number(row.year) };

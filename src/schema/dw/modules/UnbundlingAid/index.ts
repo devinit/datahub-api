@@ -44,20 +44,20 @@ export default class UnbundlingAid {
             const queryArgs =  this.getSqlQueryArgs(args);
             const table = this.getUnbundlingAidDataTable(args.aidType);
             const queryStr: string =
-            makeSqlAggregateQuery<IUnbundlingAidQuery>(queryArgs, args.groupBy, table);
+                makeSqlAggregateQuery<IUnbundlingAidQuery>(queryArgs, args.groupBy, table);
             const raw: IUnbundlingAidResult[] = await this.db.manyCacheable(queryStr, null);
             const entites: IUnbundlingEnitity[] = await entitesFnMap[args.groupBy]();
             const regions: IRegional[] = await getRegional();
             return raw.map((obj) => {
-            const entity: IUnbundlingEnitity | undefined = entites.find(item => obj[args.groupBy] === item.id);
-            if (!entity) throw new Error('error getting unbundling aid entity');
-            let color = '';
-            if (entity.type && entity.region) {
-                const region: IRegional | undefined = getEntityByIdGeneric<IRegional>(entity.region, regions);
-                if (region && region.color) color = region ? region.color : 'grey';
-            }
-            return {id: entity.id, value: Number(obj.value), name: entity.name,
-                    color, year: Number(obj.year)};
+                const entity: IUnbundlingEnitity | undefined = entites.find(item => obj[args.groupBy] === item.id);
+                if (!entity) throw new Error('error getting unbundling aid entity');
+                let color = '';
+                if (entity.type && entity.region) {
+                    const region: IRegional | undefined = getEntityByIdGeneric<IRegional>(entity.region, regions);
+                    if (region && region.color) color = region ? region.color : 'grey';
+                }
+                return {id: entity.id, value: Number(obj.value), name: entity.name,
+                        color, year: Number(obj.year)};
            });
        } catch (error) {
            console.error(error);
@@ -75,32 +75,17 @@ export default class UnbundlingAid {
             const channels = await getChannels();
             const sectors = await getSectors();
             const form = await getBundles();
-            return {
-            years,
-            ...countries,
-            channels,
-            sectors,
-            form
-            };
+            return {years, ...countries, channels, sectors, form};
        } catch (error) {
            console.error(error);
            throw error;
        }
     }
     public getSqlQueryArgs(args: DH.IUnbundlingAidQuery): IUnbundlingAidQuery {
-        try {
-            return R.omit(['groupBy', 'aidType'], args) as IUnbundlingAidQuery;
-        } catch (error) {
-            console.error(error);
-            throw error;
-        }
+        return R.omit(['groupBy', 'aidType'], args) as IUnbundlingAidQuery;
     }
     private getUnbundlingAidDataTable(aidType) {
-        try {
-            return aidType === 'oda' ? 'fact.oda_2015' : 'data_series.oof'; 
-        } catch (error) {
-            throw error;
-        }
+        return aidType === 'oda' ? 'fact.oda_2015' : 'data_series.oof';
     }
 
     private async getCountries(): Promise<IUnBundlingAidCountries> {

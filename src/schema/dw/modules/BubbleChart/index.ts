@@ -82,7 +82,7 @@ export default class BubbleChart {
             const concepts: IConcept[] = await getConcepts('global-picture');
             const odaFrom = odaFromRaw.map(obj => getEntityById(obj.from_di_id, entities));
             const otherIndicators = concepts.filter(obj => Number(obj.appear_in_bubble_chart) === 1);
-            return R.append(odaFrom, otherIndicators); 
+            return R.append(odaFrom, otherIndicators);
        } catch (error) {
            console.error(error);
            throw error;
@@ -110,7 +110,7 @@ export default class BubbleChart {
              // tslint:disable-next-line:max-line-length
              const concept: IConcept = await getConceptAsync('bubble-chart-oda',  'data_series.non_grant_revenue_ppp_pc');
              if (!concept) throw new Error('failed to get year concept');
-             return [Number(concept.start_year), Number(concept.end_year)]; 
+             return [Number(concept.start_year), Number(concept.end_year)];
          } catch (error) {
              throw error;
          }

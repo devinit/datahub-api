@@ -97,7 +97,7 @@ export default class CountryProfileTabs {
             const indicatorArgs: IGetIndicatorArgs[] =
             sqlList.map(query => ({...this.defaultArgs, query, id}));
             const indicatorRaw: IRAW[][] = await Promise.all(indicatorArgs.map(args => getIndicatorData<IRAW>(args)));
-            return indicatorRaw.map(data => format ? formatNumbers(data[0].value, 1) : (data[0].value)); 
+            return indicatorRaw.map(data => format ? formatNumbers(data[0].value, 1) : (data[0].value));
         } catch (error) {
             throw error;
         }
