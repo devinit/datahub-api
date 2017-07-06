@@ -75,31 +75,45 @@ export default class BubbleChart {
     }
 
     public async getBubbleChartIndicatorsList(): Promise<DH.IIdNamePair[]> {
-        const args = {query: sql.odaFrom, db: this.db};
-        const odaFromRaw: Array<{ from_di_id: string}> = await getIndicatorDataSimple<{ from_di_id: string}>(args);
-        const entities: IEntity[] =  await getEntities();
-        const concepts: IConcept[] = await getConcepts('global-picture');
-        const odaFrom = odaFromRaw.map(obj => getEntityById(obj.from_di_id, entities));
-        const otherIndicators = concepts.filter(obj => Number(obj.appear_in_bubble_chart) === 1);
-        return R.append(odaFrom, otherIndicators);
+        try {
+            const args = {query: sql.odaFrom, db: this.db};
+            const odaFromRaw: Array<{ from_di_id: string}> = await getIndicatorDataSimple<{ from_di_id: string}>(args);
+            const entities: IEntity[] =  await getEntities();
+            const concepts: IConcept[] = await getConcepts('global-picture');
+            const odaFrom = odaFromRaw.map(obj => getEntityById(obj.from_di_id, entities));
+            const otherIndicators = concepts.filter(obj => Number(obj.appear_in_bubble_chart) === 1);
+            return R.append(odaFrom, otherIndicators); 
+       } catch (error) {
+           console.error(error);
+           throw error;
+       }
     }
 
     private async getSingleIndicatorGeneric(query: string, table: string): Promise<DH.IBubbleChartData[]> {
-        const [start_year, end_year] = await this.getYears();
-        const args = {db: this.db, query, table, start_year, end_year};
-        const raw: IRAW[] = await getIndicatorDataSimple<IRAW>(args);
-        const processed: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(raw);
-        const entities: IEntity[] =  await getEntities();
-        return processed.map(obj => {
+        try {
+            const [start_year, end_year] = await this.getYears();
+            const args = {db: this.db, query, table, start_year, end_year};
+            const raw: IRAW[] = await getIndicatorDataSimple<IRAW>(args);
+            const processed: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(raw);
+            const entities: IEntity[] =  await getEntities();
+            return processed.map(obj => {
              const entity = getEntityById(obj.id, entities);
              return {...obj, ...entity};
-        });
+            });
+        } catch (error) {
+            throw error;
+        }
     }
     // TODO: clean this up
     private async getYears(): Promise<number[]> {
-        const concept: IConcept = await getConceptAsync('bubble-chart-oda',  'data_series.non_grant_revenue_ppp_pc');
-        if (!concept) throw new Error('failed to get year concept');
-        return [Number(concept.start_year), Number(concept.end_year)];
+         try {
+             // tslint:disable-next-line:max-line-length
+             const concept: IConcept = await getConceptAsync('bubble-chart-oda',  'data_series.non_grant_revenue_ppp_pc');
+             if (!concept) throw new Error('failed to get year concept');
+             return [Number(concept.start_year), Number(concept.end_year)]; 
+         } catch (error) {
+             throw error;
+         }
     }
     private async getIndicatorsGeneric(sqlList: string[], bubbleChartType: string): Promise<DH.IBubbleChartData[][]>  {
        try {

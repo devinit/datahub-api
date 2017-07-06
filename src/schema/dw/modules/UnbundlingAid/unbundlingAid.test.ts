@@ -13,7 +13,7 @@ describe('Unbundling aid DW module tests', () => {
         };
         const data = await unbundlingAid.getUnbundlingAidData(argsA);
         expect(prettyFormat(data)).toMatchSnapshot();
-    }, 30000);
+    }, 100000);
     it('should create sql query args for getting data', () => {
         const argsA = {
             aidType: 'oda',
@@ -26,7 +26,7 @@ describe('Unbundling aid DW module tests', () => {
     it('getting unbundling aid selection options', async () => {
         const data = await unbundlingAid.getUnbundlingSelectionData({aidType: 'oda'});
         expect(prettyFormat(data)).toMatchSnapshot();
-    }, 30000);
+    }, 100000);
 
     afterAll(() => {
        db.$config.pgp.end();

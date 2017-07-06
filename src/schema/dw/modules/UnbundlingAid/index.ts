@@ -40,14 +40,15 @@ export default class UnbundlingAid {
         this.db = db;
     }
     public async getUnbundlingAidData(args: DH.IUnbundlingAidQuery): Promise<DH.IAidUnit[]> {
-        const queryArgs =  this.getSqlQueryArgs(args);
-        const table = this.getUnbundlingAidDataTable(args.aidType);
-        const queryStr: string =
+        try {
+            const queryArgs =  this.getSqlQueryArgs(args);
+            const table = this.getUnbundlingAidDataTable(args.aidType);
+            const queryStr: string =
             makeSqlAggregateQuery<IUnbundlingAidQuery>(queryArgs, args.groupBy, table);
-        const raw: IUnbundlingAidResult[] = await this.db.manyCacheable(queryStr, null);
-        const entites: IUnbundlingEnitity[] = await entitesFnMap[args.groupBy]();
-        const regions: IRegional[] = await getRegional();
-        return raw.map((obj) => {
+            const raw: IUnbundlingAidResult[] = await this.db.manyCacheable(queryStr, null);
+            const entites: IUnbundlingEnitity[] = await entitesFnMap[args.groupBy]();
+            const regions: IRegional[] = await getRegional();
+            return raw.map((obj) => {
             const entity: IUnbundlingEnitity | undefined = entites.find(item => obj[args.groupBy] === item.id);
             if (!entity) throw new Error('error getting unbundling aid entity');
             let color = '';
@@ -57,36 +58,55 @@ export default class UnbundlingAid {
             }
             return {id: entity.id, value: Number(obj.value), name: entity.name,
                     color, year: Number(obj.year)};
-        });
+           });
+       } catch (error) {
+           console.error(error);
+           throw error;
+       }
     }
     public async getUnbundlingSelectionData({aidType}): Promise<DH.IUnbundlingAidSelections> {
-        const table = this.getUnbundlingAidDataTable(aidType);
-        const concept: IConcept = await getConceptAsync(`unbundling-${aidType}`, table);
-        if (!concept) throw new Error('error getting unbundling aid concept');
-        const year = Number(concept.start_year);
-        const years = R.range(year, year - 10);
-        const countries = await this.getCountries();
-        const channels = await getChannels();
-        const sectors = await getSectors();
-        const form = await getBundles();
-        return {
+        try {
+            const table = this.getUnbundlingAidDataTable(aidType);
+            const concept: IConcept = await getConceptAsync(`unbundling-${aidType}`, table);
+            if (!concept) throw new Error('error getting unbundling aid concept');
+            const year = Number(concept.start_year);
+            const years = R.range(year, year - 10);
+            const countries = await this.getCountries();
+            const channels = await getChannels();
+            const sectors = await getSectors();
+            const form = await getBundles();
+            return {
             years,
             ...countries,
             channels,
             sectors,
             form
-        };
+            };
+       } catch (error) {
+           console.error(error);
+           throw error;
+       }
     }
     public getSqlQueryArgs(args: DH.IUnbundlingAidQuery): IUnbundlingAidQuery {
-        return R.omit(['groupBy', 'aidType'], args) as IUnbundlingAidQuery;
+        try {
+            return R.omit(['groupBy', 'aidType'], args) as IUnbundlingAidQuery;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
     }
     private getUnbundlingAidDataTable(aidType) {
-        return aidType === 'oda' ? 'fact.oda_2015' : 'data_series.oof';
+        try {
+            return aidType === 'oda' ? 'fact.oda_2015' : 'data_series.oof'; 
+        } catch (error) {
+            throw error;
+        }
     }
 
     private async getCountries(): Promise<IUnBundlingAidCountries> {
-        const entites: IEntity[] = await getEntities();
-        return entites.reduce((countries: IUnBundlingAidCountries, entity) => {
+        try {
+            const entites: IEntity[] = await getEntities();
+            return entites.reduce((countries: IUnBundlingAidCountries, entity) => {
             let to: any = [];
             let from: any = [];
             if (entity.donor_recipient_type === RECIPIENT || entity.region === MULTILATERAL
@@ -102,7 +122,10 @@ export default class UnbundlingAid {
             if (to.length)  return {...countries, to};
             if (from.length)  return {...countries, from};
             return countries;
-        }, {to: [], from: []});
+            }, {to: [], from: []});
+        } catch (error) {
+            throw error;
+        }
     }
 
 }

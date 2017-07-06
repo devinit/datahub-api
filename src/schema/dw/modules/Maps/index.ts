@@ -24,19 +24,28 @@ export default class Maps {
     }
 
     public async getMapData(opts: IgetMapDataOpts): Promise<DH.IMapData> {
-        const concept: IConcept = await getConceptAsync('global-picture', opts.id);
+         try {
+             const concept: IConcept = await getConceptAsync('global-picture', opts.id);
         // we merge concept and graphql qery options, they have startYear and endYear variables
-        const data: IRAW [] = await getIndicatorDataSimple<IRAW>({...concept, sql, db: this.db, table: opts.id});
-        const DACCountries = opts.DACOnly ? await this.getDACCountries() : [];
-        const processedData: DH.IMapUnit[] = await indicatorDataProcessing(data);
-        const mapData = DACCountries.length ? Maps.DACOnlyData(DACCountries, processedData) : processedData;
-        const total: number = getTotal(mapData);
-        return {map: mapData, total, ...concept};
+             const data: IRAW [] = await getIndicatorDataSimple<IRAW>({...concept, sql, db: this.db, table: opts.id});
+             const DACCountries = opts.DACOnly ? await this.getDACCountries() : [];
+             const processedData: DH.IMapUnit[] = await indicatorDataProcessing(data);
+             const mapData = DACCountries.length ? Maps.DACOnlyData(DACCountries, processedData) : processedData;
+             const total: number = getTotal(mapData);
+             return {map: mapData, total, ...concept};
+         } catch (error) {
+             console.error(error);
+             throw error;
+         }
     }
 
     private async getDACCountries(): Promise<string[]> {
-        const donors: Array<{donor_name: string}> = await this.db.manyCacheable(DAC, 'DAC');
-        return donors
+        try {
+            const donors: Array<{donor_name: string}> = await this.db.manyCacheable(DAC, 'DAC');
+            return donors
             .map(donor => donor.donor_name);
+        } catch (error) {
+            throw error;
+        }
     }
 }
