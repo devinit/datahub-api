@@ -146,7 +146,7 @@ export default class Resources {
             }));
             const resourcesRaw: IRAWDomestic[][]  =
             await Promise.all(indicatorArgs.map((args) => getIndicatorData<IRAWDomestic>(args)));
-            const resources: DH.IDomestic[][] = await Promise.all(resourcesRaw.map(domesticDataProcessing));
+            const resources: DH.IDomestic[][] = await Promise.all(resourcesRaw.map(obj => domesticDataProcessing(obj)));
             return {
             finance: resources[0],
             expenditure: resources[1],

@@ -4,6 +4,7 @@ import Maps from '../modules/Maps';
 import BubbleChart from '../modules/BubbleChart';
 import UnbundlingAid from '../modules/UnbundlingAid';
 import CountryProfile from '../modules/CountryProfile';
+import SpotLight from '../modules/SpotLight';
 import diagnostics from './diagnostics';
 import * as pgPromise from 'pg-promise';
 import * as LRU from 'lru-cache';
@@ -14,6 +15,7 @@ export interface IExtensions {
     bubbleChart: BubbleChart;
     unbundlingAid: UnbundlingAid;
     countryProfile: CountryProfile;
+    spotLight: SpotLight;
     manyCacheable: (query: string, values: any) => Promise<any>;
 }
 
@@ -40,6 +42,7 @@ const options: IOptions<IExtensions> = {
             return obj.any(getQuery);
         };
         obj.maps = new Maps(obj);
+        obj.spotLight = new SpotLight(obj);
         obj.bubbleChart = new BubbleChart(obj);
         obj.countryProfile = new CountryProfile(obj);
         obj.unbundlingAid = new UnbundlingAid(obj);

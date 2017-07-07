@@ -319,7 +319,8 @@ declare namespace DH {
   interface IEducationTabRegional {
     pupilTeacherRatioGovtSchl: string | null;
     pupilTeacherRatioOtherSchl: string | null;
-    studentsPass: string | null;
+    studentsPassRate: string | null;
+    studentsPassDistrictRank: string | null;
     primaryEducationfunding: string | null;
   }
 

@@ -2,7 +2,6 @@
  * regional / district entities
  */
 import {get} from '../../connector';
-import * as R from 'ramda';
 
 export interface IDistrict {
     id: string;
@@ -15,5 +14,7 @@ export const getDistrictEntities = (country: string): Promise<IDistrict[]> =>
 
 export const getDistrictBySlugAsync = async (country: string, slug: string): Promise<IDistrict> => {
      const entities: IDistrict[] = await getDistrictEntities(country);
-     return R.find(R.propEq('slug', slug), entities) as IDistrict;
+     const district: IDistrict | undefined = entities.find(obj => obj.slug === slug);
+     if (!district) throw new Error(`Error getting district entity for ${slug}`);
+     return district;
 };

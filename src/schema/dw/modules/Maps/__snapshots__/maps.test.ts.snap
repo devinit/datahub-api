@@ -13,7 +13,7 @@ exports[`Maps module tests should return poverty indicator data 1`] = `
     Object {
       \\"id\\": \\"AL\\",
       \\"name\\": \\"Albania\\",
-      \\"value\\": 0,
+      \\"value\\": \\"0\\",
       \\"year\\": 1981,
     },
     Object {
@@ -169,7 +169,7 @@ exports[`Maps module tests should return poverty indicator data 1`] = `
     Object {
       \\"id\\": \\"CZ\\",
       \\"name\\": \\"Czech Republic\\",
-      \\"value\\": 0,
+      \\"value\\": \\"0\\",
       \\"year\\": 1981,
     },
     Object {
@@ -319,7 +319,7 @@ exports[`Maps module tests should return poverty indicator data 1`] = `
     Object {
       \\"id\\": \\"KG\\",
       \\"name\\": \\"Kyrgyzstan\\",
-      \\"value\\": 0,
+      \\"value\\": \\"0\\",
       \\"year\\": 1981,
     },
     Object {
@@ -397,7 +397,7 @@ exports[`Maps module tests should return poverty indicator data 1`] = `
     Object {
       \\"id\\": \\"MD\\",
       \\"name\\": \\"Moldova\\",
-      \\"value\\": 0,
+      \\"value\\": \\"0\\",
       \\"year\\": 1981,
     },
     Object {
@@ -415,7 +415,7 @@ exports[`Maps module tests should return poverty indicator data 1`] = `
     Object {
       \\"id\\": \\"MK\\",
       \\"name\\": \\"Macedonia\\",
-      \\"value\\": 0,
+      \\"value\\": \\"0\\",
       \\"year\\": 1981,
     },
     Object {
@@ -595,7 +595,7 @@ exports[`Maps module tests should return poverty indicator data 1`] = `
     Object {
       \\"id\\": \\"SK\\",
       \\"name\\": \\"Slovak Republic\\",
-      \\"value\\": 0,
+      \\"value\\": \\"0\\",
       \\"year\\": 1981,
     },
     Object {
@@ -697,7 +697,7 @@ exports[`Maps module tests should return poverty indicator data 1`] = `
     Object {
       \\"id\\": \\"TT\\",
       \\"name\\": \\"Trinidad & Tobago\\",
-      \\"value\\": 0,
+      \\"value\\": \\"0\\",
       \\"year\\": 1981,
     },
     Object {
@@ -727,13 +727,13 @@ exports[`Maps module tests should return poverty indicator data 1`] = `
     Object {
       \\"id\\": \\"UY\\",
       \\"name\\": \\"Uruguay\\",
-      \\"value\\": 0,
+      \\"value\\": \\"0\\",
       \\"year\\": 1981,
     },
     Object {
       \\"id\\": \\"UZ\\",
       \\"name\\": \\"Uzbekistan\\",
-      \\"value\\": 0,
+      \\"value\\": \\"0\\",
       \\"year\\": 1981,
     },
     Object {

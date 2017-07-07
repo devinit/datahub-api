@@ -22,11 +22,16 @@ export const getConcepts = (moduleName: string): Promise <IConcept[]> => {
     const endPoint: string = `${moduleName}/concept.csv`;
     return get<IConcept>(endPoint);
 };
- // TODO: getConceptAsync should return a union type
+
 export const getConceptAsync = async (moduleName: string, id: string, theme?: string): Promise <IConcept> => {
     const allConcepts: IConcept[]  = await getConcepts(moduleName);
-    const concepts  = R.filter(R.propEq('id', id), allConcepts) as IConcept[];
-    if (theme) return R.find(R.propEq('theme', theme), concepts) as IConcept;
+    const concepts: IConcept[] = allConcepts.filter(obj => obj.id === id);
+    if (!concepts[0]) throw new Error(`failed to get concept for ${moduleName} ID: ${id}`);
+    if (theme) {
+       const concept: IConcept | undefined =  concepts.find(obj => obj.theme === theme);
+       if (!concept) throw new Error(`failed to get concept for ${moduleName} id: ${id} theme: ${theme}`);
+       return concept;
+    }
     return concepts[0];
 };
 

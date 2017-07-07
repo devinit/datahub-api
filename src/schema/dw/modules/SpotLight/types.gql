@@ -44,7 +44,8 @@ type EducationTabRegional {
   pupilTeacherRatioGovtSchl: String
   pupilTeacherRatioOtherSchl: String
   #WHAT PERCENTAGE OF STUDENTS PASS THE PRIMARY LEAVING EXAM? 
-  studentsPass: String
+  studentsPassRate: String
+  studentsPassDistrictRank: String
   #HOW MUCH PRIMARY EDUCATION FUNDING IS THERE? 
   primaryEducationfunding: String
 }

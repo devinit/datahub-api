@@ -1,0 +1,574 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`spotlight reference module test should return details about a uganda district 1`] = `
+"Object {
+  \\"id\\": \\"d113\\",
+  \\"name\\": \\"Wakiso\\",
+  \\"slug\\": \\"wakiso\\",
+}"
+`;
+
+exports[`spotlight reference module test should return uganda district entities 1`] = `
+"Array [
+  Object {
+    \\"id\\": \\"d314\\",
+    \\"name\\": \\"Abim\\",
+    \\"slug\\": \\"abim\\",
+  },
+  Object {
+    \\"id\\": \\"d301\\",
+    \\"name\\": \\"Adjumani\\",
+    \\"slug\\": \\"adjumani\\",
+  },
+  Object {
+    \\"id\\": \\"d322\\",
+    \\"name\\": \\"Agago\\",
+    \\"slug\\": \\"agago\\",
+  },
+  Object {
+    \\"id\\": \\"d323\\",
+    \\"name\\": \\"Alebtong\\",
+    \\"slug\\": \\"alebtong\\",
+  },
+  Object {
+    \\"id\\": \\"d315\\",
+    \\"name\\": \\"Amolatar\\",
+    \\"slug\\": \\"amolatar\\",
+  },
+  Object {
+    \\"id\\": \\"d324\\",
+    \\"name\\": \\"Amudat\\",
+    \\"slug\\": \\"amudat\\",
+  },
+  Object {
+    \\"id\\": \\"d216\\",
+    \\"name\\": \\"Amuria\\",
+    \\"slug\\": \\"amuria\\",
+  },
+  Object {
+    \\"id\\": \\"d316\\",
+    \\"name\\": \\"Amuru\\",
+    \\"slug\\": \\"amuru\\",
+  },
+  Object {
+    \\"id\\": \\"d302\\",
+    \\"name\\": \\"Apac\\",
+    \\"slug\\": \\"apac\\",
+  },
+  Object {
+    \\"id\\": \\"d303\\",
+    \\"name\\": \\"Arua\\",
+    \\"slug\\": \\"arua\\",
+  },
+  Object {
+    \\"id\\": \\"d217\\",
+    \\"name\\": \\"Budaka\\",
+    \\"slug\\": \\"budaka\\",
+  },
+  Object {
+    \\"id\\": \\"d218\\",
+    \\"name\\": \\"Bududa\\",
+    \\"slug\\": \\"bududa\\",
+  },
+  Object {
+    \\"id\\": \\"d201\\",
+    \\"name\\": \\"Bugiri\\",
+    \\"slug\\": \\"bugiri\\",
+  },
+  Object {
+    \\"id\\": \\"d420\\",
+    \\"name\\": \\"Buhweju\\",
+    \\"slug\\": \\"buhweju\\",
+  },
+  Object {
+    \\"id\\": \\"d117\\",
+    \\"name\\": \\"Buikwe\\",
+    \\"slug\\": \\"buikwe\\",
+  },
+  Object {
+    \\"id\\": \\"d219\\",
+    \\"name\\": \\"Bukedea\\",
+    \\"slug\\": \\"bukedea\\",
+  },
+  Object {
+    \\"id\\": \\"d118\\",
+    \\"name\\": \\"Bukomansimbi\\",
+    \\"slug\\": \\"bukomansimbi\\",
+  },
+  Object {
+    \\"id\\": \\"d220\\",
+    \\"name\\": \\"Bukwo\\",
+    \\"slug\\": \\"bukwo\\",
+  },
+  Object {
+    \\"id\\": \\"d225\\",
+    \\"name\\": \\"Bulambuli\\",
+    \\"slug\\": \\"bulambuli\\",
+  },
+  Object {
+    \\"id\\": \\"d416\\",
+    \\"name\\": \\"Buliisa\\",
+    \\"slug\\": \\"buliisa\\",
+  },
+  Object {
+    \\"id\\": \\"d401\\",
+    \\"name\\": \\"Bundibugyo\\",
+    \\"slug\\": \\"bundibugyo\\",
+  },
+  Object {
+    \\"id\\": \\"d402\\",
+    \\"name\\": \\"Bushenyi\\",
+    \\"slug\\": \\"bushenyi\\",
+  },
+  Object {
+    \\"id\\": \\"d202\\",
+    \\"name\\": \\"Busia\\",
+    \\"slug\\": \\"busia\\",
+  },
+  Object {
+    \\"id\\": \\"d221\\",
+    \\"name\\": \\"Butaleja\\",
+    \\"slug\\": \\"butaleja\\",
+  },
+  Object {
+    \\"id\\": \\"d119\\",
+    \\"name\\": \\"Butambala\\",
+    \\"slug\\": \\"butambala\\",
+  },
+  Object {
+    \\"id\\": \\"d120\\",
+    \\"name\\": \\"Buvuma\\",
+    \\"slug\\": \\"buvuma\\",
+  },
+  Object {
+    \\"id\\": \\"d226\\",
+    \\"name\\": \\"Buyende\\",
+    \\"slug\\": \\"buyende\\",
+  },
+  Object {
+    \\"id\\": \\"d317\\",
+    \\"name\\": \\"Dokolo\\",
+    \\"slug\\": \\"dokolo\\",
+  },
+  Object {
+    \\"id\\": \\"d121\\",
+    \\"name\\": \\"Gomba\\",
+    \\"slug\\": \\"gomba\\",
+  },
+  Object {
+    \\"id\\": \\"d304\\",
+    \\"name\\": \\"Gulu\\",
+    \\"slug\\": \\"gulu\\",
+  },
+  Object {
+    \\"id\\": \\"d403\\",
+    \\"name\\": \\"Hoima\\",
+    \\"slug\\": \\"hoima\\",
+  },
+  Object {
+    \\"id\\": \\"d417\\",
+    \\"name\\": \\"Ibanda\\",
+    \\"slug\\": \\"ibanda\\",
+  },
+  Object {
+    \\"id\\": \\"d203\\",
+    \\"name\\": \\"Iganga\\",
+    \\"slug\\": \\"iganga\\",
+  },
+  Object {
+    \\"id\\": \\"d418\\",
+    \\"name\\": \\"Isingiro\\",
+    \\"slug\\": \\"isingiro\\",
+  },
+  Object {
+    \\"id\\": \\"d204\\",
+    \\"name\\": \\"Jinja\\",
+    \\"slug\\": \\"jinja\\",
+  },
+  Object {
+    \\"id\\": \\"d318\\",
+    \\"name\\": \\"Kaabong\\",
+    \\"slug\\": \\"kaabong\\",
+  },
+  Object {
+    \\"id\\": \\"d404\\",
+    \\"name\\": \\"Kabale\\",
+    \\"slug\\": \\"kabale\\",
+  },
+  Object {
+    \\"id\\": \\"d405\\",
+    \\"name\\": \\"Kabarole\\",
+    \\"slug\\": \\"kabarole\\",
+  },
+  Object {
+    \\"id\\": \\"d213\\",
+    \\"name\\": \\"Kaberamaido\\",
+    \\"slug\\": \\"kaberamaido\\",
+  },
+  Object {
+    \\"id\\": \\"d101\\",
+    \\"name\\": \\"Kalangala\\",
+    \\"slug\\": \\"kalangala\\",
+  },
+  Object {
+    \\"id\\": \\"d222\\",
+    \\"name\\": \\"Kaliro\\",
+    \\"slug\\": \\"kaliro\\",
+  },
+  Object {
+    \\"id\\": \\"d122\\",
+    \\"name\\": \\"Kalungu\\",
+    \\"slug\\": \\"kalungu\\",
+  },
+  Object {
+    \\"id\\": \\"d102\\",
+    \\"name\\": \\"Kampala\\",
+    \\"slug\\": \\"kampala\\",
+  },
+  Object {
+    \\"id\\": \\"d205\\",
+    \\"name\\": \\"Kamuli\\",
+    \\"slug\\": \\"kamuli\\",
+  },
+  Object {
+    \\"id\\": \\"d413\\",
+    \\"name\\": \\"Kamwenge\\",
+    \\"slug\\": \\"kamwenge\\",
+  },
+  Object {
+    \\"id\\": \\"d414\\",
+    \\"name\\": \\"Kanungu\\",
+    \\"slug\\": \\"kanungu\\",
+  },
+  Object {
+    \\"id\\": \\"d206\\",
+    \\"name\\": \\"Kapchorwa\\",
+    \\"slug\\": \\"kapchorwa\\",
+  },
+  Object {
+    \\"id\\": \\"d406\\",
+    \\"name\\": \\"Kasese\\",
+    \\"slug\\": \\"kasese\\",
+  },
+  Object {
+    \\"id\\": \\"d207\\",
+    \\"name\\": \\"Katakwi\\",
+    \\"slug\\": \\"katakwi\\",
+  },
+  Object {
+    \\"id\\": \\"d112\\",
+    \\"name\\": \\"Kayunga\\",
+    \\"slug\\": \\"kayunga\\",
+  },
+  Object {
+    \\"id\\": \\"d407\\",
+    \\"name\\": \\"Kibaale\\",
+    \\"slug\\": \\"kibaale\\",
+  },
+  Object {
+    \\"id\\": \\"d103\\",
+    \\"name\\": \\"Kiboga\\",
+    \\"slug\\": \\"kiboga\\",
+  },
+  Object {
+    \\"id\\": \\"d227\\",
+    \\"name\\": \\"Kibuku\\",
+    \\"slug\\": \\"kibuku\\",
+  },
+  Object {
+    \\"id\\": \\"d419\\",
+    \\"name\\": \\"Kiruhura\\",
+    \\"slug\\": \\"kiruhura\\",
+  },
+  Object {
+    \\"id\\": \\"d421\\",
+    \\"name\\": \\"Kiryandongo\\",
+    \\"slug\\": \\"kiryandongo\\",
+  },
+  Object {
+    \\"id\\": \\"d408\\",
+    \\"name\\": \\"Kisoro\\",
+    \\"slug\\": \\"kisoro\\",
+  },
+  Object {
+    \\"id\\": \\"d305\\",
+    \\"name\\": \\"Kitgum\\",
+    \\"slug\\": \\"kitgum\\",
+  },
+  Object {
+    \\"id\\": \\"d319\\",
+    \\"name\\": \\"Koboko\\",
+    \\"slug\\": \\"koboko\\",
+  },
+  Object {
+    \\"id\\": \\"d325\\",
+    \\"name\\": \\"Kole\\",
+    \\"slug\\": \\"kole\\",
+  },
+  Object {
+    \\"id\\": \\"d306\\",
+    \\"name\\": \\"Kotido\\",
+    \\"slug\\": \\"kotido\\",
+  },
+  Object {
+    \\"id\\": \\"d208\\",
+    \\"name\\": \\"Kumi\\",
+    \\"slug\\": \\"kumi\\",
+  },
+  Object {
+    \\"id\\": \\"d228\\",
+    \\"name\\": \\"Kween\\",
+    \\"slug\\": \\"kween\\",
+  },
+  Object {
+    \\"id\\": \\"d123\\",
+    \\"name\\": \\"Kyankwanzi\\",
+    \\"slug\\": \\"kyankwanzi\\",
+  },
+  Object {
+    \\"id\\": \\"d422\\",
+    \\"name\\": \\"Kyegegwa\\",
+    \\"slug\\": \\"kyegegwa\\",
+  },
+  Object {
+    \\"id\\": \\"d415\\",
+    \\"name\\": \\"Kyenjojo\\",
+    \\"slug\\": \\"kyenjojo\\",
+  },
+  Object {
+    \\"id\\": \\"d326\\",
+    \\"name\\": \\"Lamwo\\",
+    \\"slug\\": \\"lamwo\\",
+  },
+  Object {
+    \\"id\\": \\"d307\\",
+    \\"name\\": \\"Lira\\",
+    \\"slug\\": \\"lira\\",
+  },
+  Object {
+    \\"id\\": \\"d229\\",
+    \\"name\\": \\"Luuka\\",
+    \\"slug\\": \\"luuka\\",
+  },
+  Object {
+    \\"id\\": \\"d104\\",
+    \\"name\\": \\"Luwero\\",
+    \\"slug\\": \\"luwero\\",
+  },
+  Object {
+    \\"id\\": \\"d124\\",
+    \\"name\\": \\"Lwengo\\",
+    \\"slug\\": \\"lwengo\\",
+  },
+  Object {
+    \\"id\\": \\"d114\\",
+    \\"name\\": \\"Lyantonde\\",
+    \\"slug\\": \\"lyantonde\\",
+  },
+  Object {
+    \\"id\\": \\"d223\\",
+    \\"name\\": \\"Manafwa\\",
+    \\"slug\\": \\"manafwa\\",
+  },
+  Object {
+    \\"id\\": \\"d320\\",
+    \\"name\\": \\"Maracha\\",
+    \\"slug\\": \\"maracha\\",
+  },
+  Object {
+    \\"id\\": \\"d105\\",
+    \\"name\\": \\"Masaka\\",
+    \\"slug\\": \\"masaka\\",
+  },
+  Object {
+    \\"id\\": \\"d409\\",
+    \\"name\\": \\"Masindi\\",
+    \\"slug\\": \\"masindi\\",
+  },
+  Object {
+    \\"id\\": \\"d214\\",
+    \\"name\\": \\"Mayuge\\",
+    \\"slug\\": \\"mayuge\\",
+  },
+  Object {
+    \\"id\\": \\"d209\\",
+    \\"name\\": \\"Mbale\\",
+    \\"slug\\": \\"mbale\\",
+  },
+  Object {
+    \\"id\\": \\"d410\\",
+    \\"name\\": \\"Mbarara\\",
+    \\"slug\\": \\"mbarara\\",
+  },
+  Object {
+    \\"id\\": \\"d423\\",
+    \\"name\\": \\"Mitooma\\",
+    \\"slug\\": \\"mitooma\\",
+  },
+  Object {
+    \\"id\\": \\"d115\\",
+    \\"name\\": \\"Mityana\\",
+    \\"slug\\": \\"mityana\\",
+  },
+  Object {
+    \\"id\\": \\"d308\\",
+    \\"name\\": \\"Moroto\\",
+    \\"slug\\": \\"moroto\\",
+  },
+  Object {
+    \\"id\\": \\"d309\\",
+    \\"name\\": \\"Moyo\\",
+    \\"slug\\": \\"moyo\\",
+  },
+  Object {
+    \\"id\\": \\"d106\\",
+    \\"name\\": \\"Mpigi\\",
+    \\"slug\\": \\"mpigi\\",
+  },
+  Object {
+    \\"id\\": \\"d107\\",
+    \\"name\\": \\"Mubende\\",
+    \\"slug\\": \\"mubende\\",
+  },
+  Object {
+    \\"id\\": \\"d108\\",
+    \\"name\\": \\"Mukono\\",
+    \\"slug\\": \\"mukono\\",
+  },
+  Object {
+    \\"id\\": \\"d311\\",
+    \\"name\\": \\"Nakapiripirit\\",
+    \\"slug\\": \\"nakapiripirit\\",
+  },
+  Object {
+    \\"id\\": \\"d116\\",
+    \\"name\\": \\"Nakaseke\\",
+    \\"slug\\": \\"nakaseke\\",
+  },
+  Object {
+    \\"id\\": \\"d109\\",
+    \\"name\\": \\"Nakasongola\\",
+    \\"slug\\": \\"nakasongola\\",
+  },
+  Object {
+    \\"id\\": \\"d230\\",
+    \\"name\\": \\"Namayingo\\",
+    \\"slug\\": \\"namayingo\\",
+  },
+  Object {
+    \\"id\\": \\"d224\\",
+    \\"name\\": \\"Namutumba\\",
+    \\"slug\\": \\"namutumba\\",
+  },
+  Object {
+    \\"id\\": \\"d327\\",
+    \\"name\\": \\"Napak\\",
+    \\"slug\\": \\"napak\\",
+  },
+  Object {
+    \\"id\\": \\"d310\\",
+    \\"name\\": \\"Nebbi\\",
+    \\"slug\\": \\"nebbi\\",
+  },
+  Object {
+    \\"id\\": \\"d231\\",
+    \\"name\\": \\"Ngora\\",
+    \\"slug\\": \\"ngora\\",
+  },
+  Object {
+    \\"id\\": \\"d424\\",
+    \\"name\\": \\"Ntoroko\\",
+    \\"slug\\": \\"ntoroko\\",
+  },
+  Object {
+    \\"id\\": \\"d411\\",
+    \\"name\\": \\"Ntungamo\\",
+    \\"slug\\": \\"ntungamo\\",
+  },
+  Object {
+    \\"id\\": \\"d328\\",
+    \\"name\\": \\"Nwoya\\",
+    \\"slug\\": \\"nwoya\\",
+  },
+  Object {
+    \\"id\\": \\"d329\\",
+    \\"name\\": \\"Otuke\\",
+    \\"slug\\": \\"otuke\\",
+  },
+  Object {
+    \\"id\\": \\"d321\\",
+    \\"name\\": \\"Oyam\\",
+    \\"slug\\": \\"oyam\\",
+  },
+  Object {
+    \\"id\\": \\"d312\\",
+    \\"name\\": \\"Pader\\",
+    \\"slug\\": \\"pader\\",
+  },
+  Object {
+    \\"id\\": \\"d210\\",
+    \\"name\\": \\"Pallisa\\",
+    \\"slug\\": \\"pallisa\\",
+  },
+  Object {
+    \\"id\\": \\"d110\\",
+    \\"name\\": \\"Rakai\\",
+    \\"slug\\": \\"rakai\\",
+  },
+  Object {
+    \\"id\\": \\"d425\\",
+    \\"name\\": \\"Rubirizi\\",
+    \\"slug\\": \\"rubirizi\\",
+  },
+  Object {
+    \\"id\\": \\"d412\\",
+    \\"name\\": \\"Rukungiri\\",
+    \\"slug\\": \\"rukungiri\\",
+  },
+  Object {
+    \\"id\\": \\"d232\\",
+    \\"name\\": \\"Serere\\",
+    \\"slug\\": \\"serere\\",
+  },
+  Object {
+    \\"id\\": \\"d426\\",
+    \\"name\\": \\"Sheema\\",
+    \\"slug\\": \\"sheema\\",
+  },
+  Object {
+    \\"id\\": \\"d215\\",
+    \\"name\\": \\"Sironko\\",
+    \\"slug\\": \\"sironko\\",
+  },
+  Object {
+    \\"id\\": \\"d211\\",
+    \\"name\\": \\"Soroti\\",
+    \\"slug\\": \\"soroti\\",
+  },
+  Object {
+    \\"id\\": \\"d111\\",
+    \\"name\\": \\"Ssembabule\\",
+    \\"slug\\": \\"ssembabule\\",
+  },
+  Object {
+    \\"id\\": \\"d212\\",
+    \\"name\\": \\"Tororo\\",
+    \\"slug\\": \\"tororo\\",
+  },
+  Object {
+    \\"id\\": \\"d113\\",
+    \\"name\\": \\"Wakiso\\",
+    \\"slug\\": \\"wakiso\\",
+  },
+  Object {
+    \\"id\\": \\"d313\\",
+    \\"name\\": \\"Yumbe\\",
+    \\"slug\\": \\"yumbe\\",
+  },
+  Object {
+    \\"id\\": \\"d330\\",
+    \\"name\\": \\"Zombo\\",
+    \\"slug\\": \\"zombo\\",
+  },
+]"
+`;

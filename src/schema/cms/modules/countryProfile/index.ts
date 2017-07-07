@@ -46,8 +46,10 @@ export const getCountryProfilePageData = async (countrySlug: string): Promise<DH
 
 export const getFlows = (): Promise<IFlowRef[]> => get<IFlowRef>('country-profile/flow-name.csv');
 
-export const getBudgetLevels = (): Promise<IBudgetLevelRef[]> =>
-    get<IBudgetLevelRef>('country-profile/domestic-budget-level.csv');
+export const getBudgetLevels = (country?: string): Promise<IBudgetLevelRef[]> => {
+    if (country && country.length) return get<IBudgetLevelRef>(`spotlight-${country}/${country}-budget-level.csv`);
+    return get<IBudgetLevelRef>('country-profile/domestic-budget-level.csv');
+};
 
 export const getFlowTypes = (): Promise<IFlowRef[]> => get<IFlowRef>('country-profile/flow-type.csv');
 

@@ -5,13 +5,22 @@ import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import {getDistrictBySlugAsync} from '../../../cms/modules/spotlight';
 import {IEntity, getEntityById, getEntities, getEntityBySlugAsync,
         getSectors, getBundles, getChannels} from '../../../cms/modules/global';
-import {isNumber, isError, isUndefined} from '../../../../lib/isType';
+import {isNumber, isError} from '../../../../lib/isType';
 import {getBudgetLevels, IBudgetLevelRef} from '../../../cms/modules/countryProfile';
 
 export interface IGetIndicatorArgs {
     id?: string;
     query: string;
     country?: string;
+    table?: string;
+    conceptType: string; // folder with concept file
+    db: IDatabase<IExtensions> & IExtensions;
+}
+export interface ISpotlightGetIndicatorArgs {
+    id: string;
+    query: string;
+    country: string;
+    l1?: string;
     table?: string;
     conceptType: string; // folder with concept file
     db: IDatabase<IExtensions> & IExtensions;
@@ -115,10 +124,14 @@ export const entitesFnMap = {
     from: getEntities,
 };
 
-export const toNumericFields: (obj: any, valueField: string) => any = (obj, valueField = 'value') => {
-    const newObj = {...obj, value: Number(obj[valueField]), year: Number(obj.year)};
-    if (valueField !== 'value') return R.omit([valueField], newObj);
-    return newObj;
+export const toNumericFields: (obj: any) => any = (obj) => {
+    return R.keys(obj).reduce((newObj: any, key: string) => {
+        const isKeyNumerical = Number(obj[key]) ? true : false;
+        if (isKeyNumerical) {
+            return {...newObj, [key]:  Number(obj[key])};
+        }
+        return {...newObj, [key]: obj[key]};
+    }, {});
 };
 
 export const toId: (obj: IhasDiId ) => any = (obj) => {
@@ -134,36 +147,49 @@ export const getTotal = (data: Isummable[]): number =>
         return sum;
     }, 0, data);
 
-export const getTableNameFromSql = (sql: string): string | Error => {
-    const matches = sql.match(/FROM(.*)WHERE/);
+export const getTableNameFromSql = (sqlStr: string): string | Error => {
+    const matches = sqlStr.match(/FROM(.*)WHERE/);
     if (matches && matches.length) {
         return matches[0].split(/\s/)[1];
     }
     return new Error('couldnt get table name from sql string');
 };
+export const getSpotlightTableName = (country: string, query: string): string => {
+    const tableStr = getTableNameFromSql(query);
+    if (isError(tableStr)) throw new Error(`error getting table name for : ${query}`);
+    const schema =  `spotlight_on_${country}`;
+    return tableStr
+            .replace(/\${schema\^}/, schema)
+            .replace(/\${country\^}/, country);
+};
 
 // used by country profile and spotlights
 export async function getIndicatorData<T>(opts: IGetIndicatorArgs): Promise<T[]> {
-    const {db, query, id, conceptType, country, table} = opts;
+    const {db, query, id, conceptType, table} = opts;
     const tableName = !table ? getTableNameFromSql(query) : table;
-    if (isError(tableName) || isUndefined(tableName)) throw Error(`error getting table name: ${tableName}`);
+    if (isError(tableName)) throw Error(`error getting table name: ${query}`);
     let countryEntity: any = {};
-    let spotlightEntity: any = {};
     if ( conceptType === 'country-profile' && id) countryEntity =  await getEntityBySlugAsync(id);
-    if ( conceptType === 'spotlight' && country && id) spotlightEntity =  await getDistrictBySlugAsync(country, id);
     const theme =  conceptType === 'country-profile' ? countryEntity.donor_recipient_type : undefined;
     const concept: IConcept = await getConceptAsync(conceptType, tableName, theme);
     const baseQueryArgs = {...concept, ...opts, table: tableName };
-    if (conceptType === 'spotlight') {
-        const queryArgs = {...baseQueryArgs, id: spotlightEntity.id, country, schema: `spotlight_on_${country}`};
-        return db.manyCacheable(query, queryArgs);
-    }
     if (conceptType === 'country-profile') {
         const queryArgs = {...baseQueryArgs, id: countryEntity.id};
         return db.manyCacheable(query, queryArgs);
     }
-    // console.log(conceptType, '\n', query, '\n', baseQueryArgs);
     return db.manyCacheable(query, baseQueryArgs);
+}
+
+// used by country profile and spotlights
+export async function getIndicatorDataSpotlights<T>(opts: ISpotlightGetIndicatorArgs): Promise<T[]> {
+    const {db, query, id, conceptType, country, table} = opts;
+    const tableName = !table && country && query ? getSpotlightTableName(country, query) : table;
+    if (!tableName) throw new Error('Provide a valid table name or query string');
+    const spotlightEntity =  await getDistrictBySlugAsync(country, id);
+    const concept: IConcept = await getConceptAsync(conceptType, tableName);
+    const queryArgs = {...opts, ...concept, id: spotlightEntity.id, country, schema: `spotlight_on_${country}`};
+    // console.log(query, '\n', queryArgs);
+    return db.manyCacheable(query, queryArgs);
 }
 
 // used by maps module
@@ -173,8 +199,8 @@ export const getIndicatorDataSimple = async <T extends {}> (opts: IGetIndicatorA
         if (!query && sql) queryStr = !isNumber(end_year) ? sql.indicator : sql.indicatorRange;
         if (query) queryStr = query;
         const tableName = !table ? getTableNameFromSql(queryStr) : table;
-        if (isError(tableName)) throw Error('No valid table name provided');
-        if (!queryStr.length) throw Error('invalid query string');
+        if (isError(tableName)) throw new Error('No valid table name provided');
+        if (!queryStr.length) throw new Error('invalid query string');
         return db.manyCacheable(queryStr, {start_year, end_year, table: tableName});
 };
 
@@ -190,15 +216,15 @@ export const indicatorDataProcessing = async (data: IhasDiId[]): Promise<DH.IMap
     return processed.map((obj) => addCountryName(obj, entities));
 };
 
-export const indicatorDataProcessingSimple = <T extends {}>(data: IhasDiId[], valueField: string = 'value'): T[] => {
+export const indicatorDataProcessingSimple = <T extends {}>(data: IhasDiId[]): T[] => {
     return data
             .map(toId)
-            // .map(normalizeKeyNames)
-            .map(obj => toNumericFields(obj, valueField));
+            .map(toNumericFields);
 };
-export const indicatorDataProcessingNamed = async (data: IhasDiId[], valueField: string = 'value'):
+// adds reference names to Ids
+export const indicatorDataProcessingNamed = async (data: IhasDiId[]):
     Promise<DH.IIndicatorData[]> => {
-    const processed: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(data, valueField);
+    const processed: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(data);
     const entities: IEntity[] =  await getEntities();
     return processed.map(obj => {
         const entity = getEntityById(obj.id, entities);
@@ -206,8 +232,9 @@ export const indicatorDataProcessingNamed = async (data: IhasDiId[], valueField:
     });
 };
 
-export const domesticDataProcessing = async (data: IRAWDomestic[]): Promise<DH.IDomestic[]> => {
-    const budgetRefs: IBudgetLevelRef[] = await getBudgetLevels();
+export const domesticDataProcessing = async (data: IRAWDomestic[], country?: string)
+    : Promise<DH.IDomestic[]> => {
+    const budgetRefs: IBudgetLevelRef[] = country ? await getBudgetLevels(country) : await getBudgetLevels();
     return indicatorDataProcessingSimple(data)
             .map(obj => {
                 const levelKeys = R.keys(obj).filter(key => key.includes('l'));

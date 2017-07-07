@@ -173,7 +173,7 @@ export default class CountryProfileTabs {
             ...this.defaultArgs
         };
             const data: IRAWMulti[] = await getIndicatorData<IRAWMulti>(indicatorArgs);
-            return indicatorDataProcessingNamed(data, 'value_2');
+            return indicatorDataProcessingNamed(data);
         } catch (error) {
            throw error;
         }

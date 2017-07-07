@@ -1,5 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Github concept data tests should get data from concept.csv of a module on github 1`] = `"undefined"`;
-
-exports[`Github concept data tests should get data from concept.csv of an Id in a module Async 1`] = `"undefined"`;
+exports[`Github concept data tests should get data from concept.csv of an Id in a module Async 1`] = `
+"Object {
+  \\"color\\": \\"\\",
+  \\"comments\\": \\"Overview-What resources are available?\\",
+  \\"description\\": \\"Non-grant government revenue. Data is for 2015.\\",
+  \\"end_year\\": \\"2015\\",
+  \\"id\\": \\"data_series.domestic\\",
+  \\"name\\": \\"Non-grant government revenue\\",
+  \\"source\\": \\"\\",
+  \\"source_link\\": \\"\\",
+  \\"start_year\\": \\"2010\\",
+  \\"theme\\": \\"recipient\\",
+  \\"uom\\": \\"constant 2015 US$, NCU\\",
+  \\"uom_display\\": \\"constant 2015 US$, NCU\\",
+}"
+`;
