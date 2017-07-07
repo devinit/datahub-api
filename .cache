@@ -1,0 +1,16 @@
+global/entity.csv:cms
+global/entity.csv:cms
+global/entity.csv:cms
+global/entity.csv:cms
+global/entity.csv:cms
+spotlight-uganda/concept.csv:cms
+country-profile/concept.csv:cms
+country-profile/concept.csv:cms
+spotlight-uganda/district-entity.csv:cms
+SELECT value FROM spotlight_on_uganda.uganda_leaving_exam_perf_rate WHERE district_id ='d113' AND year = '2013':dw
+SELECT value FROM spotlight_on_uganda.uganda_health_funding WHERE district_id ='d113' AND year = '2015':dw
+country-profile/flow-name.csv:cms
+country-profile/flow-selections.csv:cms
+select * FROM data_series.non_grant_revenue_ppp_pc WHERE year >= '1999' AND year <= '2015' :dw
+bubble-chart-oda/concept.csv:cms
+country-profile/domestic-budget-level.csv:cms

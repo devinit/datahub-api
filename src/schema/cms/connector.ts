@@ -18,7 +18,7 @@ const lruOpts: LRU.Options<any> = {
 export const cache: LRU.Cache<any> = LRU(lruOpts);
 
 export const csvToJson = <T extends {}> (csvStr: string): Promise<T[]>  =>
-    new Promise(<T>(resolve, reject) => {
+    new Promise((resolve, reject) => {
         const data: T[] = [];
         converter({workerNum: 2})
         .fromString(csvStr)
