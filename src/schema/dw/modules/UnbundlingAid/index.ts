@@ -12,7 +12,7 @@ interface IUnbundlingAidQuery {
     year?: number;
     sector?: string;
     form?: string;
-    channel_web_id?: string;
+    channel?: string;
 }
 interface IUnBundlingAidCountries {
     to: DH.IIdNamePair[];

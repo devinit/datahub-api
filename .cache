@@ -10,3 +10,6 @@ country-profile/flow-selections.csv:cms
 select * FROM data_series.non_grant_revenue_ppp_pc WHERE year >= '1999' AND year <= '2015' :dw
 bubble-chart-oda/concept.csv:cms
 country-profile/domestic-budget-level.csv:cms
+global/regional.csv:cms
+global/bundle.csv:cms
+SELECT bundle, year, sum(value) AS value from fact.oda_2015 WHERE value > 0 AND year = 2015 GROUP BY bundle, year:dw

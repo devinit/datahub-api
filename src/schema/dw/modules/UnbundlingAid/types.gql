@@ -29,8 +29,8 @@ input UnbundlingAidQuery {
     year: Int!
     # eg channel, bundle
     groupBy: String!
-    toCountry: String
-    fromCountryOrOrg: String
+    to_di_id: String
+    from_di_id: String
     sector: String
     form: String
     channel: String

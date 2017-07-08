@@ -348,8 +348,8 @@ declare namespace DH {
     aidType: string;
     year: number;
     groupBy: string;
-    toCountry?: string | null;
-    fromCountryOrOrg?: string | null;
+    to_di_id?: string | null;
+    from_di_id?: string | null;
     sector?: string | null;
     form?: string | null;
     channel?: string | null;
