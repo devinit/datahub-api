@@ -19,7 +19,6 @@ type BubbleChartPoverty {
 type Query {
   getBubbleChartOda: BubbleChartOda
   getBubbleChartPoverty: BubbleChartPoverty
-  # indicatorData is defined in country profiles type file
   # we return data for the entire year range for a given indicator id eg donor country ID or indicator table name
   getBubbleSize (id: String): [BubbleChartData]
   # IdNamePair is defined in unbundling aid types 
