@@ -1,0 +1,10 @@
+{
+  "name": "datahub-api",
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "type": "npm",
+  "engines": {
+    "node": "8.1.2"
+  }
+}
