@@ -38,6 +38,6 @@ input UnbundlingAidQuery {
 
 type Query {
   getUnbundlingAidData(args: UnbundlingAidQuery):[AidUnit]
-  getUnbundlingSelectionData: UnbundlingAidSelections
+  getUnbundlingSelectionData(aidType: String): UnbundlingAidSelections
 }
 

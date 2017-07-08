@@ -7,5 +7,5 @@ export default {
     odaFrom: 'Select from_di_id FROM fact.oda_2015 WHERE value > 0 GROUP BY from_di_id',
     // odaTo: 'Select to_di_id From fact.\'oda_2015\' GROUP BY From_di_id',
      // bubulesize data
-    indicator: 'SELECT * FROM ${table^} WHERE year >= ${start_year} AND year <= ${end_year}'
+    indicator: 'SELECT * FROM ${table^} WHERE year >= ${start_year} AND year <= ${end_year} AND value > 0'
 };

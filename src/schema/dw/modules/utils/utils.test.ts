@@ -1,5 +1,5 @@
 import {toId, getTotal, addCountryName, DONOR, RECIPIENT,
-        makeSqlAggregateQuery, normalizeKeyName, isDonor, makeSqlAggregateRangeQuery} from '.';
+        makeSqlAggregateQuery, normalizeKeyName, isDonor} from '.';
 import * as prettyFormat from 'pretty-format';
 
 const dataA = [
@@ -32,7 +32,7 @@ describe('Utility functions test', () => {
             to_di_id: 'UG',
             years: [2013, 2015]
         };
-        const queryB = makeSqlAggregateRangeQuery(argsB, 'bundle', 'fact.oda');
+        const queryB = makeSqlAggregateQuery(argsB, 'bundle', 'fact.oda_2015');
         expect(prettyFormat(queryB)).toMatchSnapshot();
     });
     it('should create an aggregate sql query for a single year i.e unbundling aid', () => {
@@ -41,8 +41,14 @@ describe('Utility functions test', () => {
             to_di_id: 'UG',
             year: 2013
         };
-        const queryB = makeSqlAggregateQuery(argsB, 'bundle', 'fact.oda');
-        expect(prettyFormat(queryB)).toMatchSnapshot();
+        const argsA = {
+            year: 2015,
+            sector: 'banking-and-business',
+        };
+        const queryB = makeSqlAggregateQuery(argsB, 'bundle', 'fact.oda_2015');
+        const queryA = makeSqlAggregateQuery(argsA, 'to_di_id', 'fact.oda_2015');
+        const querys = {queryA, queryB};
+        expect(prettyFormat(querys)).toMatchSnapshot();
     });
     it('should normalize colum name ie remove _ where necessry', () => {
         const ageBand = normalizeKeyName('value_0_14');

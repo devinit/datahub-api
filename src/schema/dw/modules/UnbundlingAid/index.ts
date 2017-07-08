@@ -41,20 +41,20 @@ export default class UnbundlingAid {
     }
     public async getUnbundlingAidData(args: DH.IUnbundlingAidQuery): Promise<DH.IAidUnit[]> {
         try {
-            const queryArgs =  this.getSqlQueryArgs(args);
+            const queryArgs: IUnbundlingAidQuery =  this.getSqlQueryArgs(args);
             const table = this.getUnbundlingAidDataTable(args.aidType);
-            const queryStr: string =
-                makeSqlAggregateQuery<IUnbundlingAidQuery>(queryArgs, args.groupBy, table);
+            const queryStr: string = makeSqlAggregateQuery(queryArgs, args.groupBy, table);
             const raw: IUnbundlingAidResult[] = await this.db.manyCacheable(queryStr, null);
             const entites: IUnbundlingEnitity[] = await entitesFnMap[args.groupBy]();
             const regions: IRegional[] = await getRegional();
             return raw.map((obj) => {
                 const entity: IUnbundlingEnitity | undefined = entites.find(item => obj[args.groupBy] === item.id);
                 if (!entity) throw new Error('error getting unbundling aid entity');
-                let color = '';
+                // TODO: use proper color
+                let color = 'grey';
                 if (entity.type && entity.region) {
                     const region: IRegional | undefined = getEntityByIdGeneric<IRegional>(entity.region, regions);
-                    if (region && region.color) color = region ? region.color : 'grey';
+                    if (region && region.color) color = region ? region.color : color;
                 }
                 return {id: entity.id, value: Number(obj.value), name: entity.name,
                         color, year: Number(obj.year)};
@@ -69,8 +69,7 @@ export default class UnbundlingAid {
             const table = this.getUnbundlingAidDataTable(aidType);
             const concept: IConcept = await getConceptAsync(`unbundling-${aidType}`, table);
             if (!concept) throw new Error('error getting unbundling aid concept');
-            const year = Number(concept.start_year);
-            const years = R.range(year, year - 10);
+            const years: number[] = R.range(Number(concept.start_year), Number(concept.end_year));
             const countries = await this.getCountries();
             const channels = await getChannels();
             const sectors = await getSectors();

@@ -6,7 +6,7 @@ import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import * as R from 'ramda';
 import {ICurrency, getCurrency, getEntityBySlugAsync, IEntity} from '../../../cms/modules/global';
 import {getIndicatorData, RECIPIENT, DONOR, IGetIndicatorArgs,
-        indicatorDataProcessingSimple, makeSqlAggregateRangeQuery,
+        indicatorDataProcessingSimple, makeSqlAggregateQuery,
         isDonor, IRAW, IRAWFlow, IProcessedSimple, entitesFnMap, IRAWDomestic, domesticDataProcessing} from '../utils';
 import {getFlowByTypeAsync, getFlows, getFlowByIdAsync, getBudgetLevels, IBudgetLevelRef,
         getAllFlowSelections, IFlowRef, IFlowSelectionRaw} from '../../../cms/modules/countryProfile';
@@ -79,13 +79,13 @@ export default class Resources {
             const flow: IFlowRef =  await getFlowByIdAsync(resourceId);
             const concept: IConcept = await getConceptAsync('country-profile', flow.concept);
             let args = {years: [concept.start_year, concept.end_year]};
-            if (flow.type === DONOR) args = {...args, from_di_id: `'${countryId}'`};
-            if (flow.type === RECIPIENT) args = {...args, to_di_id: `'${countryId}'` };
+            if (flow.type === DONOR) args = {...args, from_di_id: countryId};
+            if (flow.type === RECIPIENT) args = {...args, to_di_id: countryId };
             // tslint:disable-next-line:max-line-length
             if (flow.concept === 'data_series.intl_flows_recipients' || flow.concept === 'data_series.intl_flows_donors') {
                 args = {...args, flow_name: resourceId};
             }
-            const sqlQuery = makeSqlAggregateRangeQuery(args, groupById, flow.concept);
+            const sqlQuery = makeSqlAggregateQuery(args, groupById, flow.concept);
             const data: IRAW[] = await this.db.manyCacheable(sqlQuery, null);
             const processedData: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(data);
             // TODO: types for  entitesFnMap

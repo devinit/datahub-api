@@ -496,7 +496,7 @@ type Query {
   getHealthTab(id: String!, country: String!): HealthTabRegional
   getLocalGovernmentFinance(id: String!, country: String!): LocalGovernmentFinance
   getUnbundlingAidData(args: UnbundlingAidQuery): [AidUnit]
-  getUnbundlingSelectionData: UnbundlingAidSelections
+  getUnbundlingSelectionData(aidType: String): UnbundlingAidSelections
 }
 
 type Theme {

@@ -5,7 +5,7 @@ import {getConceptAsync, IConcept, getConcepts} from '../../../cms/modules/conce
 import * as R from 'ramda';
 import {IEntity, getEntities, getEntityById} from '../../../cms/modules/global';
 import {getIndicatorData, IGetIndicatorArgs, IProcessedSimple, IRAW, getIndicatorDataSimple,
-        indicatorDataProcessingSimple, makeSqlAggregateRangeQuery} from '../utils';
+        indicatorDataProcessingSimple, makeSqlAggregateQuery} from '../utils';
 
 interface IBubbleSizeResults {
     to_di_id: string;
@@ -59,10 +59,10 @@ export default class BubbleChart {
             if (!entity) return this.getSingleIndicatorGeneric(sql.indicator, id);
             // if its not an entity its a global picture indicator
             const years = await this.getYears();
-            const queryArgs = {from_di_id: `'${id}'`, years};
+            const queryArgs = {from_di_id: id, years};
             // TODO: turn fact oda table into a configurable variable
             const queryStr: string =
-                    makeSqlAggregateRangeQuery(queryArgs, 'to_di_id', 'fact.oda_2015');
+                    makeSqlAggregateQuery(queryArgs, 'to_di_id', 'fact.oda_2015');
             const raw: IBubbleSizeResults[] = await this.db.manyCacheable(queryStr, null);
             return raw.map(obj => {
                 const details = getEntityById(obj.to_di_id, entities);
