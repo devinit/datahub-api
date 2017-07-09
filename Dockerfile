@@ -10,14 +10,13 @@ RUN set -ex \
 	&& npm install \
 	&& mkdir -p /home/app \
 	&& cp -a /tmp/node_modules /home/app/ \
-	&& rm -Rf /tmp/*
 
 WORKDIR /home/app
 
 # Copy the rest of the files to the container workdir
 ADD . /home/app
 
-ENV NODE_ENV="development"
+ENV NODE_ENV="production"
 ENV PORT=3000
 EXPOSE ${PORT}
 
