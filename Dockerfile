@@ -21,6 +21,4 @@ ENV NODE_ENV="development"
 ENV PORT=3000
 EXPOSE ${PORT}
 
-RUN npm run build
-
 CMD ["npm", "start"]
