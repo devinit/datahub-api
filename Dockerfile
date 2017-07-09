@@ -1,5 +1,5 @@
 # The official nodejs docker image
-FROM node:slim
+FROM node:8
 
 # Copy package.json only to temp folder, install its dependencies,
 # set workdir and copy the dependnecies there
@@ -20,5 +20,7 @@ ADD . /home/app
 ENV NODE_ENV="development"
 ENV PORT=3000
 EXPOSE ${PORT}
+
+RUN npm run build
 
 CMD ["npm", "start"]

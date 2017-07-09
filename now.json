@@ -1,7 +1,4 @@
 {
   "name": "datahub-api",
-  "type": "npm",
-  "engines": {
-    "node": "8.1.2"
-  }
+  "type": "docker"
 }
