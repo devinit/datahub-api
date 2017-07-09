@@ -13,3 +13,5 @@ country-profile/domestic-budget-level.csv:cms
 global/regional.csv:cms
 global/bundle.csv:cms
 SELECT bundle, year, sum(value) AS value from fact.oda_2015 WHERE value > 0 AND year = 2015 GROUP BY bundle, year:dw
+global-picture/concept.csv:cms
+Select from_di_id FROM fact.oda_2015 WHERE value > 0 GROUP BY from_di_id:dw
