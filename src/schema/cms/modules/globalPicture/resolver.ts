@@ -1,9 +1,9 @@
 export default {
     Query: {
-        async getGlobalPicturePageData(_root, _args, ctx) {
+        async globalPicturePageData(_root, _args, ctx) {
            return ctx.cms.getGlobalPicturePageData();
         },
-        async getGlobalPictureThemes(_root, _args, ctx) {
+        async globalPictureThemes(_root, _args, ctx) {
            return ctx.cms.getGlobalPictureThemes();
         }
     }

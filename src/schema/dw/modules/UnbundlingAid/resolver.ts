@@ -1,9 +1,9 @@
 export default {
     Query: {
-        async getUnbundlingAidData(_root, {args}, ctx) {
+        async unbundlingAidData(_root, {args}, ctx) {
             return ctx.dw.unbundlingAid.getUnbundlingAidData(args);
         },
-        async getUnbundlingSelectionData(_root, args, ctx) {
+        async unbundlingSelectionData(_root, args, ctx) {
             return ctx.dw.unbundlingAid.getUnbundlingSelectionData(args);
         }
     }

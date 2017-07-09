@@ -25,33 +25,36 @@ declare namespace DH {
     description: 
   */
   interface IQuery {
-    getCountryProfilePageData: Array<IPage> | null;
-    getGlobalPicturePageData: Array<IPage> | null;
-    getGlobalPictureThemes: Array<ITheme> | null;
-    getGlobalPictureIndicators: Array<IIndicator> | null;
-    getOdaDonorBubbleChartPageData: Array<IPage> | null;
-    getPovertyBubbleChartPageData: Array<IPage> | null;
-    getSpotlightUgandaPageData: Array<IPage> | null;
-    getUnbundlingOdaPageData: Array<IPage> | null;
-    getUnbundlingOOfPageData: Array<IPage> | null;
-    getWhereThePoorPageData: Array<IPage> | null;
-    getBubbleChartOda: IBubbleChartOda | null;
-    getBubbleChartPoverty: IBubbleChartPoverty | null;
-    getBubbleSize: Array<IBubbleChartData> | null;
-    getBubbleChartIndicatorsList: Array<IIdNamePair> | null;
-    getOverViewTab: IOverViewTabRegional | null;
-    getPovertyTab: IPovertyTabRegional | null;
-    getPopulationTab: IPopulationTabRegional | null;
-    getGovernmentFinance: IGovernmentFinance | null;
-    getInternationalResources: IInternationalResources | null;
-    getSingleResource: ISingleResourceData | null;
-    getMapData: IMapData | null;
-    getMethodologies: Array<IDataSources> | null;
-    getEducationTab: IEducationTabRegional | null;
-    getHealthTab: IHealthTabRegional | null;
-    getLocalGovernmentFinance: ILocalGovernmentFinance | null;
-    getUnbundlingAidData: Array<IAidUnit> | null;
-    getUnbundlingSelectionData: IUnbundlingAidSelections | null;
+    countryProfilePageData: Array<IPage> | null;
+    globalPicturePageData: Array<IPage> | null;
+    globalPictureThemes: Array<ITheme> | null;
+    globalPictureIndicators: Array<IIndicator> | null;
+    odaDonorBubbleChartPageData: Array<IPage> | null;
+    povertyBubbleChartPageData: Array<IPage> | null;
+    spotlightUgandaPageData: Array<IPage> | null;
+    unbundlingOdaPageData: Array<IPage> | null;
+    unbundlingOOfPageData: Array<IPage> | null;
+    whereThePoorPageData: Array<IPage> | null;
+    bubbleChartOda: IBubbleChartOda | null;
+    bubbleChartPoverty: IBubbleChartPoverty | null;
+    bubbleSize: Array<IBubbleChartData> | null;
+    bubbleChartIndicatorsList: Array<IIdNamePair> | null;
+    overViewTab: OverViewTab | null;
+    povertyTab: IPovertyTab | null;
+    populationTab: IPopulationTab | null;
+    governmentFinance: IGovernmentFinance | null;
+    internationalResources: IInternationalResources | null;
+    singleResource: ISingleResourceData | null;
+    mapData: IMapData | null;
+    methodologies: Array<IDataSources> | null;
+    overViewTabRegional: IOverViewTabRegional | null;
+    povertyTabRegional: IPovertyTabRegional | null;
+    populationTabRegional: IPopulationTabRegional | null;
+    educationTabRegional: IEducationTabRegional | null;
+    healthTabRegional: IHealthTabRegional | null;
+    localGovernmentFinance: ILocalGovernmentFinance | null;
+    unbundlingAidData: Array<IAidUnit> | null;
+    unbundlingSelectionData: IUnbundlingAidSelections | null;
   }
 
   /*
@@ -121,42 +124,64 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IOverViewTabRegional {
+  type OverViewTab = IOverViewTabRecipients | IOverViewTabDonors;
+
+
+
+  /*
+    description: 
+  */
+  interface IOverViewTabRecipients {
     poorestPeople: string | null;
-    regionalResources: string | null;
-    regionalResourcesBreakdown: Array<IIndicatorDataColored> | null;
-    localGovernmentSpendPerPerson: string | null;
+    population: string | null;
+    domesticResources: string | null;
+    internationalResources: string | null;
+    governmentSpendPerPerson: string | null;
   }
 
   /*
     description: 
   */
-  interface IIndicatorDataColored {
+  interface IOverViewTabDonors {
+    governmentSpendPerPerson: string | null;
+    averageIncomerPerPerson: Array<IIndicatorData> | null;
+    incomeDistTrend: Array<IQuintile> | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IIndicatorData {
     year: number | null;
     value: number | null;
     id: string | null;
     name: string | null;
-    color: string | null;
   }
 
   /*
     description: 
   */
-  interface IPovertyTabRegional {
-    poorestPeople: string | null;
-    lifeExpectancy: string | null;
-    stdOfLiving: string | null;
+  interface IQuintile {
+    value: number | null;
+    quintileName: string | null;
   }
 
   /*
     description: 
   */
-  interface IPopulationTabRegional {
-    totalPopulation: string | null;
-    populationDensity: string | null;
+  interface IPovertyTab {
+    poverty190Trend: Array<IIndicatorData> | null;
+    depthOfExtremePoverty: string | null;
+    incomeDistTrend: Array<IQuintile> | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IPopulationTab {
+    population: string | null;
     populationDistribution: Array<IPopulationDistribution> | null;
-    averageDependencyRatio: string | null;
-    allAverageDependencyRatio: string | null;
+    populationPerAgeBand: Array<IPopulationPerAgeBand> | null;
   }
 
   /*
@@ -164,6 +189,15 @@ declare namespace DH {
   */
   interface IPopulationDistribution {
     group: string | null;
+    value: number | null;
+    year: number | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IPopulationPerAgeBand {
+    band: string | null;
     value: number | null;
     year: number | null;
   }
@@ -259,16 +293,6 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IIndicatorData {
-    year: number | null;
-    value: number | null;
-    id: string | null;
-    name: string | null;
-  }
-
-  /*
-    description: 
-  */
   interface IMapData {
     map: Array<IMapUnit> | null;
     name: string | null;
@@ -318,6 +342,47 @@ declare namespace DH {
   /*
     description: 
   */
+  interface IOverViewTabRegional {
+    poorestPeople: string | null;
+    regionalResources: string | null;
+    regionalResourcesBreakdown: Array<IIndicatorDataColored> | null;
+    localGovernmentSpendPerPerson: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IIndicatorDataColored {
+    year: number | null;
+    value: number | null;
+    id: string | null;
+    name: string | null;
+    color: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IPovertyTabRegional {
+    poorestPeople: string | null;
+    lifeExpectancy: string | null;
+    stdOfLiving: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IPopulationTabRegional {
+    totalPopulation: string | null;
+    populationDensity: string | null;
+    populationDistribution: Array<IPopulationDistribution> | null;
+    averageDependencyRatio: string | null;
+    allAverageDependencyRatio: string | null;
+  }
+
+  /*
+    description: 
+  */
   interface IEducationTabRegional {
     pupilTeacherRatioGovtSchl: string | null;
     pupilTeacherRatioOtherSchl: string | null;
@@ -350,8 +415,8 @@ declare namespace DH {
     aidType: string;
     year: number;
     groupBy: string;
-    toCountry?: string | null;
-    fromCountryOrOrg?: string | null;
+    to_di_id?: string | null;
+    from_di_id?: string | null;
     sector?: string | null;
     form?: string | null;
     channel?: string | null;
@@ -383,71 +448,9 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IQuintile {
-    value: number | null;
-    quintileName: string | null;
-  }
-
-  /*
-    description: 
-  */
   interface IToolTip {
     indicator: string | null;
     message: string | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IOverViewTabRecipients {
-    poorestPeople: string | null;
-    population: string | null;
-    domesticResources: string | null;
-    internationalResources: string | null;
-    governmentSpendPerPerson: string | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IOverViewTabDonors {
-    governmentSpendPerPerson: string | null;
-    averageIncomerPerPerson: Array<IIndicatorData> | null;
-    incomeDistTrend: Array<IQuintile> | null;
-  }
-
-  /*
-    description: 
-  */
-  type OverViewTab = IOverViewTabRecipients | IOverViewTabDonors;
-
-
-
-  /*
-    description: 
-  */
-  interface IPovertyTab {
-    poverty190Trend: Array<IIndicatorData> | null;
-    depthOfExtremePoverty: string | null;
-    incomeDistTrend: Array<IQuintile> | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IPopulationPerAgeBand {
-    band: string | null;
-    value: number | null;
-    year: number | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IPopulationTab {
-    population: string | null;
-    populationDistribution: Array<IPopulationDistribution> | null;
-    populationPerAgeBand: Array<IPopulationPerAgeBand> | null;
   }
 }
 
@@ -461,42 +464,41 @@ exports[`gql Types to Typescript types should return merged typedefs 1`] = `
 }
 
 type Query {
-  getCountryProfilePageData(countrySlug: String!): [Page]
-  getGlobalPicturePageData: [Page]
-  getGlobalPictureThemes: [Theme]
-  getGlobalPictureIndicators(theme: String!): [Indicator]
-  getOdaDonorBubbleChartPageData: [Page]
-  getPovertyBubbleChartPageData: [Page]
-  getSpotlightUgandaPageData: [Page]
-  getUnbundlingOdaPageData: [Page]
-  getUnbundlingOOfPageData: [Page]
-  getWhereThePoorPageData: [Page]
-  getBubbleChartOda: BubbleChartOda
-  getBubbleChartPoverty: BubbleChartPoverty
-  # indicatorData is defined in country profiles type file
-   # we return data for the entire year range for a given indicator id eg donor country ID or indicator table name
-  getBubbleSize(id: String): [BubbleChartData]
+  countryProfilePageData(countrySlug: String!): [Page]
+  globalPicturePageData: [Page]
+  globalPictureThemes: [Theme]
+  globalPictureIndicators(theme: String!): [Indicator]
+  odaDonorBubbleChartPageData: [Page]
+  povertyBubbleChartPageData: [Page]
+  spotlightUgandaPageData: [Page]
+  unbundlingOdaPageData: [Page]
+  unbundlingOOfPageData: [Page]
+  whereThePoorPageData: [Page]
+  bubbleChartOda: BubbleChartOda
+  bubbleChartPoverty: BubbleChartPoverty
+  # we return data for the entire year range for a given indicator id eg donor country ID or indicator table name
+  bubbleSize(id: String): [BubbleChartData]
   # IdNamePair is defined in unbundling aid types 
    # this list feeds off oda table from countries and global/concept file
-  getBubbleChartIndicatorsList: [IdNamePair]
-  getOverViewTab(id: String!): OverViewTab
-  getPovertyTab(id: String!): PovertyTab
-  getPopulationTab(id: String!): PopulationTab
-  getGovernmentFinance(id: String!): GovernmentFinance
-  getInternationalResources(id: String!): InternationalResources
+  bubbleChartIndicatorsList: [IdNamePair]
+  overViewTab(id: String!): OverViewTab
+  povertyTab(id: String!): PovertyTab
+  populationTab(id: String!): PopulationTab
+  governmentFinance(id: String!): GovernmentFinance
+  internationalResources(id: String!): InternationalResources
   # for area tree map chart dropdown selectoion
-  getSingleResource(resourceId: String!, countryId: String!, groupById: String): SingleResourceData
-  getMapData(id: String!, DACOnly: Boolean): MapData
-  getMethodologies: [DataSources]
+  singleResource(resourceId: String!, countryId: String!, groupById: String): SingleResourceData
+  mapData(id: String!, DACOnly: Boolean): MapData
+  methodologies: [DataSources]
   # id is district slug
-  getOverViewTab(id: String!, country: String!): OverViewTabRegional
-  getPovertyTab(id: String!, country: String!): PovertyTabRegional
-  getPopulationTab(id: String!, country: String!): PopulationTabRegional
-  getEducationTab(id: String!, country: String!): EducationTabRegional
-  getHealthTab(id: String!, country: String!): HealthTabRegional
-  getLocalGovernmentFinance(id: String!, country: String!): LocalGovernmentFinance
-  getUnbundlingAidData(args: UnbundlingAidQuery): [AidUnit]
-  getUnbundlingSelectionData(aidType: String): UnbundlingAidSelections
+  overViewTabRegional(id: String!, country: String!): OverViewTabRegional
+  povertyTabRegional(id: String!, country: String!): PovertyTabRegional
+  populationTabRegional(id: String!, country: String!): PopulationTabRegional
+  educationTabRegional(id: String!, country: String!): EducationTabRegional
+  healthTabRegional(id: String!, country: String!): HealthTabRegional
+  localGovernmentFinance(id: String!, country: String!): LocalGovernmentFinance
+  unbundlingAidData(args: UnbundlingAidQuery): [AidUnit]
+  unbundlingSelectionData(aidType: String): UnbundlingAidSelections
 }
 
 type Theme {
@@ -831,8 +833,8 @@ input UnbundlingAidQuery {
   aidType: String!
   year: Int!
   groupBy: String!
-  toCountry: String
-  fromCountryOrOrg: String
+  to_di_id: String
+  from_di_id: String
   sector: String
   form: String
   channel: String

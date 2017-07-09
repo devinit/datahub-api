@@ -28,7 +28,7 @@ type MapData {
 }
 
 type Query {
-  getMapData(
+  mapData(
     id: String!,
     DACOnly: Boolean
   ): MapData

@@ -17,12 +17,12 @@ type BubbleChartPoverty {
 }
 
 type Query {
-  getBubbleChartOda: BubbleChartOda
-  getBubbleChartPoverty: BubbleChartPoverty
+  bubbleChartOda: BubbleChartOda
+  bubbleChartPoverty: BubbleChartPoverty
   # we return data for the entire year range for a given indicator id eg donor country ID or indicator table name
-  getBubbleSize (id: String): [BubbleChartData]
+  bubbleSize (id: String): [BubbleChartData]
   # IdNamePair is defined in unbundling aid types 
   # this list feeds off oda table from countries and global/concept file
-  getBubbleChartIndicatorsList: [IdNamePair]
+  bubbleChartIndicatorsList: [IdNamePair]
 }
 

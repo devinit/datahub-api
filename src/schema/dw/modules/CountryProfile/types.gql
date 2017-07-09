@@ -156,13 +156,13 @@ type SingleResourceData {
 }
 
 type Query {  
-  getOverViewTab(id: String!): OverViewTab
-  getPovertyTab(id: String!): PovertyTab
-  getPopulationTab(id: String!): PopulationTab
-  getGovernmentFinance(id: String!): GovernmentFinance
-  getInternationalResources(id: String!): InternationalResources
+  overViewTab(id: String!): OverViewTab
+  povertyTab(id: String!): PovertyTab
+  populationTab(id: String!): PopulationTab
+  governmentFinance(id: String!): GovernmentFinance
+  internationalResources(id: String!): InternationalResources
   # for area tree map chart dropdown selectoion
-  getSingleResource(
+  singleResource(
     resourceId: String!, #fdi-devcountries --> gets has concept
     countryId: String!, # AT
     groupById: String # id-to

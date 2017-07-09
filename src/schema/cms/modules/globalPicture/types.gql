@@ -12,7 +12,7 @@ type Indicator {
 }
 
 type Query {
-  getGlobalPicturePageData: [Page]
-  getGlobalPictureThemes: [Theme]
-  getGlobalPictureIndicators(theme: String!): [Indicator]
+  globalPicturePageData: [Page]
+  globalPictureThemes: [Theme]
+  globalPictureIndicators(theme: String!): [Indicator]
 }

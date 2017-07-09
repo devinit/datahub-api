@@ -68,10 +68,10 @@ type LocalGovernmentFinance {
 
 type Query {  
   # id is district slug
-  getOverViewTab(id: String!, country: String!):OverViewTabRegional
-  getPovertyTab(id: String!, country: String!): PovertyTabRegional
-  getPopulationTab(id: String!, country: String!):PopulationTabRegional
-  getEducationTab(id: String!, country: String!): EducationTabRegional
-  getHealthTab(id: String!, country: String!): HealthTabRegional 
-  getLocalGovernmentFinance(id: String!, country: String!): LocalGovernmentFinance
+  overViewTabRegional(id: String!, country: String!):OverViewTabRegional
+  povertyTabRegional(id: String!, country: String!): PovertyTabRegional
+  populationTabRegional(id: String!, country: String!):PopulationTabRegional
+  educationTabRegional(id: String!, country: String!): EducationTabRegional
+  healthTabRegional(id: String!, country: String!): HealthTabRegional 
+  localGovernmentFinance(id: String!, country: String!): LocalGovernmentFinance
 }

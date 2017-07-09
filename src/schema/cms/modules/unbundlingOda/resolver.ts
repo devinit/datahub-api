@@ -1,6 +1,6 @@
 export default {
     Query: {
-        async getUnbundlingOdaPageData(_root, _args, ctx) {
+        async unbundlingOdaPageData(_root, _args, ctx) {
            return ctx.cms.getUnbundlingOdaPageData();
         }
     }

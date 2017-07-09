@@ -37,7 +37,7 @@ input UnbundlingAidQuery {
 }
 
 type Query {
-  getUnbundlingAidData(args: UnbundlingAidQuery):[AidUnit]
-  getUnbundlingSelectionData(aidType: String): UnbundlingAidSelections
+  unbundlingAidData(args: UnbundlingAidQuery):[AidUnit]
+  unbundlingSelectionData(aidType: String): UnbundlingAidSelections
 }
 
