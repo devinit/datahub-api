@@ -4,7 +4,6 @@ import { makeExecutableSchema } from 'graphql-tools';
 import { mergeResolvers } from 'merge-graphql-schemas';
 import { getTypeDefs } from '../lib/makeTypeDefs';
 import {precache} from '../lib/cache';
-import {isError} from '../lib/isType';
 import db from './dw/db';
 import cms from './cms';
 
@@ -25,11 +24,8 @@ export const createSchema = async (): Promise<any> => {
 };
 
 export const preCacheAll = async () => {
-    const precachePromise =  await precache({
+    await precache({
         cms: cms.get,
         dw: db.manyCacheable
     });
-    if (isError(precachePromise)) return console.error(precachePromise);
-    const precached = await Promise.all(precachePromise);
-    console.info(precached);
 };

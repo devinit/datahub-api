@@ -21,7 +21,7 @@ export interface IFetchFnObj {
 }
 // in production we wait for 10 minutes in development
 const CACHE_QUEUE_DELAY: number = process.env.NODE_ENV === 'production' ? 1000 * 60 * 30 : 1000 * 60 * 10;
-const PRECACHE_DELAY: number = process.env.NODE_ENV === 'production' ? 1000 * 60 * 2 : 1000 * 60;
+const PRECACHE_DELAY: number = process.env.NODE_ENV === 'production' ? 1000 * 60 * 2 : 1000;
 
 export const readCacheData: (file?: string) => Promise<ICached[]> | Error =
     async (file = '.cache') => {
@@ -40,24 +40,22 @@ export const readCacheData: (file?: string) => Promise<ICached[]> | Error =
     };
 
 export const precache = async (fetchFnObj: IFetchFnObj, cacheFile: string = '.cache'):
-    Promise< Array<Promise<IIsCached>> | Error > => {
+    Promise<void> => {
          try {
             const fileExist: boolean = fs.existsSync(cacheFile);
             if (!fileExist) throw new Error('cache file doesnt exist');
             const cachedData: ICached[] | Error = await readCacheData();
             if (isError(cachedData)) throw new Error('Unknown Error reading cache file');
-            const result: Array<Promise<IIsCached>> = cachedData.map( async ({key, type}: ICached) => {
-                try {
-                    setTimeout(async () => {
+            cachedData.map(async ({key, type}: ICached) => {
+                setTimeout(async () => {
+                    try {
                         await fetchFnObj[type](key); // NOTE: the fetch functions have cache set functions
-                        return { key, isCached: true};
-                    }, PRECACHE_DELAY);
-                } catch (error) {
-                    if (error) console.error(error);
-                    return { key, isCached: false};
-                }
+                        console.info(key, '  ---> isCached: true');
+                    } catch (error) {
+                        console.error(key, error);
+                    }
+                }, PRECACHE_DELAY);
             });
-            return result;
         } catch (error) {
            if (error) console.error(error);
            return error;
