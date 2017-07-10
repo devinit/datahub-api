@@ -8,8 +8,8 @@ const options: https.RequestOptions = {
   hostname: 'raw.githubusercontent.com',
   port: 443,
   path: '/devinit/datahub-cms/master',
-  method: 'GET',
-  agent: false
+  timeout: 120000 * 2, // 4 mins
+  method: 'GET'
 };
 const keepAliveAgent = new https.Agent({ keepAlive: true });
 options.agent = keepAliveAgent;
