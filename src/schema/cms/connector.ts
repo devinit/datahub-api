@@ -11,6 +11,8 @@ const options: https.RequestOptions = {
   method: 'GET',
   agent: false
 };
+const keepAliveAgent = new https.Agent({ keepAlive: true });
+options.agent = keepAliveAgent;
 
 export const httpsGet = (endPoint: string): Promise<string> => {
     return new Promise((resolve, reject) => {
@@ -25,6 +27,9 @@ export const httpsGet = (endPoint: string): Promise<string> => {
             res.on('end', () => resolve(str));
             res.on('error', (error) => reject(`On request error: ${error}`));
         });
+        // req.on('socket', (socket) => {
+        //     socket.emit('agentRemove');
+        // });
         req.end();
     });
 };
