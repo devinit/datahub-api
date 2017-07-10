@@ -8,7 +8,7 @@ import {
 } from 'graphql-server-express';
 import * as helmet from 'helmet';
 import * as morgan from 'morgan';
-import {createSchema, preCacheAll} from './schema';
+import {createSchema} from './schema';
 
 // Default port or given one.
 export const GRAPHQL_ROUTE = '/graphql';
@@ -73,7 +73,6 @@ export async function main(options: IMainOptions) {
         if (options.verbose) {
           verbosePrint(options.port, options.enableGraphiql);
         }
-        preCacheAll();
         resolve(server);
       }).on('error', (err: Error) => {
         console.error(err);
@@ -108,4 +107,5 @@ if (require.main === module) {
       port: PORT,
       verbose: true,
     });
+  // preCacheAll();
 }

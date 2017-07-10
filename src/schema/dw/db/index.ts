@@ -68,12 +68,14 @@ process.on('exit', (code) => {
   // kill db
   pgp.end();
   console.log(`About to exit with code: ${code}, closed DB connection`);
+  process.kill(process.pid);
 });
 
 process.on('SIGINT', () => {
     // kill db
     pgp.end();
     console.log('Ctrl-C... forced termination closed DB connection');
+    process.kill(process.pid);
 });
 
 // If you ever need access to the library's root (pgp object), you can do it via db.$config.pgp
