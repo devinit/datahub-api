@@ -4,14 +4,14 @@
   "description": "Apollo GraphQL server using webpack and typescript",
   "main": "dist/main.min.js",
   "scripts": {
-    "build": "webpack && uglifyjs dist/main.js -c -o dist/main.min.js",
+    "build": "webpack -p",
     "build:watch": "webpack --watch",
     "gqlToTs": "tsc -p src/lib/makeTypeDefs && node src/lib/makeTypeDefs/cli/gqlToTs.js",
     "test": "jest",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "test:watch": "npm test -- --watch",
     "codecov": "npm run build && jest && codecov",
-    "start": "NODE_ENV=production npm run build && node dist/main.min.js",
+    "start": "NODE_ENV=production node dist/main.js",
     "dev": "NODE_ENV=development concurrently \"npm run build:watch\" \"node-dev dist/main.js\"",
     "deploy": "now -e DB_USER -e DB_HOST -e DB_PORT -e DB_PASSWORD -e DB_DATABASE"
   },
@@ -84,7 +84,6 @@
     "ts-jest": "^20.0.6",
     "tslint": "^5.4.3",
     "typescript": "2.3.4",
-    "uglify-es": "^3.0.19",
     "webpack": "^3.0.0",
     "webpack-node-externals": "^1.6.0"
   },

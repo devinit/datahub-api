@@ -1,4 +1,4 @@
 {
   "name": "datahub-api",
-  "type": "docker"
+  "type": "npm"
 }

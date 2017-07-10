@@ -16,8 +16,15 @@ ADD . /src
 
 RUN npm run build
 
-ENV NODE_ENV="production"
+ARG DB_USER
+ARG DB_HOST
+ARG DB_PORT
+ARG DB_PASSWORD
+ARG DB_DATABASE
+ARG NODE_ARG
+ENV NODE_ENV='production'
 ENV PORT=3000
+
 EXPOSE ${PORT}
 
 CMD ["node", "dist/main.min.js"]

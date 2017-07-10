@@ -1,5 +1,5 @@
 import * as bodyParser from 'body-parser';
-import compression from 'compression';
+import * as compression from 'compression';
 import * as cors from 'cors';
 import * as express from 'express';
 import {
@@ -55,7 +55,7 @@ export async function main(options: IMainOptions) {
 
   if (true === options.enableCors) app.use(GRAPHQL_ROUTE, cors());
 
-  if (options.env === 'production') app.use(compression);
+  if (options.env === 'production') app.use(compression());
 
   try {
     const schema = await createSchema();
@@ -91,21 +91,21 @@ if (require.main === module) {
   // Either to export GraphiQL (Debug Interface) or not.
   const NODE_ENV = process.env.NODE_ENV !== 'production' ? 'dev' : 'production';
 
-  const EXPORT_GRAPHIQL = NODE_ENV !== 'production';
+ // const EXPORT_GRAPHIQL = NODE_ENV !== 'production';
 
   // Enable cors (cross-origin HTTP request) or not.
-  const ENABLE_CORS = NODE_ENV !== 'production';
+  const ENABLE_CORS = NODE_ENV === 'production';
 
   process.on('uncaughtException', (err) => {
     console.error('uncaught exception', err);
   });
 
   main({
-      enableCors: ENABLE_CORS,
-      enableGraphiql: EXPORT_GRAPHIQL,
-      env: NODE_ENV,
-      port: PORT,
-      verbose: true,
-    });
+    enableCors: ENABLE_CORS,
+    enableGraphiql: true,
+    env: NODE_ENV,
+    port: PORT,
+    verbose: true,
+  }).catch(console.error);
   preCacheAll();
 }
