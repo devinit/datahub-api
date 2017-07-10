@@ -8,11 +8,10 @@ const options: https.RequestOptions = {
   hostname: 'raw.githubusercontent.com',
   port: 443,
   path: '/devinit/datahub-cms/master',
-  timeout: 120000 * 2, // 4 mins
-  method: 'GET'
+  timeout: 0, // infinity
+  method: 'GET',
+  agent:  new https.Agent({ keepAlive: true })
 };
-const keepAliveAgent = new https.Agent({ keepAlive: true });
-options.agent = keepAliveAgent;
 
 export const httpsGet = (endPoint: string): Promise<string> => {
     return new Promise((resolve, reject) => {
@@ -27,9 +26,12 @@ export const httpsGet = (endPoint: string): Promise<string> => {
             res.on('end', () => resolve(str));
             res.on('error', (error) => reject(`On request error: ${error}`));
         });
-        // req.on('socket', (socket) => {
-        //     socket.emit('agentRemove');
-        // });
+        req.on('error', (error) => {
+           throw new Error(`request error: ${error.message}`);
+        });
+        req.on('aborted', (error) => {
+            throw new Error (`request aborted ${error}`);
+        });
         req.end();
     });
 };
