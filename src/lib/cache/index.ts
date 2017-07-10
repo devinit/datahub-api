@@ -19,6 +19,9 @@ export interface IFetchFnObj {
     dw: (query: string, values?: any) => Promise<any>;
     cms: (query: string) => Promise<any>;
 }
+// in production we wait for 10 minutes in development
+const CACHE_QUEUE_DELAY: number = process.env.NODE_ENV === 'production' ? 1000 * 60 * 30 : 1000 * 60 * 10;
+const PRECACHE_DELAY: number = process.env.NODE_ENV === 'production' ? 1000 * 60 * 2 : 1000 * 60;
 
 export const readCacheData: (file?: string) => Promise<ICached[]> | Error =
     async (file = '.cache') => {
@@ -45,8 +48,10 @@ export const precache = async (fetchFnObj: IFetchFnObj, cacheFile: string = '.ca
             if (isError(cachedData)) throw new Error('Unknown Error reading cache file');
             const result: Array<Promise<IIsCached>> = cachedData.map( async ({key, type}: ICached) => {
                 try {
-                    await fetchFnObj[type](key); // NOTE: the fetch functions have cache set functions
-                    return { key, isCached: true};
+                    setTimeout(async () => {
+                        await fetchFnObj[type](key); // NOTE: the fetch functions have cache set functions
+                        return { key, isCached: true};
+                    }, PRECACHE_DELAY);
                 } catch (error) {
                     if (error) console.error(error);
                     return { key, isCached: false};
@@ -58,8 +63,6 @@ export const precache = async (fetchFnObj: IFetchFnObj, cacheFile: string = '.ca
            return error;
         }
     };
-// in production we wait for 10 minutes in development
-const CACHE_DELAY: number = process.env.NODE_ENV === 'production' ? 1000 * 60 * 30 : 1000 * 60 * 10;
 
 export const isKeyInCacheFile = async (key: string, file: string = '.cache' ): Promise <boolean | Error> => {
     try {
@@ -96,6 +99,6 @@ export const queue: (key: string, cacheType: string, cache: LRU.Cache<any>, cb: 
                     if (error) console.error(error);
                     reject(false);
                 }
-            }, CACHE_DELAY);
+            }, CACHE_QUEUE_DELAY);
         });
     };
