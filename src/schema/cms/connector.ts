@@ -10,7 +10,7 @@ const options: https.RequestOptions = {
   path: '/devinit/datahub-cms/master',
   timeout: 0, // infinity
   method: 'GET',
-  agent:  new https.Agent({ keepAlive: true })
+  agent: false
 };
 
 export const httpsGet = (endPoint: string): Promise<string> => {
@@ -24,13 +24,13 @@ export const httpsGet = (endPoint: string): Promise<string> => {
             });
             if (res.statusCode === 404) reject(`${opts.path} not found`);
             res.on('end', () => resolve(str));
-            res.on('error', (error) => reject(`On request error: ${error}`));
+            res.on('error', (error) => reject(`Response error: ${error}`));
         });
         req.on('error', (error) => {
-           throw new Error(`request error: ${error.message}`);
+           throw new Error(`Request error: ${error.message}`);
         });
         req.on('aborted', (error) => {
-            throw new Error (`request aborted ${error}`);
+            throw new Error (`Request aborted ${error}`);
         });
         req.end();
     });
