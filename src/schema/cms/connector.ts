@@ -8,7 +8,7 @@ const options: https.RequestOptions = {
   hostname: 'raw.githubusercontent.com',
   port: 443,
   path: '/devinit/datahub-cms/master',
-  timeout: 0, // infinity
+  timeout: 120000 * 2, // 4 mins
   method: 'GET',
   agent: false
 };
@@ -35,6 +35,10 @@ export const httpsGet = (endPoint: string): Promise<string> => {
         req.end();
     });
 };
+
+process.on('ECONNRESET', (error) => {
+    console.error('error getting http resource', error);
+});
 
 const lruOpts: LRU.Options<any> = {
     max: 300,

@@ -97,6 +97,10 @@ if (require.main === module) {
   // Enable cors (cross-origin HTTP request) or not.
   const ENABLE_CORS = NODE_ENV !== 'production';
 
+  process.on('uncaughtException', (err) => {
+    console.error('uncaught exception', err);
+  });
+
   main({
       enableCors: ENABLE_CORS,
       enableGraphiql: EXPORT_GRAPHIQL,
