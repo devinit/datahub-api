@@ -1,14 +1,33 @@
-import axios from 'axios';
-import * as R from 'ramda';
+import * as https from 'https';
 import * as LRU from 'lru-cache';
 import * as converter from 'csvtojson';
 import {queue} from '../../lib/cache';
 
-const baseUrl = 'https://raw.githubusercontent.com/devinit/datahub-cms/master';
+// connections over github connection options
+const options: https.RequestOptions = {
+  hostname: 'raw.githubusercontent.com',
+  port: 443,
+  path: '/devinit/datahub-cms/master',
+  method: 'GET',
+  agent: false
+};
 
-const createUrl: (endPoint: string) => string = (endPoint) => `${baseUrl}/${endPoint}`;
-
-const httpGet: (api: string) => Promise < string > = R.composeP(R.prop('data'), axios.get);
+export const httpsGet = (endPoint: string): Promise<string> => {
+    return new Promise((resolve, reject) => {
+        const opts = {...options, path: `${options.path}/${endPoint}` };
+        let str = '';
+        const req = https.request(opts, (res) => {
+            res.setEncoding('utf8');
+            res.on('data', (data) => {
+                str = str + data;
+            });
+            if (res.statusCode === 404) reject(`${opts.path} not found`);
+            res.on('end', () => resolve(str));
+            res.on('error', (error) => reject(`On request error: ${error}`));
+        });
+        req.end();
+    });
+};
 
 const lruOpts: LRU.Options<any> = {
     max: 300,
@@ -32,14 +51,17 @@ export const csvToJson = <T extends {}> (csvStr: string): Promise<T[]>  =>
     });
 
 export const get = async <T extends {}> (endPoint: string): Promise <T[]> => {
-    const api = createUrl(endPoint);
-    if (cache.has(endPoint))  {
-        // add to queue so that we always have freshest data
-        queue(endPoint, 'cms', cache, get); // makes same query in 15 minutes so as to update cache
-        return cache.get(endPoint) as T[];
+    try {
+        if (cache.has(endPoint))  {
+            // add to queue so that we always have freshest data
+            queue(endPoint, 'cms', cache, get); // makes same query in 15 minutes so as to update cache
+            return cache.get(endPoint) as T[];
+        }
+        const csvStr = await httpsGet(endPoint); // TODO: if github is down, fetch from a cache dumb
+        const data: T[] = await csvToJson<T>(csvStr);
+        cache.set(endPoint, data);
+        return data;
+    } catch (error) {
+        throw new Error(` Error getting data for ${endPoint}: \n ${error}`);
     }
-    const csvStr = await httpGet(api); // TODO: if github is down, fetch from a cache dumb
-    const data: T[] = await csvToJson<T>(csvStr);
-    cache.set(endPoint, data);
-    return data;
 };

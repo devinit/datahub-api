@@ -101,7 +101,7 @@ export default class BubbleChart {
              return {...obj, ...entity};
             });
         } catch (error) {
-            throw error;
+            throw new Error (`getSingleIndicatorGeneric Bubble chart for $ ${error}`);
         }
     }
     // TODO: clean this up

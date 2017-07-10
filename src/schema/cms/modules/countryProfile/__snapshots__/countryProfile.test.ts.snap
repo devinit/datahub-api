@@ -6,13 +6,13 @@ exports[`country profile module tests should return page data for a country slug
     \\"id\\": \\"introduction\\",
     \\"meta\\": \\"\\",
     \\"narrative\\": \\"\\",
-    \\"title\\": \\"Explore this in-depth profile of United States to find out overall levels of poverty, income distribution, division of wealth and more. Discover how national and sub-national revenue is generated\\",
+    \\"title\\": \\"Explore this in-depth profile of Afghanistan to find out overall levels of poverty, income distribution, division of wealth and more. Discover how national and sub-national revenue is generated\\",
   },
   Object {
     \\"id\\": \\"overview-ctry-poorest-people\\",
     \\"meta\\": \\"\\",
     \\"narrative\\": \\"\\",
-    \\"title\\": \\"HOW MANY OF THE POOREST PEOPLE GLOBALLY LIVE IN United States?\\",
+    \\"title\\": \\"HOW MANY OF THE POOREST PEOPLE GLOBALLY LIVE IN Afghanistan?\\",
   },
   Object {
     \\"id\\": \\"overview-ctry-resources\\",

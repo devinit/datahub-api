@@ -2,7 +2,7 @@ import * as prettyFormat from 'pretty-format';
 import SpotLight from '.';
 import db from '../../db';
 
-describe('spotlight on uganda tests', () => {
+describe.skip('spotlight on uganda tests', () => {
     const spotLight = new SpotLight(db);
 
     it('should return overview tab data for wakiso district', async () => {

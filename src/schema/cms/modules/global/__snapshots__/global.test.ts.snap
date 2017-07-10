@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Site Global narratives and refrence module should return all entities 1`] = `
+"Object {
+  \\"dac_id\\": \\"AF\\",
+  \\"donor_recipient_type\\": \\"recipient\\",
+  \\"has_domestic_data\\": \\"1\\",
+  \\"id\\": \\"AF\\",
+  \\"income_group\\": \\"ldcs\\",
+  \\"iso_alpha_2\\": \\"AF\\",
+  \\"iso_alpha_3\\": \\"AFG\\",
+  \\"long_name\\": \\"Afghanistan\\",
+  \\"name\\": \\"Afghanistan\\",
+  \\"neighbors\\": \\"TM,CN,IR,TJ,PK,UZ\\",
+  \\"region\\": \\"south-central-asia\\",
+  \\"slug\\": \\"afghanistan\\",
+  \\"type\\": \\"country\\",
+}"
+`;

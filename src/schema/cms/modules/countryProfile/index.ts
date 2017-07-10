@@ -31,17 +31,21 @@ export interface IBudgetLevelRef {
     color: string;
 }
 export const getCountryProfilePageData = async (countrySlug: string): Promise<DH.IPage[]> => {
-    const data: DH.IPage[] = await getPageData('country-profile');
-    const entities: IEntity[] = await getEntities();
-    const entity: IEntity | undefined = entities.find(obj => obj.slug === countrySlug);
-    if (!entity) throw Error('entity is undefined');
-    return R.map((obj: DH.IPage) => {
-        const title = obj.title && obj.title.includes('${country}') ?
-            obj.title.replace('${country}', entity.name) : obj.title;
-        const narrative = obj.narrative && obj.narrative.includes('${country}') ?
-            obj.narrative.replace('${country}', entity.name) : obj.narrative;
-        return {...obj, title, narrative};
-    }, data);
+    try {
+        const data: DH.IPage[] = await getPageData('country-profile');
+        const entities: IEntity[] = await getEntities();
+        const entity: IEntity | undefined = entities.find(obj => obj.slug === countrySlug);
+        if (!entity) throw Error('entity is undefined');
+        return R.map((obj: DH.IPage) => {
+            const title = obj.title && obj.title.includes('${country}') ?
+                obj.title.replace('${country}', entity.name) : obj.title;
+            const narrative = obj.narrative && obj.narrative.includes('${country}') ?
+                obj.narrative.replace('${country}', entity.name) : obj.narrative;
+            return {...obj, title, narrative};
+        }, data);
+    } catch (error) {
+        throw new Error(error);
+    }
 };
 
 export const getFlows = (): Promise<IFlowRef[]> => get<IFlowRef>('country-profile/flow-name.csv');
@@ -63,7 +67,9 @@ export const getFlowByTypeAsync = async (type: string): Promise<IFlowRef[]> => {
 
 export const getFlowByIdAsync = async (countryType: string): Promise<IFlowRef> => {
     const flows: IFlowRef[] = await getFlows();
-    return R.find(R.propEq('id', countryType), flows) as IFlowRef;
+    const flow = R.find(R.propEq('id', countryType), flows);
+    if (!flow) throw new Error ('flow is undefeined');
+    return flow as IFlowRef;
 };
 
 export const getAllFlowSelections = (): Promise<IFlowSelectionRaw[]> =>

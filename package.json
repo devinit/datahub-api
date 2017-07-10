@@ -39,7 +39,6 @@
     "graphql-tag": "^2.2.1"
   },
   "dependencies": {
-    "axios": "^0.16.2",
     "body-parser": "^1.17.1",
     "compression": "^1.6.2",
     "cors": "^2.8.3",
