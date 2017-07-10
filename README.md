@@ -70,6 +70,13 @@ Inorder to keep having fresh data, every data request is added to a queue as it 
 
 ```.cache```  file contains all the queries occuring in the life time of the app. Its in git history so that we can precache those queries on app boot. (TODO: Make this run in another process)
 
+Deployment
+---------
+```
+    docker build -t datahub-api .
+    docker run -d -p 6002:3000 --name datahub-api-app datahub-api
+```
+
 TODO
 - [ ] remove console.info & console.error and replace with function that logs to an info & error file
 - [ ] fix testing on travis

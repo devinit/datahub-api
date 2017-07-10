@@ -8,7 +8,7 @@ import {
 } from 'graphql-server-express';
 import * as helmet from 'helmet';
 import * as morgan from 'morgan';
-import {createSchema} from './schema';
+import {createSchema, preCacheAll} from './schema';
 
 // Default port or given one.
 export const GRAPHQL_ROUTE = '/graphql';
@@ -107,5 +107,5 @@ if (require.main === module) {
       port: PORT,
       verbose: true,
     });
-  // preCacheAll();
+  preCacheAll();
 }
