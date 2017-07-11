@@ -5,9 +5,23 @@ import {getPovertyBubbleChartPageData} from './modules/povertyBubbleChart';
 import {getUnbundlingOdaPageData} from './modules/unbundlingOda';
 import {getUnbundlingOOfPageData} from './modules/unbundlingOOf';
 import {getWhereThePoorPageData} from './modules/whereThePoor';
+import {getCountries} from './modules/global';
 import {get} from './connector';
 
-const cms = {
+export interface ICms {
+    getGlobalPictureThemes: any;
+    getGlobalPicturePageData: any;
+    getOdaDonorBubbleChartPageData: any;
+    getPovertyBubbleChartPageData: any;
+    getCountryProfilePageData: any;
+    getUnbundlingOdaPageData: any;
+    getUnbundlingOOfPageData: any;
+    getWhereThePoorPageData: any;
+    get: any;
+    getCountries: any;
+}
+
+const cms: ICms = {
     getGlobalPicturePageData,
     getGlobalPictureThemes,
     getOdaDonorBubbleChartPageData,
@@ -17,6 +31,7 @@ const cms = {
     getUnbundlingOOfPageData,
     getWhereThePoorPageData,
     get,
+    getCountries
 };
 
 export default cms;

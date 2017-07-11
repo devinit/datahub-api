@@ -4,8 +4,8 @@ import { makeExecutableSchema } from 'graphql-tools';
 import { mergeResolvers } from 'merge-graphql-schemas';
 import { getTypeDefs } from '../lib/makeTypeDefs';
 import {precache} from '../lib/cache';
-import db from './dw/db';
-import cms from './cms';
+import db, {IExtensions} from './dw/db';
+import cms, {ICms} from './cms';
 
 const resolverFiles = (require as any).context('./', true, /resolver\.ts/);
 
@@ -15,6 +15,11 @@ const resolversLoad: any[] = resolverFiles.keys()
 
 const resolvers = resolversLoad.length > 1
     ? mergeResolvers(resolversLoad) : resolversLoad[0];
+
+export interface IContext {
+    dw: IExtensions;
+    cms: ICms;
+}
 
 // TODO: use & to ceate the resulting returned type
 export const createSchema = async (): Promise<any> => {

@@ -39,10 +39,19 @@ export const getEntityBySlugAsync = async (slug: string): Promise<IEntity | unde
 
 export const getEntityByIdAsync = async (id: string): Promise<IEntity> => {
     const entities: IEntity[] = await getEntities();
-    return R.find(R.propEq('id', id), entities) as IEntity;
+    const entity =  R.find(R.propEq('id', id), entities);
+    if (!entity) throw new Error(`failed to get entity for ${id}`);
+    return entity as IEntity;
 };
 
-// TODO: refactor so that it returns Error if entity is not found
+export const getCountries = async (): Promise<DH.IIdNamePair[]> => {
+    const entities = await getEntities();
+    return entities
+        .filter(entity => entity.type === 'country')
+        .map(entity => ({id: entity.slug, name: entity.name}));
+};
+
+// TODO: refactor so that it throws Error
 export const getEntityByIdGeneric = <T extends {id: string}>(id: string, entities: T[]): T | undefined =>
     entities.find(obj => obj.id === id);
 
