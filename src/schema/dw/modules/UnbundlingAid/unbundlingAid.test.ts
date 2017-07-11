@@ -8,9 +8,13 @@ describe('Unbundling aid DW module tests', () => {
     it('getting unbundling aid data of various types', async () => {
         const argsA = { aidType: 'oda', year: 2015, groupBy: 'to_di_id'};
         const argsB = { aidType: 'oda', year: 2015, sector: 'banking-and-business', groupBy: 'to_di_id'};
+        const argsC = { aidType: 'oda', year: 2015, groupBy: 'bundle'};
+        const argsD = { aidType: 'oda', year: 2015, groupBy: 'sector'};
         const dataA = await unbundlingAid.getUnbundlingAidData(argsA);
         const dataB = await unbundlingAid.getUnbundlingAidData(argsB);
-        expect(prettyFormat({dataA, dataB})).toMatchSnapshot();
+        const dataC = await unbundlingAid.getUnbundlingAidData(argsC);
+        const dataD = await unbundlingAid.getUnbundlingAidData(argsD);
+        expect(prettyFormat({dataA, dataB, dataC, dataD})).toMatchSnapshot();
     }, 100000);
     it('should create sql query args for getting data', () => {
         const argsA = {

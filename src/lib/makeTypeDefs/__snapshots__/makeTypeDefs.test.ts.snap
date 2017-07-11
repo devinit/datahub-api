@@ -418,7 +418,7 @@ declare namespace DH {
     to_di_id?: string | null;
     from_di_id?: string | null;
     sector?: string | null;
-    form?: string | null;
+    buddle?: string | null;
     channel?: string | null;
   }
 
@@ -836,7 +836,7 @@ input UnbundlingAidQuery {
   to_di_id: String
   from_di_id: String
   sector: String
-  form: String
+  buddle: String
   channel: String
 }
 \\""

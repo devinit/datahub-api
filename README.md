@@ -72,10 +72,9 @@ Inorder to keep having fresh data, every data request is added to a queue as it 
 
 Deployment
 ---------
-```
-    docker build -t datahub-api .
-    docker run -d -p 6002:3000 --name datahub-api-app datahub-api
-```
+We are currently test deploying with now and they freeze inactive normal deployments. In order to create a deployment that's always active consider scaling your deploy
+
+```now scale my-deployment-ntahoeato.now.sh 1```
 
 TODO
 - [ ] remove console.info & console.error and replace with function that logs to an info & error file
