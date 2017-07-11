@@ -2395,6 +2395,56 @@ exports[`Unbundling aid DW module tests getting unbundling aid data of various t
 
 exports[`Unbundling aid DW module tests getting unbundling aid selection options 1`] = `
 "Object {
+  \\"buddles\\": Array [
+    Object {
+      \\"color\\": \\"red-high\\",
+      \\"id\\": \\"cash-loan-equity\\",
+      \\"name\\": \\"Cash (loan/equity)\\",
+      \\"old-code\\": \\"A\\",
+    },
+    Object {
+      \\"color\\": \\"red-mid\\",
+      \\"id\\": \\"cash-grant\\",
+      \\"name\\": \\"Cash grant\\",
+      \\"old-code\\": \\"B\\",
+    },
+    Object {
+      \\"color\\": \\"purple-high\\",
+      \\"id\\": \\"commodities-food\\",
+      \\"name\\": \\"Commodities & Food\\",
+      \\"old-code\\": \\"C\\",
+    },
+    Object {
+      \\"color\\": \\"lightblue-mid\\",
+      \\"id\\": \\"gpgs-nngos\\",
+      \\"name\\": \\"Global Initiatives & NNGOs\\",
+      \\"old-code\\": \\"D\\",
+    },
+    Object {
+      \\"color\\": \\"yellow-high\\",
+      \\"id\\": \\"mixed-project-aid\\",
+      \\"name\\": \\"Mixed project aid\\",
+      \\"old-code\\": \\"E\\",
+    },
+    Object {
+      \\"color\\": \\"orange-high\\",
+      \\"id\\": \\"non-transfer\\",
+      \\"name\\": \\"Non-transfer\\",
+      \\"old-code\\": \\"F\\",
+    },
+    Object {
+      \\"color\\": \\"darkblue-mid\\",
+      \\"id\\": \\"technical-ooperation\\",
+      \\"name\\": \\"Technical cooperation\\",
+      \\"old-code\\": \\"G\\",
+    },
+    Object {
+      \\"color\\": \\"black-mid\\",
+      \\"id\\": \\"export-credit\\",
+      \\"name\\": \\"Export credit\\",
+      \\"old-code\\": \\"H\\",
+    },
+  ],
   \\"channels\\": Array [
     Object {
       \\"id\\": \\"public-sector-unknown\\",
@@ -2445,56 +2495,6 @@ exports[`Unbundling aid DW module tests getting unbundling aid selection options
       \\"id\\": \\"unspecified\\",
       \\"name\\": \\"Unspecified\\",
       \\"old-code\\": \\"J\\",
-    },
-  ],
-  \\"form\\": Array [
-    Object {
-      \\"color\\": \\"red-high\\",
-      \\"id\\": \\"cash-loan-equity\\",
-      \\"name\\": \\"Cash (loan/equity)\\",
-      \\"old-code\\": \\"A\\",
-    },
-    Object {
-      \\"color\\": \\"red-mid\\",
-      \\"id\\": \\"cash-grant\\",
-      \\"name\\": \\"Cash grant\\",
-      \\"old-code\\": \\"B\\",
-    },
-    Object {
-      \\"color\\": \\"purple-high\\",
-      \\"id\\": \\"commodities-food\\",
-      \\"name\\": \\"Commodities & Food\\",
-      \\"old-code\\": \\"C\\",
-    },
-    Object {
-      \\"color\\": \\"lightblue-mid\\",
-      \\"id\\": \\"gpgs-nngos\\",
-      \\"name\\": \\"Global Initiatives & NNGOs\\",
-      \\"old-code\\": \\"D\\",
-    },
-    Object {
-      \\"color\\": \\"yellow-high\\",
-      \\"id\\": \\"mixed-project-aid\\",
-      \\"name\\": \\"Mixed project aid\\",
-      \\"old-code\\": \\"E\\",
-    },
-    Object {
-      \\"color\\": \\"orange-high\\",
-      \\"id\\": \\"non-transfer\\",
-      \\"name\\": \\"Non-transfer\\",
-      \\"old-code\\": \\"F\\",
-    },
-    Object {
-      \\"color\\": \\"darkblue-mid\\",
-      \\"id\\": \\"technical-ooperation\\",
-      \\"name\\": \\"Technical cooperation\\",
-      \\"old-code\\": \\"G\\",
-    },
-    Object {
-      \\"color\\": \\"black-mid\\",
-      \\"id\\": \\"export-credit\\",
-      \\"name\\": \\"Export credit\\",
-      \\"old-code\\": \\"H\\",
     },
   ],
   \\"from\\": Array [

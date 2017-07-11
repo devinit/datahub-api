@@ -26,6 +26,7 @@ declare namespace DH {
   */
   interface IQuery {
     countryProfilePageData: Array<IPage> | null;
+    countries: Array<IIdNamePair> | null;
     globalPicturePageData: Array<IPage> | null;
     globalPictureThemes: Array<ITheme> | null;
     globalPictureIndicators: Array<IIndicator> | null;
@@ -64,6 +65,14 @@ declare namespace DH {
     id: string | null;
     title: string | null;
     narrative: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IIdNamePair {
+    id: string | null;
+    name: string | null;
   }
 
   /*
@@ -111,14 +120,6 @@ declare namespace DH {
   interface IBubbleChartPoverty {
     revenuePerPerson: Array<IBubbleChartData> | null;
     percentageInExtremePoverty: Array<IBubbleChartData> | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IIdNamePair {
-    id: string | null;
-    name: string | null;
   }
 
   /*
@@ -441,7 +442,7 @@ declare namespace DH {
     from: Array<IIdNamePair> | null;
     channels: Array<IIdNamePair> | null;
     sectors: Array<IIdNamePair> | null;
-    form: Array<IIdNamePair> | null;
+    buddles: Array<IIdNamePair> | null;
     years: Array<number> | null;
   }
 
@@ -465,6 +466,7 @@ exports[`gql Types to Typescript types should return merged typedefs 1`] = `
 
 type Query {
   countryProfilePageData(countrySlug: String!): [Page]
+  countries: [IdNamePair]
   globalPicturePageData: [Page]
   globalPictureThemes: [Theme]
   globalPictureIndicators(theme: String!): [Indicator]
@@ -825,7 +827,8 @@ type UnbundlingAidSelections {
   from: [IdNamePair]
   channels: [IdNamePair]
   sectors: [IdNamePair]
-  form: [IdNamePair]
+  # same as form
+  buddles: [IdNamePair]
   years: [Int]
 }
 
