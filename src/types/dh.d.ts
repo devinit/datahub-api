@@ -24,6 +24,7 @@ declare namespace DH {
   */
   interface IQuery {
     countryProfilePageData: Array<IPage> | null;
+    countries: Array<IIdNamePair> | null;
     globalPicturePageData: Array<IPage> | null;
     globalPictureThemes: Array<ITheme> | null;
     globalPictureIndicators: Array<IIndicator> | null;
@@ -62,6 +63,14 @@ declare namespace DH {
     id: string | null;
     title: string | null;
     narrative: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IIdNamePair {
+    id: string | null;
+    name: string | null;
   }
 
   /*
@@ -109,14 +118,6 @@ declare namespace DH {
   interface IBubbleChartPoverty {
     revenuePerPerson: Array<IBubbleChartData> | null;
     percentageInExtremePoverty: Array<IBubbleChartData> | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IIdNamePair {
-    id: string | null;
-    name: string | null;
   }
 
   /*
@@ -240,6 +241,7 @@ declare namespace DH {
     description: 
   */
   interface IInternationalResources {
+    startYear: number | null;
     GNI: string | null;
     netODAOfGNIIn: string | null;
     netODAOfGNIOut: string | null;

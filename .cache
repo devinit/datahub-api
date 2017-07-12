@@ -15,3 +15,7 @@ global/bundle.csv:cms
 SELECT bundle, year, sum(value) AS value from fact.oda_2015 WHERE value > 0 AND year = 2015 GROUP BY bundle, year:dw
 global-picture/concept.csv:cms
 Select from_di_id FROM fact.oda_2015 WHERE value > 0 GROUP BY from_di_id:dw
+SELECT value FROM fact.gni_usd_2015 WHERE di_id = 'UG' AND year = '2015':dw
+SELECT value FROM fact.in_oda_net_2015 WHERE di_id = 'UG' AND year = '2015':dw
+SELECT * FROM data_series.intl_flows_recipients WHERE di_id = 'UG' AND direction = 'in' AND year = '2000' AND value > 0:dw
+SELECT * FROM data_series.intl_flows_recipients WHERE di_id = 'UG'  AND year >= '2000' AND year <= '2015' AND value > 0:dw

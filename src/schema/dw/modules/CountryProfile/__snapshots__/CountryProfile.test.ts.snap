@@ -5799,7 +5799,7 @@ exports[`country profile DW module tests should return international resources t
     },
   ],
   \\"netODAOfGNIIn\\": null,
-  \\"netODAOfGNIOut\\": \\"0.3\\",
+  \\"netODAOfGNIOut\\": \\"0\\",
   \\"outflows\\": Array [
     Object {
       \\"id\\": \\"dfis-out\\",
@@ -6878,6 +6878,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2010,
     },
   ],
+  \\"startYear\\": \\"2000\\",
 }"
 `;
 
@@ -7004,7 +7005,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2000,
     },
   ],
-  \\"netODAOfGNIIn\\": \\"No data\\",
+  \\"netODAOfGNIIn\\": \\"6.00\\",
   \\"netODAOfGNIOut\\": null,
   \\"outflows\\": Array [
     Object {
@@ -12131,6 +12132,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2015,
     },
   ],
+  \\"startYear\\": \\"2000\\",
 }"
 `;
 

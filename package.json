@@ -7,7 +7,7 @@
     "build": "webpack -p",
     "build:watch": "webpack --watch",
     "gqlToTs": "tsc -p src/lib/makeTypeDefs && node src/lib/makeTypeDefs/cli/gqlToTs.js",
-    "test": "jest",
+    "test": "jest src/schema/dw/modules/CountryProfile/CountryProfile.test.ts",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "test:watch": "npm test -- --watch",
     "codecov": "npm run build && jest && codecov",
@@ -44,6 +44,8 @@
     "cors": "^2.8.3",
     "csvtojson": "^1.1.6",
     "express": "^4.15.2",
+    "fs-extra": "^3.0.1",
+    "glob-promise": "^3.1.0",
     "graphql": "^0.10.1",
     "graphql-server-express": "^0.8.0",
     "graphql-tag": "^2.2.1",
@@ -54,9 +56,7 @@
     "morgan": "^1.8.1",
     "pg-monitor": "^0.8.0",
     "pg-promise": "^5.9.1",
-    "ramda": "^0.24.1",
-    "fs-extra": "^3.0.1",
-    "glob-promise": "^3.1.0"
+    "ramda": "^0.24.1"
   },
   "devDependencies": {
     "@gql2ts/from-schema": "^1.1.1",
@@ -83,7 +83,7 @@
     "raw-loader": "^0.5.1",
     "ts-jest": "^20.0.6",
     "tslint": "^5.4.3",
-    "typescript": "2.3.4",
+    "typescript": "^2.4.1",
     "webpack": "^3.0.0",
     "webpack-node-externals": "^1.6.0"
   },

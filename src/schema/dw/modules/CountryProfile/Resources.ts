@@ -51,20 +51,24 @@ export default class Resources {
         try {
             const isDonorCountry =  await isDonor(id);
             const netODAOfGNIOut = isDonorCountry ? await this.getNetODAOfGNIOut(id) : null;
-            const GNI = await this.getGNI(id);
-            const netODAOfGNIIn = isDonorCountry ? null : await this.getNetODAOfGNIIn(id, Number(GNI));
+            const GNI: number = await this.getGNI(id);
+            const netODAOfGNIIn = isDonorCountry ? null : await this.getNetODAOfGNIIn(id, GNI);
             const {outflows, inflows}  = await this.getFlows(id);
             const resourcesSql = isDonorCountry ? [sql.resourcesDonors, sql.resourcesDonorsMix] :
             [sql.resourcesRecipient, sql.resourcesRecipientMix];
             const [resourcesOverTime, mixOfResources] = await this.getResourcesGeneric(id, resourcesSql);
+            // TODO: we are currently getting start year for various viz
+            // from data_series.intl_flows_recipients concept /indicator. They shouldb be a better way of doing this.
+            const concept: IConcept = await getConceptAsync('country-profile', 'data_series.intl_flows_recipients');
             return {
-            GNI,
-            netODAOfGNIIn,
-            netODAOfGNIOut,
-            resourcesOverTime,
-            mixOfResources,
-            inflows,
-            outflows
+                GNI: formatNumbers(GNI, 1),
+                netODAOfGNIIn,
+                netODAOfGNIOut,
+                resourcesOverTime,
+                mixOfResources,
+                inflows,
+                outflows,
+                startYear: concept.end_year
           };
         } catch (error) {
            console.error(error);
@@ -204,7 +208,7 @@ export default class Resources {
         }
     }
 
-    private async getGNI(id: string): Promise<string> {
+    private async getGNI(id: string): Promise<number> {
         try {
             const indicatorArgs: IGetIndicatorArgs = {
             ...this.defaultArgs,
@@ -212,7 +216,7 @@ export default class Resources {
             id
         };
             const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
-            return formatNumbers(Number(data[0].value), 1);
+            return Number(data[0].value);
         } catch (error) {
             throw error;
         }
@@ -223,7 +227,7 @@ export default class Resources {
                 ...this.defaultArgs,
                 query: sql.ODANetIn,
                 id
-                };
+            };
             const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
             if (!data[0].value) return 'No data';
             if (!gni) return 'No data';
