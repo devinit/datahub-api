@@ -31,12 +31,12 @@ export default {
     ODANetIn: 'SELECT value FROM fact.in_oda_net_2015 WHERE di_id = ${id} AND year = ${start_year}', // computed
     ODANetOut: 'SELECT value FROM fact.oda_percent_gni WHERE di_id = ${id} AND year = ${start_year}',
     // tslint:disable-next-line:max-line-length
-    resourcesDonorsMix: 'SELECT * FROM data_series.intl_flows_donors WHERE di_id = ${id} AND year = ${start_year} AND direction = \'out\'',
+    resourcesDonorsMix: 'SELECT * FROM data_series.intl_flows_donors WHERE di_id = ${id} AND year = ${start_year} AND direction = \'out\' AND value > 0',
     // tslint:disable-next-line:max-line-length
-    resourcesRecipientMix: 'SELECT * FROM data_series.intl_flows_recipients WHERE di_id = ${id} AND direction = \'in\' AND year = ${start_year} ',
-    resourcesDonors: 'SELECT * FROM data_series.intl_flows_donors WHERE di_id = ${id} AND year >= ${start_year} AND year <= ${end_year}',
+    resourcesRecipientMix: 'SELECT * FROM data_series.intl_flows_recipients WHERE di_id = ${id} AND direction = \'in\' AND year = ${start_year} AND value > 0',
+    resourcesDonors: 'SELECT * FROM data_series.intl_flows_donors WHERE di_id = ${id} AND year >= ${start_year} AND year <= ${end_year} AND value > 0',
     // tslint:disable-next-line:max-line-length
-    resourcesRecipient: 'SELECT * FROM data_series.intl_flows_recipients WHERE di_id = ${id}  AND year >= ${start_year} AND year <= ${end_year}',
+    resourcesRecipient: 'SELECT * FROM data_series.intl_flows_recipients WHERE di_id = ${id}  AND year >= ${start_year} AND year <= ${end_year} AND value > 0',
     // tslint:disable-next-line:max-line-length
     govenmentFinance: 'SELECT value FROM data_series.domestic WHERE di_id =${id} AND year >= ${start_year} AND year <= ${end_year}',
 };

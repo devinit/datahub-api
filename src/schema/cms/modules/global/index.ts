@@ -19,6 +19,7 @@ export interface IEntity extends IEntityBasic {
     region: string;
     income_group: string;
     donor_recipient_type: string;
+    has_domestic_data: string;
 }
 export interface IRegional extends IEntityBasic {
     dac_continent_code: string;

@@ -78,7 +78,7 @@ export default class Resources {
             // get flow resoure entity
             const flow: IFlowRef =  await getFlowByIdAsync(resourceId);
             const concept: IConcept = await getConceptAsync('country-profile', flow.concept);
-            let args = {years: [concept.start_year, concept.end_year]};
+            let args: any = {years: [concept.start_year, concept.end_year]};
             if (flow.type === DONOR) args = {...args, from_di_id: countryId};
             if (flow.type === RECIPIENT) args = {...args, to_di_id: countryId };
             // tslint:disable-next-line:max-line-length
@@ -267,7 +267,7 @@ export default class Resources {
      private async getResourcesGeneric(id: string, sqlList: string[]): Promise<DH.IResourceData[][]> {
          try {
              const indicatorArgs: IGetIndicatorArgs[] = sqlList
-             .map(query => ({query, ...this.defaultArgs, id}));
+                .map(query => ({query, ...this.defaultArgs, id}));
              const allRaw: IRAWFlow[][] =
              await Promise.all(indicatorArgs.map(args => getIndicatorData<IRAWFlow>(args)));
              return await Promise.all(allRaw.map(raw => this.processResourceData(raw)));
@@ -280,8 +280,9 @@ export default class Resources {
              const processed: IFlowProcessed[] = indicatorDataProcessingSimple<IFlowProcessed>(data);
              const flowRefs: IFlowRef[] = await getFlows();
              return processed.map(obj => {
-             const flow = flowRefs.find(flowRef => flowRef.id === obj.flow_name);
-             return {...obj, ...flow};
+                const flow: IFlowRef | undefined = flowRefs.find(flowRef => flowRef.id === obj.flow_name);
+                if (flow === undefined) throw new Error(`flow : ${obj.flow_name} as an undefined flow`);
+                return {...flow, ...obj} as DH.IResourceData;
              });
          } catch (error) {
              throw error;

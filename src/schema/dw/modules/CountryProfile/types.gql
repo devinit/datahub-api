@@ -132,6 +132,8 @@ type Flow {
 }
 
 type InternationalResources {
+  # TODO: add startyear
+  StartYear: Int
   # Gross National Income
   GNI: String
   #Net ODA received, % of GNI for recipient countries

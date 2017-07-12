@@ -243,6 +243,7 @@ declare namespace DH {
     description: 
   */
   interface IInternationalResources {
+    StartYear: number | null;
     GNI: string | null;
     netODAOfGNIIn: string | null;
     netODAOfGNIOut: string | null;
@@ -674,6 +675,8 @@ type Flow {
 }
 
 type InternationalResources {
+  # TODO: add startyear
+  StartYear: Int
   # Gross National Income
   GNI: String
   # Net ODA received, % of GNI for recipient countries
