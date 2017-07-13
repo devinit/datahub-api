@@ -59,7 +59,7 @@ export default class UnbundlingAid {
                 }
                 const colorObj: IColor = getEntityByIdGeneric<IColor>(color, colors);
                 return {id: entity.id, value: Number(obj.value), name: entity.name,
-                        color: colorObj.id, year: Number(obj.year)};
+                        color: colorObj.value, year: Number(obj.year)};
            });
        } catch (error) {
            console.error(error);
