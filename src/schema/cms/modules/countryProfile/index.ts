@@ -44,7 +44,7 @@ export const getCountryProfilePageData = async (countrySlug: string): Promise<DH
             return {...obj, title, narrative};
         }, data);
     } catch (error) {
-        throw new Error(error);
+        throw new Error(`Error getting country profile page data: ${error}`);
     }
 };
 
@@ -57,12 +57,17 @@ export const getBudgetLevels = (country?: string): Promise<IBudgetLevelRef[]> =>
 
 export const getFlowTypes = (): Promise<IFlowRef[]> => get<IFlowRef>('country-profile/flow-type.csv');
 
-export const getFlowByType = (type: string, flows: IFlowRef[]): IFlowRef[] =>
-    R.filter(R.propEq('type', type), flows) as IFlowRef[];
+export const getFlowByType = (type: string, flows: IFlowRef[]): IFlowRef[] => {
+    const flowRefs: IFlowRef[] = R.filter(R.propEq('type', type), flows);
+    if (!flowRefs.length) throw new Error (`failed to get any flows for type ${type}`);
+    return flowRefs;
+};
 
 export const getFlowByTypeAsync = async (type: string): Promise<IFlowRef[]> => {
     const flows: IFlowRef[] = await getFlows();
-    return R.filter(R.propEq('type', type), flows) as IFlowRef[];
+    const flowRefs: IFlowRef[] = R.filter(R.propEq('type', type), flows);
+    if (!flowRefs.length) throw new Error (`failed to get any flows for type ${type}`);
+    return flowRefs;
 };
 
 export const getFlowByIdAsync = async (countryType: string): Promise<IFlowRef> => {

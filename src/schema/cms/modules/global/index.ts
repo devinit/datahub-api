@@ -29,13 +29,11 @@ export interface IRegional extends IEntityBasic {
 
 export const getEntities = (): Promise<IEntity[]> => get<IEntity>('global/entity.csv');
 
-// TODO: refactor so that it throws an error if entity is not found
-export const getEntityById = (id: string, entities: IEntity[]): IEntity =>
-    R.find(R.propEq('id', id), entities) as IEntity;
-
-export const getEntityBySlugAsync = async (slug: string): Promise<IEntity | undefined> => {
+export const getEntityBySlugAsync = async (slug: string): Promise<IEntity> => {
      const entities: IEntity[] = await getEntities();
-     return entities.find(obj => obj.slug === slug);
+     const entity: IEntity | undefined = entities.find(obj => obj.slug === slug);
+     if (!entity) throw new Error (`failed to get entity for ${slug}`);
+     return entity;
 };
 
 export const getEntityByIdAsync = async (id: string): Promise<IEntity> => {
@@ -52,9 +50,17 @@ export const getCountries = async (): Promise<DH.IIdNamePair[]> => {
         .map(entity => ({id: entity.slug, name: entity.name}));
 };
 
-// TODO: refactor so that it throws Error
-export const getEntityByIdGeneric = <T extends {id: string}>(id: string, entities: T[]): T | undefined =>
-    entities.find(obj => obj.id === id);
+export const getEntityByIdGeneric = <T extends {id: string}>(id: string, entities: T[]): T => {
+    const entity: T | undefined = entities.find(obj => obj.id === id);
+    if (!entity) throw new Error (`couldnt find entity for ${id}`);
+    return entity;
+};
+
+export const getEntityByNameGeneric = <T extends {name: string}>(name: string, entities: T[]): T => {
+    const entity: T | undefined = entities.find(obj => obj.name === name);
+    if (!entity) throw new Error (`couldnt find entity for ${name}`);
+    return entity;
+};
 
 export const getSectors = (): Promise<IEntityBasic[]> => get<IEntityBasic>('global/sector.csv');
 export const getChannels = (): Promise<IEntityBasic[]> => get<IEntityBasic>('global/channel.csv');

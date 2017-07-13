@@ -3,7 +3,7 @@ import {IExtensions} from '../../db';
 import sql from './sql';
 import {getConceptAsync, IConcept, getConcepts} from '../../../cms/modules/concept';
 import * as R from 'ramda';
-import {IEntity, getEntities, getEntityById} from '../../../cms/modules/global';
+import {IEntity, getEntities, getEntityByIdGeneric} from '../../../cms/modules/global';
 import {getIndicatorData, IGetIndicatorArgs, IProcessedSimple, IRAW, getIndicatorDataSimple,
         indicatorDataProcessingSimple, makeSqlAggregateQuery} from '../utils';
 
@@ -65,7 +65,7 @@ export default class BubbleChart {
                     makeSqlAggregateQuery(queryArgs, 'to_di_id', 'fact.oda_2015');
             const raw: IBubbleSizeResults[] = await this.db.manyCacheable(queryStr, null);
             return raw.map(obj => {
-                const details = getEntityById(obj.to_di_id, entities);
+                const details: IEntity = getEntityByIdGeneric<IEntity>(obj.to_di_id, entities);
                 return {...details, value: Number(obj.value), year: Number(obj.year)};
             });
         } catch (error) {
@@ -80,7 +80,7 @@ export default class BubbleChart {
             const odaFromRaw: Array<{ from_di_id: string}> = await getIndicatorDataSimple<{ from_di_id: string}>(args);
             const entities: IEntity[] =  await getEntities();
             const concepts: IConcept[] = await getConcepts('global-picture');
-            const odaFrom = odaFromRaw.map(obj => getEntityById(obj.from_di_id, entities));
+            const odaFrom = odaFromRaw.map(obj => getEntityByIdGeneric<IEntity>(obj.from_di_id, entities));
             const otherIndicators = concepts.filter(obj => Number(obj.appear_in_bubble_chart) === 1);
             return R.append(odaFrom, otherIndicators);
        } catch (error) {
@@ -97,8 +97,8 @@ export default class BubbleChart {
             const processed: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(raw);
             const entities: IEntity[] =  await getEntities();
             return processed.map(obj => {
-             const entity = getEntityById(obj.id, entities);
-             return {...obj, ...entity};
+             const entity: IEntity = getEntityByIdGeneric<IEntity>(obj.id, entities);
+             return {...obj, ...entity} as DH.IBubbleChartData;
             });
         } catch (error) {
             throw new Error (`getSingleIndicatorGeneric Bubble chart for $ ${error}`);
@@ -125,8 +125,8 @@ export default class BubbleChart {
             const entities: IEntity[] =  await getEntities();
             return processed.map(indicatorData =>
                 indicatorData.map(obj => {
-                const entity = getEntityById(obj.id, entities);
-                return {...obj, ...entity};
+                const entity: IEntity = getEntityByIdGeneric<IEntity>(obj.id, entities);
+                return {...obj, ...entity} as DH.IBubbleChartData;
             }));
        } catch (error) {
             throw error;

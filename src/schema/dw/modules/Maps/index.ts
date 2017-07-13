@@ -27,12 +27,13 @@ export default class Maps {
          try {
              const concept: IConcept = await getConceptAsync('global-picture', opts.id);
              // we merge concept and graphql qery options, they have startYear and endYear variables
-             const data: IRAW [] = await getIndicatorDataSimple<IRAW>({...concept, sql, db: this.db, table: opts.id});
+             const args = {...concept, sql, db: this.db, table: opts.id};
+             const data: IRAW [] = await getIndicatorDataSimple<IRAW>(args);
              const DACCountries = opts.DACOnly ? await this.getDACCountries() : [];
              const processedData: DH.IMapUnit[] = await indicatorDataProcessing(data);
              const mapData = DACCountries.length ? Maps.DACOnlyData(DACCountries, processedData) : processedData;
              const total: number = getTotal(mapData);
-             return {map: mapData, total, ...concept};
+             return {map: mapData, total, ...concept} as DH.IMapData;
          } catch (error) {
              console.error(error);
              throw error;

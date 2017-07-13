@@ -2,8 +2,8 @@ import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
 import {makeSqlAggregateQuery, entitesFnMap, DONOR, RECIPIENT, MULTILATERAL, CROSSOVER} from '../utils';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
-import {IEntity, getEntities, getRegional, IRegional, getEntityByIdGeneric,
-        getSectors, getBundles, getChannels} from '../../../cms/modules/global';
+import {IEntity, getEntities, getRegional, IRegional, getEntityByIdGeneric, IEntityBasic,
+        getSectors, getBundles, getChannels, getColors, getEntityByNameGeneric} from '../../../cms/modules/global';
 import * as R from 'ramda';
 
 interface IUnbundlingAidQuery {
@@ -47,6 +47,7 @@ export default class UnbundlingAid {
             const raw: IUnbundlingAidResult[] = await this.db.manyCacheable(queryStr, null);
             const entites: IUnbundlingEnitity[] = await entitesFnMap[args.groupBy]();
             const regions: IRegional[] = await getRegional();
+            const colors = await getColors();
             return raw.map((obj) => {
                 const entity: IUnbundlingEnitity | undefined = entites.find(item => obj[args.groupBy] === item.id);
                 if (!entity) throw new Error('error getting unbundling aid entity');
@@ -56,8 +57,9 @@ export default class UnbundlingAid {
                     const region: IRegional | undefined = getEntityByIdGeneric<IRegional>(entity.region, regions);
                     if (region && region.color) color = region ? region.color : color;
                 }
+                const colorObj: IEntityBasic = getEntityByNameGeneric<IEntityBasic>(color, colors);
                 return {id: entity.id, value: Number(obj.value), name: entity.name,
-                        color, year: Number(obj.year)};
+                        color: colorObj.id, year: Number(obj.year)};
            });
        } catch (error) {
            console.error(error);

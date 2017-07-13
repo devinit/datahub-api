@@ -12,6 +12,7 @@
     "outDir": "dist",
     "noFallthroughCasesInSwitch": true,
     "strictNullChecks": true,
+    "suppressExcessPropertyErrors": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "baseUrl": ".",

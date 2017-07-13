@@ -82,7 +82,7 @@ export const writeKeyToCacheFile = async (key: string, cacheType: string, file: 
     };
 
 export const queue: (key: string, cacheType: string, cache: LRU.Cache<any>, cb: (string) => Promise<any>) =>
-    Promise<boolean> = async (key, cacheType, cache, cb) => {
+    Promise<any> = async (key, cacheType, cache, cb) => {
         return new Promise((resolve, reject) => {
             setTimeout(async () => {
                 try {
