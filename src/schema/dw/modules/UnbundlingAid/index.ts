@@ -2,7 +2,7 @@ import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
 import {makeSqlAggregateQuery, entitesFnMap, DONOR, RECIPIENT, MULTILATERAL, CROSSOVER} from '../utils';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
-import {IEntity, getEntities, getRegional, IRegional, getEntityByIdGeneric, IEntityBasic,
+import {IEntity, getEntities, getRegional, IRegional, getEntityByIdGeneric,
         getSectors, getBundles, getChannels, getColors, IColor} from '../../../cms/modules/global';
 import * as R from 'ramda';
 
