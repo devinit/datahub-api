@@ -4,6 +4,7 @@ import {formatNumbers} from '../../../../utils';
 import sql from './sql';
 import * as R from 'ramda';
 import {getConceptAsync} from '../../../cms/modules/concept';
+import {IColor, getColors, getEntityByIdGeneric} from '../../../cms/modules/global';
 import {isError} from '../../../../lib/isType';
 import {getDistrictBySlugAsync, IDistrict} from '../../../cms/modules/spotlight';
 import {getIndicatorDataSpotlights, ISpotlightGetIndicatorArgs, IRAW, getSpotlightTableName,
@@ -155,13 +156,15 @@ export default class SpotLight {
                 if (data[0] && data[0].value) return  Number(data[0].value) + sum;
                 return sum;
             }, 0);
+            const colors: IColor[] = await getColors();
             const resourceWithConceptPromises: Array<Promise<DH.IIndicatorDataColored>> = indicatorArgs
                 .map(async (args: ISpotlightGetIndicatorArgs , index) => {
                     const conceptId = getSpotlightTableName(opts.country, args.query);
                     if (isError(conceptId)) throw conceptId;
                     const concept = await getConceptAsync(`spotlight-${opts.country}`, conceptId);
                     const resource: IRAW = resourcesRaw[index][0];
-                    return {...concept, value: Number(resource.value), year: concept.start_year};
+                    const colorObj: IColor = getEntityByIdGeneric<IColor>(concept.color, colors);
+                    return {...concept, value: Number(resource.value), year: concept.start_year, color: colorObj.value};
                 });
             const resources: DH.IIndicatorDataColored[] = await Promise.all(resourceWithConceptPromises);
             return {

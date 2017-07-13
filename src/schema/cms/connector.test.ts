@@ -4,16 +4,15 @@ import * as prettyFormat from 'pretty-format';
 
 describe('Github connector', () => {
 
-    it('should turn csv string to json Array', async () => {
-        const csvStr = `id,name
-                        20,allan
-                        30,alex`;
-        const data = await csvToJson<{name: string; id: number}>(csvStr);
-        expect(data.length).toBe(2);
-        expect(data[0].name).toBe('allan');
+    it.skip('should turn csv string to json Array', async () => {
+        const csvStrA = `id,value
+                        red,#e8443
+                        red-light,#f0826d
+                        red-lighter,#f8c1b2`;
+        const dataA = await csvToJson<{name: string; id: number}>(csvStrA);
+        expect(prettyFormat(dataA)).toMatchSnapshot();
     });
-
-    it('should be able to get data from github', async () => {
+    it('should be able to get color data from github', async () => {
         const raw = await httpsGet('global/entity.csv');
         expect(raw.length).toBeGreaterThan(30);
         expect(prettyFormat(raw)).toMatchSnapshot();

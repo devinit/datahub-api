@@ -6,6 +6,10 @@ export interface IEntityBasic {
     color?: string;
     name: string;
 }
+export interface IColor {
+    id: string;
+    value: string;
+}
 export interface ICurrency {
     code: string;
     id: string;
@@ -52,13 +56,13 @@ export const getCountries = async (): Promise<DH.IIdNamePair[]> => {
 
 export const getEntityByIdGeneric = <T extends {id: string}>(id: string, entities: T[]): T => {
     const entity: T | undefined = entities.find(obj => obj.id === id);
-    if (!entity) throw new Error (`couldnt find entity for ${id}`);
+    if (!entity) throw new Error (`couldnt find entity by id for ${id}`);
     return entity;
 };
 
 export const getEntityByNameGeneric = <T extends {name: string}>(name: string, entities: T[]): T => {
     const entity: T | undefined = entities.find(obj => obj.name === name);
-    if (!entity) throw new Error (`couldnt find entity for ${name}`);
+    if (!entity) throw new Error (`couldnt find entity by name for ${name}`);
     return entity;
 };
 
@@ -67,4 +71,4 @@ export const getChannels = (): Promise<IEntityBasic[]> => get<IEntityBasic>('glo
 export const getBundles = (): Promise<IEntityBasic[]> => get<IEntityBasic>('global/bundle.csv');
 export const getRegional = (): Promise<IRegional[]> => get<IRegional>('global/regional.csv');
 export const getCurrency = (): Promise<ICurrency[]> => get<ICurrency>('global/currency.csv');
-export const getColors = (): Promise<IEntityBasic[]> => get<IEntityBasic>('global/colors.csv');
+export const getColors = (): Promise<IColor[]> => get<IColor>('global/colors.csv');

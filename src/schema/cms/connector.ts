@@ -36,10 +36,6 @@ export const httpsGet = (endPoint: string): Promise<string> => {
     });
 };
 
-process.on('ECONNRESET', (error) => {
-    console.error('error getting http resource', error);
-});
-
 const lruOpts: LRU.Options<any> = {
     max: 300,
     maxAge: 1000 * 60 * 60 * 24 * 60 // TODO: create time constant (60 days -- 2 months)
@@ -50,7 +46,7 @@ export const cache: LRU.Cache<any> = LRU(lruOpts);
 export const csvToJson = <T extends {}> (csvStr: string): Promise<T[]>  =>
     new Promise((resolve, reject) => {
         const data: T[] = [];
-        converter({workerNum: 2})
+        converter({workerNum: 2, delimiter: ','})
         .fromString(csvStr)
         .on('json', (json) => {
             data.push(json);
@@ -58,6 +54,9 @@ export const csvToJson = <T extends {}> (csvStr: string): Promise<T[]>  =>
         .on('done', (error) => {
             resolve(data);
             reject(error);
+        })
+        .on('error', (err) => {
+            throw new Error(`csv to json: ${err}`);
         });
     });
 

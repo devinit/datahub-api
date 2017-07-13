@@ -17,3 +17,172 @@ exports[`Site Global narratives and refrence module should return all entities 1
   \\"type\\": \\"country\\",
 }"
 `;
+
+exports[`Site Global narratives and refrence module should return colors 1`] = `
+"Array [
+  Object {
+    \\"id\\": \\"red\\",
+    \\"value\\": \\"#e8443\\",
+  },
+  Object {
+    \\"id\\": \\"red-light\\",
+    \\"value\\": \\"#f0826d\\",
+  },
+  Object {
+    \\"id\\": \\"red-lighter\\",
+    \\"value\\": \\"#f8c1b2\\",
+  },
+  Object {
+    \\"id\\": \\"red-dark\\",
+    \\"value\\": \\"#bc2629\\",
+  },
+  Object {
+    \\"id\\": \\"red-darker\\",
+    \\"value\\": \\"#8f1b13\\",
+  },
+  Object {
+    \\"id\\": \\"white\\",
+    \\"value\\": \\"#ffffff\\",
+  },
+  Object {
+    \\"id\\": \\"yellow\\",
+    \\"value\\": \\"#f49b21\\",
+  },
+  Object {
+    \\"id\\": \\"yellow-lighter\\",
+    \\"value\\": \\"#fccc8e\\",
+  },
+  Object {
+    \\"id\\": \\"yellow-light\\",
+    \\"value\\": \\"#f9b865\\",
+  },
+  Object {
+    \\"id\\": \\"yellow-dark\\",
+    \\"value\\": \\"#e48a00\\",
+  },
+  Object {
+    \\"id\\": \\"yellow-darker\\",
+    \\"value\\": \\"#a85d00\\",
+  },
+  Object {
+    \\"id\\": \\"orange\\",
+    \\"value\\": \\"#eb642b\\",
+  },
+  Object {
+    \\"id\\": \\"orange-lighter\\",
+    \\"value\\": \\"#f6bb9d\\",
+  },
+  Object {
+    \\"id\\": \\"orange-light\\",
+    \\"value\\": \\"#f18e5e\\",
+  },
+  Object {
+    \\"id\\": \\"orange-dark\\",
+    \\"value\\": \\"#d85b31\\",
+  },
+  Object {
+    \\"id\\": \\"orange-darker\\",
+    \\"value\\": \\"#973915\\",
+  },
+  Object {
+    \\"id\\": \\"pink\\",
+    \\"value\\": \\"#c2135b\\",
+  },
+  Object {
+    \\"id\\": \\"pink-lighter\\",
+    \\"value\\": \\"#e4819b\\",
+  },
+  Object {
+    \\"id\\": \\"pink-light\\",
+    \\"value\\": \\"#d64278\\",
+  },
+  Object {
+    \\"id\\": \\"pink-dark\\",
+    \\"value\\": \\"#ad1257\\",
+  },
+  Object {
+    \\"id\\": \\"pink-darker\\",
+    \\"value\\": \\"#7e1850\\",
+  },
+  Object {
+    \\"id\\": \\"purple\\",
+    \\"value\\": \\"#893f90\\",
+  },
+  Object {
+    \\"id\\": \\"purple-lighter\\",
+    \\"value\\": \\"#c189bb\\",
+  },
+  Object {
+    \\"id\\": \\"purple-light\\",
+    \\"value\\": \\"#a45ea1\\",
+  },
+  Object {
+    \\"id\\": \\"purple-dark\\",
+    \\"value\\": \\"#7b3b89\\",
+  },
+  Object {
+    \\"id\\": \\"purple-darker\\",
+    \\"value\\": \\"#551f65\\",
+  },
+  Object {
+    \\"id\\": \\"blue\\",
+    \\"value\\": \\"#0089cc\\",
+  },
+  Object {
+    \\"id\\": \\"blue-lighter\\",
+    \\"value\\": \\"#88bae5\\",
+  },
+  Object {
+    \\"id\\": \\"blue-light\\",
+    \\"value\\": \\"#5da3d9\\",
+  },
+  Object {
+    \\"id\\": \\"blue-dark\\",
+    \\"value\\": \\"#0071b1\\",
+  },
+  Object {
+    \\"id\\": \\"blue-darker\\",
+    \\"value\\": \\"#0c457b\\",
+  },
+  Object {
+    \\"id\\": \\"green\\",
+    \\"value\\": \\"#109e68\\",
+  },
+  Object {
+    \\"id\\": \\"green-lighter\\",
+    \\"value\\": \\"#92cba9\\",
+  },
+  Object {
+    \\"id\\": \\"green-light\\",
+    \\"value\\": \\"#5ab88a\\",
+  },
+  Object {
+    \\"id\\": \\"green-dark\\",
+    \\"value\\": \\"#007851\\",
+  },
+  Object {
+    \\"id\\": \\"green-darker\\",
+    \\"value\\": \\"#007851\\",
+  },
+  Object {
+    \\"id\\": \\"grey\\",
+    \\"value\\": \\"#6a6569\\",
+  },
+  Object {
+    \\"id\\": \\"grey-lighter\\",
+    \\"value\\": \\"#a9a6aa\\",
+  },
+  Object {
+    \\"id\\": \\"grey-light\\",
+    \\"value\\": \\"#847e84\\",
+  },
+  Object {
+    \\"id\\": \\"grey-dark\\",
+    \\"value\\": \\"#555053\\",
+  },
+  Object {
+    \\"id\\": \\"grey-darker\\",
+    \\"value\\": \\"#443e42\\",
+  },
+]"
+`;

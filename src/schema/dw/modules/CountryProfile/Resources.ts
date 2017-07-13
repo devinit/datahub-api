@@ -4,7 +4,8 @@ import {formatNumbers} from '../../../../utils';
 import sql from './sql';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import * as R from 'ramda';
-import {ICurrency, getCurrency, getEntityBySlugAsync, IEntity} from '../../../cms/modules/global';
+import {ICurrency, getCurrency, getEntityBySlugAsync, IColor,
+        IEntity, getColors, getEntityByIdGeneric} from '../../../cms/modules/global';
 import {getIndicatorData, RECIPIENT, DONOR, IGetIndicatorArgs,
         indicatorDataProcessingSimple, makeSqlAggregateQuery,
         isDonor, IRAW, IRAWFlow, IProcessedSimple, entitesFnMap, IRAWDomestic, domesticDataProcessing} from '../utils';
@@ -75,7 +76,7 @@ export default class Resources {
            throw error;
         }
     }
-    // international resource
+    // international resource // TODO: reuse process resource data fns refactor
     public async getSingleResource(opts: ISingleResourceArgs): Promise<DH.ISingleResourceData> {
         try {
             const {resourceId, countryId, groupById} = opts;
@@ -94,15 +95,17 @@ export default class Resources {
             const processedData: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(data);
             // TODO: types for  entitesFnMap
             const entities = await entitesFnMap[groupById]();
+            const colors = await getColors();
             const resources = processedData.map(obj => {
-            const details: {name: string} | undefined = entities.find(entity => entity.id === obj[groupById]);
-            if (!details) throw Error('Error finding resource entity details');
-            return {...obj, ...details};
-        });
+                const details: {name: string} | undefined = entities.find(entity => entity.id === obj[groupById]);
+                if (!details) throw Error('Error finding resource entity details');
+                return {...obj, ...details};
+            });
+            const colorObj: IColor = getEntityByIdGeneric<IColor>(flow.color, colors);
             return {
-            resources,
-            color: flow.color,
-        };
+                resources,
+                color: colorObj.value,
+            };
        } catch (error) {
            console.error(error);
            throw error;
@@ -283,10 +286,12 @@ export default class Resources {
          try {
              const processed: IFlowProcessed[] = indicatorDataProcessingSimple<IFlowProcessed>(data);
              const flowRefs: IFlowRef[] = await getFlows();
+             const colors = await getColors();
              return processed.map(obj => {
                 const flow: IFlowRef | undefined = flowRefs.find(flowRef => flowRef.id === obj.flow_name);
                 if (flow === undefined) throw new Error(`flow : ${obj.flow_name} as an undefined flow`);
-                return {...flow, ...obj} as DH.IResourceData;
+                const colorObj: IColor = getEntityByIdGeneric<IColor>(flow.color, colors);
+                return {...flow, ...obj, color: colorObj.value} as DH.IResourceData;
              });
          } catch (error) {
              throw error;

@@ -16294,7 +16294,7 @@ exports[`spotlight on uganda tests should return overview tab data for wakiso di
   \\"regionalResources\\": \\"4.3m\\",
   \\"regionalResourcesBreakdown\\": Array [
     Object {
-      \\"color\\": \\"\\",
+      \\"color\\": \\"#bc2629\\",
       \\"description\\": \\"Locally raised revenues.\\",
       \\"end_year\\": \\"\\",
       \\"id\\": \\"spotlight_on_uganda.uganda_igf_resources\\",
@@ -16307,7 +16307,7 @@ exports[`spotlight on uganda tests should return overview tab data for wakiso di
       \\"year\\": \\"2015\\",
     },
     Object {
-      \\"color\\": \\"\\",
+      \\"color\\": \\"#d85b31\\",
       \\"description\\": \\"Centrally raised revenues\\",
       \\"end_year\\": \\"\\",
       \\"id\\": \\"spotlight_on_uganda.uganda_central_resources\\",
@@ -16320,7 +16320,7 @@ exports[`spotlight on uganda tests should return overview tab data for wakiso di
       \\"year\\": \\"2015\\",
     },
     Object {
-      \\"color\\": \\"\\",
+      \\"color\\": \\"#0071b1\\",
       \\"description\\": \\"Donor revenues.\\",
       \\"end_year\\": \\"\\",
       \\"id\\": \\"spotlight_on_uganda.uganda_donor_resources\\",

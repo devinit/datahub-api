@@ -3,7 +3,7 @@
 exports[`Maps module tests should return poverty indicator data 1`] = `
 "Object {
   \\"appear_in_bubble_chart\\": \\"\\",
-  \\"color\\": \\"dark-red\\",
+  \\"color\\": \\"red\\",
   \\"description\\": \\"From World Bank PovCalNet, representing the average gap for the whole population of each country, with those above the extreme poverty line counted as having a zero gap.\\",
   \\"end_year\\": \\"2013\\",
   \\"heading\\": \\"Moderate poverty rate (% of the population living on less than $3.10 a day)\\",

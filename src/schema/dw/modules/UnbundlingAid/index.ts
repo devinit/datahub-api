@@ -3,7 +3,7 @@ import {IExtensions} from '../../db';
 import {makeSqlAggregateQuery, entitesFnMap, DONOR, RECIPIENT, MULTILATERAL, CROSSOVER} from '../utils';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import {IEntity, getEntities, getRegional, IRegional, getEntityByIdGeneric, IEntityBasic,
-        getSectors, getBundles, getChannels, getColors, getEntityByNameGeneric} from '../../../cms/modules/global';
+        getSectors, getBundles, getChannels, getColors, IColor} from '../../../cms/modules/global';
 import * as R from 'ramda';
 
 interface IUnbundlingAidQuery {
@@ -57,7 +57,7 @@ export default class UnbundlingAid {
                     const region: IRegional | undefined = getEntityByIdGeneric<IRegional>(entity.region, regions);
                     if (region && region.color) color = region ? region.color : color;
                 }
-                const colorObj: IEntityBasic = getEntityByNameGeneric<IEntityBasic>(color, colors);
+                const colorObj: IColor = getEntityByIdGeneric<IColor>(color, colors);
                 return {id: entity.id, value: Number(obj.value), name: entity.name,
                         color: colorObj.id, year: Number(obj.year)};
            });
