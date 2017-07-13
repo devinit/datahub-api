@@ -7,8 +7,6 @@
 
 ### Graphql server for the data-hub application.
 
-This project has no issue tracker. All its issues and project management will be handled from the datahub react repo.
-
 Dataware house & Github CMS integration
 -----
 This project has a dataware house module thats responsible for getting data from the datawarehouse and merge it with refrence data from a github repo acting as a CMS. 
