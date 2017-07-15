@@ -35,27 +35,21 @@ type ResourceData {
   color: String
 }
 
-type OverViewTabRecipients {
-  # how many of the poorest people globally live in a country
-  poorestPeople: String
-  # total population for a given country
-  population: String
-  domesticResources: String
-  internationalResources: String
-  # recipient countries $PPP
-  governmentSpendPerPerson: String
-  # TODO: toolTips: [ToolTips]
+type OverViewTab {
+    countryType: String 
+   # how many of the poorest people globally live in a country
+    poorestPeople: String
+    # total population for a given country
+    population: String
+    domesticResources: String
+    internationalResources: String
+    # recipient countries $PPP, both donor and recipient
+    governmentSpendPerPerson: String
+    # donor: gross nation income per capit GNI
+    averageIncomerPerPerson: [IndicatorData]
+    # donor: Income share by quintile
+    incomeDistTrend: [Quintile]
 }
-
-type OverViewTabDonors {
-  governmentSpendPerPerson: String
-  # donor: gross nation income per capit GNI
-  averageIncomerPerPerson: [IndicatorData]
-  # donor: Income share by quintile
-  incomeDistTrend: [Quintile]
-}
-
-union OverViewTab = OverViewTabRecipients | OverViewTabDonors
 
 type PovertyTab {
   # Poverty reduction over time area chart trend

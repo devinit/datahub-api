@@ -38,7 +38,7 @@ declare namespace DH {
     bubbleChartPoverty: IBubbleChartPoverty | null;
     bubbleSize: Array<IBubbleChartData> | null;
     bubbleChartIndicatorsList: Array<IIdNamePair> | null;
-    overViewTab: OverViewTab | null;
+    overViewTab: IOverViewTab | null;
     povertyTab: IPovertyTab | null;
     populationTab: IPopulationTab | null;
     governmentFinance: IGovernmentFinance | null;
@@ -123,25 +123,12 @@ declare namespace DH {
   /*
     description: 
   */
-  type OverViewTab = IOverViewTabRecipients | IOverViewTabDonors;
-
-
-
-  /*
-    description: 
-  */
-  interface IOverViewTabRecipients {
+  interface IOverViewTab {
+    countryType: string | null;
     poorestPeople: string | null;
     population: string | null;
     domesticResources: string | null;
     internationalResources: string | null;
-    governmentSpendPerPerson: string | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IOverViewTabDonors {
     governmentSpendPerPerson: string | null;
     averageIncomerPerPerson: Array<IIndicatorData> | null;
     incomeDistTrend: Array<IQuintile> | null;

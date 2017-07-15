@@ -4,7 +4,7 @@ import * as prettyFormat from 'pretty-format';
 
 describe('Github connector', () => {
 
-    it.skip('should turn csv string to json Array', async () => {
+    it('should turn csv string to json Array', async () => {
         const csvStrA = `id,value
                         red,#e8443
                         red-light,#f0826d

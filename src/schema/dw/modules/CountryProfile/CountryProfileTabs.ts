@@ -3,10 +3,24 @@ import {IExtensions} from '../../db';
 import {formatNumbers} from '../../../../utils';
 import sql from './sql';
 import * as R from 'ramda';
-import {getIndicatorData, IGetIndicatorArgs, isDonor, indicatorDataProcessingNamed,
-        IRAWPopulationAgeBand, normalizeKeyName, IRAW, IRAWQuintile,
+import {getIndicatorData, IGetIndicatorArgs, isDonor, indicatorDataProcessingNamed, DONOR,
+        IRAWPopulationAgeBand, normalizeKeyName, IRAW, IRAWQuintile, RECIPIENT,
         IRAWPopulationGroup, IRAWMulti} from '../utils';
 
+interface IOverViewTabRecipients {
+    countryType: string;
+    poorestPeople: string;
+    population: string;
+    domesticResources: string;
+    governmentSpendPerPerson: string;
+    internationalResources: string;
+}
+interface IOverViewTabDonors {
+    countryType: string;
+    governmentSpendPerPerson: string;
+    averageIncomerPerPerson: DH.IIndicatorData[];
+    incomeDistTrend: DH.IQuintile[];
+}
 export default class CountryProfileTabs {
     private db: IDatabase<IExtensions> & IExtensions;
     private defaultArgs;
@@ -16,15 +30,24 @@ export default class CountryProfileTabs {
         this.defaultArgs = {db: this.db, conceptType: 'country-profile'};
     }
 
-    public async getOverViewTab({id}): Promise<DH.OverViewTab> {
-       try {
-           const isDonorCountry =  await isDonor(id);
-           if (isDonorCountry) return this.getOverViewTabDonors(id);
-           return this.getOverViewTabRecipients(id);
-       } catch (error) {
-           console.error(error);
-           throw error;
-       }
+    public async getOverViewTab({id}): Promise<DH.IOverViewTab> {
+        try {
+            const isDonorCountry =  await isDonor(id);
+            if (isDonorCountry) {
+                const donorsTabData = await this.getOverViewTabDonors(id);
+                return {
+                    ...donorsTabData,
+                    poorestPeople: null,
+                    population: null, domesticResources: null, internationalResources: null};
+            }
+            const recipientTabData = await this.getOverViewTabRecipients(id);
+            return {
+                ...recipientTabData,
+                averageIncomerPerPerson: null, incomeDistTrend: null, countryType: RECIPIENT};
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
     }
     public async getPopulationTab({id}): Promise<DH.IPopulationTab> {
        try {
@@ -57,13 +80,14 @@ export default class CountryProfileTabs {
         }
     }
 
-    public async getOverViewTabRecipients(countryId: string): Promise<DH.IOverViewTabRecipients> {
+    public async getOverViewTabRecipients(countryId: string): Promise<IOverViewTabRecipients> {
         try {
             const [internationalResources, domesticResources, population, poorestPeople, governmentSpendPerPerson]
             = await this.getIndicatorsGeneric(countryId,
                 [sql.internationalResources, sql.domesticRevenue, sql.population,
                 sql.poorestPeople, sql.governmentSpendPerPerson]);
             return {
+                countryType: RECIPIENT,
                 internationalResources,
                 domesticResources,
                 population,
@@ -75,13 +99,14 @@ export default class CountryProfileTabs {
             throw error;
         }
     }
-    public async getOverViewTabDonors(countryId: string): Promise<DH.IOverViewTabDonors> {
+    public async getOverViewTabDonors(countryId: string): Promise<IOverViewTabDonors> {
         try {
             // tslint:disable-next-line:max-line-length
             const [governmentSpendPerPerson] = await this.getIndicatorsGeneric(countryId, [sql.governmentSpendPerPerson]);
             const averageIncomerPerPerson = await this.getAverageIncomerPerPerson(countryId);
             const incomeDistTrend = await this.getIncomeDistTrend(countryId);
             return {
+                countryType: DONOR,
                 governmentSpendPerPerson,
                 averageIncomerPerPerson,
                 incomeDistTrend

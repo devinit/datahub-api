@@ -12384,8 +12384,11 @@ exports[`country profile DW module tests should return overview tab data for Aus
 
 exports[`country profile DW module tests should return overview tab data for uganda 1`] = `
 "Object {
+  \\"averageIncomerPerPerson\\": null,
+  \\"countryType\\": \\"recipient\\",
   \\"domesticResources\\": \\"924.1m\\",
   \\"governmentSpendPerPerson\\": \\"0.4k\\",
+  \\"incomeDistTrend\\": null,
   \\"internationalResources\\": \\"1.3bn\\",
   \\"poorestPeople\\": \\"19.6m\\",
   \\"population\\": \\"39.0m\\",
