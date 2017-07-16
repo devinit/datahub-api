@@ -3,6 +3,7 @@ import {IExtensions} from '../../db';
 import sql from './sql';
 import {getConceptAsync, IConcept, getConcepts} from '../../../cms/modules/concept';
 import * as R from 'ramda';
+import * as shortid from 'shortid';
 import {IEntity, getEntities, getEntityByIdGeneric} from '../../../cms/modules/global';
 import {getIndicatorData, IGetIndicatorArgs, IProcessedSimple, IRAW, getIndicatorDataSimple,
         indicatorDataProcessingSimple, makeSqlAggregateQuery} from '../utils';
@@ -66,7 +67,7 @@ export default class BubbleChart {
             const raw: IBubbleSizeResults[] = await this.db.manyCacheable(queryStr, null);
             return raw.map(obj => {
                 const details: IEntity = getEntityByIdGeneric<IEntity>(obj.to_di_id, entities);
-                return {...details, value: Number(obj.value), year: Number(obj.year)};
+                return {...details, value: Number(obj.value), year: Number(obj.year), uid: shortid.generate()};
             });
         } catch (error) {
             console.error(error);

@@ -2,6 +2,7 @@ import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
 import {formatNumbers} from '../../../../utils';
 import sql from './sql';
+import * as shortid from 'shortid';
 import * as R from 'ramda';
 import {getIndicatorData, IGetIndicatorArgs, isDonor, indicatorDataProcessingNamed, DONOR,
         IRAWPopulationAgeBand, normalizeKeyName, IRAW, IRAWQuintile, RECIPIENT,
@@ -120,7 +121,7 @@ export default class CountryProfileTabs {
         : Promise<string[]>  {
         try {
             const indicatorArgs: IGetIndicatorArgs[] =
-            sqlList.map(query => ({...this.defaultArgs, query, id}));
+                sqlList.map(query => ({...this.defaultArgs, query, id}));
             const indicatorRaw: IRAW[][] = await Promise.all(indicatorArgs.map(args => getIndicatorData<IRAW>(args)));
             return indicatorRaw.map(data => format ? formatNumbers(data[0].value, 1) : (data[0].value));
         } catch (error) {
@@ -183,7 +184,8 @@ export default class CountryProfileTabs {
             const groupColumns: string[] = R.keys(data[0]).filter(key => key !== 'year' && key !== 'di_id');
             return data.reduce((acc: DH.IPopulationPerAgeBand[], row) => {
             const groups: DH.IPopulationPerAgeBand[] = groupColumns
-                .map(key => ({band: normalizeKeyName(key), value: Number(row[key]), year: Number(row.year) }));
+                .map(key => ({band: normalizeKeyName(key), value: Number(row[key]),
+                    year: Number(row.year), uid: shortid.generate() }));
             return [...acc, ...groups];
           }, []);
         } catch (error) {

@@ -4,6 +4,7 @@ import {formatNumbers} from '../../../../utils';
 import sql from './sql';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import * as R from 'ramda';
+import * as shortid from 'shortid';
 import {ICurrency, getCurrency, getEntityBySlugAsync, IColor,
         IEntity, getColors, getEntityByIdGeneric} from '../../../cms/modules/global';
 import {getIndicatorData, RECIPIENT, DONOR, IGetIndicatorArgs,
@@ -29,6 +30,7 @@ interface IFlowProcessed {
   year: number;
   id: string;
   value: number;
+  uid: string;
   flow_type: string;
   flow_name: string;
   direction: string;
@@ -155,9 +157,9 @@ export default class Resources {
             await Promise.all(indicatorArgs.map((args) => getIndicatorData<IRAWDomestic>(args)));
             const resources: DH.IDomestic[][] = await Promise.all(resourcesRaw.map(obj => domesticDataProcessing(obj)));
             return {
-            finance: resources[0],
-            expenditure: resources[1],
-            revenueAndGrants: resources[2],
+                finance: resources[0],
+                expenditure: resources[1],
+                revenueAndGrants: resources[2],
             };
         } catch (error) {
             throw error;
@@ -174,9 +176,9 @@ export default class Resources {
             const data: IRAWSpending[] = await getIndicatorData<IRAWSpending>(indicatorArgsGdp);
             const budgetRefs: IBudgetLevelRef[] = await getBudgetLevels();
             return data.map(obj => {
-            const level = R.find(R.propEq('id', obj.l2), budgetRefs) as IBudgetLevelRef;
-            return {value: Number(obj.value), ...level};
-        });
+                const level = R.find(R.propEq('id', obj.l2), budgetRefs) as IBudgetLevelRef;
+                return {value: Number(obj.value), ...level, uid: shortid.generate()};
+            });
        } catch (error) {
            throw error;
        }

@@ -3,12 +3,14 @@ type IndicatorData {
   value: Float
   id: String
   name: String
+  uid: String
 }
 
 type SpendingAllocation {
   value: Float
   name: String
   color: String
+  uid: String
 }
 
 type Quintile {
@@ -33,6 +35,7 @@ type ResourceData {
   # in or out
   direction: String
   color: String
+  uid: String
 }
 
 type OverViewTab {
@@ -70,6 +73,7 @@ type PopulationPerAgeBand {
   band: String
   value: Int
   year: Int
+  uid: String
 }
 
 type PopulationTab {
@@ -95,6 +99,7 @@ type Domestic {
   year: Int 
   value: Float
   valueNcu: Float
+  uid: String
 }
 
 type GovernmentFinance {
@@ -121,7 +126,6 @@ type FlowSelection {
 
 type Flow {
   name: String
-  id: String
   selections: [FlowSelection]
 }
 

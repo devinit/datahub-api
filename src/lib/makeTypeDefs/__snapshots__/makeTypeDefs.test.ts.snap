@@ -293,7 +293,6 @@ declare namespace DH {
     source: string | null;
     source_link: string | null;
     theme: string | null;
-    color: string | null;
     heading: string | null;
     total: number | null;
   }
@@ -305,6 +304,7 @@ declare namespace DH {
     id: string | null;
     name: string | null;
     year: number | null;
+    color: string | null;
     value: number | null;
   }
 
@@ -688,6 +688,7 @@ type MapUnit {
   # countryName derived from entity.csv
   name: String
   year: Int
+  color: String
   value: Float
 }
 
@@ -704,7 +705,6 @@ type MapData {
   source: String
   source_link: String
   theme: String
-  color: String
   heading: String
   # map indicators total for % computations where needed
   total: Float

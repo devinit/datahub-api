@@ -3,9 +3,10 @@ import * as R from 'ramda';
 import {IExtensions} from '../../db';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import {getDistrictBySlugAsync} from '../../../cms/modules/spotlight';
+import * as shortid from 'shortid';
 import {IEntity, getEntityByIdGeneric, getEntities, getEntityBySlugAsync,
         getSectors, getBundles, getChannels} from '../../../cms/modules/global';
-import {isNumber, isError} from '../../../../lib/isType';
+import {isError} from '../../../../lib/isType';
 import {getBudgetLevels, IBudgetLevelRef} from '../../../cms/modules/countryProfile';
 
 export interface IGetIndicatorArgs {
@@ -60,6 +61,7 @@ export interface IProcessedSimple {
     id: string;
     value: number;
     year: number;
+    uid: string;
 }
 export interface IRAWMulti {
     di_id: string;
@@ -196,7 +198,7 @@ export async function getIndicatorDataSpotlights<T>(opts: ISpotlightGetIndicator
 export const getIndicatorDataSimple = async <T extends {}> (opts: IGetIndicatorArgsSimple): Promise<T[]> => {
         const {table, sql, db, query, start_year, end_year} = opts;
         let queryStr = '';
-        if (!query && sql) queryStr = !isNumber(end_year) ? sql.indicator : sql.indicatorRange;
+        if (!query && sql) queryStr = Number(end_year) ? sql.indicatorRange :  sql.indicator;
         if (query) queryStr = query;
         const tableName = !table ? getTableNameFromSql(queryStr) : table;
         if (isError(tableName)) throw new Error('No valid table name provided');
@@ -204,21 +206,10 @@ export const getIndicatorDataSimple = async <T extends {}> (opts: IGetIndicatorA
         return db.manyCacheable(queryStr, {start_year, end_year, table: tableName});
 };
 
-export const addCountryName = (obj: IhasId, entites: IEntity[]): any => {
-    if (obj.id === null) return obj;
-    const entity = getEntityByIdGeneric<IEntity>(obj.id, entites);
-    return {...obj, name: entity.name};
-};
-
-export const indicatorDataProcessing = async (data: IhasDiId[]): Promise<DH.IMapUnit[]> => {
-    const entities: IEntity[] = await getEntities();
-    const processed = indicatorDataProcessingSimple(data) as IhasId[];
-    return processed.map((obj) => addCountryName(obj, entities));
-};
-
 export const indicatorDataProcessingSimple = <T extends {}>(data: IhasDiId[]): T[] => {
     return data
             .map(toId)
+            .map(obj => ({...obj, uid: shortid.generate()}))
             .map(toNumericFields);
 };
 // adds reference names to Ids
@@ -228,7 +219,7 @@ export const indicatorDataProcessingNamed = async (data: IhasDiId[]):
     const entities: IEntity[] =  await getEntities();
     return processed.map(obj => {
         const entity = getEntityByIdGeneric<IEntity>(obj.id, entities);
-        return {...obj, name: entity.name};
+        return {...obj, name: entity.name, uid: shortid.generate()};
     });
 };
 
@@ -242,7 +233,7 @@ export const domesticDataProcessing = async (data: IRAWDomestic[], country?: str
                     const budgetLevel: IBudgetLevelRef | undefined = budgetRefs.find(ref => ref.id === obj[key]);
                     const budgetLevelName = budgetLevel ? budgetLevel.name : obj[key];
                     return {...acc, [domesticLevelMap[key]]: budgetLevelName };
-                }, {...obj}) as DH.IDomestic;
+                }, {...obj, uid: shortid.generate()}) as DH.IDomestic;
             });
 };
 

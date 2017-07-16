@@ -390,3 +390,20 @@ exports[`Github connector should get data from github and return it as json 1`] 
   },
 ]"
 `;
+
+exports[`Github connector should turn csv string to json Array 1`] = `
+"Array [
+  Object {
+    \\"id\\": \\"red\\",
+    \\"value\\": \\"#e8443\\",
+  },
+  Object {
+    \\"id\\": \\"red-light\\",
+    \\"value\\": \\"#f0826d\\",
+  },
+  Object {
+    \\"id\\": \\"red-lighter\\",
+    \\"value\\": \\"#f8c1b2\\",
+  },
+]"
+`;

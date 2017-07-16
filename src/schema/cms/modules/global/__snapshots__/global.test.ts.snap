@@ -22,7 +22,7 @@ exports[`Site Global narratives and refrence module should return colors 1`] = `
 "Array [
   Object {
     \\"id\\": \\"red\\",
-    \\"value\\": \\"#e8443\\",
+    \\"value\\": \\"#e8443a\\",
   },
   Object {
     \\"id\\": \\"red-light\\",

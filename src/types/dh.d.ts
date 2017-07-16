@@ -110,6 +110,7 @@ declare namespace DH {
     name: string | null;
     income_group: string | null;
     region: string | null;
+    uid: string | null;
   }
 
   /*
@@ -142,6 +143,7 @@ declare namespace DH {
     value: number | null;
     id: string | null;
     name: string | null;
+    uid: string | null;
   }
 
   /*
@@ -186,6 +188,7 @@ declare namespace DH {
     band: string | null;
     value: number | null;
     year: number | null;
+    uid: string | null;
   }
 
   /*
@@ -208,6 +211,7 @@ declare namespace DH {
     value: number | null;
     name: string | null;
     color: string | null;
+    uid: string | null;
   }
 
   /*
@@ -222,6 +226,7 @@ declare namespace DH {
     year: number | null;
     value: number | null;
     valueNcu: number | null;
+    uid: string | null;
   }
 
   /*
@@ -250,6 +255,7 @@ declare namespace DH {
     flow_type: string | null;
     direction: string | null;
     color: string | null;
+    uid: string | null;
   }
 
   /*
@@ -257,7 +263,6 @@ declare namespace DH {
   */
   interface IFlow {
     name: string | null;
-    id: string | null;
     selections: Array<IFlowSelection> | null;
   }
 
@@ -291,7 +296,6 @@ declare namespace DH {
     source: string | null;
     source_link: string | null;
     theme: string | null;
-    color: string | null;
     heading: string | null;
     total: number | null;
   }
@@ -303,7 +307,9 @@ declare namespace DH {
     id: string | null;
     name: string | null;
     year: number | null;
+    color: string | null;
     value: number | null;
+    uid: string | null;
   }
 
   /*
@@ -345,6 +351,7 @@ declare namespace DH {
     id: string | null;
     name: string | null;
     color: string | null;
+    uid: string | null;
   }
 
   /*
@@ -418,6 +425,7 @@ declare namespace DH {
     color: string | null;
     id: string | null;
     year: number | null;
+    uid: string | null;
   }
 
   /*

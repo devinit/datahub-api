@@ -2,6 +2,7 @@ import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
 import {makeSqlAggregateQuery, entitesFnMap, DONOR, RECIPIENT, MULTILATERAL, CROSSOVER} from '../utils';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
+import * as shortid from 'shortid';
 import {IEntity, getEntities, getRegional, IRegional, getEntityByIdGeneric,
         getSectors, getBundles, getChannels, getColors, IColor} from '../../../cms/modules/global';
 import * as R from 'ramda';
@@ -51,14 +52,13 @@ export default class UnbundlingAid {
             return raw.map((obj) => {
                 const entity: IUnbundlingEnitity | undefined = entites.find(item => obj[args.groupBy] === item.id);
                 if (!entity) throw new Error('error getting unbundling aid entity');
-                // TODO: use proper color
                 let color = 'grey';
                 if (entity.type && entity.region) {
                     const region: IRegional | undefined = getEntityByIdGeneric<IRegional>(entity.region, regions);
                     if (region && region.color) color = region ? region.color : color;
                 }
                 const colorObj: IColor = getEntityByIdGeneric<IColor>(color, colors);
-                return {id: entity.id, value: Number(obj.value), name: entity.name,
+                return {id: entity.id, value: Number(obj.value), name: entity.name, uid: shortid.generate(),
                         color: colorObj.value, year: Number(obj.year)};
            });
        } catch (error) {

@@ -1,4 +1,4 @@
-import {toId, getTotal, addCountryName, DONOR, RECIPIENT,
+import {toId, getTotal, DONOR, RECIPIENT,
         makeSqlAggregateQuery, normalizeKeyName, isDonor} from '.';
 import * as prettyFormat from 'pretty-format';
 
@@ -21,10 +21,6 @@ describe('Utility functions test', () => {
     });
     it('should get total of the value field in an array', () => {
         expect(getTotal(dataA)).toBe(6000);
-    });
-    it('should return countryname using entities data', () => {
-        const entity = addCountryName(dataB[1], entities);
-        expect(entity.name).toBe('England');
     });
     it('should create an aggregate sql query for multiple years', () => {
         const argsB = {

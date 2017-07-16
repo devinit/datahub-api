@@ -3,6 +3,7 @@ import {IExtensions} from '../../db';
 import {formatNumbers} from '../../../../utils';
 import sql from './sql';
 import * as R from 'ramda';
+import * as shortid from 'shortid';
 import {getConceptAsync} from '../../../cms/modules/concept';
 import {IColor, getColors, getEntityByIdGeneric} from '../../../cms/modules/global';
 import {isError} from '../../../../lib/isType';
@@ -97,15 +98,15 @@ export default class SpotLight {
     public async getHealthTabRegional(opts): Promise<DH.IHealthTabRegional> {
         try {
             const [districtPerformance, treatmeantOfTb] =
-            await this.getIndicatorsGeneric(opts,
-                [sql.districtHealthPerformance, sql.treatmeantOfTb, sql.healthCareFunding]);
-            const [healthCareFunding] = await  this.getIndicatorsGeneric(opts, [sql.healthCareFunding], false);
+                await this.getIndicatorsGeneric(opts,
+                    [sql.districtHealthPerformance, sql.treatmeantOfTb, sql.healthCareFunding]);
+            const [healthCareFunding] = await this.getIndicatorsGeneric(opts, [sql.healthCareFunding], false);
             return {
-            districtPerformance,
-            treatmeantOfTb,
-            healthCareFunding
-        };
-       } catch (error) {
+                districtPerformance,
+                treatmeantOfTb,
+                healthCareFunding: Number(healthCareFunding).toFixed(2)
+            };
+       }    catch (error) {
            console.error(error);
            throw error;
        }
@@ -163,8 +164,10 @@ export default class SpotLight {
                     if (isError(conceptId)) throw conceptId;
                     const concept = await getConceptAsync(`spotlight-${opts.country}`, conceptId);
                     const resource: IRAW = resourcesRaw[index][0];
+                    if (!concept.color) throw new Error(`${concept.id} missing required color value`);
                     const colorObj: IColor = getEntityByIdGeneric<IColor>(concept.color, colors);
-                    return {...concept, value: Number(resource.value), year: concept.start_year, color: colorObj.value};
+                    return {...concept, value: Number(resource.value),
+                        year: concept.start_year, color: colorObj.value, uid: shortid.generate()};
                 });
             const resources: DH.IIndicatorDataColored[] = await Promise.all(resourceWithConceptPromises);
             return {

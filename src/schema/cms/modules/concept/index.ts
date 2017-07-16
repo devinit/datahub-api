@@ -10,8 +10,9 @@ export interface IConcept {
     uom_display: string;
     start_year: number;
     include_in_methodology_page: number;
-    color: string;
+    color?: string;
     end_year: number;
+    range?: string;
     heading: string;
     source: string;
     source_link: string;

@@ -5,6 +5,7 @@ type BubbleChartData {
   name: String
   income_group: String
   region: String
+  uid: String
 }
 type BubbleChartOda {
   revenuePerPerson: [BubbleChartData]

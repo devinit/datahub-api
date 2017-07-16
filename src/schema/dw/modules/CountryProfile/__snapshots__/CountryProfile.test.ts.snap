@@ -5741,7 +5741,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2010,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"fact.oda_2015\\",
       \\"description\\": \\"Official development assistance\\",
       \\"direction\\": \\"out\\",
@@ -5966,7 +5966,7 @@ exports[`country profile DW module tests should return international resources t
   ],
   \\"resourcesOverTime\\": Array [
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_capital_repayments\\",
       \\"description\\": \\"Receipt of capital repayments on ODA loans\\",
       \\"direction\\": \\"in\\",
@@ -6061,7 +6061,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2015,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"fact.oda_2015\\",
       \\"description\\": \\"Official development assistance\\",
       \\"direction\\": \\"out\\",
@@ -6118,7 +6118,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2015,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_capital_repayments\\",
       \\"description\\": \\"Receipt of capital repayments on ODA loans\\",
       \\"direction\\": \\"in\\",
@@ -6213,7 +6213,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2014,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"fact.oda_2015\\",
       \\"description\\": \\"Official development assistance\\",
       \\"direction\\": \\"out\\",
@@ -6270,7 +6270,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2014,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_capital_repayments\\",
       \\"description\\": \\"Receipt of capital repayments on ODA loans\\",
       \\"direction\\": \\"in\\",
@@ -6365,7 +6365,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2013,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"fact.oda_2015\\",
       \\"description\\": \\"Official development assistance\\",
       \\"direction\\": \\"out\\",
@@ -6441,7 +6441,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2013,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_capital_repayments\\",
       \\"description\\": \\"Receipt of capital repayments on ODA loans\\",
       \\"direction\\": \\"in\\",
@@ -6517,7 +6517,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2012,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"fact.oda_2015\\",
       \\"description\\": \\"Official development assistance\\",
       \\"direction\\": \\"out\\",
@@ -6574,7 +6574,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2012,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_capital_repayments\\",
       \\"description\\": \\"Receipt of capital repayments on ODA loans\\",
       \\"direction\\": \\"in\\",
@@ -6669,7 +6669,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2011,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"fact.oda_2015\\",
       \\"description\\": \\"Official development assistance\\",
       \\"direction\\": \\"out\\",
@@ -6726,7 +6726,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2011,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_capital_repayments\\",
       \\"description\\": \\"Receipt of capital repayments on ODA loans\\",
       \\"direction\\": \\"in\\",
@@ -6821,7 +6821,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2010,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"fact.oda_2015\\",
       \\"description\\": \\"Official development assistance\\",
       \\"direction\\": \\"out\\",
@@ -6929,7 +6929,7 @@ exports[`country profile DW module tests should return international resources t
   ],
   \\"mixOfResources\\": Array [
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"fact.oda_2015\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"in\\",
@@ -7173,7 +7173,7 @@ exports[`country profile DW module tests should return international resources t
   ],
   \\"resourcesOverTime\\": Array [
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"fact.oda_2015\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"in\\",
@@ -7192,7 +7192,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2000,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"fact.oda_2015\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"in\\",
@@ -7211,7 +7211,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2001,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"fact.oda_2015\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"in\\",
@@ -7230,7 +7230,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2002,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"fact.oda_2015\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"in\\",
@@ -7249,7 +7249,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2003,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"fact.oda_2015\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"in\\",
@@ -7268,7 +7268,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2004,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"fact.oda_2015\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"in\\",
@@ -7287,7 +7287,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2005,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"fact.oda_2015\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"in\\",
@@ -7306,7 +7306,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2006,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"fact.oda_2015\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"in\\",
@@ -7325,7 +7325,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2007,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"fact.oda_2015\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"in\\",
@@ -7344,7 +7344,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2008,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"fact.oda_2015\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"in\\",
@@ -7363,7 +7363,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2009,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"fact.oda_2015\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"in\\",
@@ -7382,7 +7382,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2010,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"fact.oda_2015\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"in\\",
@@ -7401,7 +7401,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2011,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"fact.oda_2015\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"in\\",
@@ -7420,7 +7420,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2012,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"fact.oda_2015\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"in\\",
@@ -7439,7 +7439,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2013,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"fact.oda_2015\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"in\\",
@@ -7458,7 +7458,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2014,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"fact.oda_2015\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"in\\",
@@ -7477,7 +7477,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2015,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_interest_payments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7496,7 +7496,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2000,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_interest_payments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7515,7 +7515,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2001,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_interest_payments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7534,7 +7534,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2002,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_interest_payments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7553,7 +7553,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2003,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_interest_payments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7572,7 +7572,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2004,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_interest_payments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7591,7 +7591,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2005,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_interest_payments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7610,7 +7610,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2006,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_interest_payments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7629,7 +7629,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2007,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_interest_payments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7648,7 +7648,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2008,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_interest_payments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7667,7 +7667,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2009,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_interest_payments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7686,7 +7686,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2010,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_interest_payments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7705,7 +7705,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2011,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_interest_payments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7724,7 +7724,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2012,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_interest_payments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7743,7 +7743,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2013,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_interest_payments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7762,7 +7762,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2014,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_interest_payments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7781,7 +7781,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2015,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_capital_repayments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7800,7 +7800,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2000,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_capital_repayments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7819,7 +7819,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2001,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_capital_repayments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7838,7 +7838,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2002,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_capital_repayments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7857,7 +7857,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2003,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_capital_repayments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7876,7 +7876,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2004,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_capital_repayments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7895,7 +7895,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2005,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_capital_repayments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7914,7 +7914,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2006,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_capital_repayments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7933,7 +7933,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2007,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_capital_repayments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7952,7 +7952,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2008,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_capital_repayments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7971,7 +7971,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2009,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_capital_repayments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -7990,7 +7990,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2010,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_capital_repayments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -8009,7 +8009,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2011,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_capital_repayments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -8028,7 +8028,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2012,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_capital_repayments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -8047,7 +8047,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2013,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_capital_repayments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -8066,7 +8066,7 @@ exports[`country profile DW module tests should return international resources t
       \\"year\\": 2014,
     },
     Object {
-      \\"color\\": \\"#e8443\\",
+      \\"color\\": \\"#e8443a\\",
       \\"concept\\": \\"data_series.oda_capital_repayments\\",
       \\"description\\": \\"\\",
       \\"direction\\": \\"out\\",
@@ -12356,6 +12356,8 @@ exports[`country profile DW module tests should return overview tab data for Aus
       \\"year\\": 1980,
     },
   ],
+  \\"countryType\\": \\"donor\\",
+  \\"domesticResources\\": null,
   \\"governmentSpendPerPerson\\": \\"24.3k\\",
   \\"incomeDistTrend\\": Array [
     Object {
@@ -12379,6 +12381,9 @@ exports[`country profile DW module tests should return overview tab data for Aus
       \\"value\\": 38.41,
     },
   ],
+  \\"internationalResources\\": null,
+  \\"poorestPeople\\": null,
+  \\"population\\": null,
 }"
 `;
 
@@ -16095,7 +16100,7 @@ exports[`country profile DW module tests should return single resource FDI data 
 
 exports[`country profile DW module tests should return single resource ODA data for use in international resources chart 1`] = `
 "Object {
-  \\"color\\": \\"#e8443\\",
+  \\"color\\": \\"#e8443a\\",
   \\"resources\\": Array [
     Object {
       \\"color\\": \\"grey\\",

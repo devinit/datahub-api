@@ -5,6 +5,7 @@ type IndicatorDataColored {
   id: String
   name: String
   color: String
+  uid: String
 }
 
 type OverViewTabRegional {

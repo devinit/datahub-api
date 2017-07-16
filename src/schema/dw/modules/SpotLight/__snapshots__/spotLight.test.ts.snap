@@ -16282,7 +16282,7 @@ exports[`spotlight on uganda tests should return finance data for wakiso distric
 exports[`spotlight on uganda tests should return health tab data for wakiso district 1`] = `
 "Object {
   \\"districtPerformance\\": \\"No data\\",
-  \\"healthCareFunding\\": \\"1.5328979734\\",
+  \\"healthCareFunding\\": \\"1.53\\",
   \\"treatmeantOfTb\\": \\"No data\\",
 }"
 `;
