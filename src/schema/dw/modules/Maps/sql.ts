@@ -4,4 +4,4 @@ export default {
 };
 
 export const DAC = 'SELECT donor_name FROM dimension.oecd_donor where donor_type = $1';
-export const dataRevolution = 'SELECT * FROM ${table^} WHERE colour IS NOT NULL';
+export const dataRevolution = 'SELECT * FROM ${table^} WHERE detail IS NOT NULL';

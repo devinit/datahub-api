@@ -20,11 +20,12 @@ describe('Maps module tests', () => {
         const linearColored = await maps.getMapData({id: 'data_series.poorest_20_percent', DACOnly: false});
         const categorical = await maps.getMapData({id: 'data_series.fragile_states', DACOnly: false});
         const dataRevolution = await maps.getMapData({id: 'data_series.latest_census', DACOnly: false});
-        expect(prettyFormat({linearColored, categorical, dataRevolution})).toMatchSnapshot();
+        const largestIntlFinance = await maps.getMapData({id: 'data_series.largest_intl_flow', DACOnly: false});
+        expect(prettyFormat({linearColored, categorical, dataRevolution, largestIntlFinance})).toMatchSnapshot();
     }, 20000);
     it('should return categorical value mappings for indicators', async () => {
         const fragileSates = await Maps.getCategoricalMapping('data_series.fragile_states');
-        const dataRevolution = await Maps.getCategoricalMapping('data_series.agricultural_census');
+        const dataRevolution = await Maps.getCategoricalMapping('data_series.agricultural_census', 'data-revolution');
         expect(prettyFormat({fragileSates, dataRevolution})).toMatchSnapshot();
     }, 5000);
     it ('should return color values from a scale', async () => {

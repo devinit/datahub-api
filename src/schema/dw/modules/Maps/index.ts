@@ -1,6 +1,7 @@
 import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
-import {IRAW, getIndicatorDataSimple, indicatorDataProcessingSimple, IProcessedSimple} from '../utils';
+import {IRAW, getIndicatorDataSimple, indicatorDataProcessingSimple,
+    IProcessedSimple, normalizeKeyName} from '../utils';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import {getColors, getEntityByIdGeneric, IColor, IEntity, getEntities} from '../../../cms/modules/global';
 import {get} from '../../../cms/connector';
@@ -33,6 +34,7 @@ interface IDataRevolution {
 interface ICategoricalMapping {
     id: string;
     name: string;
+    color?: string;
 }
 type Threshold<Range, Output> = (value: Range) => Output;
 
@@ -68,10 +70,17 @@ export default class Maps {
             return  {...colorMap, mid: colorValue};
         }, {}) as IColorMap;
     }
-    public static async getCategoricalMapping(indicatorName: string): Promise<ICategoricalMapping[]> {
-        const categoryMapName = indicatorName.includes('fragile_states') ? 'fragile-states.csv'
-            : 'data-revolution-colors.csv';
-        return await get<ICategoricalMapping>(`global-picture/${categoryMapName}`);
+    public static async getCategoricalMapping(indicator: string, theme?: string): Promise<ICategoricalMapping[]> {
+        const categoryMapName = theme === 'data-revolution' ?  'data-revolution-colors' :
+            normalizeKeyName(indicator.split('.')[1]);
+        return await get<ICategoricalMapping>(`global-picture/${categoryMapName}.csv`);
+    }
+    public static getValueDetail(value: number, categoryMappings: ICategoricalMapping[]): ICategoricalMapping {
+        const categoryMapping: ICategoricalMapping | undefined =
+                    categoryMappings.find(mapping => Number(mapping.id) === value);
+        if (!categoryMapping)
+            throw new Error(`Categorical mapping for ${value} is missing in ${JSON.stringify(categoryMapping)}`);
+        return categoryMapping;
     }
     private db: IDatabase<IExtensions> & IExtensions;
 
@@ -93,11 +102,12 @@ export default class Maps {
          }
     }
     private async indicatorDataProcessing(concept: IConcept): Promise<DH.IMapUnit[]> {
-        if (concept.color) {
+        if (concept.theme !== 'data-revolution') {
             const args = {...concept, sql, db: this.db, table: concept.id};
             const data: IRAW [] = await getIndicatorDataSimple<IRAW>(args);
-            return concept.range ? this.linearDataProcessing(concept, data) :
-                this.categoricalDataProcessing(concept, data);
+            if (concept.range && concept.color) return this.linearDataProcessing(concept, data);
+            if (concept.color)  return this.categoricalLinearDataProcessing(concept, data);
+            return this.categoricalDataProcessing(concept, data);
         }
         return this.dataRevDataProcessing(concept);
     }
@@ -108,28 +118,24 @@ export default class Maps {
         const scale = Maps.colorScale(concept.range, ramp);
         return this.processScaleData(scale, data);
     }
-    private async categoricalDataProcessing(concept: IConcept, data: IRAW[]):
+    private async categoricalLinearDataProcessing(concept: IConcept, data: IRAW[]):
         Promise<DH.IMapUnit[]> {
         if (!concept.color) throw new Error (`color missing for ${concept.id}`);
-        const categoricalMappings: ICategoricalMapping[] = await Maps.getCategoricalMapping(concept.id);
+        const categoricalMappings: ICategoricalMapping[] = await Maps.getCategoricalMapping(concept.id, concept.theme);
         const range = categoricalMappings.map(obj => obj.id).join(',');
         const ramp = await Maps.getColorRamp(concept.color);
         const scale = Maps.colorScale(range, ramp);
         return this.processScaleData(scale, data, categoricalMappings);
     }
-    private async processScaleData(scale: Threshold<number, string>, data: IRAW[], cMapping?: ICategoricalMapping[]):
+    private async processScaleData(scale: Threshold<number, string>, data: IRAW[], cMappings?: ICategoricalMapping[]):
         Promise<DH.IMapUnit[]> {
         const entities: IEntity[] = await getEntities();
         const processedData: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(data);
         return processedData.map(obj => {
             const entity = getEntityByIdGeneric<IEntity>(obj.id, entities);
             let detail: any = null;
-            if (cMapping) {
-                const categoryMap: ICategoricalMapping | undefined =
-                    cMapping.find(mapping => Number(mapping.id) === obj.value);
-                if (!categoryMap)
-                    throw new Error(`Categorical mapping for ${obj.value} is missing in ${JSON.stringify(cMapping)}`);
-                detail = categoryMap.name;
+            if (cMappings) {
+                detail = Maps.getValueDetail(obj.value, cMappings).name;
             }
             const colorObj = Color(scale(obj.value));
             return {
@@ -138,6 +144,20 @@ export default class Maps {
                 name: entity.name,
                 color: colorObj.hex(),
             };
+        });
+    }
+    private async categoricalDataProcessing(concept: IConcept, data: IRAW[]):
+        Promise<DH.IMapUnit[]> {
+        const cMappings: ICategoricalMapping[] = await Maps.getCategoricalMapping(concept.id, concept.theme);
+        const colors = await getColors();
+        const entities: IEntity[] = await getEntities();
+        const processedData: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(data);
+        return processedData.map(obj => {
+           const cMapping = Maps.getValueDetail(obj.value, cMappings);
+           const entity = getEntityByIdGeneric<IEntity>(obj.id, entities);
+           if (!cMapping.color) throw new Error(`color value is missing for ${JSON.stringify(cMapping)}`);
+           const colorObj = getEntityByIdGeneric<IColor>(cMapping.color, colors);
+           return {...obj, color: colorObj.value, name: entity.name, detail: cMapping.name};
         });
     }
     private async dataRevDataProcessing(concept: IConcept): Promise<DH.IMapUnit[]> {
@@ -158,7 +178,7 @@ export default class Maps {
             return {
                 ...obj,
                 value: null,
-                year: obj.detail,
+                year: Number(obj.detail) ? obj.detail : 0,
                 name: entity.name,
                 detail: dataRevColorMap[obj.colour.toLowerCase()],
                 color: colorObj.value

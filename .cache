@@ -24,3 +24,4 @@ SELECT * FROM data_series.depth_of_extreme_poverty_190 WHERE year >= '2010' AND 
 SELECT * FROM data_series.poorest_20_percent WHERE year = '2013':dw
 global-picture/fragile-states.csv:cms
 global-picture/data-revolution-colors.csv:cms
+SELECT * FROM data_series.latest_census WHERE detail IS NOT NULL:dw
