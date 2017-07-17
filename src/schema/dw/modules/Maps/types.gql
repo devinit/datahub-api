@@ -7,6 +7,7 @@ type MapUnit {
   year: Int
   color: String
   value: Float
+  detail: String
   uid: String
 }
 
@@ -24,8 +25,6 @@ type MapData {
   source_link: String
   theme: String
   heading: String
-  # map indicators total for % computations where needed
-  total: Float 
 }
 
 type Query {

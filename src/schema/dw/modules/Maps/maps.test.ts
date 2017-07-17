@@ -16,21 +16,32 @@ describe('Maps module tests', () => {
         const onlyDacCountries = Maps.DACOnlyData(dacCountries, data);
         expect(onlyDacCountries.length).toBe(2);
     }, 10000);
-    it('should return poverty indicator data', async () => {
-        const data = await maps.getMapData({id: 'data_series.depth_of_extreme_poverty_190', DACOnly: false});
-        expect(prettyFormat(data)).toMatchSnapshot();
+    it('should return indicator data for various indicators', async () => {
+        const linearColored = await maps.getMapData({id: 'data_series.poorest_20_percent', DACOnly: false});
+        const categorical = await maps.getMapData({id: 'data_series.fragile_states', DACOnly: false});
+        const dataRevolution = await maps.getMapData({id: 'data_series.latest_census', DACOnly: false});
+        expect(prettyFormat({linearColored, categorical, dataRevolution})).toMatchSnapshot();
     }, 20000);
-    it ('should return color value for a data value', async () => {
+    it('should return categorical value mappings for indicators', async () => {
+        const fragileSates = await Maps.getCategoricalMapping('data_series.fragile_states');
+        const dataRevolution = await Maps.getCategoricalMapping('data_series.agricultural_census');
+        expect(prettyFormat({fragileSates, dataRevolution})).toMatchSnapshot();
+    }, 5000);
+    it ('should return color values from a scale', async () => {
         const ramp = {high: '#8f1b13', low: '#f8c1b2', mid: '#e8443a'};
-        const scale = Maps.colorScale('1, 5, 10, 20', ramp);
-        expect(prettyFormat({
-            start: scale(0.23), mid: scale(5), midA: scale(15), end: scale(100)
-        })).toMatchSnapshot();
+        const scaleA = Maps.colorScale('1, 5, 10, 20', ramp);
+        const scaleB = Maps.colorScale('500,120,50,20,5', ramp);
+        const results = {
+            A: {0.23: scaleA(0.23), 5: scaleA(5), 15: scaleA(15), 100: scaleA(100)},
+            B: { 530: scaleB(530), 110: scaleB(110),
+                50: scaleB(50), 22: scaleB(22), 2: scaleB(2)},
+        };
+        expect(prettyFormat(results)).toMatchSnapshot();
     });
-    it ('should create color ramp', async () => {
+    it('should create color ramp', async () => {
         const ramp = {high: '#8f1b13', low: '#f8c1b2', mid: '#e8443a'};
         const colorRamp = await Maps.getColorRamp('red');
-        expect(colorRamp).toBe(ramp);
+        expect(prettyFormat(colorRamp)).toMatchSnapshot();
     }, 20000);
     afterAll(() => {
        db.$config.pgp.end();

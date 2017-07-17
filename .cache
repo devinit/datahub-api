@@ -21,3 +21,6 @@ SELECT * FROM data_series.intl_flows_recipients WHERE di_id = 'UG' AND direction
 SELECT * FROM data_series.intl_flows_recipients WHERE di_id = 'UG'  AND year >= '2000' AND year <= '2015' AND value > 0:dw
 global/colors.csv:cms
 SELECT * FROM data_series.depth_of_extreme_poverty_190 WHERE year >= '2010' AND year <= '2013':dw
+SELECT * FROM data_series.poorest_20_percent WHERE year = '2013':dw
+global-picture/fragile-states.csv:cms
+global-picture/data-revolution-colors.csv:cms

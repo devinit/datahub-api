@@ -112,6 +112,7 @@ declare namespace DH {
     name: string | null;
     income_group: string | null;
     region: string | null;
+    uid: string | null;
   }
 
   /*
@@ -144,6 +145,7 @@ declare namespace DH {
     value: number | null;
     id: string | null;
     name: string | null;
+    uid: string | null;
   }
 
   /*
@@ -188,6 +190,7 @@ declare namespace DH {
     band: string | null;
     value: number | null;
     year: number | null;
+    uid: string | null;
   }
 
   /*
@@ -210,6 +213,7 @@ declare namespace DH {
     value: number | null;
     name: string | null;
     color: string | null;
+    uid: string | null;
   }
 
   /*
@@ -224,6 +228,7 @@ declare namespace DH {
     year: number | null;
     value: number | null;
     valueNcu: number | null;
+    uid: string | null;
   }
 
   /*
@@ -252,6 +257,7 @@ declare namespace DH {
     flow_type: string | null;
     direction: string | null;
     color: string | null;
+    uid: string | null;
   }
 
   /*
@@ -259,7 +265,6 @@ declare namespace DH {
   */
   interface IFlow {
     name: string | null;
-    id: string | null;
     selections: Array<IFlowSelection> | null;
   }
 
@@ -306,6 +311,7 @@ declare namespace DH {
     year: number | null;
     color: string | null;
     value: number | null;
+    uid: string | null;
   }
 
   /*
@@ -347,6 +353,7 @@ declare namespace DH {
     id: string | null;
     name: string | null;
     color: string | null;
+    uid: string | null;
   }
 
   /*
@@ -420,6 +427,7 @@ declare namespace DH {
     color: string | null;
     id: string | null;
     year: number | null;
+    uid: string | null;
   }
 
   /*
@@ -517,6 +525,7 @@ type BubbleChartData {
   name: String
   income_group: String
   region: String
+  uid: String
 }
 
 type BubbleChartOda {
@@ -534,12 +543,14 @@ type IndicatorData {
   value: Float
   id: String
   name: String
+  uid: String
 }
 
 type SpendingAllocation {
   value: Float
   name: String
   color: String
+  uid: String
 }
 
 type Quintile {
@@ -564,6 +575,7 @@ type ResourceData {
   # in or out
   direction: String
   color: String
+  uid: String
 }
 
 type OverViewTab {
@@ -601,6 +613,7 @@ type PopulationPerAgeBand {
   band: String
   value: Int
   year: Int
+  uid: String
 }
 
 type PopulationTab {
@@ -626,6 +639,7 @@ type Domestic {
   year: Int
   value: Float
   valueNcu: Float
+  uid: String
 }
 
 type GovernmentFinance {
@@ -652,7 +666,6 @@ type FlowSelection {
 
 type Flow {
   name: String
-  id: String
   selections: [FlowSelection]
 }
 
@@ -690,6 +703,7 @@ type MapUnit {
   year: Int
   color: String
   value: Float
+  uid: String
 }
 
 type MapData {
@@ -731,6 +745,7 @@ type IndicatorDataColored {
   id: String
   name: String
   color: String
+  uid: String
 }
 
 type OverViewTabRegional {
@@ -799,6 +814,7 @@ type AidUnit {
   color: String
   id: String
   year: Int
+  uid: String
 }
 
 type IdNamePair {

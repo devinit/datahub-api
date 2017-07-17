@@ -297,7 +297,6 @@ declare namespace DH {
     source_link: string | null;
     theme: string | null;
     heading: string | null;
-    total: number | null;
   }
 
   /*
@@ -309,6 +308,7 @@ declare namespace DH {
     year: number | null;
     color: string | null;
     value: number | null;
+    detail: string | null;
     uid: string | null;
   }
 
