@@ -260,6 +260,7 @@ declare namespace DH {
   */
   interface IFlow {
     name: string | null;
+    id: string | null;
     selections: Array<IFlowSelection> | null;
   }
 

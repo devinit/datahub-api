@@ -133,6 +133,27 @@ export default class Resources {
            throw error;
         }
     }
+    public async getFlows(id: string): Promise<IflowTypes> {
+        // find out whether donor or not using isDonor
+        try {
+            const countryType: string = await isDonor(id) ? DONOR : RECIPIENT;
+            const flows: IFlowRef[] = await getFlowByTypeAsync(countryType);
+            const flowSelections: IFlowSelectionRaw[] = await getAllFlowSelections();
+            return flows
+                .filter(flow => Number(flow.used_in_area_treemap_chart) === 1)
+                .reduce((flowTypes: IflowTypes, flow) => {
+                    const selections = flowSelections
+                        .filter(selection => selection.id === flow.id)
+                        .map(selection => ({id: selection.group_by_id, name: selection.name}));
+                    const obj = {name: flow.flow_name, id: flow.id, selections};
+                    if (flow.direction === 'in') flowTypes.inflows.push(obj);
+                    if (flow.direction === 'out') flowTypes.outflows.push(obj);
+                    return flowTypes;
+                }, {inflows: [], outflows: []});
+       } catch (error) {
+           throw error;
+       }
+    }
     private async getCurrencyCode(id: string): Promise<string> {
         try {
             const currencyList: ICurrency[] = await getCurrency();
@@ -253,25 +274,6 @@ export default class Resources {
         } catch (error) {
             throw error;
         }
-    }
-    private async getFlows(id: string): Promise<IflowTypes> {
-        // find out whether donor or not using isDonor
-        try {
-            const countryType = isDonor(id) ? DONOR : RECIPIENT;
-            const flows: IFlowRef[] = await getFlowByTypeAsync(countryType);
-            const flowSelections: IFlowSelectionRaw[] = await getAllFlowSelections();
-            return flows.reduce((flowTypes: IflowTypes, flow) => {
-            const selections = flowSelections
-                .filter(selection => selection.id === flow.id)
-                .map(selection => ({id: selection.group_by_id, name: selection.name}));
-            const obj = {name: flow.flow_name, id: flow.id, selections};
-            if (flow.direction === 'in') flowTypes.inflows.push(obj);
-            if (flow.direction === 'out') flowTypes.outflows.push(obj);
-            return flowTypes;
-         }, {inflows: [], outflows: []});
-       } catch (error) {
-           throw error;
-       }
     }
      private async getResourcesGeneric(id: string, sqlList: string[]): Promise<DH.IResourceData[][]> {
          try {

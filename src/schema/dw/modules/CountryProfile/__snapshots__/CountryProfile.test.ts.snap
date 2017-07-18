@@ -1,5 +1,204 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`country profile DW module tests should return flow types and sub selections for uganda 1`] = `
+"Object {
+  \\"inflows\\": Array [
+    Object {
+      \\"id\\": \\"fdi-in\\",
+      \\"name\\": \\"Foreign Direct Investment\\",
+      \\"selections\\": Array [
+        Object {
+          \\"id\\": \\"from_di_id\\",
+          \\"name\\": \\"Source(OECD countries only)\\",
+        },
+      ],
+    },
+    Object {
+      \\"id\\": \\"long-debt-disbursement-in\\",
+      \\"name\\": \\"Long-term debt (commercial sources)\\",
+      \\"selections\\": Array [
+        Object {
+          \\"id\\": \\"destination_institution_type\\",
+          \\"name\\": \\"Type of borrower\\",
+        },
+        Object {
+          \\"id\\": \\"financing_type\\",
+          \\"name\\": \\"Financing Instrument\\",
+        },
+      ],
+    },
+    Object {
+      \\"id\\": \\"long-debt-net-official-in\\",
+      \\"name\\": \\"Long-term debt (official sources)\\",
+      \\"selections\\": Array [
+        Object {
+          \\"id\\": \\"destination_institution_type\\",
+          \\"name\\": \\"Type of borrower\\",
+        },
+        Object {
+          \\"id\\": \\"destination_institution_type\\",
+          \\"name\\": \\"Financing Instrument\\",
+        },
+      ],
+    },
+    Object {
+      \\"id\\": \\"net-portfolio-equity-in\\",
+      \\"name\\": \\"Portfolio equity\\",
+      \\"selections\\": Array [
+        Object {
+          \\"id\\": \\"from_di_id\\",
+          \\"name\\": \\"Providers\\",
+        },
+      ],
+    },
+    Object {
+      \\"id\\": \\"oda-in\\",
+      \\"name\\": \\"Official development assistance\\",
+      \\"selections\\": Array [
+        Object {
+          \\"id\\": \\"from_di_id\\",
+          \\"name\\": \\"Providers\\",
+        },
+        Object {
+          \\"id\\": \\"channel\\",
+          \\"name\\": \\"Channels of delivery\\",
+        },
+        Object {
+          \\"id\\": \\"sector\\",
+          \\"name\\": \\"Sector\\",
+        },
+        Object {
+          \\"id\\": \\"bundle\\",
+          \\"name\\": \\"Finance modalities\\",
+        },
+      ],
+    },
+    Object {
+      \\"id\\": \\"oofs-in\\",
+      \\"name\\": \\"Other official flows\\",
+      \\"selections\\": Array [
+        Object {
+          \\"id\\": \\"from_di_id\\",
+          \\"name\\": \\"Providers\\",
+        },
+        Object {
+          \\"id\\": \\"channel\\",
+          \\"name\\": \\"Channels of delivery\\",
+        },
+        Object {
+          \\"id\\": \\"sector\\",
+          \\"name\\": \\"Sector\\",
+        },
+        Object {
+          \\"id\\": \\"bundle\\",
+          \\"name\\": \\"Finance modalities\\",
+        },
+      ],
+    },
+    Object {
+      \\"id\\": \\"remittances-in\\",
+      \\"name\\": \\"Remittances\\",
+      \\"selections\\": Array [
+        Object {
+          \\"id\\": \\"fom_di_id\\",
+          \\"name\\": \\"Source\\",
+        },
+      ],
+    },
+    Object {
+      \\"id\\": \\"short-debt-net-flow-in\\",
+      \\"name\\": \\"Short-term debt\\",
+      \\"selections\\": Array [
+        Object {
+          \\"id\\": \\"destination_institution_type\\",
+          \\"name\\": \\"Type of borrower\\",
+        },
+        Object {
+          \\"id\\": \\"financing_type\\",
+          \\"name\\": \\"Financing Instrument\\",
+        },
+      ],
+    },
+  ],
+  \\"outflows\\": Array [
+    Object {
+      \\"id\\": \\"fdi-in-profits-out\\",
+      \\"name\\": \\"Profits on FDI\\",
+      \\"selections\\": Array [],
+    },
+    Object {
+      \\"id\\": \\"fdi-out\\",
+      \\"name\\": \\"Foreign Direct Investment\\",
+      \\"selections\\": Array [
+        Object {
+          \\"id\\": \\"from_di_id\\",
+          \\"name\\": \\"Source(OECD countries only)\\",
+        },
+      ],
+    },
+    Object {
+      \\"id\\": \\"illicit-financing-out\\",
+      \\"name\\": \\"Illicit Finance\\",
+      \\"selections\\": Array [],
+    },
+    Object {
+      \\"id\\": \\"oda-capital-payments-out\\",
+      \\"name\\": \\"Capital repayments on ODA loans\\",
+      \\"selections\\": Array [
+        Object {
+          \\"id\\": \\"from_di_id\\",
+          \\"name\\": \\"Destination\\",
+        },
+        Object {
+          \\"id\\": \\"from_di_id\\",
+          \\"name\\": \\"Providers\\",
+        },
+      ],
+    },
+    Object {
+      \\"id\\": \\"oda-interest-payments-out\\",
+      \\"name\\": \\"Interest payments on ODA loans\\",
+      \\"selections\\": Array [
+        Object {
+          \\"id\\": \\"from_di_id\\",
+          \\"name\\": \\"Destination\\",
+        },
+      ],
+    },
+    Object {
+      \\"id\\": \\"oofs-capital-payments-out\\",
+      \\"name\\": \\"Capital repayments on OOFs loans\\",
+      \\"selections\\": Array [],
+    },
+    Object {
+      \\"id\\": \\"oofs-interest-payments-out\\",
+      \\"name\\": \\"Interest payments on OOFs loans\\",
+      \\"selections\\": Array [
+        Object {
+          \\"id\\": \\"from_di_id\\",
+          \\"name\\": \\"Providers\\",
+        },
+      ],
+    },
+    Object {
+      \\"id\\": \\"remittances-out\\",
+      \\"name\\": \\"Remittances\\",
+      \\"selections\\": Array [],
+    },
+    Object {
+      \\"id\\": \\"short-debt-interest-out\\",
+      \\"name\\": \\"Interest payments on short-term debt\\",
+      \\"selections\\": Array [],
+    },
+    Object {
+      \\"id\\": \\"trade-mispricing-out\\",
+      \\"name\\": \\"Trade mispricing\\",
+      \\"selections\\": Array [],
+    },
+  ],
+}"
+`;
+
 exports[`country profile DW module tests should return government finance data for Uganda 1`] = `
 "Object {
   \\"currencyCode\\": \\"UGX\\",
