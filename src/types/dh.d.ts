@@ -219,10 +219,7 @@ declare namespace DH {
   */
   interface IDomestic {
     budgetType: string | null;
-    type: string | null;
-    parentCategory: string | null;
-    category: string | null;
-    subCategory: string | null;
+    levels: Array<string> | null;
     year: number | null;
     value: number | null;
     valueNcu: number | null;

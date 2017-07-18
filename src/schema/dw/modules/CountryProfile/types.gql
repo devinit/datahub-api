@@ -88,14 +88,7 @@ type PopulationTab {
 type Domestic {
   # eg Actual or budget
   budgetType: String
-  # eg total_revenue and grants --> l1
-  type: String
-  # eg revenue --> l2
-  parentCategory: String
-  # eg tax revenue --> l3
-  category: String
-  # eg value-added tax  --> l4
-  subCategory: String
+  levels: [String]
   year: Int 
   value: Float
   valueNcu: Float

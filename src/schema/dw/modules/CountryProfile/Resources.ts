@@ -122,12 +122,12 @@ export default class Resources {
             const spendingAllocation = await this.getSpendingAllocation(id);
             const domestic = await this.getDomesticResourcesOvertime(id);
             return {
-            totalRevenue,
-            grantsAsPcOfRevenue,
-            spendingAllocation,
-            currencyCode,
-            ...domestic
-         };
+                totalRevenue,
+                grantsAsPcOfRevenue,
+                spendingAllocation,
+                currencyCode,
+                ...domestic
+            };
         } catch (error) {
            console.error(error);
            throw error;

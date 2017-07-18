@@ -227,13 +227,15 @@ export const domesticDataProcessing = async (data: IRAWDomestic[], country?: str
     : Promise<DH.IDomestic[]> => {
     const budgetRefs: IBudgetLevelRef[] = country ? await getBudgetLevels(country) : await getBudgetLevels();
     return indicatorDataProcessingSimple(data)
-            .map(obj => {
-                const levelKeys = R.keys(obj).filter(key => key.includes('l'));
-                return levelKeys.reduce((acc, key) => {
+            .map((obj) => {
+                const levelKeys = R.keys(obj).filter(key => R.test(/^l[0-9]/, key));
+                const levels = levelKeys.map(key => {
                     const budgetLevel: IBudgetLevelRef | undefined = budgetRefs.find(ref => ref.id === obj[key]);
-                    const budgetLevelName = budgetLevel ? budgetLevel.name : obj[key];
-                    return {...acc, [domesticLevelMap[key]]: budgetLevelName };
-                }, {...obj, uid: shortid.generate()}) as DH.IDomestic;
+                    if (!budgetLevel)  return obj[key];
+                    return budgetLevel.name;
+                }).filter(level => level !== null);
+                const uid: string = shortid.generate();
+                return {...obj, uid, levels} as DH.IDomestic;
             });
 };
 

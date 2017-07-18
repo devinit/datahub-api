@@ -35,7 +35,7 @@ describe('country profile DW module tests', () => {
         const international  = await resources.getInternationalResources({id: 'austria'});
         expect(prettyFormat(international)).toMatchSnapshot();
     }, 30000);
-    it('should return government resources tab & charts data for Uganda', async () => {
+    it('should return government finance data for Uganda', async () => {
         const government = await resources.getGovernmentFinance({id: 'uganda'});
         expect(prettyFormat(government)).toMatchSnapshot();
     }, 10000);
