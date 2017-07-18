@@ -262,6 +262,7 @@ declare namespace DH {
   */
   interface IFlow {
     name: string | null;
+    id: string | null;
     selections: Array<IFlowSelection> | null;
   }
 
@@ -656,6 +657,7 @@ type FlowSelection {
 
 type Flow {
   name: String
+  id: String
   selections: [FlowSelection]
 }
 
