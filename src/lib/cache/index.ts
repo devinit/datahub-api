@@ -21,7 +21,7 @@ export interface IFetchFnObj {
 }
 // in production we wait for 10 minutes in development
 const CACHE_QUEUE_DELAY: number = process.env.NODE_ENV === 'production' ? 1000 * 60 * 30 : 1000 * 60 * 10;
-const PRECACHE_DELAY: number = process.env.NODE_ENV === 'production' ? 1000 * 60 : 1000;
+const PRECACHE_DELAY: number = process.env.NODE_ENV === 'production' ? 2000 * 60 : 1000;
 
 export const readCacheData: (file?: string) => Promise<ICached[]> | Error =
     async (file = '.cache') => {
@@ -83,6 +83,7 @@ export const writeKeyToCacheFile = async (key: string, cacheType: string, file: 
 
 export const queue: (key: string, cacheType: string, cache: LRU.Cache<any>, cb: (string) => Promise<any>) =>
     Promise<any> = async (key, cacheType, cache, cb) => {
+        if (process.env.NODE_ENV === 'test') return false;
         return new Promise((resolve, reject) => {
             setTimeout(async () => {
                 try {

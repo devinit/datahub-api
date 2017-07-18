@@ -1,11 +1,11 @@
 import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
-import {IRAW, getIndicatorDataSimple, indicatorDataProcessingSimple,
-    IProcessedSimple, normalizeKeyName} from '../utils';
+import {getIndicatorDataSimple, indicatorDataProcessingSimple, IProcessedSimple, normalizeKeyName} from '../utils';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
-import {getColors, getEntityByIdGeneric, IColor, IEntity, getEntities} from '../../../cms/modules/global';
+import {getColors, getEntityByIdGeneric, IColor, IEntity, getEntities, IEntityBasic} from '../../../cms/modules/global';
 import {get} from '../../../cms/connector';
 import {getDataRevolutionColors, IRevolutionColorMap} from '../../../cms/modules/globalPicture';
+import {getDistrictEntities} from '../../../cms/modules/spotlight';
 import sql, {DAC, dataRevolution} from './sql';
 import * as Color from 'color';
 import {scaleThreshold, interpolateRgb} from 'd3';
@@ -35,6 +35,12 @@ interface ICategoricalMapping {
     id: string;
     name: string;
     color?: string;
+}
+interface IRAWMapData {
+    id?: string;
+    district_id?: string;
+    value: string;
+    year: string;
 }
 type Threshold<Range, Output> = (value: Range) => Output;
 
@@ -82,6 +88,16 @@ export default class Maps {
             throw new Error(`Categorical mapping for ${value} is missing in ${JSON.stringify(categoryMapping)}`);
         return categoryMapping;
     }
+    public static async getCountry(indicator: string): Promise<string> {
+        const tableName = indicator.split('.')[1];
+        if (!tableName) throw new Error(`invalid indicator name, every indicator should be in a schema: ${indicator}`);
+        const country = tableName.split('_')[0];
+        // check if first value is a country
+        const entities: IEntity[] = await getEntities();
+        const entity = entities.find(obj => obj.slug === country);
+        if (entity && entity.type === 'country') return entity.slug;
+        return 'global';
+    }
     private db: IDatabase<IExtensions> & IExtensions;
 
     constructor(db: any) {
@@ -90,9 +106,12 @@ export default class Maps {
 
     public async getMapData(opts: IgetMapDataOpts): Promise<DH.IMapData> {
          try {
-             const concept: IConcept = await getConceptAsync('global-picture', opts.id);
+             const country = await Maps.getCountry(opts.id);
+             const concept: IConcept = country === 'global' ?
+                 await getConceptAsync('global-picture', opts.id)
+                 : await getConceptAsync(`spotlight-${country}`, opts.id);
              // we merge concept and graphql qery options, they have startYear and endYear variables
-             const processedData: DH.IMapUnit[] = await this.indicatorDataProcessing(concept);
+             const processedData: DH.IMapUnit[] = await this.getMapIndicatorData(concept, country);
              const DACCountries = opts.DACOnly ? await this.getDACCountries() : [];
              const mapData = DACCountries.length ? Maps.DACOnlyData(DACCountries, processedData) : processedData;
              return {map: mapData, ...concept} as DH.IMapData;
@@ -101,38 +120,41 @@ export default class Maps {
              throw error;
          }
     }
-    private async indicatorDataProcessing(concept: IConcept): Promise<DH.IMapUnit[]> {
-        if (concept.theme !== 'data-revolution') {
-            const args = {...concept, sql, db: this.db, table: concept.id};
-            const data: IRAW [] = await getIndicatorDataSimple<IRAW>(args);
-            if (concept.range && concept.color) return this.linearDataProcessing(concept, data);
-            if (concept.color)  return this.categoricalLinearDataProcessing(concept, data);
-            return this.categoricalDataProcessing(concept, data);
+    private async getMapIndicatorData(concept: IConcept, country: string): Promise<DH.IMapUnit[]> {
+        if (concept.theme === 'data-revolution') {
+           return this.dataRevDataProcessing(concept);
         }
-        return this.dataRevDataProcessing(concept);
+        const args = {...concept, sql, db: this.db, table: concept.id};
+        const data: IRAWMapData [] = await getIndicatorDataSimple<IRAWMapData>(args);
+        // tslint:disable-next-line:max-line-length
+        if (concept.range && concept.color) return this.linearDataProcessing(concept.color, concept.range, country, data);
+        if (concept.color)  return this.categoricalLinearDataProcessing(concept, country, data);
+        return this.categoricalDataProcessing(concept, country, data);
     }
-    private async linearDataProcessing(concept: IConcept, data: IRAW[]):
+    private async linearDataProcessing(color: string, range: string, country: string, data: IRAWMapData[]):
         Promise<DH.IMapUnit[]> {
-        if (!concept.color || !concept.range) throw new Error (`color or range missing for ${concept.id}`);
-        const ramp = await Maps.getColorRamp(concept.color);
-        const scale = Maps.colorScale(concept.range, ramp);
-        return this.processScaleData(scale, data);
+        const ramp = await Maps.getColorRamp(color);
+        const scale = Maps.colorScale(range, ramp);
+        return this.processScaleData(scale, data, country);
     }
-    private async categoricalLinearDataProcessing(concept: IConcept, data: IRAW[]):
+    private async categoricalLinearDataProcessing(concept: IConcept, country: string, data: IRAWMapData[]):
         Promise<DH.IMapUnit[]> {
         if (!concept.color) throw new Error (`color missing for ${concept.id}`);
         const categoricalMappings: ICategoricalMapping[] = await Maps.getCategoricalMapping(concept.id, concept.theme);
         const range = categoricalMappings.map(obj => obj.id).join(',');
         const ramp = await Maps.getColorRamp(concept.color);
         const scale = Maps.colorScale(range, ramp);
-        return this.processScaleData(scale, data, categoricalMappings);
+        return this.processScaleData(scale, data, country, categoricalMappings);
     }
-    private async processScaleData(scale: Threshold<number, string>, data: IRAW[], cMappings?: ICategoricalMapping[]):
+    private async processScaleData(
+        scale: Threshold<number, string>,
+        data: IRAWMapData[], country: string, cMappings?: ICategoricalMapping[]):
         Promise<DH.IMapUnit[]> {
-        const entities: IEntity[] = await getEntities();
-        const processedData: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(data);
-        return processedData.map(obj => {
-            const entity = getEntityByIdGeneric<IEntity>(obj.id, entities);
+        const entities: IEntityBasic[] = country === 'global' ?
+            await getEntities() :  await getDistrictEntities(country);
+        const processedData: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(data, country);
+        return processedData.map((obj) => {
+            const entity = getEntityByIdGeneric<IEntityBasic>(obj.id, entities);
             let detail: any = null;
             if (cMappings) {
                 detail = Maps.getValueDetail(obj.value, cMappings).name;
@@ -146,15 +168,16 @@ export default class Maps {
             };
         });
     }
-    private async categoricalDataProcessing(concept: IConcept, data: IRAW[]):
+    private async categoricalDataProcessing(concept: IConcept, country: string, data: IRAWMapData[]):
         Promise<DH.IMapUnit[]> {
         const cMappings: ICategoricalMapping[] = await Maps.getCategoricalMapping(concept.id, concept.theme);
         const colors = await getColors();
-        const entities: IEntity[] = await getEntities();
-        const processedData: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(data);
+        const entities: IEntityBasic[] = country === 'global' ?
+            await getEntities() : await getDistrictEntities(country) ;
+        const processedData: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(data, country);
         return processedData.map(obj => {
            const cMapping = Maps.getValueDetail(obj.value, cMappings);
-           const entity = getEntityByIdGeneric<IEntity>(obj.id, entities);
+           const entity = getEntityByIdGeneric<IEntityBasic>(obj.id, entities);
            if (!cMapping.color) throw new Error(`color value is missing for ${JSON.stringify(cMapping)}`);
            const colorObj = getEntityByIdGeneric<IColor>(cMapping.color, colors);
            return {...obj, color: colorObj.value, name: entity.name, detail: cMapping.name};

@@ -26,7 +26,7 @@ export const getConcepts = (moduleName: string): Promise <IConcept[]> => {
 
 export const getConceptAsync = async (moduleName: string, id: string, theme?: string): Promise <IConcept> => {
     const allConcepts: IConcept[]  = await getConcepts(moduleName);
-    const concepts: IConcept[] = allConcepts.filter(obj => obj.id === id);
+    const concepts: IConcept[] = allConcepts.filter(obj => obj.id === id.trim());
     if (!concepts[0]) throw new Error(`failed to get concept for ${moduleName} ID: ${id}`);
     if (theme) {
        const concept: IConcept | undefined =  concepts.find(obj => obj.theme === theme);

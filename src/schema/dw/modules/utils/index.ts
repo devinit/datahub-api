@@ -206,9 +206,11 @@ export const getIndicatorDataSimple = async <T extends {}> (opts: IGetIndicatorA
         return db.manyCacheable(queryStr, {start_year, end_year, table: tableName});
 };
 
-export const indicatorDataProcessingSimple = <T extends {}>(data: IhasDiId[]): T[] => {
+export const indicatorDataProcessingSimple = <T extends {}>(data: any, country?: string): T[] => {
     return data
             .map(toId)
+            .map((obj) =>
+                country === 'global' || !country  ?  obj :  {...obj, id: obj.district_id})
             .map(obj => ({...obj, uid: shortid.generate()}))
             .map(toNumericFields);
 };
