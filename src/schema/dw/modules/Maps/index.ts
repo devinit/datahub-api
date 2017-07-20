@@ -52,18 +52,20 @@ interface IScaleThreshold <Input, Output> {
     range(): Output[];
     domain(): Input[];
 }
+const lightGrey = '#d0cccf';
 
 export default class Maps {
+    public static noDataLegendEntry: DH.ILegendField = {
+        color: 'white', backgroundColor: lightGrey, label: 'no data/not applicable'};
 
     public static DACOnlyData(DACCountries: string[], indicatorData: DH.IMapUnit[]): DH.IMapUnit[] {
        return DACCountries.map(name =>
             R.find((obj: DH.IMapUnit) => obj.name === name, indicatorData));
     }
-    public static colorScale(rangeStr: string, ramp: IColorMap): IScaleThreshold<number, string> {
-        // PS: TODO: i am not that happy with the way i am handling inverse ranges ie 50,10,0 it doesnt seem right
+    public static colorScale(rangeStr: string, ramp: IColorMap, offset: number = 1): IScaleThreshold<number, string> {
         const domain = rangeStr.split (',').map(val => Number(val));
         const isAscendingOrder = (domain[1] > domain[0]) ? true : false;
-        const range = R.range(0, domain.length + 1).map((index) => {
+        const range = R.range(0, domain.length + offset).map((index) => {
             if (index === 0) return ramp.low;
             if (index === domain.length) return ramp.high;
             if (index === Math.floor(domain.length / 2)) return ramp.mid;
@@ -106,10 +108,16 @@ export default class Maps {
                 const label = `${prevVal}-${currentVal}`;
                 return [...acc, {backgroundColor, color, label}];
             }
-            const lastBackgroundColor = range[index + 1];
-            return [...acc, {color, backgroundColor, label: `${prevVal}-${currentVal}`},
-                {color, backgroundColor: lastBackgroundColor, label: `>${currentVal}`},
-                {backgroundColor: 'grey', color, label: 'no data / not applicable'}];
+            // the range will always be longer by the domain by 1, (which is the offset variable in the scale function)
+            // but for some scales like the fragile states scale the range and domain will be the same.
+            // and hence they be no need of an extra legend field (hope this makes sense)
+            const lastBackgroundColor = range[index + (range.length - domain.length)];
+            const lastEntry = range.length > domain.length ?
+                [{color, backgroundColor, label: `${prevVal}-${currentVal}`},
+                {color, backgroundColor: lastBackgroundColor, label: `>${currentVal}`}]
+                :
+                [{color, backgroundColor: lastBackgroundColor, label: `>${currentVal}`}];
+            return [...acc, ...lastEntry, Maps.noDataLegendEntry];
         }, []);
         if (inputRange[0] < inputRange[1]) return legend;
         return [...(R.reverse(R.init(legend))), R.last(legend)] as DH.ILegendField[];
@@ -198,7 +206,7 @@ export default class Maps {
         const categoricalMappings: ICategoricalMapping[] = await Maps.getCategoricalMapping(concept.id, concept.theme);
         const range = categoricalMappings.map(obj => obj.id).join(',');
         const ramp = await Maps.getColorRamp(concept.color);
-        const scale = Maps.colorScale(range, ramp);
+        const scale = Maps.colorScale(range, ramp, 0);
         const linearLegend = Maps.createLinearLegend(concept.uom_display, range, scale);
         const legend = Maps.categoricalLegendFromLinear(categoricalMappings, linearLegend);
         const mapData = await this.processScaleData(scale, data, country, categoricalMappings);
@@ -247,7 +255,7 @@ export default class Maps {
             const textColor =  (hslColor.l > 0.7) ? 'black' : 'white';
             return {color: textColor, backgroundColor: colorObj.value, label: cMapping.name};
         });
-        return {mapData, legend};
+        return {mapData, legend: R.append(Maps.noDataLegendEntry, legend)};
     }
     private async dataRevDataProcessing(concept: IConcept): Promise<IMapDataWithLegend> {
         if (concept.theme !== 'data-revolution')
@@ -278,9 +286,11 @@ export default class Maps {
             const colorObj: IColor = getEntityByIdGeneric<IColor>(key, colors);
             const hslColor = hsl(colorObj.value);
             const textColor =  (hslColor.l > 0.7) ? 'black' : 'white';
-            return [...acc, {backgroundColor: colorObj.value, color: textColor, label:  dataRevColorMap[key]}];
+            return [...acc,
+                {backgroundColor: colorObj.value, color: textColor, label:  dataRevColorMap[key]},
+                ];
         }, []);
-        return {mapData, legend};
+        return {mapData, legend: R.append(Maps.noDataLegendEntry, legend)};
     }
     private async getDACCountries(): Promise<string[]> {
         try {

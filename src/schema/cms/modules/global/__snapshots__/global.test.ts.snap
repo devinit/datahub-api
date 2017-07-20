@@ -162,7 +162,7 @@ exports[`Site Global narratives and refrence module should return colors 1`] = `
   },
   Object {
     \\"id\\": \\"green-darker\\",
-    \\"value\\": \\"#007851\\",
+    \\"value\\": \\"#065139\\",
   },
   Object {
     \\"id\\": \\"grey\\",

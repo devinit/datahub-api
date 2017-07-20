@@ -25,3 +25,6 @@ SELECT * FROM data_series.poorest_20_percent WHERE year = '2013':dw
 global-picture/fragile-states.csv:cms
 global-picture/data-revolution-colors.csv:cms
 SELECT * FROM data_series.latest_census WHERE detail IS NOT NULL:dw
+SELECT * FROM data_series.depth_of_extreme_poverty_190 WHERE year >= '2010' AND year <= '2013' AND value IS NOT NULL:dw
+SELECT * FROM spotlight_on_uganda.uganda_poverty_headcount WHERE year = '2014' AND value IS NOT NULL:dw
+SELECT * FROM data_series.latest_census WHERE colour IS NOT NULL:dw
