@@ -1,6 +1,5 @@
 import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
-import {formatNumbers} from '../../../../utils';
 import sql from './sql';
 import * as R from 'ramda';
 import * as shortid from 'shortid';
@@ -9,7 +8,7 @@ import {IColor, getColors, getEntityByIdGeneric} from '../../../cms/modules/glob
 import {isError} from '../../../../lib/isType';
 import {getDistrictBySlugAsync, IDistrict} from '../../../cms/modules/spotlight';
 import {getIndicatorDataSpotlights, ISpotlightGetIndicatorArgs, IRAW, getSpotlightTableName,
-        IRAWPopulationGroup, IRAWDomestic, domesticDataProcessing} from '../utils';
+        IRAWPopulationGroup, IRAWDomestic, domesticDataProcessing, formatNumbers} from '../utils';
 
 interface ISpotlightArgs {
     id: string;

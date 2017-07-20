@@ -39,16 +39,26 @@ describe('Maps module tests', () => {
         const dataRevolution = await Maps.getCategoricalMapping('data_series.agricultural_census', 'data-revolution');
         expect(prettyFormat({fragileSates, dataRevolution})).toMatchSnapshot();
     }, 5000);
-    it ('should return color values from a scale', async () => {
+    it('should return color values from a scale', async () => {
         const ramp = {high: '#8f1b13', low: '#f8c1b2', mid: '#e8443a'};
         const scaleA = Maps.colorScale('1, 5, 10, 20', ramp);
         const scaleB = Maps.colorScale('500,120,50,20,5', ramp);
         const results = {
-            A: {0.23: scaleA(0.23), 5: scaleA(5), 15: scaleA(15), 100: scaleA(100)},
+            A: {0: scaleA(0), 1: scaleA(1), 5: scaleA(5), 10: scaleA(10), 19: scaleA(19), 100: scaleA(100)},
             B: { 530: scaleB(530), 110: scaleB(110),
                 50: scaleB(50), 22: scaleB(22), 2: scaleB(2)},
         };
         expect(prettyFormat(results)).toMatchSnapshot();
+    });
+    it('should create legend for map data', async () => {
+        const ramp = {high: '#8f1b13', low: '#f8c1b2', mid: '#e8443a'};
+        const rangeA = '1, 5, 10, 20';
+        const rangeB = '500,120,50,20,5';
+        const scaleA = Maps.colorScale(rangeA, ramp);
+        const scaleB = Maps.colorScale(rangeB, ramp);
+        const legendA = Maps.createLinearLegend('%', rangeA, scaleA);
+        const legendB = Maps.createLinearLegend('unit', rangeB, scaleB);
+        expect(prettyFormat({legendA, legendB})).toMatchSnapshot();
     });
     it('should create color ramp', async () => {
         const ramp = {high: '#8f1b13', low: '#f8c1b2', mid: '#e8443a'};

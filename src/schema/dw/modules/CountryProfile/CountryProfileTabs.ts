@@ -1,11 +1,10 @@
 import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
-import {formatNumbers} from '../../../../utils';
 import sql from './sql';
 import * as shortid from 'shortid';
 import * as R from 'ramda';
 import {getIndicatorData, IGetIndicatorArgs, isDonor, indicatorDataProcessingNamed, DONOR,
-        IRAWPopulationAgeBand, normalizeKeyName, IRAW, IRAWQuintile, RECIPIENT,
+        IRAWPopulationAgeBand, normalizeKeyName, IRAW, IRAWQuintile, RECIPIENT,formatNumbers,
         IRAWPopulationGroup, IRAWMulti} from '../utils';
 
 interface IOverViewTabRecipients {

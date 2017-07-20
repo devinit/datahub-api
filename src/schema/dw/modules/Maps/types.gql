@@ -11,6 +11,12 @@ type MapUnit {
   uid: String
 }
 
+type LegendField {
+  label: String,
+  color: String,
+  backgroundColor: String
+}
+
 type MapData {
   map: [MapUnit]
   # map indicator user friendly label / slug eg Poverty
@@ -25,6 +31,8 @@ type MapData {
   source_link: String
   theme: String
   heading: String
+  country: String
+  legend: [LegendField]
 }
 
 type Query {

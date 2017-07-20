@@ -1,6 +1,5 @@
 import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
-import {formatNumbers} from '../../../../utils';
 import sql from './sql';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import * as R from 'ramda';
@@ -8,7 +7,7 @@ import * as shortid from 'shortid';
 import {ICurrency, getCurrency, getEntityBySlugAsync, IColor,
         IEntity, getColors, getEntityByIdGeneric} from '../../../cms/modules/global';
 import {getIndicatorData, RECIPIENT, DONOR, IGetIndicatorArgs,
-        indicatorDataProcessingSimple, makeSqlAggregateQuery,
+        indicatorDataProcessingSimple, makeSqlAggregateQuery, formatNumbers,
         isDonor, IRAW, IRAWFlow, IProcessedSimple, entitesFnMap, IRAWDomestic, domesticDataProcessing} from '../utils';
 import {getFlowByTypeAsync, getFlows, getFlowByIdAsync, getBudgetLevels, IBudgetLevelRef,
         getAllFlowSelections, IFlowRef, IFlowSelectionRaw} from '../../../cms/modules/countryProfile';

@@ -295,6 +295,8 @@ declare namespace DH {
     source_link: string | null;
     theme: string | null;
     heading: string | null;
+    country: string | null;
+    legend: Array<ILegendField> | null;
   }
 
   /*
@@ -308,6 +310,15 @@ declare namespace DH {
     value: number | null;
     detail: string | null;
     uid: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface ILegendField {
+    label: string | null;
+    color: string | null;
+    backgroundColor: string | null;
   }
 
   /*
