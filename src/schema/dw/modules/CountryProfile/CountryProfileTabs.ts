@@ -5,7 +5,7 @@ import * as shortid from 'shortid';
 import * as R from 'ramda';
 import {getIndicatorData, IGetIndicatorArgs, isDonor, indicatorDataProcessingNamed, DONOR,
         IRAWPopulationAgeBand, normalizeKeyName, IRAW, IRAWQuintile, RECIPIENT, formatNumbers,
-        IRAWPopulationGroup, IRAWMulti} from '../utils';
+        IRAWPopulationGroup} from '../utils';
 
 interface IOverViewTabRecipients {
     countryType: string;
@@ -198,7 +198,7 @@ export default class CountryProfileTabs {
             id,
             ...this.defaultArgs
         };
-            const data: IRAWMulti[] = await getIndicatorData<IRAWMulti>(indicatorArgs);
+            const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
             return indicatorDataProcessingNamed(data);
         } catch (error) {
            throw error;

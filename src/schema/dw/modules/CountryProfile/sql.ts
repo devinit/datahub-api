@@ -25,7 +25,7 @@ export default {
     populationDistribution: 'SELECT * FROM fact.population_rural_urban WHERE di_id = ${id} AND year >= ${start_year} AND year <= ${end_year}',
     populationPerAgeBand: 'SELECT * FROM fact.population_by_age WHERE di_id = ${id} AND year >= ${start_year} AND year <= ${end_year}',
     // tslint:disable-next-line:max-line-length
-    poverty190Trend: 'SELECT di_id, value_2, year FROM data_series.poverty_190 WHERE di_id = ${id} AND year >= ${start_year} AND year <= ${end_year}',
+    poverty190Trend: 'SELECT di_id, value_2 as value, year FROM data_series.poverty_190 WHERE di_id = ${id} AND year >= ${start_year} AND year <= ${end_year}',
     depthOfExtremePoverty: 'SELECT value FROM data_series.depth_of_extreme_poverty_190 WHERE di_id = ${id} AND year = ${start_year}',
     GNI: 'SELECT value FROM fact.gni_usd_2015 WHERE di_id = ${id} AND year = ${start_year}',
     ODANetIn: 'SELECT value FROM fact.in_oda_net_2015 WHERE di_id = ${id} AND year = ${start_year}', // computed
