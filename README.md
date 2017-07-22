@@ -27,7 +27,7 @@ Useful commands:
 How to run it:
 ----
 ```bash
-    yarn install --ignore-scripts
+    npm install 
     ## development mode
     npm run dev
     ## production

@@ -21,8 +21,9 @@
   },
   "keywords": [
     "apollo",
+    "node",
     "backend",
-    "apollo-server",
+    "graphql-server",
     "typescript",
     "graphql",
     "graphiql",

@@ -79,8 +79,7 @@ declare namespace DH {
   interface ITheme {
     id: string | null;
     name: string | null;
-    default: string | null;
-    order: number | null;
+    default_indicator: string | null;
   }
 
   /*
