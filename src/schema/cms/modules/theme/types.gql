@@ -1,0 +1,11 @@
+type Theme {
+  id: String
+  name: String
+  default_indicator: String
+  indicators: [IdNamePair]
+}
+
+type Query {
+    globalPictureThemes: [Theme]
+    spotlightThemes(country: String!): [Theme]
+}

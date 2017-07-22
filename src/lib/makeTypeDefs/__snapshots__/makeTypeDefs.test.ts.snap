@@ -25,17 +25,16 @@ declare namespace DH {
     description: 
   */
   interface IQuery {
-    countryProfilePageData: Array<IPage> | null;
     countries: Array<IIdNamePair> | null;
-    globalPicturePageData: Array<IPage> | null;
-    globalPictureThemes: Array<ITheme> | null;
-    globalPictureIndicators: Array<IIndicator> | null;
+    countryProfilePageData: Array<IPage> | null;
     odaDonorBubbleChartPageData: Array<IPage> | null;
+    globalPicturePageData: Array<IPage> | null;
     povertyBubbleChartPageData: Array<IPage> | null;
-    spotlightUgandaPageData: Array<IPage> | null;
     unbundlingOdaPageData: Array<IPage> | null;
     unbundlingOOfPageData: Array<IPage> | null;
     whereThePoorPageData: Array<IPage> | null;
+    globalPictureThemes: Array<ITheme> | null;
+    spotlightThemes: Array<ITheme> | null;
     bubbleChartOda: IBubbleChartOda | null;
     bubbleChartPoverty: IBubbleChartPoverty | null;
     bubbleSize: Array<IBubbleChartData> | null;
@@ -61,6 +60,14 @@ declare namespace DH {
   /*
     description: 
   */
+  interface IIdNamePair {
+    id: string | null;
+    name: string | null;
+  }
+
+  /*
+    description: 
+  */
   interface IPage {
     id: string | null;
     title: string | null;
@@ -70,28 +77,11 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IIdNamePair {
-    id: string | null;
-    name: string | null;
-  }
-
-  /*
-    description: 
-  */
   interface ITheme {
     id: string | null;
     name: string | null;
-    default: string | null;
-    order: number | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IIndicator {
-    id: string | null;
-    name: string | null;
-    order: number | null;
+    default_indicator: string | null;
+    indicators: Array<IIdNamePair> | null;
   }
 
   /*
@@ -470,17 +460,16 @@ exports[`gql Types to Typescript types should return merged typedefs 1`] = `
 }
 
 type Query {
-  countryProfilePageData(countrySlug: String!): [Page]
   countries: [IdNamePair]
-  globalPicturePageData: [Page]
-  globalPictureThemes: [Theme]
-  globalPictureIndicators(theme: String!): [Indicator]
+  countryProfilePageData(countrySlug: String!): [Page]
   odaDonorBubbleChartPageData: [Page]
+  globalPicturePageData: [Page]
   povertyBubbleChartPageData: [Page]
-  spotlightUgandaPageData: [Page]
   unbundlingOdaPageData: [Page]
   unbundlingOOfPageData: [Page]
   whereThePoorPageData: [Page]
+  globalPictureThemes: [Theme]
+  spotlightThemes(country: String!): [Theme]
   bubbleChartOda: BubbleChartOda
   bubbleChartPoverty: BubbleChartPoverty
   # we return data for the entire year range for a given indicator id eg donor country ID or indicator table name
@@ -508,23 +497,17 @@ type Query {
   unbundlingSelectionData(aidType: String): UnbundlingAidSelections
 }
 
-type Theme {
-  id: String
-  name: String
-  default: String
-  order: Int
-}
-
-type Indicator {
-  id: String
-  name: String
-  order: Int
-}
-
 type Page {
   id: String
   title: String
   narrative: String
+}
+
+type Theme {
+  id: String
+  name: String
+  default_indicator: String
+  indicators: [IdNamePair]
 }
 
 type BubbleChartData {

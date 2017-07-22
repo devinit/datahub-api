@@ -1,0 +1,1 @@
+gets spotlights related refrence data eg spotlight on uganda

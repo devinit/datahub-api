@@ -1,0 +1,413 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Themes data tests should return global picture themes 1`] = `
+"Array [
+  Object {
+    \\"default_indicator\\": \\"data_series.poor_people_190\\",
+    \\"id\\": \\"poverty\\",
+    \\"indicators\\": Array [
+      Object {
+        \\"id\\": \\"data_series.avg_income_of_extreme_poor\\",
+        \\"name\\": \\"Average income of extreme poor\\",
+      },
+      Object {
+        \\"id\\": \\"data_series.depth_of_extreme_poverty_190\\",
+        \\"name\\": \\"Depth of extreme poverty (poverty gap)\\",
+      },
+      Object {
+        \\"id\\": \\"data_series.poor_people_190\\",
+        \\"name\\": \\"Number of people living in extreme poverty\\",
+      },
+      Object {
+        \\"id\\": \\"data_series.poorest_20_percent\\",
+        \\"name\\": \\"Poorest 20%\\",
+      },
+      Object {
+        \\"id\\": \\"data_series.poverty_190\\",
+        \\"name\\": \\"% of population living in extreme poverty\\",
+      },
+      Object {
+        \\"id\\": \\"data_series.poverdata_series.poverty_310\\",
+        \\"name\\": \\"% of population living on less than $3.10 a day\\",
+      },
+    ],
+    \\"name\\": \\"Poverty\\",
+    \\"position\\": 1,
+  },
+  Object {
+    \\"default_indicator\\": \\"data_series.fragile_states\\",
+    \\"id\\": \\"vulnerability\\",
+    \\"indicators\\": Array [
+      Object {
+        \\"id\\": \\"data_series.human_hazard\\",
+        \\"name\\": \\"Human hazard and exposure score\\",
+      },
+      Object {
+        \\"id\\": \\"data_series.number_of_un_appeals\\",
+        \\"name\\": \\"Number of UN-coordinated appeals\\",
+      },
+      Object {
+        \\"id\\": \\"data_series.natural_hazard\\",
+        \\"name\\": \\"Natural hazard and exposure score\\",
+      },
+      Object {
+        \\"id\\": \\"data_series.forgotten_crisis\\",
+        \\"name\\": \\"Number of appearances on ECHO's Forgotten Crisis Assessment index\\",
+      },
+      Object {
+        \\"id\\": \\"data_series.fragile_states\\",
+        \\"name\\": \\"Fragile states\\",
+      },
+      Object {
+        \\"id\\": \\"data_series.climate_vulnerability\\",
+        \\"name\\": \\"Climate vulnerability\\",
+      },
+      Object {
+        \\"id\\": \\"data_series.displacement\\",
+        \\"name\\": \\"Number of people displaced due to human hazards by hosting country\\",
+      },
+    ],
+    \\"name\\": \\"Vulnerability\\",
+    \\"position\\": 2,
+  },
+  Object {
+    \\"default_indicator\\": \\"data_series.non_grant_revenue_ppp_pc\\",
+    \\"id\\": \\"government-finance\\",
+    \\"indicators\\": Array [],
+    \\"name\\": \\"Government finance\\",
+    \\"position\\": 3,
+  },
+  Object {
+    \\"default_indicator\\": \\"data_series.largest_intl_flow\\",
+    \\"id\\": \\"international-finance\\",
+    \\"indicators\\": Array [
+      Object {
+        \\"id\\": \\"data_series.largest_intl_flow\\",
+        \\"name\\": \\"Largest international resource flow\\",
+      },
+      Object {
+        \\"id\\": \\"data_series.fdi_pp\\",
+        \\"name\\": \\"Foreign direct investment per person, US$\\",
+      },
+      Object {
+        \\"id\\": \\"data_series.intl_resources_total_percent_gdp\\",
+        \\"name\\": \\"Total international resource flows, % of GDP\\",
+      },
+      Object {
+        \\"id\\": \\"data_series.remittances_pp\\",
+        \\"name\\": \\"Remittances received per person, US$\\",
+      },
+      Object {
+        \\"id\\": \\"data_series.oda_percent_intl_resources\\",
+        \\"name\\": \\"ODA, % of international resource flows\\",
+      },
+      Object {
+        \\"id\\": \\"data_series.fdi_percent_gdp\\",
+        \\"name\\": \\"Foreign direct investment, % of GDP\\",
+      },
+    ],
+    \\"name\\": \\"International finance\\",
+    \\"position\\": 4,
+  },
+  Object {
+    \\"default_indicator\\": \\"fact.in_oda_gross_2015\\",
+    \\"id\\": \\"international-official-finance\\",
+    \\"indicators\\": Array [],
+    \\"name\\": \\"International official finance\\",
+    \\"position\\": 5,
+  },
+  Object {
+    \\"default_indicator\\": \\"data_series.in_ha\\",
+    \\"id\\": \\"humanitarian-finance\\",
+    \\"indicators\\": Array [
+      Object {
+        \\"id\\": \\"data_series.in_ha\\",
+        \\"name\\": \\"Humanitarian assistance\\",
+      },
+    ],
+    \\"name\\": \\"Humanitarian finance\\",
+    \\"position\\": 6,
+  },
+  Object {
+    \\"default_indicator\\": \\"data_series.latest_census\\",
+    \\"id\\": \\"data-revolution\\",
+    \\"indicators\\": Array [
+      Object {
+        \\"id\\": \\"data_series.agricultural_census\\",
+        \\"name\\": \\"Latest (planned) agricultural census\\",
+      },
+      Object {
+        \\"id\\": \\"data_series.number_of_surveys\\",
+        \\"name\\": \\"Number of poverty surveys in past 10 years\\",
+      },
+      Object {
+        \\"id\\": \\"data_series.civil_reg_births\\",
+        \\"name\\": \\"Vital statistics from civil registration (births)\\",
+      },
+      Object {
+        \\"id\\": \\"data_series.civil_reg_deaths\\",
+        \\"name\\": \\"Vital statistics from civil registration (deaths)\\",
+      },
+      Object {
+        \\"id\\": \\"data_series.educ_mis\\",
+        \\"name\\": \\"Education management information system\\",
+      },
+      Object {
+        \\"id\\": \\"data_series.latest_census\\",
+        \\"name\\": \\"Latest (planned) population census\\",
+      },
+      Object {
+        \\"id\\": \\"data_series.stat_capacity\\",
+        \\"name\\": \\"Statistical capacity\\",
+      },
+      Object {
+        \\"id\\": \\"data_series.latest_hh_survey\\",
+        \\"name\\": \\"Latest (planned) household survey\\",
+      },
+      Object {
+        \\"id\\": \\"data_series.health_mis\\",
+        \\"name\\": \\"Health management information system\\",
+      },
+    ],
+    \\"name\\": \\"Data revolution\\",
+    \\"position\\": 7,
+  },
+  Object {
+    \\"default_indicator\\": \\"data_series.iati_budgets_gb\\",
+    \\"id\\": \\"forward-looking-oda\\",
+    \\"indicators\\": Array [
+      Object {
+        \\"id\\": \\"iati.iati_budgets_gb\\",
+        \\"name\\": \\"UK, DFID planned budgets\\",
+      },
+      Object {
+        \\"id\\": \\"iati.iati_budgets_ca\\",
+        \\"name\\": \\"Canada, Global Affairs planned budgets\\",
+      },
+      Object {
+        \\"id\\": \\"iati.iati_budgets_be\\",
+        \\"name\\": \\"Belgian Development Cooperation planned budgets\\",
+      },
+      Object {
+        \\"id\\": \\"iati.iati_budgets_nl\\",
+        \\"name\\": \\"Netherlands, Foreign Affairs planned budgets\\",
+      },
+      Object {
+        \\"id\\": \\"iati.iati_budgets_dk\\",
+        \\"name\\": \\"Denmark DANIDA and Foreign Affairs forward-looking budgets for each country based on activities reported through IATI.\\",
+      },
+    ],
+    \\"name\\": \\"Forward looking ODA\\",
+    \\"position\\": 8,
+  },
+]"
+`;
+
+exports[`Themes data tests should return spotlight on uganda themes 1`] = `
+"Array [
+  Object {
+    \\"default_indicator\\": \\"spotlight_on_uganda.uganda_poverty_headcount\\",
+    \\"id\\": \\"uganda-poverty\\",
+    \\"indicators\\": Array [
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_deprivation_living\\",
+        \\"name\\": \\"Decent standard of living score\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_life_expectancy\\",
+        \\"name\\": \\"Life expectancy\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_poverty_headcount\\",
+        \\"name\\": \\"Poverty headcount\\",
+      },
+    ],
+    \\"name\\": \\"Poverty\\",
+    \\"position\\": 1,
+  },
+  Object {
+    \\"default_indicator\\": \\"spotlight_on_uganda.uganda_urban_pop\\",
+    \\"id\\": \\"uganda-pop\\",
+    \\"indicators\\": Array [
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_avg_house_size\\",
+        \\"name\\": \\"Average household size\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_dependency_ratio\\",
+        \\"name\\": \\"Average dependency ratio\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_pop_dens\\",
+        \\"name\\": \\"Population density (per sq km)\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_total_pop\\",
+        \\"name\\": \\"Total population\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_urban_pop\\",
+        \\"name\\": \\"Urban population (%)\\",
+      },
+    ],
+    \\"name\\": \\"Population\\",
+    \\"position\\": 2,
+  },
+  Object {
+    \\"default_indicator\\": \\"spotlight_on_uganda.uganda_primary_educ_funding\\",
+    \\"id\\": \\"uganda-education\\",
+    \\"indicators\\": Array [
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_donor_educ_spend\\",
+        \\"name\\": \\"Primary education donor spending per child\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_leaving_exam_perf_rate\\",
+        \\"name\\": \\"Primary leaving exam performance index\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_primary_educ_funding\\",
+        \\"name\\": \\"Primary education spending per child\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_primary_enrol\\",
+        \\"name\\": \\"Primary net enrolment rate\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_primary_sit_write\\",
+        \\"name\\": \\"Primary pupils with adequate sitting and writing space-all schools (%)\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_primary_sit_write_gov\\",
+        \\"name\\": \\"Primary pupils with adequate sitting and writing space-government schools (%)\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_primary_stu_teach_ratio\\",
+        \\"name\\": \\"Primary pupil to teacher ratio-all schools\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_primary_stu_teach_ratio_gov\\",
+        \\"name\\": \\"Primary pupil to teacher ratio-government schools\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_secondary_enrol\\",
+        \\"name\\": \\"Secondary net enrolment rate\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_secondary_sit_write\\",
+        \\"name\\": \\"Secondary pupils with adequate sitting and writing space (total)\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_secondary_sit_write_gov\\",
+        \\"name\\": \\"Secondary pupils with adequate sitting and writing space (government schools)\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_secondary_stu_teach_ratio\\",
+        \\"name\\": \\"Secondary pupil-teacher ratio (total)\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_secondary_stu_teach_ratio_gov\\",
+        \\"name\\": \\"Secondary pupil-teacher ratio (government schools)\\",
+      },
+    ],
+    \\"name\\": \\"Education\\",
+    \\"position\\": 3,
+  },
+  Object {
+    \\"default_indicator\\": \\"spotlight_on_uganda.uganda_overall_health\\",
+    \\"id\\": \\"uganda-health\\",
+    \\"indicators\\": Array [
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_anc4_coverage\\",
+        \\"name\\": \\"Antenatal care coverage rate\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_dpt3_coverage\\",
+        \\"name\\": \\"Diphtheria treatment coverage rate\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_health_funding\\",
+        \\"name\\": \\"Primary health spending per person\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_health_posts\\",
+        \\"name\\": \\"Approved posts that are filled (%)\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_hmis\\",
+        \\"name\\": \\"HMIS reporting score\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_ipt2_coverage\\",
+        \\"name\\": \\"Tetanus vaccine coverage rate\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_overall_health\\",
+        \\"name\\": \\"District league table overall score\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_tb_success\\",
+        \\"name\\": \\"Tuberculosis treatment success rate\\",
+      },
+    ],
+    \\"name\\": \\"Health\\",
+    \\"position\\": 4,
+  },
+  Object {
+    \\"default_indicator\\": \\"spotlight_on_uganda.uganda_rural_safe_water\\",
+    \\"id\\": \\"uganda-wash\\",
+    \\"indicators\\": Array [
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_household_san_cov\\",
+        \\"name\\": \\"Household sanitation coverage (%)\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_rural_safe_water\\",
+        \\"name\\": \\"Rural access to safe water (%)\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_rural_water_func\\",
+        \\"name\\": \\"Rural water source functionality (%)\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_wash_perf_score\\",
+        \\"name\\": \\"District WASH performance score\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_water_source_comm_func\\",
+        \\"name\\": \\"Functioning water source committees (%)\\",
+      },
+    ],
+    \\"name\\": \\"Water and sanitation\\",
+    \\"position\\": 5,
+  },
+  Object {
+    \\"default_indicator\\": \\"spotlight_on_uganda.uganda_local_percent\\",
+    \\"id\\": \\"uganda-dist-resource\\",
+    \\"indicators\\": Array [
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_agri_percent\\",
+        \\"name\\": \\"Agriculture allocation as a % of total expenditure\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_donor_percent\\",
+        \\"name\\": \\"Donor funds\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_educ_percent\\",
+        \\"name\\": \\"Education allocation as a % of total expenditure\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_health_percent\\",
+        \\"name\\": \\"Health allocation as a % of total expenditure\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_local_percent\\",
+        \\"name\\": \\"Locally raised revenues\\",
+      },
+    ],
+    \\"name\\": \\"District public resources\\",
+    \\"position\\": 6,
+  },
+]"
+`;

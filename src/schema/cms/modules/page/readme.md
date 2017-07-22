@@ -1,1 +1,1 @@
-This module is responsible for getting the page data for the various cms modules.
+This module is responsible for getting the all the page data used on the datahub

@@ -3,3 +3,12 @@ type Page {
     title: String
     narrative: String
 }
+type Query {
+  countryProfilePageData(countrySlug: String!): [Page]
+  odaDonorBubbleChartPageData: [Page]
+  globalPicturePageData: [Page]
+  povertyBubbleChartPageData: [Page]
+  unbundlingOdaPageData: [Page]
+  unbundlingOOfPageData: [Page]
+  whereThePoorPageData: [Page]
+}

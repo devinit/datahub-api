@@ -1,5 +1,4 @@
 import {get} from '../../connector';
-import * as R from 'ramda';
 
 export interface IConcept {
     id: string;
@@ -35,6 +34,3 @@ export const getConceptAsync = async (moduleName: string, id: string, theme?: st
     }
     return concepts[0];
 };
-
-export const getConcept = (id: string, concepts: IConcept[]): IConcept =>
-    R.find(R.propEq('id', id), concepts) as IConcept;

@@ -1,14 +1,18 @@
-import {getGlobalPicturePageData, getGlobalPictureThemes} from './modules/globalPicture';
-import {getCountryProfilePageData} from './modules/countryProfile';
-import {getOdaDonorBubbleChartPageData} from './modules/odaDonorBubbleChart';
-import {getPovertyBubbleChartPageData} from './modules/povertyBubbleChart';
-import {getUnbundlingOdaPageData} from './modules/unbundlingOda';
-import {getUnbundlingOOfPageData} from './modules/unbundlingOOf';
-import {getWhereThePoorPageData} from './modules/whereThePoor';
+import {getSpotlightThemes, getGlobalPictureThemes} from './modules/theme';
+import {
+    getCountryProfilePageData,
+    getGlobalPicturePageData,
+    getOdaDonorBubbleChartPageData,
+    getPovertyBubbleChartPageData,
+    getUnbundlingOdaPageData,
+    getUnbundlingOOfPageData,
+    getWhereThePoorPageData,
+} from './modules/page';
+import { get} from './connector';
 import {getCountries} from './modules/global';
-import {get} from './connector';
 
 export interface ICms {
+    getSpotlightThemes: any;
     getGlobalPictureThemes: any;
     getGlobalPicturePageData: any;
     getOdaDonorBubbleChartPageData: any;
@@ -23,6 +27,7 @@ export interface ICms {
 
 const cms: ICms = {
     getGlobalPicturePageData,
+    getSpotlightThemes,
     getGlobalPictureThemes,
     getOdaDonorBubbleChartPageData,
     getPovertyBubbleChartPageData,

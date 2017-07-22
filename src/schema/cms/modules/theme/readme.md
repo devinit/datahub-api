@@ -1,0 +1,1 @@
+returns global picture and spotlight themes data

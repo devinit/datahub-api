@@ -1,10 +1,45 @@
 import 'jest';
-import {getPageData} from '.';
+import {
+    getCountryProfilePageData,
+    getPovertyBubbleChartPageData,
+    getOdaDonorBubbleChartPageData,
+    getUnbundlingOdaPageData,
+    getUnbundlingOOfPageData,
+    getWhereThePoorPageData
+} from '.';
+import * as prettyFormat from 'pretty-format';
 
-describe('Github page data tests', () => {
-    it('should get data from page.csv of a module on github', async () => {
-        const pageData: DH.IPage[] = await getPageData('global-picture');
+describe('Page data', () => {
+    it('should return page data for a country slug', async () => {
+        const pageData = await getCountryProfilePageData('afghanistan');
         expect(pageData.length).toBeGreaterThan(2);
-        expect(pageData[0].id).toBe('introduction');
-    }, 20000);
+        expect(prettyFormat(pageData)).toMatchSnapshot();
+    }, 100000);
+    it('should return page data for the Poverty bubble chart', async () => {
+        const pageData = await getPovertyBubbleChartPageData();
+        //  console.log(pageData[0]);
+        expect(pageData.length).toBeGreaterThan(0);
+        expect(prettyFormat(pageData)).toMatchSnapshot();
+    }, 10000);
+    it('should return page data for the ODA donor bubble chart', async () => {
+        const pageData = await getOdaDonorBubbleChartPageData();
+        //  console.log(pageData[0]);
+        expect(pageData.length).toBeGreaterThan(0);
+        expect(prettyFormat(pageData)).toMatchSnapshot();
+    }, 10000);
+    it('should return page data for the Unbundling Oda', async () => {
+        const pageData = await getUnbundlingOdaPageData();
+        expect(pageData.length).toBeGreaterThan(0);
+        expect(prettyFormat(pageData)).toMatchSnapshot();
+    }, 10000);
+    it('should return page data for  Unbundling OOf', async () => {
+        const pageData = await getUnbundlingOOfPageData();
+        expect(pageData.length).toBeGreaterThan(0);
+        expect(prettyFormat(pageData)).toMatchSnapshot();
+    }, 10000);
+    it('should return page data for Where The Poor', async () => {
+        const pageData = await getWhereThePoorPageData();
+        expect(pageData.length).toBeGreaterThan(0);
+        expect(prettyFormat(pageData)).toMatchSnapshot();
+    }, 10000);
 });

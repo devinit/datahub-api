@@ -1,7 +1,5 @@
 import * as R from 'ramda';
-import {getPageData} from '../page';
 import {get} from '../../connector';
-import {getEntities, IEntity} from '../global';
 
 export interface IFlowRef {
     id: string;
@@ -30,23 +28,6 @@ export interface IBudgetLevelRef {
     name: string;
     color: string;
 }
-export const getCountryProfilePageData = async (countrySlug: string): Promise<DH.IPage[]> => {
-    try {
-        const data: DH.IPage[] = await getPageData('country-profile');
-        const entities: IEntity[] = await getEntities();
-        const entity: IEntity | undefined = entities.find(obj => obj.slug === countrySlug);
-        if (!entity) throw Error('entity is undefined');
-        return R.map((obj: DH.IPage) => {
-            const title = obj.title && obj.title.includes('${country}') ?
-                obj.title.replace('${country}', entity.name) : obj.title;
-            const narrative = obj.narrative && obj.narrative.includes('${country}') ?
-                obj.narrative.replace('${country}', entity.name) : obj.narrative;
-            return {...obj, title, narrative};
-        }, data);
-    } catch (error) {
-        throw new Error(`Error getting country profile page data: ${error}`);
-    }
-};
 
 export const getFlows = (): Promise<IFlowRef[]> => get<IFlowRef>('country-profile/flow-name.csv');
 
