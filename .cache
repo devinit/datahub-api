@@ -64,3 +64,6 @@ SELECT value FROM spotlight_on_uganda.uganda_tb_success WHERE district_id ='d113
 SELECT * FROM spotlight_on_uganda.uganda_population_rural_urban WHERE district_id = 'd113' AND year >= '2000' AND year <= '2014':dw
 SELECT * FROM spotlight_on_uganda.uganda_leaving_exam_perf_rate WHERE year = '2010' Order By value DESC:dw
 SELECT value FROM spotlight_on_uganda.uganda_primary_stu_teach_ratio WHERE district_id ='d113' AND year = '2010':dw
+global-picture/theme.csv:cms
+spotlight-uganda/theme.csv:cms
+SELECT * FROM data_series.poor_people_190 WHERE year >= '1990' AND year <= '2013' AND value IS NOT NULL:dw

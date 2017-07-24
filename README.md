@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/devinit/datahub-api.svg?branch=master)](https://travis-ci.org/devinit/datahub-api)
 ![Code Climate](https://codeclimate.com/github/devinit/datahub-api.svg)
 [![codecov](https://codecov.io/gh/devinit/datahub-api/branch/master/graph/badge.svg)](https://codecov.io/gh/devinit/datahub-api)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e501f77141774b74979c60d5cfd219ac)](https://www.codacy.com/app/epicallan/datahub-api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=devinit/datahub-api&amp;utm_campaign=Badge_Grade)
 [![Dependency Status](https://gemnasium.com/badges/github.com/devinit/datahub-api.svg)](https://gemnasium.com/github.com/devinit/datahub-api)
 
 ### Graphql server for the data-hub application.
