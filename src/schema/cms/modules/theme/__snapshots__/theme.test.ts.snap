@@ -7,28 +7,24 @@ exports[`Themes data tests should return global picture themes 1`] = `
     \\"id\\": \\"poverty\\",
     \\"indicators\\": Array [
       Object {
-        \\"id\\": \\"data_series.avg_income_of_extreme_poor\\",
-        \\"name\\": \\"Average income of extreme poor\\",
-      },
-      Object {
-        \\"id\\": \\"data_series.depth_of_extreme_poverty_190\\",
-        \\"name\\": \\"Depth of extreme poverty (poverty gap)\\",
-      },
-      Object {
         \\"id\\": \\"data_series.poor_people_190\\",
         \\"name\\": \\"Number of people living in extreme poverty\\",
-      },
-      Object {
-        \\"id\\": \\"data_series.poorest_20_percent\\",
-        \\"name\\": \\"Poorest 20%\\",
       },
       Object {
         \\"id\\": \\"data_series.poverty_190\\",
         \\"name\\": \\"% of population living in extreme poverty\\",
       },
       Object {
+        \\"id\\": \\"data_series.depth_of_extreme_poverty_190\\",
+        \\"name\\": \\"Depth of extreme poverty (poverty gap)\\",
+      },
+      Object {
         \\"id\\": \\"data_series.poverdata_series.poverty_310\\",
         \\"name\\": \\"% of population living on less than $3.10 a day\\",
+      },
+      Object {
+        \\"id\\": \\"data_series.poorest_20_percent\\",
+        \\"name\\": \\"Number of people in the P20\\",
       },
     ],
     \\"name\\": \\"Poverty\\",
@@ -73,7 +69,12 @@ exports[`Themes data tests should return global picture themes 1`] = `
   Object {
     \\"default_indicator\\": \\"data_series.non_grant_revenue_ppp_pc\\",
     \\"id\\": \\"government-finance\\",
-    \\"indicators\\": Array [],
+    \\"indicators\\": Array [
+      Object {
+        \\"id\\": \\"data_series.non_grant_revenue_ppp_pc\\",
+        \\"name\\": \\"Government revenue per person (excluding grants), 2015 PPP$\\",
+      },
+    ],
     \\"name\\": \\"Government finance\\",
     \\"position\\": 3,
   },
@@ -258,12 +259,12 @@ exports[`Themes data tests should return spotlight on uganda themes 1`] = `
     \\"id\\": \\"uganda-education\\",
     \\"indicators\\": Array [
       Object {
-        \\"id\\": \\"spotlight_on_uganda.uganda_donor_educ_spend\\",
-        \\"name\\": \\"Primary education donor spending per child\\",
+        \\"id\\": \\"spotlight_on_uganda.uganda_primary_stu_teach_ratio\\",
+        \\"name\\": \\"Primary pupil to teacher ratio-all schools\\",
       },
       Object {
-        \\"id\\": \\"spotlight_on_uganda.uganda_leaving_exam_perf_rate\\",
-        \\"name\\": \\"Primary leaving exam performance index\\",
+        \\"id\\": \\"spotlight_on_uganda.uganda_donor_educ_spend\\",
+        \\"name\\": \\"Primary education donor spending per child\\",
       },
       Object {
         \\"id\\": \\"spotlight_on_uganda.uganda_primary_educ_funding\\",
@@ -282,8 +283,8 @@ exports[`Themes data tests should return spotlight on uganda themes 1`] = `
         \\"name\\": \\"Primary pupils with adequate sitting and writing space-government schools (%)\\",
       },
       Object {
-        \\"id\\": \\"spotlight_on_uganda.uganda_primary_stu_teach_ratio\\",
-        \\"name\\": \\"Primary pupil to teacher ratio-all schools\\",
+        \\"id\\": \\"spotlight_on_uganda.uganda_leaving_exam_perf_rate\\",
+        \\"name\\": \\"Primary leaving exam performance index\\",
       },
       Object {
         \\"id\\": \\"spotlight_on_uganda.uganda_primary_stu_teach_ratio_gov\\",

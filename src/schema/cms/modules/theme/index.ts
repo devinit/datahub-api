@@ -15,6 +15,7 @@ export const getThemes = async (themesType: string): Promise<DH.ITheme[]> => {
         .map(theme => {
             const indicators = concepts
                 .filter(concept => concept.theme === theme.id)
+                .sort((a, b) => Number(a.position) - Number(b.position))
                 .map(obj => ({id: obj.id, name: obj.name}));
             const position = Number(theme.position);
             return {...theme, position, indicators};

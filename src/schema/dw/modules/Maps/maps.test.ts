@@ -32,7 +32,10 @@ describe('Maps module tests', () => {
         const categoricalLinear = await maps.getMapData({id: 'data_series.fragile_states', DACOnly: false});
         const dataRevolution = await maps.getMapData({id: 'data_series.latest_census', DACOnly: false});
         const largestIntlFinance = await maps.getMapData({id: 'data_series.largest_intl_flow', DACOnly: false});
-        expect(prettyFormat({linearColored, categoricalLinear, dataRevolution, largestIntlFinance})).toMatchSnapshot();
+        const forwardLookingOda = await maps.getMapData({id: 'data_series.largest_intl_flow', DACOnly: false});
+        const governmentFinance = await maps.getMapData({id: 'data_series.non_grant_revenue_ppp_pc', DACOnly: false});
+        expect(prettyFormat({linearColored, categoricalLinear, dataRevolution,
+            largestIntlFinance, forwardLookingOda, governmentFinance})).toMatchSnapshot();
     }, 20000);
     it('should return categorical value mappings for indicators', async () => {
         const fragileSates = await Maps.getCategoricalMapping('data_series.fragile_states');

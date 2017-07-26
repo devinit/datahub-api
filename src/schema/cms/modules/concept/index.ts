@@ -10,6 +10,7 @@ export interface IConcept {
     start_year: number;
     include_in_methodology_page: number;
     color?: string;
+    position?: string;
     end_year: number;
     range?: string;
     heading: string;
