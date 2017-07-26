@@ -411,7 +411,7 @@ declare namespace DH {
     to_di_id?: string | null;
     from_di_id?: string | null;
     sector?: string | null;
-    buddle?: string | null;
+    bundle?: string | null;
     channel?: string | null;
   }
 
@@ -435,7 +435,7 @@ declare namespace DH {
     from: Array<IIdNamePair> | null;
     channels: Array<IIdNamePair> | null;
     sectors: Array<IIdNamePair> | null;
-    buddles: Array<IIdNamePair> | null;
+    bundles: Array<IIdNamePair> | null;
     years: Array<number> | null;
   }
 
