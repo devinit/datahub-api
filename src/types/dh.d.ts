@@ -23,17 +23,16 @@ declare namespace DH {
     description: 
   */
   interface IQuery {
-    countryProfilePageData: Array<IPage> | null;
     countries: Array<IIdNamePair> | null;
-    globalPicturePageData: Array<IPage> | null;
-    globalPictureThemes: Array<ITheme> | null;
-    globalPictureIndicators: Array<IIndicator> | null;
+    countryProfilePageData: Array<IPage> | null;
     odaDonorBubbleChartPageData: Array<IPage> | null;
+    globalPicturePageData: Array<IPage> | null;
     povertyBubbleChartPageData: Array<IPage> | null;
-    spotlightUgandaPageData: Array<IPage> | null;
     unbundlingOdaPageData: Array<IPage> | null;
     unbundlingOOfPageData: Array<IPage> | null;
     whereThePoorPageData: Array<IPage> | null;
+    globalPictureThemes: Array<ITheme> | null;
+    spotlightThemes: Array<ITheme> | null;
     bubbleChartOda: IBubbleChartOda | null;
     bubbleChartPoverty: IBubbleChartPoverty | null;
     bubbleSize: Array<IBubbleChartData> | null;
@@ -59,6 +58,14 @@ declare namespace DH {
   /*
     description: 
   */
+  interface IIdNamePair {
+    id: string | null;
+    name: string | null;
+  }
+
+  /*
+    description: 
+  */
   interface IPage {
     id: string | null;
     title: string | null;
@@ -68,27 +75,11 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IIdNamePair {
-    id: string | null;
-    name: string | null;
-  }
-
-  /*
-    description: 
-  */
   interface ITheme {
     id: string | null;
     name: string | null;
     default_indicator: string | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IIndicator {
-    id: string | null;
-    name: string | null;
-    order: number | null;
+    indicators: Array<IIdNamePair> | null;
   }
 
   /*

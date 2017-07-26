@@ -12,7 +12,7 @@ interface IUnbundlingAidQuery {
     to_di_id?: string;
     year?: number;
     sector?: string;
-    buddle?: string;
+    bundle?: string;
     channel?: string;
 }
 interface IUnBundlingAidCountries {
@@ -75,8 +75,8 @@ export default class UnbundlingAid {
             const countries = await this.getCountries();
             const channels = await getChannels();
             const sectors = await getSectors();
-            const buddles = await getBundles();
-            return {years, ...countries, channels, sectors, buddles};
+            const bundles = await getBundles();
+            return {years, ...countries, channels, sectors, bundles};
        } catch (error) {
            console.error(error);
            throw error;

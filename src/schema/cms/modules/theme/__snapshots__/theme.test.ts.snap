@@ -178,23 +178,23 @@ exports[`Themes data tests should return global picture themes 1`] = `
     \\"id\\": \\"forward-looking-oda\\",
     \\"indicators\\": Array [
       Object {
-        \\"id\\": \\"iati.iati_budgets_gb\\",
+        \\"id\\": \\"data_series.iati_budgets_gb\\",
         \\"name\\": \\"UK, DFID planned budgets\\",
       },
       Object {
-        \\"id\\": \\"iati.iati_budgets_ca\\",
+        \\"id\\": \\"data_series.iati_budgets_ca\\",
         \\"name\\": \\"Canada, Global Affairs planned budgets\\",
       },
       Object {
-        \\"id\\": \\"iati.iati_budgets_be\\",
+        \\"id\\": \\"data_series.iati_budgets_be\\",
         \\"name\\": \\"Belgian Development Cooperation planned budgets\\",
       },
       Object {
-        \\"id\\": \\"iati.iati_budgets_nl\\",
+        \\"id\\": \\"data_series.iati_budgets_nl\\",
         \\"name\\": \\"Netherlands, Foreign Affairs planned budgets\\",
       },
       Object {
-        \\"id\\": \\"iati.iati_budgets_dk\\",
+        \\"id\\": \\"data_series.iati_budgets_dk\\",
         \\"name\\": \\"Denmark DANIDA and Foreign Affairs forward-looking budgets for each country based on activities reported through IATI.\\",
       },
     ],
@@ -211,16 +211,16 @@ exports[`Themes data tests should return spotlight on uganda themes 1`] = `
     \\"id\\": \\"uganda-poverty\\",
     \\"indicators\\": Array [
       Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_poverty_headcount\\",
+        \\"name\\": \\"Poverty headcount\\",
+      },
+      Object {
         \\"id\\": \\"spotlight_on_uganda.uganda_deprivation_living\\",
         \\"name\\": \\"Decent standard of living score\\",
       },
       Object {
         \\"id\\": \\"spotlight_on_uganda.uganda_life_expectancy\\",
         \\"name\\": \\"Life expectancy\\",
-      },
-      Object {
-        \\"id\\": \\"spotlight_on_uganda.uganda_poverty_headcount\\",
-        \\"name\\": \\"Poverty headcount\\",
       },
     ],
     \\"name\\": \\"Poverty\\",
@@ -235,20 +235,20 @@ exports[`Themes data tests should return spotlight on uganda themes 1`] = `
         \\"name\\": \\"Average household size\\",
       },
       Object {
-        \\"id\\": \\"spotlight_on_uganda.uganda_dependency_ratio\\",
-        \\"name\\": \\"Average dependency ratio\\",
-      },
-      Object {
         \\"id\\": \\"spotlight_on_uganda.uganda_pop_dens\\",
         \\"name\\": \\"Population density (per sq km)\\",
       },
       Object {
-        \\"id\\": \\"spotlight_on_uganda.uganda_total_pop\\",
-        \\"name\\": \\"Total population\\",
-      },
-      Object {
         \\"id\\": \\"spotlight_on_uganda.uganda_urban_pop\\",
         \\"name\\": \\"Urban population (%)\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_dependency_ratio\\",
+        \\"name\\": \\"Average dependency ratio\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_total_pop\\",
+        \\"name\\": \\"Total population\\",
       },
     ],
     \\"name\\": \\"Population\\",
@@ -259,40 +259,12 @@ exports[`Themes data tests should return spotlight on uganda themes 1`] = `
     \\"id\\": \\"uganda-education\\",
     \\"indicators\\": Array [
       Object {
-        \\"id\\": \\"spotlight_on_uganda.uganda_primary_stu_teach_ratio\\",
-        \\"name\\": \\"Primary pupil to teacher ratio-all schools\\",
-      },
-      Object {
-        \\"id\\": \\"spotlight_on_uganda.uganda_donor_educ_spend\\",
-        \\"name\\": \\"Primary education donor spending per child\\",
-      },
-      Object {
         \\"id\\": \\"spotlight_on_uganda.uganda_primary_educ_funding\\",
         \\"name\\": \\"Primary education spending per child\\",
       },
       Object {
-        \\"id\\": \\"spotlight_on_uganda.uganda_primary_enrol\\",
-        \\"name\\": \\"Primary net enrolment rate\\",
-      },
-      Object {
-        \\"id\\": \\"spotlight_on_uganda.uganda_primary_sit_write\\",
-        \\"name\\": \\"Primary pupils with adequate sitting and writing space-all schools (%)\\",
-      },
-      Object {
-        \\"id\\": \\"spotlight_on_uganda.uganda_primary_sit_write_gov\\",
-        \\"name\\": \\"Primary pupils with adequate sitting and writing space-government schools (%)\\",
-      },
-      Object {
-        \\"id\\": \\"spotlight_on_uganda.uganda_leaving_exam_perf_rate\\",
-        \\"name\\": \\"Primary leaving exam performance index\\",
-      },
-      Object {
-        \\"id\\": \\"spotlight_on_uganda.uganda_primary_stu_teach_ratio_gov\\",
-        \\"name\\": \\"Primary pupil to teacher ratio-government schools\\",
-      },
-      Object {
-        \\"id\\": \\"spotlight_on_uganda.uganda_secondary_enrol\\",
-        \\"name\\": \\"Secondary net enrolment rate\\",
+        \\"id\\": \\"spotlight_on_uganda.uganda_secondary_stu_teach_ratio_gov\\",
+        \\"name\\": \\"Secondary pupil-teacher ratio (government schools)\\",
       },
       Object {
         \\"id\\": \\"spotlight_on_uganda.uganda_secondary_sit_write\\",
@@ -303,12 +275,40 @@ exports[`Themes data tests should return spotlight on uganda themes 1`] = `
         \\"name\\": \\"Secondary pupils with adequate sitting and writing space (government schools)\\",
       },
       Object {
-        \\"id\\": \\"spotlight_on_uganda.uganda_secondary_stu_teach_ratio\\",
-        \\"name\\": \\"Secondary pupil-teacher ratio (total)\\",
+        \\"id\\": \\"spotlight_on_uganda.uganda_secondary_enrol\\",
+        \\"name\\": \\"Secondary net enrolment rate\\",
       },
       Object {
-        \\"id\\": \\"spotlight_on_uganda.uganda_secondary_stu_teach_ratio_gov\\",
-        \\"name\\": \\"Secondary pupil-teacher ratio (government schools)\\",
+        \\"id\\": \\"spotlight_on_uganda.uganda_donor_educ_spend\\",
+        \\"name\\": \\"Primary education donor spending per child\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_primary_stu_teach_ratio\\",
+        \\"name\\": \\"Primary pupil to teacher ratio-all schools\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_primary_stu_teach_ratio_gov\\",
+        \\"name\\": \\"Primary pupil to teacher ratio-government schools\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_primary_sit_write\\",
+        \\"name\\": \\"Primary pupils with adequate sitting and writing space-all schools (%)\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_primary_sit_write_gov\\",
+        \\"name\\": \\"Primary pupils with adequate sitting and writing space-government schools (%)\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_primary_enrol\\",
+        \\"name\\": \\"Primary net enrolment rate\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_leaving_exam_perf_rate\\",
+        \\"name\\": \\"Primary leaving exam performance index\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_secondary_stu_teach_ratio\\",
+        \\"name\\": \\"Secondary pupil-teacher ratio (total)\\",
       },
     ],
     \\"name\\": \\"Education\\",
@@ -319,36 +319,36 @@ exports[`Themes data tests should return spotlight on uganda themes 1`] = `
     \\"id\\": \\"uganda-health\\",
     \\"indicators\\": Array [
       Object {
-        \\"id\\": \\"spotlight_on_uganda.uganda_anc4_coverage\\",
-        \\"name\\": \\"Antenatal care coverage rate\\",
-      },
-      Object {
-        \\"id\\": \\"spotlight_on_uganda.uganda_dpt3_coverage\\",
-        \\"name\\": \\"Diphtheria treatment coverage rate\\",
-      },
-      Object {
-        \\"id\\": \\"spotlight_on_uganda.uganda_health_funding\\",
-        \\"name\\": \\"Primary health spending per person\\",
-      },
-      Object {
-        \\"id\\": \\"spotlight_on_uganda.uganda_health_posts\\",
-        \\"name\\": \\"Approved posts that are filled (%)\\",
+        \\"id\\": \\"spotlight_on_uganda.uganda_overall_health\\",
+        \\"name\\": \\"District league table overall score\\",
       },
       Object {
         \\"id\\": \\"spotlight_on_uganda.uganda_hmis\\",
         \\"name\\": \\"HMIS reporting score\\",
       },
       Object {
-        \\"id\\": \\"spotlight_on_uganda.uganda_ipt2_coverage\\",
-        \\"name\\": \\"Tetanus vaccine coverage rate\\",
-      },
-      Object {
-        \\"id\\": \\"spotlight_on_uganda.uganda_overall_health\\",
-        \\"name\\": \\"District league table overall score\\",
+        \\"id\\": \\"spotlight_on_uganda.uganda_health_posts\\",
+        \\"name\\": \\"Approved posts that are filled (%)\\",
       },
       Object {
         \\"id\\": \\"spotlight_on_uganda.uganda_tb_success\\",
         \\"name\\": \\"Tuberculosis treatment success rate\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_dpt3_coverage\\",
+        \\"name\\": \\"Diphtheria treatment coverage rate\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_ipt2_coverage\\",
+        \\"name\\": \\"Tetanus vaccine coverage rate\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_anc4_coverage\\",
+        \\"name\\": \\"Antenatal care coverage rate\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_health_funding\\",
+        \\"name\\": \\"Primary health spending per person\\",
       },
     ],
     \\"name\\": \\"Health\\",
@@ -359,10 +359,6 @@ exports[`Themes data tests should return spotlight on uganda themes 1`] = `
     \\"id\\": \\"uganda-wash\\",
     \\"indicators\\": Array [
       Object {
-        \\"id\\": \\"spotlight_on_uganda.uganda_household_san_cov\\",
-        \\"name\\": \\"Household sanitation coverage (%)\\",
-      },
-      Object {
         \\"id\\": \\"spotlight_on_uganda.uganda_rural_safe_water\\",
         \\"name\\": \\"Rural access to safe water (%)\\",
       },
@@ -371,12 +367,16 @@ exports[`Themes data tests should return spotlight on uganda themes 1`] = `
         \\"name\\": \\"Rural water source functionality (%)\\",
       },
       Object {
-        \\"id\\": \\"spotlight_on_uganda.uganda_wash_perf_score\\",
-        \\"name\\": \\"District WASH performance score\\",
-      },
-      Object {
         \\"id\\": \\"spotlight_on_uganda.uganda_water_source_comm_func\\",
         \\"name\\": \\"Functioning water source committees (%)\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_household_san_cov\\",
+        \\"name\\": \\"Household sanitation coverage (%)\\",
+      },
+      Object {
+        \\"id\\": \\"spotlight_on_uganda.uganda_wash_perf_score\\",
+        \\"name\\": \\"District WASH performance score\\",
       },
     ],
     \\"name\\": \\"Water and sanitation\\",
