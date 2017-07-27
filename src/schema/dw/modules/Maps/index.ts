@@ -1,6 +1,6 @@
 import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
-import {getIndicatorDataSimple, indicatorDataProcessingSimple,
+import {getIndicatorDataSimple, indicatorDataProcessingSimple, IGetIndicatorArgsSimple,
     IProcessedSimple, normalizeKeyName, formatNumbers} from '../utils';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import {getColors, getEntityByIdGeneric, IColor, IEntity, getEntities, IEntityBasic} from '../../../cms/modules/global';
@@ -61,6 +61,14 @@ export default class Maps {
     public static DACOnlyData(DACCountries: string[], indicatorData: DH.IMapUnit[]): DH.IMapUnit[] {
        return DACCountries.map(name =>
             R.find((obj: DH.IMapUnit) => obj.name === name, indicatorData));
+    }
+
+    public static fixForVaryingSqlQuery(concept: IConcept, args: IGetIndicatorArgsSimple): IGetIndicatorArgsSimple {
+        const basicQuery =
+            'SELECT #VALUE as value, di_id, year FROM ${table^} WHERE year = ${start_year} AND #VALUE IS NOT NULL';
+        if (concept.id === 'data_series.poverty_190')
+            return {...args, query: basicQuery.replace(/#VALUE/g, 'value')};
+        return args;
     }
     public static colorScale(rangeStr: string, ramp: IColorMap, offset: number = 1): IScaleThreshold<number, string> {
         const domain = rangeStr.split (',').map(val => Number(val));
@@ -184,7 +192,7 @@ export default class Maps {
         if (concept.theme === 'data-revolution') {
            return this.dataRevDataProcessing(concept);
         }
-        const args = {...concept, sql, db: this.db, table: concept.id};
+        const args = {...concept, sql, db: this.db, table: concept.id} as IGetIndicatorArgsSimple;
         const data: IRAWMapData [] = await getIndicatorDataSimple<IRAWMapData>(args);
         if (concept.range && concept.color)
             return this.linearDataProcessing(concept, country, data);

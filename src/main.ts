@@ -94,14 +94,14 @@ if (require.main === module) {
  // const EXPORT_GRAPHIQL = NODE_ENV !== 'production';
 
   // Enable cors (cross-origin HTTP request) or not.
-  const ENABLE_CORS = NODE_ENV === 'production';
+  // const ENABLE_CORS = NODE_ENV === 'production';
 
   process.on('uncaughtException', (err) => {
     console.error('uncaught exception', err);
   });
 
   main({
-    enableCors: ENABLE_CORS,
+    enableCors: true,
     enableGraphiql: true,
     env: NODE_ENV,
     port: PORT,

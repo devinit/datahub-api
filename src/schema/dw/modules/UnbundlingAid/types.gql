@@ -21,7 +21,7 @@ type UnbundlingAidSelections {
   channels: [IdNamePair]
   sectors: [IdNamePair]
   # same as form
-  buddles: [IdNamePair]
+  bundles: [IdNamePair]
   years: [Int]
 }
 
@@ -35,7 +35,7 @@ input UnbundlingAidQuery {
     from_di_id: String
     sector: String
     # form is same as buddle
-    buddle: String
+    bundle: String
     channel: String
 }
 

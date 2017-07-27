@@ -16,6 +16,8 @@ type SpendingAllocation {
 type Quintile {
   value: Float
   quintileName: String
+  uid: String
+  color: String
 }
 
 type ToolTip {

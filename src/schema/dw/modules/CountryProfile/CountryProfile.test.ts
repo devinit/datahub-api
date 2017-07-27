@@ -1,5 +1,6 @@
 import * as prettyFormat from 'pretty-format';
 import CountryProfile from '.';
+import * as R from 'ramda';
 import db from '../../db';
 
 describe('country profile DW module tests', () => {
@@ -32,6 +33,8 @@ describe('country profile DW module tests', () => {
     }, 10000);
     it('should return international resources tab & charts data for Uganda', async () => {
         const international = await resources.getInternationalResources({id: 'uganda'});
+        // const debt = international.resourcesOverTime.filter(obj => obj.flow_name === 'long-debt-net-official-in');
+        // R.groupBy(R.prop('year'), debt)
         expect(prettyFormat(international)).toMatchSnapshot();
     }, 30000);
     it('should return international resources tab & charts data for Austria', async () => {

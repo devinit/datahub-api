@@ -28,7 +28,7 @@ SELECT * FROM data_series.latest_census WHERE detail IS NOT NULL:dw
 SELECT * FROM data_series.depth_of_extreme_poverty_190 WHERE year >= '2010' AND year <= '2013' AND value IS NOT NULL:dw
 SELECT * FROM spotlight_on_uganda.uganda_poverty_headcount WHERE year = '2014' AND value IS NOT NULL:dw
 SELECT * FROM data_series.latest_census WHERE colour IS NOT NULL:dw
-SELECT di_id, value_2 as value, year FROM data_series.poverty_190 WHERE di_id = 'UG' AND year >= '2000' AND year <= '2013':dw
+SELECT di_id, value as value, year FROM data_series.poverty_190 WHERE di_id = 'UG' AND year >= '2000' AND year <= '2013':dw
 SELECT value FROM data_series.intl_flows_recipients WHERE di_id = 'UG' AND year = '2000' AND direction ='in':dw
 SELECT value FROM fact.population_total WHERE di_id = 'UG' AND year = '2015':dw
 SELECT value FROM data_series.domestic WHERE di_id ='UG' AND budget_type = 'actual' AND year = '2010' AND l1 = 'total-revenue-and-grants' AND l2 = 'revenue' AND l3 is NULL AND l4 is NULL:dw
@@ -67,3 +67,6 @@ SELECT value FROM spotlight_on_uganda.uganda_primary_stu_teach_ratio WHERE distr
 global-picture/theme.csv:cms
 spotlight-uganda/theme.csv:cms
 SELECT * FROM data_series.poor_people_190 WHERE year >= '1990' AND year <= '2013' AND value IS NOT NULL:dw
+SELECT * FROM data_series.fragile_states WHERE year = '2015' AND value IS NOT NULL:dw
+SELECT * FROM fact.in_oda_gross_2015 WHERE year >= '2000' AND year <= '2015' AND value IS NOT NULL:dw
+SELECT * FROM fact.oda_percent_gni WHERE year = '2015' AND value IS NOT NULL:dw

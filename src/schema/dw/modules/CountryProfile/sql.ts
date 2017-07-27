@@ -25,15 +25,15 @@ export default {
     populationDistribution: 'SELECT * FROM fact.population_rural_urban WHERE di_id = ${id} AND year >= ${start_year} AND year <= ${end_year}',
     populationPerAgeBand: 'SELECT * FROM fact.population_by_age WHERE di_id = ${id} AND year >= ${start_year} AND year <= ${end_year}',
     // tslint:disable-next-line:max-line-length
-    poverty190Trend: 'SELECT di_id, value_2 as value, year FROM data_series.poverty_190 WHERE di_id = ${id} AND year >= ${start_year} AND year <= ${end_year}',
+    poverty190Trend: 'SELECT di_id, value, year FROM data_series.poverty_190 WHERE di_id = ${id} AND year >= ${start_year} AND year <= ${end_year}',
     depthOfExtremePoverty: 'SELECT value FROM data_series.depth_of_extreme_poverty_190 WHERE di_id = ${id} AND year = ${start_year}',
     GNI: 'SELECT value FROM fact.gni_usd_2015 WHERE di_id = ${id} AND year = ${start_year}',
     ODANetIn: 'SELECT value FROM fact.in_oda_net_2015 WHERE di_id = ${id} AND year = ${start_year}', // computed
     ODANetOut: 'SELECT value FROM fact.oda_percent_gni WHERE di_id = ${id} AND year = ${start_year}',
     // tslint:disable-next-line:max-line-length
-    resourcesDonorsMix: 'SELECT flow_name, year,flow_type,direction,value FROM data_series.intl_flows_donors WHERE di_id = ${id} AND year = ${start_year} AND direction = \'out\' AND value > 0 GROUP BY flow_name,year,flow_type,direction,value',
+    resourcesDonorsMix: 'SELECT flow_name, year,flow_type,direction,value FROM data_series.intl_flows_donors WHERE di_id = ${id} AND year = ${end_year} AND direction = \'out\' AND value > 0 GROUP BY flow_name,year,flow_type,direction,value',
     // tslint:disable-next-line:max-line-length
-    resourcesRecipientMix: 'SELECT flow_name, year,flow_type,direction,value FROM data_series.intl_flows_recipients WHERE di_id = ${id} AND direction = \'in\' AND year = ${start_year} AND value > 0 GROUP BY flow_name,year,flow_type,direction,value',
+    resourcesRecipientMix: 'SELECT flow_name, year,flow_type,direction,value FROM data_series.intl_flows_recipients WHERE di_id = ${id} AND direction = \'in\' AND year = ${end_year} AND value > 0 GROUP BY flow_name,year,flow_type,direction,value',
     resourcesDonors: 'SELECT flow_name, year,flow_type,direction,value FROM data_series.intl_flows_donors WHERE di_id = ${id} AND year >= ${start_year} AND year <= ${end_year} AND value > 0 GROUP BY flow_name,year,flow_type,direction,value',
     // tslint:disable-next-line:max-line-length
     resourcesRecipient: 'SELECT flow_name, year,flow_type,direction,value FROM data_series.intl_flows_recipients WHERE di_id = ${id}  AND year >= ${start_year} AND year <= ${end_year} AND value > 0 GROUP BY flow_name,year,flow_type,direction,value ',

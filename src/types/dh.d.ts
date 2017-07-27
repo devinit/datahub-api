@@ -411,7 +411,7 @@ declare namespace DH {
     to_di_id?: string | null;
     from_di_id?: string | null;
     sector?: string | null;
-    bundle?: string | null;
+    buddle?: string | null;
     channel?: string | null;
   }
 

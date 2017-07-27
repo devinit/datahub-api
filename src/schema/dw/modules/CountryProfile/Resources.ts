@@ -194,11 +194,14 @@ export default class Resources {
             id
         };
             const data: IRAWSpending[] = await getIndicatorData<IRAWSpending>(indicatorArgsGdp);
+            // TODO: we have null names from raw data
             const budgetRefs: IBudgetLevelRef[] = await getBudgetLevels();
-            return data.map(obj => {
-                const level = R.find(R.propEq('id', obj.l2), budgetRefs) as IBudgetLevelRef;
-                return {value: Number(obj.value), ...level, uid: shortid.generate()};
-            });
+            return data
+                .filter(obj => obj.l2 !== null)
+                .map(obj => {
+                    const level = R.find(R.propEq('id', obj.l2), budgetRefs) as IBudgetLevelRef;
+                    return {value: Number(obj.value), ...level, uid: shortid.generate()};
+                });
        } catch (error) {
            throw error;
        }

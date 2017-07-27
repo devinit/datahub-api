@@ -78,4 +78,4 @@ We are currently test deploying with now and they freeze inactive normal deploym
 TODO
 - [ ] remove console.info & console.error and replace with function that logs to an info & error file
 - [ ] fix testing on travis
-- [ ] integrate uglify-es into webpack
+- [ ] pull in color data into the repo

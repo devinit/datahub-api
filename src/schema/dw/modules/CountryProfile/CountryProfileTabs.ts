@@ -21,6 +21,8 @@ interface IOverViewTabDonors {
     averageIncomerPerPerson: DH.IIndicatorData[];
     incomeDistTrend: DH.IQuintile[];
 }
+const red = '#e8443a';
+const grey = '#847e84';
 export default class CountryProfileTabs {
     private db: IDatabase<IExtensions> & IExtensions;
     private defaultArgs;
@@ -150,7 +152,11 @@ export default class CountryProfileTabs {
         };
             const data: IRAWQuintile[] = await getIndicatorData<IRAWQuintile>(indicatorArgs);
             const quintileData = R.last(data.filter(obj => obj.value_2nd_quintile !== null)) as IRAWQuintile;
-            return R.keys(quintileData).map(key => ({quintileName: key, value: Number(data[0][key])}));
+            return R.keys(quintileData)
+                .map(key => {
+                    const color = key === 'value_bottom_20pc' ? red : grey;
+                    return {quintileName: key, color, value: Number(data[0][key]), uid: shortid.generate()};
+                }
         } catch (error) {
            throw error;
         }

@@ -43,7 +43,7 @@ interface ISqlSimple {
     indicator: string;
     indicatorRange: string;
 }
-interface IGetIndicatorArgsSimple {
+export interface IGetIndicatorArgsSimple {
     id?: string;
     db: IDatabase<IExtensions> & IExtensions;
     start_year?: number;
@@ -65,7 +65,7 @@ export interface IProcessedSimple {
 }
 export interface IRAWMulti {
     di_id: string;
-    value_2: string;
+    value: string;
     value_1: string;
     year: string;
 }
