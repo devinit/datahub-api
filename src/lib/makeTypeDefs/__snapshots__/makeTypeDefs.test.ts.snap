@@ -144,6 +144,8 @@ declare namespace DH {
   interface IQuintile {
     value: number | null;
     quintileName: string | null;
+    uid: string | null;
+    color: string | null;
   }
 
   /*
@@ -413,7 +415,7 @@ declare namespace DH {
     to_di_id?: string | null;
     from_di_id?: string | null;
     sector?: string | null;
-    buddle?: string | null;
+    bundle?: string | null;
     channel?: string | null;
   }
 
@@ -437,7 +439,7 @@ declare namespace DH {
     from: Array<IIdNamePair> | null;
     channels: Array<IIdNamePair> | null;
     sectors: Array<IIdNamePair> | null;
-    buddles: Array<IIdNamePair> | null;
+    bundles: Array<IIdNamePair> | null;
     years: Array<number> | null;
   }
 
@@ -548,6 +550,8 @@ type SpendingAllocation {
 type Quintile {
   value: Float
   quintileName: String
+  uid: String
+  color: String
 }
 
 type ToolTip {
@@ -822,7 +826,7 @@ type UnbundlingAidSelections {
   channels: [IdNamePair]
   sectors: [IdNamePair]
   # same as form
-  buddles: [IdNamePair]
+  bundles: [IdNamePair]
   years: [Int]
 }
 
@@ -833,7 +837,7 @@ input UnbundlingAidQuery {
   to_di_id: String
   from_di_id: String
   sector: String
-  buddle: String
+  bundle: String
   channel: String
 }
 \\""

@@ -280,8 +280,6 @@ export const getCurrentYear = (): number => {
     return date.getFullYear();
 };
 
-export const parse = (value: string | null): number | null => value && value.length ? Number(value) : null;
-
 export const formatNumbers = (value: number | string | undefined | null, precision: number = 0): string => {
     if (value === undefined || value === null) return 'No data';
     const val = Number(value);

@@ -70,3 +70,14 @@ SELECT * FROM data_series.poor_people_190 WHERE year >= '1990' AND year <= '2013
 SELECT * FROM data_series.fragile_states WHERE year = '2015' AND value IS NOT NULL:dw
 SELECT * FROM fact.in_oda_gross_2015 WHERE year >= '2000' AND year <= '2015' AND value IS NOT NULL:dw
 SELECT * FROM fact.oda_percent_gni WHERE year = '2015' AND value IS NOT NULL:dw
+SELECT * FROM data_series.non_grant_revenue_ppp_pc WHERE year >= '1999' AND year <= '2021' AND value IS NOT NULL:dw
+SELECT * FROM data_series.iati_budgets_gb WHERE year >= '2016' AND year <= '2020' AND value IS NOT NULL:dw
+SELECT * FROM data_series.poverty_190 WHERE year = '2013' AND value IS NOT NULL:dw
+SELECT * FROM data_series.poverty_310 WHERE year = '2013' AND value IS NOT NULL:dw
+SELECT * FROM data_series.poorest_20_percent WHERE year = '2013' AND value IS NOT NULL:dw
+SELECT * FROM data_series.largest_intl_flow WHERE year = '2015' AND value IS NOT NULL:dw
+global-picture/largest-intl-flow.csv:cms
+SELECT * FROM data_series.in_ha WHERE year >= '2010' AND year <= '2014' AND value IS NOT NULL:dw
+SELECT * FROM data_series.climate_vulnerability WHERE year >= '2010' AND year <= '2013' AND value IS NOT NULL:dw
+SELECT * FROM data_series.human_hazard WHERE year = '2015' AND value IS NOT NULL:dw
+SELECT * FROM data_series.number_of_un_appeals WHERE year = '2015' AND value IS NOT NULL:dw

@@ -142,6 +142,8 @@ declare namespace DH {
   interface IQuintile {
     value: number | null;
     quintileName: string | null;
+    uid: string | null;
+    color: string | null;
   }
 
   /*
@@ -280,6 +282,7 @@ declare namespace DH {
     uom: string | null;
     start_year: number | null;
     end_year: number | null;
+    default_year: number | null;
     description: string | null;
     source: string | null;
     source_link: string | null;
@@ -411,7 +414,7 @@ declare namespace DH {
     to_di_id?: string | null;
     from_di_id?: string | null;
     sector?: string | null;
-    buddle?: string | null;
+    bundle?: string | null;
     channel?: string | null;
   }
 

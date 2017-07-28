@@ -63,13 +63,6 @@ export default class Maps {
             R.find((obj: DH.IMapUnit) => obj.name === name, indicatorData));
     }
 
-    public static fixForVaryingSqlQuery(concept: IConcept, args: IGetIndicatorArgsSimple): IGetIndicatorArgsSimple {
-        const basicQuery =
-            'SELECT #VALUE as value, di_id, year FROM ${table^} WHERE year = ${start_year} AND #VALUE IS NOT NULL';
-        if (concept.id === 'data_series.poverty_190')
-            return {...args, query: basicQuery.replace(/#VALUE/g, 'value')};
-        return args;
-    }
     public static colorScale(rangeStr: string, ramp: IColorMap, offset: number = 1): IScaleThreshold<number, string> {
         const domain = rangeStr.split (',').map(val => Number(val));
         const isAscendingOrder = (domain[1] > domain[0]) ? true : false;
@@ -179,10 +172,11 @@ export default class Maps {
                  : await getConceptAsync(`spotlight-${country}`, opts.id);
              // we merge concept and graphql qery options, they have startYear and endYear variables
              const {mapData, legend} = await this.getMapIndicatorData(concept, country);
-             const DACCountries = opts.DACOnly ? await this.getDACCountries() : [];
+             const DACCountries = concept.dac_only ? await this.getDACCountries() : [];
              const map = DACCountries.length ? Maps.DACOnlyData(DACCountries, mapData) : mapData;
              const end_year = concept.end_year ? concept.end_year : concept.start_year;
-             return {map, legend, ...concept, country, end_year} as DH.IMapData;
+             const default_year = concept.default_year ? concept.default_year : end_year;
+             return {map, legend, ...concept, country, end_year, default_year } as DH.IMapData;
          } catch (error) {
              console.error(error);
              throw error;

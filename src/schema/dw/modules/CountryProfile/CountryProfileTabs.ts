@@ -156,7 +156,7 @@ export default class CountryProfileTabs {
                 .map(key => {
                     const color = key === 'value_bottom_20pc' ? red : grey;
                     return {quintileName: key, color, value: Number(data[0][key]), uid: shortid.generate()};
-                }
+                });
         } catch (error) {
            throw error;
         }

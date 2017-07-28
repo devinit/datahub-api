@@ -25,7 +25,8 @@ type MapData {
   uom_display: String
   uom: String
   start_year: Int
-  end_year: Int 
+  end_year: Int
+  default_year: Int
   description: String
   source: String
   source_link: String
@@ -37,7 +38,6 @@ type MapData {
 
 type Query {
   mapData(
-    id: String!,
-    DACOnly: Boolean
+    id: String!
   ): MapData
 }

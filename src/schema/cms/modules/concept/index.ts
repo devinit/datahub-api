@@ -1,5 +1,4 @@
 import {get} from '../../connector';
-
 export interface IConcept {
     id: string;
     theme: string;
@@ -8,6 +7,8 @@ export interface IConcept {
     uom: string;
     uom_display: string;
     start_year: number;
+    dac_only: number;
+    default_year: number;
     include_in_methodology_page: number;
     color?: string;
     position?: string;
@@ -21,6 +22,7 @@ export interface IConcept {
 // TODO: parse start_year as a number
 export const getConcepts = (moduleName: string): Promise <IConcept[]> => {
     const endPoint: string = `${moduleName}/concept.csv`;
+
     return get<IConcept>(endPoint);
 };
 
