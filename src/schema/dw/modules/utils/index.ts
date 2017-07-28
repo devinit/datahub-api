@@ -62,6 +62,7 @@ export interface IProcessedSimple {
     value: number;
     year: number;
     uid: string;
+    budget_type?: string;
 }
 export interface IRAWMulti {
     di_id: string;

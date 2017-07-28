@@ -40,6 +40,7 @@ interface ICategoricalMapping {
 interface IRAWMapData {
     id?: string;
     district_id?: string;
+    budget_type?: string;
     value: string;
     year: string;
 }
@@ -62,7 +63,19 @@ export default class Maps {
        return DACCountries.map(name =>
             R.find((obj: DH.IMapUnit) => obj.name === name, indicatorData));
     }
-
+    public static processBudgetData(data: DH.IMapUnit[]): DH.IMapUnit[] {
+        const grouped = R.groupBy(R.prop('year'), data);
+        return R.keys(grouped).reduce((acc: DH.IMapUnit[], year) => {
+            const yearData = grouped[year];
+            const groupedById = R.groupBy(R.prop('id'), yearData);
+            const filterdData = R.keys(groupedById).map(id => {
+               const countryDataArr = groupedById[id] as DH.IMapUnit[];
+               if (countryDataArr.length) return countryDataArr.filter(obj => obj.detail === 'actual');
+               return countryDataArr[0];
+            }) as DH.IMapUnit[];
+            return acc.concat(filterdData);
+        }, []);
+    }
     public static colorScale(rangeStr: string, ramp: IColorMap, offset: number = 1): IScaleThreshold<number, string> {
         const domain = rangeStr.split (',').map(val => Number(val));
         const isAscendingOrder = (domain[1] > domain[0]) ? true : false;
@@ -175,7 +188,7 @@ export default class Maps {
              const DACCountries = concept.dac_only ? await this.getDACCountries() : [];
              const map = DACCountries.length ? Maps.DACOnlyData(DACCountries, mapData) : mapData;
              const end_year = concept.end_year ? concept.end_year : concept.start_year;
-             const default_year = concept.default_year ? concept.default_year : end_year;
+             const default_year = concept.default_year ? concept.default_year : concept.end_year;
              return {map, legend, ...concept, country, end_year, default_year } as DH.IMapData;
          } catch (error) {
              console.error(error);
@@ -221,12 +234,14 @@ export default class Maps {
         const entities: IEntityBasic[] = country === 'global' ?
             await getEntities() :  await getDistrictEntities(country);
         const processedData: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(data, country);
-        return processedData.map((obj) => {
+        const hasBudgeTypes: boolean = processedData[0].budget_type ? true : false;
+        const processed: DH.IMapUnit[] = processedData.map((obj) => {
             const entity = getEntityByIdGeneric<IEntityBasic>(obj.id, entities);
             let detail: any = null;
             if (cMappings) {
                 detail = Maps.getValueDetail(obj.value, cMappings).name;
             }
+            if (hasBudgeTypes) detail = obj.budget_type;
             const colorObj = Color(scale(obj.value));
             return {
                 ...obj,
@@ -235,6 +250,8 @@ export default class Maps {
                 color: colorObj.hex(),
             };
         });
+        if (hasBudgeTypes) return Maps.processBudgetData(processed);
+        return  processed;
     }
     private async categoricalDataProcessing(concept: IConcept, country: string, data: IRAWMapData[]):
         Promise<IMapDataWithLegend> {
