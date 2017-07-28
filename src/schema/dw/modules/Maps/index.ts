@@ -188,7 +188,7 @@ export default class Maps {
              const DACCountries = concept.dac_only ? await this.getDACCountries() : [];
              const map = DACCountries.length ? Maps.DACOnlyData(DACCountries, mapData) : mapData;
              const end_year = concept.end_year ? concept.end_year : concept.start_year;
-             const default_year = concept.default_year ? concept.default_year : concept.end_year;
+             const default_year = concept.default_year ? concept.default_year : end_year;
              return {map, legend, ...concept, country, end_year, default_year } as DH.IMapData;
          } catch (error) {
              console.error(error);
@@ -213,7 +213,6 @@ export default class Maps {
         const scale = Maps.colorScale(concept.range, ramp);
         const legend = Maps.createLinearLegend(concept.uom_display, concept.range, scale);
         const mapData = await this.processScaleData(scale, data, country);
-        console.log(mapData[0]);
         return {legend, mapData};
     }
     private async categoricalLinearDataProcessing(concept: IConcept, country: string, data: IRAWMapData[]):
