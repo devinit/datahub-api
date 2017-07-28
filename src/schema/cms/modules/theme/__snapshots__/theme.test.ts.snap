@@ -7,6 +7,10 @@ exports[`Themes data tests should return global picture themes 1`] = `
     \\"id\\": \\"poverty\\",
     \\"indicators\\": Array [
       Object {
+        \\"id\\": \\"data_series.percent_in_p20_national\\",
+        \\"name\\": \\"% of population in the global P20\\",
+      },
+      Object {
         \\"id\\": \\"data_series.poor_people_190\\",
         \\"name\\": \\"Number of people living in extreme poverty\\",
       },
@@ -152,7 +156,7 @@ exports[`Themes data tests should return global picture themes 1`] = `
       },
       Object {
         \\"id\\": \\"fact.oda_percent_gni\\",
-        \\"name\\": \\"Net official development assistance (ODA) provided by members of the OECD Development Assistance Committee (DAC), expressed as a percentage of gross national income (GNI).\\",
+        \\"name\\": \\"Net ODA provided by DAC members, % of GNI\\",
       },
       Object {
         \\"id\\": \\"fact.oda_to_ldcs_percent_gni\\",
@@ -248,7 +252,7 @@ exports[`Themes data tests should return global picture themes 1`] = `
       },
       Object {
         \\"id\\": \\"data_series.iati_budgets_dk\\",
-        \\"name\\": \\"Denmark DANIDA and Foreign Affairs forward-looking budgets for each country based on activities reported through IATI.\\",
+        \\"name\\": \\"Denmark, DANIDA and Foreign Affairs planned budgets\\",
       },
       Object {
         \\"id\\": \\"data_series.iati_budgets_nl\\",

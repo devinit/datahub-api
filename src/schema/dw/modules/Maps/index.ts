@@ -12,10 +12,6 @@ import * as Color from 'color';
 import {scaleThreshold, interpolateRgb, hsl} from 'd3';
 import * as R from 'ramda';
 
-interface IgetMapDataOpts {
-    id: string;
-    DACOnly: boolean;
-}
 interface IColorMap {
     high: string;
     mid: string;
@@ -70,7 +66,11 @@ export default class Maps {
             const groupedById = R.groupBy(R.prop('id'), yearData);
             const filterdData = R.keys(groupedById).map(id => {
                const countryDataArr = groupedById[id] as DH.IMapUnit[];
-               if (countryDataArr.length) return countryDataArr.filter(obj => obj.detail === 'actual');
+               if (countryDataArr.length) {
+                const list = countryDataArr.filter(obj => obj.detail === 'actual');
+                if (list[0]) return list[0];
+                return countryDataArr[0];
+               }
                return countryDataArr[0];
             }) as DH.IMapUnit[];
             return acc.concat(filterdData);
@@ -177,12 +177,12 @@ export default class Maps {
         this.db = db;
     }
 
-    public async getMapData(opts: IgetMapDataOpts): Promise<DH.IMapData> {
+    public async getMapData(id: string): Promise<DH.IMapData> {
          try {
-             const country = await Maps.getCountry(opts.id);
+             const country = await Maps.getCountry(id);
              const concept: IConcept = country === 'global' ?
-                 await getConceptAsync('global-picture', opts.id)
-                 : await getConceptAsync(`spotlight-${country}`, opts.id);
+                 await getConceptAsync('global-picture', id)
+                 : await getConceptAsync(`spotlight-${country}`, id);
              // we merge concept and graphql qery options, they have startYear and endYear variables
              const {mapData, legend} = await this.getMapIndicatorData(concept, country);
              const DACCountries = concept.dac_only ? await this.getDACCountries() : [];
@@ -213,6 +213,7 @@ export default class Maps {
         const scale = Maps.colorScale(concept.range, ramp);
         const legend = Maps.createLinearLegend(concept.uom_display, concept.range, scale);
         const mapData = await this.processScaleData(scale, data, country);
+        console.log(mapData[0]);
         return {legend, mapData};
     }
     private async categoricalLinearDataProcessing(concept: IConcept, country: string, data: IRAWMapData[]):

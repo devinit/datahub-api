@@ -101,7 +101,7 @@ export default class Resources {
                 const details: {name: string} | undefined = entities.find(entity => entity.id === obj[groupById]);
                 if (!details) throw Error('Error finding resource entity details');
                 return {...obj, ...details};
-            });
+            }) as DH.IIndicatorData[];
             const colorObj: IColor = getEntityByIdGeneric<IColor>(flow.color, colors);
             return {
                 resources,

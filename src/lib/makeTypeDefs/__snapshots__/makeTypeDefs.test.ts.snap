@@ -284,6 +284,7 @@ declare namespace DH {
     uom: string | null;
     start_year: number | null;
     end_year: number | null;
+    default_year: number | null;
     description: string | null;
     source: string | null;
     source_link: string | null;
@@ -486,7 +487,7 @@ type Query {
   internationalResources(id: String!): InternationalResources
   # for area tree map chart dropdown selectoion
   singleResource(resourceId: String!, countryId: String!, groupById: String): SingleResourceData
-  mapData(id: String!, DACOnly: Boolean): MapData
+  mapData(id: String!): MapData
   methodologies: [DataSources]
   # id is district slug
   overViewTabRegional(id: String!, country: String!): OverViewTabRegional
@@ -712,6 +713,7 @@ type MapData {
   uom: String
   start_year: Int
   end_year: Int
+  default_year: Int
   description: String
   source: String
   source_link: String
