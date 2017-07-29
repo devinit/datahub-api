@@ -1,4 +1,4 @@
-import {toId, getTotal, DONOR, RECIPIENT,
+import {toId, getTotal, DONOR, RECIPIENT, formatNumbers,
         makeSqlAggregateQuery, normalizeKeyName, isDonor} from '.';
 import * as prettyFormat from 'pretty-format';
 
@@ -21,6 +21,11 @@ describe('Utility functions test', () => {
     });
     it('should get total of the value field in an array', () => {
         expect(getTotal(dataA)).toBe(6000);
+    });
+    it('should create human friendly numbers i.e 1.5k for 1500', () => {
+        const formattedA = [150, 1500, 15000, 200000000].map(val => formatNumbers(val, 0));
+        const formattedB = [150, 1500, 15000, 200000000].map(val => formatNumbers(val, 1, true));
+        expect(prettyFormat({formattedB})).toMatchSnapshot();
     });
     it('should create an aggregate sql query for multiple years', () => {
         const argsB = {

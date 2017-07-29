@@ -8,3 +8,14 @@ exports[`Utility functions test should create an aggregate sql query for a singl
 `;
 
 exports[`Utility functions test should create an aggregate sql query for multiple years 1`] = `"\\"SELECT bundle, year, sum(value) AS value from fact.oda_2015 WHERE value > 0 AND from_di_id = 'afdb' AND to_di_id = 'UG' AND year >= 2013 AND year <= 2015 GROUP BY bundle, year\\""`;
+
+exports[`Utility functions test should create human friendly numbers i.e 1.5k for 1500 1`] = `
+"Object {
+  \\"formattedB\\": Array [
+    \\"150\\",
+    \\"1.5k\\",
+    \\"15k\\",
+    \\"200m\\",
+  ],
+}"
+`;

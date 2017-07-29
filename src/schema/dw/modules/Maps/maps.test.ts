@@ -29,12 +29,15 @@ describe('Maps module tests', () => {
     }, 20000);
     it('should return global indicators data ', async () => {
         const linearColored = await maps.getMapData('data_series.non_grant_revenue_ppp_pc');
-        // const categoricalLinear = await maps.getMapData({id: 'data_series.fragile_states', DACOnly: false});
-        // const dataRevolution = await maps.getMapData({id: 'data_series.latest_census', DACOnly: false});
-        // const largestIntlFinance = await maps.getMapData({id: 'data_series.largest_intl_flow', DACOnly: false});
-        // const forwardLookingOda = await maps.getMapData({id: 'data_series.largest_intl_flow', DACOnly: false});
-        // const governmentFinance = await maps.getMapData({id: 'data_series.non_grant_revenue_ppp_pc', DACOnly: false});
-        expect(prettyFormat({linearColored})).toMatchSnapshot();
+        const categoricalLinear = await maps.getMapData( 'data_series.fragile_states');
+        const dataRevolution = await maps.getMapData( 'data_series.latest_census');
+        const largestIntlFinance = await maps.getMapData( 'data_series.largest_intl_flow');
+        const forwardLookingOda = await maps.getMapData( 'data_series.largest_intl_flow');
+        const governmentFinance = await maps.getMapData( 'data_series.non_grant_revenue_ppp_pc');
+        const dacCountries = await maps.getMapData( 'fact.oda_percent_gni');
+        expect(prettyFormat({dacCountries})).toMatchSnapshot();
+        // expect(prettyFormat({linearColored, categoricalLinear, dataRevolution,
+        //     largestIntlFinance, forwardLookingOda, governmentFinance})).toMatchSnapshot();
     }, 20000);
     it.skip('should return categorical value mappings for indicators', async () => {
         const fragileSates = await Maps.getCategoricalMapping('data_series.fragile_states');
@@ -52,15 +55,18 @@ describe('Maps module tests', () => {
         };
         expect(prettyFormat(results)).toMatchSnapshot();
     });
-    it.skip('should create legend for map data', async () => {
-        const ramp = {high: '#8f1b13', low: '#f8c1b2', mid: '#e8443a'};
+    it('should create legend for map data', async () => {
+        const ramp = {high: '#8f1b13', low: '#fbd7cb', mid: '#e8443a'};
         const rangeA = '1, 5, 10, 20';
         const rangeB = '500,120,50,20,5';
+        const rangeC = '200, 500, 1000, 1500, 2000, 10000';
         const scaleA = Maps.colorScale(rangeA, ramp);
         const scaleB = Maps.colorScale(rangeB, ramp);
+        const scaleC = Maps.colorScale(rangeC, ramp);
         const legendA = Maps.createLinearLegend('%', rangeA, scaleA);
         const legendB = Maps.createLinearLegend('unit', rangeB, scaleB);
-        expect(prettyFormat({legendA, legendB})).toMatchSnapshot();
+        const legendC = Maps.createLinearLegend('unit', rangeC, scaleC);
+        expect(prettyFormat({legendA, legendB, legendC})).toMatchSnapshot();
     });
     it.skip('should create color ramp', async () => {
         const ramp = {high: '#8f1b13', low: '#f8c1b2', mid: '#e8443a'};

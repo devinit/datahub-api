@@ -56,8 +56,12 @@ export default class Maps {
         color: 'white', backgroundColor: lightGrey, label: 'no data/not applicable'};
 
     public static DACOnlyData(DACCountries: string[], indicatorData: DH.IMapUnit[]): DH.IMapUnit[] {
-       return DACCountries.map(name =>
-            R.find((obj: DH.IMapUnit) => obj.name === name, indicatorData));
+       return DACCountries.map(name => {
+            const data: DH.IMapUnit | undefined =
+                R.find((obj: DH.IMapUnit) => obj.name === name, indicatorData);
+            if (!data) throw new Error(`Dac ${name} missing in entitie country names}`);
+            return data;
+       });
     }
     public static processBudgetData(data: DH.IMapUnit[]): DH.IMapUnit[] {
         const grouped = R.groupBy(R.prop('year'), data);
@@ -80,11 +84,9 @@ export default class Maps {
         const domain = rangeStr.split (',').map(val => Number(val));
         const isAscendingOrder = (domain[1] > domain[0]) ? true : false;
         const range = R.range(0, domain.length + offset).map((index) => {
-            if (index === 0) return ramp.low;
-            if (index === domain.length) return ramp.high;
-            if (index === Math.floor(domain.length / 2)) return ramp.mid;
-            return index < domain.length / 2 ? interpolateRgb(ramp.low, ramp.mid)(index / domain.length)
+            return index < domain.length + 1 / 2 ? interpolateRgb(ramp.low, ramp.mid)(index / domain.length)
                 :   interpolateRgb(ramp.mid, ramp.high)(index / domain.length);
+
         });
         return scaleThreshold()
             .domain(isAscendingOrder ? domain : R.reverse(domain))
@@ -104,25 +106,23 @@ export default class Maps {
     public static createLinearLegend(
         uom_display: string,
         rangeStr: string, scale: IScaleThreshold<number, string>): DH.ILegendField[] {
-        const formatVal: (number) => string = (val) => uom === '%'  ? val : formatNumbers(val);
+        const formatVal: (number) => string = (val) => uom === '%'  ? val : formatNumbers(val, 1, true);
         const uom = uom_display === '%' ? uom_display : '';
         const inputRange = rangeStr.split(',').map(val => Number(val));
-        const domain = scale.domain();
-        const range = scale.range();
+        const domain = scale.domain(); // numbers
+        const range = scale.range(); // colors
         const legend = domain.reduce((acc: DH.ILegendField[], val: number, index: number) => {
             const backgroundColor = range[index];
             const hslColor = hsl(backgroundColor);
             const color =  (hslColor.l > 0.7) ? 'black' : 'white';
             const currentVal  = formatVal(val);
-            if (index === 0 ) {
-                return [{backgroundColor, color,  label: `<${currentVal}${uom}`}];
-            }
+            if (index === 0 ) return [{backgroundColor, color,  label: `<${currentVal}${uom}`}];
             const prevVal = formatVal(domain[index - 1]);
             if (index < (domain.length - 1)) {
                 const label = `${prevVal}-${currentVal}`;
                 return [...acc, {backgroundColor, color, label}];
             }
-            // the range will always be longer by the domain by 1, (which is the offset variable in the scale function)
+            // the range will always be longer by the domain by 1, (which is the offset variable in the scale function
             // but for some scales like the fragile states scale the range and domain will be the same.
             // and hence they be no need of an extra legend field (hope this makes sense)
             const lastBackgroundColor = range[index + (range.length - domain.length)];
@@ -183,17 +183,28 @@ export default class Maps {
              const concept: IConcept = country === 'global' ?
                  await getConceptAsync('global-picture', id)
                  : await getConceptAsync(`spotlight-${country}`, id);
+             const end_year = concept.end_year ? concept.end_year : concept.start_year;
+             const default_year = concept.default_year ? concept.default_year : end_year;
+             if (concept.map_style) {
+                const styledMapLegend = await this.getStyledMapData(concept);
+                return {map: [], legend: styledMapLegend,
+                    ...concept, country, end_year, default_year} as DH.IMapData;
+             }
              // we merge concept and graphql qery options, they have startYear and endYear variables
              const {mapData, legend} = await this.getMapIndicatorData(concept, country);
              const DACCountries = concept.dac_only ? await this.getDACCountries() : [];
              const map = DACCountries.length ? Maps.DACOnlyData(DACCountries, mapData) : mapData;
-             const end_year = concept.end_year ? concept.end_year : concept.start_year;
-             const default_year = concept.default_year ? concept.default_year : end_year;
              return {map, legend, ...concept, country, end_year, default_year } as DH.IMapData;
          } catch (error) {
              console.error(error);
              throw error;
          }
+    }
+    private async getStyledMapData(concept: IConcept): Promise<DH.ILegendField[]> {
+        if (!concept.range || !concept.color) throw new Error('indicator with mapbox map style msissing color & range');
+        const ramp = await Maps.getColorRamp(concept.color);
+        const scale = Maps.colorScale(concept.range, ramp);
+        return Maps.createLinearLegend(concept.uom_display, concept.range, scale);
     }
     private async getMapIndicatorData(concept: IConcept, country: string): Promise<IMapDataWithLegend> {
         if (concept.theme === 'data-revolution') {
@@ -289,14 +300,14 @@ export default class Maps {
         const colors = await getColors();
         const entities: IEntity[] = await getEntities();
         const mapData = processedData.map(obj => {
-            const colorObj: IColor = getEntityByIdGeneric<IColor>(obj.colour.toLowerCase(), colors);
+            const colorObj: IColor = getEntityByIdGeneric<IColor>(obj.colour, colors);
             const entity = getEntityByIdGeneric<IEntity>(obj.id, entities);
             return {
                 ...obj,
                 value: null,
                 year: Number(obj.detail) ? obj.detail : 0,
                 name: entity.name,
-                detail: dataRevColorMap[obj.colour.toLowerCase()],
+                detail: dataRevColorMap[obj.colour],
                 color: colorObj.value
             };
         });

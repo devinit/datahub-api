@@ -281,20 +281,32 @@ export const getCurrentYear = (): number => {
     return date.getFullYear();
 };
 
-export const formatNumbers = (value: number | string | undefined | null, precision: number = 0): string => {
+const removeTrailingZero = (value: string): string => {
+    const val = Number(value);
+    return  Math.round(val) === val ? val.toString() : value;
+};
+
+export const formatNumbers =
+    (value: number | string | undefined | null,
+     precision: number = 1,
+     shouldrRemoveTrailingZero: boolean = false): string => {
     if (value === undefined || value === null) return 'No data';
     const val = Number(value);
     const absValue = Math.abs(val);
     if (absValue < 1e3) {
-        return `${val.toFixed(precision)}`;
+        const fixed = val.toFixed(precision);
+        return shouldrRemoveTrailingZero ? `${removeTrailingZero(fixed)}` : fixed;
     } else if (absValue >= 1e3 && absValue < 1e6) {
         const newValue = val / 1e3;
-        return `${newValue.toFixed(precision)}k`;
+        const fixed = newValue.toFixed(precision);
+        return shouldrRemoveTrailingZero ? `${removeTrailingZero(fixed)}k` : `${fixed}k`;
     } else if (absValue >= 1e6 && absValue < 1e9) {
         const newValue = val / 1e6;
-        return `${newValue.toFixed(precision)}m`;
+        const fixed = newValue.toFixed(precision);
+        return shouldrRemoveTrailingZero ? `${removeTrailingZero(fixed)}m` : `${fixed}m`;
     } else {
         const newValue = val / 1e9;
-        return `${newValue.toFixed(precision)}bn`;
+        const fixed = newValue.toFixed(precision);
+        return shouldrRemoveTrailingZero ? `${removeTrailingZero(fixed)}bn` : `${fixed}bn`;
     }
 };

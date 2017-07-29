@@ -6,6 +6,7 @@ export interface IConcept {
     description: string;
     uom: string;
     uom_display: string;
+    map_style?: string;
     start_year: number;
     dac_only: number;
     default_year: number;

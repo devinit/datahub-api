@@ -24,6 +24,7 @@ type MapData {
   # map value unit eg US $ or %
   uom_display: String
   uom: String
+  map_style: String
   start_year: Int
   end_year: Int
   default_year: Int

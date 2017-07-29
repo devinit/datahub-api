@@ -51,13 +51,6 @@ Files explained:
     8. webpack.config.js           - configuration file of the compilation automation process for the library
     10. Dockerfile                 - Dockerfile used to describe how to make a container for the server
 
-
-Output files explained:
-----
-    1. node_modules - directory npm creates with all the dependencies of the module (result of npm install)
-    2. dist         - directory contains the compiled server (javascript)
-    3. html-report  - output of npm test, code coverage html report.
-
 On data caching
 -----
 
