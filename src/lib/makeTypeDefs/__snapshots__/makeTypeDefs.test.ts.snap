@@ -283,15 +283,15 @@ declare namespace DH {
     uom_display: string | null;
     uom: string | null;
     map_style: string | null;
+    source: string | null;
     start_year: number | null;
     end_year: number | null;
     default_year: number | null;
     description: string | null;
-    source: string | null;
-    source_link: string | null;
     theme: string | null;
     heading: string | null;
     country: string | null;
+    id: string | null;
     legend: Array<ILegendField> | null;
   }
 
@@ -713,15 +713,16 @@ type MapData {
   uom_display: String
   uom: String
   map_style: String
+  source: String
   start_year: Int
   end_year: Int
   default_year: Int
   description: String
   source: String
-  source_link: String
   theme: String
   heading: String
   country: String
+  id: String
   legend: [LegendField]
 }
 
