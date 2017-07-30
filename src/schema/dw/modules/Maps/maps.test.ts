@@ -36,6 +36,7 @@ describe('Maps module tests', () => {
         const forwardLookingOda = await maps.getMapData( 'data_series.largest_intl_flow');
         const governmentFinance = await maps.getMapData( 'data_series.non_grant_revenue_ppp_pc');
         const dacCountries = await maps.getMapData( 'fact.oda_percent_gni');
+        // expect(prettyFormat({categoricalLinear})).toMatchSnapshot();
         expect(prettyFormat({linearColored, categoricalLinear, dataRevolution,
             largestIntlFinance, forwardLookingOda, governmentFinance})).toMatchSnapshot();
     }, 20000);

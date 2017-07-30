@@ -51,7 +51,7 @@ export const csvToJson = <T extends {}> (csvStr: string): Promise<T[]>  =>
         .on('json', (json) => {
             const parsed = Object.keys(json).reduce((acc, key) => {
                 const value = Number(json[key]) ? Number(json[key]) : json[key];
-                return {...acc, [key]: value};
+                return {...acc, [key.trim()]: value};
             }, {}) as T;
             data.push(parsed);
         })

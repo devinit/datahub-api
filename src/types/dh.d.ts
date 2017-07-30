@@ -280,15 +280,16 @@ declare namespace DH {
     name: string | null;
     uom_display: string | null;
     uom: string | null;
+    map_style: string | null;
+    source: string | null;
     start_year: number | null;
     end_year: number | null;
     default_year: number | null;
     description: string | null;
-    source: string | null;
-    source_link: string | null;
     theme: string | null;
     heading: string | null;
     country: string | null;
+    id: string | null;
     legend: Array<ILegendField> | null;
   }
 

@@ -86,13 +86,15 @@ export default class Maps {
     }
     public static colorScale(args: IColorScaleArgs): IScaleThreshold<number, string> {
         const {rangeStr, ramp} = args;
-        const offset = args.offset || 1;
+        const offset = args.offset !== undefined ? args.offset : 1;
         const isHighBetter = args.isHighBetter || false ;
         const domain = rangeStr.split (',').map(val => Number(val));
-        const range = R.range(0, domain.length + offset).map((index) => {
-            return index < domain.length + 1 / 2 ? interpolateRgb(ramp.low, ramp.mid)(index / domain.length)
+        const effectiveDomain =  domain.length + offset;
+        const range = R.range(0, effectiveDomain).map((index) => {
+            if (offset === 0) return interpolateRgb(ramp.low, ramp.high)(index / domain.length);
+            const cutOff =  Math.round(effectiveDomain / 2);
+            return index < cutOff ? interpolateRgb(ramp.low, ramp.mid)(index / domain.length)
                 :   interpolateRgb(ramp.mid, ramp.high)(index / domain.length);
-
         });
         return scaleThreshold()
             .domain(domain)
@@ -314,7 +316,7 @@ export default class Maps {
         const entities: IEntity[] = await getEntities();
         const mapData = processedData.map(obj => {
             // TODO:  temp color map
-            const newDataColors = {red: 'green-lighter', orange: 'green', green: 'green-dark', grey: 'grey-lighter'};
+            const newDataColors = {red: 'green-lighter', orange: 'green', green: 'green-dark', grey: 'grey-light'};
             const newColor = newDataColors[obj.colour];
             const colorObj: IColor = getEntityByIdGeneric<IColor>(newColor, colors);
             const entity = getEntityByIdGeneric<IEntity>(obj.id, entities);

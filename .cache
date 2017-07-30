@@ -84,3 +84,5 @@ SELECT * FROM data_series.number_of_un_appeals WHERE year = '2015' AND value IS 
 SELECT donor_name FROM dimension.oecd_donor where donor_type = 'DAC':dw
 SELECT * FROM data_series.civil_reg_deaths WHERE colour IS NOT NULL:dw
 SELECT * FROM data_series.health_mis WHERE colour IS NOT NULL:dw
+SELECT * FROM data_series.poor_people_190 WHERE year >= 1990 AND year <= 2013 AND value IS NOT NULL:dw
+SELECT * FROM data_series.fragile_states WHERE year = 2015 AND value IS NOT NULL:dw
