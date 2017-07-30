@@ -177,7 +177,7 @@ export default class Maps {
     }
     public static async getCountry(indicator: string): Promise<string> {
         const tableName = indicator.split('.')[1];
-        if (!tableName) throw new Error(`invalid indicator name, every indicator should be in a schema: ${indicator}`);
+        if (!tableName) return 'global'; // eg survey_p20
         const country = tableName.split('_')[0];
         // check if first value is a country
         const entities: IEntity[] = await getEntities();
