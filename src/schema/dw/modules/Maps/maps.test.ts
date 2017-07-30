@@ -6,7 +6,7 @@ import db from '../../db';
 describe('Maps module tests', () => {
     const maps = new Maps(db);
 
-    it.skip('should return only DAC countries from the data', async () => {
+    it('should return only DAC countries from the data', async () => {
         const dacCountries = ['Spain', 'England'];
         const data = [
             {value: 2000, id: 'sp', name: 'Spain', year: 2000},
@@ -16,13 +16,13 @@ describe('Maps module tests', () => {
         const onlyDacCountries = Maps.DACOnlyData(dacCountries, data);
         expect(onlyDacCountries.length).toBe(2);
     }, 10000);
-    it.skip('should know if an indicator is for a country spotlight or for global picture', async () => {
+    it('should know if an indicator is for a country spotlight or for global picture', async () => {
         const country = await Maps.getCountry('spotlight_on_uganda.uganda_poverty_headcount');
         const global = await Maps.getCountry('data_series.poorest_20_percent');
         expect(country).toBe('uganda');
         expect(global).toBe('global');
     }, 2000);
-    it.skip('should return spotlight on uganda indicator data', async () => {
+    it('should return spotlight on uganda indicator data', async () => {
         const linearColored =
             await maps.getMapData('spotlight_on_uganda.uganda_poverty_headcount');
         expect(prettyFormat({linearColored})).toMatchSnapshot();
@@ -35,19 +35,18 @@ describe('Maps module tests', () => {
         const forwardLookingOda = await maps.getMapData( 'data_series.largest_intl_flow');
         const governmentFinance = await maps.getMapData( 'data_series.non_grant_revenue_ppp_pc');
         const dacCountries = await maps.getMapData( 'fact.oda_percent_gni');
-        expect(prettyFormat({dacCountries})).toMatchSnapshot();
-        // expect(prettyFormat({linearColored, categoricalLinear, dataRevolution,
-        //     largestIntlFinance, forwardLookingOda, governmentFinance})).toMatchSnapshot();
+        expect(prettyFormat({linearColored, categoricalLinear, dataRevolution,
+            largestIntlFinance, forwardLookingOda, governmentFinance})).toMatchSnapshot();
     }, 20000);
-    it.skip('should return categorical value mappings for indicators', async () => {
+    it('should return categorical value mappings for indicators', async () => {
         const fragileSates = await Maps.getCategoricalMapping('data_series.fragile_states');
         const dataRevolution = await Maps.getCategoricalMapping('data_series.agricultural_census', 'data-revolution');
         expect(prettyFormat({fragileSates, dataRevolution})).toMatchSnapshot();
     }, 5000);
-    it.skip('should return color values from a scale', async () => {
+    it('should return color values from a scale', async () => {
         const ramp = {high: '#8f1b13', low: '#f8c1b2', mid: '#e8443a'};
-        const scaleA = Maps.colorScale('1, 5, 10, 20', ramp);
-        const scaleB = Maps.colorScale('500,120,50,20,5', ramp);
+        const scaleA = Maps.colorScale({rangeStr: '1, 5, 10, 20', ramp});
+        const scaleB = Maps.colorScale({rangeStr: '500,120,50,20,5', ramp});
         const results = {
             A: {0: scaleA(0), 1: scaleA(1), 5: scaleA(5), 10: scaleA(10), 19: scaleA(19), 100: scaleA(100)},
             B: { 530: scaleB(530), 110: scaleB(110),
@@ -56,19 +55,17 @@ describe('Maps module tests', () => {
         expect(prettyFormat(results)).toMatchSnapshot();
     });
     it('should create legend for map data', async () => {
-        const ramp = {high: '#8f1b13', low: '#fbd7cb', mid: '#e8443a'};
+        const rampA = {high: '#8f1b13', low: '#fbd7cb', mid: '#e8443a'};
+        const rampB = {high: '#0c457b', low: '#bcd4f0', mid: '#0089cc'};
         const rangeA = '1, 5, 10, 20';
-        const rangeB = '500,120,50,20,5';
-        const rangeC = '200, 500, 1000, 1500, 2000, 10000';
-        const scaleA = Maps.colorScale(rangeA, ramp);
-        const scaleB = Maps.colorScale(rangeB, ramp);
-        const scaleC = Maps.colorScale(rangeC, ramp);
+        const rangeB = '200,500,1000,1500,2000,10000';
+        const scaleA = Maps.colorScale({rangeStr: rangeA, ramp: rampA});
+        const scaleB = Maps.colorScale({rangeStr: rangeB, ramp: rampB, isHighBetter: true});
         const legendA = Maps.createLinearLegend('%', rangeA, scaleA);
         const legendB = Maps.createLinearLegend('unit', rangeB, scaleB);
-        const legendC = Maps.createLinearLegend('unit', rangeC, scaleC);
-        expect(prettyFormat({legendA, legendB, legendC})).toMatchSnapshot();
+        expect(prettyFormat({legendB, legendA})).toMatchSnapshot();
     });
-    it.skip('should create color ramp', async () => {
+    it('should create color ramp', async () => {
         const ramp = {high: '#8f1b13', low: '#f8c1b2', mid: '#e8443a'};
         const colorRamp = await Maps.getColorRamp('red');
         expect(prettyFormat(colorRamp)).toMatchSnapshot();

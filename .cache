@@ -82,3 +82,5 @@ SELECT * FROM data_series.climate_vulnerability WHERE year >= '2010' AND year <=
 SELECT * FROM data_series.human_hazard WHERE year = '2015' AND value IS NOT NULL:dw
 SELECT * FROM data_series.number_of_un_appeals WHERE year = '2015' AND value IS NOT NULL:dw
 SELECT donor_name FROM dimension.oecd_donor where donor_type = 'DAC':dw
+SELECT * FROM data_series.civil_reg_deaths WHERE colour IS NOT NULL:dw
+SELECT * FROM data_series.health_mis WHERE colour IS NOT NULL:dw

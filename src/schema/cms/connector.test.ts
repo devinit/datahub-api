@@ -12,11 +12,14 @@ describe('Github connector', () => {
         const dataA = await csvToJson<{name: string; id: number}>(csvStrA);
         expect(prettyFormat(dataA)).toMatchSnapshot();
     });
-    it('should be able to get color data from github', async () => {
-        const raw = await httpsGet('global/entity.csv');
-        expect(raw.length).toBeGreaterThan(30);
-        expect(prettyFormat(raw)).toMatchSnapshot();
-    }, 10000);
+    it('should be able to parse numerical values as numbers', async () => {
+        const csvStrA = `id,value
+                        red,123
+                        red-light,hey
+                        red-lighter,190`;
+        const dataA = await csvToJson(csvStrA);
+        expect(prettyFormat(dataA)).toMatchSnapshot();
+    });
 
     it('should get data from github and return it as json', async () => {
         const themes = await get<{id: string}>('global-picture/theme.csv');

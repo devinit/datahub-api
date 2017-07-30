@@ -7,6 +7,7 @@ export interface IConcept {
     uom: string;
     uom_display: string;
     map_style?: string;
+    is_high_better?: number;
     start_year: number;
     dac_only: number;
     default_year: number;
@@ -23,7 +24,6 @@ export interface IConcept {
 // TODO: parse start_year as a number
 export const getConcepts = (moduleName: string): Promise <IConcept[]> => {
     const endPoint: string = `${moduleName}/concept.csv`;
-
     return get<IConcept>(endPoint);
 };
 

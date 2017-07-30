@@ -49,7 +49,11 @@ export const csvToJson = <T extends {}> (csvStr: string): Promise<T[]>  =>
         converter({workerNum: 2, delimiter: ','})
         .fromString(csvStr)
         .on('json', (json) => {
-            data.push(json);
+            const parsed = Object.keys(json).reduce((acc, key) => {
+                const value = Number(json[key]) ? Number(json[key]) : json[key];
+                return {...acc, [key]: value};
+            }, {}) as T;
+            data.push(parsed);
         })
         .on('done', (error) => {
             resolve(data);

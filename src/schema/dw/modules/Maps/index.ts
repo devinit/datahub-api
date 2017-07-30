@@ -44,6 +44,12 @@ interface IMapDataWithLegend {
     mapData: DH.IMapUnit[];
     legend: DH.ILegendField[];
 }
+interface IColorScaleArgs {
+    rangeStr: string;
+    ramp: IColorMap;
+    isHighBetter?: boolean;
+    offset?: number;
+}
 interface IScaleThreshold <Input, Output> {
     (value: Input): Output;
     range(): Output[];
@@ -56,12 +62,10 @@ export default class Maps {
         color: 'white', backgroundColor: lightGrey, label: 'no data/not applicable'};
 
     public static DACOnlyData(DACCountries: string[], indicatorData: DH.IMapUnit[]): DH.IMapUnit[] {
-       return DACCountries.map(name => {
-            const data: DH.IMapUnit | undefined =
-                R.find((obj: DH.IMapUnit) => obj.name === name, indicatorData);
-            if (!data) throw new Error(`Dac ${name} missing in entitie country names}`);
-            return data;
-       });
+       return DACCountries
+       .map(name =>
+            R.find((obj: DH.IMapUnit) => obj.name === name, indicatorData))
+        .filter(obj => obj !== undefined);
     }
     public static processBudgetData(data: DH.IMapUnit[]): DH.IMapUnit[] {
         const grouped = R.groupBy(R.prop('year'), data);
@@ -80,17 +84,19 @@ export default class Maps {
             return acc.concat(filterdData);
         }, []);
     }
-    public static colorScale(rangeStr: string, ramp: IColorMap, offset: number = 1): IScaleThreshold<number, string> {
+    public static colorScale(args: IColorScaleArgs): IScaleThreshold<number, string> {
+        const {rangeStr, ramp} = args;
+        const offset = args.offset || 1;
+        const isHighBetter = args.isHighBetter || false ;
         const domain = rangeStr.split (',').map(val => Number(val));
-        const isAscendingOrder = (domain[1] > domain[0]) ? true : false;
         const range = R.range(0, domain.length + offset).map((index) => {
             return index < domain.length + 1 / 2 ? interpolateRgb(ramp.low, ramp.mid)(index / domain.length)
                 :   interpolateRgb(ramp.mid, ramp.high)(index / domain.length);
 
         });
         return scaleThreshold()
-            .domain(isAscendingOrder ? domain : R.reverse(domain))
-            .range(range);
+            .domain(domain)
+            .range(isHighBetter ? R.reverse(range) : range);
     }
     public static async getColorRamp(color: string): Promise<IColorMap> {
         const colors = await getColors();
@@ -106,18 +112,24 @@ export default class Maps {
     public static createLinearLegend(
         uom_display: string,
         rangeStr: string, scale: IScaleThreshold<number, string>): DH.ILegendField[] {
-        const formatVal: (number) => string = (val) => uom === '%'  ? val : formatNumbers(val, 1, true);
-        const uom = uom_display === '%' ? uom_display : '';
-        const inputRange = rangeStr.split(',').map(val => Number(val));
+        const uom = uom_display === '%' || uom_display === 'PPP$' ? uom_display : '';
+        const inputDomain = rangeStr.split(',').map(val => Number(val));
+        const isAscendingOrder = inputDomain[0] < inputDomain[1];
+        let firstSign = '<';
+        let secondSign = '>';
+        if (!isAscendingOrder) {
+            firstSign = '>';
+            secondSign = '<';
+        }
         const domain = scale.domain(); // numbers
-        const range = scale.range(); // colors
+        const range = scale.range();
         const legend = domain.reduce((acc: DH.ILegendField[], val: number, index: number) => {
             const backgroundColor = range[index];
             const hslColor = hsl(backgroundColor);
             const color =  (hslColor.l > 0.7) ? 'black' : 'white';
-            const currentVal  = formatVal(val);
-            if (index === 0 ) return [{backgroundColor, color,  label: `<${currentVal}${uom}`}];
-            const prevVal = formatVal(domain[index - 1]);
+            const currentVal  = formatNumbers(val, 1, true);
+            if (index === 0 ) return [{backgroundColor, color,  label: `${firstSign}${currentVal} ${uom}`}];
+            const prevVal = formatNumbers(domain[index - 1], 1, true);
             if (index < (domain.length - 1)) {
                 const label = `${prevVal}-${currentVal}`;
                 return [...acc, {backgroundColor, color, label}];
@@ -128,13 +140,13 @@ export default class Maps {
             const lastBackgroundColor = range[index + (range.length - domain.length)];
             const lastEntry = range.length > domain.length ?
                 [{color, backgroundColor, label: `${prevVal}-${currentVal}`},
-                {color, backgroundColor: lastBackgroundColor, label: `>${currentVal}`}]
+                {color, backgroundColor: lastBackgroundColor, label: `${secondSign}${currentVal}`}]
                 :
-                [{color, backgroundColor: lastBackgroundColor, label: `>${currentVal}`}];
+                [{color, backgroundColor: lastBackgroundColor, label: `${secondSign}${currentVal}`}];
             return [...acc, ...lastEntry, Maps.noDataLegendEntry];
         }, []);
-        if (inputRange[0] < inputRange[1]) return legend;
-        return [...(R.reverse(R.init(legend))), R.last(legend)] as DH.ILegendField[];
+        return legend; // ascending order
+        // return [...(R.reverse(R.init(legend))), R.last(legend)] as DH.ILegendField[];
     }
     public static categoricalLegendFromLinear(cMappings: ICategoricalMapping[], linearLegend: DH.ILegendField[]):
         DH.ILegendField[] {
@@ -203,7 +215,7 @@ export default class Maps {
     private async getStyledMapData(concept: IConcept): Promise<DH.ILegendField[]> {
         if (!concept.range || !concept.color) throw new Error('indicator with mapbox map style msissing color & range');
         const ramp = await Maps.getColorRamp(concept.color);
-        const scale = Maps.colorScale(concept.range, ramp);
+        const scale = Maps.colorScale({rangeStr: concept.range, ramp});
         return Maps.createLinearLegend(concept.uom_display, concept.range, scale);
     }
     private async getMapIndicatorData(concept: IConcept, country: string): Promise<IMapDataWithLegend> {
@@ -221,7 +233,8 @@ export default class Maps {
         Promise<IMapDataWithLegend> {
         if (!concept.range || !concept.color) throw new Error(`color and range values missing for ${concept.id}`);
         const ramp = await Maps.getColorRamp(concept.color);
-        const scale = Maps.colorScale(concept.range, ramp);
+        const isHighBetter = concept.is_high_better && concept.is_high_better > 0 ? true : false;
+        const scale = Maps.colorScale({rangeStr: concept.range, ramp, isHighBetter});
         const legend = Maps.createLinearLegend(concept.uom_display, concept.range, scale);
         const mapData = await this.processScaleData(scale, data, country);
         return {legend, mapData};
@@ -230,10 +243,10 @@ export default class Maps {
         Promise<IMapDataWithLegend> {
         if (!concept.color) throw new Error (`color missing for ${concept.id}`);
         const categoricalMappings: ICategoricalMapping[] = await Maps.getCategoricalMapping(concept.id, concept.theme);
-        const range = categoricalMappings.map(obj => obj.id).join(',');
+        const rangeStr = categoricalMappings.map(obj => obj.id).join(',');
         const ramp = await Maps.getColorRamp(concept.color);
-        const scale = Maps.colorScale(range, ramp, 0);
-        const linearLegend = Maps.createLinearLegend(concept.uom_display, range, scale);
+        const scale = Maps.colorScale({rangeStr, ramp, offset: 0});
+        const linearLegend = Maps.createLinearLegend(concept.uom_display, rangeStr, scale);
         const legend = Maps.categoricalLegendFromLinear(categoricalMappings, linearLegend);
         const mapData = await this.processScaleData(scale, data, country, categoricalMappings);
         return {legend, mapData};
@@ -300,19 +313,23 @@ export default class Maps {
         const colors = await getColors();
         const entities: IEntity[] = await getEntities();
         const mapData = processedData.map(obj => {
-            const colorObj: IColor = getEntityByIdGeneric<IColor>(obj.colour, colors);
+            // TODO:  temp color map
+            const newDataColors = {red: 'green-lighter', orange: 'green', green: 'green-dark', grey: 'grey-lighter'};
+            const newColor = newDataColors[obj.colour];
+            const colorObj: IColor = getEntityByIdGeneric<IColor>(newColor, colors);
             const entity = getEntityByIdGeneric<IEntity>(obj.id, entities);
             return {
                 ...obj,
                 value: null,
-                year: Number(obj.detail) ? obj.detail : 0,
+                year: null,
                 name: entity.name,
-                detail: dataRevColorMap[obj.colour],
+                detail: dataRevColorMap[newColor],
                 color: colorObj.value
             };
         });
         const legend = R.keys(dataRevColorMap).reduce((acc: DH.ILegendField[], key) => {
             if (key === 'id') return acc;
+            if (key === 'grey-light') return acc;
             const colorObj: IColor = getEntityByIdGeneric<IColor>(key, colors);
             const hslColor = hsl(colorObj.value);
             const textColor =  (hslColor.l > 0.7) ? 'black' : 'white';

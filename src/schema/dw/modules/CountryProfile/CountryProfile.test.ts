@@ -38,7 +38,7 @@ describe('country profile DW module tests', () => {
             .map(obj => ({year: obj.year, flow_name: obj.flow_name}));
         const groupedDebt = R.groupBy(R.prop('year'), debt);
         expect(prettyFormat({'long-debt': groupedDebt})).toMatchSnapshot();
-        // expect(prettyFormat(international)).toMatchSnapshot();
+        expect(prettyFormat({overtime: international.resourcesOverTime})).toMatchSnapshot();
     }, 30000);
     it.skip('should return international resources tab & charts data for Austria', async () => {
         const international  = await resources.getInternationalResources({id: 'austria'});
