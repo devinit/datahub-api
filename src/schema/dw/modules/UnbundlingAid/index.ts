@@ -95,11 +95,10 @@ export default class UnbundlingAid {
             return entites.reduce((countries: IUnBundlingAidCountries, entity) => {
             let to: any = [];
             let from: any = [];
-            if (entity.donor_recipient_type === RECIPIENT || entity.region === MULTILATERAL
-                || entity.donor_recipient_type === CROSSOVER ) {
+            if (entity.donor_recipient_type === RECIPIENT || entity.donor_recipient_type === CROSSOVER ) {
                 to = R.append({id: entity.id, name: entity.name}, countries.to);
             }
-            if (entity.donor_recipient_type === DONOR || entity.region === MULTILATERAL
+            if (entity.donor_recipient_type === DONOR || entity.donor_recipient_type === MULTILATERAL
                 || entity.donor_recipient_type === CROSSOVER) {
                 from = R.contains(entity.id, this.donorsBlackList) ? countries.from :
                     R.append({id: entity.id, name: entity.name}, countries.from);

@@ -295,9 +295,9 @@ export default class Resources {
              const colors = await getColors();
              return processed.map(obj => {
                 const flow: IFlowRef | undefined = flowRefs.find(flowRef => flowRef.id === obj.flow_name);
-                if (flow === undefined) throw new Error(`flow : ${obj.flow_name} as an undefined flow`);
+                if (flow === undefined) throw new Error(`No flow refrence for ${JSON.stringify(obj)} `);
                 const colorObj: IColor = getEntityByIdGeneric<IColor>(flow.color, colors);
-                return {...flow, ...obj, color: colorObj.value} as DH.IResourceData;
+                return {...obj, ...flow, color: colorObj.value} as DH.IResourceData;
              });
          } catch (error) {
              throw error;
