@@ -10,10 +10,11 @@ describe('Maps module tests', () => {
         const dacCountries = ['Spain', 'England'];
         const data = [
             {value: 2000, id: 'sp', name: 'Spain', year: 2000},
-            {value: 2000, id: 'uk', name: 'Engaland', year: 2000},
+            {value: 2000, id: 'uk', name: 'England', year: 2000},
             {value: 2000, id: 'pl', name: 'Poland', year: 2000},
             ];
         const onlyDacCountries = Maps.DACOnlyData(dacCountries, data);
+        expect(prettyFormat({onlyDacCountries})).toMatchSnapshot();
         expect(onlyDacCountries.length).toBe(2);
     }, 10000);
     it('should know if an indicator is for a country spotlight or for global picture', async () => {

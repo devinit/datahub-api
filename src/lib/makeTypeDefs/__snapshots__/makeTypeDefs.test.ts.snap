@@ -282,6 +282,7 @@ declare namespace DH {
     name: string | null;
     uom_display: string | null;
     uom: string | null;
+    map_style: string | null;
     start_year: number | null;
     end_year: number | null;
     default_year: number | null;
@@ -711,6 +712,7 @@ type MapData {
   # map value unit eg US $ or %
   uom_display: String
   uom: String
+  map_style: String
   start_year: Int
   end_year: Int
   default_year: Int

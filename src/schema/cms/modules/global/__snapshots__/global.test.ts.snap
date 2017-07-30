@@ -4,7 +4,7 @@ exports[`Site Global narratives and refrence module should return all entities 1
 "Object {
   \\"dac_id\\": \\"AF\\",
   \\"donor_recipient_type\\": \\"recipient\\",
-  \\"has_domestic_data\\": \\"1\\",
+  \\"has_domestic_data\\": 1,
   \\"id\\": \\"AF\\",
   \\"income_group\\": \\"ldcs\\",
   \\"iso_alpha_2\\": \\"AF\\",
@@ -30,7 +30,7 @@ exports[`Site Global narratives and refrence module should return colors 1`] = `
   },
   Object {
     \\"id\\": \\"red-lighter\\",
-    \\"value\\": \\"#f8c1b2\\",
+    \\"value\\": \\"#fbd7cb\\",
   },
   Object {
     \\"id\\": \\"red-dark\\",
@@ -50,7 +50,7 @@ exports[`Site Global narratives and refrence module should return colors 1`] = `
   },
   Object {
     \\"id\\": \\"yellow-lighter\\",
-    \\"value\\": \\"#fccc8e\\",
+    \\"value\\": \\"#fee7c1\\",
   },
   Object {
     \\"id\\": \\"yellow-light\\",
@@ -70,7 +70,7 @@ exports[`Site Global narratives and refrence module should return colors 1`] = `
   },
   Object {
     \\"id\\": \\"orange-lighter\\",
-    \\"value\\": \\"#f6bb9d\\",
+    \\"value\\": \\"#fcdbbf\\",
   },
   Object {
     \\"id\\": \\"orange-light\\",
@@ -90,7 +90,7 @@ exports[`Site Global narratives and refrence module should return colors 1`] = `
   },
   Object {
     \\"id\\": \\"pink-lighter\\",
-    \\"value\\": \\"#e4819b\\",
+    \\"value\\": \\"#f6b8c1\\",
   },
   Object {
     \\"id\\": \\"pink-light\\",
@@ -110,7 +110,7 @@ exports[`Site Global narratives and refrence module should return colors 1`] = `
   },
   Object {
     \\"id\\": \\"purple-lighter\\",
-    \\"value\\": \\"#c189bb\\",
+    \\"value\\": \\"#deb5d6\\",
   },
   Object {
     \\"id\\": \\"purple-light\\",
@@ -130,7 +130,7 @@ exports[`Site Global narratives and refrence module should return colors 1`] = `
   },
   Object {
     \\"id\\": \\"blue-lighter\\",
-    \\"value\\": \\"#88bae5\\",
+    \\"value\\": \\"#bcd4f0\\",
   },
   Object {
     \\"id\\": \\"blue-light\\",
@@ -150,7 +150,7 @@ exports[`Site Global narratives and refrence module should return colors 1`] = `
   },
   Object {
     \\"id\\": \\"green-lighter\\",
-    \\"value\\": \\"#92cba9\\",
+    \\"value\\": \\"#b1d8bb\\",
   },
   Object {
     \\"id\\": \\"green-light\\",
@@ -170,11 +170,11 @@ exports[`Site Global narratives and refrence module should return colors 1`] = `
   },
   Object {
     \\"id\\": \\"grey-lighter\\",
-    \\"value\\": \\"#a9a6aa\\",
+    \\"value\\": \\"#e9e7e8\\",
   },
   Object {
     \\"id\\": \\"grey-light\\",
-    \\"value\\": \\"#847e84\\",
+    \\"value\\": \\"#d0cccf\\",
   },
   Object {
     \\"id\\": \\"grey-dark\\",
