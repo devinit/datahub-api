@@ -1,8 +1,14 @@
+type ThemeIndicator {
+  heading: String
+  source: String
+  id: String
+  name: String
+}
 type Theme {
   id: String
   name: String
   default_indicator: String
-  indicators: [IdNamePair]
+  indicators: [ThemeIndicator]
 }
 
 type Query {

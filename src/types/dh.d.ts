@@ -79,7 +79,17 @@ declare namespace DH {
     id: string | null;
     name: string | null;
     default_indicator: string | null;
-    indicators: Array<IIdNamePair> | null;
+    indicators: Array<IThemeIndicator> | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IThemeIndicator {
+    heading: string | null;
+    source: string | null;
+    id: string | null;
+    name: string | null;
   }
 
   /*

@@ -55,7 +55,7 @@
     "graphql-tools": "^1.0.0",
     "helmet": "^3.6.0",
     "lru-cache": "^4.1.1",
-    "merge-graphql-schemas": "^0.0.22",
+    "merge-graphql-schemas": "^1.1.1",
     "morgan": "^1.8.1",
     "pg-monitor": "^0.8.0",
     "pg-promise": "^6.3.5",
