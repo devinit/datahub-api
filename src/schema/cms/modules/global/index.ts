@@ -47,11 +47,11 @@ export const getEntityByIdAsync = async (id: string): Promise<IEntity> => {
     return entity as IEntity;
 };
 
-export const getCountries = async (): Promise<DH.IIdNamePair[]> => {
+export const getCountries = async (): Promise<DH.IEntity[]> => {
     const entities = await getEntities();
     return entities
         .filter(entity => entity.type === 'country')
-        .map(entity => ({id: entity.slug, name: entity.name}));
+        .map(entity => ({id: entity.slug, name: entity.name, slug: entity.slug}));
 };
 
 export const getEntityByIdGeneric = <T extends {id: string}>(id: string, entities: T[]): T => {

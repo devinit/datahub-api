@@ -1,21 +1,1268 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Site Global narratives and refrence module should return all entities 1`] = `
-"Object {
-  \\"dac_id\\": \\"AF\\",
-  \\"donor_recipient_type\\": \\"recipient\\",
-  \\"has_domestic_data\\": 1,
-  \\"id\\": \\"AF\\",
-  \\"income_group\\": \\"ldcs\\",
-  \\"iso_alpha_2\\": \\"AF\\",
-  \\"iso_alpha_3\\": \\"AFG\\",
-  \\"long_name\\": \\"Afghanistan\\",
-  \\"name\\": \\"Afghanistan\\",
-  \\"neighbors\\": \\"TM,CN,IR,TJ,PK,UZ\\",
-  \\"region\\": \\"south-central-asia\\",
-  \\"slug\\": \\"afghanistan\\",
-  \\"type\\": \\"country\\",
-}"
+exports[`Site Global narratives and refrence module should return all countries 1`] = `
+"Array [
+  Object {
+    \\"id\\": \\"afghanistan\\",
+    \\"name\\": \\"Afghanistan\\",
+    \\"slug\\": \\"afghanistan\\",
+  },
+  Object {
+    \\"id\\": \\"aland-islands\\",
+    \\"name\\": \\"Aland Islands\\",
+    \\"slug\\": \\"aland-islands\\",
+  },
+  Object {
+    \\"id\\": \\"albania\\",
+    \\"name\\": \\"Albania\\",
+    \\"slug\\": \\"albania\\",
+  },
+  Object {
+    \\"id\\": \\"algeria\\",
+    \\"name\\": \\"Algeria\\",
+    \\"slug\\": \\"algeria\\",
+  },
+  Object {
+    \\"id\\": \\"american-samoa\\",
+    \\"name\\": \\"American Samoa\\",
+    \\"slug\\": \\"american-samoa\\",
+  },
+  Object {
+    \\"id\\": \\"andorra\\",
+    \\"name\\": \\"Andorra\\",
+    \\"slug\\": \\"andorra\\",
+  },
+  Object {
+    \\"id\\": \\"angola\\",
+    \\"name\\": \\"Angola\\",
+    \\"slug\\": \\"angola\\",
+  },
+  Object {
+    \\"id\\": \\"anguilla\\",
+    \\"name\\": \\"Anguilla\\",
+    \\"slug\\": \\"anguilla\\",
+  },
+  Object {
+    \\"id\\": \\"antarctica\\",
+    \\"name\\": \\"Antarctica\\",
+    \\"slug\\": \\"antarctica\\",
+  },
+  Object {
+    \\"id\\": \\"antigua-and-barbuda\\",
+    \\"name\\": \\"Antigua & Barbuda\\",
+    \\"slug\\": \\"antigua-and-barbuda\\",
+  },
+  Object {
+    \\"id\\": \\"argentina\\",
+    \\"name\\": \\"Argentina\\",
+    \\"slug\\": \\"argentina\\",
+  },
+  Object {
+    \\"id\\": \\"armenia\\",
+    \\"name\\": \\"Armenia\\",
+    \\"slug\\": \\"armenia\\",
+  },
+  Object {
+    \\"id\\": \\"aruba\\",
+    \\"name\\": \\"Aruba\\",
+    \\"slug\\": \\"aruba\\",
+  },
+  Object {
+    \\"id\\": \\"australia\\",
+    \\"name\\": \\"Australia\\",
+    \\"slug\\": \\"australia\\",
+  },
+  Object {
+    \\"id\\": \\"austria\\",
+    \\"name\\": \\"Austria\\",
+    \\"slug\\": \\"austria\\",
+  },
+  Object {
+    \\"id\\": \\"azerbaijan\\",
+    \\"name\\": \\"Azerbaijan\\",
+    \\"slug\\": \\"azerbaijan\\",
+  },
+  Object {
+    \\"id\\": \\"bahamas\\",
+    \\"name\\": \\"Bahamas\\",
+    \\"slug\\": \\"bahamas\\",
+  },
+  Object {
+    \\"id\\": \\"bahrain\\",
+    \\"name\\": \\"Bahrain\\",
+    \\"slug\\": \\"bahrain\\",
+  },
+  Object {
+    \\"id\\": \\"bangladesh\\",
+    \\"name\\": \\"Bangladesh\\",
+    \\"slug\\": \\"bangladesh\\",
+  },
+  Object {
+    \\"id\\": \\"barbados\\",
+    \\"name\\": \\"Barbados\\",
+    \\"slug\\": \\"barbados\\",
+  },
+  Object {
+    \\"id\\": \\"belarus\\",
+    \\"name\\": \\"Belarus\\",
+    \\"slug\\": \\"belarus\\",
+  },
+  Object {
+    \\"id\\": \\"belgium\\",
+    \\"name\\": \\"Belgium\\",
+    \\"slug\\": \\"belgium\\",
+  },
+  Object {
+    \\"id\\": \\"belize\\",
+    \\"name\\": \\"Belize\\",
+    \\"slug\\": \\"belize\\",
+  },
+  Object {
+    \\"id\\": \\"benin\\",
+    \\"name\\": \\"Benin\\",
+    \\"slug\\": \\"benin\\",
+  },
+  Object {
+    \\"id\\": \\"bermuda\\",
+    \\"name\\": \\"Bermuda\\",
+    \\"slug\\": \\"bermuda\\",
+  },
+  Object {
+    \\"id\\": \\"bhutan\\",
+    \\"name\\": \\"Bhutan\\",
+    \\"slug\\": \\"bhutan\\",
+  },
+  Object {
+    \\"id\\": \\"bolivia\\",
+    \\"name\\": \\"Bolivia\\",
+    \\"slug\\": \\"bolivia\\",
+  },
+  Object {
+    \\"id\\": \\"bes-islands\\",
+    \\"name\\": \\"BES Islands\\",
+    \\"slug\\": \\"bes-islands\\",
+  },
+  Object {
+    \\"id\\": \\"bosnia-and-herzegovina\\",
+    \\"name\\": \\"Bosnia & Herzegovina\\",
+    \\"slug\\": \\"bosnia-and-herzegovina\\",
+  },
+  Object {
+    \\"id\\": \\"botswana\\",
+    \\"name\\": \\"Botswana\\",
+    \\"slug\\": \\"botswana\\",
+  },
+  Object {
+    \\"id\\": \\"bouvet-island\\",
+    \\"name\\": \\"Bouvet Island\\",
+    \\"slug\\": \\"bouvet-island\\",
+  },
+  Object {
+    \\"id\\": \\"brazil\\",
+    \\"name\\": \\"Brazil\\",
+    \\"slug\\": \\"brazil\\",
+  },
+  Object {
+    \\"id\\": \\"british-indian-ocean-territory\\",
+    \\"name\\": \\"British Indian Ocean Territory\\",
+    \\"slug\\": \\"british-indian-ocean-territory\\",
+  },
+  Object {
+    \\"id\\": \\"brunei\\",
+    \\"name\\": \\"Brunei\\",
+    \\"slug\\": \\"brunei\\",
+  },
+  Object {
+    \\"id\\": \\"bulgaria\\",
+    \\"name\\": \\"Bulgaria\\",
+    \\"slug\\": \\"bulgaria\\",
+  },
+  Object {
+    \\"id\\": \\"burkina-faso\\",
+    \\"name\\": \\"Burkina Faso\\",
+    \\"slug\\": \\"burkina-faso\\",
+  },
+  Object {
+    \\"id\\": \\"burundi\\",
+    \\"name\\": \\"Burundi\\",
+    \\"slug\\": \\"burundi\\",
+  },
+  Object {
+    \\"id\\": \\"cambodia\\",
+    \\"name\\": \\"Cambodia\\",
+    \\"slug\\": \\"cambodia\\",
+  },
+  Object {
+    \\"id\\": \\"cameroon\\",
+    \\"name\\": \\"Cameroon\\",
+    \\"slug\\": \\"cameroon\\",
+  },
+  Object {
+    \\"id\\": \\"canada\\",
+    \\"name\\": \\"Canada\\",
+    \\"slug\\": \\"canada\\",
+  },
+  Object {
+    \\"id\\": \\"cape-verde\\",
+    \\"name\\": \\"Cape Verde\\",
+    \\"slug\\": \\"cape-verde\\",
+  },
+  Object {
+    \\"id\\": \\"cayman-islands\\",
+    \\"name\\": \\"Cayman Islands\\",
+    \\"slug\\": \\"cayman-islands\\",
+  },
+  Object {
+    \\"id\\": \\"car\\",
+    \\"name\\": \\"CAR\\",
+    \\"slug\\": \\"car\\",
+  },
+  Object {
+    \\"id\\": \\"chad\\",
+    \\"name\\": \\"Chad\\",
+    \\"slug\\": \\"chad\\",
+  },
+  Object {
+    \\"id\\": \\"chile\\",
+    \\"name\\": \\"Chile\\",
+    \\"slug\\": \\"chile\\",
+  },
+  Object {
+    \\"id\\": \\"china\\",
+    \\"name\\": \\"China\\",
+    \\"slug\\": \\"china\\",
+  },
+  Object {
+    \\"id\\": \\"christmas-island\\",
+    \\"name\\": \\"Christmas Island\\",
+    \\"slug\\": \\"christmas-island\\",
+  },
+  Object {
+    \\"id\\": \\"cocos-keeling-islands\\",
+    \\"name\\": \\"Cocos (Keeling) Islands\\",
+    \\"slug\\": \\"cocos-keeling-islands\\",
+  },
+  Object {
+    \\"id\\": \\"colombia\\",
+    \\"name\\": \\"Colombia\\",
+    \\"slug\\": \\"colombia\\",
+  },
+  Object {
+    \\"id\\": \\"comoros\\",
+    \\"name\\": \\"Comoros\\",
+    \\"slug\\": \\"comoros\\",
+  },
+  Object {
+    \\"id\\": \\"congo\\",
+    \\"name\\": \\"Congo\\",
+    \\"slug\\": \\"congo\\",
+  },
+  Object {
+    \\"id\\": \\"drc\\",
+    \\"name\\": \\"DRC\\",
+    \\"slug\\": \\"drc\\",
+  },
+  Object {
+    \\"id\\": \\"cook-islands\\",
+    \\"name\\": \\"Cook Islands\\",
+    \\"slug\\": \\"cook-islands\\",
+  },
+  Object {
+    \\"id\\": \\"costa-rica\\",
+    \\"name\\": \\"Costa Rica\\",
+    \\"slug\\": \\"costa-rica\\",
+  },
+  Object {
+    \\"id\\": \\"cote-divoire\\",
+    \\"name\\": \\"Côte d'Ivoire\\",
+    \\"slug\\": \\"cote-divoire\\",
+  },
+  Object {
+    \\"id\\": \\"country-unspecified\\",
+    \\"name\\": \\"Country not specified\\",
+    \\"slug\\": \\"country-unspecified\\",
+  },
+  Object {
+    \\"id\\": \\"croatia\\",
+    \\"name\\": \\"Croatia\\",
+    \\"slug\\": \\"croatia\\",
+  },
+  Object {
+    \\"id\\": \\"cuba\\",
+    \\"name\\": \\"Cuba\\",
+    \\"slug\\": \\"cuba\\",
+  },
+  Object {
+    \\"id\\": \\"curacao\\",
+    \\"name\\": \\"Curacao\\",
+    \\"slug\\": \\"curacao\\",
+  },
+  Object {
+    \\"id\\": \\"cyprus\\",
+    \\"name\\": \\"Cyprus\\",
+    \\"slug\\": \\"cyprus\\",
+  },
+  Object {
+    \\"id\\": \\"czech-republic\\",
+    \\"name\\": \\"Czech Republic\\",
+    \\"slug\\": \\"czech-republic\\",
+  },
+  Object {
+    \\"id\\": \\"denmark\\",
+    \\"name\\": \\"Denmark\\",
+    \\"slug\\": \\"denmark\\",
+  },
+  Object {
+    \\"id\\": \\"djibouti\\",
+    \\"name\\": \\"Djibouti\\",
+    \\"slug\\": \\"djibouti\\",
+  },
+  Object {
+    \\"id\\": \\"dominica\\",
+    \\"name\\": \\"Dominica\\",
+    \\"slug\\": \\"dominica\\",
+  },
+  Object {
+    \\"id\\": \\"dominican-republic\\",
+    \\"name\\": \\"Dominican Republic\\",
+    \\"slug\\": \\"dominican-republic\\",
+  },
+  Object {
+    \\"id\\": \\"ecuador\\",
+    \\"name\\": \\"Ecuador\\",
+    \\"slug\\": \\"ecuador\\",
+  },
+  Object {
+    \\"id\\": \\"egypt\\",
+    \\"name\\": \\"Egypt\\",
+    \\"slug\\": \\"egypt\\",
+  },
+  Object {
+    \\"id\\": \\"el-salvador\\",
+    \\"name\\": \\"El Salvador\\",
+    \\"slug\\": \\"el-salvador\\",
+  },
+  Object {
+    \\"id\\": \\"equatorial-guinea\\",
+    \\"name\\": \\"Equatorial Guinea\\",
+    \\"slug\\": \\"equatorial-guinea\\",
+  },
+  Object {
+    \\"id\\": \\"eritrea\\",
+    \\"name\\": \\"Eritrea\\",
+    \\"slug\\": \\"eritrea\\",
+  },
+  Object {
+    \\"id\\": \\"estonia\\",
+    \\"name\\": \\"Estonia\\",
+    \\"slug\\": \\"estonia\\",
+  },
+  Object {
+    \\"id\\": \\"ethiopia\\",
+    \\"name\\": \\"Ethiopia\\",
+    \\"slug\\": \\"ethiopia\\",
+  },
+  Object {
+    \\"id\\": \\"falkland-islands\\",
+    \\"name\\": \\"Falkland Islands\\",
+    \\"slug\\": \\"falkland-islands\\",
+  },
+  Object {
+    \\"id\\": \\"faroe-islands\\",
+    \\"name\\": \\"Faroe Islands\\",
+    \\"slug\\": \\"faroe-islands\\",
+  },
+  Object {
+    \\"id\\": \\"fiji\\",
+    \\"name\\": \\"Fiji\\",
+    \\"slug\\": \\"fiji\\",
+  },
+  Object {
+    \\"id\\": \\"finland\\",
+    \\"name\\": \\"Finland\\",
+    \\"slug\\": \\"finland\\",
+  },
+  Object {
+    \\"id\\": \\"france\\",
+    \\"name\\": \\"France\\",
+    \\"slug\\": \\"france\\",
+  },
+  Object {
+    \\"id\\": \\"french-guiana\\",
+    \\"name\\": \\"French Guiana\\",
+    \\"slug\\": \\"french-guiana\\",
+  },
+  Object {
+    \\"id\\": \\"french-polynesia\\",
+    \\"name\\": \\"French Polynesia\\",
+    \\"slug\\": \\"french-polynesia\\",
+  },
+  Object {
+    \\"id\\": \\"french-southern-territories\\",
+    \\"name\\": \\"French Southern Territories\\",
+    \\"slug\\": \\"french-southern-territories\\",
+  },
+  Object {
+    \\"id\\": \\"gabon\\",
+    \\"name\\": \\"Gabon\\",
+    \\"slug\\": \\"gabon\\",
+  },
+  Object {
+    \\"id\\": \\"gambia\\",
+    \\"name\\": \\"Gambia\\",
+    \\"slug\\": \\"gambia\\",
+  },
+  Object {
+    \\"id\\": \\"georgia\\",
+    \\"name\\": \\"Georgia\\",
+    \\"slug\\": \\"georgia\\",
+  },
+  Object {
+    \\"id\\": \\"germany\\",
+    \\"name\\": \\"Germany\\",
+    \\"slug\\": \\"germany\\",
+  },
+  Object {
+    \\"id\\": \\"ghana\\",
+    \\"name\\": \\"Ghana\\",
+    \\"slug\\": \\"ghana\\",
+  },
+  Object {
+    \\"id\\": \\"gibraltar\\",
+    \\"name\\": \\"Gibraltar\\",
+    \\"slug\\": \\"gibraltar\\",
+  },
+  Object {
+    \\"id\\": \\"greece\\",
+    \\"name\\": \\"Greece\\",
+    \\"slug\\": \\"greece\\",
+  },
+  Object {
+    \\"id\\": \\"greenland\\",
+    \\"name\\": \\"Greenland\\",
+    \\"slug\\": \\"greenland\\",
+  },
+  Object {
+    \\"id\\": \\"grenada\\",
+    \\"name\\": \\"Grenada\\",
+    \\"slug\\": \\"grenada\\",
+  },
+  Object {
+    \\"id\\": \\"guadeloupe\\",
+    \\"name\\": \\"Guadeloupe\\",
+    \\"slug\\": \\"guadeloupe\\",
+  },
+  Object {
+    \\"id\\": \\"guam\\",
+    \\"name\\": \\"Guam\\",
+    \\"slug\\": \\"guam\\",
+  },
+  Object {
+    \\"id\\": \\"guatemala\\",
+    \\"name\\": \\"Guatemala\\",
+    \\"slug\\": \\"guatemala\\",
+  },
+  Object {
+    \\"id\\": \\"guernsey\\",
+    \\"name\\": \\"Guernsey\\",
+    \\"slug\\": \\"guernsey\\",
+  },
+  Object {
+    \\"id\\": \\"guinea\\",
+    \\"name\\": \\"Guinea\\",
+    \\"slug\\": \\"guinea\\",
+  },
+  Object {
+    \\"id\\": \\"guinea-bissau\\",
+    \\"name\\": \\"Guinea-Bissau\\",
+    \\"slug\\": \\"guinea-bissau\\",
+  },
+  Object {
+    \\"id\\": \\"guyana\\",
+    \\"name\\": \\"Guyana\\",
+    \\"slug\\": \\"guyana\\",
+  },
+  Object {
+    \\"id\\": \\"haiti\\",
+    \\"name\\": \\"Haiti\\",
+    \\"slug\\": \\"haiti\\",
+  },
+  Object {
+    \\"id\\": \\"heard-island-and-mcdonald-islands\\",
+    \\"name\\": \\"Heard Island & McDonald Islands\\",
+    \\"slug\\": \\"heard-island-and-mcdonald-islands\\",
+  },
+  Object {
+    \\"id\\": \\"holy-see-vatican-city-state\\",
+    \\"name\\": \\"Holy See (Vatican City State)\\",
+    \\"slug\\": \\"holy-see-vatican-city-state\\",
+  },
+  Object {
+    \\"id\\": \\"honduras\\",
+    \\"name\\": \\"Honduras\\",
+    \\"slug\\": \\"honduras\\",
+  },
+  Object {
+    \\"id\\": \\"hong-kong\\",
+    \\"name\\": \\"Hong Kong\\",
+    \\"slug\\": \\"hong-kong\\",
+  },
+  Object {
+    \\"id\\": \\"hungary\\",
+    \\"name\\": \\"Hungary\\",
+    \\"slug\\": \\"hungary\\",
+  },
+  Object {
+    \\"id\\": \\"iceland\\",
+    \\"name\\": \\"Iceland\\",
+    \\"slug\\": \\"iceland\\",
+  },
+  Object {
+    \\"id\\": \\"india\\",
+    \\"name\\": \\"India\\",
+    \\"slug\\": \\"india\\",
+  },
+  Object {
+    \\"id\\": \\"indonesia\\",
+    \\"name\\": \\"Indonesia\\",
+    \\"slug\\": \\"indonesia\\",
+  },
+  Object {
+    \\"id\\": \\"iran\\",
+    \\"name\\": \\"Iran\\",
+    \\"slug\\": \\"iran\\",
+  },
+  Object {
+    \\"id\\": \\"iraq\\",
+    \\"name\\": \\"Iraq\\",
+    \\"slug\\": \\"iraq\\",
+  },
+  Object {
+    \\"id\\": \\"ireland\\",
+    \\"name\\": \\"Ireland\\",
+    \\"slug\\": \\"ireland\\",
+  },
+  Object {
+    \\"id\\": \\"isle-of-man\\",
+    \\"name\\": \\"Isle of Man\\",
+    \\"slug\\": \\"isle-of-man\\",
+  },
+  Object {
+    \\"id\\": \\"israel\\",
+    \\"name\\": \\"Israel\\",
+    \\"slug\\": \\"israel\\",
+  },
+  Object {
+    \\"id\\": \\"italy\\",
+    \\"name\\": \\"Italy\\",
+    \\"slug\\": \\"italy\\",
+  },
+  Object {
+    \\"id\\": \\"jamaica\\",
+    \\"name\\": \\"Jamaica\\",
+    \\"slug\\": \\"jamaica\\",
+  },
+  Object {
+    \\"id\\": \\"japan\\",
+    \\"name\\": \\"Japan\\",
+    \\"slug\\": \\"japan\\",
+  },
+  Object {
+    \\"id\\": \\"jersey\\",
+    \\"name\\": \\"Jersey\\",
+    \\"slug\\": \\"jersey\\",
+  },
+  Object {
+    \\"id\\": \\"jordan\\",
+    \\"name\\": \\"Jordan\\",
+    \\"slug\\": \\"jordan\\",
+  },
+  Object {
+    \\"id\\": \\"kazakhstan\\",
+    \\"name\\": \\"Kazakhstan\\",
+    \\"slug\\": \\"kazakhstan\\",
+  },
+  Object {
+    \\"id\\": \\"kenya\\",
+    \\"name\\": \\"Kenya\\",
+    \\"slug\\": \\"kenya\\",
+  },
+  Object {
+    \\"id\\": \\"kiribati\\",
+    \\"name\\": \\"Kiribati\\",
+    \\"slug\\": \\"kiribati\\",
+  },
+  Object {
+    \\"id\\": \\"north-korea\\",
+    \\"name\\": \\"North Korea\\",
+    \\"slug\\": \\"north-korea\\",
+  },
+  Object {
+    \\"id\\": \\"south-korea\\",
+    \\"name\\": \\"Korea\\",
+    \\"slug\\": \\"south-korea\\",
+  },
+  Object {
+    \\"id\\": \\"kosovo\\",
+    \\"name\\": \\"Kosovo\\",
+    \\"slug\\": \\"kosovo\\",
+  },
+  Object {
+    \\"id\\": \\"kuwait\\",
+    \\"name\\": \\"Kuwait\\",
+    \\"slug\\": \\"kuwait\\",
+  },
+  Object {
+    \\"id\\": \\"kyrgyzstan\\",
+    \\"name\\": \\"Kyrgyzstan\\",
+    \\"slug\\": \\"kyrgyzstan\\",
+  },
+  Object {
+    \\"id\\": \\"lao\\",
+    \\"name\\": \\"Lao\\",
+    \\"slug\\": \\"lao\\",
+  },
+  Object {
+    \\"id\\": \\"latvia\\",
+    \\"name\\": \\"Latvia\\",
+    \\"slug\\": \\"latvia\\",
+  },
+  Object {
+    \\"id\\": \\"lebanon\\",
+    \\"name\\": \\"Lebanon\\",
+    \\"slug\\": \\"lebanon\\",
+  },
+  Object {
+    \\"id\\": \\"lesotho\\",
+    \\"name\\": \\"Lesotho\\",
+    \\"slug\\": \\"lesotho\\",
+  },
+  Object {
+    \\"id\\": \\"liberia\\",
+    \\"name\\": \\"Liberia\\",
+    \\"slug\\": \\"liberia\\",
+  },
+  Object {
+    \\"id\\": \\"libya\\",
+    \\"name\\": \\"Libya\\",
+    \\"slug\\": \\"libya\\",
+  },
+  Object {
+    \\"id\\": \\"liechtenstein\\",
+    \\"name\\": \\"Liechtenstein\\",
+    \\"slug\\": \\"liechtenstein\\",
+  },
+  Object {
+    \\"id\\": \\"lithuania\\",
+    \\"name\\": \\"Lithuania\\",
+    \\"slug\\": \\"lithuania\\",
+  },
+  Object {
+    \\"id\\": \\"luxembourg\\",
+    \\"name\\": \\"Luxembourg\\",
+    \\"slug\\": \\"luxembourg\\",
+  },
+  Object {
+    \\"id\\": \\"macao\\",
+    \\"name\\": \\"Macao\\",
+    \\"slug\\": \\"macao\\",
+  },
+  Object {
+    \\"id\\": \\"macedonia\\",
+    \\"name\\": \\"Macedonia\\",
+    \\"slug\\": \\"macedonia\\",
+  },
+  Object {
+    \\"id\\": \\"madagascar\\",
+    \\"name\\": \\"Madagascar\\",
+    \\"slug\\": \\"madagascar\\",
+  },
+  Object {
+    \\"id\\": \\"malawi\\",
+    \\"name\\": \\"Malawi\\",
+    \\"slug\\": \\"malawi\\",
+  },
+  Object {
+    \\"id\\": \\"malaysia\\",
+    \\"name\\": \\"Malaysia\\",
+    \\"slug\\": \\"malaysia\\",
+  },
+  Object {
+    \\"id\\": \\"maldives\\",
+    \\"name\\": \\"Maldives\\",
+    \\"slug\\": \\"maldives\\",
+  },
+  Object {
+    \\"id\\": \\"mali\\",
+    \\"name\\": \\"Mali\\",
+    \\"slug\\": \\"mali\\",
+  },
+  Object {
+    \\"id\\": \\"malta\\",
+    \\"name\\": \\"Malta\\",
+    \\"slug\\": \\"malta\\",
+  },
+  Object {
+    \\"id\\": \\"marshall-islands\\",
+    \\"name\\": \\"Marshall Islands\\",
+    \\"slug\\": \\"marshall-islands\\",
+  },
+  Object {
+    \\"id\\": \\"martinique\\",
+    \\"name\\": \\"Martinique\\",
+    \\"slug\\": \\"martinique\\",
+  },
+  Object {
+    \\"id\\": \\"mauritania\\",
+    \\"name\\": \\"Mauritania\\",
+    \\"slug\\": \\"mauritania\\",
+  },
+  Object {
+    \\"id\\": \\"mauritius\\",
+    \\"name\\": \\"Mauritius\\",
+    \\"slug\\": \\"mauritius\\",
+  },
+  Object {
+    \\"id\\": \\"mayotte\\",
+    \\"name\\": \\"Mayotte\\",
+    \\"slug\\": \\"mayotte\\",
+  },
+  Object {
+    \\"id\\": \\"mexico\\",
+    \\"name\\": \\"Mexico\\",
+    \\"slug\\": \\"mexico\\",
+  },
+  Object {
+    \\"id\\": \\"micronesia\\",
+    \\"name\\": \\"Micronesia\\",
+    \\"slug\\": \\"micronesia\\",
+  },
+  Object {
+    \\"id\\": \\"moldova\\",
+    \\"name\\": \\"Moldova\\",
+    \\"slug\\": \\"moldova\\",
+  },
+  Object {
+    \\"id\\": \\"monaco\\",
+    \\"name\\": \\"Monaco\\",
+    \\"slug\\": \\"monaco\\",
+  },
+  Object {
+    \\"id\\": \\"mongolia\\",
+    \\"name\\": \\"Mongolia\\",
+    \\"slug\\": \\"mongolia\\",
+  },
+  Object {
+    \\"id\\": \\"montenegro\\",
+    \\"name\\": \\"Montenegro\\",
+    \\"slug\\": \\"montenegro\\",
+  },
+  Object {
+    \\"id\\": \\"montserrat\\",
+    \\"name\\": \\"Montserrat\\",
+    \\"slug\\": \\"montserrat\\",
+  },
+  Object {
+    \\"id\\": \\"morocco\\",
+    \\"name\\": \\"Morocco\\",
+    \\"slug\\": \\"morocco\\",
+  },
+  Object {
+    \\"id\\": \\"mozambique\\",
+    \\"name\\": \\"Mozambique\\",
+    \\"slug\\": \\"mozambique\\",
+  },
+  Object {
+    \\"id\\": \\"myanmar\\",
+    \\"name\\": \\"Myanmar\\",
+    \\"slug\\": \\"myanmar\\",
+  },
+  Object {
+    \\"id\\": \\"namibia\\",
+    \\"name\\": \\"Namibia\\",
+    \\"slug\\": \\"namibia\\",
+  },
+  Object {
+    \\"id\\": \\"nauru\\",
+    \\"name\\": \\"Nauru\\",
+    \\"slug\\": \\"nauru\\",
+  },
+  Object {
+    \\"id\\": \\"nepal\\",
+    \\"name\\": \\"Nepal\\",
+    \\"slug\\": \\"nepal\\",
+  },
+  Object {
+    \\"id\\": \\"netherlands\\",
+    \\"name\\": \\"Netherlands\\",
+    \\"slug\\": \\"netherlands\\",
+  },
+  Object {
+    \\"id\\": \\"netherlands-antilles\\",
+    \\"name\\": \\"Netherlands Antilles\\",
+    \\"slug\\": \\"netherlands-antilles\\",
+  },
+  Object {
+    \\"id\\": \\"new-caledonia\\",
+    \\"name\\": \\"New Caledonia\\",
+    \\"slug\\": \\"new-caledonia\\",
+  },
+  Object {
+    \\"id\\": \\"new-zealand\\",
+    \\"name\\": \\"New Zealand\\",
+    \\"slug\\": \\"new-zealand\\",
+  },
+  Object {
+    \\"id\\": \\"nicaragua\\",
+    \\"name\\": \\"Nicaragua\\",
+    \\"slug\\": \\"nicaragua\\",
+  },
+  Object {
+    \\"id\\": \\"niger\\",
+    \\"name\\": \\"Niger\\",
+    \\"slug\\": \\"niger\\",
+  },
+  Object {
+    \\"id\\": \\"nigeria\\",
+    \\"name\\": \\"Nigeria\\",
+    \\"slug\\": \\"nigeria\\",
+  },
+  Object {
+    \\"id\\": \\"niue\\",
+    \\"name\\": \\"Niue\\",
+    \\"slug\\": \\"niue\\",
+  },
+  Object {
+    \\"id\\": \\"norfolk-island\\",
+    \\"name\\": \\"Norfolk Island\\",
+    \\"slug\\": \\"norfolk-island\\",
+  },
+  Object {
+    \\"id\\": \\"northern-mariana-islands\\",
+    \\"name\\": \\"Northern Mariana Islands\\",
+    \\"slug\\": \\"northern-mariana-islands\\",
+  },
+  Object {
+    \\"id\\": \\"norway\\",
+    \\"name\\": \\"Norway\\",
+    \\"slug\\": \\"norway\\",
+  },
+  Object {
+    \\"id\\": \\"oman\\",
+    \\"name\\": \\"Oman\\",
+    \\"slug\\": \\"oman\\",
+  },
+  Object {
+    \\"id\\": \\"pakistan\\",
+    \\"name\\": \\"Pakistan\\",
+    \\"slug\\": \\"pakistan\\",
+  },
+  Object {
+    \\"id\\": \\"palau\\",
+    \\"name\\": \\"Palau\\",
+    \\"slug\\": \\"palau\\",
+  },
+  Object {
+    \\"id\\": \\"palestine\\",
+    \\"name\\": \\"Palestine\\",
+    \\"slug\\": \\"palestine\\",
+  },
+  Object {
+    \\"id\\": \\"panama\\",
+    \\"name\\": \\"Panama\\",
+    \\"slug\\": \\"panama\\",
+  },
+  Object {
+    \\"id\\": \\"papua-new-guinea\\",
+    \\"name\\": \\"Papua New Guinea\\",
+    \\"slug\\": \\"papua-new-guinea\\",
+  },
+  Object {
+    \\"id\\": \\"paraguay\\",
+    \\"name\\": \\"Paraguay\\",
+    \\"slug\\": \\"paraguay\\",
+  },
+  Object {
+    \\"id\\": \\"peru\\",
+    \\"name\\": \\"Peru\\",
+    \\"slug\\": \\"peru\\",
+  },
+  Object {
+    \\"id\\": \\"philippines\\",
+    \\"name\\": \\"Philippines\\",
+    \\"slug\\": \\"philippines\\",
+  },
+  Object {
+    \\"id\\": \\"pitcairn\\",
+    \\"name\\": \\"Pitcairn\\",
+    \\"slug\\": \\"pitcairn\\",
+  },
+  Object {
+    \\"id\\": \\"poland\\",
+    \\"name\\": \\"Poland\\",
+    \\"slug\\": \\"poland\\",
+  },
+  Object {
+    \\"id\\": \\"portugal\\",
+    \\"name\\": \\"Portugal\\",
+    \\"slug\\": \\"portugal\\",
+  },
+  Object {
+    \\"id\\": \\"puerto-rico\\",
+    \\"name\\": \\"Puerto Rico\\",
+    \\"slug\\": \\"puerto-rico\\",
+  },
+  Object {
+    \\"id\\": \\"qatar\\",
+    \\"name\\": \\"Qatar\\",
+    \\"slug\\": \\"qatar\\",
+  },
+  Object {
+    \\"id\\": \\"réunion\\",
+    \\"name\\": \\"Reunion\\",
+    \\"slug\\": \\"réunion\\",
+  },
+  Object {
+    \\"id\\": \\"romania\\",
+    \\"name\\": \\"Romania\\",
+    \\"slug\\": \\"romania\\",
+  },
+  Object {
+    \\"id\\": \\"russian-federation\\",
+    \\"name\\": \\"Russian Federation\\",
+    \\"slug\\": \\"russian-federation\\",
+  },
+  Object {
+    \\"id\\": \\"rwanda\\",
+    \\"name\\": \\"Rwanda\\",
+    \\"slug\\": \\"rwanda\\",
+  },
+  Object {
+    \\"id\\": \\"saint-barthelemy\\",
+    \\"name\\": \\"Saint Barthelemy\\",
+    \\"slug\\": \\"saint-barthelemy\\",
+  },
+  Object {
+    \\"id\\": \\"saint-helena-ascension-and-tristan-da-cunha\\",
+    \\"name\\": \\"Saint Helena, Ascension & Tristan da Cunha\\",
+    \\"slug\\": \\"saint-helena-ascension-and-tristan-da-cunha\\",
+  },
+  Object {
+    \\"id\\": \\"saint-kitts-and-nevis\\",
+    \\"name\\": \\"Saint Kitts and Nevis\\",
+    \\"slug\\": \\"saint-kitts-and-nevis\\",
+  },
+  Object {
+    \\"id\\": \\"saint-lucia\\",
+    \\"name\\": \\"Saint Lucia\\",
+    \\"slug\\": \\"saint-lucia\\",
+  },
+  Object {
+    \\"id\\": \\"saint-martin\\",
+    \\"name\\": \\"Saint Martin\\",
+    \\"slug\\": \\"saint-martin\\",
+  },
+  Object {
+    \\"id\\": \\"saint-pierre-and-miquelon\\",
+    \\"name\\": \\"Saint Pierre & Miquelon\\",
+    \\"slug\\": \\"saint-pierre-and-miquelon\\",
+  },
+  Object {
+    \\"id\\": \\"saint-vincent-and-the-grenadines\\",
+    \\"name\\": \\"Saint Vincent & the Grenadines\\",
+    \\"slug\\": \\"saint-vincent-and-the-grenadines\\",
+  },
+  Object {
+    \\"id\\": \\"samoa\\",
+    \\"name\\": \\"Samoa\\",
+    \\"slug\\": \\"samoa\\",
+  },
+  Object {
+    \\"id\\": \\"san-marino\\",
+    \\"name\\": \\"San Marino\\",
+    \\"slug\\": \\"san-marino\\",
+  },
+  Object {
+    \\"id\\": \\"sao-tome-and-principe\\",
+    \\"name\\": \\"Sao Tome & Principe\\",
+    \\"slug\\": \\"sao-tome-and-principe\\",
+  },
+  Object {
+    \\"id\\": \\"saudi-arabia\\",
+    \\"name\\": \\"Saudi Arabia\\",
+    \\"slug\\": \\"saudi-arabia\\",
+  },
+  Object {
+    \\"id\\": \\"senegal\\",
+    \\"name\\": \\"Senegal\\",
+    \\"slug\\": \\"senegal\\",
+  },
+  Object {
+    \\"id\\": \\"serbia\\",
+    \\"name\\": \\"Serbia\\",
+    \\"slug\\": \\"serbia\\",
+  },
+  Object {
+    \\"id\\": \\"seychelles\\",
+    \\"name\\": \\"Seychelles\\",
+    \\"slug\\": \\"seychelles\\",
+  },
+  Object {
+    \\"id\\": \\"sierra-leone\\",
+    \\"name\\": \\"Sierra Leone\\",
+    \\"slug\\": \\"sierra-leone\\",
+  },
+  Object {
+    \\"id\\": \\"singapore\\",
+    \\"name\\": \\"Singapore\\",
+    \\"slug\\": \\"singapore\\",
+  },
+  Object {
+    \\"id\\": \\"sint-maarten-dutch-part\\",
+    \\"name\\": \\"Sint Maarten (Dutch part)\\",
+    \\"slug\\": \\"sint-maarten-dutch-part\\",
+  },
+  Object {
+    \\"id\\": \\"slovakia\\",
+    \\"name\\": \\"Slovak Republic\\",
+    \\"slug\\": \\"slovakia\\",
+  },
+  Object {
+    \\"id\\": \\"slovenia\\",
+    \\"name\\": \\"Slovenia\\",
+    \\"slug\\": \\"slovenia\\",
+  },
+  Object {
+    \\"id\\": \\"solomon-islands\\",
+    \\"name\\": \\"Solomon Islands\\",
+    \\"slug\\": \\"solomon-islands\\",
+  },
+  Object {
+    \\"id\\": \\"somalia\\",
+    \\"name\\": \\"Somalia\\",
+    \\"slug\\": \\"somalia\\",
+  },
+  Object {
+    \\"id\\": \\"south-africa\\",
+    \\"name\\": \\"South Africa\\",
+    \\"slug\\": \\"south-africa\\",
+  },
+  Object {
+    \\"id\\": \\"south-georgia-and-the-south-sandwich-islands\\",
+    \\"name\\": \\"South Georgia & the South Sandwich Islands\\",
+    \\"slug\\": \\"south-georgia-and-the-south-sandwich-islands\\",
+  },
+  Object {
+    \\"id\\": \\"south-sudan\\",
+    \\"name\\": \\"South Sudan\\",
+    \\"slug\\": \\"south-sudan\\",
+  },
+  Object {
+    \\"id\\": \\"spain\\",
+    \\"name\\": \\"Spain\\",
+    \\"slug\\": \\"spain\\",
+  },
+  Object {
+    \\"id\\": \\"sri-lanka\\",
+    \\"name\\": \\"Sri Lanka\\",
+    \\"slug\\": \\"sri-lanka\\",
+  },
+  Object {
+    \\"id\\": \\"sudan\\",
+    \\"name\\": \\"Sudan\\",
+    \\"slug\\": \\"sudan\\",
+  },
+  Object {
+    \\"id\\": \\"suriname\\",
+    \\"name\\": \\"Suriname\\",
+    \\"slug\\": \\"suriname\\",
+  },
+  Object {
+    \\"id\\": \\"svalbard-and-jan-mayen\\",
+    \\"name\\": \\"Svalbard & Jan Mayen\\",
+    \\"slug\\": \\"svalbard-and-jan-mayen\\",
+  },
+  Object {
+    \\"id\\": \\"swaziland\\",
+    \\"name\\": \\"Swaziland\\",
+    \\"slug\\": \\"swaziland\\",
+  },
+  Object {
+    \\"id\\": \\"sweden\\",
+    \\"name\\": \\"Sweden\\",
+    \\"slug\\": \\"sweden\\",
+  },
+  Object {
+    \\"id\\": \\"switzerland\\",
+    \\"name\\": \\"Switzerland\\",
+    \\"slug\\": \\"switzerland\\",
+  },
+  Object {
+    \\"id\\": \\"syria\\",
+    \\"name\\": \\"Syria\\",
+    \\"slug\\": \\"syria\\",
+  },
+  Object {
+    \\"id\\": \\"taiwan\\",
+    \\"name\\": \\"Taiwan\\",
+    \\"slug\\": \\"taiwan\\",
+  },
+  Object {
+    \\"id\\": \\"tajikistan\\",
+    \\"name\\": \\"Tajikistan\\",
+    \\"slug\\": \\"tajikistan\\",
+  },
+  Object {
+    \\"id\\": \\"tanzania\\",
+    \\"name\\": \\"Tanzania\\",
+    \\"slug\\": \\"tanzania\\",
+  },
+  Object {
+    \\"id\\": \\"thailand\\",
+    \\"name\\": \\"Thailand\\",
+    \\"slug\\": \\"thailand\\",
+  },
+  Object {
+    \\"id\\": \\"timor-leste\\",
+    \\"name\\": \\"Timor-Leste\\",
+    \\"slug\\": \\"timor-leste\\",
+  },
+  Object {
+    \\"id\\": \\"togo\\",
+    \\"name\\": \\"Togo\\",
+    \\"slug\\": \\"togo\\",
+  },
+  Object {
+    \\"id\\": \\"tokelau\\",
+    \\"name\\": \\"Tokelau\\",
+    \\"slug\\": \\"tokelau\\",
+  },
+  Object {
+    \\"id\\": \\"tonga\\",
+    \\"name\\": \\"Tonga\\",
+    \\"slug\\": \\"tonga\\",
+  },
+  Object {
+    \\"id\\": \\"trinidad-and-tobago\\",
+    \\"name\\": \\"Trinidad & Tobago\\",
+    \\"slug\\": \\"trinidad-and-tobago\\",
+  },
+  Object {
+    \\"id\\": \\"tunisia\\",
+    \\"name\\": \\"Tunisia\\",
+    \\"slug\\": \\"tunisia\\",
+  },
+  Object {
+    \\"id\\": \\"turkey\\",
+    \\"name\\": \\"Turkey\\",
+    \\"slug\\": \\"turkey\\",
+  },
+  Object {
+    \\"id\\": \\"turkmenistan\\",
+    \\"name\\": \\"Turkmenistan\\",
+    \\"slug\\": \\"turkmenistan\\",
+  },
+  Object {
+    \\"id\\": \\"turks-and-caicos-islands\\",
+    \\"name\\": \\"Turks & Caicos Islands\\",
+    \\"slug\\": \\"turks-and-caicos-islands\\",
+  },
+  Object {
+    \\"id\\": \\"tuvalu\\",
+    \\"name\\": \\"Tuvalu\\",
+    \\"slug\\": \\"tuvalu\\",
+  },
+  Object {
+    \\"id\\": \\"uganda\\",
+    \\"name\\": \\"Uganda\\",
+    \\"slug\\": \\"uganda\\",
+  },
+  Object {
+    \\"id\\": \\"united-kingdom\\",
+    \\"name\\": \\"United Kingdom\\",
+    \\"slug\\": \\"united-kingdom\\",
+  },
+  Object {
+    \\"id\\": \\"ukraine\\",
+    \\"name\\": \\"Ukraine\\",
+    \\"slug\\": \\"ukraine\\",
+  },
+  Object {
+    \\"id\\": \\"uae\\",
+    \\"name\\": \\"UAE\\",
+    \\"slug\\": \\"uae\\",
+  },
+  Object {
+    \\"id\\": \\"usa\\",
+    \\"name\\": \\"United States\\",
+    \\"slug\\": \\"usa\\",
+  },
+  Object {
+    \\"id\\": \\"united-states-minor-outlying-islands\\",
+    \\"name\\": \\"United States Minor Outlying Islands\\",
+    \\"slug\\": \\"united-states-minor-outlying-islands\\",
+  },
+  Object {
+    \\"id\\": \\"uruguay\\",
+    \\"name\\": \\"Uruguay\\",
+    \\"slug\\": \\"uruguay\\",
+  },
+  Object {
+    \\"id\\": \\"uzbekistan\\",
+    \\"name\\": \\"Uzbekistan\\",
+    \\"slug\\": \\"uzbekistan\\",
+  },
+  Object {
+    \\"id\\": \\"vanuatu\\",
+    \\"name\\": \\"Vanuatu\\",
+    \\"slug\\": \\"vanuatu\\",
+  },
+  Object {
+    \\"id\\": \\"venezuela\\",
+    \\"name\\": \\"Venezuela\\",
+    \\"slug\\": \\"venezuela\\",
+  },
+  Object {
+    \\"id\\": \\"viet-nam\\",
+    \\"name\\": \\"Viet Nam\\",
+    \\"slug\\": \\"viet-nam\\",
+  },
+  Object {
+    \\"id\\": \\"virgin-islands-gb\\",
+    \\"name\\": \\"Virgin Islands (GB)\\",
+    \\"slug\\": \\"virgin-islands-gb\\",
+  },
+  Object {
+    \\"id\\": \\"virgin-islands-us\\",
+    \\"name\\": \\"Virgin Islands (US)\\",
+    \\"slug\\": \\"virgin-islands-us\\",
+  },
+  Object {
+    \\"id\\": \\"wallis-and-futuna\\",
+    \\"name\\": \\"Wallis & Futuna\\",
+    \\"slug\\": \\"wallis-and-futuna\\",
+  },
+  Object {
+    \\"id\\": \\"western-sahara\\",
+    \\"name\\": \\"Western Sahara\\",
+    \\"slug\\": \\"western-sahara\\",
+  },
+  Object {
+    \\"id\\": \\"yemen\\",
+    \\"name\\": \\"Yemen\\",
+    \\"slug\\": \\"yemen\\",
+  },
+  Object {
+    \\"id\\": \\"zambia\\",
+    \\"name\\": \\"Zambia\\",
+    \\"slug\\": \\"zambia\\",
+  },
+  Object {
+    \\"id\\": \\"zimbabwe\\",
+    \\"name\\": \\"Zimbabwe\\",
+    \\"slug\\": \\"zimbabwe\\",
+  },
+]"
 `;
 
 exports[`Site Global narratives and refrence module should return colors 1`] = `

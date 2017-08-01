@@ -81,7 +81,17 @@ declare namespace DH {
     id: string | null;
     name: string | null;
     default_indicator: string | null;
-    indicators: Array<IIdNamePair> | null;
+    indicators: Array<IThemeIndicator> | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IThemeIndicator {
+    heading: string | null;
+    source: string | null;
+    id: string | null;
+    name: string | null;
   }
 
   /*
@@ -300,6 +310,7 @@ declare namespace DH {
   */
   interface IMapUnit {
     id: string | null;
+    slug: string | null;
     name: string | null;
     year: number | null;
     color: string | null;
@@ -507,11 +518,18 @@ type Page {
   narrative: String
 }
 
+type ThemeIndicator {
+  heading: String
+  source: String
+  id: String
+  name: String
+}
+
 type Theme {
   id: String
   name: String
   default_indicator: String
-  indicators: [IdNamePair]
+  indicators: [ThemeIndicator]
 }
 
 type BubbleChartData {
@@ -690,6 +708,8 @@ type SingleResourceData {
 type MapUnit {
   # country code Id in DW this is di_id
   id: String
+  # country slug
+  slug: String
   # countryName derived from entity.csv
   name: String
   year: Int

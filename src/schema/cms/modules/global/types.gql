@@ -1,3 +1,8 @@
+type Entity {
+  id: String
+  name: String
+  slug: String
+}
 type Query {
-  countries: [IdNamePair]
+  countries: [Entity]
 }

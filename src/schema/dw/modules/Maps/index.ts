@@ -3,10 +3,10 @@ import {IExtensions} from '../../db';
 import {getIndicatorDataSimple, indicatorDataProcessingSimple, IGetIndicatorArgsSimple,
     IProcessedSimple, normalizeKeyName, formatNumbers} from '../utils';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
-import {getColors, getEntityByIdGeneric, IColor, IEntity, getEntities, IEntityBasic} from '../../../cms/modules/global';
+import {getColors, getEntityByIdGeneric, IColor, IEntity, getEntities} from '../../../cms/modules/global';
 import {get} from '../../../cms/connector';
 import {getDataRevolutionColors, IRevolutionColorMap} from '../../../cms/modules/globalPicture';
-import {getDistrictEntities} from '../../../cms/modules/spotlight';
+import {getDistrictEntities, IDistrict} from '../../../cms/modules/spotlight';
 import sql, {DAC, dataRevolution} from './sql';
 import * as Color from 'color';
 import {scaleThreshold, interpolateRgb, hsl} from 'd3';
@@ -175,6 +175,7 @@ export default class Maps {
             throw new Error(`Categorical mapping for ${value} is missing in ${JSON.stringify(categoryMapping)}`);
         return categoryMapping;
     }
+    // for categorising whether spotligh on uganda or global picture
     public static async getCountry(indicator: string): Promise<string> {
         const tableName = indicator.split('.')[1];
         if (!tableName) return 'global'; // eg survey_p20
@@ -257,12 +258,12 @@ export default class Maps {
         scale: IScaleThreshold<number, string>,
         data: IRAWMapData[], country: string, cMappings?: ICategoricalMapping[]):
         Promise< DH.IMapUnit[]> {
-        const entities: IEntityBasic[] = country === 'global' ?
+        const entities: IDistrict[] | IEntity[]  = country === 'global' ?
             await getEntities() :  await getDistrictEntities(country);
         const processedData: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(data, country);
         const hasBudgeTypes: boolean = processedData[0].budget_type ? true : false;
         const processed: DH.IMapUnit[] = processedData.map((obj) => {
-            const entity = getEntityByIdGeneric<IEntityBasic>(obj.id, entities);
+            const entity = getEntityByIdGeneric<IDistrict | IEntity>(obj.id, entities);
             let detail: any = null;
             if (cMappings) {
                 detail = Maps.getValueDetail(obj.value, cMappings).name;
@@ -272,6 +273,7 @@ export default class Maps {
             return {
                 ...obj,
                 detail,
+                slug: entity.slug,
                 name: entity.name,
                 color: colorObj.hex(),
             };
@@ -283,15 +285,15 @@ export default class Maps {
         Promise<IMapDataWithLegend> {
         const cMappings: ICategoricalMapping[] = await Maps.getCategoricalMapping(concept.id, concept.theme);
         const colors = await getColors();
-        const entities: IEntityBasic[] = country === 'global' ?
+        const entities: IEntity[] | IDistrict[] = country === 'global' ?
             await getEntities() : await getDistrictEntities(country) ;
         const processedData: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(data, country);
         const mapData = processedData.map(obj => {
            const cMapping = Maps.getValueDetail(obj.value, cMappings);
-           const entity = getEntityByIdGeneric<IEntityBasic>(obj.id, entities);
+           const entity = getEntityByIdGeneric<IEntity | IDistrict>(obj.id, entities);
            if (!cMapping.color) throw new Error(`color value is missing for ${JSON.stringify(cMapping)}`);
            const colorObj = getEntityByIdGeneric<IColor>(cMapping.color, colors);
-           return {...obj, color: colorObj.value, name: entity.name, detail: cMapping.name};
+           return {...obj, color: colorObj.value, name: entity.name, slug: entity.name, detail: cMapping.name};
         });
         const legend: DH.ILegendField[] = cMappings.map(cMapping => {
             if (!cMapping.color) throw new Error(`color value is missing for ${JSON.stringify(cMapping)}`);
@@ -324,6 +326,7 @@ export default class Maps {
                 ...obj,
                 value: null,
                 year: null,
+                slug: entity.slug,
                 name: entity.name,
                 detail: dataRevColorMap[newColor],
                 color: colorObj.value
