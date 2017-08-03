@@ -89,11 +89,11 @@ type PopulationTab {
 
 type Domestic {
   # eg Actual or budget
-  budgetType: String
+  budget_type: String
   levels: [String]
   year: Int 
   value: Float
-  valueNcu: Float
+  value_ncu: Float
   uid: String
 }
 

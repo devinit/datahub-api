@@ -23,7 +23,7 @@ declare namespace DH {
     description: 
   */
   interface IQuery {
-    countries: IEntity | null;
+    countries: Array<IEntity> | null;
     countryProfilePageData: Array<IPage> | null;
     odaDonorBubbleChartPageData: Array<IPage> | null;
     globalPicturePageData: Array<IPage> | null;
@@ -229,11 +229,11 @@ declare namespace DH {
     description: 
   */
   interface IDomestic {
-    budgetType: string | null;
+    budget_type: string | null;
     levels: Array<string> | null;
     year: number | null;
     value: number | null;
-    valueNcu: number | null;
+    value_ncu: number | null;
     uid: string | null;
   }
 
