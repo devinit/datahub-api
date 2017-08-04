@@ -74,6 +74,7 @@
     "@types/graphql": "^0.9.1",
     "@types/helmet": "^0.0.35",
     "@types/jest": "^20.0.2",
+    "@types/shortid": "*",
     "@types/lru-cache": "^4.0.0",
     "@types/morgan": "^1.7.32",
     "@types/node": "7.0.28",

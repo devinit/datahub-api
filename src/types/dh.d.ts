@@ -37,7 +37,7 @@ declare namespace DH {
     bubbleChartPoverty: IBubbleChartPoverty | null;
     bubbleSize: Array<IBubbleChartData> | null;
     bubbleChartIndicatorsList: Array<IIdNamePair> | null;
-    overViewTab: IOverViewTab | null;
+    overviewTab: IOverviewTab | null;
     povertyTab: IPovertyTab | null;
     populationTab: IPopulationTab | null;
     governmentFinance: IGovernmentFinance | null;
@@ -133,15 +133,39 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IOverViewTab {
+  interface IOverviewTab {
     countryType: string | null;
-    poorestPeople: string | null;
-    population: string | null;
-    domesticResources: string | null;
-    internationalResources: string | null;
-    governmentSpendPerPerson: string | null;
-    averageIncomerPerPerson: Array<IIndicatorData> | null;
-    incomeDistTrend: Array<IQuintile> | null;
+    poorestPeople: IIndicatorValueWithToolTip | null;
+    population: IIndicatorValueWithToolTip | null;
+    domesticResources: IIndicatorValueWithToolTip | null;
+    internationalResources: IIndicatorValueWithToolTip | null;
+    governmentSpendPerPerson: IIndicatorValueWithToolTip | null;
+    averageIncomerPerPerson: IIndicatorDataWithToolTip | null;
+    incomeDistTrend: IQuintileDataWithToolTip | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IIndicatorValueWithToolTip {
+    value: string | null;
+    toolTip: IToolTip | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IToolTip {
+    source: string | null;
+    heading: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IIndicatorDataWithToolTip {
+    data: Array<IIndicatorData> | null;
+    toolTip: IToolTip | null;
   }
 
   /*
@@ -158,6 +182,14 @@ declare namespace DH {
   /*
     description: 
   */
+  interface IQuintileDataWithToolTip {
+    data: Array<IQuintile> | null;
+    toolTip: IToolTip | null;
+  }
+
+  /*
+    description: 
+  */
   interface IQuintile {
     value: number | null;
     quintileName: string | null;
@@ -169,18 +201,26 @@ declare namespace DH {
     description: 
   */
   interface IPovertyTab {
-    poverty190Trend: Array<IIndicatorData> | null;
-    depthOfExtremePoverty: string | null;
-    incomeDistTrend: Array<IQuintile> | null;
+    poverty190Trend: IIndicatorDataWithToolTip | null;
+    depthOfExtremePoverty: IIndicatorValueWithToolTip | null;
+    incomeDistTrend: IQuintileDataWithToolTip | null;
   }
 
   /*
     description: 
   */
   interface IPopulationTab {
-    population: string | null;
-    populationDistribution: Array<IPopulationDistribution> | null;
-    populationPerAgeBand: Array<IPopulationPerAgeBand> | null;
+    population: IIndicatorValueWithToolTip | null;
+    populationDistribution: IPopulationDistributionWithToolTip | null;
+    populationPerAgeBand: IPopulationPerAgeBandWithToolTip | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IPopulationDistributionWithToolTip {
+    data: Array<IPopulationDistribution> | null;
+    toolTip: IToolTip | null;
   }
 
   /*
@@ -190,6 +230,14 @@ declare namespace DH {
     group: string | null;
     value: number | null;
     year: number | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IPopulationPerAgeBandWithToolTip {
+    data: Array<IPopulationPerAgeBand> | null;
+    toolTip: IToolTip | null;
   }
 
   /*
@@ -206,13 +254,21 @@ declare namespace DH {
     description: 
   */
   interface IGovernmentFinance {
-    totalRevenue: string | null;
-    grantsAsPcOfRevenue: string | null;
-    spendingAllocation: Array<ISpendingAllocation> | null;
+    totalRevenue: IIndicatorValueWithToolTip | null;
+    grantsAsPcOfRevenue: IIndicatorValueWithToolTip | null;
+    spendingAllocation: ISpendingAllocationWithToolTip | null;
     currencyCode: string | null;
     expenditure: Array<IDomestic> | null;
     revenueAndGrants: Array<IDomestic> | null;
     finance: Array<IDomestic> | null;
+  }
+
+  /*
+    description: 
+  */
+  interface ISpendingAllocationWithToolTip {
+    data: Array<ISpendingAllocation> | null;
+    toolTip: IToolTip | null;
   }
 
   /*
@@ -243,12 +299,20 @@ declare namespace DH {
   interface IInternationalResources {
     startYear: number | null;
     GNI: string | null;
-    netODAOfGNIIn: string | null;
-    netODAOfGNIOut: string | null;
-    resourcesOverTime: Array<IResourceData> | null;
-    mixOfResources: Array<IResourceData> | null;
+    netODAOfGNIIn: IIndicatorValueWithToolTip | null;
+    netODAOfGNIOut: IIndicatorValueWithToolTip | null;
+    resourcesOverTime: IResourceDataWithToolTip | null;
+    mixOfResources: IResourceDataWithToolTip | null;
     inflows: Array<IFlow> | null;
     outflows: Array<IFlow> | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IResourceDataWithToolTip {
+    data: Array<IResourceData> | null;
+    toolTip: IToolTip | null;
   }
 
   /*
@@ -461,14 +525,6 @@ declare namespace DH {
     sectors: Array<IIdNamePair> | null;
     bundles: Array<IIdNamePair> | null;
     years: Array<number> | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IToolTip {
-    indicator: string | null;
-    message: string | null;
   }
 }
 

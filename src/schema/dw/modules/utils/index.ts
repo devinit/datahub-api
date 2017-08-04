@@ -94,6 +94,11 @@ export interface IRAWDomestic {
     l3: string;
     l4: string;
 }
+export interface IToolTipArgs {
+    query?: string;
+    id?: string;
+    conceptType: string;
+}
 export interface Isummable {
     value: number | string | null;
 }
@@ -155,7 +160,7 @@ export const getTableNameFromSql = (sqlStr: string): string | Error => {
     if (matches && matches.length) {
         return matches[0].split(/\s/)[1];
     }
-    return new Error('couldnt get table name from sql string');
+    return new Error(`couldnt get table name from sql string ${sqlStr}`);
 };
 export const getSpotlightTableName = (country: string, query: string): string => {
     const tableStr = getTableNameFromSql(query);
@@ -276,6 +281,15 @@ export const makeSqlAggregateQuery = (queryArgs: any, groupByField: string, tabl
                 : `${query} ${field} = '${queryArgs[field]}' ${AND}`; // we need to enclose field values in quotes
         }, `SELECT ${groupByField}, year, sum(value) AS value from ${table} WHERE value > 0 AND`);
 };
+
+export const getIndicatorToolTip = async ({query, id, conceptType}: IToolTipArgs): Promise<DH.IToolTip> => {
+    const indicatorId = query ? getTableNameFromSql(query) : id;
+    if (!indicatorId || isError(indicatorId))
+        throw new Error(`indactor id or sql string with indicator id should be provided, ${indicatorId}`);
+    const concept: IConcept = await getConceptAsync(conceptType, indicatorId);
+    return {source: concept.source, heading: concept.heading};
+};
+
 export const getCurrentYear = (): number => {
     const date = new Date();
     return date.getFullYear();

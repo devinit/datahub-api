@@ -5,7 +5,19 @@ type IndicatorData {
   name: String
   uid: String
 }
+type ToolTip {
+  source: String
+  heading: String
+}
+type IndicatorDataWithToolTip {
+  data: [IndicatorData]
+  toolTip: ToolTip
+}
 
+type IndicatorValueWithToolTip {
+  value: String
+  toolTip: ToolTip
+}
 type SpendingAllocation {
   value: Float
   name: String
@@ -19,12 +31,10 @@ type Quintile {
   uid: String
   color: String
 }
-
-type ToolTip {
-  indicator: String
-  message: String
+type QuintileDataWithToolTip {
+  data: [Quintile]
+  toolTip: ToolTip
 }
-
 type ResourceData {
   year: Int!
   value: Float!
@@ -40,29 +50,29 @@ type ResourceData {
   uid: String
 }
 
-type OverViewTab {
+type OverviewTab {
     countryType: String 
    # how many of the poorest people globally live in a country
-    poorestPeople: String
+    poorestPeople: IndicatorValueWithToolTip
     # total population for a given country
-    population: String
-    domesticResources: String
-    internationalResources: String
+    population:  IndicatorValueWithToolTip
+    domesticResources: IndicatorValueWithToolTip
+    internationalResources:  IndicatorValueWithToolTip
     # recipient countries $PPP, both donor and recipient
-    governmentSpendPerPerson: String
+    governmentSpendPerPerson:  IndicatorValueWithToolTip
     # donor: gross nation income per capit GNI
-    averageIncomerPerPerson: [IndicatorData]
+    averageIncomerPerPerson: IndicatorDataWithToolTip
     # donor: Income share by quintile
-    incomeDistTrend: [Quintile]
+    incomeDistTrend: QuintileDataWithToolTip
 }
 
 type PovertyTab {
   # Poverty reduction over time area chart trend
-  poverty190Trend: [IndicatorData]
+  poverty190Trend: IndicatorDataWithToolTip
   # how deep is poverty %
-  depthOfExtremePoverty: String
+  depthOfExtremePoverty: IndicatorValueWithToolTip
   # Recipients: how income is distributed, % of income received by each quintil
-  incomeDistTrend: [Quintile]
+  incomeDistTrend: QuintileDataWithToolTip
 }
 
 type PopulationDistribution {
@@ -77,14 +87,21 @@ type PopulationPerAgeBand {
   year: Int
   uid: String
 }
-
+type PopulationDistributionWithToolTip {
+  data: [PopulationDistribution]
+  toolTip: ToolTip
+}
+type PopulationPerAgeBandWithToolTip {
+  data: [PopulationPerAgeBand]
+  toolTip: ToolTip
+}
 type PopulationTab {
   # total population in a country
-  population: String
+  population: IndicatorValueWithToolTip
   # Urban vs Rural population level
-  populationDistribution: [PopulationDistribution]
+  populationDistribution: PopulationDistributionWithToolTip
   # Number of people in 3 age bands (65+, 15- 65, 0 - 14)
-  populationPerAgeBand: [PopulationPerAgeBand]
+  populationPerAgeBand: PopulationPerAgeBandWithToolTip
 }
 
 type Domestic {
@@ -96,14 +113,18 @@ type Domestic {
   value_ncu: Float
   uid: String
 }
+type SpendingAllocationWithToolTip {
+  data:  [SpendingAllocation]
+  toolTip: ToolTip
+}
 
 type GovernmentFinance {
   #Total revenue for a particular year if not available return -1 
   # uses gdp
-  totalRevenue: String
-  grantsAsPcOfRevenue: String
+  totalRevenue: IndicatorValueWithToolTip
+  grantsAsPcOfRevenue: IndicatorValueWithToolTip
   # for donut chart 
-  spendingAllocation: [SpendingAllocation]
+  spendingAllocation: SpendingAllocationWithToolTip
   # for treemap
   # such as constant 2015 USD for tree map
   currencyCode: String
@@ -124,22 +145,25 @@ type Flow {
   id: String
   selections: [FlowSelection]
 }
-
+type ResourceDataWithToolTip {
+  data: [ResourceData]
+  toolTip: ToolTip
+}
 type InternationalResources {
   # TODO: add startyear
   startYear: Int
   # Gross National Income
   GNI: String
   #Net ODA received, % of GNI for recipient countries
-  netODAOfGNIIn: String
+  netODAOfGNIIn: IndicatorValueWithToolTip
   #Net ODA out, % of GNI for recipient countries
-  netODAOfGNIOut: String
+  netODAOfGNIOut: IndicatorValueWithToolTip
   # for sidebar chart in international resources section & area partition tree chart default data
   # & line chart in the  tabs section
-  resourcesOverTime: [ResourceData]
+  resourcesOverTime: ResourceDataWithToolTip
   # Whats the mix of resources can be for donors (out flows) or receipient (in flows)
   # this is for the donut chart
-  mixOfResources: [ResourceData]
+  mixOfResources: ResourceDataWithToolTip
   # an array of inflows for a particular country, for area & partition chart
   inflows: [Flow]
    # an array of outflows for a particular country
@@ -152,7 +176,7 @@ type SingleResourceData {
 }
 
 type Query {  
-  overViewTab(id: String!): OverViewTab
+  overviewTab(id: String!): OverviewTab
   povertyTab(id: String!): PovertyTab
   populationTab(id: String!): PopulationTab
   governmentFinance(id: String!): GovernmentFinance
