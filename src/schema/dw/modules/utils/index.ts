@@ -287,7 +287,7 @@ export const getIndicatorToolTip = async ({query, id, conceptType}: IToolTipArgs
     if (!indicatorId || isError(indicatorId))
         throw new Error(`indactor id or sql string with indicator id should be provided, ${indicatorId}`);
     const concept: IConcept = await getConceptAsync(conceptType, indicatorId);
-    return {source: concept.source, heading: concept.heading};
+    return {source: concept.source || '', heading: concept.heading || concept.name};
 };
 
 export const getCurrentYear = (): number => {

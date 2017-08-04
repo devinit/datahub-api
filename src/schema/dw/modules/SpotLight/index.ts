@@ -8,7 +8,7 @@ import {IColor, getColors, getEntityByIdGeneric} from '../../../cms/modules/glob
 import {isError} from '../../../../lib/isType';
 import {getDistrictBySlugAsync, IDistrict} from '../../../cms/modules/spotlight';
 import {getIndicatorDataSpotlights, ISpotlightGetIndicatorArgs, IRAW, getSpotlightTableName,
-        IRAWPopulationGroup, IRAWDomestic, domesticDataProcessing, formatNumbers} from '../utils';
+        IRAWPopulationGroup, IRAWDomestic, domesticDataProcessing, formatNumbers, getIndicatorToolTip} from '../utils';
 
 interface ISpotlightArgs {
     id: string;
@@ -16,8 +16,8 @@ interface ISpotlightArgs {
 }
 
 interface IRegionalResources {
-    regionalResources: string;
-    regionalResourcesBreakdown: DH.IIndicatorDataColored[];
+    regionalResources: DH.IIndicatorValueWithToolTip;
+    regionalResourcesBreakdown: DH.IIndicatorDataColoredWithToolTip[];
 }
 
 export default class SpotLight {
@@ -30,8 +30,8 @@ export default class SpotLight {
     public async getOverViewTabRegional(opts: ISpotlightArgs): Promise<DH.IOverViewTabRegional> {
         try {
             const regionalResources = await this.getRegionalResources(opts);
-            const [poorestPeople, localGovernmentSpendPerPerson] = await
-            this.getIndicatorsGeneric(opts, [sql.poorestPeople, sql.localGovernmentSpendPerPerson]);
+            const [poorestPeople, localGovernmentSpendPerPerson] =
+                await this.getIndicatorsGeneric(opts, [sql.poorestPeople, sql.localGovernmentSpendPerPerson]);
             return {
                 ...regionalResources,
                 poorestPeople,
@@ -103,7 +103,7 @@ export default class SpotLight {
             return {
                 districtPerformance,
                 treatmeantOfTb,
-                healthCareFunding: Number(healthCareFunding).toFixed(2)
+                healthCareFunding // Fix me
             };
        }    catch (error) {
            console.error(error);
@@ -133,15 +133,16 @@ export default class SpotLight {
         }
     }
     private async getStudentsPassDistrictRank(opts: ISpotlightArgs)
-        : Promise<string>  {
+        : Promise<DH.IIndicatorValueWithToolTip>  {
         try {
             const indicatorArgs: ISpotlightGetIndicatorArgs = {
                 db: this.db, conceptType: `spotlight-${opts.country}`, query: sql.studentsPassDistrictRank, ...opts};
             const indicatorRaw: IRAW[] = await getIndicatorDataSpotlights<IRAW>(indicatorArgs);
             const district: IDistrict = await getDistrictBySlugAsync(opts.country, opts.id);
             const rank = R.findIndex(R.propEq('district_id', district.id))(indicatorRaw);
-            if (rank < 0) return 'no data';
-            return (rank + 1).toString(); // remember its zero indexed
+            const value = rank < 0 ? 'no data' :  (rank + 1).toString(); // remember its zero indexed
+            const toolTip = await getIndicatorToolTip(indicatorArgs);
+            return {value, toolTip};
       } catch (error) {
           throw error;
       }
@@ -157,20 +158,24 @@ export default class SpotLight {
                 return sum;
             }, 0);
             const colors: IColor[] = await getColors();
-            const resourceWithConceptPromises: Array<Promise<DH.IIndicatorDataColored>> = indicatorArgs
+            const resourceWithConceptPromises: Array<Promise<DH.IIndicatorDataColoredWithToolTip>> = indicatorArgs
                 .map(async (args: ISpotlightGetIndicatorArgs , index) => {
                     const conceptId = getSpotlightTableName(opts.country, args.query);
                     if (isError(conceptId)) throw conceptId;
-                    const concept = await getConceptAsync(`spotlight-${opts.country}`, conceptId);
+                    const conceptArgs = {conceptType: `spotlight-${opts.country}`, id:  conceptId};
+                    const concept = await getConceptAsync(conceptArgs.conceptType, conceptArgs.id);
                     const resource: IRAW = resourcesRaw[index][0];
                     if (!concept.color) throw new Error(`${concept.id} missing required color value`);
                     const colorObj: IColor = getEntityByIdGeneric<IColor>(concept.color, colors);
-                    return {...concept, value: Number(resource.value),
+                    const data = {value: Number(resource.value), id: concept.id, name: concept.name,
                         year: concept.start_year, color: colorObj.value, uid: shortid.generate()};
+                    const toolTip = await getIndicatorToolTip(conceptArgs);
+                    return {data, toolTip};
                 });
-            const resources: DH.IIndicatorDataColored[] = await Promise.all(resourceWithConceptPromises);
+            const resources: DH.IIndicatorDataColoredWithToolTip[] = await Promise.all(resourceWithConceptPromises);
+            const regionalResourcesToolTip = await getIndicatorToolTip(indicatorArgs[0]);
             return {
-                regionalResources: formatNumbers(resourcesSum, 1),
+                regionalResources: {value: formatNumbers(resourcesSum, 1), toolTip: regionalResourcesToolTip},
                 regionalResourcesBreakdown: resources
             };
          } catch (error) {
@@ -178,34 +183,40 @@ export default class SpotLight {
          }
     }
     private async getIndicatorsGeneric(opts: ISpotlightArgs, sqlList: string[], format: boolean = true)
-        : Promise<string[]>  {
+        : Promise<DH.IIndicatorValueWithToolTip[]>  {
         try {
             const indicatorArgs: ISpotlightGetIndicatorArgs[] =
                 sqlList.map(query => ({db: this.db, conceptType: `spotlight-${opts.country}`, query, ...opts}));
             const indicatorRaw: IRAW[][] =
                 await Promise.all(indicatorArgs.map(args => getIndicatorDataSpotlights<IRAW>(args)));
-            return indicatorRaw.map(data => {
-                if (data[0] && data[0].value && format) return formatNumbers(data[0].value, 1);
-                if (data[0] && data[0].value && !format) return data[0].value;
-                return 'No data';
+            const toolTips: DH.IToolTip[] =
+                await Promise.all(indicatorArgs.map(args => getIndicatorToolTip(args)));
+            return indicatorRaw.map((data, index) => {
+                const toolTip = toolTips[index];
+                let value = 'No data';
+                if (data[0] && data[0].value && format) value = formatNumbers(data[0].value, 1);
+                if (data[0] && data[0].value && !format) value = data[0].value;
+                return {value, toolTip};
             });
       } catch (error) {
           throw error;
       }
     }
-    private async getPopulationDistribution(opts): Promise<DH.IPopulationDistribution[]> {
+    private async getPopulationDistribution(opts): Promise<DH.IPopulationDistributionWithToolTip> {
         try {
             const indicatorArgs: ISpotlightGetIndicatorArgs = {
                 db: this.db, conceptType: `spotlight-${opts.country}`,
                 query: sql.populationDistribution,
                 ...opts
             };
-            const data: IRAWPopulationGroup[] = await getIndicatorDataSpotlights<IRAWPopulationGroup>(indicatorArgs);
-            return data.reduce((acc: DH.IPopulationDistribution[], row) => {
-            const rural = {group: 'rural', value: Number(row.value_rural), year: Number(row.year) };
-            const urban = {group: 'urban', value: Number(row.value_urban),  year: Number(row.year) };
-            return [...acc, rural, urban];
-         }, []);
+            const raw: IRAWPopulationGroup[] = await getIndicatorDataSpotlights<IRAWPopulationGroup>(indicatorArgs);
+            const data: DH.IPopulationDistribution[] = raw.reduce((acc: DH.IPopulationDistribution[], row) => {
+                const rural = {group: 'rural', value: Number(row.value_rural), year: Number(row.year) };
+                const urban = {group: 'urban', value: Number(row.value_urban),  year: Number(row.year) };
+                return [...acc, rural, urban];
+            }, []);
+            const toolTip = await getIndicatorToolTip(indicatorArgs);
+            return {toolTip, data};
        } catch (error) {
            throw error;
        }

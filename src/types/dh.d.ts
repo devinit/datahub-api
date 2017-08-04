@@ -423,10 +423,18 @@ declare namespace DH {
     description: 
   */
   interface IOverViewTabRegional {
-    poorestPeople: string | null;
-    regionalResources: string | null;
-    regionalResourcesBreakdown: Array<IIndicatorDataColored> | null;
-    localGovernmentSpendPerPerson: string | null;
+    poorestPeople: IIndicatorValueWithToolTip | null;
+    regionalResources: IIndicatorValueWithToolTip | null;
+    regionalResourcesBreakdown: Array<IIndicatorDataColoredWithToolTip> | null;
+    localGovernmentSpendPerPerson: IIndicatorValueWithToolTip | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IIndicatorDataColoredWithToolTip {
+    data: IIndicatorDataColored | null;
+    toolTip: IToolTip | null;
   }
 
   /*
@@ -445,40 +453,40 @@ declare namespace DH {
     description: 
   */
   interface IPovertyTabRegional {
-    poorestPeople: string | null;
-    lifeExpectancy: string | null;
-    stdOfLiving: string | null;
+    poorestPeople: IIndicatorValueWithToolTip | null;
+    lifeExpectancy: IIndicatorValueWithToolTip | null;
+    stdOfLiving: IIndicatorValueWithToolTip | null;
   }
 
   /*
     description: 
   */
   interface IPopulationTabRegional {
-    totalPopulation: string | null;
-    populationDensity: string | null;
-    populationDistribution: Array<IPopulationDistribution> | null;
-    averageDependencyRatio: string | null;
-    allAverageDependencyRatio: string | null;
+    totalPopulation: IIndicatorValueWithToolTip | null;
+    populationDensity: IIndicatorValueWithToolTip | null;
+    populationDistribution: IPopulationDistributionWithToolTip | null;
+    averageDependencyRatio: IIndicatorValueWithToolTip | null;
+    allAverageDependencyRatio: IIndicatorValueWithToolTip | null;
   }
 
   /*
     description: 
   */
   interface IEducationTabRegional {
-    pupilTeacherRatioGovtSchl: string | null;
-    pupilTeacherRatioOtherSchl: string | null;
-    studentsPassRate: string | null;
-    studentsPassDistrictRank: string | null;
-    primaryEducationfunding: string | null;
+    pupilTeacherRatioGovtSchl: IIndicatorValueWithToolTip | null;
+    pupilTeacherRatioOtherSchl: IIndicatorValueWithToolTip | null;
+    studentsPassRate: IIndicatorValueWithToolTip | null;
+    studentsPassDistrictRank: IIndicatorValueWithToolTip | null;
+    primaryEducationfunding: IIndicatorValueWithToolTip | null;
   }
 
   /*
     description: 
   */
   interface IHealthTabRegional {
-    districtPerformance: string | null;
-    treatmeantOfTb: string | null;
-    healthCareFunding: string | null;
+    districtPerformance: IIndicatorValueWithToolTip | null;
+    treatmeantOfTb: IIndicatorValueWithToolTip | null;
+    healthCareFunding: IIndicatorValueWithToolTip | null;
   }
 
   /*
