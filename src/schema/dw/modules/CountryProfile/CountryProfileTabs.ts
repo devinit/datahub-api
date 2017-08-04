@@ -68,6 +68,8 @@ export default class CountryProfileTabs {
     }
     public async getPovertyTab({id}): Promise<DH.IPovertyTab> {
         try {
+            const isDonorCountry =  await isDonor(id);
+            if (isDonorCountry) return {poverty190Trend: null, depthOfExtremePoverty: null, incomeDistTrend: null};
             const poverty190Trend = await this.getPoverty190Trend(id);
             const [depthOfExtremePoverty] = await this.getIndicatorsGeneric(id, [sql.depthOfExtremePoverty], false);
             const incomeDistTrend = await this.getIncomeDistTrend(id);

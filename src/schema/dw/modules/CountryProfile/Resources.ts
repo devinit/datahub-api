@@ -115,6 +115,18 @@ export default class Resources {
 
     public async getGovernmentFinance({id}): Promise<DH.IGovernmentFinance> {
         try {
+            const isDonorCountry =  await isDonor(id);
+            if (isDonorCountry) {
+                return {
+                    totalRevenue: null,
+                    grantsAsPcOfRevenue: null,
+                    spendingAllocation: null,
+                    currencyCode: null,
+                    expenditure: null,
+                    revenueAndGrants: null,
+                    finance: null
+                };
+            }
             const currencyCode = await this.getCurrencyCode(id);
             const totalRevenue = await this.getTotalRevenue(id);
             const grantsAsPcOfRevenue = await this.getGrantsAsPcOfRevenue(id);

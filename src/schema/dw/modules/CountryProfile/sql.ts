@@ -10,17 +10,17 @@ export default {
     // tslint:disable-next-line:max-line-length
     spendingAllocation: 'SELECT l2, sum(value) as value FROM data_series.domestic WHERE di_id = ${id} AND budget_type = \'actual\' AND year = 2015 AND l1 = \'total-expenditure\' Group By l2',
     // tslint:disable-next-line:max-line-length
-    domesticRevenue: 'SELECT value FROM data_series.domestic WHERE di_id =${id} AND budget_type = \'actual\' AND year = ${start_year} AND l1 = \'total-revenue-and-grants\' AND l2 = \'revenue\' AND l3 is NULL AND l4 is NULL',
-    totalDomesticRevenueAndGrants: 'SELECT value FROM data_series.domestic WHERE di_id =${id} AND budget_type = \'actual\' AND year = ${start_year} AND l1 = \'total-revenue-and-grants\' AND l2 is NULL AND l3 is NULL AND l4 is NULL',
+    domesticRevenue: 'SELECT value FROM data_series.domestic WHERE di_id =${id} AND budget_type = \'actual\' AND year = ${end_year} AND l1 = \'total-revenue-and-grants\' AND l2 = \'revenue\' AND l3 is NULL AND l4 is NULL',
+    totalDomesticRevenueAndGrants: 'SELECT value FROM data_series.domestic WHERE di_id =${id} AND budget_type = \'actual\' AND year = ${end_year} AND l1 = \'total-revenue-and-grants\' AND l2 is NULL AND l3 is NULL AND l4 is NULL',
     // tslint:disable-next-line:max-line-length
-    grants: 'SELECT value FROM data_series.domestic WHERE di_id =${id} AND budget_type = \'actual\' AND year = ${start_year} AND l1 = \'total-revenue-and-grants\' AND l2 = \'grants\' AND l3 is NULL AND l4 is NULL',
+    grants: 'SELECT value FROM data_series.domestic WHERE di_id =${id} AND budget_type = \'actual\' AND year = ${end_year} AND l1 = \'total-revenue-and-grants\' AND l2 = \'grants\' AND l3 is NULL AND l4 is NULL',
     // tslint:disable-next-line:max-line-length
-    internationalResources: 'SELECT value FROM data_series.intl_flows_recipients WHERE di_id = ${id} AND year = ${start_year} AND direction =\'in\'',
+    internationalResources: 'SELECT value FROM data_series.intl_flows_recipients WHERE di_id = ${id} AND year = ${end_year} AND direction =\'in\'',
     governmentSpendPerPerson: 'SELECT value FROM data_series.govt_spend_pc WHERE di_id = ${id} AND year = ${start_year}',
     poorestPeople: 'SELECT value FROM data_series.poorest_20_percent WHERE di_id = ${id} AND year = ${start_year}',
     // tslint:disable-next-line:max-line-length
     averageIncomerPerPerson: 'SELECT * FROM fact.gni_pc_usd_2015 WHERE di_id = ${id} AND year >= ${start_year} AND year <= ${end_year}',
-    incomeDistTrend: 'SELECT value_bottom_20pc, value_2nd_quintile, value_3rd_quintile, value_4th_quintile, value_5th_quintile FROM fact.income_share_by_quintile WHERE di_id = ${id} AND year >= ${start_year} ORDER BY year',
+    incomeDistTrend: 'SELECT value_bottom_20pc, value_2nd_quintile, value_3rd_quintile, value_4th_quintile, value_5th_quintile FROM fact.income_share_by_quintile WHERE di_id = ${id} AND value_bottom_20pc is NOT NULL ORDER BY year',
     // tslint:disable-next-line:max-line-length
     populationDistribution: 'SELECT * FROM fact.population_rural_urban WHERE di_id = ${id} AND year >= ${start_year} AND year <= ${end_year}',
     populationPerAgeBand: 'SELECT * FROM fact.population_by_age WHERE di_id = ${id} AND year >= ${start_year} AND year <= ${end_year}',
@@ -38,5 +38,5 @@ export default {
     // tslint:disable-next-line:max-line-length
     resourcesRecipient: 'SELECT flow_name, year,flow_type,direction,value FROM data_series.intl_flows_recipients WHERE di_id = ${id}  AND year >= ${start_year} AND year <= ${end_year} AND value > 0 GROUP BY flow_name,year,flow_type,direction,value ',
     // tslint:disable-next-line:max-line-length
-    govenmentFinance: 'SELECT value FROM data_series.domestic WHERE di_id =${id} AND year >= ${start_year} AND year <= ${end_year}',
+    govenmentFinance: 'SELECT value FROM data_series.domestic WHERE di_id =${id} AND year >= ${start_year}',
 };

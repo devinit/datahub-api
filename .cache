@@ -31,23 +31,16 @@ SELECT * FROM data_series.latest_census WHERE colour IS NOT NULL:dw
 SELECT di_id, value as value, year FROM data_series.poverty_190 WHERE di_id = 'UG' AND year >= '2000' AND year <= '2013':dw
 SELECT value FROM data_series.intl_flows_recipients WHERE di_id = 'UG' AND year = '2000' AND direction ='in':dw
 SELECT value FROM fact.population_total WHERE di_id = 'UG' AND year = '2015':dw
-SELECT value FROM data_series.domestic WHERE di_id ='UG' AND budget_type = 'actual' AND year = '2010' AND l1 = 'total-revenue-and-grants' AND l2 = 'revenue' AND l3 is NULL AND l4 is NULL:dw
 SELECT value FROM data_series.poorest_20_percent WHERE di_id = 'UG' AND year = '2013':dw
 SELECT value FROM data_series.govt_spend_pc WHERE di_id = 'UG' AND year = '2015':dw
 SELECT value_bottom_20pc, value_2nd_quintile, value_3rd_quintile, value_4th_quintile, value_5th_quintile FROM fact.income_share_by_quintile WHERE di_id = 'UG' AND year >= '2012' ORDER BY year:dw
-SELECT value FROM data_series.domestic WHERE di_id ='UG' AND budget_type = 'actual' AND year = '2010' AND l1 = 'total-revenue-and-grants' AND l2 is NULL AND l3 is NULL AND l4 is NULL:dw
-SELECT value FROM data_series.domestic WHERE di_id ='UG' AND budget_type = 'actual' AND year = '2010' AND l1 = 'total-revenue-and-grants' AND l2 = 'grants' AND l3 is NULL AND l4 is NULL:dw
-SELECT l2, sum(value) as value FROM data_series.domestic WHERE di_id = 'UG' AND budget_type = 'actual' AND year = 2015 AND l1 = 'total-expenditure' Group By l2:dw
 SELECT value FROM fact.gdp_usd_2015 WHERE di_id = 'UG' AND year = '2015':dw
 SELECT value FROM data_series.depth_of_extreme_poverty_190 WHERE di_id = 'UG' AND year = '2015':dw
 SELECT * FROM fact.population_rural_urban WHERE di_id = 'UG' AND year >= '1960' AND year <= '2015':dw
 SELECT * FROM fact.population_by_age WHERE di_id = 'UG' AND year >= '1960' AND year <= '2015':dw
 global/currency.csv:cms
-SELECT * FROM data_series.domestic WHERE di_id ='UG' AND l1 = 'financing' AND year >= '2010' AND year <= '2015':dw
-SELECT * FROM data_series.domestic WHERE di_id ='UG' AND l1 = 'total-revenue-and-grants' AND year >= '2010' AND year <= '2015':dw
 SELECT * FROM spotlight_on_uganda.uganda_poverty_headcount WHERE district_id = 'd113' AND year = '2014':dw
 SELECT value FROM spotlight_on_uganda.uganda_leaving_exam_perf_rate WHERE district_id ='d113' AND year = '2010':dw
-SELECT * FROM data_series.domestic WHERE di_id ='UG' AND l1 = 'total-expenditure' AND year >= '2010' AND year <= '2015':dw
 SELECT * FROM spotlight_on_uganda.uganda_life_expectancy WHERE district_id = 'd113' AND year = '2014':dw
 SELECT * FROM spotlight_on_uganda.uganda_deprivation_living WHERE district_id = 'd113' AND year = '2014':dw
 SELECT value FROM spotlight_on_uganda.uganda_donor_resources WHERE district_id = 'd113' AND year = '2015':dw
@@ -86,3 +79,34 @@ SELECT * FROM data_series.civil_reg_deaths WHERE colour IS NOT NULL:dw
 SELECT * FROM data_series.health_mis WHERE colour IS NOT NULL:dw
 SELECT * FROM data_series.poor_people_190 WHERE year >= 1990 AND year <= 2013 AND value IS NOT NULL:dw
 SELECT * FROM data_series.fragile_states WHERE year = 2015 AND value IS NOT NULL:dw
+SELECT value FROM fact.population_total WHERE di_id = 'AT' AND year = 2015:dw
+SELECT value FROM data_series.govt_spend_pc WHERE di_id = 'AT' AND year = 2015:dw
+SELECT * FROM fact.population_rural_urban WHERE di_id = 'AT' AND year >= 1960 AND year <= 2015:dw
+SELECT value FROM fact.gni_usd_2015 WHERE di_id = 'AT' AND year = 2015:dw
+SELECT * FROM fact.gni_pc_usd_2015 WHERE di_id = 'AT' AND year >= 1980 AND year <= 2015:dw
+SELECT * FROM fact.population_by_age WHERE di_id = 'AT' AND year >= 1960 AND year <= 2015:dw
+SELECT value_bottom_20pc, value_2nd_quintile, value_3rd_quintile, value_4th_quintile, value_5th_quintile FROM fact.income_share_by_quintile WHERE di_id = 'AT' AND value_bottom_20pc is NOT NULL ORDER BY year:dw
+SELECT flow_name, year,flow_type,direction,value FROM data_series.intl_flows_donors WHERE di_id = 'AT' AND year = 2015 AND direction = 'out' AND value > 0 GROUP BY flow_name,year,flow_type,direction,value:dw
+SELECT flow_name, year,flow_type,direction,value FROM data_series.intl_flows_donors WHERE di_id = 'AT' AND year >= 2010 AND year <= 2015 AND value > 0 GROUP BY flow_name,year,flow_type,direction,value:dw
+SELECT value FROM fact.oda_percent_gni WHERE di_id = 'AT' AND year = 2015:dw
+SELECT value FROM fact.population_total WHERE di_id = 'UG' AND year = 2015:dw
+SELECT di_id, value, year FROM data_series.poverty_190 WHERE di_id = 'UG' AND year >= 2000 AND year <= 2013:dw
+SELECT value FROM fact.gni_usd_2015 WHERE di_id = 'UG' AND year = 2015:dw
+SELECT value FROM data_series.intl_flows_recipients WHERE di_id = 'UG' AND year = 2000 AND direction ='in':dw
+SELECT value FROM data_series.poorest_20_percent WHERE di_id = 'UG' AND year = 2013:dw
+SELECT value FROM fact.gdp_usd_2015 WHERE di_id = 'UG' AND year = 2015:dw
+SELECT value FROM data_series.govt_spend_pc WHERE di_id = 'UG' AND year = 2015:dw
+SELECT * FROM fact.population_rural_urban WHERE di_id = 'UG' AND year >= 1960 AND year <= 2015:dw
+SELECT value FROM fact.in_oda_net_2015 WHERE di_id = 'UG' AND year = 2015:dw
+SELECT value FROM data_series.depth_of_extreme_poverty_190 WHERE di_id = 'UG' AND year = 2015:dw
+SELECT * FROM fact.population_by_age WHERE di_id = 'UG' AND year >= 1960 AND year <= 2015:dw
+SELECT flow_name, year,flow_type,direction,value FROM data_series.intl_flows_recipients WHERE di_id = 'UG'  AND year >= 2000 AND year <= 2015 AND value > 0 GROUP BY flow_name,year,flow_type,direction,value :dw
+SELECT value_bottom_20pc, value_2nd_quintile, value_3rd_quintile, value_4th_quintile, value_5th_quintile FROM fact.income_share_by_quintile WHERE di_id = 'UG' AND value_bottom_20pc is NOT NULL ORDER BY year:dwSELECT value FROM data_series.domestic WHERE di_id ='UG' AND budget_type = 'actual' AND year = 2015 AND l1 = 'total-revenue-and-grants' AND l2 = 'grants' AND l3 is NULL AND l4 is NULL:dw
+SELECT value FROM data_series.domestic WHERE di_id ='UG' AND budget_type = 'actual' AND year = 2015 AND l1 = 'total-revenue-and-grants' AND l2 is NULL AND l3 is NULL AND l4 is NULL:dw
+SELECT l2, sum(value) as value FROM data_series.domestic WHERE di_id = 'UG' AND budget_type = 'actual' AND year = 2015 AND l1 = 'total-expenditure' Group By l2:dw
+SELECT * FROM data_series.domestic WHERE di_id ='UG' AND l1 = 'financing' AND year >= 2000 AND year <= 2015:dw
+SELECT * FROM data_series.domestic WHERE di_id ='UG' AND l1 = 'total-revenue-and-grants' AND year >= 2000 AND year <= 2015:dw
+SELECT * FROM data_series.domestic WHERE di_id ='UG' AND l1 = 'total-expenditure' AND year >= 2000 AND year <= 2015:dw
+unbundling-oda/concept.csv:cms
+global/channel.csv:cms
+global/sector.csv:cms
