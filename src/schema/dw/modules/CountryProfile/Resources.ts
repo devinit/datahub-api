@@ -7,7 +7,7 @@ import * as shortid from 'shortid';
 import {ICurrency, getCurrency, getEntityBySlugAsync, IColor,
         IEntity, getColors, getEntityByIdGeneric} from '../../../cms/modules/global';
 import {getIndicatorData, RECIPIENT, DONOR, IGetIndicatorArgs,
-        indicatorDataProcessingSimple, makeSqlAggregateQuery, formatNumbers,
+        indicatorDataProcessingSimple, makeSqlAggregateQuery, formatNumbers, getIndicatorsValue, getIndicatorToolTip,
         isDonor, IRAW, IRAWFlow, IProcessedSimple, entitesFnMap, IRAWDomestic, domesticDataProcessing} from '../utils';
 import {getFlowByTypeAsync, getFlows, getFlowByIdAsync, getBudgetLevels, IBudgetLevelRef,
         getAllFlowSelections, IFlowRef, IFlowSelectionRaw} from '../../../cms/modules/countryProfile';
@@ -52,8 +52,10 @@ export default class Resources {
     public async getInternationalResources({id}): Promise<DH.IInternationalResources> {
         try {
             const isDonorCountry =  await isDonor(id);
-            const netODAOfGNIOut = isDonorCountry ? await this.getNetODAOfGNIOut(id) : null;
+            const netODAOfGNIOutArr = isDonorCountry ?
+                await getIndicatorsValue({id, sqlList: [sql.ODANetOut], ...this.defaultArgs}) : null;
             const GNI: number = await this.getGNI(id);
+            const gniToolTip = await getIndicatorToolTip({query: sql.GNI, ...this.defaultArgs});
             const netODAOfGNIIn = isDonorCountry ? null : await this.getNetODAOfGNIIn(id, GNI);
             const {outflows, inflows}  = await this.getFlows(id);
             const resourcesSql = isDonorCountry ? [sql.resourcesDonors, sql.resourcesDonorsMix] :
@@ -63,9 +65,9 @@ export default class Resources {
             // from data_series.intl_flows_recipients concept /indicator. They shouldb be a better way of doing this.
             const concept: IConcept = await getConceptAsync('country-profile', 'data_series.intl_flows_recipients');
             return {
-                GNI: formatNumbers(GNI, 1),
+                GNI: {value: formatNumbers(GNI, 1), toolTip: gniToolTip},
                 netODAOfGNIIn,
-                netODAOfGNIOut,
+                netODAOfGNIOut: netODAOfGNIOutArr ? netODAOfGNIOutArr[0] : null,
                 resourcesOverTime,
                 mixOfResources,
                 inflows,
@@ -118,17 +120,12 @@ export default class Resources {
             const isDonorCountry =  await isDonor(id);
             if (isDonorCountry) {
                 return {
-                    totalRevenue: null,
-                    grantsAsPcOfRevenue: null,
-                    spendingAllocation: null,
-                    currencyCode: null,
-                    expenditure: null,
-                    revenueAndGrants: null,
-                    finance: null
+                    totalRevenue: null, grantsAsPcOfRevenue: null, spendingAllocation: null,
+                    currencyCode: null, expenditure: null, revenueAndGrants: null, finance: null
                 };
             }
             const currencyCode = await this.getCurrencyCode(id);
-            const totalRevenue = await this.getTotalRevenue(id);
+            const [totalRevenue] = await getIndicatorsValue({id, sqlList: [sql.gdp], ...this.defaultArgs});
             const grantsAsPcOfRevenue = await this.getGrantsAsPcOfRevenue(id);
             const spendingAllocation = await this.getSpendingAllocation(id);
             const domestic = await this.getDomesticResourcesOvertime(id);
@@ -198,51 +195,42 @@ export default class Resources {
         }
     }
 
-    private async getSpendingAllocation(id: string): Promise<DH.ISpendingAllocation[]> {
+    private async getSpendingAllocation(id: string): Promise<DH.ISpendingAllocationWithToolTip> {
         try {
             const indicatorArgsGdp: IGetIndicatorArgs = {
             ...this.defaultArgs,
             query: sql.spendingAllocation,
             id
         };
-            const data: IRAWSpending[] = await getIndicatorData<IRAWSpending>(indicatorArgsGdp);
+            const raw: IRAWSpending[] = await getIndicatorData<IRAWSpending>(indicatorArgsGdp);
             // TODO: we have null names from raw data
             const budgetRefs: IBudgetLevelRef[] = await getBudgetLevels();
-            return data
+            const data = raw
                 .filter(obj => obj.l2 !== null)
                 .map(obj => {
                     const level = R.find(R.propEq('id', obj.l2), budgetRefs) as IBudgetLevelRef;
                     return {value: Number(obj.value), ...level, uid: shortid.generate()};
                 });
+            const toolTip = await getIndicatorToolTip(indicatorArgsGdp);
+            return {data, toolTip};
        } catch (error) {
            throw error;
        }
     }
 
-    private async getTotalRevenue(id: string): Promise<string> {
-        try {
-            const indicatorArgs: IGetIndicatorArgs = {
-            ...this.defaultArgs,
-            query: sql.gdp,
-            id
-           };
-            const gdp: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
-            return formatNumbers(gdp[0].value, 1);
-        } catch (error) {
-           throw error;
-        }
-    }
-    private async getGrantsAsPcOfRevenue(id: string): Promise<string> {
+    private async getGrantsAsPcOfRevenue(id: string): Promise<DH.IIndicatorValueWithToolTip> {
         try {
             const indicatorArgs: IGetIndicatorArgs[] = [sql.totalDomesticRevenueAndGrants, sql.grants]
                 .map(query => ({query, ...this.defaultArgs, id}));
             const totalRevenueAndGrants: IRAW[] =  await getIndicatorData<IRAW>(indicatorArgs[0]);
             const grants: IRAW[] =  await getIndicatorData<IRAW>(indicatorArgs[1]);
+            let value = 'No data';
             if (totalRevenueAndGrants[0].value && grants[0].value) {
-            const pc = (Number(grants[0].value) / Number(totalRevenueAndGrants[0].value)) * 100;
-            return pc.toFixed(2);
-        }
-            return 'No data';
+                const pc = (Number(grants[0].value) / Number(totalRevenueAndGrants[0].value)) * 100;
+                value = pc.toFixed(2);
+            }
+            const toolTip = await getIndicatorToolTip(indicatorArgs[0]);
+            return {value, toolTip};
         } catch (error) {
             throw error;
         }
@@ -261,7 +249,7 @@ export default class Resources {
             throw error;
         }
     }
-    private async getNetODAOfGNIIn(id: string, gni: number): Promise<string> {
+    private async getNetODAOfGNIIn(id: string, gni: number): Promise<DH.IIndicatorValueWithToolTip> {
         try {
             const indicatorArgs: IGetIndicatorArgs = {
                 ...this.defaultArgs,
@@ -269,43 +257,36 @@ export default class Resources {
                 id
             };
             const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
-            if (!data[0].value) return 'No data';
-            if (!gni) return 'No data';
-            return ((Number(data[0].value) / gni) * 100).toFixed(2);
+            const toolTip = await getIndicatorToolTip(indicatorArgs);
+            if (!data[0].value || !gni) return { value: 'No data', toolTip};
+            const value = ((Number(data[0].value) / gni) * 100).toFixed(2);
+            return {value, toolTip};
         } catch (error) {
             throw error;
         }
     }
-    private async getNetODAOfGNIOut(id: string): Promise<string> {
-        try {
-            const indicatorArgs: IGetIndicatorArgs = {
-                ...this.defaultArgs,
-                query: sql.ODANetOut,
-                id
-            };
-            const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
-            return data[0].value ? Number(data[0].value).toFixed(1) : 'No data';
-        } catch (error) {
-            throw error;
-        }
-    }
-     private async getResourcesGeneric(id: string, sqlList: string[]): Promise<DH.IResourceData[][]> {
+
+     private async getResourcesGeneric(id: string, sqlList: string[]): Promise<DH.IResourceDataWithToolTip[]> {
          try {
-             const indicatorArgs: IGetIndicatorArgs[] = sqlList
+            const indicatorArgs: IGetIndicatorArgs[] = sqlList
                 .map(query => ({query, ...this.defaultArgs, id}));
-             const allRaw: IRAWFlow[][] =
-             await Promise.all(indicatorArgs.map(args => getIndicatorData<IRAWFlow>(args)));
-             return await Promise.all(allRaw.map(raw => this.processResourceData(raw)));
+            const allRaw: IRAWFlow[][] =
+                await Promise.all(indicatorArgs.map(args => getIndicatorData<IRAWFlow>(args)));
+            return Promise.all(allRaw.map(async (raw, index) => {
+                const data = await this.processResourceData(raw);
+                const toolTip = await getIndicatorToolTip(indicatorArgs[index]);
+                return {data, toolTip};
+            }));
          } catch (error) {
           throw error;
          }
     }
     private async processResourceData(data: IRAWFlow[]): Promise<DH.IResourceData[]> {
          try {
-             const processed: IFlowProcessed[] = indicatorDataProcessingSimple<IFlowProcessed>(data);
-             const flowRefs: IFlowRef[] = await getFlows();
-             const colors = await getColors();
-             return processed.map(obj => {
+            const processed: IFlowProcessed[] = indicatorDataProcessingSimple<IFlowProcessed>(data);
+            const flowRefs: IFlowRef[] = await getFlows();
+            const colors = await getColors();
+            return processed.map(obj => {
                 const flow: IFlowRef | undefined = flowRefs.find(flowRef => flowRef.id === obj.flow_name);
                 if (flow === undefined) throw new Error(`No flow refrence for ${JSON.stringify(obj)} `);
                 const colorObj: IColor = getEntityByIdGeneric<IColor>(flow.color, colors);

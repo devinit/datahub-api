@@ -110,7 +110,12 @@ export interface IhasDiId {
 export interface IhasId {
     id: string | null;
 }
-
+export interface IGetIndicatorValueArgs {
+    id: string;
+    sqlList: string[];
+    db: IDatabase<IExtensions> & IExtensions;
+    format: boolean;
+}
 export const RECIPIENT = 'recipient';
 export const DONOR = 'donor';
 export const MULTILATERAL = 'multilateral';
@@ -170,6 +175,13 @@ export const getSpotlightTableName = (country: string, query: string): string =>
             .replace(/\${schema\^}/, schema)
             .replace(/\${country\^}/, country);
 };
+export const getIndicatorToolTip = async ({query, id, conceptType}: IToolTipArgs): Promise<DH.IToolTip> => {
+    const indicatorId = query ? getTableNameFromSql(query) : id;
+    if (!indicatorId || isError(indicatorId))
+        throw new Error(`indactor id or sql string with indicator id should be provided, ${indicatorId}`);
+    const concept: IConcept = await getConceptAsync(conceptType, indicatorId);
+    return {source: concept.source, heading: concept.heading || concept.name};
+};
 
 // used by country profile and spotlights
 export async function getIndicatorData<T>(opts: IGetIndicatorArgs): Promise<T[]> {
@@ -188,7 +200,7 @@ export async function getIndicatorData<T>(opts: IGetIndicatorArgs): Promise<T[]>
     return db.manyCacheable(query, baseQueryArgs);
 }
 
-// used by country profile and spotlights
+// used by spotlights
 export async function getIndicatorDataSpotlights<T>(opts: ISpotlightGetIndicatorArgs): Promise<T[]> {
     const {db, query, id, conceptType, country, table} = opts;
     const tableName = !table && country && query ? getSpotlightTableName(country, query) : table;
@@ -196,10 +208,27 @@ export async function getIndicatorDataSpotlights<T>(opts: ISpotlightGetIndicator
     const spotlightEntity =  await getDistrictBySlugAsync(country, id);
     const concept: IConcept = await getConceptAsync(conceptType, tableName);
     const queryArgs = {...opts, ...concept, id: spotlightEntity.id, country, schema: `spotlight_on_${country}`};
-    // console.log(query, '\n', queryArgs);
     return db.manyCacheable(query, queryArgs);
 }
-
+export const getIndicatorsValue = async ({id, sqlList, db, format = true}: IGetIndicatorValueArgs)
+    : Promise<DH.IIndicatorValueWithToolTip[]>  => {
+    try {
+        const indicatorArgs: IGetIndicatorArgs[] =
+                sqlList.map(query => ({db, conceptType: 'country-profile', query, id}));
+        const indicatorRaw: IRAW[][] = await Promise.all(indicatorArgs.map(args => getIndicatorData<IRAW>(args)));
+        const toolTips: DH.IToolTip[] =
+            await Promise.all(indicatorArgs.map(args => getIndicatorToolTip(args)));
+        return indicatorRaw.map((data, index) => {
+            const toolTip = toolTips[index];
+            let value = 'No data';
+            if (data[0] && data[0].value && format) value = formatNumbers(data[0].value, 1);
+            if (data[0] && data[0].value && !format) value = data[0].value;
+            return {value, toolTip};
+        });
+    } catch (error) {
+        throw error;
+    }
+};
 // used by maps module
 export const getIndicatorDataSimple = async <T extends {}> (opts: IGetIndicatorArgsSimple): Promise<T[]> => {
         const {table, sql, db, query, start_year, end_year} = opts;
@@ -280,14 +309,6 @@ export const makeSqlAggregateQuery = (queryArgs: any, groupByField: string, tabl
             return field === 'year' ? `${query} ${field} = ${queryArgs[field]} ${AND}`
                 : `${query} ${field} = '${queryArgs[field]}' ${AND}`; // we need to enclose field values in quotes
         }, `SELECT ${groupByField}, year, sum(value) AS value from ${table} WHERE value > 0 AND`);
-};
-
-export const getIndicatorToolTip = async ({query, id, conceptType}: IToolTipArgs): Promise<DH.IToolTip> => {
-    const indicatorId = query ? getTableNameFromSql(query) : id;
-    if (!indicatorId || isError(indicatorId))
-        throw new Error(`indactor id or sql string with indicator id should be provided, ${indicatorId}`);
-    const concept: IConcept = await getConceptAsync(conceptType, indicatorId);
-    return {source: concept.source || '', heading: concept.heading || concept.name};
 };
 
 export const getCurrentYear = (): number => {

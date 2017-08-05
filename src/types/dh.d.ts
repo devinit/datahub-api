@@ -298,7 +298,7 @@ declare namespace DH {
   */
   interface IInternationalResources {
     startYear: number | null;
-    GNI: string | null;
+    GNI: IIndicatorValueWithToolTip | null;
     netODAOfGNIIn: IIndicatorValueWithToolTip | null;
     netODAOfGNIOut: IIndicatorValueWithToolTip | null;
     resourcesOverTime: IResourceDataWithToolTip | null;

@@ -4,8 +4,8 @@ import sql from './sql';
 import * as shortid from 'shortid';
 import * as R from 'ramda';
 import {getIndicatorData, IGetIndicatorArgs, isDonor, indicatorDataProcessingNamed, DONOR,
-        IRAWPopulationAgeBand, normalizeKeyName, IRAW, IRAWQuintile, RECIPIENT, formatNumbers,
-        IRAWPopulationGroup, getIndicatorToolTip} from '../utils';
+        IRAWPopulationAgeBand, normalizeKeyName, IRAW, IRAWQuintile, RECIPIENT,
+        IRAWPopulationGroup, getIndicatorToolTip, getIndicatorsValue} from '../utils';
 
 interface IOverViewTabRecipients {
     countryType: string;
@@ -53,7 +53,7 @@ export default class CountryProfileTabs {
     }
     public async getPopulationTab({id}): Promise<DH.IPopulationTab> {
        try {
-           const [population] = await this.getIndicatorsGeneric(id, [sql.population]);
+           const [population] = await getIndicatorsValue({id, sqlList: [sql.population], ...this.defaultArgs});
            const populationDistribution = await this.getPopulationDistribution(id);
            const populationPerAgeBand = await this.getPopulationPerAgeBand(id);
            return {
@@ -71,7 +71,10 @@ export default class CountryProfileTabs {
             const isDonorCountry =  await isDonor(id);
             if (isDonorCountry) return {poverty190Trend: null, depthOfExtremePoverty: null, incomeDistTrend: null};
             const poverty190Trend = await this.getPoverty190Trend(id);
-            const [depthOfExtremePoverty] = await this.getIndicatorsGeneric(id, [sql.depthOfExtremePoverty], false);
+            const [depthOfExtremePoverty] =
+                await getIndicatorsValue({
+                    id,
+                    sqlList: [sql.depthOfExtremePoverty], format: false, ...this.defaultArgs});
             const incomeDistTrend = await this.getIncomeDistTrend(id);
             return {
                 poverty190Trend,
@@ -86,10 +89,10 @@ export default class CountryProfileTabs {
 
     public async getOverViewTabRecipients(countryId: string): Promise<IOverViewTabRecipients> {
         try {
+            const sqlList =  [sql.internationalResources, sql.domesticRevenue, sql.population,
+                sql.poorestPeople, sql.governmentSpendPerPerson];
             const [internationalResources, domesticResources, population, poorestPeople, governmentSpendPerPerson]
-            = await this.getIndicatorsGeneric(countryId,
-                [sql.internationalResources, sql.domesticRevenue, sql.population,
-                sql.poorestPeople, sql.governmentSpendPerPerson]);
+                = await getIndicatorsValue({id: countryId, sqlList, ...this.defaultArgs});
             return {
                 countryType: RECIPIENT,
                 internationalResources,
@@ -106,7 +109,7 @@ export default class CountryProfileTabs {
     public async getOverViewTabDonors(countryId: string): Promise<IOverViewTabDonors> {
         try {
             const [governmentSpendPerPerson] = await
-                this.getIndicatorsGeneric(countryId, [sql.governmentSpendPerPerson]);
+                getIndicatorsValue({id: countryId, sqlList: [sql.governmentSpendPerPerson], ...this.defaultArgs});
             const averageIncomerPerPerson = await this.getAverageIncomerPerPerson(countryId);
             const incomeDistTrend = await this.getIncomeDistTrend(countryId);
             return {
@@ -120,21 +123,6 @@ export default class CountryProfileTabs {
             throw error;
         }
     }
-    private async getIndicatorsGeneric(id: string, sqlList: string[], format: boolean = true)
-        : Promise<DH.IIndicatorValueWithToolTip[]>  {
-        try {
-            const indicatorArgs: IGetIndicatorArgs[] =
-                sqlList.map(query => ({...this.defaultArgs, query, id}));
-            const indicatorRaw: IRAW[][] = await Promise.all(indicatorArgs.map(args => getIndicatorData<IRAW>(args)));
-            const toolTips: DH.IToolTip[] = await Promise.all(indicatorArgs.map(args => getIndicatorToolTip(args)));
-            return indicatorRaw
-                .map(data => format ? formatNumbers(data[0].value, 1) : (data[0].value))
-                .map((value, index) => ({toolTip: toolTips[index], value}));
-        } catch (error) {
-            throw error;
-        }
-    }
-
     private async getAverageIncomerPerPerson(id): Promise<DH.IIndicatorDataWithToolTip> {
          try {
             const indicatorArgs: IGetIndicatorArgs = {
@@ -142,7 +130,7 @@ export default class CountryProfileTabs {
                 query: sql.averageIncomerPerPerson,
                 id
             };
-            const toolTip = await getIndicatorToolTip({sqlQuery: sql.governmentSpendPerPerson, ...this.defaultArgs});
+            const toolTip = await getIndicatorToolTip(indicatorArgs);
             const raw: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
             const data: DH.IIndicatorData[] = await indicatorDataProcessingNamed(raw);
             return {data, toolTip};
@@ -164,7 +152,7 @@ export default class CountryProfileTabs {
                     const color = key === 'value_bottom_20pc' ? red : grey;
                     return {quintileName: key, color, value: Number(data[0][key]), uid: shortid.generate()};
                 });
-            const toolTip = await getIndicatorToolTip({sqlQuery: sql.incomeDistTrend, ...this.defaultArgs});
+            const toolTip = await getIndicatorToolTip(indicatorArgs);
             return {data, toolTip};
         } catch (error) {
            throw error;

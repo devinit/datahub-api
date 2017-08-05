@@ -153,7 +153,7 @@ type InternationalResources {
   # TODO: add startyear
   startYear: Int
   # Gross National Income
-  GNI: String
+  GNI: IndicatorValueWithToolTip
   #Net ODA received, % of GNI for recipient countries
   netODAOfGNIIn: IndicatorValueWithToolTip
   #Net ODA out, % of GNI for recipient countries
