@@ -169,7 +169,7 @@ export default class SpotLight {
                     const colorObj: IColor = getEntityByIdGeneric<IColor>(concept.color, colors);
                     const data = {value: Number(resource.value), id: concept.id, name: concept.name,
                         year: concept.start_year, color: colorObj.value, uid: shortid.generate()};
-                    const toolTip = await getIndicatorToolTip(conceptArgs);
+                    const toolTip = await getIndicatorToolTip(args);
                     return {data, toolTip};
                 });
             const resources: DH.IIndicatorDataColoredWithToolTip[] = await Promise.all(resourceWithConceptPromises);

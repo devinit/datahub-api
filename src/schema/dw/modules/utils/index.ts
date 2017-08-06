@@ -95,8 +95,7 @@ export interface IRAWDomestic {
     l4: string;
 }
 export interface IToolTipArgs {
-    query?: string;
-    id?: string;
+    query: string;
     conceptType: string;
 }
 export interface Isummable {
@@ -175,10 +174,12 @@ export const getSpotlightTableName = (country: string, query: string): string =>
             .replace(/\${schema\^}/, schema)
             .replace(/\${country\^}/, country);
 };
-export const getIndicatorToolTip = async ({query, id, conceptType}: IToolTipArgs): Promise<DH.IToolTip> => {
-    const indicatorId = query ? getTableNameFromSql(query) : id;
+export const getIndicatorToolTip = async ({query, conceptType}: IToolTipArgs): Promise<DH.IToolTip> => {
+    const country: string = conceptType.includes('spotlight-') ?  conceptType.split('-')[1] : '';
+    const indicatorId: string | Error =
+        !country ? getTableNameFromSql(query) : getSpotlightTableName(country, query);
     if (!indicatorId || isError(indicatorId))
-        throw new Error(`indactor id or sql string with indicator id should be provided, ${indicatorId}`);
+        throw new Error (`failed to get indicator id from sql query; ${indicatorId}`);
     const concept: IConcept = await getConceptAsync(conceptType, indicatorId);
     return {source: concept.source, heading: concept.heading || concept.name};
 };
