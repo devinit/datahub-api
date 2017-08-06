@@ -8,7 +8,7 @@
 // Incase of considerable performance issues please consider reverting to the former.
 
 import * as os from 'os';
-import * as fs from 'fs-extra';
+// import * as fs from 'fs-extra';
 import * as pgMonitor from 'pg-monitor';
 import {IOptions} from 'pg-promise';
 
@@ -18,7 +18,7 @@ pgMonitor.setTheme('matrix'); // changing the default theme;
 const DEV = process.env.NODE_ENV === 'development';
 
 // Log file for database-related errors:
-const logFile = 'db.errors.log';
+// const logFile = 'db.errors.log';
 
 // Below we are logging errors exactly the way they are reported by pg-monitor,
 // which you can tweak any way you like, as parameter 'info' provides all the
@@ -41,12 +41,12 @@ pgMonitor.setLog((msg, info) => {
             logText = os.EOL + logText; // add another line break in front;
         }
         // TOFIX: temporarily logging to console
-        // console.error(logText);
-        try {
-            fs.appendFile(logFile, logText); // add error handling as required;
-        } catch (error) {
-            console.error(error);
-        }
+        console.error(logText);
+        // try {
+        //     fs.appendFile(logFile, logText); // add error handling as required;
+        // } catch (error) {
+        //     console.error(error);
+        // }
     }
 
     // We absolutely must not let the monitor write anything into the console
