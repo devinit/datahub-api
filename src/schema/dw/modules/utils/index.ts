@@ -221,8 +221,8 @@ export const getIndicatorsValue = async ({id, sqlList, db, format = true}: IGetI
         return indicatorRaw.map((data, index) => {
             const toolTip = toolTips[index];
             let value = 'No data';
-            if (data[0] && data[0].value && format) value = formatNumbers(data[0].value, 1);
-            if (data[0] && data[0].value && !format) value = data[0].value;
+            if (data && data[0] && data[0].value && format) value = formatNumbers(data[0].value, 1);
+            if (data && data[0] && data[0].value && !format) value = data[0].value;
             return {value, toolTip};
         });
     } catch (error) {

@@ -123,7 +123,7 @@ export default class CountryProfileTabs {
             throw error;
         }
     }
-    private async getAverageIncomerPerPerson(id): Promise<DH.IIndicatorDataWithToolTip> {
+    private async getAverageIncomerPerPerson(id: string): Promise<DH.IIndicatorDataWithToolTip> {
          try {
             const indicatorArgs: IGetIndicatorArgs = {
                 ...this.defaultArgs,
@@ -138,7 +138,7 @@ export default class CountryProfileTabs {
              throw error;
          }
     }
-    private async getIncomeDistTrend(id): Promise<DH.IQuintileDataWithToolTip> {
+    private async getIncomeDistTrend(id: string): Promise<DH.IQuintileDataWithToolTip> {
         try {
             const indicatorArgs: IGetIndicatorArgs = {
                 ...this.defaultArgs,
@@ -150,7 +150,7 @@ export default class CountryProfileTabs {
             const data: DH.IQuintile[] = R.keys(quintileData)
                 .map(key => {
                     const color = key === 'value_bottom_20pc' ? red : grey;
-                    return {quintileName: key, color, value: Number(data[0][key]), uid: shortid.generate()};
+                    return {quintileName: key, color, value: Number(quintileData[key]), uid: shortid.generate()};
                 });
             const toolTip = await getIndicatorToolTip(indicatorArgs);
             return {data, toolTip};
@@ -158,7 +158,7 @@ export default class CountryProfileTabs {
            throw error;
         }
     }
-    private async getPopulationDistribution(id): Promise<DH.IPopulationDistributionWithToolTip> {
+    private async getPopulationDistribution(id: string): Promise<DH.IPopulationDistributionWithToolTip> {
         try {
             const indicatorArgs: IGetIndicatorArgs = {
                 ...this.defaultArgs,
@@ -177,7 +177,7 @@ export default class CountryProfileTabs {
            throw error;
        }
     }
-    private async getPopulationPerAgeBand(id): Promise<DH.IPopulationPerAgeBandWithToolTip> {
+    private async getPopulationPerAgeBand(id: string): Promise<DH.IPopulationPerAgeBandWithToolTip> {
         try {
             const indicatorArgs: IGetIndicatorArgs = {
                 ...this.defaultArgs,
@@ -198,7 +198,7 @@ export default class CountryProfileTabs {
             throw error;
         }
     }
-    private async getPoverty190Trend(id): Promise<DH.IIndicatorDataWithToolTip> {
+    private async getPoverty190Trend(id: string): Promise<DH.IIndicatorDataWithToolTip> {
         try {
             const indicatorArgs: IGetIndicatorArgs = {
                 query: sql.poverty190Trend,
