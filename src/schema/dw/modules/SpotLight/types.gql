@@ -11,7 +11,7 @@ type  IndicatorDataColoredWithToolTip {
   data: IndicatorDataColored
   toolTip: ToolTip
 }
-type OverViewTabRegional {
+type OverviewTabRegional {
   # WHAT PERCENTAGE OF PEOPLE IN WAKISO LIVE BELOW THE NATIONAL POVERTY LINE? 
   # can be no data or '12%'
   poorestPeople: IndicatorValueWithToolTip
@@ -72,7 +72,7 @@ type LocalGovernmentFinance {
 
 type Query {  
   # id is district slug
-  overViewTabRegional(id: String!, country: String!):OverViewTabRegional
+  overviewTabRegional(id: String!, country: String!):OverviewTabRegional
   povertyTabRegional(id: String!, country: String!): PovertyTabRegional
   populationTabRegional(id: String!, country: String!):PopulationTabRegional
   educationTabRegional(id: String!, country: String!): EducationTabRegional

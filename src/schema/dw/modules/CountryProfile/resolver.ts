@@ -13,7 +13,7 @@ export default {
         async singleResource(_root, args, ctx: IContext) {
             return ctx.dw.countryProfile.resources.getSingleResource(args);
         },
-        async overViewTab(_root, args, ctx: IContext) {
+        async overviewTab(_root, args, ctx: IContext) {
             return ctx.dw.countryProfile.tabs.getOverViewTab(args);
         },
         async populationTab(_root, args, ctx: IContext) {

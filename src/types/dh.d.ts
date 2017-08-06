@@ -45,7 +45,7 @@ declare namespace DH {
     singleResource: ISingleResourceData | null;
     mapData: IMapData | null;
     methodologies: Array<IDataSources> | null;
-    overViewTabRegional: IOverViewTabRegional | null;
+    overviewTabRegional: IOverviewTabRegional | null;
     povertyTabRegional: IPovertyTabRegional | null;
     populationTabRegional: IPopulationTabRegional | null;
     educationTabRegional: IEducationTabRegional | null;
@@ -422,7 +422,7 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IOverViewTabRegional {
+  interface IOverviewTabRegional {
     poorestPeople: IIndicatorValueWithToolTip | null;
     regionalResources: IIndicatorValueWithToolTip | null;
     regionalResourcesBreakdown: Array<IIndicatorDataColoredWithToolTip> | null;

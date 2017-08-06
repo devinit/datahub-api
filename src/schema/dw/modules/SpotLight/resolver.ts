@@ -13,7 +13,7 @@ export default {
         async localGovernmentFinance(_root, args, ctx: IContext) {
             return ctx.dw.spotLight.getLocalGovernmentFinance(args);
         },
-        async overViewTabRegional(_root, args, ctx: IContext) {
+        async overviewTabRegional(_root, args, ctx: IContext) {
             return ctx.dw.spotLight.getOverViewTabRegional(args);
         },
         async populationTabRegional(_root, args, ctx: IContext) {

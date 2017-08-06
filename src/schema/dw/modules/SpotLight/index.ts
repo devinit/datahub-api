@@ -27,7 +27,7 @@ export default class SpotLight {
         this.db = db;
     }
     // id eg uganda or kenya
-    public async getOverViewTabRegional(opts: ISpotlightArgs): Promise<DH.IOverViewTabRegional> {
+    public async getOverViewTabRegional(opts: ISpotlightArgs): Promise<DH.IOverviewTabRegional> {
         try {
             const regionalResources = await this.getRegionalResources(opts);
             const [poorestPeople, localGovernmentSpendPerPerson] =
