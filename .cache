@@ -108,3 +108,7 @@ SELECT * FROM data_series.domestic WHERE di_id ='UG' AND l1 = 'total-expenditure
 unbundling-oda/concept.csv:cms
 global/channel.csv:cms
 global/sector.csv:cms
+SELECT * FROM spotlight_on_uganda.uganda_poverty_headcount WHERE district_id = 'd113' AND year = 2014:dw
+SELECT value FROM spotlight_on_uganda.uganda_leaving_exam_perf_rate WHERE district_id ='d113' AND year = 2010:dw
+SELECT value FROM spotlight_on_uganda.uganda_health_funding WHERE district_id ='d113' AND year = 2015:dw
+SELECT flow_name, year,flow_type,direction,value FROM data_series.intl_flows_recipients WHERE di_id = 'UG' AND direction = 'in' AND year = 2015 AND value > 0 GROUP BY flow_name,year,flow_type,direction,value:dw

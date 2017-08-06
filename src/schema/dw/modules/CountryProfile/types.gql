@@ -150,7 +150,6 @@ type ResourceDataWithToolTip {
   toolTip: ToolTip
 }
 type InternationalResources {
-  # TODO: add startyear
   startYear: Int
   # Gross National Income
   GNI: IndicatorValueWithToolTip

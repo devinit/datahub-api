@@ -19,11 +19,10 @@ This data is served over a graphql API.
 Useful commands:
 ----
     npm run build       - build the library files (Required for start:watch)
-    npm run build:watch - build the library files in watchmode (Useful for development)
     npm start           - Start the server
     npm run dev         - Start the server in watchmode (Useful for development)
     npm test            - run tests once
-    npm run test:watch  - run tests in watchmode (Useful for development)
+    npm run deploy      - will deploy app to now.sh make sure you have the DB access credentials in your system env file eg .bash_profile
 
 How to run it:
 ----
