@@ -37,7 +37,6 @@ declare namespace DH {
     spotlightThemes: Array<ITheme> | null;
     bubbleChartOda: IBubbleChartOda | null;
     bubbleChartPoverty: IBubbleChartPoverty | null;
-    bubbleSize: Array<IBubbleChartData> | null;
     bubbleChartIndicatorsList: Array<IIdNamePair> | null;
     overviewTab: IOverviewTab | null;
     povertyTab: IPovertyTab | null;
@@ -47,7 +46,7 @@ declare namespace DH {
     singleResource: ISingleResourceData | null;
     mapData: IMapData | null;
     methodologies: Array<IDataSources> | null;
-    overViewTabRegional: IOverViewTabRegional | null;
+    overviewTabRegional: IOverviewTabRegional | null;
     povertyTabRegional: IPovertyTabRegional | null;
     populationTabRegional: IPopulationTabRegional | null;
     educationTabRegional: IEducationTabRegional | null;
@@ -99,14 +98,6 @@ declare namespace DH {
     description: 
   */
   interface IBubbleChartOda {
-    revenuePerPerson: Array<IBubbleChartData> | null;
-    numberInExtremePoverty: Array<IBubbleChartData> | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IBubbleChartData {
     year: number | null;
     value: number | null;
     id: string | null;
@@ -114,14 +105,23 @@ declare namespace DH {
     income_group: string | null;
     region: string | null;
     uid: string | null;
+    revenuePerPerson: number | null;
+    numberInExtremePoverty: number | null;
   }
 
   /*
     description: 
   */
   interface IBubbleChartPoverty {
-    revenuePerPerson: Array<IBubbleChartData> | null;
-    percentageInExtremePoverty: Array<IBubbleChartData> | null;
+    year: number | null;
+    value: number | null;
+    id: string | null;
+    name: string | null;
+    income_group: string | null;
+    region: string | null;
+    uid: string | null;
+    revenuePerPerson: number | null;
+    percentageInExtremePoverty: number | null;
   }
 
   /*
@@ -424,7 +424,7 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IOverViewTabRegional {
+  interface IOverviewTabRegional {
     poorestPeople: IIndicatorValueWithToolTip | null;
     regionalResources: IIndicatorValueWithToolTip | null;
     regionalResourcesBreakdown: Array<IIndicatorDataColoredWithToolTip> | null;
@@ -536,6 +536,19 @@ declare namespace DH {
     bundles: Array<IIdNamePair> | null;
     years: Array<number> | null;
   }
+
+  /*
+    description: 
+  */
+  interface IBubbleChartData {
+    year: number | null;
+    id: string | null;
+    name: string | null;
+    income_group: string | null;
+    region: string | null;
+    value: number | null;
+    uid: string | null;
+  }
 }
 
 // tslint:enable
@@ -558,10 +571,8 @@ type Query {
   whereThePoorPageData: [Page]
   globalPictureThemes: [Theme]
   spotlightThemes(country: String!): [Theme]
-  bubbleChartOda: BubbleChartOda
-  bubbleChartPoverty: BubbleChartPoverty
-  # we return data for the entire year range for a given indicator id eg donor country ID or indicator table name
-  bubbleSize(id: String): [BubbleChartData]
+  bubbleChartOda(id: String!): BubbleChartOda
+  bubbleChartPoverty(id: String!): BubbleChartPoverty
   # IdNamePair is defined in unbundling aid types 
    # this list feeds off oda table from countries and global/concept file
   bubbleChartIndicatorsList: [IdNamePair]
@@ -575,7 +586,7 @@ type Query {
   mapData(id: String!): MapData
   methodologies: [DataSources]
   # id is district slug
-  overViewTabRegional(id: String!, country: String!): OverViewTabRegional
+  overviewTabRegional(id: String!, country: String!): OverviewTabRegional
   povertyTabRegional(id: String!, country: String!): PovertyTabRegional
   populationTabRegional(id: String!, country: String!): PopulationTabRegional
   educationTabRegional(id: String!, country: String!): EducationTabRegional
@@ -613,22 +624,40 @@ type Theme {
 
 type BubbleChartData {
   year: Int
+  id: String
+  name: String
+  income_group: String
+  region: String
+  value: Float
+  uid: String
+}
+
+type BubbleChartOda {
+  year: Int
+  value: Float
+  # country id
+  id: String
+  # country name
+  name: String
+  income_group: String
+  region: String
+  uid: String
+  value: Float
+  revenuePerPerson: Float
+  numberInExtremePoverty: Float
+}
+
+type BubbleChartPoverty {
+  year: Int
   value: Float
   id: String
   name: String
   income_group: String
   region: String
   uid: String
-}
-
-type BubbleChartOda {
-  revenuePerPerson: [BubbleChartData]
-  numberInExtremePoverty: [BubbleChartData]
-}
-
-type BubbleChartPoverty {
-  revenuePerPerson: [BubbleChartData]
-  percentageInExtremePoverty: [BubbleChartData]
+  value: Float
+  revenuePerPerson: Float
+  percentageInExtremePoverty: Float
 }
 
 type IndicatorData {
@@ -794,7 +823,6 @@ type ResourceDataWithToolTip {
 }
 
 type InternationalResources {
-  # TODO: add startyear
   startYear: Int
   # Gross National Income
   GNI: IndicatorValueWithToolTip
@@ -889,7 +917,7 @@ type IndicatorDataColoredWithToolTip {
   toolTip: ToolTip
 }
 
-type OverViewTabRegional {
+type OverviewTabRegional {
   # WHAT PERCENTAGE OF PEOPLE IN WAKISO LIVE BELOW THE NATIONAL POVERTY LINE? 
    # can be no data or '12%'
   poorestPeople: IndicatorValueWithToolTip
