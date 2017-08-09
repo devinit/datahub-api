@@ -125,7 +125,7 @@ export default class Resources {
                 };
             }
             const currencyCode = await this.getCurrencyCode(id);
-            const [totalRevenue] = await getIndicatorsValue({id, sqlList: [sql.gdp], ...this.defaultArgs});
+            const [totalRevenue] = await getIndicatorsValue({id, sqlList: [sql.domesticRevenue], ...this.defaultArgs});
             const grantsAsPcOfRevenue = await this.getGrantsAsPcOfRevenue(id);
             const spendingAllocation = await this.getSpendingAllocation(id);
             const domestic = await this.getDomesticResourcesOvertime(id);
@@ -166,9 +166,9 @@ export default class Resources {
         try {
             const currencyList: ICurrency[] = await getCurrency();
             const entity: IEntity | undefined = await getEntityBySlugAsync(id);
-            if (!entity) throw new Error(`currency code entity was not found for id: ${id}`);
-            const currency = R.find(R.propEq('id', entity.id), currencyList) as ICurrency;
-            return currency.code;
+            if (!entity) throw new Error(`entity was not found for slug: ${id}`);
+            const currency: ICurrency | undefined = R.find(R.propEq('id', entity.id), currencyList) as ICurrency;
+            return currency ? currency.code : '';
        } catch (error) {
            throw error;
        }
@@ -225,7 +225,7 @@ export default class Resources {
             const totalRevenueAndGrants: IRAW[] =  await getIndicatorData<IRAW>(indicatorArgs[0]);
             const grants: IRAW[] =  await getIndicatorData<IRAW>(indicatorArgs[1]);
             let value = 'No data';
-            if (totalRevenueAndGrants[0].value && grants[0].value) {
+            if (totalRevenueAndGrants[0] && totalRevenueAndGrants[0].value && grants[0] && grants[0].value) {
                 const pc = (Number(grants[0].value) / Number(totalRevenueAndGrants[0].value)) * 100;
                 value = pc.toFixed(2);
             }

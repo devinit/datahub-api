@@ -103,7 +103,7 @@ export default class BubbleChart {
             const raw: IBubbleSizeResults[] = await this.db.manyCacheable(queryStr, null);
             return raw.map(obj => {
                 const entity: IEntity = getEntityByIdGeneric<IEntity>(obj.to_di_id, entities);
-                return {name: entity.name, id: entity.id, income_group: entity.income_group,
+                return {name: entity.name, id: entity.id, income_group: entity.income_group, uid: shortid.generate(),
                     region: entity.region, value: Number(obj.value), year: Number(obj.year)
                 };
             });

@@ -33,20 +33,18 @@ describe('country profile DW module tests', () => {
         expect(prettyFormat(povertyTab)).toMatchSnapshot();
     }, 10000);
     it('should return international resources tab & charts data for Uganda', async () => {
-        const international = await resources.getInternationalResources({id: 'uganda'});
-        // const minimal = international.resourcesOverTime
-        //     .map(obj => ({year: obj.year, flow_name: obj.flow_name, flow_category: obj.flow_category}));
-        // const resourcesOverTimeByYear = R.groupBy(R.prop('year'), minimal );
-        // expect(prettyFormat({resourcesOverTimeByYear})).toMatchSnapshot();
-        expect(prettyFormat({ international})).toMatchSnapshot();
+        const internationalA = await resources.getInternationalResources({id: 'uganda'});
+        const internationalB = await resources.getInternationalResources({id: 'somalia'});
+        expect(prettyFormat({ uganda: internationalA, somalia: internationalB})).toMatchSnapshot();
     }, 30000);
     it('should return international resources tab & charts data for Austria', async () => {
         const international  = await resources.getInternationalResources({id: 'austria'});
         expect(prettyFormat(international)).toMatchSnapshot();
     }, 30000);
-    it('should return government finance data for Uganda', async () => {
-        const government = await resources.getGovernmentFinance({id: 'uganda'});
-        expect(prettyFormat(government)).toMatchSnapshot();
+    it('should return government finance data for Uganda && somalia', async () => {
+        const governmentA = await resources.getGovernmentFinance({id: 'uganda'});
+        const governmentB = await resources.getGovernmentFinance({id: 'somalia'});
+        expect(prettyFormat({somalia: governmentB, uganda: governmentA})).toMatchSnapshot();
     }, 10000);
     it('should return single resource FDI data for use in international resources chart', async () => {
         const singleResourceFDIout = await resources.getSingleResource(
