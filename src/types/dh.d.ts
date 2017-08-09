@@ -35,7 +35,6 @@ declare namespace DH {
     spotlightThemes: Array<ITheme> | null;
     bubbleChartOda: IBubbleChartOda | null;
     bubbleChartPoverty: IBubbleChartPoverty | null;
-    bubbleSize: Array<IBubbleChartData> | null;
     bubbleChartIndicatorsList: Array<IIdNamePair> | null;
     overviewTab: IOverviewTab | null;
     povertyTab: IPovertyTab | null;
@@ -97,14 +96,6 @@ declare namespace DH {
     description: 
   */
   interface IBubbleChartOda {
-    revenuePerPerson: Array<IBubbleChartData> | null;
-    numberInExtremePoverty: Array<IBubbleChartData> | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IBubbleChartData {
     year: number | null;
     value: number | null;
     id: string | null;
@@ -112,14 +103,23 @@ declare namespace DH {
     income_group: string | null;
     region: string | null;
     uid: string | null;
+    revenuePerPerson: number | null;
+    numberInExtremePoverty: number | null;
   }
 
   /*
     description: 
   */
   interface IBubbleChartPoverty {
-    revenuePerPerson: Array<IBubbleChartData> | null;
-    percentageInExtremePoverty: Array<IBubbleChartData> | null;
+    year: number | null;
+    value: number | null;
+    id: string | null;
+    name: string | null;
+    income_group: string | null;
+    region: string | null;
+    uid: string | null;
+    revenuePerPerson: number | null;
+    percentageInExtremePoverty: number | null;
   }
 
   /*
@@ -533,6 +533,19 @@ declare namespace DH {
     sectors: Array<IIdNamePair> | null;
     bundles: Array<IIdNamePair> | null;
     years: Array<number> | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IBubbleChartData {
+    year: number | null;
+    id: string | null;
+    name: string | null;
+    income_group: string | null;
+    region: string | null;
+    value: number | null;
+    uid: string | null;
   }
 }
 

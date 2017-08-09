@@ -23,58 +23,56 @@ export default class BubbleChart {
         this.defaultArgs = {db: this.db, conceptType: 'bubble-chart'};
     }
 
-    public async getBubbleChartOda(): Promise<DH.IBubbleChartOda> {
+    public async getBubbleChartOda(id?: string): Promise<DH.IBubbleChartOda[]> {
         try {
             const [revenuePerPerson, numberInExtremePoverty] =
                 await this.getIndicatorsGeneric([sql.govtRevenuePerPerson, sql.numberInExtremePoverty], 'oda');
-            return {
-                revenuePerPerson,
-                numberInExtremePoverty
-            };
+            const indicatorData: DH.IBubbleChartData[] | null = id ? await this.getBubbleSize(id) : null;
+            return revenuePerPerson.map((obj) => {
+                const povertyObj: DH.IBubbleChartData | undefined =  numberInExtremePoverty
+                    .find(pov => pov.id === obj.id && pov.year === obj.year);
+                const indicatorObj: DH.IBubbleChartData | undefined | null = indicatorData ?
+                    indicatorData.find(indicator => indicator.id === obj.id && indicator.year === obj.year)
+                    : null;
+                return {
+                    ...povertyObj,
+                    numberInExtremePoverty: povertyObj ? povertyObj.value : null,
+                    revenuePerPerson: obj.value,
+                     ...obj,
+                    value: indicatorObj ? indicatorObj.value : null,
+                    year: obj.year
+                };
+            });
         } catch (error) {
             console.error(error);
             throw (error);
         }
     }
-    public async getBubbleChartPoverty(): Promise<DH.IBubbleChartPoverty> {
+    public async getBubbleChartPoverty(id?: string): Promise<DH.IBubbleChartPoverty[]> {
         try {
             const [revenuePerPerson, percentageInExtremePoverty] =
-            await this.getIndicatorsGeneric([sql.govtRevenuePerPerson, sql.percentageInExtremePoverty], 'poverty');
-            return {
-                revenuePerPerson,
-                percentageInExtremePoverty
-            };
-        } catch (error) {
-            console.error(error);
-            throw error;
-        }
-    }
-    /**
-     *
-     * @param id: donor country id or indicator table name
-     */
-    public async getBubbleSize({id}): Promise<DH.IBubbleChartData[]> {
-        try {
-            const entities: IEntity[] =  await getEntities();
-            const entity = entities.find(obj => obj.id === id);
-            if (!entity) return this.getSingleIndicatorGeneric(sql.indicator, id);
-            // if its not an entity its a global picture indicator
-            const years = await this.getYears();
-            const queryArgs = {from_di_id: id, years};
-            // TODO: turn fact oda table into a configurable variable
-            const queryStr: string =
-                    makeSqlAggregateQuery(queryArgs, 'to_di_id', 'fact.oda_2015');
-            const raw: IBubbleSizeResults[] = await this.db.manyCacheable(queryStr, null);
-            return raw.map(obj => {
-                const details: IEntity = getEntityByIdGeneric<IEntity>(obj.to_di_id, entities);
-                return {...details, value: Number(obj.value), year: Number(obj.year), uid: shortid.generate()};
+                await this.getIndicatorsGeneric([sql.govtRevenuePerPerson, sql.percentageInExtremePoverty], 'poverty');
+            const indicatorData: DH.IBubbleChartData[] | null = id ? await this.getBubbleSize(id) : null;
+            return revenuePerPerson.map((obj: DH.IBubbleChartData) => {
+                const povertyObj: DH.IBubbleChartData | undefined =  percentageInExtremePoverty
+                    .find(pov => pov.id === obj.id && pov.year === obj.year);
+                const indicatorObj: DH.IBubbleChartData | undefined | null = indicatorData ?
+                    indicatorData.find(indicator => indicator.id === obj.id && indicator.year === obj.year)
+                    : null;
+                return {
+                    ...povertyObj,
+                    percentageInExtremePoverty: povertyObj ? povertyObj.value : null,
+                    revenuePerPerson: obj.value,
+                     ...obj,
+                    value: indicatorObj ? indicatorObj.value : null,
+                    year: obj.year
+                };
             });
         } catch (error) {
             console.error(error);
             throw error;
         }
     }
-
     public async getBubbleChartIndicatorsList(): Promise<DH.IIdNamePair[]> {
         try {
             const args = {query: sql.odaFrom, db: this.db};
@@ -90,6 +88,30 @@ export default class BubbleChart {
        }
     }
 
+    public async getBubbleSize(id: string): Promise<DH.IBubbleChartData[]> {
+        try {
+            const entities: IEntity[] =  await getEntities();
+            const countryEntity = entities.find(obj => obj.id === id);
+            // ie its something  data_series.fdi_pp
+            if (!countryEntity) return this.getSingleIndicatorGeneric(sql.indicator, id);
+            // if its not an entity its a global picture indicator
+            const years = await this.getYears();
+            const queryArgs = {from_di_id: id, years};
+            // TODO: turn fact oda table into a configurable variable
+            const queryStr: string =
+                    makeSqlAggregateQuery(queryArgs, 'to_di_id', 'fact.oda_2015');
+            const raw: IBubbleSizeResults[] = await this.db.manyCacheable(queryStr, null);
+            return raw.map(obj => {
+                const entity: IEntity = getEntityByIdGeneric<IEntity>(obj.to_di_id, entities);
+                return {name: entity.name, id: entity.id, income_group: entity.income_group,
+                    region: entity.region, value: Number(obj.value), year: Number(obj.year)
+                };
+            });
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
     private async getSingleIndicatorGeneric(query: string, table: string): Promise<DH.IBubbleChartData[]> {
         try {
             const [start_year, end_year] = await this.getYears();
@@ -99,7 +121,8 @@ export default class BubbleChart {
             const entities: IEntity[] =  await getEntities();
             return processed.map(obj => {
              const entity: IEntity = getEntityByIdGeneric<IEntity>(obj.id, entities);
-             return {...obj, ...entity} as DH.IBubbleChartData;
+             return {...obj, name: entity.name, id: entity.id, uid: shortid.generate(),
+                income_group: entity.income_group, region: entity.region};
             });
         } catch (error) {
             throw new Error (`getSingleIndicatorGeneric Bubble chart for $ ${error}`);
@@ -126,8 +149,9 @@ export default class BubbleChart {
             const entities: IEntity[] =  await getEntities();
             return processed.map(indicatorData =>
                 indicatorData.map(obj => {
-                const entity: IEntity = getEntityByIdGeneric<IEntity>(obj.id, entities);
-                return {...obj, ...entity} as DH.IBubbleChartData;
+                    const entity: IEntity = getEntityByIdGeneric<IEntity>(obj.id, entities);
+                    return {...obj, name: entity.name, id: entity.id,
+                    income_group: entity.income_group, region: entity.region};
             }));
        } catch (error) {
             throw error;

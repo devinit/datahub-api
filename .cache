@@ -112,3 +112,23 @@ SELECT * FROM spotlight_on_uganda.uganda_poverty_headcount WHERE district_id = '
 SELECT value FROM spotlight_on_uganda.uganda_leaving_exam_perf_rate WHERE district_id ='d113' AND year = 2010:dw
 SELECT value FROM spotlight_on_uganda.uganda_health_funding WHERE district_id ='d113' AND year = 2015:dw
 SELECT flow_name, year,flow_type,direction,value FROM data_series.intl_flows_recipients WHERE di_id = 'UG' AND direction = 'in' AND year = 2015 AND value > 0 GROUP BY flow_name,year,flow_type,direction,value:dw
+SELECT value FROM data_series.intl_flows_recipients WHERE di_id = 'UG' AND year = 2015 AND direction ='in':dw
+SELECT value FROM data_series.domestic WHERE di_id ='UG' AND budget_type = 'actual' AND year = 2015 AND l1 = 'total-revenue-and-grants' AND l2 = 'revenue' AND l3 is NULL AND l4 is NULL:dw
+SELECT value_bottom_20pc, value_2nd_quintile, value_3rd_quintile, value_4th_quintile, value_5th_quintile FROM fact.income_share_by_quintile WHERE di_id = 'UG' AND value_bottom_20pc is NOT NULL ORDER BY year:dw
+SELECT value FROM data_series.domestic WHERE di_id ='UG' AND budget_type = 'actual' AND year = 2015 AND l1 = 'total-revenue-and-grants' AND l2 = 'grants' AND l3 is NULL AND l4 is NULL:dw
+SELECT * FROM spotlight_on_uganda.uganda_life_expectancy WHERE district_id = 'd113' AND year = 2014:dw
+SELECT * FROM spotlight_on_uganda.uganda_deprivation_living WHERE district_id = 'd113' AND year = 2014:dw
+SELECT value FROM spotlight_on_uganda.uganda_igf_resources WHERE district_id ='d113' AND year = 2015:dw
+SELECT value FROM spotlight_on_uganda.uganda_central_resources WHERE district_id ='d113' AND year = 2015:dw
+SELECT value FROM spotlight_on_uganda.uganda_donor_resources WHERE district_id = 'd113' AND year = 2015:dw
+SELECT * FROM spotlight_on_uganda.uganda_total_pop WHERE district_id = 'd113' AND year = 2014:dw
+SELECT * FROM spotlight_on_uganda.uganda_dependency_ratio WHERE district_id = 'd113' AND year = 2014:dw
+SELECT * FROM spotlight_on_uganda.uganda_pop_dens WHERE district_id = 'd113' AND year = 2014:dw
+SELECT AVG(value) FROM spotlight_on_uganda.uganda_dependency_ratio WHERE year = 2014:dw
+SELECT value FROM spotlight_on_uganda.uganda_primary_stu_teach_ratio_gov WHERE district_id ='d113' AND year = 2010:dw
+SELECT value FROM spotlight_on_uganda.uganda_primary_stu_teach_ratio WHERE district_id ='d113' AND year = 2010:dw
+SELECT value FROM spotlight_on_uganda.uganda_overall_health WHERE district_id ='d113' AND year = 2011:dw
+SELECT value FROM spotlight_on_uganda.uganda_primary_educ_funding WHERE district_id ='d113' AND year = 2015:dw
+SELECT value FROM spotlight_on_uganda.uganda_tb_success WHERE district_id ='d113' AND year = 2011:dw
+SELECT * FROM spotlight_on_uganda.uganda_population_rural_urban WHERE district_id = 'd113' AND year >= 2000 AND year <= 2014:dw
+SELECT * FROM spotlight_on_uganda.uganda_leaving_exam_perf_rate WHERE year = 2010 Order By value DESC:dw
