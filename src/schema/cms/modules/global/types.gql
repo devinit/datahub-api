@@ -2,6 +2,7 @@ type Entity {
   id: String
   name: String
   slug: String
+  countryType: String
 }
 type Query {
   countries: [Entity]

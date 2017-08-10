@@ -51,7 +51,8 @@ export const getCountries = async (): Promise<DH.IEntity[]> => {
     const entities = await getEntities();
     return entities
         .filter(entity => entity.type === 'country')
-        .map(entity => ({id: entity.slug, name: entity.name, slug: entity.slug}));
+        .map(entity => ({id: entity.slug, name: entity.name, slug: entity.slug,
+            countryType: entity.donor_recipient_type}));
 };
 
 export const getEntityByIdGeneric = <T extends {id: string}>(id: string, entities: T[]): T => {

@@ -63,6 +63,7 @@ declare namespace DH {
     id: string | null;
     name: string | null;
     slug: string | null;
+    countryType: string | null;
   }
 
   /*
@@ -256,6 +257,7 @@ declare namespace DH {
     description: 
   */
   interface IGovernmentFinance {
+    startYear: number | null;
     totalRevenue: IIndicatorValueWithToolTip | null;
     grantsAsPcOfRevenue: IIndicatorValueWithToolTip | null;
     spendingAllocation: ISpendingAllocationWithToolTip | null;
@@ -600,6 +602,7 @@ type Entity {
   id: String
   name: String
   slug: String
+  countryType: String
 }
 
 type Page {
@@ -711,7 +714,9 @@ type ResourceData {
   flow_category: String
   # flow either inflow or outflow
   flow_type: String
-  # in or out
+  # i.e contains flow type as 1st level, flow category as second and flow name as 3rd
+   # levels: [String]
+   # in or out
   direction: String
   color: String
   uid: String
@@ -790,8 +795,8 @@ type SpendingAllocationWithToolTip {
 }
 
 type GovernmentFinance {
-  # Total revenue for a particular year if not available return -1 
-   #  uses gdp
+  startYear: Int
+  # Total revenue for a particular
   totalRevenue: IndicatorValueWithToolTip
   grantsAsPcOfRevenue: IndicatorValueWithToolTip
   # for donut chart 

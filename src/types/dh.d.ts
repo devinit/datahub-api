@@ -61,6 +61,7 @@ declare namespace DH {
     id: string | null;
     name: string | null;
     slug: string | null;
+    countryType: string | null;
   }
 
   /*

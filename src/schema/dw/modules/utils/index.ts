@@ -181,7 +181,7 @@ export const getIndicatorToolTip = async ({query, conceptType}: IToolTipArgs): P
     if (!indicatorId || isError(indicatorId))
         throw new Error (`failed to get indicator id from sql query; ${indicatorId}`);
     const concept: IConcept = await getConceptAsync(conceptType, indicatorId);
-    return {source: concept.source, heading: concept.heading || concept.name};
+    return {source: concept.source, heading: concept.description || concept.heading};
 };
 
 // used by country profile and spotlights
