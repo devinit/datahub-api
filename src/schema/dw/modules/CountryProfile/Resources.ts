@@ -72,7 +72,7 @@ export default class Resources {
                 mixOfResources,
                 inflows,
                 outflows,
-                startYear: concept.end_year
+                startYear: concept.end_year || 2015
           };
         } catch (error) {
            console.error(error);
@@ -118,10 +118,12 @@ export default class Resources {
     public async getGovernmentFinance({id}): Promise<DH.IGovernmentFinance> {
         try {
             const isDonorCountry =  await isDonor(id);
+            const concept: IConcept = await getConceptAsync('country-profile', 'data_series.domestic');
             if (isDonorCountry) {
                 return {
                     totalRevenue: null, grantsAsPcOfRevenue: null, spendingAllocation: null,
-                    currencyCode: null, expenditure: null, revenueAndGrants: null, finance: null
+                    currencyCode: null, expenditure: null, revenueAndGrants: null, finance: null,
+                    startYear: concept.end_year || 2015,
                 };
             }
             const currencyCode = await this.getCurrencyCode(id);
@@ -134,7 +136,8 @@ export default class Resources {
                 grantsAsPcOfRevenue,
                 spendingAllocation,
                 currencyCode,
-                ...domestic
+                ...domestic,
+                startYear: concept.end_year || 2015
             };
         } catch (error) {
            console.error(error);

@@ -44,6 +44,8 @@ type ResourceData {
   flow_category: String
   # flow either inflow or outflow
   flow_type: String
+  # i.e contains flow type as 1st level, flow category as second and flow name as 3rd
+  # levels: [String]
   # in or out
   direction: String
   color: String
@@ -119,8 +121,8 @@ type SpendingAllocationWithToolTip {
 }
 
 type GovernmentFinance {
-  #Total revenue for a particular year if not available return -1 
-  # uses gdp
+  startYear: Int
+  #Total revenue for a particular
   totalRevenue: IndicatorValueWithToolTip
   grantsAsPcOfRevenue: IndicatorValueWithToolTip
   # for donut chart 

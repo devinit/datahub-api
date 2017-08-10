@@ -254,6 +254,7 @@ declare namespace DH {
     description: 
   */
   interface IGovernmentFinance {
+    startYear: number | null;
     totalRevenue: IIndicatorValueWithToolTip | null;
     grantsAsPcOfRevenue: IIndicatorValueWithToolTip | null;
     spendingAllocation: ISpendingAllocationWithToolTip | null;
