@@ -67,8 +67,11 @@ export const csvToJson = <T extends {}> (csvStr: string): Promise<T[]>  =>
 export const get = async <T extends {}> (endPoint: string): Promise <T[]> => {
     try {
         if (cache.has(endPoint))  {
-            // add to queue so that we always have freshest data
-            queue(endPoint, 'cms', cache, get); // makes same query in 15 minutes so as to update cache
+            if (process.env.NODE_ENV === 'development') {
+                // add to queue so that we always have freshest data
+                // makes same query in 5 minutes so as to update cache
+                queue(endPoint, 'cms', cache, get);
+            }
             return cache.get(endPoint) as T[];
         }
         const csvStr = await httpsGet(endPoint); // TODO: if github is down, fetch from a cache dumb

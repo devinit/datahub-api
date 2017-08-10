@@ -19,8 +19,8 @@ export interface IFetchFnObj {
     dw: (query: string, values?: any) => Promise<any>;
     cms: (query: string) => Promise<any>;
 }
-// in production we wait for 10 minutes in development
-const CACHE_QUEUE_DELAY: number = process.env.NODE_ENV === 'production' ? 1000 * 60 * 30 : 1000 * 60 * 10;
+
+const CACHE_QUEUE_DELAY: number = 1000 * 60 * 5;
 const PRECACHE_DELAY: number = process.env.NODE_ENV === 'production' ? 10000 : 5000;
 
 export const readCacheData: (file?: string) => Promise<ICached[]> | Error =

@@ -34,9 +34,11 @@ const options: IOptions<IExtensions> = {
         obj.manyCacheable = (query: string, values?: any) => {
             const getQuery = values ? pgPromise.as.format(query, values) : query;
             if (dbCache.has(getQuery)) {
+                if (process.env.NODE_ENV === 'development') {
                 // add to queue so that we always have freshest data
                 // makes same query in 15 minutes so as to update cache
-                queue(getQuery, 'dw', dbCache, obj.many);
+                    queue(getQuery, 'dw', dbCache, obj.many);
+                }
                 return Promise.resolve(dbCache.get(getQuery));
             }
             return obj.any(getQuery);
