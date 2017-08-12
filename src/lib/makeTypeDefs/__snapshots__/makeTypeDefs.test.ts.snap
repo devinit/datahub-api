@@ -52,6 +52,7 @@ declare namespace DH {
     educationTabRegional: IEducationTabRegional | null;
     healthTabRegional: IHealthTabRegional | null;
     localGovernmentFinance: ILocalGovernmentFinance | null;
+    unbundlingAidDataTotal: IUnbundlingAidTotal | null;
     unbundlingAidData: Array<IAidUnit> | null;
     unbundlingSelectionData: IUnbundlingAidSelections | null;
   }
@@ -504,6 +505,22 @@ declare namespace DH {
   /*
     description: 
   */
+  interface IUnbundlingAidToTalQuery {
+    aidType: string;
+    year?: number | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IUnbundlingAidTotal {
+    year: number | null;
+    total: number | null;
+  }
+
+  /*
+    description: 
+  */
   interface IUnbundlingAidQuery {
     aidType: string;
     year: number;
@@ -594,6 +611,7 @@ type Query {
   educationTabRegional(id: String!, country: String!): EducationTabRegional
   healthTabRegional(id: String!, country: String!): HealthTabRegional
   localGovernmentFinance(id: String!, country: String!): LocalGovernmentFinance
+  unbundlingAidDataTotal(args: UnbundlingAidToTalQuery): UnbundlingAidTotal
   unbundlingAidData(args: UnbundlingAidQuery): [AidUnit]
   unbundlingSelectionData(aidType: String): UnbundlingAidSelections
 }
@@ -996,6 +1014,11 @@ type IdNamePair {
   name: String
 }
 
+type UnbundlingAidTotal {
+  year: Int
+  total: Int
+}
+
 type UnbundlingAidSelections {
   # unbundling aid selection options
   to: [IdNamePair]
@@ -1005,6 +1028,11 @@ type UnbundlingAidSelections {
   # same as form
   bundles: [IdNamePair]
   years: [Int]
+}
+
+input UnbundlingAidToTalQuery {
+  aidType: String!
+  year: Int
 }
 
 input UnbundlingAidQuery {

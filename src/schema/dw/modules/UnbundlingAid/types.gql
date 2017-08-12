@@ -8,23 +8,29 @@ type AidUnit {
   year: Int
   uid: String
 }
-
 type IdNamePair {
   id: String
   name: String
 }
-
+type UnbundlingAidTotal {
+  year: Int
+  total: String
+}
 type UnbundlingAidSelections {
   # unbundling aid selection options
   to: [IdNamePair]
-  from: [IdNamePair]
+  from: [IdNamePair]   
   channels: [IdNamePair]
   sectors: [IdNamePair]
   # same as form
   bundles: [IdNamePair]
   years: [Int]
 }
-
+input UnbundlingAidToTalQuery {
+    # oda or oof 
+    aidType: String!
+    year: Int
+}
 input UnbundlingAidQuery {
     # oda or oof 
     aidType: String!
@@ -40,6 +46,7 @@ input UnbundlingAidQuery {
 }
 
 type Query {
+  unbundlingAidDataTotal(args: UnbundlingAidToTalQuery): UnbundlingAidTotal
   unbundlingAidData(args: UnbundlingAidQuery):[AidUnit]
   unbundlingSelectionData(aidType: String): UnbundlingAidSelections
 }

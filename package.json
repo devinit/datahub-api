@@ -3,11 +3,15 @@
   "version": "0.0.1",
   "description": "Apollo GraphQL server using webpack and typescript",
   "main": "dist/main.min.js",
+  "now": {
+    "name": "datahub-api",
+    "type": "npm"
+  },
   "scripts": {
     "build": "webpack -p",
     "build:watch": "webpack --watch",
     "gqlToTs": "tsc -p src/lib/makeTypeDefs && node src/lib/makeTypeDefs/cli/gqlToTs.js",
-    "test": "jest",
+    "test": "jest src/schema/dw/modules/UnbundlingAid/unbundlingAid.test.ts",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "test:watch": "npm test -- --watch",
     "codecov": "npm run build && jest -u && codecov",

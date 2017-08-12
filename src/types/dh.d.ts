@@ -50,6 +50,7 @@ declare namespace DH {
     educationTabRegional: IEducationTabRegional | null;
     healthTabRegional: IHealthTabRegional | null;
     localGovernmentFinance: ILocalGovernmentFinance | null;
+    unbundlingAidDataTotal: IUnbundlingAidTotal | null;
     unbundlingAidData: Array<IAidUnit> | null;
     unbundlingSelectionData: IUnbundlingAidSelections | null;
   }
@@ -497,6 +498,22 @@ declare namespace DH {
   interface ILocalGovernmentFinance {
     revenueAndGrants: Array<IDomestic> | null;
     expenditure: Array<IDomestic> | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IUnbundlingAidToTalQuery {
+    aidType: string;
+    year?: number | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IUnbundlingAidTotal {
+    year: number | null;
+    total: string | null;
   }
 
   /*

@@ -1,6 +1,7 @@
 import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
-import {makeSqlAggregateQuery, entitesFnMap, DONOR, RECIPIENT, MULTILATERAL, CROSSOVER} from '../utils';
+import {makeSqlAggregateQuery, entitesFnMap, DONOR, RECIPIENT, MULTILATERAL, CROSSOVER,
+    getTotal, formatNumbers} from '../utils';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import * as shortid from 'shortid';
 import {IEntity, getEntities, getRegional, IRegional, getEntityByIdGeneric,
@@ -33,7 +34,9 @@ interface IUnbundlingAidResult extends IUnbundlingAidQuery {
 }
 
 export default class UnbundlingAid {
-
+    public static getSqlQueryArgs(args: DH.IUnbundlingAidQuery): IUnbundlingAidQuery {
+        return R.omit(['groupBy', 'aidType'], args) as IUnbundlingAidQuery;
+    }
     private db: IDatabase<IExtensions> & IExtensions;
     private donorsBlackList = ['country-unspecified', 'region-unspecified', 'organisation-unspecified',
                     'arab-fund', 'afesd', 'idb-sp-fund'];
@@ -42,7 +45,7 @@ export default class UnbundlingAid {
     }
     public async getUnbundlingAidData(args: DH.IUnbundlingAidQuery): Promise<DH.IAidUnit[]> {
         try {
-            const queryArgs: IUnbundlingAidQuery =  this.getSqlQueryArgs(args);
+            const queryArgs: IUnbundlingAidQuery = UnbundlingAid.getSqlQueryArgs(args);
             const table = this.getUnbundlingAidDataTable(args.aidType);
             const queryStr: string = makeSqlAggregateQuery(queryArgs, args.groupBy, table);
             const raw: IUnbundlingAidResult[] = await this.db.manyCacheable(queryStr, null);
@@ -82,8 +85,17 @@ export default class UnbundlingAid {
            throw error;
        }
     }
-    public getSqlQueryArgs(args: DH.IUnbundlingAidQuery): IUnbundlingAidQuery {
-        return R.omit(['groupBy', 'aidType'], args) as IUnbundlingAidQuery;
+    public async getUnbundlingAidDataTotal(args: DH.IUnbundlingAidToTalQuery): Promise<DH.IUnbundlingAidTotal> {
+        let year: number | undefined | null = args.year;
+        if (!year) {
+            const id: string = this.getUnbundlingAidDataTable(args.aidType);
+            const concept: IConcept = await getConceptAsync(`unbundling-${args.aidType}`, id);
+            year = concept.end_year || 2015;
+        }
+        // TODO: make group by enumerable
+        const data: DH.IAidUnit[] = await this.getUnbundlingAidData({aidType: args.aidType, year, groupBy: 'to_di_id'});
+        const total = formatNumbers(getTotal(data), 1);
+        return {total, year};
     }
     private getUnbundlingAidDataTable(aidType) {
         return aidType === 'oda' ? 'fact.oda_2015' : 'data_series.oof';
