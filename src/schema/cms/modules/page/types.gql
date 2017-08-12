@@ -4,7 +4,8 @@ type Page {
     narrative: String
 }
 type Query {
-  countryProfilePageData(countrySlug: String!): [Page]
+  districtPageData: [Page]
+  countryProfilePageData: [Page]
   odaDonorBubbleChartPageData: [Page]
   globalPicturePageData: [Page]
   povertyBubbleChartPageData: [Page]

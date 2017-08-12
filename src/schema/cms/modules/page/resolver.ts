@@ -1,9 +1,12 @@
 import {IContext} from '../../../../schema';
 export default {
     Query: {
-        async countryProfilePageData(_root, args, ctx: IContext) {
-           return ctx.cms.getCountryProfilePageData(args.countrySlug);
+        async countryProfilePageData(_root, _args, ctx: IContext) {
+           return ctx.cms.getCountryProfilePageData();
         },
+        async districtPageData(_root, _args, ctx: IContext) {
+            return ctx.cms.getCountryProfilePageData();
+         },
         async globalPicturePageData(_root, _args, ctx: IContext) {
            return ctx.cms.getGlobalPicturePageData();
         },
