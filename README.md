@@ -50,6 +50,12 @@ Files explained:
     8. webpack.config.js           - configuration file of the compilation automation process for the library
     10. Dockerfile                 - Dockerfile used to describe how to make a container for the server
 
+Development guidelines
+------
+
+- Whenever you change the .gql files run ```npm run gqlToTs``` so that resolvers and type definitions are generated for use in graphql
+
+
 On data caching
 -----
 
@@ -57,7 +63,7 @@ Every new instance of this node app starts with a fresh LRUcache which will be p
 
 The app also persists queries on each data requests and does pre-caching of these queries on app boot.
 
-Inorder to keep having fresh data, every data request is added to a queue as it gets served from the cache. This queue is ran in the background and updates after an hour of the request with new data if any.
+During development; inorder to keep having fresh data, every data request is added to a queue as it gets served from the cache. This queue is ran in the background and updates after an hour of the request with new data if any.
 
 ```.cache```  file contains all the queries occuring in the life time of the app. Its in git history so that we can precache those queries on app boot. (TODO: Make this run in another process)
 

@@ -24,6 +24,7 @@ declare namespace DH {
   */
   interface IQuery {
     countries: Array<IEntity> | null;
+    districtPageData: Array<IPage> | null;
     countryProfilePageData: Array<IPage> | null;
     odaDonorBubbleChartPageData: Array<IPage> | null;
     globalPicturePageData: Array<IPage> | null;
@@ -31,6 +32,7 @@ declare namespace DH {
     unbundlingOdaPageData: Array<IPage> | null;
     unbundlingOOfPageData: Array<IPage> | null;
     whereThePoorPageData: Array<IPage> | null;
+    districts: Array<IEntity> | null;
     globalPictureThemes: Array<ITheme> | null;
     spotlightThemes: Array<ITheme> | null;
     bubbleChartOda: IBubbleChartOda | null;

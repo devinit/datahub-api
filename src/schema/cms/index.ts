@@ -11,6 +11,7 @@ import {
 } from './modules/page';
 import { get} from './connector';
 import {getCountries} from './modules/global';
+import {getDistrictEntities} from './modules/spotlight';
 
 export interface ICms {
     getSpotlightThemes: any;
@@ -22,6 +23,7 @@ export interface ICms {
     getCountryProfilePageData: any;
     getUnbundlingOdaPageData: any;
     getUnbundlingOOfPageData: any;
+    getDistrictEntities: any;
     getWhereThePoorPageData: any;
     get: any;
     getCountries: any;
@@ -38,6 +40,7 @@ const cms: ICms = {
     getUnbundlingOdaPageData,
     getUnbundlingOOfPageData,
     getWhereThePoorPageData,
+    getDistrictEntities,
     get,
     getCountries
 };
