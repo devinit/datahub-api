@@ -5,7 +5,7 @@ export default {
            return ctx.cms.getCountryProfilePageData();
         },
         async districtPageData(_root, _args, ctx: IContext) {
-            return ctx.cms.getCountryProfilePageData();
+            return ctx.cms.getDistrictPageData();
          },
         async globalPicturePageData(_root, _args, ctx: IContext) {
            return ctx.cms.getGlobalPicturePageData();

@@ -7,6 +7,7 @@ import {
     getUnbundlingOdaPageData,
     getUnbundlingOOfPageData,
     getWhereThePoorPageData,
+    getDistrictPageData,
 } from './modules/page';
 import { get} from './connector';
 import {getCountries} from './modules/global';
@@ -17,6 +18,7 @@ export interface ICms {
     getGlobalPicturePageData: any;
     getOdaDonorBubbleChartPageData: any;
     getPovertyBubbleChartPageData: any;
+    getDistrictPageData: any;
     getCountryProfilePageData: any;
     getUnbundlingOdaPageData: any;
     getUnbundlingOOfPageData: any;
@@ -32,6 +34,7 @@ const cms: ICms = {
     getOdaDonorBubbleChartPageData,
     getPovertyBubbleChartPageData,
     getCountryProfilePageData,
+    getDistrictPageData,
     getUnbundlingOdaPageData,
     getUnbundlingOOfPageData,
     getWhereThePoorPageData,
