@@ -2,7 +2,7 @@ export default {
     population: 'SELECT value FROM fact.population_total WHERE di_id = ${id} AND year = ${start_year}',
     gdp: 'SELECT value FROM fact.gdp_usd_2015 WHERE di_id = ${id} AND year = ${start_year}',
     // tslint:disable-next-line:max-line-length
-    domesticResourcesOverTime: 'SELECT * FROM data_series.domestic WHERE di_id =${id} AND l1 = ${l1} AND year >= ${start_year} AND year <= ${end_year}',
+    domesticResourcesOverTime: 'SELECT * FROM data_series.domestic WHERE di_id =${id} AND l1 = ${l1} AND year >= ${start_year}',
     // tslint:disable-next-line:max-line-length
     // revenueAndGrantsOverTime: 'SELECT value FROM data_series.domestic WHERE di_id =${id} AND l1 = \'total-revenue-and-grants\' AND year >= ${start_year} AND year <= ${end_year}',
      // tslint:disable-next-line:max-line-length

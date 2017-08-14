@@ -26,6 +26,7 @@ declare namespace DH {
   */
   interface IQuery {
     countries: Array<IEntity> | null;
+    districtPageData: Array<IPage> | null;
     countryProfilePageData: Array<IPage> | null;
     odaDonorBubbleChartPageData: Array<IPage> | null;
     globalPicturePageData: Array<IPage> | null;
@@ -33,6 +34,7 @@ declare namespace DH {
     unbundlingOdaPageData: Array<IPage> | null;
     unbundlingOOfPageData: Array<IPage> | null;
     whereThePoorPageData: Array<IPage> | null;
+    districts: Array<IEntity> | null;
     globalPictureThemes: Array<ITheme> | null;
     spotlightThemes: Array<ITheme> | null;
     bubbleChartOda: IBubbleChartOda | null;
@@ -515,7 +517,7 @@ declare namespace DH {
   */
   interface IUnbundlingAidTotal {
     year: number | null;
-    total: number | null;
+    total: string | null;
   }
 
   /*
@@ -581,13 +583,15 @@ exports[`gql Types to Typescript types should return merged typedefs 1`] = `
 
 type Query {
   countries: [Entity]
-  countryProfilePageData(countrySlug: String!): [Page]
+  districtPageData: [Page]
+  countryProfilePageData: [Page]
   odaDonorBubbleChartPageData: [Page]
   globalPicturePageData: [Page]
   povertyBubbleChartPageData: [Page]
   unbundlingOdaPageData: [Page]
   unbundlingOOfPageData: [Page]
   whereThePoorPageData: [Page]
+  districts(country: String!): [Entity]
   globalPictureThemes: [Theme]
   spotlightThemes(country: String!): [Theme]
   bubbleChartOda(id: String!): BubbleChartOda
@@ -1016,7 +1020,7 @@ type IdNamePair {
 
 type UnbundlingAidTotal {
   year: Int
-  total: Int
+  total: String
 }
 
 type UnbundlingAidSelections {
