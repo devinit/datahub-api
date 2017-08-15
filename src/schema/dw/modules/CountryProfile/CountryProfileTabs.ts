@@ -74,7 +74,7 @@ export default class CountryProfileTabs {
             const [depthOfExtremePoverty] =
                 await getIndicatorsValue({
                     id,
-                    sqlList: [sql.depthOfExtremePoverty], format: false, ...this.defaultArgs});
+                    sqlList: [sql.depthOfExtremePoverty], format: false, ...this.defaultArgs, precision: 0});
             const incomeDistTrend = await this.getIncomeDistTrend(id);
             return {
                 poverty190Trend,
@@ -89,10 +89,12 @@ export default class CountryProfileTabs {
 
     public async getOverViewTabRecipients(countryId: string): Promise<IOverViewTabRecipients> {
         try {
-            const sqlList =  [sql.internationalResources, sql.domesticRevenue, sql.population,
-                sql.poorestPeople, sql.governmentSpendPerPerson];
-            const [internationalResources, domesticResources, population, poorestPeople, governmentSpendPerPerson]
+            const sqlList =  [sql.internationalResources,  sql.population, sql.poorestPeople, sql.domesticRevenue];
+            const [internationalResources, population, poorestPeople, domesticResources]
                 = await getIndicatorsValue({id: countryId, sqlList, ...this.defaultArgs});
+            const [governmentSpendPerPerson] =
+                await getIndicatorsValue({id: countryId, sqlList: [sql.governmentSpendPerPerson],
+                     ...this.defaultArgs, precision: 0});
             return {
                 countryType: RECIPIENT,
                 internationalResources,

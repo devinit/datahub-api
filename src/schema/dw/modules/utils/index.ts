@@ -112,6 +112,7 @@ export interface IhasId {
 export interface IGetIndicatorValueArgs {
     id: string;
     sqlList: string[];
+    precision?: number;
     db: IDatabase<IExtensions> & IExtensions;
     format: boolean;
 }
@@ -211,7 +212,7 @@ export async function getIndicatorDataSpotlights<T>(opts: ISpotlightGetIndicator
     const queryArgs = {...opts, ...concept, id: spotlightEntity.id, country, schema: `spotlight_on_${country}`};
     return db.manyCacheable(query, queryArgs);
 }
-export const getIndicatorsValue = async ({id, sqlList, db, format = true}: IGetIndicatorValueArgs)
+export const getIndicatorsValue = async ({id, sqlList, db, format = true, precision}: IGetIndicatorValueArgs)
     : Promise<DH.IIndicatorValueWithToolTip[]>  => {
     try {
         const indicatorArgs: IGetIndicatorArgs[] =
@@ -219,10 +220,11 @@ export const getIndicatorsValue = async ({id, sqlList, db, format = true}: IGetI
         const indicatorRaw: IRAW[][] = await Promise.all(indicatorArgs.map(args => getIndicatorData<IRAW>(args)));
         const toolTips: DH.IToolTip[] =
             await Promise.all(indicatorArgs.map(args => getIndicatorToolTip(args)));
+        const precisionFix = precision !== undefined ? precision : 1;
         return indicatorRaw.map((data, index) => {
             const toolTip = toolTips[index];
             let value = 'No data';
-            if (data && data[0] && data[0].value && format) value = formatNumbers(data[0].value, 1);
+            if (data && data[0] && data[0].value && format) value = formatNumbers(data[0].value, precisionFix, true);
             if (data && data[0] && data[0].value && !format) value = data[0].value;
             return {value, toolTip};
         });

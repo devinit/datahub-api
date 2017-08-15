@@ -65,7 +65,7 @@ export default class Resources {
             // from data_series.intl_flows_recipients concept /indicator. They shouldb be a better way of doing this.
             const concept: IConcept = await getConceptAsync('country-profile', 'data_series.intl_flows_recipients');
             return {
-                GNI: {value: formatNumbers(GNI, 1), toolTip: gniToolTip},
+                GNI: {value: formatNumbers(GNI, 0), toolTip: gniToolTip},
                 netODAOfGNIIn,
                 netODAOfGNIOut: netODAOfGNIOutArr ? netODAOfGNIOutArr[0] : null,
                 resourcesOverTime,
@@ -230,7 +230,7 @@ export default class Resources {
             let value = 'No data';
             if (totalRevenueAndGrants[0] && totalRevenueAndGrants[0].value && grants[0] && grants[0].value) {
                 const pc = (Number(grants[0].value) / Number(totalRevenueAndGrants[0].value)) * 100;
-                value = pc.toFixed(2);
+                value = pc.toFixed(1);
             }
             const toolTip = await getIndicatorToolTip(indicatorArgs[0]);
             return {value, toolTip};
@@ -262,7 +262,7 @@ export default class Resources {
             const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
             const toolTip = await getIndicatorToolTip(indicatorArgs);
             if (!data[0].value || !gni) return { value: 'No data', toolTip};
-            const value = ((Number(data[0].value) / gni) * 100).toFixed(2);
+            const value = ((Number(data[0].value) / gni) * 100).toFixed(1);
             return {value, toolTip};
         } catch (error) {
             throw error;
