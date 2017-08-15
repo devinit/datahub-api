@@ -101,12 +101,12 @@ declare namespace DH {
   */
   interface IBubbleChartOda {
     year: number | null;
-    value: number | null;
     id: string | null;
     name: string | null;
     income_group: string | null;
     region: string | null;
     uid: string | null;
+    value: number | null;
     revenuePerPerson: number | null;
     numberInExtremePoverty: number | null;
   }

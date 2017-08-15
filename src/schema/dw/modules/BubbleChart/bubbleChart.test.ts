@@ -6,7 +6,7 @@ describe('Bubble chart DW module tests', () => {
     const bubbleChart = new BubbleChart(db);
 
     it('getting poverty  bubble chart data i.e poverty & revenue per person data', async () => {
-        const data = await bubbleChart.getBubbleChartPoverty();
+        const data = await bubbleChart.getBubbleChartPoverty(null);
         const dataB = await bubbleChart.getBubbleChartPoverty('AT');
         expect({generic: data, WithATODa: dataB}).toMatchSnapshot();
     }, 30000);

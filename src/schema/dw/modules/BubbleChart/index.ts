@@ -42,7 +42,8 @@ export default class BubbleChart {
                     value: indicatorObj ? indicatorObj.value : null,
                     year: obj.year
                 };
-            });
+            })
+            .filter(obj => obj.numberInExtremePoverty !== null);
         } catch (error) {
             console.error(error);
             throw (error);
@@ -52,6 +53,7 @@ export default class BubbleChart {
         try {
             const [revenuePerPerson, percentageInExtremePoverty] =
                 await this.getIndicatorsGeneric([sql.govtRevenuePerPerson, sql.percentageInExtremePoverty], 'poverty');
+            // console.log(revenuePerPerson[0], percentageInExtremePoverty[0]);
             const indicatorData: DH.IBubbleChartData[] | null = id ? await this.getBubbleSize(id) : null;
             return revenuePerPerson.map((obj: DH.IBubbleChartData) => {
                 const povertyObj: DH.IBubbleChartData | undefined =  percentageInExtremePoverty
@@ -67,7 +69,8 @@ export default class BubbleChart {
                     value: indicatorObj ? indicatorObj.value : null,
                     year: obj.year
                 };
-            });
+            })
+            .filter(obj => obj.percentageInExtremePoverty !== null);
         } catch (error) {
             console.error(error);
             throw error;

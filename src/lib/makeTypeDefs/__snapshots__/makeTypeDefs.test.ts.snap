@@ -103,12 +103,12 @@ declare namespace DH {
   */
   interface IBubbleChartOda {
     year: number | null;
-    value: number | null;
     id: string | null;
     name: string | null;
     income_group: string | null;
     region: string | null;
     uid: string | null;
+    value: number | null;
     revenuePerPerson: number | null;
     numberInExtremePoverty: number | null;
   }
@@ -594,8 +594,8 @@ type Query {
   districts(country: String!): [Entity]
   globalPictureThemes: [Theme]
   spotlightThemes(country: String!): [Theme]
-  bubbleChartOda(id: String!): BubbleChartOda
-  bubbleChartPoverty(id: String!): BubbleChartPoverty
+  bubbleChartOda(id: String): BubbleChartOda
+  bubbleChartPoverty(id: String): BubbleChartPoverty
   # IdNamePair is defined in unbundling aid types 
    # this list feeds off oda table from countries and global/concept file
   bubbleChartIndicatorsList: [IdNamePair]
@@ -659,7 +659,6 @@ type BubbleChartData {
 
 type BubbleChartOda {
   year: Int
-  value: Float
   # country id
   id: String
   # country name
@@ -680,7 +679,6 @@ type BubbleChartPoverty {
   income_group: String
   region: String
   uid: String
-  value: Float
   revenuePerPerson: Float
   percentageInExtremePoverty: Float
 }
