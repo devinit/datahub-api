@@ -74,7 +74,7 @@ export default class CountryProfileTabs {
             const [depthOfExtremePoverty] =
                 await getIndicatorsValue({
                     id,
-                    sqlList: [sql.depthOfExtremePoverty], format: false, ...this.defaultArgs, precision: 0});
+                    sqlList: [sql.depthOfExtremePoverty], format: true, ...this.defaultArgs, precision: 0});
             const incomeDistTrend = await this.getIncomeDistTrend(id);
             return {
                 poverty190Trend,

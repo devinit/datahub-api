@@ -232,7 +232,7 @@ export default class Resources {
                 const pc = (Number(grants[0].value) / Number(totalRevenueAndGrants[0].value)) * 100;
                 value = pc.toFixed(1);
             }
-            const toolTip = await getIndicatorToolTip(indicatorArgs[0]);
+            const toolTip = await getIndicatorToolTip(indicatorArgs[1]);
             return {value, toolTip};
         } catch (error) {
             throw error;
