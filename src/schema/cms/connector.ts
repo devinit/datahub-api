@@ -37,7 +37,7 @@ export const httpsGet = (endPoint: string): Promise<string> => {
 };
 
 const lruOpts: LRU.Options<any> = {
-    max: 300,
+    max: 200,
     maxAge: 1000 * 60 * 60 * 24 * 60 // TODO: create time constant (60 days -- 2 months)
 };
 
