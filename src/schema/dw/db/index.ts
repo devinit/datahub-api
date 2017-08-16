@@ -20,7 +20,7 @@ export interface IExtensions {
 }
 
 const lruOpts: LRU.Options<any> = {
-    max: 500,
+    max: 300,
     maxAge: 1000 * 60 * 60 * 60
 };
 
