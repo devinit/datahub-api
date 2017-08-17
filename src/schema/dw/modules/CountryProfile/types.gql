@@ -167,9 +167,9 @@ type InternationalResources {
   mixOfResources: ResourceDataWithToolTip
 }
 type Flows {
-  # an array of inflows for a particular country, for area & partition chart
+  # an array of inflows for a particular countryType for area & partition chart
   inflows: [Flow]
-   # an array of outflows for a particular country
+   # an array of outflows for a particular countryType
   outflows: [Flow]
 }
 type SingleResourceData {
