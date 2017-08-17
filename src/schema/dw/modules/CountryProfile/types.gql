@@ -39,6 +39,7 @@ type ResourceData {
   year: Int!
   value: Float!
   flow_name: String!
+  flow_id: String!
   short_name: String
   # Category i.e FDI, ODA
   flow_category: String
@@ -135,7 +136,10 @@ type GovernmentFinance {
   revenueAndGrants: [Domestic]
   finance: [Domestic]
 }
-
+type ResourceDataWithToolTip {
+  data: [ResourceData]
+  toolTip: ToolTip
+}
 type FlowSelection {
   name: String
   # this is the group ID
@@ -146,10 +150,6 @@ type Flow {
   name: String
   id: String
   selections: [FlowSelection]
-}
-type ResourceDataWithToolTip {
-  data: [ResourceData]
-  toolTip: ToolTip
 }
 type InternationalResources {
   startYear: Int
@@ -165,12 +165,13 @@ type InternationalResources {
   # Whats the mix of resources can be for donors (out flows) or receipient (in flows)
   # this is for the donut chart
   mixOfResources: ResourceDataWithToolTip
+}
+type Flows {
   # an array of inflows for a particular country, for area & partition chart
   inflows: [Flow]
    # an array of outflows for a particular country
   outflows: [Flow]
 }
-
 type SingleResourceData {
   resources: [IndicatorData]
   color: String
@@ -182,6 +183,8 @@ type Query {
   populationTab(id: String!): PopulationTab
   governmentFinance(id: String!): GovernmentFinance
   internationalResources(id: String!): InternationalResources
+  # eg recipient or donor
+  flows(countryType: String!): Flows
   # for area tree map chart dropdown selectoion
   singleResource(
     resourceId: String!, #fdi-devcountries --> gets has concept

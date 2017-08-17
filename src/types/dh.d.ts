@@ -35,14 +35,15 @@ declare namespace DH {
     districts: Array<IEntity> | null;
     globalPictureThemes: Array<ITheme> | null;
     spotlightThemes: Array<ITheme> | null;
-    bubbleChartOda: IBubbleChartOda | null;
-    bubbleChartPoverty: IBubbleChartPoverty | null;
+    bubbleChartOda: Array<IBubbleChartOda> | null;
+    bubbleChartPoverty: Array<IBubbleChartPoverty> | null;
     bubbleChartIndicatorsList: Array<IIdNamePair> | null;
     overviewTab: IOverviewTab | null;
     povertyTab: IPovertyTab | null;
     populationTab: IPopulationTab | null;
     governmentFinance: IGovernmentFinance | null;
     internationalResources: IInternationalResources | null;
+    flowOptions: IFlows | null;
     singleResource: ISingleResourceData | null;
     mapData: IMapData | null;
     methodologies: Array<IDataSources> | null;
@@ -308,8 +309,6 @@ declare namespace DH {
     netODAOfGNIOut: IIndicatorValueWithToolTip | null;
     resourcesOverTime: IResourceDataWithToolTip | null;
     mixOfResources: IResourceDataWithToolTip | null;
-    inflows: Array<IFlow> | null;
-    outflows: Array<IFlow> | null;
   }
 
   /*
@@ -327,12 +326,21 @@ declare namespace DH {
     year: number;
     value: number;
     flow_name: string;
+    flow_id: string;
     short_name: string | null;
     flow_category: string | null;
     flow_type: string | null;
     direction: string | null;
     color: string | null;
     uid: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IFlows {
+    inflows: Array<IFlow> | null;
+    outflows: Array<IFlow> | null;
   }
 
   /*

@@ -57,7 +57,6 @@ export default class Resources {
             const GNI: number = await this.getGNI(id);
             const gniToolTip = await getIndicatorToolTip({query: sql.GNI, ...this.defaultArgs});
             const netODAOfGNIIn = isDonorCountry ? null : await this.getNetODAOfGNIIn(id, GNI);
-            const {outflows, inflows}  = await this.getFlows(id);
             const resourcesSql = isDonorCountry ? [sql.resourcesDonors, sql.resourcesDonorsMix] :
             [sql.resourcesRecipient, sql.resourcesRecipientMix];
             const [resourcesOverTime, mixOfResources] = await this.getResourcesGeneric(id, resourcesSql);
@@ -70,8 +69,6 @@ export default class Resources {
                 netODAOfGNIOut: netODAOfGNIOutArr ? netODAOfGNIOutArr[0] : null,
                 resourcesOverTime,
                 mixOfResources,
-                inflows,
-                outflows,
                 startYear: concept.end_year || 2015
           };
         } catch (error) {
@@ -144,10 +141,9 @@ export default class Resources {
            throw error;
         }
     }
-    public async getFlows(id: string): Promise<IflowTypes> {
+    public async getFlows(countryType: string): Promise<IflowTypes> {
         // find out whether donor or not using isDonor
         try {
-            const countryType: string = await isDonor(id) ? DONOR : RECIPIENT;
             const flows: IFlowRef[] = await getFlowByTypeAsync(countryType);
             const flowSelections: IFlowSelectionRaw[] = await getAllFlowSelections();
             return flows
@@ -293,7 +289,7 @@ export default class Resources {
                 const flow: IFlowRef | undefined = flowRefs.find(flowRef => flowRef.id === obj.flow_name);
                 if (flow === undefined) throw new Error(`No flow refrence for ${JSON.stringify(obj)} `);
                 const colorObj: IColor = getEntityByIdGeneric<IColor>(flow.color, colors);
-                return {...obj, ...flow, color: colorObj.value} as DH.IResourceData;
+                return {...obj, ...flow, color: colorObj.value, flow_id: flow.id} as DH.IResourceData;
              });
          } catch (error) {
              throw error;

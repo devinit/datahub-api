@@ -16,6 +16,9 @@ export default {
         async overviewTab(_root, args, ctx: IContext) {
             return ctx.dw.countryProfile.tabs.getOverViewTab(args);
         },
+        async flows(_root, args, ctx: IContext) {
+            return ctx.dw.countryProfile.resources.getFlows(args.countryType);
+        },
         async populationTab(_root, args, ctx: IContext) {
             return ctx.dw.countryProfile.tabs.getPopulationTab(args);
         },

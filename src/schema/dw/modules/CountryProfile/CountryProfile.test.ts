@@ -8,9 +8,10 @@ describe('country profile DW module tests', () => {
     const countryProfile = new CountryProfile(db);
     const tab = countryProfile.tabs;
     const resources = countryProfile.resources;
-    it('should return flow types and sub selections for uganda', async () => {
-        const flows = await resources.getFlows('uganda');
-        expect(prettyFormat(flows)).toMatchSnapshot();
+    it('should return flow types and sub selections for both recipient & donors', async () => {
+        const recipient = await resources.getFlows('recipient');
+        const donor = await resources.getFlows('donor');
+        expect(prettyFormat({recipient, donor})).toMatchSnapshot();
     }, 10000);
     it('should return overview tab data for uganda', async () => {
         const overViewTab = await tab.getOverViewTab({id: 'uganda'});
