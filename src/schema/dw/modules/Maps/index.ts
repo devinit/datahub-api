@@ -63,9 +63,8 @@ export default class Maps {
 
     public static DACOnlyData(DACCountries: string[], indicatorData: DH.IMapUnit[]): DH.IMapUnit[] {
        return DACCountries
-       .map(name =>
-            R.find((obj: DH.IMapUnit) => obj.name === name, indicatorData))
-        .filter(obj => obj !== undefined);
+        .map(name => R.find((obj: DH.IMapUnit) => obj.name === name, indicatorData))
+        .filter(obj => obj !== undefined) as DH.IMapUnit[];
     }
     public static processBudgetData(data: DH.IMapUnit[]): DH.IMapUnit[] {
         const grouped = R.groupBy(R.prop('year'), data);
