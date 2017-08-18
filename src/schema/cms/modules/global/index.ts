@@ -71,5 +71,10 @@ export const getSectors = (): Promise<IEntityBasic[]> => get<IEntityBasic>('glob
 export const getChannels = (): Promise<IEntityBasic[]> => get<IEntityBasic>('global/channel.csv');
 export const getBundles = (): Promise<IEntityBasic[]> => get<IEntityBasic>('global/bundle.csv');
 export const getRegional = (): Promise<IRegional[]> => get<IRegional>('global/regional.csv');
+export const getFinancingType = (): Promise<IEntityBasic[]> => get<IEntityBasic>('country-profile/financing-type.csv');
+export const getCreditorType = (): Promise<IEntityBasic[]> => get<IEntityBasic>('country-profile/creditor-type.csv');
+export const getFlowType = (): Promise<IEntityBasic[]> => get<IEntityBasic>('country-profile/flow-type.csv');
+export const getDestinationInstitutionType = (): Promise<IEntityBasic[]> =>
+    get<IEntityBasic>('country-profile/destination-institution-type.csv');
 export const getCurrency = (): Promise<ICurrency[]> => get<ICurrency>('global/currency.csv');
 export const getColors = (): Promise<IColor[]> => get<IColor>('global/colors.csv');

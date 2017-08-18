@@ -84,21 +84,24 @@ export default class Resources {
             const flow: IFlowRef =  await getFlowByIdAsync(resourceId);
             const concept: IConcept = await getConceptAsync('country-profile', flow.concept);
             let args: any = {years: [concept.start_year, concept.end_year]};
-            if (flow.type === DONOR) args = {...args, from_di_id: countryId};
-            if (flow.type === RECIPIENT) args = {...args, to_di_id: countryId };
-            // tslint:disable-next-line:max-line-length
-            if (flow.concept === 'data_series.intl_flows_recipients' || flow.concept === 'data_series.intl_flows_donors') {
-                args = {...args, flow_name: resourceId};
+            if (flow.concept === 'data_series.intl_flows_recipients'
+                || flow.concept === 'data_series.intl_flows_donors') {
+                args = {...args, flow_name: resourceId, di_id: countryId};
+            } else {
+                if (flow.type === DONOR) args = {...args, from_di_id: countryId};
+                if (flow.type === RECIPIENT) args = {...args, to_di_id: countryId };
             }
             const sqlQuery = makeSqlAggregateQuery(args, groupById, flow.concept);
+            console.log( sqlQuery);
             const data: IRAW[] = await this.db.manyCacheable(sqlQuery, null);
             const processedData: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(data);
             // TODO: types for  entitesFnMap
             const entities = await entitesFnMap[groupById]();
+            // console.log(entities[0]);
             const colors = await getColors();
             const resources = processedData.map(obj => {
-                const details: {name: string} | undefined = entities.find(entity => entity.id === obj[groupById]);
-                if (!details) throw Error('Error finding resource entity details');
+                let details: {name: string} | undefined = entities.find(entity => entity.id === obj[groupById]);
+                if (!details) details = {name: obj[groupById]};
                 return {...obj, ...details};
             }) as DH.IIndicatorData[];
             const colorObj: IColor = getEntityByIdGeneric<IColor>(flow.color, colors);

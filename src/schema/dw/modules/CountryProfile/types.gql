@@ -189,7 +189,7 @@ type Query {
   singleResource(
     resourceId: String!, #fdi-devcountries --> gets has concept
     countryId: String!, # AT
-    groupById: String # id-to
+    groupById: String! # id-to
     ): SingleResourceData
 }
 

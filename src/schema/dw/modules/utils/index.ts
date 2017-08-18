@@ -4,8 +4,8 @@ import {IExtensions} from '../../db';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import {getDistrictBySlugAsync} from '../../../cms/modules/spotlight';
 import * as shortid from 'shortid';
-import {IEntity, getEntityByIdGeneric, getEntities, getEntityBySlugAsync,
-        getSectors, getBundles, getChannels} from '../../../cms/modules/global';
+import {IEntity, getEntityByIdGeneric, getFinancingType, getCreditorType, getDestinationInstitutionType, getFlowType,
+        getSectors, getBundles, getChannels, getEntities, getEntityBySlugAsync} from '../../../cms/modules/global';
 import {isError} from '../../../../lib/isType';
 import {getBudgetLevels, IBudgetLevelRef} from '../../../cms/modules/countryProfile';
 
@@ -131,7 +131,11 @@ export const entitesFnMap = {
     sector: getSectors,
     channel: getChannels,
     bundle: getBundles,
+    destination_institution_type: getDestinationInstitutionType,
+    financing_type: getFinancingType,
+    creditor_type: getCreditorType,
     to: getEntities,
+    flow_type: getFlowType,
     from_di_id:  getEntities,
     to_di_id: getEntities,
     from: getEntities,

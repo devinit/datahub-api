@@ -37,14 +37,15 @@ declare namespace DH {
     districts: Array<IEntity> | null;
     globalPictureThemes: Array<ITheme> | null;
     spotlightThemes: Array<ITheme> | null;
-    bubbleChartOda: IBubbleChartOda | null;
-    bubbleChartPoverty: IBubbleChartPoverty | null;
+    bubbleChartOda: Array<IBubbleChartOda> | null;
+    bubbleChartPoverty: Array<IBubbleChartPoverty> | null;
     bubbleChartIndicatorsList: Array<IIdNamePair> | null;
     overviewTab: IOverviewTab | null;
     povertyTab: IPovertyTab | null;
     populationTab: IPopulationTab | null;
     governmentFinance: IGovernmentFinance | null;
     internationalResources: IInternationalResources | null;
+    flows: IFlows | null;
     singleResource: ISingleResourceData | null;
     mapData: IMapData | null;
     methodologies: Array<IDataSources> | null;
@@ -310,8 +311,6 @@ declare namespace DH {
     netODAOfGNIOut: IIndicatorValueWithToolTip | null;
     resourcesOverTime: IResourceDataWithToolTip | null;
     mixOfResources: IResourceDataWithToolTip | null;
-    inflows: Array<IFlow> | null;
-    outflows: Array<IFlow> | null;
   }
 
   /*
@@ -329,12 +328,21 @@ declare namespace DH {
     year: number;
     value: number;
     flow_name: string;
+    flow_id: string;
     short_name: string | null;
     flow_category: string | null;
     flow_type: string | null;
     direction: string | null;
     color: string | null;
     uid: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IFlows {
+    inflows: Array<IFlow> | null;
+    outflows: Array<IFlow> | null;
   }
 
   /*
@@ -594,8 +602,8 @@ type Query {
   districts(country: String!): [Entity]
   globalPictureThemes: [Theme]
   spotlightThemes(country: String!): [Theme]
-  bubbleChartOda(id: String): BubbleChartOda
-  bubbleChartPoverty(id: String): BubbleChartPoverty
+  bubbleChartOda(id: String): [BubbleChartOda]
+  bubbleChartPoverty(id: String): [BubbleChartPoverty]
   # IdNamePair is defined in unbundling aid types 
    # this list feeds off oda table from countries and global/concept file
   bubbleChartIndicatorsList: [IdNamePair]
@@ -604,8 +612,10 @@ type Query {
   populationTab(id: String!): PopulationTab
   governmentFinance(id: String!): GovernmentFinance
   internationalResources(id: String!): InternationalResources
+  # eg recipient or donor
+  flows(countryType: String!): Flows
   # for area tree map chart dropdown selectoion
-  singleResource(resourceId: String!, countryId: String!, groupById: String): SingleResourceData
+  singleResource(resourceId: String!, countryId: String!, groupById: String!): SingleResourceData
   mapData(id: String!): MapData
   methodologies: [DataSources]
   # id is district slug
@@ -729,6 +739,7 @@ type ResourceData {
   year: Int!
   value: Float!
   flow_name: String!
+  flow_id: String!
   short_name: String
   # Category i.e FDI, ODA
   flow_category: String
@@ -830,6 +841,11 @@ type GovernmentFinance {
   finance: [Domestic]
 }
 
+type ResourceDataWithToolTip {
+  data: [ResourceData]
+  toolTip: ToolTip
+}
+
 type FlowSelection {
   name: String
   # this is the group ID
@@ -840,11 +856,6 @@ type Flow {
   name: String
   id: String
   selections: [FlowSelection]
-}
-
-type ResourceDataWithToolTip {
-  data: [ResourceData]
-  toolTip: ToolTip
 }
 
 type InternationalResources {
@@ -861,9 +872,12 @@ type InternationalResources {
   # Whats the mix of resources can be for donors (out flows) or receipient (in flows)
    # this is for the donut chart
   mixOfResources: ResourceDataWithToolTip
-  # an array of inflows for a particular country, for area & partition chart
+}
+
+type Flows {
+  # an array of inflows for a particular countryType for area & partition chart
   inflows: [Flow]
-  # an array of outflows for a particular country
+  # an array of outflows for a particular countryType
   outflows: [Flow]
 }
 

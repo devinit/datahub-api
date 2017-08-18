@@ -47,17 +47,19 @@ describe('country profile DW module tests', () => {
         const governmentB = await resources.getGovernmentFinance({id: 'somalia'});
         expect(prettyFormat({somalia: governmentB, uganda: governmentA})).toMatchSnapshot();
     }, 10000);
-    it('should return single resource FDI data for use in international resources chart', async () => {
-        const singleResourceFDIout = await resources.getSingleResource(
+    it('should return single resources data for use in international resources chart', async () => {
+        const FDIOut = await resources.getSingleResource(
             { resourceId: 'fdi-out', countryId: 'UG', groupById: 'from_di_id'});
-        expect(prettyFormat(singleResourceFDIout)).toMatchSnapshot();
+        const shortDebtOut = await resources.getSingleResource(
+            { resourceId: 'short-debt-interest-out', countryId: 'UG', groupById: 'flow_type'});
+        const ODAOut = await resources.getSingleResource(
+            { resourceId: 'oda-out', countryId: 'AT', groupById: 'channel'});
+        const LDIn = await resources.getSingleResource(
+            { resourceId: 'long-debt-net-official-in', countryId: 'UG', groupById: 'destination_institution_type'});
+        const LDCommercialIn = await resources.getSingleResource(
+                { resourceId: 'long-debt-disbursement-in', countryId: 'UG', groupById: 'destination_institution_type'});
+        expect(prettyFormat({ shortDebtOut, FDIOut, ODAOut, LDIn, LDCommercialIn})).toMatchSnapshot();
     }, 10000);
-    it('should return single resource ODA data for use in international resources chart', async () => {
-        const singleResourceODA = await resources.getSingleResource(
-            { resourceId: 'oda-in', countryId: 'UG', groupById: 'sector'});
-        expect(prettyFormat(singleResourceODA)).toMatchSnapshot();
-    }, 10000);
-
     afterAll(() => {
        db.$config.pgp.end();
     });
