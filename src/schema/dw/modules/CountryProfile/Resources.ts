@@ -92,7 +92,7 @@ export default class Resources {
                 if (flow.type === RECIPIENT) args = {...args, to_di_id: countryId };
             }
             const sqlQuery = makeSqlAggregateQuery(args, groupById, flow.concept);
-            console.log( sqlQuery);
+            // console.log( sqlQuery);
             const data: IRAW[] = await this.db.manyCacheable(sqlQuery, null);
             const processedData: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(data);
             // TODO: types for  entitesFnMap

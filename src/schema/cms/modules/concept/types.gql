@@ -1,0 +1,15 @@
+type Source {
+    name: String
+    link: String
+}
+type Methodology {
+    name: String
+    description: String
+    methodology: String
+    #think units
+    uom: String
+    source: Source
+}
+type Query {
+    methodology(moduleName: String!): [Methodology]
+}

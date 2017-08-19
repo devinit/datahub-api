@@ -1,4 +1,5 @@
 import {getSpotlightThemes, getGlobalPictureThemes} from './modules/theme';
+import {getMethodologyData} from './modules/concept';
 import {
     getCountryProfilePageData,
     getGlobalPicturePageData,
@@ -13,8 +14,10 @@ import { get} from './connector';
 import {getCountries} from './modules/global';
 import {getDistrictEntities} from './modules/spotlight';
 
+// TODO: replace any with proper types
 export interface ICms {
     getSpotlightThemes: any;
+    getMethodologyData: any;
     getGlobalPictureThemes: any;
     getGlobalPicturePageData: any;
     getOdaDonorBubbleChartPageData: any;
@@ -31,6 +34,7 @@ export interface ICms {
 
 const cms: ICms = {
     getGlobalPicturePageData,
+    getMethodologyData,
     getSpotlightThemes,
     getGlobalPictureThemes,
     getOdaDonorBubbleChartPageData,

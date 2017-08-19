@@ -54,12 +54,14 @@ describe('country profile DW module tests', () => {
             { resourceId: 'short-debt-interest-out', countryId: 'UG', groupById: 'flow_type'});
         const ODAOut = await resources.getSingleResource(
             { resourceId: 'oda-out', countryId: 'AT', groupById: 'channel'});
+        const ODAIn = await resources.getSingleResource(
+            { resourceId: 'oda-in', countryId: 'UG', groupById: 'from_di_id'});
         const LDIn = await resources.getSingleResource(
-            { resourceId: 'long-debt-net-official-in', countryId: 'UG', groupById: 'destination_institution_type'});
+            { resourceId: 'long-debt-net-official-in', countryId: 'UG', groupById: 'flow_type'});
         const LDCommercialIn = await resources.getSingleResource(
-                { resourceId: 'long-debt-disbursement-in', countryId: 'UG', groupById: 'destination_institution_type'});
-        expect(prettyFormat({ shortDebtOut, FDIOut, ODAOut, LDIn, LDCommercialIn})).toMatchSnapshot();
-    }, 10000);
+                { resourceId: 'long-debt-disbursement-in', countryId: 'UG', groupById: 'flow_type'});
+        expect(prettyFormat({ shortDebtOut, FDIOut, ODAOut, LDIn, LDCommercialIn, ODAIn})).toMatchSnapshot();
+    }, 50000);
     afterAll(() => {
        db.$config.pgp.end();
     });

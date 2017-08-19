@@ -17,16 +17,21 @@ export interface IConcept {
     end_year: number;
     range?: string;
     heading: string;
+    methodology?: string;
     source: string;
     source_link: string;
     appear_in_bubble_chart: number;
 }
-// TODO: parse start_year as a number
+
 export const getConcepts = (moduleName: string): Promise <IConcept[]> => {
     const endPoint: string = `${moduleName}/concept.csv`;
     return get<IConcept>(endPoint);
 };
 
+export const getMethodologyData = async (moduleName: string): Promise <IConcept[]> => {
+    const allConcepts: IConcept[] = await getConcepts(moduleName);
+    return allConcepts.filter(obj => obj.include_in_methodology_page === 1);
+};
 export const getConceptAsync = async (moduleName: string, id: string, theme?: string): Promise <IConcept> => {
     const allConcepts: IConcept[]  = await getConcepts(moduleName);
     const concepts: IConcept[] = allConcepts.filter(obj => obj.id === id.trim());
