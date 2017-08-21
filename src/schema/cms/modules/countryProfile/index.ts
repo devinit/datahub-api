@@ -19,6 +19,7 @@ export interface IFlowSelectionRaw {
     id: string;
     group_by_id: string;
     name: string;
+    unbundle: number;
     position: number;
 }
 

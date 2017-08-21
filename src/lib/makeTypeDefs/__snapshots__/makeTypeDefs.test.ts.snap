@@ -25,6 +25,7 @@ declare namespace DH {
     description: 
   */
   interface IQuery {
+    methodology: Array<IMethodology> | null;
     countries: Array<IEntity> | null;
     districtPageData: Array<IPage> | null;
     countryProfilePageData: Array<IPage> | null;
@@ -48,7 +49,6 @@ declare namespace DH {
     flows: IFlows | null;
     singleResource: ISingleResourceData | null;
     mapData: IMapData | null;
-    methodologies: Array<IDataSources> | null;
     overviewTabRegional: IOverviewTabRegional | null;
     povertyTabRegional: IPovertyTabRegional | null;
     populationTabRegional: IPopulationTabRegional | null;
@@ -58,6 +58,25 @@ declare namespace DH {
     unbundlingAidDataTotal: IUnbundlingAidTotal | null;
     unbundlingAidData: Array<IAidUnit> | null;
     unbundlingSelectionData: IUnbundlingAidSelections | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IMethodology {
+    name: string | null;
+    description: string | null;
+    methodology: string | null;
+    uom: string | null;
+    source: ISource | null;
+  }
+
+  /*
+    description: 
+  */
+  interface ISource {
+    name: string | null;
+    link: string | null;
   }
 
   /*
@@ -360,6 +379,7 @@ declare namespace DH {
   interface IFlowSelection {
     name: string | null;
     id: string | null;
+    unbundle: boolean | null;
   }
 
   /*
@@ -412,26 +432,6 @@ declare namespace DH {
     label: string | null;
     color: string | null;
     backgroundColor: string | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IDataSources {
-    name: string | null;
-    Description: string | null;
-    methodology: string | null;
-    unit: string | null;
-    source: string | null;
-    download: IDownload | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IDownload {
-    csv: string | null;
-    zip: string | null;
   }
 
   /*
@@ -590,6 +590,7 @@ exports[`gql Types to Typescript types should return merged typedefs 1`] = `
 }
 
 type Query {
+  methodology(moduleName: String!): [Methodology]
   countries: [Entity]
   districtPageData: [Page]
   countryProfilePageData: [Page]
@@ -617,7 +618,6 @@ type Query {
   # for area tree map chart dropdown selectoion
   singleResource(resourceId: String!, countryId: String!, groupById: String!): SingleResourceData
   mapData(id: String!): MapData
-  methodologies: [DataSources]
   # id is district slug
   overviewTabRegional(id: String!, country: String!): OverviewTabRegional
   povertyTabRegional(id: String!, country: String!): PovertyTabRegional
@@ -628,6 +628,20 @@ type Query {
   unbundlingAidDataTotal(args: UnbundlingAidToTalQuery): UnbundlingAidTotal
   unbundlingAidData(args: UnbundlingAidQuery): [AidUnit]
   unbundlingSelectionData(aidType: String): UnbundlingAidSelections
+}
+
+type Source {
+  name: String
+  link: String
+}
+
+type Methodology {
+  name: String
+  description: String
+  methodology: String
+  # think units
+  uom: String
+  source: Source
 }
 
 type Entity {
@@ -850,6 +864,7 @@ type FlowSelection {
   name: String
   # this is the group ID
   id: String
+  unbundle: Boolean
 }
 
 type Flow {
@@ -925,21 +940,6 @@ type MapData {
   country: String
   id: String
   legend: [LegendField]
-}
-
-type Download {
-  csv: String
-  zip: String
-}
-
-type DataSources {
-  # name of the data you inquiring about
-  name: String
-  Description: String
-  methodology: String
-  unit: String
-  source: String
-  download: Download
 }
 
 type IndicatorDataColored {

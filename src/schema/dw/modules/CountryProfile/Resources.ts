@@ -154,7 +154,8 @@ export default class Resources {
                 .reduce((flowTypes: IflowTypes, flow) => {
                     const selections = flowSelections
                         .filter(selection => selection.id === flow.id)
-                        .map(selection => ({id: selection.group_by_id, name: selection.name}));
+                        .map(selection => ({id: selection.group_by_id, name: selection.name,
+                            unbundle: selection.unbundle === 1}));
                     const obj = {name: flow.flow_name, id: flow.id, selections};
                     if (flow.direction === 'in') flowTypes.inflows.push(obj);
                     if (flow.direction === 'out') flowTypes.outflows.push(obj);

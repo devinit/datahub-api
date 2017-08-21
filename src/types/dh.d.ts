@@ -23,6 +23,7 @@ declare namespace DH {
     description: 
   */
   interface IQuery {
+    methodology: Array<IMethodology> | null;
     countries: Array<IEntity> | null;
     districtPageData: Array<IPage> | null;
     countryProfilePageData: Array<IPage> | null;
@@ -43,10 +44,9 @@ declare namespace DH {
     populationTab: IPopulationTab | null;
     governmentFinance: IGovernmentFinance | null;
     internationalResources: IInternationalResources | null;
-    flowOptions: IFlows | null;
+    flows: IFlows | null;
     singleResource: ISingleResourceData | null;
     mapData: IMapData | null;
-    methodologies: Array<IDataSources> | null;
     overviewTabRegional: IOverviewTabRegional | null;
     povertyTabRegional: IPovertyTabRegional | null;
     populationTabRegional: IPopulationTabRegional | null;
@@ -56,6 +56,25 @@ declare namespace DH {
     unbundlingAidDataTotal: IUnbundlingAidTotal | null;
     unbundlingAidData: Array<IAidUnit> | null;
     unbundlingSelectionData: IUnbundlingAidSelections | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IMethodology {
+    name: string | null;
+    description: string | null;
+    methodology: string | null;
+    uom: string | null;
+    source: ISource | null;
+  }
+
+  /*
+    description: 
+  */
+  interface ISource {
+    name: string | null;
+    link: string | null;
   }
 
   /*
@@ -358,6 +377,7 @@ declare namespace DH {
   interface IFlowSelection {
     name: string | null;
     id: string | null;
+    unbundle: boolean | null;
   }
 
   /*
@@ -410,26 +430,6 @@ declare namespace DH {
     label: string | null;
     color: string | null;
     backgroundColor: string | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IDataSources {
-    name: string | null;
-    Description: string | null;
-    methodology: string | null;
-    unit: string | null;
-    source: string | null;
-    download: IDownload | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IDownload {
-    csv: string | null;
-    zip: string | null;
   }
 
   /*
