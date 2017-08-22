@@ -196,7 +196,8 @@ export async function getIndicatorData<T>(opts: IGetIndicatorArgs): Promise<T[]>
     if (isError(tableName)) throw Error(`error getting table name: ${query}`);
     let countryEntity: any = {};
     if ( conceptType === 'country-profile' && id) countryEntity =  await getEntityBySlugAsync(id);
-    const theme =  conceptType === 'country-profile' ? countryEntity.donor_recipient_type : undefined;
+    let theme =  conceptType === 'country-profile' ? countryEntity.donor_recipient_type : undefined;
+    if (theme === 'crossover') theme = RECIPIENT;
     const concept: IConcept = await getConceptAsync(conceptType, tableName, theme);
     const baseQueryArgs = {...concept, ...opts, table: tableName };
     if (conceptType === 'country-profile') {
