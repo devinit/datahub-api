@@ -38,14 +38,16 @@ describe('country profile DW module tests', () => {
         const internationalB = await resources.getInternationalResources({id: 'somalia'});
         expect(prettyFormat({ uganda: internationalA, somalia: internationalB})).toMatchSnapshot();
     }, 30000);
-    it('should return international resources tab & charts data for Austria', async () => {
-        const international  = await resources.getInternationalResources({id: 'austria'});
-        expect(prettyFormat(international)).toMatchSnapshot();
+    it('should return international resources tab & charts data for Austria & turkey', async () => {
+        const austria  = await resources.getInternationalResources({id: 'austria'});
+        const turkey  = await resources.getInternationalResources({id: 'turkey'});
+        expect(prettyFormat({austria, turkey})).toMatchSnapshot();
     }, 30000);
-    it('should return government finance data for Uganda && somalia', async () => {
-        const governmentA = await resources.getGovernmentFinance({id: 'uganda'});
-        const governmentB = await resources.getGovernmentFinance({id: 'somalia'});
-        expect(prettyFormat({somalia: governmentB, uganda: governmentA})).toMatchSnapshot();
+    it('should return government finance data for Uganda && somalia && Turkey', async () => {
+        const gvtUg = await resources.getGovernmentFinance({id: 'uganda'});
+        const gvtSomalia = await resources.getGovernmentFinance({id: 'somalia'});
+        const gvtTurkey = await resources.getGovernmentFinance({id: 'turkey'});
+        expect(prettyFormat({gvtTurkey, gvtUg, gvtSomalia})).toMatchSnapshot();
     }, 10000);
     it('should return single resources data for use in international resources chart', async () => {
         const FDIOut = await resources.getSingleResource(

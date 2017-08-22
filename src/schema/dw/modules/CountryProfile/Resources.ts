@@ -6,7 +6,7 @@ import * as R from 'ramda';
 import * as shortid from 'shortid';
 import {ICurrency, getCurrency, getEntityBySlugAsync, IColor,
         IEntity, getColors, getEntityByIdGeneric} from '../../../cms/modules/global';
-import {getIndicatorData, RECIPIENT, DONOR, IGetIndicatorArgs,
+import {getIndicatorData, RECIPIENT, DONOR, IGetIndicatorArgs, CROSSOVER,
         indicatorDataProcessingSimple, makeSqlAggregateQuery, formatNumbers, getIndicatorsValue, getIndicatorToolTip,
         isDonor, IRAW, IRAWFlow, IProcessedSimple, entitesFnMap, IRAWDomestic, domesticDataProcessing} from '../utils';
 import {getFlowByTypeAsync, getFlows, getFlowByIdAsync, getBudgetLevels, IBudgetLevelRef,
@@ -147,7 +147,8 @@ export default class Resources {
     public async getFlows(countryType: string): Promise<IflowTypes> {
         // find out whether donor or not using isDonor
         try {
-            const flows: IFlowRef[] = await getFlowByTypeAsync(countryType);
+            const type = countryType ===  CROSSOVER ? RECIPIENT : countryType;
+            const flows: IFlowRef[] = await getFlowByTypeAsync(type);
             const flowSelections: IFlowSelectionRaw[] = await getAllFlowSelections();
             return flows
                 .filter(flow => Number(flow.used_in_area_treemap_chart) === 1)
