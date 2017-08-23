@@ -2,7 +2,7 @@ export default {
     population: 'SELECT value FROM fact.population_total WHERE di_id = ${id} AND year = ${start_year}',
     gdp: 'SELECT value FROM fact.gdp_usd_2015 WHERE di_id = ${id} AND year = ${start_year}',
     // tslint:disable-next-line:max-line-length
-    domesticResourcesOverTime: 'SELECT * FROM data_series.domestic WHERE di_id =${id} AND l1 = ${l1} AND year >= ${start_year}',
+    domesticResourcesOverTime: 'SELECT * FROM data_series.domestic WHERE di_id =${id} AND l1 = ${l1} AND year >= ${start_year} AND value > 0',
     // tslint:disable-next-line:max-line-length
     // revenueAndGrantsOverTime: 'SELECT value FROM data_series.domestic WHERE di_id =${id} AND l1 = \'total-revenue-and-grants\' AND year >= ${start_year} AND year <= ${end_year}',
      // tslint:disable-next-line:max-line-length
@@ -16,7 +16,7 @@ export default {
     grants: 'SELECT value FROM data_series.domestic WHERE di_id =${id} AND budget_type = \'actual\' AND year = ${end_year} AND l1 = \'total-revenue-and-grants\' AND l2 = \'grants\' AND l3 is NULL AND l4 is NULL',
     // tslint:disable-next-line:max-line-length
     internationalResources: 'SELECT sum(value) as value FROM data_series.intl_flows_recipients WHERE di_id = ${id} AND direction =\'in\' AND year=${end_year} group by year',
-    governmentSpendPerPerson: 'SELECT value FROM data_series.govt_spend_pc WHERE di_id = ${id} AND year = ${start_year}',
+    governmentSpendPerPerson: 'SELECT value FROM data_series.govt_spend_pc WHERE di_id = ${id} AND year <= ${start_year}',
     poorestPeople: 'SELECT value FROM data_series.poorest_20_percent WHERE di_id = ${id} AND year = ${start_year}',
     // tslint:disable-next-line:max-line-length
     averageIncomerPerPerson: 'SELECT * FROM fact.gni_pc_usd_2015 WHERE di_id = ${id} AND year >= ${start_year} AND year <= ${end_year}',

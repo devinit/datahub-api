@@ -172,7 +172,7 @@ export default class Resources {
             const entity: IEntity | undefined = await getEntityBySlugAsync(id);
             if (!entity) throw new Error(`entity was not found for slug: ${id}`);
             const currency: ICurrency | undefined = R.find(R.propEq('id', entity.id), currencyList) as ICurrency;
-            return currency ? currency.code : '';
+            return currency ? currency.code : 'NCU';
        } catch (error) {
            throw error;
        }
@@ -187,7 +187,7 @@ export default class Resources {
                 id
             }));
             const resourcesRaw: IRAWDomestic[][]  =
-            await Promise.all(indicatorArgs.map((args) => getIndicatorData<IRAWDomestic>(args)));
+                await Promise.all(indicatorArgs.map((args) => getIndicatorData<IRAWDomestic>(args)));
             const resources: DH.IDomestic[][] = await Promise.all(resourcesRaw.map(obj => domesticDataProcessing(obj)));
             return {
                 finance: resources[0],
