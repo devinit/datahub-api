@@ -4,9 +4,9 @@ import sql from './sql';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import * as R from 'ramda';
 import * as shortid from 'shortid';
-import {ICurrency, getCurrency, getEntityBySlugAsync, IColor,
-        IEntity, getColors, getEntityByIdGeneric} from '../../../cms/modules/global';
-import {getIndicatorData, RECIPIENT, DONOR, IGetIndicatorArgs, CROSSOVER,
+import {ICurrency, getCurrency, getEntityBySlugAsync, IColor, getFlowType,
+        IEntity, getColors, getEntityByIdGeneric, IEntityBasic} from '../../../cms/modules/global';
+import {getIndicatorData, RECIPIENT, DONOR, IGetIndicatorArgs, CROSSOVER, capitalize,
         indicatorDataProcessingSimple, makeSqlAggregateQuery, formatNumbers, getIndicatorsValue, getIndicatorToolTip,
         isDonor, IRAW, IRAWFlow, IProcessedSimple, entitesFnMap, IRAWDomestic, domesticDataProcessing} from '../utils';
 import {getFlowByTypeAsync, getFlows, getFlowByIdAsync, getBudgetLevels, IBudgetLevelRef,
@@ -57,9 +57,10 @@ export default class Resources {
             const GNI: number = await this.getGNI(id);
             const gniToolTip = await getIndicatorToolTip({query: sql.GNI, ...this.defaultArgs});
             const netODAOfGNIIn = isDonorCountry ? null : await this.getNetODAOfGNIIn(id, GNI);
-            const resourcesSql = isDonorCountry ? [sql.resourcesDonors, sql.resourcesDonorsMix] :
+            const resourcesSql = isDonorCountry ? [sql.resourcesDonors, sql.InflowsDonors, sql.resourcesDonorsMix] :
             [sql.resourcesRecipient, sql.resourcesRecipientMix];
             const [resourcesOverTime, mixOfResources] = await this.getResourcesGeneric(id, resourcesSql);
+            const resourceInflowsOverTime = await this.getResourceInflowOvertime(id);
             // TODO: we are currently getting start year for various viz
             // from data_series.intl_flows_recipients concept /indicator. They shouldb be a better way of doing this.
             const concept: IConcept = await getConceptAsync('country-profile', 'data_series.intl_flows_recipients');
@@ -69,6 +70,7 @@ export default class Resources {
                 netODAOfGNIOut: netODAOfGNIOutArr ? netODAOfGNIOutArr[0] : null,
                 resourcesOverTime,
                 mixOfResources,
+                resourceInflowsOverTime,
                 startYear: concept.end_year || 2015
           };
         } catch (error) {
@@ -165,6 +167,24 @@ export default class Resources {
        } catch (error) {
            throw error;
        }
+    }
+    private async getResourceInflowOvertime(id: string): Promise<DH.IInflowsOverTimeWithToolTip > {
+        const isDonorCountry =  await isDonor(id);
+        const query = isDonorCountry ? sql.InflowsDonors : sql.InflowsRecipient;
+        const queryArgs = {query, ...this.defaultArgs, id};
+        const raw: IRAWFlow[] = await getIndicatorData<IRAWFlow>(queryArgs);
+        const flowTypeRefs = await getFlowType();
+        const colors = await getColors();
+        const data: DH.IIndicatorDataColored[] = raw.map(obj => {
+            const flow: IEntityBasic | undefined = flowTypeRefs.find(ref => ref.id === obj.flow_type);
+            if (!flow) throw new Error(`No flow type refrence for ${obj.flow_type}`);
+            const colorObj: IColor | undefined = colors.find(c => c.id === flow.color);
+            const color = colorObj ? colorObj.value : 'grey';
+            return {name: capitalize(obj.flow_type), value: Number(obj.value), id: obj.flow_type,
+                color, uid: shortid.generate(), year: Number(obj.year)};
+        });
+        const toolTip = await getIndicatorToolTip(queryArgs);
+        return {data, toolTip};
     }
     private async getCurrencyCode(id: string): Promise<string> {
         try {

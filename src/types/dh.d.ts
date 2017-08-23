@@ -158,7 +158,6 @@ declare namespace DH {
     description: 
   */
   interface IOverviewTab {
-    countryType: string | null;
     poorestPeople: IIndicatorValueWithToolTip | null;
     population: IIndicatorValueWithToolTip | null;
     domesticResources: IIndicatorValueWithToolTip | null;
@@ -326,8 +325,29 @@ declare namespace DH {
     GNI: IIndicatorValueWithToolTip | null;
     netODAOfGNIIn: IIndicatorValueWithToolTip | null;
     netODAOfGNIOut: IIndicatorValueWithToolTip | null;
+    resourceInflowsOverTime: IInflowsOverTimeWithToolTip | null;
     resourcesOverTime: IResourceDataWithToolTip | null;
     mixOfResources: IResourceDataWithToolTip | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IInflowsOverTimeWithToolTip {
+    data: Array<IIndicatorDataColored> | null;
+    toolTip: IToolTip | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IIndicatorDataColored {
+    year: number | null;
+    value: number | null;
+    id: string | null;
+    name: string | null;
+    color: string | null;
+    uid: string | null;
   }
 
   /*
@@ -448,18 +468,6 @@ declare namespace DH {
   interface IIndicatorDataColoredWithToolTip {
     data: IIndicatorDataColored | null;
     toolTip: IToolTip | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IIndicatorDataColored {
-    year: number | null;
-    value: number | null;
-    id: string | null;
-    name: string | null;
-    color: string | null;
-    uid: string | null;
   }
 
   /*

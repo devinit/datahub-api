@@ -54,7 +54,6 @@ type ResourceData {
 }
 
 type OverviewTab {
-    countryType: String 
    # how many of the poorest people globally live in a country
     poorestPeople: IndicatorValueWithToolTip
     # total population for a given country
@@ -152,6 +151,10 @@ type Flow {
   id: String
   selections: [FlowSelection]
 }
+type InflowsOverTimeWithToolTip {
+  data: [IndicatorDataColored]
+  toolTip: ToolTip
+}
 type InternationalResources {
   startYear: Int
   # Gross National Income
@@ -160,8 +163,10 @@ type InternationalResources {
   netODAOfGNIIn: IndicatorValueWithToolTip
   #Net ODA out, % of GNI for recipient countries
   netODAOfGNIOut: IndicatorValueWithToolTip
+  # for line chart in the  international resources tabs section,
+  # IndicatorDataColoredWithToolTip  is defined in spotlight types
+  resourceInflowsOverTime: InflowsOverTimeWithToolTip 
   # for sidebar chart in international resources section & area partition tree chart default data
-  # & line chart in the  tabs section
   resourcesOverTime: ResourceDataWithToolTip
   # Whats the mix of resources can be for donors (out flows) or receipient (in flows)
   # this is for the donut chart

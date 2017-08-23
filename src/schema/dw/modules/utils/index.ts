@@ -120,12 +120,10 @@ export const RECIPIENT = 'recipient';
 export const DONOR = 'donor';
 export const MULTILATERAL = 'multilateral';
 export const  CROSSOVER = 'crossover';
-
-export const domesticLevelMap = {
-    l1: 'type',
-    l2: 'parentCategory',
-    l3: 'category',
-    l4: 'subCategory'
+export const  budgetTypesRefs = {
+    actual: 'Actual',
+    budget: 'Budget',
+    proj: 'Projected'
 };
 export const entitesFnMap = {
     sector: getSectors,
@@ -230,7 +228,7 @@ export const getIndicatorsValue = async ({id, sqlList, db, format = true, precis
             const toolTip = toolTips[index];
             let value = 'No data';
             if (data && data[0] && data[0].value && format) value = formatNumbers(data[0].value, precisionFix, true);
-            if (data && data[0] && data[0].value && !format) value = data[0].value;
+            if (data && data[0] && data[0].value && !format) value = Math.round(Number(data[0].value)).toString();
             return {value, toolTip};
         });
     } catch (error) {
@@ -272,7 +270,7 @@ export const domesticDataProcessing = async (data: IRAWDomestic[], country?: str
     : Promise<DH.IDomestic[]> => {
     const budgetRefs: IBudgetLevelRef[] = country ? await getBudgetLevels(country) : await getBudgetLevels();
     return indicatorDataProcessingSimple(data)
-            .map((obj) => {
+            .map((obj: any) => {
                 const levelKeys = R.keys(obj).filter(key => R.test(/^l[0-9]/, key));
                 const levels = levelKeys.map(key => {
                     const budgetLevel: IBudgetLevelRef | undefined = budgetRefs.find(ref => ref.id === obj[key]);
@@ -280,7 +278,8 @@ export const domesticDataProcessing = async (data: IRAWDomestic[], country?: str
                     return budgetLevel.name;
                 }).filter(level => level !== null);
                 const uid: string = shortid.generate();
-                return {...obj, uid, levels} as DH.IDomestic;
+                const budget_type = budgetTypesRefs[obj.budget_type];
+                return {...obj, budget_type, uid, levels} as DH.IDomestic;
             });
 };
 
@@ -328,6 +327,8 @@ const removeTrailingZero = (value: string): string => {
     const val = Number(value);
     return  Math.round(val) === val ? val.toString() : value;
 };
+export const capitalize = (val: string) =>
+    `${val[0].toUpperCase()}${R.drop(1, val)}`;
 
 export const formatNumbers =
     (value: number | string | undefined | null,

@@ -3,21 +3,17 @@ import {IExtensions} from '../../db';
 import sql from './sql';
 import * as shortid from 'shortid';
 import * as R from 'ramda';
-import {getIndicatorData, IGetIndicatorArgs, isDonor, indicatorDataProcessingNamed, DONOR,
-        IRAWPopulationAgeBand, normalizeKeyName, IRAW, IRAWQuintile, RECIPIENT,
+import {getIndicatorData, IGetIndicatorArgs, isDonor, indicatorDataProcessingNamed,
+        IRAWPopulationAgeBand, normalizeKeyName, IRAW, IRAWQuintile,
         IRAWPopulationGroup, getIndicatorToolTip, getIndicatorsValue} from '../utils';
 
 interface IOverViewTabRecipients {
-    countryType: string;
     poorestPeople: DH.IIndicatorValueWithToolTip;
     population: DH.IIndicatorValueWithToolTip;
     domesticResources: DH.IIndicatorValueWithToolTip;
-    governmentSpendPerPerson: DH.IIndicatorValueWithToolTip;
     internationalResources: DH.IIndicatorValueWithToolTip;
 }
 interface IOverViewTabDonors {
-    countryType: string;
-    governmentSpendPerPerson: DH.IIndicatorValueWithToolTip;
     averageIncomerPerPerson: DH.IIndicatorDataWithToolTip;
     incomeDistTrend: DH.IQuintileDataWithToolTip;
 }
@@ -35,17 +31,21 @@ export default class CountryProfileTabs {
     public async getOverViewTab({id}): Promise<DH.IOverviewTab> {
         try {
             const isDonorCountry =  await isDonor(id);
+            const [governmentSpendPerPerson] = await getIndicatorsValue({id, format: false,
+                sqlList: [sql.governmentSpendPerPerson], ...this.defaultArgs});
             if (isDonorCountry) {
                 const donorsTabData = await this.getOverViewTabDonors(id);
                 return {
                     ...donorsTabData,
+                    governmentSpendPerPerson,
                     poorestPeople: null,
                     population: null, domesticResources: null, internationalResources: null};
             }
             const recipientTabData = await this.getOverViewTabRecipients(id);
             return {
                 ...recipientTabData,
-                averageIncomerPerPerson: null, incomeDistTrend: null, countryType: RECIPIENT};
+                governmentSpendPerPerson,
+                averageIncomerPerPerson: null, incomeDistTrend: null};
         } catch (error) {
             console.error(error);
             throw error;
@@ -92,16 +92,11 @@ export default class CountryProfileTabs {
             const sqlList =  [sql.internationalResources,  sql.population, sql.poorestPeople, sql.domesticRevenue];
             const [internationalResources, population, poorestPeople, domesticResources]
                 = await getIndicatorsValue({id: countryId, sqlList, ...this.defaultArgs});
-            const [governmentSpendPerPerson] =
-                await getIndicatorsValue({id: countryId, sqlList: [sql.governmentSpendPerPerson],
-                     ...this.defaultArgs, precision: 0});
             return {
-                countryType: RECIPIENT,
                 internationalResources,
                 domesticResources,
                 population,
-                poorestPeople,
-                governmentSpendPerPerson
+                poorestPeople
             };
         } catch (error) {
             console.error(error);
@@ -110,13 +105,9 @@ export default class CountryProfileTabs {
     }
     public async getOverViewTabDonors(countryId: string): Promise<IOverViewTabDonors> {
         try {
-            const [governmentSpendPerPerson] = await
-                getIndicatorsValue({id: countryId, sqlList: [sql.governmentSpendPerPerson], ...this.defaultArgs});
             const averageIncomerPerPerson = await this.getAverageIncomerPerPerson(countryId);
             const incomeDistTrend = await this.getIncomeDistTrend(countryId);
             return {
-                countryType: DONOR,
-                governmentSpendPerPerson,
                 averageIncomerPerPerson,
                 incomeDistTrend
             };
@@ -125,6 +116,7 @@ export default class CountryProfileTabs {
             throw error;
         }
     }
+
     private async getAverageIncomerPerPerson(id: string): Promise<DH.IIndicatorDataWithToolTip> {
          try {
             const indicatorArgs: IGetIndicatorArgs = {
