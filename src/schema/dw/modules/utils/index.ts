@@ -80,6 +80,7 @@ export interface IRAWQuintile {
 export interface IRAWFlow {
     di_id: string;
     year: string;
+    flow_category_order: number;
     direction: string;
     flow_type: string;
     flow_name: string;
@@ -95,7 +96,8 @@ export interface IRAWDomestic {
     l4: string;
 }
 export interface IToolTipArgs {
-    query: string;
+    query?: string;
+    id?: string;
     conceptType: string;
 }
 export interface Isummable {
@@ -177,12 +179,15 @@ export const getSpotlightTableName = (country: string, query: string): string =>
             .replace(/\${schema\^}/, schema)
             .replace(/\${country\^}/, country);
 };
-export const getIndicatorToolTip = async ({query, conceptType}: IToolTipArgs): Promise<DH.IToolTip> => {
+export const getIndicatorToolTip = async ({query, conceptType, id}: IToolTipArgs): Promise<DH.IToolTip> => {
     const country: string = conceptType.includes('spotlight-') ?  conceptType.split('-')[1] : '';
-    const indicatorId: string | Error =
-        !country ? getTableNameFromSql(query) : getSpotlightTableName(country, query);
-    if (!indicatorId || isError(indicatorId))
-        throw new Error (`failed to get indicator id from sql query; ${indicatorId}`);
+    let indicatorId: string = id || '';
+    if (query) {
+        const eitherId: string | Error =
+            id || !country ? getTableNameFromSql(query) : getSpotlightTableName(country, query);
+        if (isError(indicatorId)) throw new Error (`failed to get indicator id from sql query; ${indicatorId}`);
+        indicatorId = eitherId as string;
+    }
     const concept: IConcept = await getConceptAsync(conceptType, indicatorId);
     return {source: concept.source, heading: concept.description || concept.heading};
 };

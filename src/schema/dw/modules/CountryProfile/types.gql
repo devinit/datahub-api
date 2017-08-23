@@ -40,6 +40,7 @@ type ResourceData {
   value: Float!
   flow_name: String!
   flow_id: String!
+  order: Int
   short_name: String
   # Category i.e FDI, ODA
   flow_category: String

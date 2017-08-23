@@ -30,6 +30,7 @@ interface IFlowProcessed {
   id: string;
   value: number;
   uid: string;
+  flow_category_order: number;
   flow_type: string;
   flow_name: string;
   direction: string;
@@ -221,12 +222,12 @@ export default class Resources {
 
     private async getSpendingAllocation(id: string): Promise<DH.ISpendingAllocationWithToolTip> {
         try {
-            const indicatorArgsGdp: IGetIndicatorArgs = {
+            const indicatorArgs: IGetIndicatorArgs = {
             ...this.defaultArgs,
             query: sql.spendingAllocation,
             id
         };
-            const raw: IRAWSpending[] = await getIndicatorData<IRAWSpending>(indicatorArgsGdp);
+            const raw: IRAWSpending[] = await getIndicatorData<IRAWSpending>(indicatorArgs);
             // TODO: we have null names from raw data
             const budgetRefs: IBudgetLevelRef[] = await getBudgetLevels();
             const data = raw
@@ -235,7 +236,7 @@ export default class Resources {
                     const level = R.find(R.propEq('id', obj.l2), budgetRefs) as IBudgetLevelRef;
                     return {value: Number(obj.value), ...level, uid: shortid.generate()};
                 });
-            const toolTip = await getIndicatorToolTip(indicatorArgsGdp);
+            const toolTip = await getIndicatorToolTip({...this.defaultArgs, id: 'spending-allocation'});
             return {data, toolTip};
        } catch (error) {
            throw error;
@@ -253,7 +254,7 @@ export default class Resources {
                 const pc = (Number(grants[0].value) / Number(totalRevenueAndGrants[0].value)) * 100;
                 value = pc.toFixed(1);
             }
-            const toolTip = await getIndicatorToolTip(indicatorArgs[1]);
+            const toolTip = await getIndicatorToolTip({id: 'grants-percent-total-revenue',  ...this.defaultArgs});
             return {value, toolTip};
         } catch (error) {
             throw error;
@@ -289,8 +290,7 @@ export default class Resources {
             throw error;
         }
     }
-
-     private async getResourcesGeneric(id: string, sqlList: string[]): Promise<DH.IResourceDataWithToolTip[]> {
+    private async getResourcesGeneric(id: string, sqlList: string[]): Promise<DH.IResourceDataWithToolTip[]> {
          try {
             const indicatorArgs: IGetIndicatorArgs[] = sqlList
                 .map(query => ({query, ...this.defaultArgs, id}));
@@ -314,7 +314,8 @@ export default class Resources {
                 const flow: IFlowRef | undefined = flowRefs.find(flowRef => flowRef.id === obj.flow_name);
                 if (flow === undefined) throw new Error(`No flow refrence for ${JSON.stringify(obj)} `);
                 const colorObj: IColor = getEntityByIdGeneric<IColor>(flow.color, colors);
-                return {...obj, ...flow, color: colorObj.value, flow_id: flow.id} as DH.IResourceData;
+                return {...obj, ...flow, color: colorObj.value, order: obj.flow_category_order,
+                    flow_id: flow.id} as DH.IResourceData;
              });
          } catch (error) {
              throw error;
