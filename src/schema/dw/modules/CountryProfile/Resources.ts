@@ -310,13 +310,15 @@ export default class Resources {
             const processed: IFlowProcessed[] = indicatorDataProcessingSimple<IFlowProcessed>(data);
             const flowRefs: IFlowRef[] = await getFlows();
             const colors = await getColors();
-            return processed.map(obj => {
-                const flow: IFlowRef | undefined = flowRefs.find(flowRef => flowRef.id === obj.flow_name);
-                if (flow === undefined) throw new Error(`No flow refrence for ${JSON.stringify(obj)} `);
-                const colorObj: IColor = getEntityByIdGeneric<IColor>(flow.color, colors);
-                return {...obj, ...flow, color: colorObj.value, order: obj.flow_category_order,
-                    flow_id: flow.id} as DH.IResourceData;
-             });
+            return processed
+                .filter(obj => obj.flow_name && obj.flow_name.length)
+                .map(obj => {
+                    const flow: IFlowRef | undefined = flowRefs.find(flowRef => flowRef.id === obj.flow_name);
+                    if (flow === undefined) throw new Error(`No flow refrence for ${JSON.stringify(obj)} `);
+                    const colorObj: IColor = getEntityByIdGeneric<IColor>(flow.color, colors);
+                    return {...obj, ...flow, color: colorObj.value, order: obj.flow_category_order,
+                        flow_id: flow.id} as DH.IResourceData;
+                });
          } catch (error) {
              throw error;
          }

@@ -211,3 +211,9 @@ SELECT * FROM data_series.domestic WHERE di_id ='RW' AND l1 = 'total-expenditure
 SELECT * FROM data_series.domestic WHERE di_id ='RW' AND l1 = 'financing' AND year >= 2000 AND year <= 2015:dw
 SELECT * FROM data_series.domestic WHERE di_id ='RW' AND l1 = 'total-revenue-and-grants' AND year >= 2000 AND year <= 2015:dw
 SELECT value FROM data_series.govt_spend_pc WHERE di_id = 'RW' AND year = 2015:dw
+SELECT sum(value) as value, flow_type, year FROM data_series.intl_flows_donors WHERE di_id = 'IT' AND year >= 2000 AND year <= 2015 AND value > 0 AND direction = 'in' GROUP BY flow_type, year:dw
+SELECT value FROM fact.oda_percent_gni WHERE di_id = 'IT' AND year = 2015:dw
+SELECT value FROM fact.gni_usd_2015 WHERE di_id = 'IT' AND year = 2015:dw
+country-profile/flow-type.csv:cms
+SELECT flow_name, year,flow_type,direction,value FROM data_series.intl_flows_donors WHERE di_id = 'IT' AND year >= 2000 AND year <= 2015 AND value > 0 GROUP BY flow_name,year,flow_type,direction,value:dw
+SELECT flow_name, year,flow_type,direction,value FROM data_series.intl_flows_donors WHERE di_id = 'IT' AND year = 2015 AND direction = 'out' AND value > 0 GROUP BY flow_name,year,flow_type,direction,value:dw

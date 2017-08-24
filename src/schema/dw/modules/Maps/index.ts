@@ -113,7 +113,7 @@ export default class Maps {
     public static createLinearLegend(
         uom_display: string,
         rangeStr: string, scale: IScaleThreshold<number, string>): DH.ILegendField[] {
-        const uom = uom_display === '%' || uom_display === 'PPP$' ? uom_display : '';
+        const uom = uom_display ? uom_display : '';
         const inputDomain = rangeStr.split(',').map(val => Number(val));
         const isAscendingOrder = inputDomain[0] < inputDomain[1];
         let firstSign = '<';
@@ -141,9 +141,9 @@ export default class Maps {
             const lastBackgroundColor = range[index + (range.length - domain.length)];
             const lastEntry = range.length > domain.length ?
                 [{color, backgroundColor, label: `${prevVal}-${currentVal}`},
-                {color, backgroundColor: lastBackgroundColor, label: `${secondSign}${currentVal}`}]
+                {color, backgroundColor: lastBackgroundColor, label: `${secondSign}${currentVal} ${uom}`}]
                 :
-                [{color, backgroundColor: lastBackgroundColor, label: `${secondSign}${currentVal}`}];
+                [{color, backgroundColor: lastBackgroundColor, label: `${secondSign}${currentVal} ${uom}`}];
             return [...acc, ...lastEntry, Maps.noDataLegendEntry];
         }, []);
         return legend; // ascending order
