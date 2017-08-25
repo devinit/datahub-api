@@ -80,12 +80,12 @@ exports[`Maps module tests should create legend for map data 1`] = `
     Object {
       \\"backgroundColor\\": \\"rgb(143, 27, 19)\\",
       \\"color\\": \\"white\\",
-      \\"label\\": \\">20 %\\",
+      \\"label\\": \\">80 %\\",
     },
     Object {
       \\"backgroundColor\\": \\"rgb(165, 37, 29)\\",
       \\"color\\": \\"white\\",
-      \\"label\\": \\"20-40\\",
+      \\"label\\": \\"60-80\\",
     },
     Object {
       \\"backgroundColor\\": \\"rgb(242, 142, 131)\\",
@@ -95,12 +95,12 @@ exports[`Maps module tests should create legend for map data 1`] = `
     Object {
       \\"backgroundColor\\": \\"rgb(246, 178, 167)\\",
       \\"color\\": \\"black\\",
-      \\"label\\": \\"60-80\\",
+      \\"label\\": \\"20-40\\",
     },
     Object {
       \\"backgroundColor\\": \\"rgb(251, 215, 203)\\",
       \\"color\\": \\"black\\",
-      \\"label\\": \\"<80 %\\",
+      \\"label\\": \\"<20 %\\",
     },
     Object {
       \\"backgroundColor\\": \\"#d0cccf\\",
@@ -123,12 +123,11 @@ exports[`Maps module tests should return color values from a scale 1`] = `
   },
   \\"B\\": Object {
     \\"0\\": \\"rgb(143, 27, 19)\\",
-    \\"120\\": \\"rgb(245, 168, 154)\\",
-    \\"20\\": \\"rgb(179, 43, 35)\\",
-    \\"5\\": \\"rgb(161, 35, 27)\\",
-    \\"50\\": \\"rgb(242, 143, 130)\\",
-    \\"500\\": \\"rgb(248, 193, 178)\\",
-    \\"580\\": \\"rgb(248, 193, 178)\\",
+    \\"100\\": \\"rgb(248, 193, 178)\\",
+    \\"20\\": \\"rgb(165, 37, 29)\\",
+    \\"40\\": \\"rgb(240, 131, 118)\\",
+    \\"60\\": \\"rgb(244, 162, 148)\\",
+    \\"80\\": \\"rgb(248, 193, 178)\\",
   },
   \\"domainA\\": Array [
     1,
@@ -137,11 +136,10 @@ exports[`Maps module tests should return color values from a scale 1`] = `
     20,
   ],
   \\"domainB\\": Array [
-    5,
     20,
-    50,
-    120,
-    500,
+    40,
+    60,
+    80,
   ],
   \\"rangeA\\": Array [
     \\"rgb(248, 193, 178)\\",
@@ -152,10 +150,9 @@ exports[`Maps module tests should return color values from a scale 1`] = `
   ],
   \\"rangeB\\": Array [
     \\"rgb(143, 27, 19)\\",
-    \\"rgb(161, 35, 27)\\",
-    \\"rgb(179, 43, 35)\\",
-    \\"rgb(242, 143, 130)\\",
-    \\"rgb(245, 168, 154)\\",
+    \\"rgb(165, 37, 29)\\",
+    \\"rgb(240, 131, 118)\\",
+    \\"rgb(244, 162, 148)\\",
     \\"rgb(248, 193, 178)\\",
   ],
 }"

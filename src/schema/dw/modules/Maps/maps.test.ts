@@ -52,11 +52,10 @@ describe('Maps module tests', () => {
     it('should return color values from a scale', async () => {
         const ramp = {high: '#8f1b13', low: '#f8c1b2', mid: '#e8443a'};
         const scaleA = Maps.colorScale({rangeStr: '1, 5, 10, 20', ramp});
-        const scaleB = Maps.colorScale({rangeStr: '500,120,50,20,5', ramp, isHighBetter: true});
+        const scaleB = Maps.colorScale({rangeStr: '80,60,40,20', ramp, isHighBetter: true});
         const results = {
             A: {0: scaleA(0), 1: scaleA(1), 5: scaleA(5), 10: scaleA(10), 19: scaleA(19), 100: scaleA(100)},
-            B: { 580: scaleB(580), 500: scaleB(500), 120: scaleB(120),
-                50: scaleB(50), 20: scaleB(20), 5: scaleB(5), 0: scaleB(0) },
+            B: { 100: scaleB(100), 80: scaleB(80), 60: scaleB(60), 40: scaleB(40), 20: scaleB(20), 0: scaleB(0) },
             rangeB: scaleB.range(),
             domainB:  scaleB.domain(),
             rangeA: scaleA.range(),

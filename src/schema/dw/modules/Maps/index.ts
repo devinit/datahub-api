@@ -87,7 +87,7 @@ export default class Maps {
         const {rangeStr, ramp} = args;
         const offset = args.offset !== undefined ? args.offset : 1;
         const domain = rangeStr.split (',').map(val => Number(val));
-        const isHighBetter = args.isHighBetter || domain[0] > domain[1] ;
+        const isHighBetter = args.isHighBetter || false;
         const effectiveDomain =  domain.length + offset;
         const range = R.range(0, effectiveDomain).map((index) => {
             if (offset === 0) return interpolateRgb(ramp.low, ramp.high)(index / domain.length);
@@ -116,19 +116,15 @@ export default class Maps {
         const uom = uom_display ? uom_display : '';
         const inputDomain = rangeStr.split(',').map(val => Number(val));
         const isAscendingOrder = inputDomain[0] < inputDomain[1];
-        let firstSign = '<';
-        let secondSign = '>';
-        if (!isAscendingOrder) {
-            firstSign = '>';
-            secondSign = '<';
-        }
+        const firstSign = '<';
+        const secondSign = '>';
         const domain = scale.domain(); // numbers
         const range = scale.range();
         const legend = domain.reduce((acc: DH.ILegendField[], val: number, index: number) => {
             const backgroundColor = range[index];
             const hslColor = hsl(backgroundColor);
-            const color =  (hslColor.l > 0.7) ? 'black' : 'white';
-            const currentVal  = formatNumbers(val, 1, true);
+            const color = (hslColor.l > 0.7) ? 'black' : 'white';
+            const currentVal = formatNumbers(val, 1, true);
             if (index === 0 ) return [{backgroundColor, color,  label: `${firstSign}${currentVal} ${uom}`}];
             const prevVal = formatNumbers(domain[index - 1], 1, true);
             if (index < (domain.length - 1)) {
@@ -146,7 +142,7 @@ export default class Maps {
                 [{color, backgroundColor: lastBackgroundColor, label: `${secondSign}${currentVal} ${uom}`}];
             return [...acc, ...lastEntry, Maps.noDataLegendEntry];
         }, []);
-        return legend; // ascending order
+        return isAscendingOrder ? legend :  [...R.dropLast(1, legend).reverse(), R.last(legend)];
     }
     public static categoricalLegendFromLinear(cMappings: ICategoricalMapping[], linearLegend: DH.ILegendField[]):
         DH.ILegendField[] {
