@@ -86,8 +86,8 @@ export default class Maps {
     public static colorScale(args: IColorScaleArgs): IScaleThreshold<number, string> {
         const {rangeStr, ramp} = args;
         const offset = args.offset !== undefined ? args.offset : 1;
-        const isHighBetter = args.isHighBetter || false ;
         const domain = rangeStr.split (',').map(val => Number(val));
+        const isHighBetter = args.isHighBetter || domain[0] > domain[1] ;
         const effectiveDomain =  domain.length + offset;
         const range = R.range(0, effectiveDomain).map((index) => {
             if (offset === 0) return interpolateRgb(ramp.low, ramp.high)(index / domain.length);
@@ -96,8 +96,8 @@ export default class Maps {
                 :   interpolateRgb(ramp.mid, ramp.high)(index / domain.length);
         });
         return scaleThreshold()
-            .domain(domain)
-            .range(isHighBetter ? R.reverse(range) : range);
+            .domain(domain[0] > domain[1] ? domain.reverse() : domain)
+            .range(isHighBetter ? range.reverse() :  range);
     }
     public static async getColorRamp(color: string): Promise<IColorMap> {
         const colors = await getColors();
@@ -147,7 +147,6 @@ export default class Maps {
             return [...acc, ...lastEntry, Maps.noDataLegendEntry];
         }, []);
         return legend; // ascending order
-        // return [...(R.reverse(R.init(legend))), R.last(legend)] as DH.ILegendField[];
     }
     public static categoricalLegendFromLinear(cMappings: ICategoricalMapping[], linearLegend: DH.ILegendField[]):
         DH.ILegendField[] {
@@ -190,7 +189,6 @@ export default class Maps {
     constructor(db: any) {
         this.db = db;
     }
-
     public async getMapData(id: string): Promise<DH.IMapData> {
          try {
              const country = await Maps.getCountry(id);

@@ -49,14 +49,18 @@ describe('Maps module tests', () => {
         const dataRevolution = await Maps.getCategoricalMapping('data_series.agricultural_census', 'data-revolution');
         expect(prettyFormat({fragileSates, dataRevolution})).toMatchSnapshot();
     }, 5000);
-    it.skip('should return color values from a scale', async () => {
+    it('should return color values from a scale', async () => {
         const ramp = {high: '#8f1b13', low: '#f8c1b2', mid: '#e8443a'};
         const scaleA = Maps.colorScale({rangeStr: '1, 5, 10, 20', ramp});
-        const scaleB = Maps.colorScale({rangeStr: '500,120,50,20,5', ramp});
+        const scaleB = Maps.colorScale({rangeStr: '500,120,50,20,5', ramp, isHighBetter: true});
         const results = {
             A: {0: scaleA(0), 1: scaleA(1), 5: scaleA(5), 10: scaleA(10), 19: scaleA(19), 100: scaleA(100)},
-            B: { 530: scaleB(530), 110: scaleB(110),
-                50: scaleB(50), 22: scaleB(22), 2: scaleB(2)},
+            B: { 580: scaleB(580), 500: scaleB(500), 120: scaleB(120),
+                50: scaleB(50), 20: scaleB(20), 5: scaleB(5), 0: scaleB(0) },
+            rangeB: scaleB.range(),
+            domainB:  scaleB.domain(),
+            rangeA: scaleA.range(),
+            domainA:  scaleA.domain()
         };
         expect(prettyFormat(results)).toMatchSnapshot();
     });
@@ -65,11 +69,13 @@ describe('Maps module tests', () => {
         const rampB = {high: '#0c457b', low: '#bcd4f0', mid: '#0089cc'};
         const rangeA = '1, 5, 10, 20';
         const rangeB = '200,500,1000,1500,2000,10000';
+        const rangeC = '80,60,40,20';
         const scaleA = Maps.colorScale({rangeStr: rangeA, ramp: rampA});
         const scaleB = Maps.colorScale({rangeStr: rangeB, ramp: rampB, isHighBetter: true});
+        const scaleC = Maps.colorScale({rangeStr: rangeC, ramp: rampA});
         const legendA = Maps.createLinearLegend('%', rangeA, scaleA);
-        const legendB = Maps.createLinearLegend('unit', rangeB, scaleB);
-        const legendC = Maps.createLinearLegend('PPP$', rangeB, scaleB);
+        const legendB = Maps.createLinearLegend('', rangeB, scaleB);
+        const legendC = Maps.createLinearLegend('%', rangeC, scaleC);
         expect(prettyFormat({legendB, legendC, legendA})).toMatchSnapshot();
     });
     it.skip('should create color ramp', async () => {

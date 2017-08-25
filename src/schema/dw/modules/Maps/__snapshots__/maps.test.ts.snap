@@ -38,7 +38,7 @@ exports[`Maps module tests should create legend for map data 1`] = `
     Object {
       \\"backgroundColor\\": \\"rgb(12, 69, 123)\\",
       \\"color\\": \\"white\\",
-      \\"label\\": \\"<200 unit\\",
+      \\"label\\": \\"<200 \\",
     },
     Object {
       \\"backgroundColor\\": \\"rgb(10, 80, 137)\\",
@@ -68,7 +68,7 @@ exports[`Maps module tests should create legend for map data 1`] = `
     Object {
       \\"backgroundColor\\": \\"rgb(188, 212, 240)\\",
       \\"color\\": \\"black\\",
-      \\"label\\": \\">10k unit\\",
+      \\"label\\": \\">10k \\",
     },
     Object {
       \\"backgroundColor\\": \\"#d0cccf\\",
@@ -78,45 +78,85 @@ exports[`Maps module tests should create legend for map data 1`] = `
   ],
   \\"legendC\\": Array [
     Object {
-      \\"backgroundColor\\": \\"rgb(12, 69, 123)\\",
+      \\"backgroundColor\\": \\"rgb(143, 27, 19)\\",
       \\"color\\": \\"white\\",
-      \\"label\\": \\"<200 PPP$\\",
+      \\"label\\": \\">20 %\\",
     },
     Object {
-      \\"backgroundColor\\": \\"rgb(10, 80, 137)\\",
+      \\"backgroundColor\\": \\"rgb(165, 37, 29)\\",
       \\"color\\": \\"white\\",
-      \\"label\\": \\"200-500\\",
+      \\"label\\": \\"20-40\\",
     },
     Object {
-      \\"backgroundColor\\": \\"rgb(8, 92, 150)\\",
-      \\"color\\": \\"white\\",
-      \\"label\\": \\"500-1k\\",
-    },
-    Object {
-      \\"backgroundColor\\": \\"rgb(94, 175, 222)\\",
-      \\"color\\": \\"white\\",
-      \\"label\\": \\"1k-1.5k\\",
-    },
-    Object {
-      \\"backgroundColor\\": \\"rgb(125, 187, 228)\\",
-      \\"color\\": \\"white\\",
-      \\"label\\": \\"1.5k-2k\\",
-    },
-    Object {
-      \\"backgroundColor\\": \\"rgb(157, 200, 234)\\",
+      \\"backgroundColor\\": \\"rgb(242, 142, 131)\\",
       \\"color\\": \\"black\\",
-      \\"label\\": \\"2k-10k\\",
+      \\"label\\": \\"40-60\\",
     },
     Object {
-      \\"backgroundColor\\": \\"rgb(188, 212, 240)\\",
+      \\"backgroundColor\\": \\"rgb(246, 178, 167)\\",
       \\"color\\": \\"black\\",
-      \\"label\\": \\">10k PPP$\\",
+      \\"label\\": \\"60-80\\",
+    },
+    Object {
+      \\"backgroundColor\\": \\"rgb(251, 215, 203)\\",
+      \\"color\\": \\"black\\",
+      \\"label\\": \\"<80 %\\",
     },
     Object {
       \\"backgroundColor\\": \\"#d0cccf\\",
       \\"color\\": \\"white\\",
       \\"label\\": \\"no data/not applicable\\",
     },
+  ],
+}"
+`;
+
+exports[`Maps module tests should return color values from a scale 1`] = `
+"Object {
+  \\"A\\": Object {
+    \\"0\\": \\"rgb(248, 193, 178)\\",
+    \\"1\\": \\"rgb(244, 162, 148)\\",
+    \\"10\\": \\"rgb(165, 37, 29)\\",
+    \\"100\\": \\"rgb(143, 27, 19)\\",
+    \\"19\\": \\"rgb(165, 37, 29)\\",
+    \\"5\\": \\"rgb(240, 131, 118)\\",
+  },
+  \\"B\\": Object {
+    \\"0\\": \\"rgb(143, 27, 19)\\",
+    \\"120\\": \\"rgb(245, 168, 154)\\",
+    \\"20\\": \\"rgb(179, 43, 35)\\",
+    \\"5\\": \\"rgb(161, 35, 27)\\",
+    \\"50\\": \\"rgb(242, 143, 130)\\",
+    \\"500\\": \\"rgb(248, 193, 178)\\",
+    \\"580\\": \\"rgb(248, 193, 178)\\",
+  },
+  \\"domainA\\": Array [
+    1,
+    5,
+    10,
+    20,
+  ],
+  \\"domainB\\": Array [
+    5,
+    20,
+    50,
+    120,
+    500,
+  ],
+  \\"rangeA\\": Array [
+    \\"rgb(248, 193, 178)\\",
+    \\"rgb(244, 162, 148)\\",
+    \\"rgb(240, 131, 118)\\",
+    \\"rgb(165, 37, 29)\\",
+    \\"rgb(143, 27, 19)\\",
+  ],
+  \\"rangeB\\": Array [
+    \\"rgb(143, 27, 19)\\",
+    \\"rgb(161, 35, 27)\\",
+    \\"rgb(179, 43, 35)\\",
+    \\"rgb(242, 143, 130)\\",
+    \\"rgb(245, 168, 154)\\",
+    \\"rgb(248, 193, 178)\\",
   ],
 }"
 `;
