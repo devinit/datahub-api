@@ -112,6 +112,7 @@ declare namespace DH {
   interface IThemeIndicator {
     heading: string | null;
     source: string | null;
+    tooltip: string | null;
     id: string | null;
     name: string | null;
   }

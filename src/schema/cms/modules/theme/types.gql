@@ -1,6 +1,7 @@
 type ThemeIndicator {
   heading: String
   source: String
+  tooltip: String
   id: String
   name: String
 }

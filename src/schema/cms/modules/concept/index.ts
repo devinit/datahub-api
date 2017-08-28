@@ -9,6 +9,7 @@ export interface IConcept {
     map_style?: string;
     is_high_better?: number;
     start_year: number;
+    tooltip: string;
     dac_only: number;
     default_year: number;
     include_in_methodology_page: number;
