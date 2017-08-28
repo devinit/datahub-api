@@ -220,6 +220,7 @@ export default class Maps {
         }
         const args = {...concept, sql, db: this.db, table: concept.id} as IGetIndicatorArgsSimple;
         const data: IRAWMapData [] = await getIndicatorDataSimple<IRAWMapData>(args);
+        // eliminate non country data
         if (concept.range && concept.color)
             return this.linearDataProcessing(concept, country, data);
         if (concept.color)  return this.categoricalLinearDataProcessing(concept, country, data);
@@ -255,22 +256,30 @@ export default class Maps {
             await getEntities() :  await getDistrictEntities(country);
         const processedData: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(data, country);
         const hasBudgeTypes: boolean = processedData[0].budget_type ? true : false;
-        const processed: DH.IMapUnit[] = processedData.map((obj) => {
-            const entity = getEntityByIdGeneric<IDistrict | IEntity>(obj.id, entities);
-            let detail: any = null;
-            if (cMappings) {
-                detail = Maps.getValueDetail(obj.value, cMappings).name;
-            }
-            if (hasBudgeTypes) detail = obj.budget_type;
-            const colorObj = Color(scale(obj.value));
-            return {
-                ...obj,
-                detail,
-                slug: entity.slug,
-                name: entity.name,
-                color: colorObj.hex(),
-            };
-        });
+        const processed: DH.IMapUnit[] = processedData
+            .filter((obj) => {
+                const entity = getEntityByIdGeneric<IDistrict | IEntity>(obj.id, entities);
+                if ((entity as IEntity).type === 'country') {
+                    return true;
+                }
+                return true;
+            })
+            .map((obj) => {
+                const entity = getEntityByIdGeneric<IDistrict | IEntity>(obj.id, entities);
+                let detail: any = null;
+                if (cMappings) {
+                    detail = Maps.getValueDetail(obj.value, cMappings).name;
+                }
+                if (hasBudgeTypes) detail = obj.budget_type;
+                const colorObj = Color(scale(obj.value));
+                return {
+                    ...obj,
+                    detail,
+                    slug: entity.slug,
+                    name: entity.name,
+                    color: colorObj.hex(),
+                };
+            });
         if (hasBudgeTypes) return Maps.processBudgetData(processed);
         return  processed;
     }
