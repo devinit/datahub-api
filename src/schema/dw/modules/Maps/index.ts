@@ -37,7 +37,7 @@ interface IRAWMapData {
     id?: string;
     district_id?: string;
     budget_type?: string;
-    value: string;
+    value: string | number;
     year: string;
 }
 interface IMapDataWithLegend {
@@ -62,9 +62,10 @@ export default class Maps {
         color: 'white', backgroundColor: lightGrey, label: 'no data/not applicable'};
 
     public static DACOnlyData(DACCountries: string[], indicatorData: DH.IMapUnit[]): DH.IMapUnit[] {
-       return DACCountries
-        .map(name => R.find((obj: DH.IMapUnit) => obj.name === name, indicatorData))
-        .filter(obj => obj !== undefined) as DH.IMapUnit[];
+       const dacData: DH.IMapUnit[][] = DACCountries
+        .map(name => indicatorData.filter((obj: DH.IMapUnit) => obj.name === name))
+        .filter(obj => obj !== undefined);
+       return R.flatten<DH.IMapUnit>(dacData);
     }
     public static processBudgetData(data: DH.IMapUnit[]): DH.IMapUnit[] {
         const grouped = R.groupBy(R.prop('year'), data);
@@ -180,6 +181,13 @@ export default class Maps {
         if (entity && entity.type === 'country') return entity.slug;
         return 'global';
     }
+    // for dealing with edge cases and wrong data
+    public static transformations(concept: IConcept, data: IRAWMapData[]): IRAWMapData[] {
+        if (concept.id === 'data_series.in_ha') {
+            return data.map(obj => ({...obj, value: obj.value && Number(obj.value) * 10e6}));
+        }
+        return data;
+    }
     private db: IDatabase<IExtensions> & IExtensions;
 
     constructor(db: any) {
@@ -201,8 +209,8 @@ export default class Maps {
              // we merge concept and graphql qery options, they have startYear and endYear variables
              const {mapData, legend} = await this.getMapIndicatorData(concept, country);
              const DACCountries = concept.dac_only ? await this.getDACCountries() : [];
-             const map = DACCountries.length ? Maps.DACOnlyData(DACCountries, mapData) : mapData;
-             return {map, legend, ...concept, country, end_year, default_year } as DH.IMapData;
+             const data = DACCountries.length ? Maps.DACOnlyData(DACCountries, mapData) : mapData;
+             return {map: data, legend, ...concept, country, end_year, default_year } as DH.IMapData;
          } catch (error) {
              console.error(error);
              throw error;
@@ -219,7 +227,8 @@ export default class Maps {
            return this.dataRevDataProcessing(concept);
         }
         const args = {...concept, sql, db: this.db, table: concept.id} as IGetIndicatorArgsSimple;
-        const data: IRAWMapData [] = await getIndicatorDataSimple<IRAWMapData>(args);
+        const raw: IRAWMapData [] = await getIndicatorDataSimple<IRAWMapData>(args);
+        const data = Maps.transformations(concept, raw); // for edge cases
         // eliminate non country data
         if (concept.range && concept.color)
             return this.linearDataProcessing(concept, country, data);
@@ -259,9 +268,8 @@ export default class Maps {
         const processed: DH.IMapUnit[] = processedData
             .filter((obj) => {
                 const entity = getEntityByIdGeneric<IDistrict | IEntity>(obj.id, entities);
-                if ((entity as IEntity).type === 'country') {
-                    return true;
-                }
+                const type = (entity as IEntity).type;
+                if (type && type !== 'country') return false;
                 return true;
             })
             .map((obj) => {
