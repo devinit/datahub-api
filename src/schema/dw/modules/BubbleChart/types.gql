@@ -33,11 +33,20 @@ type BubbleChartPoverty {
   revenuePerPerson: Float
   percentageInExtremePoverty: Float
 }
-
+type Region {
+  name: String
+  id: String
+  color: String
+}
+type BubbleChartOptions {
+  indicators: [IdNamePair]
+  incomeGroups: [IdNamePair]
+  regions: [Region]
+}
 type Query {
   bubbleChartOda(id: String): [BubbleChartOda]
   bubbleChartPoverty(id: String): [BubbleChartPoverty]
   # IdNamePair is defined in unbundling aid types 
   # this list feeds off oda table from countries and global/concept file
-  bubbleChartIndicatorsList: [IdNamePair]
+  bubbleChartOptions: BubbleChartOptions
 }

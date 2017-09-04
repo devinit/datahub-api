@@ -8,8 +8,8 @@ export default {
         async bubbleChartPoverty(_root, args, ctx: IContext) {
             return ctx.dw.bubbleChart.getBubbleChartPoverty(args.id);
         },
-        async bubbleChartIndicatorsList(_root, _args, ctx: IContext) {
-            return ctx.dw.bubbleChart.getBubbleChartIndicatorsList();
+        async bubbleChartOptions(_root, _args, ctx: IContext) {
+            return ctx.dw.bubbleChart.getBubbleChartOptions();
         }
     }
 };

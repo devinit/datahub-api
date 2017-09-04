@@ -71,6 +71,7 @@ export const getSectors = (): Promise<IEntityBasic[]> => get<IEntityBasic>('glob
 export const getChannels = (): Promise<IEntityBasic[]> => get<IEntityBasic>('global/channel.csv');
 export const getBundles = (): Promise<IEntityBasic[]> => get<IEntityBasic>('global/bundle.csv');
 export const getRegional = (): Promise<IRegional[]> => get<IRegional>('global/regional.csv');
+export const getIncomeGroups = (): Promise<IEntityBasic[]> => get<IEntityBasic>('global/income-group.csv');
 export const getFinancingType = (): Promise<IEntityBasic[]> => get<IEntityBasic>('country-profile/financing-type.csv');
 export const getCreditorType = (): Promise<IEntityBasic[]> => get<IEntityBasic>('country-profile/creditor-type.csv');
 export const getFlowType = (): Promise<IEntityBasic[]> => get<IEntityBasic>('country-profile/flow-type.csv');

@@ -4,7 +4,8 @@ import sql from './sql';
 import {getConceptAsync, IConcept, getConcepts} from '../../../cms/modules/concept';
 import * as R from 'ramda';
 import * as shortid from 'shortid';
-import {IEntity, getEntities, getEntityByIdGeneric} from '../../../cms/modules/global';
+import {IEntity, getEntities, getEntityByIdGeneric, IEntityBasic,
+    getIncomeGroups, getRegional, getColors} from '../../../cms/modules/global';
 import {getIndicatorData, IGetIndicatorArgs, IProcessedSimple, IRAW, getIndicatorDataSimple,
         indicatorDataProcessingSimple, makeSqlAggregateQuery} from '../utils';
 
@@ -15,9 +16,18 @@ interface IBubbleSizeResults {
 }
 
 export default class BubbleChart {
+
+    public static async addColorValue(data: IEntityBasic[]): Promise<IEntityBasic[]> {
+        const colors = await getColors();
+        return data
+            .map(obj => {
+                const colorObj = colors.find(c => c.id === obj.color);
+                if (!colorObj) return {...obj, color: 'grey'};
+                return {...obj, color: colorObj.value};
+            });
+    }
     private db: IDatabase<IExtensions> & IExtensions;
     private defaultArgs;
-
     constructor(db: any) {
         this.db = db;
         this.defaultArgs = {db: this.db, conceptType: 'bubble-chart'};
@@ -76,21 +86,6 @@ export default class BubbleChart {
             throw error;
         }
     }
-    public async getBubbleChartIndicatorsList(): Promise<DH.IIdNamePair[]> {
-        try {
-            const args = {query: sql.odaFrom, db: this.db};
-            const odaFromRaw: Array<{ from_di_id: string}> = await getIndicatorDataSimple<{ from_di_id: string}>(args);
-            const entities: IEntity[] =  await getEntities();
-            const concepts: IConcept[] = await getConcepts('global-picture');
-            const odaFrom = odaFromRaw.map(obj => getEntityByIdGeneric<IEntity>(obj.from_di_id, entities));
-            const otherIndicators = concepts.filter(obj => Number(obj.appear_in_bubble_chart) === 1);
-            return R.append(odaFrom, otherIndicators);
-       } catch (error) {
-           console.error(error);
-           throw error;
-       }
-    }
-
     public async getBubbleSize(id: string): Promise<DH.IBubbleChartData[]> {
         try {
             const entities: IEntity[] =  await getEntities();
@@ -115,6 +110,33 @@ export default class BubbleChart {
             throw error;
         }
     }
+    public async getBubbleChartOptions(): Promise<DH.IBubbleChartOptions> {
+        try {
+            const indicators: DH.IIdNamePair[] = await this.getIndicators();
+            const incomeGroups = await getIncomeGroups();
+            const regionsData = await getRegional();
+            const regions = await BubbleChart.addColorValue(regionsData) as DH.IRegion[];
+            return {indicators, incomeGroups, regions};
+       } catch (error) {
+           console.error(error);
+           throw error;
+       }
+    }
+    private async getIndicators(): Promise<DH.IIdNamePair[]> {
+        try {
+            const args = {query: sql.odaFrom, db: this.db};
+            const odaFromRaw: Array<{ from_di_id: string}> = await getIndicatorDataSimple<{ from_di_id: string}>(args);
+            const entities: IEntity[] =  await getEntities();
+            const concepts: IConcept[] = await getConcepts('global-picture');
+            const odaFrom = odaFromRaw.map(obj => getEntityByIdGeneric<IEntity>(obj.from_di_id, entities));
+            const otherIndicators = concepts.filter(obj => Number(obj.appear_in_bubble_chart) === 1);
+            return R.append(odaFrom, otherIndicators);
+       } catch (error) {
+           console.error(error);
+           throw error;
+       }
+    }
+
     private async getSingleIndicatorGeneric(query: string, table: string): Promise<DH.IBubbleChartData[]> {
         try {
             const [start_year, end_year] = await this.getYears();
@@ -132,7 +154,7 @@ export default class BubbleChart {
         }
     }
     // TODO: clean this up
-    private async getYears(): Promise<number[]> {
+    private async getYears(): Promise<number[] > {
          try {
              // tslint:disable-next-line:max-line-length
              const concept: IConcept = await getConceptAsync('bubble-chart-oda',  'data_series.non_grant_revenue_ppp_pc');

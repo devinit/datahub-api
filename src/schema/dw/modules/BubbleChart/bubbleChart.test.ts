@@ -16,8 +16,8 @@ describe('Bubble chart DW module tests', () => {
         const dataB = await bubbleChart.getBubbleChartOda('data_series.fdi_pp');
         expect({'generic': data, 'with data_series.fdi_pp': dataB}).toMatchSnapshot();
     }, 30000);
-    it('getting oda  bubble chart indicators selection list', async () => {
-        const data = await bubbleChart.getBubbleChartIndicatorsList();
+    it('getting bubble chart options', async () => {
+        const data = await bubbleChart.getBubbleChartOptions();
         expect(data).toMatchSnapshot();
     }, 30000);
     it('should get bubble chart size data for a countrys ODA in poverty chart', async () => {

@@ -38,7 +38,7 @@ declare namespace DH {
     spotlightThemes: Array<ITheme> | null;
     bubbleChartOda: Array<IBubbleChartOda> | null;
     bubbleChartPoverty: Array<IBubbleChartPoverty> | null;
-    bubbleChartIndicatorsList: Array<IIdNamePair> | null;
+    bubbleChartOptions: IBubbleChartOptions | null;
     overviewTab: IOverviewTab | null;
     povertyTab: IPovertyTab | null;
     populationTab: IPopulationTab | null;
@@ -150,9 +150,27 @@ declare namespace DH {
   /*
     description: 
   */
+  interface IBubbleChartOptions {
+    indicators: Array<IIdNamePair> | null;
+    incomeGroups: Array<IIdNamePair> | null;
+    regions: Array<IRegion> | null;
+  }
+
+  /*
+    description: 
+  */
   interface IIdNamePair {
     id: string | null;
     name: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IRegion {
+    name: string | null;
+    id: string | null;
+    color: string | null;
   }
 
   /*
