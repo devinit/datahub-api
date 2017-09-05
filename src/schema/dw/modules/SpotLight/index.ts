@@ -3,11 +3,11 @@ import {IExtensions} from '../../db';
 import sql from './sql';
 import * as R from 'ramda';
 import * as shortid from 'shortid';
-import {getConceptAsync} from '../../../cms/modules/concept';
+import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import {IColor, getColors, getEntityByIdGeneric} from '../../../cms/modules/global';
 import {isError} from '../../../../lib/isType';
 import {getDistrictBySlugAsync, IDistrict} from '../../../cms/modules/spotlight';
-import {getIndicatorDataSpotlights, ISpotlightGetIndicatorArgs, IRAW, getSpotlightTableName,
+import {getIndicatorDataSpotlights, ISpotlightGetIndicatorArgs, IRAW, getSpotlightTableName, getCurrencyCode,
         IRAWPopulationGroup, IRAWDomestic, domesticDataProcessing, formatNumbers, getIndicatorToolTip} from '../utils';
 
 interface ISpotlightArgs {
@@ -21,8 +21,13 @@ interface IRegionalResources {
 }
 
 export default class SpotLight {
-    private db: IDatabase<IExtensions> & IExtensions;
+    public static getConceptType = (country: string) => `spotlight-${country}`;
 
+    public static getTableName(indicator: string, country: string) {
+        return `spotlight_on_${country}.${country}_${indicator}`;
+    }
+
+    private db: IDatabase<IExtensions> & IExtensions;
     constructor(db: any) {
         this.db = db;
     }
@@ -64,12 +69,12 @@ export default class SpotLight {
     public async getPovertyTabRegional(opts: ISpotlightArgs): Promise<DH.IPovertyTabRegional> {
         try {
             const [poorestPeople, lifeExpectancy, stdOfLiving] =
-            await this.getIndicatorsGeneric(opts, [sql.poorestPeople, sql.lifeExpectancy, sql.stdOfLiving]);
+                await this.getIndicatorsGeneric(opts, [sql.poorestPeople, sql.lifeExpectancy, sql.stdOfLiving]);
             return {
-            poorestPeople,
-            lifeExpectancy,
-            stdOfLiving
-        };
+                poorestPeople,
+                lifeExpectancy,
+                stdOfLiving
+            };
        } catch (error) {
            console.error(error);
            throw error;
@@ -113,10 +118,11 @@ export default class SpotLight {
 
     public async getLocalGovernmentFinance({id, country}): Promise<DH.ILocalGovernmentFinance> {
          try {
+            const conceptType = SpotLight.getConceptType(country);
             const indicatorArgs: ISpotlightGetIndicatorArgs[] = ['expenditure', 'revenue']
                 .map(l1 => ({
                     db: this.db,
-                    conceptType: `spotlight-${country}`,
+                    conceptType,
                     l1,
                     query: sql.localGovernmentFinance,
                     country,
@@ -126,7 +132,14 @@ export default class SpotLight {
                 await Promise.all(indicatorArgs.map((args) => getIndicatorDataSpotlights<IRAWDomestic>(args)));
             const resources: DH.IDomestic[][] =
                 await Promise.all(resourcesRaw.map(data => domesticDataProcessing(data, country)));
-            return { revenueAndGrants: resources[1], expenditure: resources[0]};
+            const currencyCode = await getCurrencyCode(country);
+            const concept: IConcept = await getConceptAsync(conceptType, SpotLight.getTableName('finance', 'uganda'));
+            return {
+                startYear: concept.end_year || 2015,
+                currencyCode,
+                revenueAndGrants: resources[1],
+                expenditure: resources[0]
+            };
         } catch (error) {
             console.error(error);
             throw error;
@@ -147,10 +160,10 @@ export default class SpotLight {
           throw error;
       }
     }
-    private async getRegionalResources(opts): Promise<IRegionalResources> {
+    private async getRegionalResources(opts: ISpotlightArgs): Promise<IRegionalResources> {
         try  {
             const indicatorArgs: ISpotlightGetIndicatorArgs[] = [sql.lGFResources, sql.crResources, sql.dResources]
-                .map(query => ({query, db: this.db, conceptType: `spotlight-${opts.country}`, ...opts}));
+                .map(query => ({query, db: this.db, conceptType: SpotLight.getConceptType(opts.country), ...opts}));
             const resourcesRaw: IRAW[][] =
                 await Promise.all(indicatorArgs.map(args => getIndicatorDataSpotlights<IRAW>(args)));
             const resourcesSum: number = resourcesRaw.reduce((sum: number, data: IRAW[]) => {
@@ -185,8 +198,9 @@ export default class SpotLight {
     private async getIndicatorsGeneric(opts: ISpotlightArgs, sqlList: string[], format: boolean = true)
         : Promise<DH.IIndicatorValueWithToolTip[]>  {
         try {
+            const conceptType = SpotLight.getConceptType(opts.country);
             const indicatorArgs: ISpotlightGetIndicatorArgs[] =
-                sqlList.map(query => ({db: this.db, conceptType: `spotlight-${opts.country}`, query, ...opts}));
+                sqlList.map(query => ({db: this.db, conceptType, query, ...opts}));
             const indicatorRaw: IRAW[][] =
                 await Promise.all(indicatorArgs.map(args => getIndicatorDataSpotlights<IRAW>(args)));
             const toolTips: DH.IToolTip[] =
@@ -202,7 +216,7 @@ export default class SpotLight {
           throw error;
       }
     }
-    private async getPopulationDistribution(opts): Promise<DH.IPopulationDistributionWithToolTip> {
+    private async getPopulationDistribution(opts: ISpotlightArgs): Promise<DH.IPopulationDistributionWithToolTip> {
         try {
             const indicatorArgs: ISpotlightGetIndicatorArgs = {
                 db: this.db, conceptType: `spotlight-${opts.country}`,

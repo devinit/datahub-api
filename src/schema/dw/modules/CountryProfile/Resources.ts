@@ -4,9 +4,8 @@ import sql from './sql';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import * as R from 'ramda';
 import * as shortid from 'shortid';
-import {ICurrency, getCurrency, getEntityBySlugAsync, IColor, getFlowType,
-        IEntity, getColors, getEntityByIdGeneric, IEntityBasic} from '../../../cms/modules/global';
-import {getIndicatorData, RECIPIENT, DONOR, IGetIndicatorArgs, CROSSOVER, capitalize,
+import {IColor, getFlowType, getColors, getEntityByIdGeneric, IEntityBasic} from '../../../cms/modules/global';
+import {getIndicatorData, RECIPIENT, DONOR, IGetIndicatorArgs, CROSSOVER, capitalize, getCurrencyCode,
         indicatorDataProcessingSimple, makeSqlAggregateQuery, formatNumbers, getIndicatorsValue, getIndicatorToolTip,
         isDonor, IRAW, IRAWFlow, IProcessedSimple, entitesFnMap, IRAWDomestic, domesticDataProcessing} from '../utils';
 import {getFlowByTypeAsync, getFlows, getFlowByIdAsync, getBudgetLevels, IBudgetLevelRef,
@@ -129,7 +128,7 @@ export default class Resources {
                     startYear: concept.end_year || 2015,
                 };
             }
-            const currencyCode = await this.getCurrencyCode(id);
+            const currencyCode = await getCurrencyCode(id);
             const [totalRevenue] = await getIndicatorsValue({id, sqlList: [sql.domesticRevenue], ...this.defaultArgs});
             const grantsAsPcOfRevenue = await this.getGrantsAsPcOfRevenue(id);
             const spendingAllocation = await this.getSpendingAllocation(id);
@@ -186,17 +185,6 @@ export default class Resources {
         });
         const toolTip = await getIndicatorToolTip(queryArgs);
         return {data, toolTip};
-    }
-    private async getCurrencyCode(id: string): Promise<string> {
-        try {
-            const currencyList: ICurrency[] = await getCurrency();
-            const entity: IEntity | undefined = await getEntityBySlugAsync(id);
-            if (!entity) throw new Error(`entity was not found for slug: ${id}`);
-            const currency: ICurrency | undefined = R.find(R.propEq('id', entity.id), currencyList) as ICurrency;
-            return currency ? currency.code : 'NCU';
-       } catch (error) {
-           throw error;
-       }
     }
     private async getDomesticResourcesOvertime(id: string): Promise<IDomesticResourcesOverTime> {
         try {

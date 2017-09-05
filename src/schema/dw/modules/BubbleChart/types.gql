@@ -39,6 +39,8 @@ type Region {
   color: String
 }
 type BubbleChartOptions {
+  # this list feeds off oda table from countries and global/concept file
+  # IdNamePair is defined in unbundling aid types 
   indicators: [IdNamePair]
   incomeGroups: [IdNamePair]
   regions: [Region]
@@ -46,7 +48,5 @@ type BubbleChartOptions {
 type Query {
   bubbleChartOda(id: String): [BubbleChartOda]
   bubbleChartPoverty(id: String): [BubbleChartPoverty]
-  # IdNamePair is defined in unbundling aid types 
-  # this list feeds off oda table from countries and global/concept file
   bubbleChartOptions: BubbleChartOptions
 }

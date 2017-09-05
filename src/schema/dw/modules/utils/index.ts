@@ -4,7 +4,8 @@ import {IExtensions} from '../../db';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import {getDistrictBySlugAsync} from '../../../cms/modules/spotlight';
 import * as shortid from 'shortid';
-import {IEntity, getEntityByIdGeneric, getFinancingType, getCreditorType, getDestinationInstitutionType, getFlowType,
+import {IEntity, getEntityByIdGeneric, getFinancingType, getCreditorType,
+        getDestinationInstitutionType, getFlowType, ICurrency, getCurrency,
         getSectors, getBundles, getChannels, getEntities, getEntityBySlugAsync} from '../../../cms/modules/global';
 import {isError} from '../../../../lib/isType';
 import {getBudgetLevels, IBudgetLevelRef} from '../../../cms/modules/countryProfile';
@@ -164,6 +165,18 @@ export const getTotal = (data: Isummable[]): number =>
         return sum;
     }, 0, data);
 
+export const getCurrencyCode = async (id: string): Promise<string>  => {
+    try {
+        const currencyList: ICurrency[] = await getCurrency();
+        const entity: IEntity | undefined = await getEntityBySlugAsync(id);
+        if (!entity) throw new Error(`entity was not found for slug: ${id}`);
+        const currency: ICurrency | undefined = R.find(R.propEq('id', entity.id), currencyList) as ICurrency;
+        return currency ? currency.code : 'NCU';
+    } catch (error) {
+        throw error;
+    }
+};
+
 export const getTableNameFromSql = (sqlStr: string): string | Error => {
     const matches = sqlStr.match(/FROM(.*)WHERE/);
     if (matches && matches.length) {
@@ -183,9 +196,8 @@ export const getIndicatorToolTip = async ({query, conceptType, id}: IToolTipArgs
     const country: string = conceptType.includes('spotlight-') ?  conceptType.split('-')[1] : '';
     let indicatorId: string = id || '';
     if (query) {
-        const eitherId: string | Error =
-            id || !country ? getTableNameFromSql(query) : getSpotlightTableName(country, query);
-        if (isError(indicatorId)) throw new Error (`failed to get indicator id from sql query; ${indicatorId}`);
+        const eitherId: string | Error = !country ? getTableNameFromSql(query) : getSpotlightTableName(country, query);
+        if (isError(eitherId)) throw new Error (`failed to get indicator id from sql query; ${indicatorId}`);
         indicatorId = eitherId as string;
     }
     const concept: IConcept = await getConceptAsync(conceptType, indicatorId);
