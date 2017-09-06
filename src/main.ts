@@ -53,7 +53,6 @@ export const appCache: LRU.Cache<any> = LRU(lruOpts);
 const appCacheMiddleWare = (req, res, next) => {
   const query = JSON.stringify(req.body.query + req.body.variables); // TODO: turn into ashorter key
   if (appCache.has(query)) {
-    console.log('query', req.body.variables, '\n');
     return res.status(200)
       .json(JSON.parse(appCache.get(query)));
   }
