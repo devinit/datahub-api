@@ -104,7 +104,7 @@ export default class SpotLight {
             const [districtPerformance, treatmeantOfTb] =
                 await this.getIndicatorsGeneric(opts,
                     [sql.districtHealthPerformance, sql.treatmeantOfTb, sql.healthCareFunding]);
-            const [healthCareFunding] = await this.getIndicatorsGeneric(opts, [sql.healthCareFunding], false);
+            const [healthCareFunding] = await this.getIndicatorsGeneric(opts, [sql.healthCareFunding], true);
             return {
                 districtPerformance,
                 treatmeantOfTb,

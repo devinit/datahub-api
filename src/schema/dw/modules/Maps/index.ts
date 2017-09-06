@@ -183,10 +183,21 @@ export default class Maps {
     }
     // for dealing with edge cases and wrong data
     public static transformations(concept: IConcept, data: IRAWMapData[]): IRAWMapData[] {
-        if (concept.id === 'data_series.in_ha') {
-            return data.map(obj => ({...obj, value: obj.value && Number(obj.value) * 10e6}));
-        }
-        return data;
+        return data.map(obj => {
+            if (concept.id === 'data_series.in_ha') {
+                return  {...obj, value: obj.value && Number(obj.value) * 10e6};
+            }
+            if (concept.id === 'spotlight_on_uganda.uganda_urban_pop') {
+                return  {...obj, value: obj.value && Number(obj.value).toFixed(0)};
+            }
+            if (concept.uom_display === '%') {
+                return  {...obj, value: obj.value && Number(obj.value).toFixed(2)};
+            }
+            if (concept.uom_display === 'US$') {
+                return  {...obj, value: obj.value && Number(obj.value).toFixed(2)};
+            }
+            return obj;
+        });
     }
     private db: IDatabase<IExtensions> & IExtensions;
 
