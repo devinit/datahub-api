@@ -8,7 +8,6 @@ import SpotLight from '../modules/SpotLight';
 import diagnostics from './diagnostics';
 import * as pgPromise from 'pg-promise';
 import * as LRU from 'lru-cache';
-import {queue} from '../../../lib/cache';
 
 export interface IExtensions {
     maps: Maps;
@@ -20,7 +19,7 @@ export interface IExtensions {
 }
 
 const lruOpts: LRU.Options<any> = {
-    max: 400,
+    max: 300,
     maxAge: 1000 * 60 * 60 * 60
 };
 
@@ -34,11 +33,6 @@ const options: IOptions<IExtensions> = {
         obj.manyCacheable = (query: string, values?: any) => {
             const getQuery = values ? pgPromise.as.format(query, values) : query;
             if (dbCache.has(getQuery)) {
-                if (process.env.NODE_ENV === 'development') {
-                // add to queue so that we always have freshest data
-                // makes same query in 15 minutes so as to update cache
-                    queue(getQuery, 'dw', dbCache, obj.many);
-                }
                 return Promise.resolve(dbCache.get(getQuery));
             }
             return obj.any(getQuery);

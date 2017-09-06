@@ -39,6 +39,7 @@
   },
   "homepage": "https://github.com/devinit/datahub-api#readme",
   "dependencies": {
+    "apollo-server-express": "^1.1.2",
     "body-parser": "^1.17.1",
     "color": "^2.0.0",
     "compression": "^1.6.2",
@@ -48,7 +49,6 @@
     "express": "^4.15.2",
     "fs-extra": "^4.0.0",
     "glob-promise": "^3.1.0",
-    "graphql-server-express": "^1.0.2",
     "graphql-tools": "^1.0.0",
     "helmet": "^3.6.0",
     "lru-cache": "^4.1.1",

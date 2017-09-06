@@ -2,12 +2,10 @@ import * as bodyParser from 'body-parser';
 import * as compression from 'compression';
 import * as cors from 'cors';
 import * as express from 'express';
-import {
-  graphiqlExpress,
-  graphqlExpress
-} from 'graphql-server-express';
+import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import * as helmet from 'helmet';
 import * as morgan from 'morgan';
+import * as LRU from 'lru-cache';
 import {createSchema, preCacheAll} from './schema';
 
 // Default port or given one.
@@ -31,7 +29,6 @@ function verbosePrint(port, enableGraphiql) {
 }
 
 const graphqlMiddleware = [
-  bodyParser.json(),
   bodyParser.text({
     type: 'application/graphql'
   }),
@@ -46,26 +43,54 @@ const graphqlMiddleware = [
   }
 ];
 
+const lruOpts: LRU.Options<any> = {
+  max: 500,
+  maxAge: 1000 * 60 * 60 * 60
+};
+
+export const appCache: LRU.Cache<any> = LRU(lruOpts);
+
+const appCacheMiddleWare = (req, res, next) => {
+  const query = JSON.stringify(req.body.query + req.body.variables); // TODO: turn into ashorter key
+  if (appCache.has(query)) {
+    console.log('query', req.body.variables, '\n');
+    return res.status(200)
+      .json(JSON.parse(appCache.get(query)));
+  }
+  return next();
+};
+
 export async function main(options: IMainOptions) {
   const app = express();
 
   app.use(helmet());
 
-  app.use(morgan(options.env));
+  app.use(bodyParser.json());
+
+  app.use(morgan('tiny')); // TODO: log to file
 
   if (true === options.enableCors) app.use(GRAPHQL_ROUTE, cors());
 
-  if (options.env === 'production') app.use(compression());
+  app.use(compression());
+
+  app.use(GRAPHQL_ROUTE, appCacheMiddleWare);
 
   try {
     const schema = await createSchema();
-    app.use(GRAPHQL_ROUTE, ...graphqlMiddleware, graphqlExpress({
-      ...schema
-    }));
-    if (true === options.enableGraphiql) {
-      app.use(GRAPHIQL_ROUTE, graphiqlExpress({
-        endpointURL: GRAPHQL_ROUTE
-      }));
+    app.use(GRAPHQL_ROUTE, ...graphqlMiddleware, (req, res, next) => {
+      return graphqlExpress({
+        ...schema,
+        formatResponse: (data) => {
+          setImmediate(() => {
+            const query = JSON.stringify(req.body.query + req.body.variables);
+            appCache.set(JSON.stringify(query), JSON.stringify([data]));
+          });
+          return data;
+        }
+      })(req, res, next);
+    });
+    if (options.enableGraphiql) {
+      app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
     }
     return new Promise((resolve) => {
       const server = app.listen(options.port, () => {
@@ -88,13 +113,7 @@ export async function main(options: IMainOptions) {
 if (require.main === module) {
   const PORT = process.env.PORT || 3000;
 
-  // Either to export GraphiQL (Debug Interface) or not.
   const NODE_ENV = process.env.NODE_ENV !== 'production' ? 'dev' : 'production';
-
- // const EXPORT_GRAPHIQL = NODE_ENV !== 'production';
-
-  // Enable cors (cross-origin HTTP request) or not.
-  // const ENABLE_CORS = NODE_ENV === 'production';
 
   process.on('uncaughtException', (err) => {
     console.error('uncaught exception', err);
@@ -107,5 +126,5 @@ if (require.main === module) {
     port: PORT,
     verbose: true,
   }).catch(console.error);
-  preCacheAll();
+  if (NODE_ENV === 'production') preCacheAll();
 }
