@@ -26,7 +26,34 @@ export default class SpotLight {
     public static getTableName(indicator: string, country: string) {
         return `spotlight_on_${country}.${country}_${indicator}`;
     }
-
+    public static buildAggregatedLevel = (level: number, datum: DH.IDomestic, acc: DH.IDomestic[]): DH.IDomestic => {
+        if (datum.levels === null || !datum.levels) throw new Error('levels missing in budget data');
+        let aggregatedLevel: DH.IDomestic | undefined = acc.find(obj =>
+            obj.year === datum.year &&
+            obj.budget_type === datum.budget_type &&
+            obj.levels !== null && datum.levels !== null &&
+            obj.levels.join('') === R.take(level + 1, datum.levels).join('')
+        );
+        if (!aggregatedLevel) {
+            return aggregatedLevel = {
+               ...datum,
+               uid: shortid.generate(),
+               levels: R.take(level + 1, datum.levels)
+            };
+        }
+        aggregatedLevel.value = Number(aggregatedLevel.value) + Number(datum.value);
+        aggregatedLevel.value_ncu = Number(datum.value_ncu) + Number(aggregatedLevel.value_ncu);
+        return aggregatedLevel;
+    }
+    public static aggregateResources(data: DH.IDomestic[]): DH.IDomestic[] {
+        const aggregated = data.reduce((acc: DH.IDomestic[], datum: DH.IDomestic) => {
+            const aggregatedLevels: DH.IDomestic[] =
+                [0, 1, 2].map((level) => SpotLight.buildAggregatedLevel(level, datum, acc));
+            const accumulated = acc.concat(aggregatedLevels);
+            return R.uniqBy(obj => obj.uid, accumulated); // eliminate duplicates
+        }, []);
+        return aggregated.concat(data);
+    }
     private db: IDatabase<IExtensions> & IExtensions;
     constructor(db: any) {
         this.db = db;
@@ -131,7 +158,10 @@ export default class SpotLight {
             const resourcesRaw: IRAWDomestic[][]  =
                 await Promise.all(indicatorArgs.map((args) => getIndicatorDataSpotlights<IRAWDomestic>(args)));
             const resources: DH.IDomestic[][] =
-                await Promise.all(resourcesRaw.map(data => domesticDataProcessing(data, country)));
+                await Promise.all(resourcesRaw.map(async (data) => {
+                    const disaggregated = await domesticDataProcessing(data, country);
+                    return SpotLight.aggregateResources(disaggregated);
+                }));
             const currencyCode = await getCurrencyCode(country);
             const concept: IConcept = await getConceptAsync(conceptType, SpotLight.getTableName('finance', 'uganda'));
             return {

@@ -66,7 +66,8 @@ export async function main(options: IMainOptions) {
 
   app.use(bodyParser.json());
 
-  app.use(morgan('tiny')); // TODO: log to file
+  // TODO: log to file
+  app.use(morgan(options.env === 'production' ? 'tiny' : 'combined'));
 
   if (true === options.enableCors) app.use(GRAPHQL_ROUTE, cors());
 
