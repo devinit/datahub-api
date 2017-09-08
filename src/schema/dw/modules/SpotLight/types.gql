@@ -59,6 +59,7 @@ type HealthTabRegional {
   districtPerformance: IndicatorValueWithToolTip
   #WHAT PERCENTAGE OF TUBERCULOSIS CASES HAVE BEEN SUCCESSFULLY TREATED? 
   treatmeantOfTb: IndicatorValueWithToolTip
+  districtHealthRank: IndicatorValueWithToolTip
   #HOW MUCH LOCAL GOVERNMENT HEALTHCARE FUNDING IS THERE? 
   healthCareFunding: IndicatorValueWithToolTip
 }

@@ -7,7 +7,7 @@ import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import {IColor, getColors, getEntityByIdGeneric} from '../../../cms/modules/global';
 import {isError} from '../../../../lib/isType';
 import {getDistrictBySlugAsync, IDistrict} from '../../../cms/modules/spotlight';
-import {getIndicatorDataSpotlights, ISpotlightGetIndicatorArgs, IRAW, getSpotlightTableName, getCurrencyCode,
+import {getIndicatorDataSpotlights, ISpotlightGetIndicatorArgs, IRAW, getSpotlightTableName, getCurrencyCode, addSuffix,
         IRAWPopulationGroup, IRAWDomestic, domesticDataProcessing, formatNumbers, getIndicatorToolTip} from '../utils';
 
 interface ISpotlightArgs {
@@ -21,10 +21,21 @@ interface IRegionalResources {
 }
 
 export default class SpotLight {
-    public static getConceptType = (country: string) => `spotlight-${country}`;
+    public static getConceptType = (country: string): string => `spotlight-${country}`;
 
-    public static getTableName(indicator: string, country: string) {
+    public static getTableName(indicator: string, country: string): string {
         return `spotlight_on_${country}.${country}_${indicator}`;
+    }
+    public static rankDistrict(indicatorRaw: IRAW[], districtId: string): string {
+        const groupedByValue = R.groupBy(obj => obj.value, indicatorRaw);
+        let rank: number = - 1;
+        const groupValueKeys =  R.sort((a, b) => Number(b) - Number(a), R.keys(groupedByValue));
+        groupValueKeys.forEach((val, index) => {
+            const item = groupedByValue[val].find(obj => obj.district_id === districtId);
+            if (item) rank = index;
+        });
+        return rank < 0 ?
+            'No data' : addSuffix(rank + 2).toString(); // remember its zero indexed and rank is -1 by default
     }
     public static buildAggregatedLevel = (level: number, datum: DH.IDomestic, acc: DH.IDomestic[]): DH.IDomestic => {
         if (datum.levels === null || !datum.levels) throw new Error('levels missing in budget data');
@@ -32,13 +43,13 @@ export default class SpotLight {
             obj.year === datum.year &&
             obj.budget_type === datum.budget_type &&
             obj.levels !== null && datum.levels !== null &&
-            obj.levels.join('') === R.take(level + 1, datum.levels).join('')
+            obj.levels.join('') === R.take(level, datum.levels).join('')
         );
         if (!aggregatedLevel) {
             return aggregatedLevel = {
                ...datum,
                uid: shortid.generate(),
-               levels: R.take(level + 1, datum.levels)
+               levels: R.take(level, datum.levels)
             };
         }
         aggregatedLevel.value = Number(aggregatedLevel.value) + Number(datum.value);
@@ -48,11 +59,12 @@ export default class SpotLight {
     public static aggregateResources(data: DH.IDomestic[]): DH.IDomestic[] {
         const aggregated = data.reduce((acc: DH.IDomestic[], datum: DH.IDomestic) => {
             const aggregatedLevels: DH.IDomestic[] =
-                [0, 1, 2].map((level) => SpotLight.buildAggregatedLevel(level, datum, acc));
+                [1, 2, 3].map((level) => SpotLight.buildAggregatedLevel(level, datum, acc));
             const accumulated = acc.concat(aggregatedLevels);
-            return R.uniqBy(obj => obj.uid, accumulated); // eliminate duplicates
+            // eliminate duplicates
+            return R.uniqBy(obj => obj.uid, accumulated);
         }, []);
-        return aggregated.concat(data);
+        return aggregated;
     }
     private db: IDatabase<IExtensions> & IExtensions;
     constructor(db: any) {
@@ -111,9 +123,9 @@ export default class SpotLight {
          try {
             const [pupilTeacherRatioGovtSchl, pupilTeacherRatioOtherSchl, primaryEducationfunding] =
                 await this.getIndicatorsGeneric(opts, [sql.pupilTeacherRatioGovtSchl, sql.pupilTeacherRatioOtherSchl,
-                    sql.studentsPassRate, sql.primaryEducationfunding]);
+                    sql.primaryEducationfunding]);
             const [studentsPassRate] = await this.getIndicatorsGeneric(opts, [sql.studentsPassRate], false);
-            const studentsPassDistrictRank = await this.getStudentsPassDistrictRank(opts);
+            const studentsPassDistrictRank = await this.getDistrictIndicatorRank(opts, sql.studentsPassDistrictRank);
             return {
                 pupilTeacherRatioGovtSchl,
                 pupilTeacherRatioOtherSchl,
@@ -129,11 +141,12 @@ export default class SpotLight {
     public async getHealthTabRegional(opts): Promise<DH.IHealthTabRegional> {
         try {
             const [districtPerformance, treatmeantOfTb] =
-                await this.getIndicatorsGeneric(opts,
-                    [sql.districtHealthPerformance, sql.treatmeantOfTb, sql.healthCareFunding]);
+                await this.getIndicatorsGeneric(opts, [sql.districtHealthPerformance, sql.treatmeantOfTb]);
             const [healthCareFunding] = await this.getIndicatorsGeneric(opts, [sql.healthCareFunding], true);
+            const districtHealthRank = await this.getDistrictIndicatorRank(opts, sql.districtHealthPerformanceRank);
             return {
                 districtPerformance,
+                districtHealthRank,
                 treatmeantOfTb,
                 healthCareFunding // Fix me
             };
@@ -175,15 +188,14 @@ export default class SpotLight {
             throw error;
         }
     }
-    private async getStudentsPassDistrictRank(opts: ISpotlightArgs)
+    private async getDistrictIndicatorRank(opts: ISpotlightArgs, query: string)
         : Promise<DH.IIndicatorValueWithToolTip>  {
         try {
             const indicatorArgs: ISpotlightGetIndicatorArgs = {
-                db: this.db, conceptType: `spotlight-${opts.country}`, query: sql.studentsPassDistrictRank, ...opts};
+                db: this.db, conceptType: `spotlight-${opts.country}`, query, ...opts};
             const indicatorRaw: IRAW[] = await getIndicatorDataSpotlights<IRAW>(indicatorArgs);
             const district: IDistrict = await getDistrictBySlugAsync(opts.country, opts.id);
-            const rank = R.findIndex(R.propEq('district_id', district.id))(indicatorRaw);
-            const value = rank < 0 ? 'no data' :  (rank + 1).toString(); // remember its zero indexed
+            const value = SpotLight.rankDistrict(indicatorRaw, district.id);
             const toolTip = await getIndicatorToolTip(indicatorArgs);
             return {value, toolTip};
       } catch (error) {

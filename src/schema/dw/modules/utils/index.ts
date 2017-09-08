@@ -55,6 +55,7 @@ export interface IGetIndicatorArgsSimple {
 }
 export interface IRAW {
     di_id: string;
+    district_id: string;
     value: string;
     year: string;
 }
@@ -347,6 +348,17 @@ const removeTrailingZero = (value: string): string => {
 export const capitalize = (val: string) =>
     `${val[0].toUpperCase()}${R.drop(1, val)}`;
 
+export const addSuffix = (val) => {
+    // Borrowed from old datahub codebase
+    const lastDigit = (val % 10);
+    const lastTwoDigits = (val % 100);
+    const suffixObj = ['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'];
+    const exceptions = [11, 12, 13];
+    if (exceptions.indexOf(lastTwoDigits) === -1) {
+        return val + suffixObj[lastDigit];
+    }
+    return val + 'th';
+};
 export const formatNumbers =
     (value: number | string | undefined | null,
      precision: number = 1,

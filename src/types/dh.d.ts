@@ -527,6 +527,7 @@ declare namespace DH {
   interface IHealthTabRegional {
     districtPerformance: IIndicatorValueWithToolTip | null;
     treatmeantOfTb: IIndicatorValueWithToolTip | null;
+    districtHealthRank: IIndicatorValueWithToolTip | null;
     healthCareFunding: IIndicatorValueWithToolTip | null;
   }
 
@@ -534,6 +535,8 @@ declare namespace DH {
     description: 
   */
   interface ILocalGovernmentFinance {
+    startYear: number | null;
+    currencyCode: string | null;
     revenueAndGrants: Array<IDomestic> | null;
     expenditure: Array<IDomestic> | null;
   }
