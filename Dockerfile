@@ -26,4 +26,4 @@ ENV PORT=3000
 
 EXPOSE ${PORT}
 
-CMD ["node", "dist/main.min.js"]
+CMD ["node", "dist/main.js"]
