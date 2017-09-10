@@ -23,7 +23,7 @@ const lruOpts: LRU.Options<any> = {
     maxAge: 1000 * 60 * 60 * 60
 };
 
-export const dbCache: LRU.Cache<any> = LRU(lruOpts);
+export const dbCache: LRU.Cache<any, any> = LRU(lruOpts);
 
 // pg-promise initialization options:
 const options: IOptions<IExtensions> = {

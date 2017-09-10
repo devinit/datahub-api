@@ -48,7 +48,7 @@ const lruOpts: LRU.Options<any> = {
   maxAge: 1000 * 60 * 60 * 60
 };
 
-export const appCache: LRU.Cache<any> = LRU(lruOpts);
+export const appCache: LRU.Cache<any, any> = LRU(lruOpts);
 
 const appCacheMiddleWare = (req, res, next) => {
   const query = JSON.stringify(req.body.query + req.body.variables); // TODO: turn into ashorter key

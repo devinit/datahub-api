@@ -81,7 +81,7 @@ export const writeKeyToCacheFile = async (key: string, cacheType: string, file: 
         console.info('Key already exists in cache no need to re-add it');
     };
 
-export const queue: (key: string, cacheType: string, cache: LRU.Cache<any>, cb: (string) => Promise<any>) =>
+export const queue: (key: string, cacheType: string, cache: LRU.Cache<any, any>, cb: (string) => Promise<any>) =>
     Promise<any> = async (key, cacheType, cache, cb) => {
         if (process.env.NODE_ENV === 'test') return false;
         return new Promise((resolve, reject) => {

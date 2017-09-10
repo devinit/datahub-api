@@ -41,7 +41,7 @@ const lruOpts: LRU.Options<any> = {
     maxAge: 1000 * 60 * 60 * 24 * 60 // TODO: create time constant (60 days -- 2 months)
 };
 
-export const cache: LRU.Cache<any> = LRU(lruOpts);
+export const cache: LRU.Cache<any, any> = LRU(lruOpts);
 
 export const csvToJson = <T extends {}> (csvStr: string): Promise<T[]>  =>
     new Promise((resolve, reject) => {

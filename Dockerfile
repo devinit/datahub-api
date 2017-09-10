@@ -1,5 +1,5 @@
 # The official nodejs docker image
-FROM node:8
+FROM node:8.4-alpine
 
 # Copy package.json only to temp folder, install its dependencies,
 # set workdir and copy the dependnecies there
