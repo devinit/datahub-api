@@ -1,9 +1,9 @@
 #!/bin/bash
 ## gets run on host server
 mkdir -p ~/datahub-api
-cd ~/datahub-2 || exit
+cd ~/datahub-api || exit
 
-rm -rf datahub.git && \
+rm -rf datahub-api.git && \
   git clone --depth 1 -b master --single-branch git@github.com:devinit/datahub-api.git datahub-api.git
 
 echo 'finished clonning'
