@@ -62,9 +62,17 @@ export default class SpotLight {
                 [1, 2, 3].map((level) => SpotLight.buildAggregatedLevel(level, datum, acc));
             const accumulated = acc.concat(aggregatedLevels);
             // eliminate duplicates
-            return R.uniqBy(obj => obj.uid, accumulated);
+            return R.uniqBy(obj => {
+                const levels = obj.levels ? obj.levels.join('') : '';
+                return `${obj.uid}${obj.budget_type}${levels}${obj.year}`;
+            }, accumulated);
         }, []);
-        return aggregated;
+        return aggregated.filter(obj => {
+            if (!obj.levels) return false;
+            if (obj.levels.length < 2) return true;
+            if (obj.levels[2] === obj.levels[1]) return false;
+            return true;
+        });
     }
     private db: IDatabase<IExtensions> & IExtensions;
     constructor(db: any) {
@@ -191,8 +199,8 @@ export default class SpotLight {
     private async getDistrictIndicatorRank(opts: ISpotlightArgs, query: string)
         : Promise<DH.IIndicatorValueWithToolTip>  {
         try {
-            const indicatorArgs: ISpotlightGetIndicatorArgs = {
-                db: this.db, conceptType: `spotlight-${opts.country}`, query, ...opts};
+            const conceptType = SpotLight.getConceptType(opts.country);
+            const indicatorArgs: ISpotlightGetIndicatorArgs = {db: this.db, conceptType, query, ...opts};
             const indicatorRaw: IRAW[] = await getIndicatorDataSpotlights<IRAW>(indicatorArgs);
             const district: IDistrict = await getDistrictBySlugAsync(opts.country, opts.id);
             const value = SpotLight.rankDistrict(indicatorRaw, district.id);
@@ -204,8 +212,9 @@ export default class SpotLight {
     }
     private async getRegionalResources(opts: ISpotlightArgs): Promise<IRegionalResources> {
         try  {
+            const conceptType = SpotLight.getConceptType(opts.country);
             const indicatorArgs: ISpotlightGetIndicatorArgs[] = [sql.lGFResources, sql.crResources, sql.dResources]
-                .map(query => ({query, db: this.db, conceptType: SpotLight.getConceptType(opts.country), ...opts}));
+                .map(query => ({query, db: this.db, conceptType, ...opts}));
             const resourcesRaw: IRAW[][] =
                 await Promise.all(indicatorArgs.map(args => getIndicatorDataSpotlights<IRAW>(args)));
             const resourcesSum: number = resourcesRaw.reduce((sum: number, data: IRAW[]) => {
@@ -217,7 +226,7 @@ export default class SpotLight {
                 .map(async (args: ISpotlightGetIndicatorArgs , index) => {
                     const conceptId = getSpotlightTableName(opts.country, args.query);
                     if (isError(conceptId)) throw conceptId;
-                    const conceptArgs = {conceptType: `spotlight-${opts.country}`, id:  conceptId};
+                    const conceptArgs = {conceptType, id:  conceptId};
                     const concept = await getConceptAsync(conceptArgs.conceptType, conceptArgs.id);
                     const resource: IRAW = resourcesRaw[index][0];
                     if (!concept.color) throw new Error(`${concept.id} missing required color value`);
@@ -260,8 +269,9 @@ export default class SpotLight {
     }
     private async getPopulationDistribution(opts: ISpotlightArgs): Promise<DH.IPopulationDistributionWithToolTip> {
         try {
+            const conceptType = SpotLight.getConceptType(opts.country);
             const indicatorArgs: ISpotlightGetIndicatorArgs = {
-                db: this.db, conceptType: `spotlight-${opts.country}`,
+                db: this.db, conceptType,
                 query: sql.populationDistribution,
                 ...opts
             };

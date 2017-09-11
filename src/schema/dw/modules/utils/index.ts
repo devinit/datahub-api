@@ -185,6 +185,7 @@ export const getTableNameFromSql = (sqlStr: string): string | Error => {
     }
     return new Error(`couldnt get table name from sql string ${sqlStr}`);
 };
+
 export const getSpotlightTableName = (country: string, query: string): string => {
     const tableStr = getTableNameFromSql(query);
     if (isError(tableStr)) throw new Error(`error getting table name for : ${query}`);
@@ -193,6 +194,7 @@ export const getSpotlightTableName = (country: string, query: string): string =>
             .replace(/\${schema\^}/, schema)
             .replace(/\${country\^}/, country);
 };
+
 export const getIndicatorToolTip = async ({query, conceptType, id}: IToolTipArgs): Promise<DH.IToolTip> => {
     const country: string = conceptType.includes('spotlight-') ?  conceptType.split('-')[1] : '';
     let indicatorId: string = id || '';
@@ -233,6 +235,7 @@ export async function getIndicatorDataSpotlights<T>(opts: ISpotlightGetIndicator
     const queryArgs = {...opts, ...concept, id: spotlightEntity.id, country, schema: `spotlight_on_${country}`};
     return db.manyCacheable(query, queryArgs);
 }
+
 export const getIndicatorsValue = async ({id, sqlList, db, format = true, precision}: IGetIndicatorValueArgs)
     : Promise<DH.IIndicatorValueWithToolTip[]>  => {
     try {
@@ -253,6 +256,7 @@ export const getIndicatorsValue = async ({id, sqlList, db, format = true, precis
         throw error;
     }
 };
+
 // used by maps module
 export const getIndicatorDataSimple = async <T extends {}> (opts: IGetIndicatorArgsSimple): Promise<T[]> => {
         const {table, sql, db, query, start_year, end_year} = opts;
@@ -273,6 +277,7 @@ export const indicatorDataProcessingSimple = <T extends {}>(data: any, country?:
             .map(obj => ({...obj, uid: shortid.generate()}))
             .map(toNumericFields);
 };
+
 // adds reference names to Ids
 export const indicatorDataProcessingNamed = async (data: IhasDiId[]):
     Promise<DH.IIndicatorData[]> => {

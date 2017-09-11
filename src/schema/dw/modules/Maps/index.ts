@@ -185,7 +185,7 @@ export default class Maps {
     public static transformations(concept: IConcept, data: IRAWMapData[]): IRAWMapData[] {
         return data.map(obj => {
             if (concept.id === 'data_series.in_ha') {
-                return  {...obj, value: obj.value && Number(obj.value) * 10e6};
+                return  {...obj, value: obj.value && Number(obj.value) * 1e6};
             }
             if (concept.id === 'spotlight_on_uganda.uganda_urban_pop') {
                 return  {...obj, value: obj.value && Number(obj.value).toFixed(0)};
