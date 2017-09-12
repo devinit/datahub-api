@@ -288,13 +288,23 @@ export const indicatorDataProcessingNamed = async (data: IhasDiId[]):
         return {...obj, name: entity.name, uid: shortid.generate()};
     });
 };
-
+export const addColorToDomesticLevels =
+    (levels: string[], budgetRefs: IBudgetLevelRef[], colors: IColor[]): string => {
+        const levelRefs =
+            levels
+            .map(level => budgetRefs.find(ref => ref.name === level)) as IBudgetLevelRef[];
+        const colorObjs: IColor[] =
+            levelRefs
+            .map(levelRef => getEntityByIdGeneric(levelRef.color || 'blue-light', colors));
+        if (levels.length < 2) return colorObjs[0].value;
+        return colorObjs[1].value;
+};
 export const domesticDataProcessing = async (data: IRAWDomestic[], country?: string)
     : Promise<DH.IDomestic[]> => {
     const budgetRefs: IBudgetLevelRef[] = country ? await getBudgetLevels(country) : await getBudgetLevels();
     const colors: IColor[] = await getColors();
     return indicatorDataProcessingSimple(data)
-            .map((obj: any) => {
+            .map((obj: any) => { // TODO: make type for IRAWDomestic processed
                 const levelKeys: string[] = R.keys(obj).filter(key => R.test(/^l[0-9]/, key));
                 if (!levelKeys) throw new Error(`Levels missing in budget data ${JSON.stringify(obj)}`);
                 const levels = levelKeys.map(key => {
@@ -302,11 +312,7 @@ export const domesticDataProcessing = async (data: IRAWDomestic[], country?: str
                     if (!budgetLevel)  return obj[key];
                     return budgetLevel.name;
                 }).filter(level => level !== null);
-                const firstbudgetLevel: IBudgetLevelRef | undefined =
-                    budgetRefs.find(ref => ref.id === obj[levelKeys[0]]);
-                if (!firstbudgetLevel) throw new Error(`Levels missing in budget data ${JSON.stringify(obj)}`);
-                const colorObj: IColor | undefined = getEntityByIdGeneric(firstbudgetLevel.color, colors);
-                const color = colorObj.value || '#0095cb'; // default is light blue
+                const color = addColorToDomesticLevels(levels, budgetRefs, colors);
                 const uid: string = shortid.generate();
                 const budget_type = budgetTypesRefs[obj.budget_type];
                 return {...obj, budget_type, uid, levels, color} as DH.IDomestic;

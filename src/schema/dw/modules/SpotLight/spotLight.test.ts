@@ -28,7 +28,7 @@ describe('spotlight on uganda tests', () => {
     it('should return finance data for wakiso district', async () => {
         const data = await spotLight.getLocalGovernmentFinance({id: 'wakiso', country: 'uganda'});
         expect(prettyFormat(data)).toMatchSnapshot();
-    }, 10000);
+    }, 50000);
 
     afterAll(() => {
        db.$config.pgp.end();

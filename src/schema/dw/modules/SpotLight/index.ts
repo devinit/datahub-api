@@ -7,8 +7,10 @@ import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import {IColor, getColors, getEntityByIdGeneric} from '../../../cms/modules/global';
 import {isError} from '../../../../lib/isType';
 import {getDistrictBySlugAsync, IDistrict} from '../../../cms/modules/spotlight';
+import {IBudgetLevelRef, getBudgetLevels} from '../../../cms/modules/countryProfile';
 import {getIndicatorDataSpotlights, ISpotlightGetIndicatorArgs, IRAW, getSpotlightTableName, getCurrencyCode, addSuffix,
-        IRAWPopulationGroup, IRAWDomestic, domesticDataProcessing, formatNumbers, getIndicatorToolTip} from '../utils';
+        IRAWPopulationGroup, IRAWDomestic, domesticDataProcessing, formatNumbers,
+        addColorToDomesticLevels, getIndicatorToolTip} from '../utils';
 
 interface ISpotlightArgs {
     id: string;
@@ -56,8 +58,9 @@ export default class SpotLight {
         aggregatedLevel.value_ncu = Number(datum.value_ncu) + Number(aggregatedLevel.value_ncu);
         return aggregatedLevel;
     }
-    public static aggregateResources(data: DH.IDomestic[]): DH.IDomestic[] {
-        const aggregated = data.reduce((acc: DH.IDomestic[], datum: DH.IDomestic) => {
+    public static aggregateResources(
+        data: DH.IDomestic[], colors: IColor[], budgetRefs: IBudgetLevelRef[]): DH.IDomestic[] {
+       return data.reduce((acc: DH.IDomestic[], datum: DH.IDomestic) => {
             const aggregatedLevels: DH.IDomestic[] =
                 [1, 2, 3].map((level) => SpotLight.buildAggregatedLevel(level, datum, acc));
             const accumulated = acc.concat(aggregatedLevels);
@@ -66,12 +69,17 @@ export default class SpotLight {
                 const levels = obj.levels ? obj.levels.join('') : '';
                 return `${obj.uid}${obj.budget_type}${levels}${obj.year}`;
             }, accumulated);
-        }, []);
-        return aggregated.filter(obj => {
+        }, [])
+        .filter(obj => {
             if (!obj.levels) return false;
             if (obj.levels.length < 2) return true;
             if (obj.levels[2] === obj.levels[1]) return false;
             return true;
+        })
+        .map(obj => {
+            if (!obj.levels) return obj;
+            const color = addColorToDomesticLevels(obj.levels, budgetRefs, colors);
+            return {...obj, color};
         });
     }
     private db: IDatabase<IExtensions> & IExtensions;
@@ -167,6 +175,8 @@ export default class SpotLight {
     public async getLocalGovernmentFinance({id, country}): Promise<DH.ILocalGovernmentFinance> {
          try {
             const conceptType = SpotLight.getConceptType(country);
+            const budgetRefs: IBudgetLevelRef[] = await getBudgetLevels(country);
+            const colors: IColor[] = await getColors();
             const indicatorArgs: ISpotlightGetIndicatorArgs[] = ['expenditure', 'revenue']
                 .map(l1 => ({
                     db: this.db,
@@ -181,7 +191,7 @@ export default class SpotLight {
             const resources: DH.IDomestic[][] =
                 await Promise.all(resourcesRaw.map(async (data) => {
                     const disaggregated = await domesticDataProcessing(data, country);
-                    return SpotLight.aggregateResources(disaggregated);
+                    return SpotLight.aggregateResources(disaggregated, colors, budgetRefs);
                 }));
             const currencyCode = await getCurrencyCode(country);
             const concept: IConcept = await getConceptAsync(conceptType, SpotLight.getTableName('finance', 'uganda'));
