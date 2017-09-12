@@ -115,6 +115,7 @@ type Domestic {
   value: Float
   value_ncu: Float
   uid: String
+  color: String
 }
 type SpendingAllocationWithToolTip {
   data:  [SpendingAllocation]

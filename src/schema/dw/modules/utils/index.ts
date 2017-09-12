@@ -4,7 +4,7 @@ import {IExtensions} from '../../db';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import {getDistrictBySlugAsync} from '../../../cms/modules/spotlight';
 import * as shortid from 'shortid';
-import {IEntity, getEntityByIdGeneric, getFinancingType, getCreditorType,
+import {IEntity, getEntityByIdGeneric, getFinancingType, getCreditorType, getColors, IColor,
         getDestinationInstitutionType, getFlowType, ICurrency, getCurrency,
         getSectors, getBundles, getChannels, getEntities, getEntityBySlugAsync} from '../../../cms/modules/global';
 import {isError} from '../../../../lib/isType';
@@ -292,17 +292,24 @@ export const indicatorDataProcessingNamed = async (data: IhasDiId[]):
 export const domesticDataProcessing = async (data: IRAWDomestic[], country?: string)
     : Promise<DH.IDomestic[]> => {
     const budgetRefs: IBudgetLevelRef[] = country ? await getBudgetLevels(country) : await getBudgetLevels();
+    const colors: IColor[] = await getColors();
     return indicatorDataProcessingSimple(data)
             .map((obj: any) => {
-                const levelKeys = R.keys(obj).filter(key => R.test(/^l[0-9]/, key));
+                const levelKeys: string[] = R.keys(obj).filter(key => R.test(/^l[0-9]/, key));
+                if (!levelKeys) throw new Error(`Levels missing in budget data ${JSON.stringify(obj)}`);
                 const levels = levelKeys.map(key => {
                     const budgetLevel: IBudgetLevelRef | undefined = budgetRefs.find(ref => ref.id === obj[key]);
                     if (!budgetLevel)  return obj[key];
                     return budgetLevel.name;
                 }).filter(level => level !== null);
+                const firstbudgetLevel: IBudgetLevelRef | undefined =
+                    budgetRefs.find(ref => ref.id === obj[levelKeys[0]]);
+                if (!firstbudgetLevel) throw new Error(`Levels missing in budget data ${JSON.stringify(obj)}`);
+                const colorObj: IColor | undefined = getEntityByIdGeneric(firstbudgetLevel.color, colors);
+                const color = colorObj.value || '#0095cb'; // default is light blue
                 const uid: string = shortid.generate();
                 const budget_type = budgetTypesRefs[obj.budget_type];
-                return {...obj, budget_type, uid, levels} as DH.IDomestic;
+                return {...obj, budget_type, uid, levels, color} as DH.IDomestic;
             });
 };
 
