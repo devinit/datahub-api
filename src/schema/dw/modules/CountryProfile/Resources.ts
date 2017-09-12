@@ -123,7 +123,7 @@ export default class Resources {
             const concept: IConcept = await getConceptAsync('country-profile', 'data_series.domestic');
             if (isDonorCountry) {
                 return {
-                    totalRevenue: null, grantsAsPcOfRevenue: null, spendingAllocation: null,
+                    totalRevenue: null, grantsAsPcOfRevenue: null, spendingAllocation: null, currencyUSD: null,
                     currencyCode: null, expenditure: null, revenueAndGrants: null, finance: null,
                     startYear: concept.end_year || 2015,
                 };
@@ -138,6 +138,7 @@ export default class Resources {
                 grantsAsPcOfRevenue,
                 spendingAllocation,
                 currencyCode,
+                currencyUSD: 'constant 2015 USD',
                 ...domestic,
                 startYear: concept.end_year || 2015
             };

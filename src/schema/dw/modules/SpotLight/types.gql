@@ -67,6 +67,7 @@ type HealthTabRegional {
 
 type LocalGovernmentFinance {
   startYear: Int
+  currencyUSD: String
   currencyCode: String
   # come from finance file
   revenueAndGrants: [Domestic]

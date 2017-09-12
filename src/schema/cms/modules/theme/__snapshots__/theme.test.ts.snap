@@ -514,7 +514,7 @@ exports[`Themes data tests should return spotlight on uganda themes 1`] = `
       Object {
         \\"heading\\": \\"Total local government expenditure per child in government funded primary education by district.\\",
         \\"id\\": \\"spotlight_on_uganda.uganda_primary_educ_funding\\",
-        \\"name\\": \\"Primary education spending per child\\",
+        \\"name\\": \\"Primary education spending per child, US$\\",
         \\"source\\": \\"Local government budgets, Ministry of Finance, Planning and Economic Development.\\",
         \\"tooltip\\": \\"Primary education spending, per child.\\",
       },
@@ -549,7 +549,7 @@ exports[`Themes data tests should return spotlight on uganda themes 1`] = `
       Object {
         \\"heading\\": \\"On-budget donor funded expenditure allocations per child in government primary education, by district.\\",
         \\"id\\": \\"spotlight_on_uganda.uganda_donor_educ_spend\\",
-        \\"name\\": \\"Primary education donor spending per child\\",
+        \\"name\\": \\"Primary education donor spending per child, US$\\",
         \\"source\\": \\"Local government budgets, Ministry of Finance, Planning and Economic Development.\\",
         \\"tooltip\\": \\"Primary education donor spending per child.\\",
       },
@@ -662,7 +662,7 @@ exports[`Themes data tests should return spotlight on uganda themes 1`] = `
       Object {
         \\"heading\\": \\"Local government spending to healthcare per person, by district.\\",
         \\"id\\": \\"spotlight_on_uganda.uganda_health_funding\\",
-        \\"name\\": \\"Primary health spending per person\\",
+        \\"name\\": \\"Primary health spending per person, US$\\",
         \\"source\\": \\"Local government budgets, Ministry of Finance, Planning and Economic Development.\\",
         \\"tooltip\\": \\"Local government health spending, per person.\\",
       },
@@ -718,6 +718,13 @@ exports[`Themes data tests should return spotlight on uganda themes 1`] = `
     \\"id\\": \\"uganda-dist-resource\\",
     \\"indicators\\": Array [
       Object {
+        \\"heading\\": \\"The proportion of local government revenue that is locally generated, through collection of fees, fines and other local taxation, by district.\\",
+        \\"id\\": \\"spotlight_on_uganda.uganda_local_percent\\",
+        \\"name\\": \\"Locally raised revenues\\",
+        \\"source\\": \\"Local government budgets, Ministry of Finance, Planning and Economic Development.\\",
+        \\"tooltip\\": \\"The proportion of local government revenue that is locally generated, through collection of fees, fines and other local taxation, by district.\\",
+      },
+      Object {
         \\"heading\\": \\"The proportion of total local government expenditure that is allocated to the agriculture sector, by district.\\",
         \\"id\\": \\"spotlight_on_uganda.uganda_agri_percent\\",
         \\"name\\": \\"Agriculture allocation as a % of total expenditure\\",
@@ -744,13 +751,6 @@ exports[`Themes data tests should return spotlight on uganda themes 1`] = `
         \\"name\\": \\"Health allocation as a % of total expenditure\\",
         \\"source\\": \\"Local government budgets, Ministry of Finance, Planning and Economic Development.\\",
         \\"tooltip\\": \\"The proportion of total local government expenditure that is allocated to the health sector.\\",
-      },
-      Object {
-        \\"heading\\": \\"The proportion of local government revenue that is locally generated, through collection of fees, fines and other local taxation, by district.\\",
-        \\"id\\": \\"spotlight_on_uganda.uganda_local_percent\\",
-        \\"name\\": \\"Locally raised revenues\\",
-        \\"source\\": \\"Local government budgets, Ministry of Finance, Planning and Economic Development.\\",
-        \\"tooltip\\": \\"The proportion of local government revenue that is locally generated, through collection of fees, fines and other local taxation, by district.\\",
       },
     ],
     \\"name\\": \\"District public resources\\",

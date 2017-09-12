@@ -303,6 +303,7 @@ declare namespace DH {
     grantsAsPcOfRevenue: IIndicatorValueWithToolTip | null;
     spendingAllocation: ISpendingAllocationWithToolTip | null;
     currencyCode: string | null;
+    currencyUSD: string | null;
     expenditure: Array<IDomestic> | null;
     revenueAndGrants: Array<IDomestic> | null;
     finance: Array<IDomestic> | null;
@@ -529,6 +530,7 @@ declare namespace DH {
   interface IHealthTabRegional {
     districtPerformance: IIndicatorValueWithToolTip | null;
     treatmeantOfTb: IIndicatorValueWithToolTip | null;
+    districtHealthRank: IIndicatorValueWithToolTip | null;
     healthCareFunding: IIndicatorValueWithToolTip | null;
   }
 
@@ -537,6 +539,7 @@ declare namespace DH {
   */
   interface ILocalGovernmentFinance {
     startYear: number | null;
+    currencyUSD: string | null;
     currencyCode: string | null;
     revenueAndGrants: Array<IDomestic> | null;
     expenditure: Array<IDomestic> | null;
@@ -892,6 +895,7 @@ type GovernmentFinance {
   # for treemap
    # such as constant 2015 USD for tree map
   currencyCode: String
+  currencyUSD: String
   # use resourcesRecipient sql
   expenditure: [Domestic]
   revenueAndGrants: [Domestic]
@@ -1054,12 +1058,14 @@ type HealthTabRegional {
   districtPerformance: IndicatorValueWithToolTip
   # WHAT PERCENTAGE OF TUBERCULOSIS CASES HAVE BEEN SUCCESSFULLY TREATED? 
   treatmeantOfTb: IndicatorValueWithToolTip
+  districtHealthRank: IndicatorValueWithToolTip
   # HOW MUCH LOCAL GOVERNMENT HEALTHCARE FUNDING IS THERE? 
   healthCareFunding: IndicatorValueWithToolTip
 }
 
 type LocalGovernmentFinance {
   startYear: Int
+  currencyUSD: String
   currencyCode: String
   # come from finance file
   revenueAndGrants: [Domestic]

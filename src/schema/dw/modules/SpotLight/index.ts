@@ -188,6 +188,7 @@ export default class SpotLight {
             return {
                 startYear: concept.end_year || 2015,
                 currencyCode,
+                currencyUSD: 'constant 2012 USD',
                 revenueAndGrants: resources[1],
                 expenditure: resources[0]
             };

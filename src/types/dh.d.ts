@@ -301,6 +301,7 @@ declare namespace DH {
     grantsAsPcOfRevenue: IIndicatorValueWithToolTip | null;
     spendingAllocation: ISpendingAllocationWithToolTip | null;
     currencyCode: string | null;
+    currencyUSD: string | null;
     expenditure: Array<IDomestic> | null;
     revenueAndGrants: Array<IDomestic> | null;
     finance: Array<IDomestic> | null;
@@ -536,6 +537,7 @@ declare namespace DH {
   */
   interface ILocalGovernmentFinance {
     startYear: number | null;
+    currencyUSD: string | null;
     currencyCode: string | null;
     revenueAndGrants: Array<IDomestic> | null;
     expenditure: Array<IDomestic> | null;
