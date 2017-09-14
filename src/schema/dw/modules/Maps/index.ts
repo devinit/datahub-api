@@ -349,7 +349,6 @@ export default class Maps {
                 year: null,
                 slug: entity.slug,
                 name: entity.name,
-                detail: dataRevColorMap[newColor],
                 color: colorObj.value
             };
         });
