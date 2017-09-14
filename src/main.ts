@@ -73,6 +73,8 @@ export async function main(options: IMainOptions) {
 
   app.use(compression());
 
+  app.get('/', (_req, res) => res.send('graphiql server works, explore it at the /graphiql route'));
+
   app.use(GRAPHQL_ROUTE, appCacheMiddleWare);
 
   try {
