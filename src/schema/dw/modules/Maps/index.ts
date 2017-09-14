@@ -345,6 +345,7 @@ export default class Maps {
             const entity = getEntityByIdGeneric<IEntity>(obj.id, entities);
             return {
                 ...obj,
+                detail: obj.detail.toString(),
                 value: null,
                 year: null,
                 slug: entity.slug,
