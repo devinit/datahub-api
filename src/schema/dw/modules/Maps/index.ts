@@ -92,9 +92,10 @@ export default class Maps {
         const effectiveDomain =  domain.length + offset;
         const range = R.range(0, effectiveDomain).map((index) => {
             if (offset === 0) return interpolateRgb(ramp.low, ramp.high)(index / domain.length);
-            const cutOff =  Math.round(effectiveDomain / 2);
-            return index < cutOff ? interpolateRgb(ramp.low, ramp.mid)(index / domain.length)
-                :   interpolateRgb(ramp.mid, ramp.high)(index / domain.length);
+            return interpolateRgb(ramp.low, ramp.high)(index / effectiveDomain);
+            // const cutOff =  Math.round(effectiveDomain / 2);
+            // return index < cutOff ? interpolateRgb(ramp.low, ramp.mid)(index / cutOff)
+            //     :   interpolateRgb(ramp.mid, ramp.high)(index / domain.length);
         });
         return scaleThreshold()
             .domain(domain[0] > domain[1] ? domain.reverse() : domain)
@@ -102,7 +103,7 @@ export default class Maps {
     }
     public static async getColorRamp(color: string): Promise<IColorMap> {
         const colors = await getColors();
-        return ['darker', 'mid', 'lighter'].reduce((colorMap: IColorMap, variation) => {
+        const baseRamp = ['darker', 'mid', 'lighter'].reduce((colorMap: IColorMap, variation) => {
             const colorStr = variation === 'mid' ? color : `${color}-${variation}`;
             const colorObj = getEntityByIdGeneric<IColor>(colorStr, colors);
             const colorValue = colorObj.value;
@@ -110,6 +111,7 @@ export default class Maps {
             if (variation === 'lighter') return {...colorMap, low: colorValue};
             return  {...colorMap, mid: colorValue};
         }, {}) as IColorMap;
+        return baseRamp;
     }
     public static createLinearLegend(
         uom_display: string,

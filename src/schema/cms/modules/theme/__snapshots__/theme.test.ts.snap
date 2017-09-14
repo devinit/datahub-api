@@ -24,8 +24,8 @@ exports[`Themes data tests should return global picture themes 1`] = `
         \\"heading\\": \\"From World Bank PovCalNet, representing the average gap for the whole population of each country, with those above the extreme poverty line counted as having a zero gap.\\",
         \\"id\\": \\"data_series.depth_of_extreme_poverty_190\\",
         \\"name\\": \\"Depth of extreme poverty (poverty gap)\\",
-        \\"source\\": \\" Development Initiatives based on PovcalNet as well as selected Demographic and health Surveys (DHS), Multiple Indicator Cluster Surveys (MICS), China Family Panel Studies (CFPS), and Brazil National Demographic and Healtj Surveys (PNDS\\",
-        \\"tooltip\\": \\"The approximate number of people in each country who are in the global poorest 20%\\",
+        \\"source\\": \\"Development Initiatives based on World Bank PovcalNet\\",
+        \\"tooltip\\": \\"Depth of extreme poverty (also known as the poverty gap) tells us how far people are from the extreme poverty line, on average per country.\\",
       },
       Object {
         \\"heading\\": \\"Data for those living under $3.10 a day illustrates that while many people are not in extreme poverty (less than $1.90 a day) they are still very poor.\\",
@@ -181,7 +181,7 @@ exports[`Themes data tests should return global picture themes 1`] = `
         \\"heading\\": \\"Largest source of international financing to each developing country\\",
         \\"id\\": \\"data_series.largest_intl_flow\\",
         \\"name\\": \\"Largest international resource flow\\",
-        \\"source\\": \\"Development Initiatives based on OECD DAC.\\",
+        \\"source\\": \\"Development Initiatives based on numerous sources (see notes for international resource flows to and from developing countries data).\\",
         \\"tooltip\\": \\"The largest international resource flow to each country in each year.\\",
       },
       Object {
@@ -199,18 +199,18 @@ exports[`Themes data tests should return global picture themes 1`] = `
         \\"tooltip\\": \\"Total international resource flows received by each country divided by the country's GDP, for each year.\\",
       },
       Object {
-        \\"heading\\": \\"Volume of financing received from foreign direct investors divided by the country's population (includes equity, loans and reinvested profits). Data is in constant 2015 prices.\\",
-        \\"id\\": \\"data_series.fdi_pp\\",
-        \\"name\\": \\"Foreign direct investment per person, US$\\",
-        \\"source\\": \\"Development Initiatives based on UNCTAD Stat and World Bank Development Indicators.\\",
-        \\"tooltip\\": \\"Foreign direct investment per person (note that negative values, which occur when disinvestment exceeds new investments, are excluded).\\",
-      },
-      Object {
         \\"heading\\": \\"Inflows of foreign direct investment expressed as a percentage of the country's GDP.\\",
         \\"id\\": \\"data_series.fdi_percent_gdp\\",
         \\"name\\": \\"Foreign direct investment, % of GDP\\",
         \\"source\\": \\"Development Initiatives based on UNCTAD Stat and World Bank Development Indicators.\\",
         \\"tooltip\\": \\"Inflows of foreign direct investment to each country expressed as a percentage of GDP of the same country, each year.\\",
+      },
+      Object {
+        \\"heading\\": \\"Volume of financing received from foreign direct investors divided by the country's population (includes equity, loans and reinvested profits). Data is in constant 2015 prices.\\",
+        \\"id\\": \\"data_series.fdi_pp\\",
+        \\"name\\": \\"Foreign direct investment per person, US$\\",
+        \\"source\\": \\"Development Initiatives based on UNCTAD Stat and World Bank Development Indicators.\\",
+        \\"tooltip\\": \\"Foreign direct investment per person (note that negative values, which occur when disinvestment exceeds new investments, are excluded).\\",
       },
       Object {
         \\"heading\\": \\"Volume of remittances received in each country divided by the country's population (includes personal transfers and income of workers employed in an economy where they are not resident). Data is in constant 2015 prices.\\",

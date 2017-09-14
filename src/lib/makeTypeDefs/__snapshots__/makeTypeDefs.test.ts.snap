@@ -337,6 +337,7 @@ declare namespace DH {
     value: number | null;
     value_ncu: number | null;
     uid: string | null;
+    color: string | null;
   }
 
   /*
@@ -878,6 +879,7 @@ type Domestic {
   value: Float
   value_ncu: Float
   uid: String
+  color: String
 }
 
 type SpendingAllocationWithToolTip {
