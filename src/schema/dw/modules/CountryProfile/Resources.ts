@@ -136,6 +136,7 @@ export default class Resources {
             const grantsAsPcOfRevenue = await this.getGrantsAsPcOfRevenue(id);
             const spendingAllocation = await this.getSpendingAllocation(id);
             const domestic = await this.getDomesticResourcesOvertime(id);
+            const maxGovYear = Resources.getMaxYear(domestic.revenueAndGrants);
             return {
                 totalRevenue,
                 grantsAsPcOfRevenue,
@@ -143,7 +144,7 @@ export default class Resources {
                 currencyCode,
                 currencyUSD: 'constant 2015 USD',
                 ...domestic,
-                startYear: Resources.getMaxYear(domestic.revenueAndGrants)
+                startYear: maxGovYear < concept.end_year ? maxGovYear : concept.end_year
             };
         } catch (error) {
            console.error(error);
