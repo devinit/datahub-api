@@ -42,9 +42,12 @@ interface IDomesticResourcesOverTime {
 }
 
 export default class Resources {
+    public static getMaxYear(data: Array<{year?: number | null}>): number {
+        const years = data.map(obj => Number(obj.year));
+        return Math.max.apply(null, years);
+    }
     private db: IDatabase<IExtensions> & IExtensions;
     private defaultArgs;
-
     constructor(db: any) {
         this.db = db;
         this.defaultArgs = {db: this.db, conceptType: 'country-profile'};
@@ -58,7 +61,7 @@ export default class Resources {
             const gniToolTip = await getIndicatorToolTip({query: sql.GNI, ...this.defaultArgs});
             const netODAOfGNIIn = isDonorCountry ? null : await this.getNetODAOfGNIIn(id, GNI);
             const resourcesSql = isDonorCountry ? [sql.resourcesDonors, sql.InflowsDonors, sql.resourcesDonorsMix] :
-            [sql.resourcesRecipient, sql.resourcesRecipientMix];
+                [sql.resourcesRecipient, sql.resourcesRecipientMix];
             const [resourcesOverTime, mixOfResources] = await this.getResourcesGeneric(id, resourcesSql);
             const resourceInflowsOverTime = await this.getResourceInflowOvertime(id);
             // TODO: we are currently getting start year for various viz
@@ -140,7 +143,7 @@ export default class Resources {
                 currencyCode,
                 currencyUSD: 'constant 2015 USD',
                 ...domestic,
-                startYear: concept.end_year || 2015
+                startYear: Resources.getMaxYear(domestic.revenueAndGrants)
             };
         } catch (error) {
            console.error(error);
