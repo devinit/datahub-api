@@ -32,6 +32,10 @@ describe('Maps module tests', () => {
         const surveryP20 = await maps.getMapData('survey_p20');
         expect(prettyFormat({surveryP20})).toMatchSnapshot();
     }, 20000);
+    it('should return global picture net other flows ', async () => {
+        const linearColored = await maps.getMapData('data_series.out_oof_net');
+        expect(prettyFormat(linearColored)).toMatchSnapshot();
+    }, 20000);
     it.skip('should return global picture indicators data ', async () => {
         const linearColored = await maps.getMapData('data_series.in_ha');
         const categoricalLinear = await maps.getMapData( 'data_series.fragile_states');
@@ -61,7 +65,7 @@ describe('Maps module tests', () => {
         };
         expect(prettyFormat(results)).toMatchSnapshot();
     });
-    it('should create legend for map data', async () => {
+    it.skip('should create legend for map data', async () => {
         const rampA = {high: '#8f1b13', low: '#fbd7cb', mid: '#e8443a'};
         const rampB = {high: '#0c457b', low: '#bcd4f0', mid: '#0089cc'};
         const rangeA = '1, 5, 10, 20';

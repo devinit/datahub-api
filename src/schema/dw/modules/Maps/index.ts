@@ -62,10 +62,9 @@ export default class Maps {
         color: 'white', backgroundColor: lightGrey, label: 'no data/not applicable'};
 
     public static DACOnlyData(DACCountries: string[], indicatorData: DH.IMapUnit[]): DH.IMapUnit[] {
-       const dacData: DH.IMapUnit[][] = DACCountries
-        .map(name => indicatorData.filter((obj: DH.IMapUnit) => obj.name === name))
-        .filter(obj => obj !== undefined);
-       return R.flatten<DH.IMapUnit>(dacData);
+       return DACCountries
+        .map(name => indicatorData.find((obj: DH.IMapUnit) => obj.name === name))
+        .filter(obj => obj !== undefined) as DH.IMapUnit[];
     }
     public static processBudgetData(data: DH.IMapUnit[]): DH.IMapUnit[] {
         const grouped = R.groupBy(R.prop('year'), data);
@@ -282,7 +281,8 @@ export default class Maps {
             .filter((obj) => {
                 const entity = getEntityByIdGeneric<IDistrict | IEntity>(obj.id, entities);
                 const type = (entity as IEntity).type;
-                if (type && type !== 'country') return false;
+                if (!type.length || type !== 'country') return false;
+                console.log('type', type, '\n');
                 return true;
             })
             .map((obj) => {
