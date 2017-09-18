@@ -35,7 +35,7 @@ declare namespace DH {
     unbundlingOdaPageData: Array<IPage> | null;
     unbundlingOOfPageData: Array<IPage> | null;
     whereThePoorPageData: Array<IPage> | null;
-    districts: Array<IEntity> | null;
+    districts: Array<IDistrict> | null;
     globalPictureThemes: Array<ITheme> | null;
     spotlightThemes: Array<ITheme> | null;
     bubbleChartOda: Array<IBubbleChartOda> | null;
@@ -98,6 +98,14 @@ declare namespace DH {
     title: string | null;
     narrative: string | null;
     donor_title: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IDistrict {
+    id: string | null;
+    name: string | null;
   }
 
   /*
@@ -636,7 +644,7 @@ type Query {
   unbundlingOdaPageData: [Page]
   unbundlingOOfPageData: [Page]
   whereThePoorPageData: [Page]
-  districts(country: String!): [Entity]
+  districts(country: String!): [District]
   globalPictureThemes: [Theme]
   spotlightThemes(country: String!): [Theme]
   bubbleChartOda(id: String): [BubbleChartOda]
@@ -691,6 +699,11 @@ type Page {
   title: String
   narrative: String
   donor_title: String
+}
+
+type District {
+  id: String
+  name: String
 }
 
 type ThemeIndicator {
