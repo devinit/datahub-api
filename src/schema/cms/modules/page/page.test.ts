@@ -10,8 +10,8 @@ import {
 import * as prettyFormat from 'pretty-format';
 
 describe('Page data', () => {
-    it('should return page data for a country slug', async () => {
-        const pageData = await getCountryProfilePageData('afghanistan');
+    it('should return page data for a country profile', async () => {
+        const pageData = await getCountryProfilePageData();
         expect(pageData.length).toBeGreaterThan(2);
         expect(prettyFormat(pageData)).toMatchSnapshot();
     }, 100000);

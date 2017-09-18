@@ -2,6 +2,7 @@ type Page {
     id: String
     title: String
     narrative: String
+    donor_title: String
 }
 type Query {
   districtPageData: [Page]

@@ -84,6 +84,7 @@ declare namespace DH {
     id: string | null;
     name: string | null;
     slug: string | null;
+    has_domestic_data: string | null;
     countryType: string | null;
   }
 
@@ -94,6 +95,7 @@ declare namespace DH {
     id: string | null;
     title: string | null;
     narrative: string | null;
+    donor_title: string | null;
   }
 
   /*
@@ -335,6 +337,7 @@ declare namespace DH {
     value: number | null;
     value_ncu: number | null;
     uid: string | null;
+    color: string | null;
   }
 
   /*
