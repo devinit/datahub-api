@@ -6,7 +6,7 @@ import db from '../../db';
 describe('Maps module tests', () => {
     const maps = new Maps(db);
 
-    it.skip('should return only DAC countries from the data', async () => {
+    it('should return only DAC countries from the data', async () => {
         const dacCountries = ['Spain', 'England'];
         const data = [
             {value: 2000, id: 'sp', name: 'Spain', year: 2000},
@@ -17,26 +17,22 @@ describe('Maps module tests', () => {
         expect(prettyFormat({onlyDacCountries})).toMatchSnapshot();
         expect(onlyDacCountries.length).toBe(2);
     }, 10000);
-    it.skip('should know if an indicator is for a country spotlight or for global picture', async () => {
+    it('should know if an indicator is for a country spotlight or for global picture', async () => {
         const country = await Maps.getCountry('spotlight_on_uganda.uganda_poverty_headcount');
         const global = await Maps.getCountry('data_series.poorest_20_percent');
         expect(country).toBe('uganda');
         expect(global).toBe('global');
     }, 2000);
-    it.skip('should return spotlight on uganda indicator data', async () => {
+    it('should return spotlight on uganda indicator data', async () => {
         const linearColored =
             await maps.getMapData('spotlight_on_uganda.uganda_poverty_headcount');
         expect(prettyFormat({linearColored})).toMatchSnapshot();
     }, 20000);
-    it.skip('should return global picture indicator for map styled data  ', async () => {
+    it('should return global picture indicator for map styled data  ', async () => {
         const surveryP20 = await maps.getMapData('survey_p20');
         expect(prettyFormat({surveryP20})).toMatchSnapshot();
     }, 20000);
-    it('should return global picture net other flows ', async () => {
-        const linearColored = await maps.getMapData('data_series.out_oof_net');
-        expect(prettyFormat(linearColored)).toMatchSnapshot();
-    }, 20000);
-    it.skip('should return global picture indicators data ', async () => {
+    it('should return global picture indicators data ', async () => {
         const linearColored = await maps.getMapData('data_series.in_ha');
         const categoricalLinear = await maps.getMapData( 'data_series.fragile_states');
         const dataRevolution = await maps.getMapData( 'data_series.latest_census');
@@ -46,12 +42,12 @@ describe('Maps module tests', () => {
         expect(prettyFormat({linearColored, categoricalLinear, dataRevolution,
             largestIntlFinance, governmentFinance})).toMatchSnapshot();
     }, 20000);
-    it.skip('should return categorical value mappings for indicators', async () => {
+    it('should return categorical value mappings for indicators', async () => {
         const fragileSates = await Maps.getCategoricalMapping('data_series.fragile_states');
         const dataRevolution = await Maps.getCategoricalMapping('data_series.agricultural_census', 'data-revolution');
         expect(prettyFormat({fragileSates, dataRevolution})).toMatchSnapshot();
     }, 5000);
-    it.skip('should return color values from a scale', async () => {
+    it('should return color values from a scale', async () => {
         const ramp = {high: '#8f1b13', low: '#f8c1b2', mid: '#e8443a'};
         const scaleA = Maps.colorScale({rangeStr: '1, 5, 10, 20', ramp});
         const scaleB = Maps.colorScale({rangeStr: '80,60,40,20', ramp, isHighBetter: true});
@@ -65,7 +61,7 @@ describe('Maps module tests', () => {
         };
         expect(prettyFormat(results)).toMatchSnapshot();
     });
-    it.skip('should create legend for map data', async () => {
+    it('should create legend for map data', async () => {
         const rampA = {high: '#8f1b13', low: '#fbd7cb', mid: '#e8443a'};
         const rampB = {high: '#0c457b', low: '#bcd4f0', mid: '#0089cc'};
         const rangeA = '1, 5, 10, 20';
@@ -79,7 +75,7 @@ describe('Maps module tests', () => {
         const legendC = Maps.createLinearLegend('%', rangeC, scaleC);
         expect(prettyFormat({legendB, legendC, legendA})).toMatchSnapshot();
     });
-    it.skip('should create color ramp', async () => {
+    it('should create color ramp', async () => {
         const ramp = {high: '#8f1b13', low: '#f8c1b2', mid: '#e8443a'};
         const colorRamp = await Maps.getColorRamp('red');
         expect(prettyFormat(colorRamp)).toMatchSnapshot();

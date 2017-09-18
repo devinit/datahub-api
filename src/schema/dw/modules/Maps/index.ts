@@ -281,7 +281,8 @@ export default class Maps {
             .filter((obj) => {
                 const entity = getEntityByIdGeneric<IDistrict | IEntity>(obj.id, entities);
                 const type = (entity as IEntity).type;
-                return type === 'country';
+                if (country === 'global') return type === 'country';
+                return true;
             })
             .map((obj) => {
                 const entity = getEntityByIdGeneric<IDistrict | IEntity>(obj.id, entities);
