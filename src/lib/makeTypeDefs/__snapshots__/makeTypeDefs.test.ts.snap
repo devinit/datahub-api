@@ -86,6 +86,7 @@ declare namespace DH {
     id: string | null;
     name: string | null;
     slug: string | null;
+    has_domestic_data: string | null;
     countryType: string | null;
   }
 
@@ -680,6 +681,7 @@ type Entity {
   id: String
   name: String
   slug: String
+  has_domestic_data: String
   countryType: String
 }
 
@@ -1107,17 +1109,21 @@ type UnbundlingAidSelections {
 }
 
 input UnbundlingAidToTalQuery {
+  # oda or oof 
   aidType: String!
   year: Int
 }
 
 input UnbundlingAidQuery {
+  # oda or oof 
   aidType: String!
   year: Int!
+  # eg channel, bundle
   groupBy: String!
   to_di_id: String
   from_di_id: String
   sector: String
+  # form is same as buddle
   bundle: String
   channel: String
 }
