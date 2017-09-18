@@ -348,7 +348,7 @@ declare namespace DH {
     GNI: IIndicatorValueWithToolTip | null;
     netODAOfGNIIn: IIndicatorValueWithToolTip | null;
     netODAOfGNIOut: IIndicatorValueWithToolTip | null;
-    resourceInflowsOverTime: IInflowsOverTimeWithToolTip | null;
+    resourceflowsOverTime: IFlowsOverTimeWithToolTip | null;
     resourcesOverTime: IResourceDataWithToolTip | null;
     mixOfResources: IResourceDataWithToolTip | null;
   }
@@ -356,7 +356,7 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IInflowsOverTimeWithToolTip {
+  interface IFlowsOverTimeWithToolTip {
     data: Array<IIndicatorDataColored> | null;
     toolTip: IToolTip | null;
   }

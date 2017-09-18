@@ -58,7 +58,7 @@ exports[`Page data should return page data for Where The Poor 1`] = `
 ]"
 `;
 
-exports[`Page data should return page data for a country slug 1`] = `
+exports[`Page data should return page data for a country profile 1`] = `
 "Array [
   Object {
     \\"donor_title\\": \\"\\",

@@ -60,10 +60,10 @@ export default class Resources {
             const GNI: number = await this.getGNI(id);
             const gniToolTip = await getIndicatorToolTip({query: sql.GNI, ...this.defaultArgs});
             const netODAOfGNIIn = isDonorCountry ? null : await this.getNetODAOfGNIIn(id, GNI);
-            const resourcesSql = isDonorCountry ? [sql.resourcesDonors, sql.InflowsDonors, sql.resourcesDonorsMix] :
+            const resourcesSql = isDonorCountry ? [sql.resourcesDonors, sql.resourcesDonorsMix] :
                 [sql.resourcesRecipient, sql.resourcesRecipientMix];
             const [resourcesOverTime, mixOfResources] = await this.getResourcesGeneric(id, resourcesSql);
-            const resourceInflowsOverTime = await this.getResourceInflowOvertime(id);
+            const resourceflowsOverTime = await this.getResourceflowsOvertime(id);
             // TODO: we are currently getting start year for various viz
             // from data_series.intl_flows_recipients concept /indicator. They shouldb be a better way of doing this.
             const concept: IConcept = await getConceptAsync('country-profile', 'data_series.intl_flows_recipients');
@@ -73,7 +73,7 @@ export default class Resources {
                 netODAOfGNIOut: netODAOfGNIOutArr ? netODAOfGNIOutArr[0] : null,
                 resourcesOverTime,
                 mixOfResources,
-                resourceInflowsOverTime,
+                resourceflowsOverTime,
                 startYear: concept.end_year || 2015
           };
         } catch (error) {
@@ -173,9 +173,9 @@ export default class Resources {
            throw error;
        }
     }
-    private async getResourceInflowOvertime(id: string): Promise<DH.IInflowsOverTimeWithToolTip > {
+    private async getResourceflowsOvertime(id: string): Promise<DH.IFlowsOverTimeWithToolTip > {
         const isDonorCountry =  await isDonor(id);
-        const query = isDonorCountry ? sql.InflowsDonors : sql.InflowsRecipient;
+        const query = isDonorCountry ? sql.OutflowsDonors : sql.InflowsRecipient;
         const queryArgs = {query, ...this.defaultArgs, id};
         const raw: IRAWFlow[] = await getIndicatorData<IRAWFlow>(queryArgs);
         const flowTypeRefs = await getFlowType();

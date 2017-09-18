@@ -97,6 +97,7 @@ declare namespace DH {
     id: string | null;
     title: string | null;
     narrative: string | null;
+    donor_title: string | null;
   }
 
   /*
@@ -689,6 +690,7 @@ type Page {
   id: String
   title: String
   narrative: String
+  donor_title: String
 }
 
 type ThemeIndicator {

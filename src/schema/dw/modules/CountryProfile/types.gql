@@ -154,7 +154,7 @@ type Flow {
   id: String
   selections: [FlowSelection]
 }
-type InflowsOverTimeWithToolTip {
+type FlowsOverTimeWithToolTip  {
   data: [IndicatorDataColored]
   toolTip: ToolTip
 }
@@ -168,7 +168,7 @@ type InternationalResources {
   netODAOfGNIOut: IndicatorValueWithToolTip
   # for line chart in the  international resources tabs section,
   # IndicatorDataColoredWithToolTip  is defined in spotlight types
-  resourceInflowsOverTime: InflowsOverTimeWithToolTip 
+  resourceflowsOverTime: FlowsOverTimeWithToolTip 
   # for sidebar chart in international resources section & area partition tree chart default data
   resourcesOverTime: ResourceDataWithToolTip
   # Whats the mix of resources can be for donors (out flows) or receipient (in flows)
