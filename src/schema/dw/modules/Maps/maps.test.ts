@@ -22,7 +22,7 @@ describe('Maps module tests', () => {
         const global = await Maps.getCountry('data_series.poorest_20_percent');
         expect(country).toBe('uganda');
         expect(global).toBe('global');
-    }, 2000);
+    }, 10000);
     it('should return spotlight on uganda indicator data', async () => {
         const linearColored =
             await maps.getMapData('spotlight_on_uganda.uganda_poverty_headcount');
@@ -46,7 +46,7 @@ describe('Maps module tests', () => {
         const fragileSates = await Maps.getCategoricalMapping('data_series.fragile_states');
         const dataRevolution = await Maps.getCategoricalMapping('data_series.agricultural_census', 'data-revolution');
         expect(prettyFormat({fragileSates, dataRevolution})).toMatchSnapshot();
-    }, 5000);
+    }, 10000);
     it('should return color values from a scale', async () => {
         const ramp = {high: '#8f1b13', low: '#f8c1b2', mid: '#e8443a'};
         const scaleA = Maps.colorScale({rangeStr: '1, 5, 10, 20', ramp});
