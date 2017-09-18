@@ -350,7 +350,7 @@ declare namespace DH {
     GNI: IIndicatorValueWithToolTip | null;
     netODAOfGNIIn: IIndicatorValueWithToolTip | null;
     netODAOfGNIOut: IIndicatorValueWithToolTip | null;
-    resourceInflowsOverTime: IInflowsOverTimeWithToolTip | null;
+    resourceflowsOverTime: IFlowsOverTimeWithToolTip | null;
     resourcesOverTime: IResourceDataWithToolTip | null;
     mixOfResources: IResourceDataWithToolTip | null;
   }
@@ -358,7 +358,7 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IInflowsOverTimeWithToolTip {
+  interface IFlowsOverTimeWithToolTip {
     data: Array<IIndicatorDataColored> | null;
     toolTip: IToolTip | null;
   }
@@ -926,7 +926,7 @@ type Flow {
   selections: [FlowSelection]
 }
 
-type InflowsOverTimeWithToolTip {
+type FlowsOverTimeWithToolTip {
   data: [IndicatorDataColored]
   toolTip: ToolTip
 }
@@ -941,7 +941,7 @@ type InternationalResources {
   netODAOfGNIOut: IndicatorValueWithToolTip
   # for line chart in the  international resources tabs section,
    # IndicatorDataColoredWithToolTip  is defined in spotlight types
-  resourceInflowsOverTime: InflowsOverTimeWithToolTip
+  resourceflowsOverTime: FlowsOverTimeWithToolTip
   # for sidebar chart in international resources section & area partition tree chart default data
   resourcesOverTime: ResourceDataWithToolTip
   # Whats the mix of resources can be for donors (out flows) or receipient (in flows)
