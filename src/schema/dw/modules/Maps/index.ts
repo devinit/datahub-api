@@ -287,15 +287,14 @@ export default class Maps {
             .map((obj) => {
                 const entity = getEntityByIdGeneric<IDistrict | IEntity>(obj.id, entities);
                 let detail: any = null;
-                if (cMappings) {
-                    detail = Maps.getValueDetail(obj.value, cMappings).name;
-                }
+                if (cMappings) detail = Maps.getValueDetail(obj.value, cMappings).name;
                 if (hasBudgeTypes) detail = obj.budget_type;
                 const colorObj = Color(scale(obj.value));
+                const slug = (entity as IEntity).slug ? (entity as IEntity).slug : entity.name.toLowerCase();
                 return {
                     ...obj,
                     detail,
-                    slug: entity.slug,
+                    slug,
                     name: entity.name,
                     color: colorObj.hex(),
                 };
