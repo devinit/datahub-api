@@ -10,7 +10,7 @@
   "scripts": {
     "build": "webpack -p",
     "build:watch": "webpack --watch",
-    "gqlToTs": "tsc -p",
+    "gqlToTs": "tsc -p src/lib/makeTypeDefs && node src/lib/makeTypeDefs/cli/gqlToTs.js",
     "test": "jest",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "test:watch": "npm test -- --watch",

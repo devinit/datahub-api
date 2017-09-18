@@ -33,7 +33,7 @@ declare namespace DH {
     unbundlingOdaPageData: Array<IPage> | null;
     unbundlingOOfPageData: Array<IPage> | null;
     whereThePoorPageData: Array<IPage> | null;
-    districts: Array<IEntity> | null;
+    districts: Array<IDistrict> | null;
     globalPictureThemes: Array<ITheme> | null;
     spotlightThemes: Array<ITheme> | null;
     bubbleChartOda: Array<IBubbleChartOda> | null;
@@ -96,6 +96,14 @@ declare namespace DH {
     title: string | null;
     narrative: string | null;
     donor_title: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IDistrict {
+    id: string | null;
+    name: string | null;
   }
 
   /*
