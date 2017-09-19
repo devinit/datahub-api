@@ -14,7 +14,6 @@ import * as R from 'ramda';
 
 interface IColorMap {
     high: string;
-    mid: string;
     low: string;
 }
 interface IRAWDataRevolution {
@@ -85,16 +84,12 @@ export default class Maps {
     }
     public static colorScale(args: IColorScaleArgs): IScaleThreshold<number, string> {
         const {rangeStr, ramp} = args;
-        const offset = args.offset !== undefined ? args.offset : 1;
+        const offset = args.offset || 1;
         const domain = rangeStr.split (',').map(val => Number(val));
         const isHighBetter = args.isHighBetter || false;
         const effectiveDomain =  domain.length + offset;
         const range = R.range(0, effectiveDomain).map((index) => {
-            if (offset === 0) return interpolateRgb(ramp.low, ramp.high)(index / domain.length);
-            return interpolateRgb(ramp.low, ramp.high)(index / effectiveDomain);
-            // const cutOff =  Math.round(effectiveDomain / 2);
-            // return index < cutOff ? interpolateRgb(ramp.low, ramp.mid)(index / cutOff)
-            //     :   interpolateRgb(ramp.mid, ramp.high)(index / domain.length);
+            return interpolateRgb(ramp.low, ramp.high)(index / (effectiveDomain - offset));
         });
         return scaleThreshold()
             .domain(domain[0] > domain[1] ? domain.reverse() : domain)
@@ -102,14 +97,13 @@ export default class Maps {
     }
     public static async getColorRamp(color: string): Promise<IColorMap> {
         const colors = await getColors();
-        const baseRamp = ['darker', 'mid', 'lighter'].reduce((colorMap: IColorMap, variation) => {
-            const colorStr = variation === 'mid' ? color : `${color}-${variation}`;
+        const baseRamp = ['high', 'low'].reduce((colorMap: IColorMap, variation) => {
+            const colorStr = variation === 'high' ? color : `${color}-lighter`;
             const colorObj = getEntityByIdGeneric<IColor>(colorStr, colors);
             const colorValue = colorObj.value;
-            if (variation === 'darker') return {...colorMap, high: colorValue};
-            if (variation === 'lighter') return {...colorMap, low: colorValue};
-            return  {...colorMap, mid: colorValue};
+            return  {...colorMap, [variation]: colorValue};
         }, {}) as IColorMap;
+        console.log(baseRamp);
         return baseRamp;
     }
     public static createLinearLegend(

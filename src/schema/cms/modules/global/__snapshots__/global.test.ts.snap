@@ -1439,7 +1439,7 @@ exports[`Site Global narratives and refrence module should return colors 1`] = `
   },
   Object {
     \\"id\\": \\"red-darker\\",
-    \\"value\\": \\"#8f1b13\\",
+    \\"value\\": \\"#6b120a\\",
   },
   Object {
     \\"id\\": \\"white\\",
@@ -1483,7 +1483,7 @@ exports[`Site Global narratives and refrence module should return colors 1`] = `
   },
   Object {
     \\"id\\": \\"orange-darker\\",
-    \\"value\\": \\"#973915\\",
+    \\"value\\": \\"#7a2e05\\",
   },
   Object {
     \\"id\\": \\"pink\\",
@@ -1503,7 +1503,7 @@ exports[`Site Global narratives and refrence module should return colors 1`] = `
   },
   Object {
     \\"id\\": \\"pink-darker\\",
-    \\"value\\": \\"#7e1850\\",
+    \\"value\\": \\"#65093d\\",
   },
   Object {
     \\"id\\": \\"purple\\",
@@ -1523,7 +1523,7 @@ exports[`Site Global narratives and refrence module should return colors 1`] = `
   },
   Object {
     \\"id\\": \\"purple-darker\\",
-    \\"value\\": \\"#551f65\\",
+    \\"value\\": \\"#42184c\\",
   },
   Object {
     \\"id\\": \\"blue\\",
@@ -1563,7 +1563,7 @@ exports[`Site Global narratives and refrence module should return colors 1`] = `
   },
   Object {
     \\"id\\": \\"green-darker\\",
-    \\"value\\": \\"#065139\\",
+    \\"value\\": \\"#08492f\\",
   },
   Object {
     \\"id\\": \\"grey\\",

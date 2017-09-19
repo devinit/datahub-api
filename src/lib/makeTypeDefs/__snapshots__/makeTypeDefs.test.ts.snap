@@ -399,7 +399,7 @@ declare namespace DH {
     value: number;
     flow_name: string;
     flow_id: string;
-    positions: Array<number> | null;
+    position: number | null;
     short_name: string | null;
     flow_category: string | null;
     flow_type: string | null;
@@ -818,8 +818,8 @@ type ResourceData {
   value: Float!
   flow_name: String!
   flow_id: String!
-  # an array of postion order starting with flow_type, flow_category etc
-  positions: [Int]
+  # a position value for a flow generated from flow_type, flow_category and flow name order
+  position: Int
   short_name: String
   # Category i.e FDI, ODA
   flow_category: String
