@@ -1,7 +1,9 @@
 import * as prettyFormat from 'pretty-format';
 // import {uidPatchForTabData} from '../utils/test-utils';
+import {getFlows} from '../../../cms/modules/countryProfile';
 import CountryProfile from '.';
 import * as R from 'ramda';
+import Resources from './Resources';
 import db from '../../db';
 
 describe('country profile DW module tests', () => {
@@ -12,6 +14,11 @@ describe('country profile DW module tests', () => {
         const recipient = await resources.getFlows('recipient');
         const donor = await resources.getFlows('donor');
         expect(prettyFormat({recipient, donor})).toMatchSnapshot();
+    }, 10000);
+    it('should return a flows positions', async () => {
+        const flows = await getFlows();
+        const position =  Resources.getFlowPositions(flows)(flows[1]);
+        expect(prettyFormat({raw: flows[1], position})).toMatchSnapshot();
     }, 10000);
     it('should return overview tab data for uganda && turkey', async () => {
         const uganda = await tab.getOverViewTab({id: 'uganda'});

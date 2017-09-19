@@ -40,7 +40,8 @@ type ResourceData {
   value: Float!
   flow_name: String!
   flow_id: String!
-  order: Int
+  # a position value for a flow generated from flow_type, flow_category and flow name order
+  position: Int
   short_name: String
   # Category i.e FDI, ODA
   flow_category: String

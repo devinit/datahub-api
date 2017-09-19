@@ -397,7 +397,7 @@ declare namespace DH {
     value: number;
     flow_name: string;
     flow_id: string;
-    order: number | null;
+    position: number | null;
     short_name: string | null;
     flow_category: string | null;
     flow_type: string | null;

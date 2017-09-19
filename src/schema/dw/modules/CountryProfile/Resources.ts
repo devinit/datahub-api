@@ -46,6 +46,19 @@ export default class Resources {
         const years = data.map(obj => Number(obj.year));
         return Math.max.apply(null, years);
     }
+    // FIXME: This may not be necessary, category order alone maybe enough
+    public static getFlowPositions = (flowRefs: IFlowRef[]) => (flow: IFlowRef): number => {
+        const directionGroups = R.groupBy<IFlowRef>(R.prop('direction'), flowRefs);
+        const sorted = directionGroups[flow.direction]
+            .filter(obj => Number(obj.flow_category_order) > 0)
+            .sort((a, b) => a.flow_category_order - b.flow_category_order);
+        const [typePos, catPos] = ['flow_type', 'flow_category'].map(cat => {
+            const uniqs = R.uniq(sorted.map(obj => obj[cat]));
+            return R.findIndex(val => val === flow[cat], uniqs);
+        });
+        // add plus 1 to make non zero indexed
+        return Number(`${typePos + 1}${catPos + 1}${flow.flow_category_order}`);
+    }
     private db: IDatabase<IExtensions> & IExtensions;
     private defaultArgs;
     constructor(db: any) {
@@ -302,6 +315,7 @@ export default class Resources {
          try {
             const processed: IFlowProcessed[] = indicatorDataProcessingSimple<IFlowProcessed>(data);
             const flowRefs: IFlowRef[] = await getFlows();
+            const getPosition = Resources.getFlowPositions(flowRefs);
             const colors = await getColors();
             return processed
                 .filter(obj => obj.flow_name && obj.flow_name.length)
@@ -309,8 +323,8 @@ export default class Resources {
                     const flow: IFlowRef | undefined = flowRefs.find(flowRef => flowRef.id === obj.flow_name);
                     if (flow === undefined) throw new Error(`No flow refrence for ${JSON.stringify(obj)} `);
                     const colorObj: IColor = getEntityByIdGeneric<IColor>(flow.color, colors);
-                    return {...obj, ...flow, color: colorObj.value, order: obj.flow_category_order,
-                        flow_id: flow.id} as DH.IResourceData;
+                    const position = getPosition(flow);
+                    return {...obj, ...flow, color: colorObj.value, position, flow_id: flow.id} as DH.IResourceData;
                 });
          } catch (error) {
              throw error;

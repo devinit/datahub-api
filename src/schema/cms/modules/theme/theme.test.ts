@@ -10,5 +10,5 @@ describe('Themes data tests', () => {
     it('should return spotlight on uganda themes', async () => {
         const themes = await getSpotlightThemes('uganda');
         expect(prettyFormat(themes)).toMatchSnapshot();
-    }, 10000);
+    }, 30000);
 });

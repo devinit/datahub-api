@@ -9,7 +9,7 @@ export interface IFlowRef {
     flow_type: string;
     flow_name: string;
     short_name: string;
-    used_in_area_treemap_chart: boolean;
+    used_in_area_treemap_chart: number;
     direction: string;
     color: string;
     concept: string;
