@@ -103,7 +103,6 @@ export default class Maps {
             const colorValue = colorObj.value;
             return  {...colorMap, [variation]: colorValue};
         }, {}) as IColorMap;
-        console.log(baseRamp);
         return baseRamp;
     }
     public static createLinearLegend(
