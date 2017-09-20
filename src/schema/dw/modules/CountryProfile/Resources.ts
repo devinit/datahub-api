@@ -201,7 +201,8 @@ export default class Resources {
             return {name: capitalize(obj.flow_type), value: Number(obj.value), id: obj.flow_type,
                 color, uid: shortid.generate(), year: Number(obj.year)};
         });
-        const toolTip = await getIndicatorToolTip(queryArgs);
+        const toolTip = isDonorCountry ? await getIndicatorToolTip({...this.defaultArgs, id: 'resource-outflows'}) :
+            await getIndicatorToolTip({...this.defaultArgs, id: 'resource-inflows'});
         return {data, toolTip};
     }
     private async getDomesticResourcesOvertime(id: string): Promise<IDomesticResourcesOverTime> {
@@ -289,7 +290,8 @@ export default class Resources {
             };
             const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
             const toolTip = await getIndicatorToolTip(indicatorArgs);
-            if (!data[0].value || !gni) return { value: 'No data', toolTip};
+            if (data[0].value === undefined || !gni) return { value: 'No data', toolTip};
+            if (Number(data[0].value) < 0) return { value: '0.0', toolTip};
             const value = ((Number(data[0].value) / gni) * 100).toFixed(1);
             return {value, toolTip};
         } catch (error) {
@@ -325,7 +327,8 @@ export default class Resources {
                     const colorObj: IColor = getEntityByIdGeneric<IColor>(flow.color, colors);
                     const position = getPosition(flow);
                     return {...obj, ...flow, color: colorObj.value, position, flow_id: flow.id} as DH.IResourceData;
-                });
+                })
+                .sort((a, b) => Number(a.position) - Number(b.position));
          } catch (error) {
              throw error;
          }

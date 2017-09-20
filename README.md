@@ -78,3 +78,4 @@ TODO
 - [ ] fix testing on travis
 - [ ] pull in color data into the repo
 - [ ] pull in di_id as id in sql queries
+- [ ] Perf: breakdown tabs data fetching function into individual functions
