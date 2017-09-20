@@ -80,7 +80,6 @@ SELECT value FROM fact.population_total WHERE di_id = 'AT' AND year = 2015:dw
 SELECT value FROM data_series.govt_spend_pc WHERE di_id = 'AT' AND year = 2015:dw
 SELECT * FROM fact.population_rural_urban WHERE di_id = 'AT' AND year >= 1960 AND year <= 2015:dw
 SELECT value FROM fact.gni_usd_2015 WHERE di_id = 'AT' AND year = 2015:dw
-SELECT * FROM fact.gni_pc_usd_2015 WHERE di_id = 'AT' AND year >= 1980 AND year <= 2015:dw
 SELECT * FROM fact.population_by_age WHERE di_id = 'AT' AND year >= 1960 AND year <= 2015:dw
 SELECT flow_name, year,flow_type,direction,value FROM data_series.intl_flows_donors WHERE di_id = 'AT' AND year = 2015 AND direction = 'out' AND value > 0 GROUP BY flow_name,year,flow_type,direction,value:dw
 SELECT flow_name, year,flow_type,direction,value FROM data_series.intl_flows_donors WHERE di_id = 'AT' AND year >= 2010 AND year <= 2015 AND value > 0 GROUP BY flow_name,year,flow_type,direction,value:dw

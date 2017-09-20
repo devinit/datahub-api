@@ -144,7 +144,8 @@ export default class CountryProfileTabs {
             const data: DH.IQuintile[] = R.keys(quintileData)
                 .map(key => {
                     const color = key === 'value_bottom_20pc' ? red : grey;
-                    return {quintileName: key, color, value: Number(quintileData[key]), uid: shortid.generate()};
+                    const quintileName = key === 'value_bottom_20pc' ? 'value bottom 20%' : key.replace(/_/g, ' ');
+                    return {quintileName, color, value: Number(quintileData[key]), uid: shortid.generate()};
                 });
             const toolTip = await getIndicatorToolTip(indicatorArgs);
             return {data, toolTip};

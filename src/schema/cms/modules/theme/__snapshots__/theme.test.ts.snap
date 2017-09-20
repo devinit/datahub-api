@@ -196,7 +196,7 @@ exports[`Themes data tests should return global picture themes 1`] = `
         \\"id\\": \\"data_series.oda_percent_intl_resources\\",
         \\"name\\": \\"ODA, % of international resource flows\\",
         \\"source\\": \\"Development Initiatives based on numerous sources (see notes for international resource flows to and from developing countries data).\\",
-        \\"tooltip\\": \\"Total international resource flows received by each country divided by the country's GDP, for each year.\\",
+        \\"tooltip\\": \\"Inflows of gross official development assistance (ODA) to each country expressed as a percentage of total international resource flows received by the same country, each year.\\",
       },
       Object {
         \\"heading\\": \\"Inflows of foreign direct investment expressed as a percentage of the country's GDP.\\",
