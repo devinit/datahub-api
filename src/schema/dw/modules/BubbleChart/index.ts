@@ -61,19 +61,23 @@ export default class BubbleChart {
     }
     public async getBubbleChartPoverty(id?: string): Promise<DH.IBubbleChartPoverty[]> {
         try {
-            const [revenuePerPerson, percentageInExtremePoverty] =
-                await this.getIndicatorsGeneric([sql.govtRevenuePerPerson, sql.percentageInExtremePoverty], 'poverty');
+            const [revenuePerPerson, percentageInExtremePoverty, numberInExtremePoverty] =
+                await this.getIndicatorsGeneric([
+                    sql.govtRevenuePerPerson, sql.percentageInExtremePoverty, sql.numberInExtremePoverty], 'poverty');
             // console.log(revenuePerPerson[0], percentageInExtremePoverty[0]);
             const indicatorData: DH.IBubbleChartData[] | null = id ? await this.getBubbleSize(id) : null;
             return revenuePerPerson.map((obj: DH.IBubbleChartData) => {
-                const povertyObj: DH.IBubbleChartData | undefined =  percentageInExtremePoverty
+                const povertyObjPc: DH.IBubbleChartData | undefined =  percentageInExtremePoverty
+                    .find(pov => pov.id === obj.id && pov.year === obj.year);
+                const povertyObj: DH.IBubbleChartData | undefined =  numberInExtremePoverty
                     .find(pov => pov.id === obj.id && pov.year === obj.year);
                 const indicatorObj: DH.IBubbleChartData | undefined | null = indicatorData ?
                     indicatorData.find(indicator => indicator.id === obj.id && indicator.year === obj.year)
                     : null;
                 return {
-                    ...povertyObj,
-                    percentageInExtremePoverty: povertyObj ? povertyObj.value : null,
+                    ...povertyObjPc,
+                    percentageInExtremePoverty: povertyObjPc ? povertyObjPc.value : null,
+                    numberInExtremePoverty: povertyObj ? povertyObj.value : null,
                     revenuePerPerson: obj.value,
                      ...obj,
                     value: indicatorObj ? indicatorObj.value : null,

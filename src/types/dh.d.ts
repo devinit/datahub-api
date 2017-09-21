@@ -154,6 +154,7 @@ declare namespace DH {
     region: string | null;
     uid: string | null;
     revenuePerPerson: number | null;
+    numberInExtremePoverty: number | null;
     percentageInExtremePoverty: number | null;
   }
 
