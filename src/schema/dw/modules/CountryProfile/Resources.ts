@@ -240,7 +240,7 @@ export default class Resources {
                 .filter(obj => obj.l2 !== null)
                 .map(obj => {
                     const level = R.find(R.propEq('id', obj.l2), budgetRefs) as IBudgetLevelRef;
-                    const colorObj = getEntityByIdGeneric(level.color || 'purple', colors);
+                    const colorObj = getEntityByIdGeneric(level.color || 'pink', colors);
                     return {value: Number(obj.value), ...level, color: colorObj.value, uid: shortid.generate()};
                 });
             const toolTip = await getIndicatorToolTip({...this.defaultArgs, id: 'spending-allocation'});
