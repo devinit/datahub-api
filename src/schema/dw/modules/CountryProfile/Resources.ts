@@ -110,12 +110,10 @@ export default class Resources {
                 if (flow.type === RECIPIENT) args = {...args, to_di_id: countryId };
             }
             const sqlQuery = makeSqlAggregateQuery(args, groupById, flow.concept);
-            // console.log( sqlQuery);
             const data: IRAW[] = await this.db.manyCacheable(sqlQuery, null);
             const processedData: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(data);
             // TODO: types for  entitesFnMap
             const entities = await entitesFnMap[groupById]();
-            // console.log(entities[0]);
             const colors = await getColors();
             const resources = processedData.map(obj => {
                 let details: {name: string} | undefined = entities.find(entity => entity.id === obj[groupById]);
@@ -235,13 +233,15 @@ export default class Resources {
             id
         };
             const raw: IRAWSpending[] = await getIndicatorData<IRAWSpending>(indicatorArgs);
+            const colors: IColor[] = await getColors();
             // TODO: we have null names from raw data
             const budgetRefs: IBudgetLevelRef[] = await getBudgetLevels();
             const data = raw
                 .filter(obj => obj.l2 !== null)
                 .map(obj => {
                     const level = R.find(R.propEq('id', obj.l2), budgetRefs) as IBudgetLevelRef;
-                    return {value: Number(obj.value), ...level, uid: shortid.generate()};
+                    const colorObj = getEntityByIdGeneric(level.color || 'purple', colors);
+                    return {value: Number(obj.value), ...level, color: colorObj.value, uid: shortid.generate()};
                 });
             const toolTip = await getIndicatorToolTip({...this.defaultArgs, id: 'spending-allocation'});
             return {data, toolTip};
