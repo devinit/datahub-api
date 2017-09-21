@@ -5,7 +5,7 @@ import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import * as R from 'ramda';
 import * as shortid from 'shortid';
 import {IColor, getFlowType, getColors, getEntityByIdGeneric, IEntityBasic} from '../../../cms/modules/global';
-import {getIndicatorData, RECIPIENT, DONOR, IGetIndicatorArgs, CROSSOVER, capitalize, getCurrencyCode,
+import {getIndicatorData, RECIPIENT, DONOR, IGetIndicatorArgs, CROSSOVER, capitalize, getCurrencyCode, getTotal,
         indicatorDataProcessingSimple, makeSqlAggregateQuery, formatNumbers, getIndicatorsValue, getIndicatorToolTip,
         isDonor, IRAW, IRAWFlow, IProcessedSimple, entitesFnMap, IRAWDomestic, domesticDataProcessing} from '../utils';
 import {getFlowByTypeAsync, getFlows, getFlowByIdAsync, getBudgetLevels, IBudgetLevelRef,
@@ -22,7 +22,8 @@ interface ISingleResourceArgs {
 }
 interface IRAWSpending {
     l2: string;
-    value: string;
+    budget_type: string;
+    value: string | number;
 }
 interface IFlowProcessed {
   year: number;
@@ -233,10 +234,20 @@ export default class Resources {
             id
         };
             const raw: IRAWSpending[] = await getIndicatorData<IRAWSpending>(indicatorArgs);
+            // group by budget_type
+            const bugdetTypeGroups = R.groupBy<IRAWSpending>(R.prop('budget_type'))(raw);
+            const budgetTypes: string[] = R.keys(bugdetTypeGroups);
+            const activeType = R.contains('actual', budgetTypes) ? 'actual' : 'proj';
+            const activeLevel2s: {[key: string]: IRAWSpending[]} =
+                R.groupBy(R.prop('l2'), bugdetTypeGroups[activeType]);
+            const refined: IRAWSpending[] = R.keys(activeLevel2s).map(l2 => {
+                const value = getTotal(activeLevel2s[l2]);
+                return {value, l2, budget_type: activeType};
+            });
             const colors: IColor[] = await getColors();
             // TODO: we have null names from raw data
             const budgetRefs: IBudgetLevelRef[] = await getBudgetLevels();
-            const data = raw
+            const data = refined
                 .filter(obj => obj.l2 !== null)
                 .map(obj => {
                     const level = R.find(R.propEq('id', obj.l2), budgetRefs) as IBudgetLevelRef;
