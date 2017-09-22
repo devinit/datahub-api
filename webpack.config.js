@@ -1,11 +1,11 @@
-var nodeExternals = require('webpack-node-externals');
-var webpack = require('webpack');
-var path = require('path');
-var fs = require('fs');
-// var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const nodeExternals = require('webpack-node-externals');
+const webpack = require('webpack');
+const path = require('path');
+const fs = require('fs');
+// const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 /* helper function to get into build directory */
-var distPath = function ( name ) {
+const distPath = function ( name ) {
   if ( undefined === name ) {
     return path.join('dist');
   }
@@ -13,7 +13,7 @@ var distPath = function ( name ) {
   return path.join('dist', name);
 };
 
-var webpack_opts = {
+const webpack_opts = {
   entry: './src/main.ts',
   target: 'node',
   output: {
