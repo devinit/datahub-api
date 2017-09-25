@@ -21,18 +21,18 @@ export default {
     // tslint:disable-next-line:max-line-length
     studentsPassDistrictRank: 'SELECT * FROM ${schema^}.${country^}_leaving_exam_perf_rate WHERE year = ${start_year} Order By value DESC',
     // tslint:disable-next-line:max-line-length
-    primaryEducationfunding: 'SELECT value FROM ${schema^}.${country^}_primary_educ_funding WHERE district_id =${id} AND year = ${start_year}',
+    primaryEducationfunding: 'SELECT value, value_ncu FROM ${schema^}.${country^}_primary_educ_funding WHERE district_id =${id} AND year = ${start_year}',
     // tslint:disable-next-line:max-line-length
     districtHealthPerformance: 'SELECT value FROM ${schema^}.${country^}_overall_health WHERE district_id =${id} AND year = ${end_year}',
     districtHealthPerformanceRank: 'SELECT * FROM ${schema^}.${country^}_overall_health WHERE year = ${end_year}  Order By value DESC',
     // tslint:disable-next-line:max-line-length
     treatmeantOfTb: 'SELECT value FROM ${schema^}.${country^}_tb_success WHERE district_id =${id} AND year = ${start_year}',
     // tslint:disable-next-line:max-line-length
-    healthCareFunding: 'SELECT value FROM ${schema^}.${country^}_health_funding WHERE district_id =${id} AND year = ${start_year}',
+    healthCareFunding: 'SELECT value, value_ncu FROM ${schema^}.${country^}_health_funding WHERE district_id =${id} AND year = ${start_year}',
     // tslint:disable-next-line:max-line-length
-    lGFResources: 'SELECT value FROM ${schema^}.${country^}_igf_resources WHERE district_id =${id} AND year = ${start_year}',
-    crResources: 'SELECT value FROM ${schema^}.${country^}_central_resources WHERE district_id =${id} AND year = ${start_year}',
+    lGFResources: 'SELECT value, value_ncu FROM ${schema^}.${country^}_igf_resources WHERE district_id =${id} AND year = ${start_year}',
+    crResources: 'SELECT value, value_ncu FROM ${schema^}.${country^}_central_resources WHERE district_id =${id} AND year = ${start_year}',
     // tslint:disable-next-line:max-line-length
-    dResources: 'SELECT value FROM ${schema^}.${country^}_donor_resources WHERE district_id = ${id} AND year = ${start_year}',
+    dResources: 'SELECT value, value_ncu FROM ${schema^}.${country^}_donor_resources WHERE district_id = ${id} AND year = ${start_year}',
     localGovernmentFinance: 'SELECT * FROM ${schema^}.${country^}_finance WHERE district_id = ${id} AND l1 = ${l1} AND year >= ${start_year} AND value is NOT NULL'
 };

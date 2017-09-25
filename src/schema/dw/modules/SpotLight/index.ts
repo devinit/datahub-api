@@ -18,7 +18,7 @@ interface ISpotlightArgs {
 }
 
 interface IRegionalResources {
-    regionalResources: DH.IIndicatorValueWithToolTip;
+    regionalResources: DH.IIndicatorValueNCUWithToolTip;
     regionalResourcesBreakdown: DH.IIndicatorDataColoredWithToolTip[];
 }
 
@@ -228,10 +228,13 @@ export default class SpotLight {
                 .map(query => ({query, db: this.db, conceptType, ...opts}));
             const resourcesRaw: IRAW[][] =
                 await Promise.all(indicatorArgs.map(args => getIndicatorDataSpotlights<IRAW>(args)));
-            const resourcesSum: number = resourcesRaw.reduce((sum: number, data: IRAW[]) => {
-                if (data[0] && data[0].value) return  Number(data[0].value) + sum;
-                return sum;
-            }, 0);
+            const resourcesSum: {value: number, value_ncu: number} = resourcesRaw
+                .reduce((sum: {value: number, value_ncu: number}, data: IRAW[]) => {
+                    if (!data[0]) return sum;
+                    const value = Number(data[0].value) + sum.value;
+                    const value_ncu = Number(data[0].value_ncu) + sum.value_ncu;
+                    return {value, value_ncu};
+                }, {value: 0, value_ncu: 0});
             const colors: IColor[] = await getColors();
             const resourceWithConceptPromises: Array<Promise<DH.IIndicatorDataColoredWithToolTip>> = indicatorArgs
                 .map(async (args: ISpotlightGetIndicatorArgs , index) => {
@@ -242,15 +245,20 @@ export default class SpotLight {
                     const resource: IRAW = resourcesRaw[index][0];
                     if (!concept.color) throw new Error(`${concept.id} missing required color value`);
                     const colorObj: IColor = getEntityByIdGeneric<IColor>(concept.color, colors);
-                    const data = {value: Number(resource.value), id: concept.id, name: concept.name,
-                        year: concept.start_year, color: colorObj.value, uid: shortid.generate()};
+                    const data = {
+                        value: Number(resource.value), id: concept.id, name: concept.name,
+                        year: concept.start_year, color: colorObj.value, uid: shortid.generate()
+                    };
                     const toolTip = await getIndicatorToolTip(args);
                     return {data, toolTip};
                 });
             const resources: DH.IIndicatorDataColoredWithToolTip[] = await Promise.all(resourceWithConceptPromises);
             const regionalResourcesToolTip = await getIndicatorToolTip(indicatorArgs[0]);
             return {
-                regionalResources: {value: formatNumbers(resourcesSum, 1), toolTip: regionalResourcesToolTip},
+                regionalResources: {
+                    value: formatNumbers(resourcesSum.value, 1),
+                    value_ncu: formatNumbers(resourcesSum.value_ncu, 1),
+                    toolTip: regionalResourcesToolTip},
                 regionalResourcesBreakdown: resources
             };
          } catch (error) {
@@ -258,7 +266,7 @@ export default class SpotLight {
          }
     }
     private async getIndicatorsGeneric(opts: ISpotlightArgs, sqlList: string[], format: boolean = true)
-        : Promise<DH.IIndicatorValueWithToolTip[]>  {
+        : Promise<DH.IIndicatorValueNCUWithToolTip[]>  {
         try {
             const conceptType = SpotLight.getConceptType(opts.country);
             const indicatorArgs: ISpotlightGetIndicatorArgs[] =
@@ -270,9 +278,11 @@ export default class SpotLight {
             return indicatorRaw.map((data, index) => {
                 const toolTip = toolTips[index];
                 let value = 'No data';
+                let value_ncu = 'No data';
                 if (data[0] && data[0].value && format) value = formatNumbers(data[0].value, 1);
+                if (data[0] && data[0].value_ncu && format) value_ncu = formatNumbers(data[0].value_ncu, 1);
                 if (data[0] && data[0].value && !format) value = data[0].value;
-                return {value, toolTip};
+                return {value, value_ncu, toolTip};
             });
       } catch (error) {
           throw error;

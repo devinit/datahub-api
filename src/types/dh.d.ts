@@ -490,9 +490,18 @@ declare namespace DH {
   */
   interface IOverviewTabRegional {
     poorestPeople: IIndicatorValueWithToolTip | null;
-    regionalResources: IIndicatorValueWithToolTip | null;
+    regionalResources: IIndicatorValueNCUWithToolTip | null;
     regionalResourcesBreakdown: Array<IIndicatorDataColoredWithToolTip> | null;
     localGovernmentSpendPerPerson: IIndicatorValueWithToolTip | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IIndicatorValueNCUWithToolTip {
+    value: string | null;
+    value_ncu: string | null;
+    toolTip: IToolTip | null;
   }
 
   /*
@@ -531,7 +540,7 @@ declare namespace DH {
     pupilTeacherRatioOtherSchl: IIndicatorValueWithToolTip | null;
     studentsPassRate: IIndicatorValueWithToolTip | null;
     studentsPassDistrictRank: IIndicatorValueWithToolTip | null;
-    primaryEducationfunding: IIndicatorValueWithToolTip | null;
+    primaryEducationfunding: IIndicatorValueNCUWithToolTip | null;
   }
 
   /*
@@ -541,7 +550,7 @@ declare namespace DH {
     districtPerformance: IIndicatorValueWithToolTip | null;
     treatmeantOfTb: IIndicatorValueWithToolTip | null;
     districtHealthRank: IIndicatorValueWithToolTip | null;
-    healthCareFunding: IIndicatorValueWithToolTip | null;
+    healthCareFunding: IIndicatorValueNCUWithToolTip | null;
   }
 
   /*

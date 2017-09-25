@@ -55,6 +55,7 @@ export interface IGetIndicatorArgsSimple {
 }
 export interface IRAW {
     di_id: string;
+    value_ncu?: string;
     district_id: string;
     value: string;
     year: string;

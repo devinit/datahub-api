@@ -11,13 +11,20 @@ type  IndicatorDataColoredWithToolTip {
   data: IndicatorDataColored
   toolTip: ToolTip
 }
+
+type IndicatorValueNCUWithToolTip {
+  value: String 
+  value_ncu: String 
+  toolTip: ToolTip
+}
+
 type OverviewTabRegional {
   # WHAT PERCENTAGE OF PEOPLE IN WAKISO LIVE BELOW THE NATIONAL POVERTY LINE? 
   # can be no data or '12%'
   poorestPeople: IndicatorValueWithToolTip
   # WHAT RESOURCES ARE AVAILABLE TO LOCAL GOVERNMENTS IN WAKISO? eg 3.6m or 2.7bn
   # this is a total of local, donor and central government resources
-  regionalResources: IndicatorValueWithToolTip
+  regionalResources: IndicatorValueNCUWithToolTip
   # IndicatorDataColored is defined in country profile types
   # has local government, donor and central government
   regionalResourcesBreakdown: [IndicatorDataColoredWithToolTip]
@@ -51,7 +58,7 @@ type EducationTabRegional {
   studentsPassRate: IndicatorValueWithToolTip
   studentsPassDistrictRank: IndicatorValueWithToolTip
   #HOW MUCH PRIMARY EDUCATION FUNDING IS THERE? 
-  primaryEducationfunding: IndicatorValueWithToolTip
+  primaryEducationfunding:  IndicatorValueNCUWithToolTip
 }
 
 type HealthTabRegional {
@@ -61,7 +68,7 @@ type HealthTabRegional {
   treatmeantOfTb: IndicatorValueWithToolTip
   districtHealthRank: IndicatorValueWithToolTip
   #HOW MUCH LOCAL GOVERNMENT HEALTHCARE FUNDING IS THERE? 
-  healthCareFunding: IndicatorValueWithToolTip
+  healthCareFunding: IndicatorValueNCUWithToolTip
 }
 
 
