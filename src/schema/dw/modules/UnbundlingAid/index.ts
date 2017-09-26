@@ -56,6 +56,7 @@ export default class UnbundlingAid {
                 const entity: IUnbundlingEnitity | undefined = entites.find(item => obj[args.groupBy] === item.id);
                 if (!entity) throw new Error('error getting unbundling aid entity');
                 let color = 'grey';
+                if (entity.color) color = entity.color;
                 if (entity.type && entity.region) {
                     const region: IRegional | undefined = getEntityByIdGeneric<IRegional>(entity.region, regions);
                     if (region && region.color) color = region ? region.color : color;
