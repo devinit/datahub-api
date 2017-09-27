@@ -75,7 +75,7 @@ export default class UnbundlingAid {
             const table = this.getUnbundlingAidDataTable(aidType);
             const concept: IConcept = await getConceptAsync(`unbundling-${aidType}`, table);
             if (!concept) throw new Error('error getting unbundling aid concept');
-            const years: number[] = R.range(Number(concept.start_year), Number(concept.end_year));
+            const years: number[] = R.range(Number(concept.start_year), Number(concept.end_year + 1)).reverse();
             const countries = await this.getCountries();
             const channels = await getChannels();
             const sectors = await getSectors();

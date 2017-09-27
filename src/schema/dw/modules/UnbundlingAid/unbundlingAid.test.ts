@@ -5,7 +5,7 @@ import db from '../../db';
 describe('Unbundling aid DW module tests', () => {
     const unbundlingAid = new UnbundlingAid(db);
 
-    it('getting unbundling aid data of various types', async () => {
+    it.skip('getting unbundling aid data of various types', async () => {
         const argsA = { aidType: 'oda', year: 2015, groupBy: 'to_di_id'};
         const argsB = { aidType: 'oda', year: 2015, sector: 'banking-and-business', groupBy: 'to_di_id'};
         const argsC = { aidType: 'oda', year: 2015, groupBy: 'bundle'};
@@ -29,7 +29,7 @@ describe('Unbundling aid DW module tests', () => {
         const totalAndYear = await unbundlingAid.getUnbundlingAidDataTotal({aidType: 'oda'});
         expect(prettyFormat(totalAndYear)).toMatchSnapshot();
     }, 10000);
-    it.skip('getting unbundling aid selection options', async () => {
+    it('getting unbundling aid selection options', async () => {
         const data = await unbundlingAid.getUnbundlingSelectionData({aidType: 'oda'});
         expect(prettyFormat(data)).toMatchSnapshot();
     }, 100000);
