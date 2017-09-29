@@ -35,7 +35,8 @@ export const getMethodologyData = async (moduleName: string): Promise <DH.IMetho
         .filter(obj => obj.include_in_methodology === 1)
         .map((obj: IConcept) => {
             const source = {name: obj.source, link: obj.source_link};
-            const oldId = obj.id.split('.')[1].replace(/_/g, '-');
+            let oldId =  obj.id.split('.')[1].replace(/_/g, '-');
+            if (oldId === 'percent_in_p20_national') oldId = 'poorest-20-percent';
             const csv = `https://github.com/devinit/digital-platform/blob/master/user-data/${oldId}`;
             const zip = `${csv}.zip?raw=true`;
             const methodology =  obj.methodology || '';
