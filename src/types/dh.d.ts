@@ -67,6 +67,8 @@ declare namespace DH {
     methodology: string | null;
     uom: string | null;
     source: ISource | null;
+    csv: string | null;
+    zip: string | null;
   }
 
   /*

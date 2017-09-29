@@ -1,5 +1,5 @@
 import 'jest';
-import {getConcepts, IConcept, getConceptAsync} from '.';
+import {getConcepts, IConcept, getConceptAsync, getMethodologyData} from '.';
 import * as prettyFormat from 'pretty-format';
 
 describe('Github concept data tests', () => {
@@ -14,5 +14,9 @@ describe('Github concept data tests', () => {
         const conceptB: IConcept =
             await getConceptAsync('spotlight-uganda', 'spotlight_on_uganda.uganda_poverty_headcount');
         expect(prettyFormat({conceptA, conceptB})).toMatchSnapshot();
+    }, 50000);
+    it('should get methodology data', async () => {
+        const data = await getMethodologyData('country-profile');
+        expect(prettyFormat(data)).toMatchSnapshot();
     }, 50000);
 });

@@ -9,6 +9,8 @@ type Methodology {
     #think units
     uom: String
     source: Source
+    csv: String
+    zip: String
 }
 type Query {
     methodology(moduleName: String!): [Methodology]

@@ -267,6 +267,7 @@ export const getIndicatorDataSimple = async <T extends {}> (opts: IGetIndicatorA
         const tableName = !table ? getTableNameFromSql(queryStr) : table;
         if (isError(tableName)) throw new Error('No valid table name provided');
         if (!queryStr.length) throw new Error('invalid query string');
+        console.log(queryStr, {start_year, end_year, table: tableName});
         return db.manyCacheable(queryStr, {start_year, end_year, table: tableName});
 };
 

@@ -12,7 +12,7 @@ export interface IConcept {
     tooltip: string;
     dac_only: number;
     default_year: number;
-    include_in_methodology_page: number;
+    include_in_methodology: number;
     color?: string;
     position?: string;
     end_year: number;
@@ -29,9 +29,18 @@ export const getConcepts = (moduleName: string): Promise <IConcept[]> => {
     return get<IConcept>(endPoint);
 };
 
-export const getMethodologyData = async (moduleName: string): Promise <IConcept[]> => {
+export const getMethodologyData = async (moduleName: string): Promise <DH.IMethodology[]> => {
     const allConcepts: IConcept[] = await getConcepts(moduleName);
-    return allConcepts.filter(obj => obj.include_in_methodology_page === 1);
+    return allConcepts
+        .filter(obj => obj.include_in_methodology === 1)
+        .map((obj: IConcept) => {
+            const source = {name: obj.source, link: obj.source_link};
+            const oldId = obj.id.split('.')[1].replace(/_/g, '-');
+            const csv = `https://github.com/devinit/digital-platform/blob/master/user-data/${oldId}`;
+            const zip = `${csv}.zip?raw=true`;
+            const methodology =  obj.methodology || '';
+            return {...obj, methodology, source, csv, zip};
+        });
 };
 export const getConceptAsync = async (moduleName: string, id: string, theme?: string): Promise <IConcept> => {
     const allConcepts: IConcept[]  = await getConcepts(moduleName);

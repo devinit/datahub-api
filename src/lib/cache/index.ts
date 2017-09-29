@@ -50,7 +50,7 @@ export const precache = async (fetchFnObj: IFetchFnObj, cacheFile: string = '.ca
                 setTimeout(async () => {
                     try {
                         await fetchFnObj[type](key); // NOTE: the fetch functions have cache set functions
-                        console.info(key, '  ---> isCached: true');
+                        if (process.env.NODE_ENV !== 'production') console.info(key, '  ---> isCached: true');
                     } catch (error) {
                         console.error(key, error);
                     }
@@ -78,7 +78,7 @@ export const writeKeyToCacheFile = async (key: string, cacheType: string, file: 
         const isKeyInCache = await isKeyInCacheFile(key, file);
         if (isError(isKeyInCache)) throw Error('possibly cache file doesnt exit');
         if (!isKeyInCache) fs.appendFile('.cache', `${key}:${cacheType}\n`);
-        console.info('Key already exists in cache no need to re-add it');
+        if (process.env.NODE_ENV !== 'production') console.info('Key already exists in cache no need to re-add it');
     };
 
 export const queue: (key: string, cacheType: string, cache: LRU.Cache<any, any>, cb: (string) => Promise<any>) =>
@@ -92,7 +92,9 @@ export const queue: (key: string, cacheType: string, cache: LRU.Cache<any, any>,
                     cache.del(key);
                     await cb(key); // data gets cached again in the callback
                     writeKeyToCacheFile(key, cacheType);
-                    console.info('ran queue after a delay and added new fresh data for :', key);
+                    if (process.env.NODE_ENV !== 'production') {
+                        console.info('ran queue after a delay and added new fresh data for :', key);
+                    }
                     resolve(true);
                 } catch (error) {
                     if (error) console.error(error);
