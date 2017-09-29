@@ -28,7 +28,9 @@ export const getConcepts = (moduleName: string): Promise <IConcept[]> => {
     const endPoint: string = `${moduleName}/concept.csv`;
     return get<IConcept>(endPoint);
 };
-
+const methodologyDownloadsMap = {
+    'data_series.percent_in_p20_national': 'poorest-20-percent',
+};
 export const getMethodologyData = async (moduleName: string): Promise <DH.IMethodology[]> => {
     const allConcepts: IConcept[] = await getConcepts(moduleName);
     return allConcepts
@@ -36,7 +38,7 @@ export const getMethodologyData = async (moduleName: string): Promise <DH.IMetho
         .map((obj: IConcept) => {
             const source = {name: obj.source, link: obj.source_link};
             let oldId =  obj.id.split('.')[1].replace(/_/g, '-');
-            if (oldId === 'percent_in_p20_national') oldId = 'poorest-20-percent';
+            if (methodologyDownloadsMap[obj.id]) oldId = methodologyDownloadsMap[obj.id];
             const csv = `https://github.com/devinit/digital-platform/blob/master/user-data/${oldId}`;
             const zip = `${csv}.zip?raw=true`;
             const methodology =  obj.methodology || '';
