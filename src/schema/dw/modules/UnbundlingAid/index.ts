@@ -1,7 +1,7 @@
 import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
 import {makeSqlAggregateQuery, entitesFnMap, DONOR, RECIPIENT, MULTILATERAL, CROSSOVER,
-    getTotal, formatNumbers} from '../utils';
+    formatNumbers} from '../utils';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import * as shortid from 'shortid';
 import sql from './sql';
