@@ -1,3 +1,4 @@
 export default {
-    indicator: 'SELECT * FROM ${table^} WHERE year = ${start_year}'
+    // tslint:disable-next-line:max-line-length
+    total: 'SELECT SUM(value) FROM ( SELECT SUM(value) as value FROM ${table^} where year = ${year} GROUP BY to_di_id) t'
 };

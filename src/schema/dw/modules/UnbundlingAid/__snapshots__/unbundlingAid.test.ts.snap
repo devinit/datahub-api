@@ -1245,3 +1245,16 @@ exports[`Unbundling aid DW module tests getting unbundling aid selection options
   ],
 }"
 `;
+
+exports[`Unbundling aid DW module tests should return unbundling aid total 1`] = `
+"Object {
+  \\"totalAndYearODA\\": Object {
+    \\"total\\": \\"174.1bn\\",
+    \\"year\\": 2015,
+  },
+  \\"totalAndYearOOF\\": Object {
+    \\"total\\": \\"73.1bn\\",
+    \\"year\\": 2013,
+  },
+}"
+`;

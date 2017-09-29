@@ -25,11 +25,12 @@ describe('Unbundling aid DW module tests', () => {
         const formatted = UnbundlingAid.getSqlQueryArgs(argsA);
         expect(prettyFormat(formatted)).toMatchSnapshot();
     });
-    it.skip('should return unbundling aid total', async () => {
-        const totalAndYear = await unbundlingAid.getUnbundlingAidDataTotal({aidType: 'oda'});
-        expect(prettyFormat(totalAndYear)).toMatchSnapshot();
+    it('should return unbundling aid total', async () => {
+        const totalAndYearODA = await unbundlingAid.getUnbundlingAidDataTotal({aidType: 'oda'});
+        const totalAndYearOOF = await unbundlingAid.getUnbundlingAidDataTotal({aidType: 'oof'});
+        expect(prettyFormat({totalAndYearODA, totalAndYearOOF})).toMatchSnapshot();
     }, 10000);
-    it('getting unbundling aid selection options', async () => {
+    it.skip('getting unbundling aid selection options', async () => {
         const data = await unbundlingAid.getUnbundlingSelectionData({aidType: 'oda'});
         expect(prettyFormat(data)).toMatchSnapshot();
     }, 100000);

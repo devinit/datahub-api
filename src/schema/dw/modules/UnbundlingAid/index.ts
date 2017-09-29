@@ -4,6 +4,7 @@ import {makeSqlAggregateQuery, entitesFnMap, DONOR, RECIPIENT, MULTILATERAL, CRO
     getTotal, formatNumbers} from '../utils';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
 import * as shortid from 'shortid';
+import sql from './sql';
 import {IEntity, getEntities, getRegional, IRegional, getEntityByIdGeneric,
         getSectors, getBundles, getChannels, getColors, IColor} from '../../../cms/modules/global';
 import * as R from 'ramda';
@@ -88,20 +89,23 @@ export default class UnbundlingAid {
     }
     public async getUnbundlingAidDataTotal(args: DH.IUnbundlingAidToTalQuery): Promise<DH.IUnbundlingAidTotal> {
         let year: number | undefined | null = args.year;
-        if (!year) {
-            const id: string = this.getUnbundlingAidDataTable(args.aidType);
-            const concept: IConcept = await getConceptAsync(`unbundling-${args.aidType}`, id);
-            year = concept.end_year || 2015;
+        const id: string = this.getUnbundlingAidDataTable(args.aidType);
+        try {
+            if (!year) {
+                const concept: IConcept = await getConceptAsync(`unbundling-${args.aidType}`, id);
+                year = concept.end_year || 2015;
+            }
+            const  queryArgs = {table: id, year};
+            const raw: Array<{sum: string}> = await this.db.manyCacheable(sql.total, queryArgs);
+            const total = formatNumbers(raw[0].sum, 1);
+            return {total, year};
+        } catch (error) {
+            throw error;
         }
-        // TODO: make group by enumerable
-        const data: DH.IAidUnit[] = await this.getUnbundlingAidData({aidType: args.aidType, year, groupBy: 'to_di_id'});
-        const total = formatNumbers(getTotal(data), 1);
-        return {total, year};
     }
     private getUnbundlingAidDataTable(aidType) {
         return aidType === 'oda' ? 'fact.oda_2015' : 'data_series.oof';
     }
-
     private async getCountries(): Promise<IUnBundlingAidCountries> {
         try {
             const entites: IEntity[] = await getEntities();
