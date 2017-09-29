@@ -48,14 +48,15 @@ export default class UnbundlingAid {
         try {
             const queryArgs: IUnbundlingAidQuery = UnbundlingAid.getSqlQueryArgs(args);
             const table = this.getUnbundlingAidDataTable(args.aidType);
-            const queryStr: string = makeSqlAggregateQuery(queryArgs, args.groupBy, table);
+            const groupBy = args.aidType === 'oof' && args.groupBy === 'bundle' ? 'oof_bundle' : args.groupBy;
+            const queryStr: string = makeSqlAggregateQuery(queryArgs, groupBy, table);
             const raw: IUnbundlingAidResult[] = await this.db.manyCacheable(queryStr, null);
             const entites: IUnbundlingEnitity[] = await entitesFnMap[args.groupBy]();
             const regions: IRegional[] = await getRegional();
             const colors = await getColors();
             return raw.map((obj) => {
                 const entity: IUnbundlingEnitity | undefined = entites.find(item => obj[args.groupBy] === item.id);
-                if (!entity) throw new Error('error getting unbundling aid entity');
+                if (!entity) throw new Error(`error getting unbundling aid entity ${entity}`);
                 let color = 'grey';
                 if (entity.color) color = entity.color;
                 if (entity.type && entity.region) {
@@ -80,7 +81,8 @@ export default class UnbundlingAid {
             const countries = await this.getCountries();
             const channels = await getChannels();
             const sectors = await getSectors();
-            const bundles = await getBundles();
+            const allBundles = await getBundles();
+            const bundles = aidType === 'oda' ? allBundles : allBundles.filter(bundle => bundle.id.includes('oof'));
             return {years, ...countries, channels, sectors, bundles};
        } catch (error) {
            console.error(error);

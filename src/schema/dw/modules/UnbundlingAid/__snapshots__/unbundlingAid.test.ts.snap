@@ -1,1248 +1,2487 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Unbundling aid DW module tests getting unbundling aid data of various types 1`] = `
+"Object {
+  \\"dataC\\": Array [],
+}"
+`;
+
 exports[`Unbundling aid DW module tests getting unbundling aid selection options 1`] = `
 "Object {
-  \\"bundles\\": Array [
-    Object {
-      \\"color\\": \\"red\\",
-      \\"id\\": \\"cash-loan-equity\\",
-      \\"name\\": \\"Cash (loan/equity)\\",
-    },
-    Object {
-      \\"color\\": \\"red-light\\",
-      \\"id\\": \\"cash-grant\\",
-      \\"name\\": \\"Cash grant\\",
-    },
-    Object {
-      \\"color\\": \\"purple-lighter\\",
-      \\"id\\": \\"commodities-food\\",
-      \\"name\\": \\"Commodities & Food\\",
-    },
-    Object {
-      \\"color\\": \\"blue\\",
-      \\"id\\": \\"gpgs-nngos\\",
-      \\"name\\": \\"Global Initiatives & NNGOs\\",
-    },
-    Object {
-      \\"color\\": \\"yellow\\",
-      \\"id\\": \\"mixed-project-aid\\",
-      \\"name\\": \\"Mixed project aid\\",
-    },
-    Object {
-      \\"color\\": \\"orange\\",
-      \\"id\\": \\"non-transfer\\",
-      \\"name\\": \\"Non-transfer\\",
-    },
-    Object {
-      \\"color\\": \\"blue-darker\\",
-      \\"id\\": \\"technical-ooperation\\",
-      \\"name\\": \\"Technical cooperation\\",
-    },
-    Object {
-      \\"color\\": \\"grey-darker\\",
-      \\"id\\": \\"export-credit\\",
-      \\"name\\": \\"Export credit\\",
-    },
-  ],
-  \\"channels\\": Array [
-    Object {
-      \\"id\\": \\"public-sector-unknown\\",
-      \\"name\\": \\"Public sector (unknown country)\\",
-    },
-    Object {
-      \\"id\\": \\"public-sector-donor\\",
-      \\"name\\": \\"Public sector (donor government)\\",
-    },
-    Object {
-      \\"id\\": \\"public-sector-recipient\\",
-      \\"name\\": \\"Public sector (recipient government)\\",
-    },
-    Object {
-      \\"id\\": \\"ngo-unknown\\",
-      \\"name\\": \\"NGO (unknown country)\\",
-    },
-    Object {
-      \\"id\\": \\"ngo-donor\\",
-      \\"name\\": \\"NGO (donor-country based)\\",
-    },
-    Object {
-      \\"id\\": \\"ngo-recipient\\",
-      \\"name\\": \\"NGO (recipient-country based)\\",
-    },
-    Object {
-      \\"id\\": \\"public-private-partnership\\",
-      \\"name\\": \\"Public private partnership\\",
-    },
-    Object {
-      \\"id\\": \\"multilateral\\",
-      \\"name\\": \\"Multilateral\\",
-    },
-    Object {
-      \\"id\\": \\"other\\",
-      \\"name\\": \\"Other (private sector, think-tank, etc.)\\",
-    },
-    Object {
-      \\"id\\": \\"unspecified\\",
-      \\"name\\": \\"Unspecified\\",
-    },
-  ],
-  \\"from\\": Array [
-    Object {
-      \\"id\\": \\"adaptation-fund\\",
-      \\"name\\": \\"Adaptation Fund\\",
-    },
-    Object {
-      \\"id\\": \\"afdb\\",
-      \\"name\\": \\"African Development Bank (AfDB)\\",
-    },
-    Object {
-      \\"id\\": \\"afdf\\",
-      \\"name\\": \\"African Development Fund (AfDF)\\",
-    },
-    Object {
-      \\"id\\": \\"badea\\",
-      \\"name\\": \\"Arab Bank for Economic Development in Africa (BADEA)\\",
-    },
-    Object {
-      \\"id\\": \\"arab-fund-afesd\\",
-      \\"name\\": \\"Arab Fund (AFESD)\\",
-    },
-    Object {
-      \\"id\\": \\"asdb-special-funds\\",
-      \\"name\\": \\"ADB Special Funds\\",
-    },
-    Object {
-      \\"id\\": \\"asdb\\",
-      \\"name\\": \\"Asian Development Bank (ADB)\\",
-    },
-    Object {
-      \\"id\\": \\"AU\\",
-      \\"name\\": \\"Australia\\",
-    },
-    Object {
-      \\"id\\": \\"AT\\",
-      \\"name\\": \\"Austria\\",
-    },
-    Object {
-      \\"id\\": \\"BE\\",
-      \\"name\\": \\"Belgium\\",
-    },
-    Object {
-      \\"id\\": \\"BG\\",
-      \\"name\\": \\"Bulgaria\\",
-    },
-    Object {
-      \\"id\\": \\"CA\\",
-      \\"name\\": \\"Canada\\",
-    },
-    Object {
-      \\"id\\": \\"cardb\\",
-      \\"name\\": \\"Caribbean Development Bank (CarDB)\\",
-    },
-    Object {
-      \\"id\\": \\"cif\\",
-      \\"name\\": \\"Climate Investment Funds (CIF)\\",
-    },
-    Object {
-      \\"id\\": \\"ceb\\",
-      \\"name\\": \\"Council of Europe Development Bank (CEB)\\",
-    },
-    Object {
-      \\"id\\": \\"HR\\",
-      \\"name\\": \\"Croatia\\",
-    },
-    Object {
-      \\"id\\": \\"CY\\",
-      \\"name\\": \\"Cyprus\\",
-    },
-    Object {
-      \\"id\\": \\"CZ\\",
-      \\"name\\": \\"Czech Republic\\",
-    },
-    Object {
-      \\"id\\": \\"DK\\",
-      \\"name\\": \\"Denmark\\",
-    },
-    Object {
-      \\"id\\": \\"EE\\",
-      \\"name\\": \\"Estonia\\",
-    },
-    Object {
-      \\"id\\": \\"ebrd\\",
-      \\"name\\": \\"European Bank for Reconstruction and Development (EBRD)\\",
-    },
-    Object {
-      \\"id\\": \\"EU\\",
-      \\"name\\": \\"European Union\\",
-    },
-    Object {
-      \\"id\\": \\"FI\\",
-      \\"name\\": \\"Finland\\",
-    },
-    Object {
-      \\"id\\": \\"fao\\",
-      \\"name\\": \\"Food and Agriculture Organisation (FAO)\\",
-    },
-    Object {
-      \\"id\\": \\"FR\\",
-      \\"name\\": \\"France\\",
-    },
-    Object {
-      \\"id\\": \\"DE\\",
-      \\"name\\": \\"Germany\\",
-    },
-    Object {
-      \\"id\\": \\"gavi\\",
-      \\"name\\": \\"Global Alliance for Vaccines and Immunization (GAVI)\\",
-    },
-    Object {
-      \\"id\\": \\"gef\\",
-      \\"name\\": \\"Global Environment Facility (GEF)\\",
-    },
-    Object {
-      \\"id\\": \\"global-fund\\",
-      \\"name\\": \\"Global Fund\\",
-    },
-    Object {
-      \\"id\\": \\"gggi\\",
-      \\"name\\": \\"Global Green Growth Institute (GGGI)\\",
-    },
-    Object {
-      \\"id\\": \\"GR\\",
-      \\"name\\": \\"Greece\\",
-    },
-    Object {
-      \\"id\\": \\"HU\\",
-      \\"name\\": \\"Hungary\\",
-    },
-    Object {
-      \\"id\\": \\"IS\\",
-      \\"name\\": \\"Iceland\\",
-    },
-    Object {
-      \\"id\\": \\"idb-special-fund\\",
-      \\"name\\": \\"IDB Special Fund\\",
-    },
-    Object {
-      \\"id\\": \\"imf-concessional-trust-funds\\",
-      \\"name\\": \\"IMF Concessional Trust Funds\\",
-    },
-    Object {
-      \\"id\\": \\"idb\\",
-      \\"name\\": \\"Inter-American Development Bank (IDB)\\",
-    },
-    Object {
-      \\"id\\": \\"iaea\\",
-      \\"name\\": \\"International Atomic Energy Agency (IAEA)\\",
-    },
-    Object {
-      \\"id\\": \\"ibrd\\",
-      \\"name\\": \\"International Bank for Reconstruction and Development (IBRD)\\",
-    },
-    Object {
-      \\"id\\": \\"ida\\",
-      \\"name\\": \\"International Development Association (IDA)\\",
-    },
-    Object {
-      \\"id\\": \\"ifc\\",
-      \\"name\\": \\"International Finance Corporation (IFC)\\",
-    },
-    Object {
-      \\"id\\": \\"ifad\\",
-      \\"name\\": \\"International Fund for Agricultural Development (IFAD)\\",
-    },
-    Object {
-      \\"id\\": \\"international-labour-organisation\\",
-      \\"name\\": \\"International Labour Organisation (ILO)\\",
-    },
-    Object {
-      \\"id\\": \\"imf\\",
-      \\"name\\": \\"International Monetary Fund (IMF)\\",
-    },
-    Object {
-      \\"id\\": \\"IE\\",
-      \\"name\\": \\"Ireland\\",
-    },
-    Object {
-      \\"id\\": \\"islamic-dev-bank\\",
-      \\"name\\": \\"Islamic Development Bank (IsDB)\\",
-    },
-    Object {
-      \\"id\\": \\"IL\\",
-      \\"name\\": \\"Israel\\",
-    },
-    Object {
-      \\"id\\": \\"IT\\",
-      \\"name\\": \\"Italy\\",
-    },
-    Object {
-      \\"id\\": \\"JP\\",
-      \\"name\\": \\"Japan\\",
-    },
-    Object {
-      \\"id\\": \\"unaids\\",
-      \\"name\\": \\"Joint United Nations Programme on HIV/AIDS (UNAIDS)\\",
-    },
-    Object {
-      \\"id\\": \\"KZ\\",
-      \\"name\\": \\"Kazakhstan\\",
-    },
-    Object {
-      \\"id\\": \\"KR\\",
-      \\"name\\": \\"Korea\\",
-    },
-    Object {
-      \\"id\\": \\"KW\\",
-      \\"name\\": \\"Kuwait\\",
-    },
-    Object {
-      \\"id\\": \\"LV\\",
-      \\"name\\": \\"Latvia\\",
-    },
-    Object {
-      \\"id\\": \\"LI\\",
-      \\"name\\": \\"Liechtenstein\\",
-    },
-    Object {
-      \\"id\\": \\"LT\\",
-      \\"name\\": \\"Lithuania\\",
-    },
-    Object {
-      \\"id\\": \\"LU\\",
-      \\"name\\": \\"Luxembourg\\",
-    },
-    Object {
-      \\"id\\": \\"MT\\",
-      \\"name\\": \\"Malta\\",
-    },
-    Object {
-      \\"id\\": \\"montreal-protocol\\",
-      \\"name\\": \\"Montreal Protocol\\",
-    },
-    Object {
-      \\"id\\": \\"NL\\",
-      \\"name\\": \\"Netherlands\\",
-    },
-    Object {
-      \\"id\\": \\"NZ\\",
-      \\"name\\": \\"New Zealand\\",
-    },
-    Object {
-      \\"id\\": \\"nordic-dev-fund\\",
-      \\"name\\": \\"Nordic Development Fund (NDF)\\",
-    },
-    Object {
-      \\"id\\": \\"NO\\",
-      \\"name\\": \\"Norway\\",
-    },
-    Object {
-      \\"id\\": \\"ofid\\",
-      \\"name\\": \\"OPEC Fund for International Development (OFID)\\",
-    },
-    Object {
-      \\"id\\": \\"osce\\",
-      \\"name\\": \\"Organization for Security and Co-operation in Europe (OSCE)\\",
-    },
-    Object {
-      \\"id\\": \\"PL\\",
-      \\"name\\": \\"Poland\\",
-    },
-    Object {
-      \\"id\\": \\"PT\\",
-      \\"name\\": \\"Portugal\\",
-    },
-    Object {
-      \\"id\\": \\"RO\\",
-      \\"name\\": \\"Romania\\",
-    },
-    Object {
-      \\"id\\": \\"RU\\",
-      \\"name\\": \\"Russian Federation\\",
-    },
-    Object {
-      \\"id\\": \\"SA\\",
-      \\"name\\": \\"Saudi Arabia\\",
-    },
-    Object {
-      \\"id\\": \\"SK\\",
-      \\"name\\": \\"Slovak Republic\\",
-    },
-    Object {
-      \\"id\\": \\"SI\\",
-      \\"name\\": \\"Slovenia\\",
-    },
-    Object {
-      \\"id\\": \\"ES\\",
-      \\"name\\": \\"Spain\\",
-    },
-    Object {
-      \\"id\\": \\"SE\\",
-      \\"name\\": \\"Sweden\\",
-    },
-    Object {
-      \\"id\\": \\"CH\\",
-      \\"name\\": \\"Switzerland\\",
-    },
-    Object {
-      \\"id\\": \\"TW\\",
-      \\"name\\": \\"Taiwan\\",
-    },
-    Object {
-      \\"id\\": \\"TH\\",
-      \\"name\\": \\"Thailand\\",
-    },
-    Object {
-      \\"id\\": \\"TL\\",
-      \\"name\\": \\"Timor-Leste\\",
-    },
-    Object {
-      \\"id\\": \\"TR\\",
-      \\"name\\": \\"Turkey\\",
-    },
-    Object {
-      \\"id\\": \\"GB\\",
-      \\"name\\": \\"United Kingdom\\",
-    },
-    Object {
-      \\"id\\": \\"un-agencies\\",
-      \\"name\\": \\"UN Agencies\\",
-    },
-    Object {
-      \\"id\\": \\"AE\\",
-      \\"name\\": \\"UAE\\",
-    },
-    Object {
-      \\"id\\": \\"unicef\\",
-      \\"name\\": \\"United Nations Children's Fund (UNICEF)\\",
-    },
-    Object {
-      \\"id\\": \\"undp\\",
-      \\"name\\": \\"United Nations Development Programme (UNDP)\\",
-    },
-    Object {
-      \\"id\\": \\"unece\\",
-      \\"name\\": \\"United Nations Economic Commission for Europe (UNECE)\\",
-    },
-    Object {
-      \\"id\\": \\"unep\\",
-      \\"name\\": \\"United Nations Environment Programme (UNEP)\\",
-    },
-    Object {
-      \\"id\\": \\"unhcr\\",
-      \\"name\\": \\"United Nations High Commissioner for Refugees (UNHCR)\\",
-    },
-    Object {
-      \\"id\\": \\"unpbf\\",
-      \\"name\\": \\"United Nations Peacebuilding Fund (UNPBF)\\",
-    },
-    Object {
-      \\"id\\": \\"unfpa\\",
-      \\"name\\": \\"United Nations Population Fund (UNFPA)\\",
-    },
-    Object {
-      \\"id\\": \\"unta\\",
-      \\"name\\": \\"United Nations Regular Programme for Technical Assistance (UNTA)\\",
-    },
-    Object {
-      \\"id\\": \\"unrwa\\",
-      \\"name\\": \\"United Nations Relief and Works Agency (UNRWA)\\",
-    },
-    Object {
-      \\"id\\": \\"US\\",
-      \\"name\\": \\"United States\\",
-    },
-    Object {
-      \\"id\\": \\"wfp\\",
-      \\"name\\": \\"World Food Programme (WFP)\\",
-    },
-    Object {
-      \\"id\\": \\"who\\",
-      \\"name\\": \\"World Health Organization (WHO)\\",
-    },
-  ],
-  \\"sectors\\": Array [
-    Object {
-      \\"color\\": \\"red\\",
-      \\"id\\": \\"agriculture-and-food-security\\",
-      \\"name\\": \\"Agriculture and food security\\",
-    },
-    Object {
-      \\"color\\": \\"red-light\\",
-      \\"id\\": \\"banking-and-business\\",
-      \\"name\\": \\"Banking and business\\",
-    },
-    Object {
-      \\"color\\": \\"red-darker\\",
-      \\"id\\": \\"debt-relief\\",
-      \\"name\\": \\"Debt relief\\",
-    },
-    Object {
-      \\"color\\": \\"grey\\",
-      \\"id\\": \\"education\\",
-      \\"name\\": \\"Education\\",
-    },
-    Object {
-      \\"color\\": \\"blue\\",
-      \\"id\\": \\"environment\\",
-      \\"name\\": \\"Environment\\",
-    },
-    Object {
-      \\"color\\": \\"purple\\",
-      \\"id\\": \\"general-budget-support\\",
-      \\"name\\": \\"General budget support\\",
-    },
-    Object {
-      \\"color\\": \\"orange-lighter\\",
-      \\"id\\": \\"governance-and-security\\",
-      \\"name\\": \\"Governance and security\\",
-    },
-    Object {
-      \\"color\\": \\"purple-darker\\",
-      \\"id\\": \\"health\\",
-      \\"name\\": \\"Health\\",
-    },
-    Object {
-      \\"color\\": \\"blue-light\\",
-      \\"id\\": \\"humanitarian\\",
-      \\"name\\": \\"Humanitarian\\",
-    },
-    Object {
-      \\"color\\": \\"yellow-darker\\",
-      \\"id\\": \\"industry-and-trade\\",
-      \\"name\\": \\"Industry and trade\\",
-    },
-    Object {
-      \\"color\\": \\"orange-light\\",
-      \\"id\\": \\"infrastructure\\",
-      \\"name\\": \\"Infrastructure\\",
-    },
-    Object {
-      \\"color\\": \\"grey-lighter\\",
-      \\"id\\": \\"other\\",
-      \\"name\\": \\"Other\\",
-    },
-    Object {
-      \\"color\\": \\"blue-darker\\",
-      \\"id\\": \\"other-social-services\\",
-      \\"name\\": \\"Other social services\\",
-    },
-    Object {
-      \\"color\\": \\"yellow-lighter\\",
-      \\"id\\": \\"water-and-sanitation\\",
-      \\"name\\": \\"Water and sanitation\\",
-    },
-    Object {
-      \\"color\\": \\"grey-dark\\",
-      \\"id\\": \\"other-sectors-grouped\\",
-      \\"name\\": \\"Other sectors (grouped)\\",
-    },
-  ],
-  \\"to\\": Array [
-    Object {
-      \\"id\\": \\"AF\\",
-      \\"name\\": \\"Afghanistan\\",
-    },
-    Object {
-      \\"id\\": \\"africa\\",
-      \\"name\\": \\"Africa, regional\\",
-    },
-    Object {
-      \\"id\\": \\"AL\\",
-      \\"name\\": \\"Albania\\",
-    },
-    Object {
-      \\"id\\": \\"DZ\\",
-      \\"name\\": \\"Algeria\\",
-    },
-    Object {
-      \\"id\\": \\"america\\",
-      \\"name\\": \\"America, regional\\",
-    },
-    Object {
-      \\"id\\": \\"AO\\",
-      \\"name\\": \\"Angola\\",
-    },
-    Object {
-      \\"id\\": \\"AI\\",
-      \\"name\\": \\"Anguilla\\",
-    },
-    Object {
-      \\"id\\": \\"AG\\",
-      \\"name\\": \\"Antigua & Barbuda\\",
-    },
-    Object {
-      \\"id\\": \\"AR\\",
-      \\"name\\": \\"Argentina\\",
-    },
-    Object {
-      \\"id\\": \\"AM\\",
-      \\"name\\": \\"Armenia\\",
-    },
-    Object {
-      \\"id\\": \\"asia\\",
-      \\"name\\": \\"Asia, regional\\",
-    },
-    Object {
-      \\"id\\": \\"AZ\\",
-      \\"name\\": \\"Azerbaijan\\",
-    },
-    Object {
-      \\"id\\": \\"BH\\",
-      \\"name\\": \\"Bahrain\\",
-    },
-    Object {
-      \\"id\\": \\"BD\\",
-      \\"name\\": \\"Bangladesh\\",
-    },
-    Object {
-      \\"id\\": \\"BB\\",
-      \\"name\\": \\"Barbados\\",
-    },
-    Object {
-      \\"id\\": \\"BY\\",
-      \\"name\\": \\"Belarus\\",
-    },
-    Object {
-      \\"id\\": \\"BZ\\",
-      \\"name\\": \\"Belize\\",
-    },
-    Object {
-      \\"id\\": \\"BJ\\",
-      \\"name\\": \\"Benin\\",
-    },
-    Object {
-      \\"id\\": \\"BT\\",
-      \\"name\\": \\"Bhutan\\",
-    },
-    Object {
-      \\"id\\": \\"bilateral-unspecified\\",
-      \\"name\\": \\"Bilateral, unspecified\\",
-    },
-    Object {
-      \\"id\\": \\"BO\\",
-      \\"name\\": \\"Bolivia\\",
-    },
-    Object {
-      \\"id\\": \\"BA\\",
-      \\"name\\": \\"Bosnia & Herzegovina\\",
-    },
-    Object {
-      \\"id\\": \\"BW\\",
-      \\"name\\": \\"Botswana\\",
-    },
-    Object {
-      \\"id\\": \\"BR\\",
-      \\"name\\": \\"Brazil\\",
-    },
-    Object {
-      \\"id\\": \\"BF\\",
-      \\"name\\": \\"Burkina Faso\\",
-    },
-    Object {
-      \\"id\\": \\"BI\\",
-      \\"name\\": \\"Burundi\\",
-    },
-    Object {
-      \\"id\\": \\"KH\\",
-      \\"name\\": \\"Cambodia\\",
-    },
-    Object {
-      \\"id\\": \\"CM\\",
-      \\"name\\": \\"Cameroon\\",
-    },
-    Object {
-      \\"id\\": \\"CV\\",
-      \\"name\\": \\"Cape Verde\\",
-    },
-    Object {
-      \\"id\\": \\"CF\\",
-      \\"name\\": \\"CAR\\",
-    },
-    Object {
-      \\"id\\": \\"central-asia\\",
-      \\"name\\": \\"Central Asia, regional\\",
-    },
-    Object {
-      \\"id\\": \\"TD\\",
-      \\"name\\": \\"Chad\\",
-    },
-    Object {
-      \\"id\\": \\"CL\\",
-      \\"name\\": \\"Chile\\",
-    },
-    Object {
-      \\"id\\": \\"CN\\",
-      \\"name\\": \\"China\\",
-    },
-    Object {
-      \\"id\\": \\"CO\\",
-      \\"name\\": \\"Colombia\\",
-    },
-    Object {
-      \\"id\\": \\"KM\\",
-      \\"name\\": \\"Comoros\\",
-    },
-    Object {
-      \\"id\\": \\"CG\\",
-      \\"name\\": \\"Congo\\",
-    },
-    Object {
-      \\"id\\": \\"CD\\",
-      \\"name\\": \\"DRC\\",
-    },
-    Object {
-      \\"id\\": \\"CK\\",
-      \\"name\\": \\"Cook Islands\\",
-    },
-    Object {
-      \\"id\\": \\"CR\\",
-      \\"name\\": \\"Costa Rica\\",
-    },
-    Object {
-      \\"id\\": \\"CI\\",
-      \\"name\\": \\"Côte d'Ivoire\\",
-    },
-    Object {
-      \\"id\\": \\"country-unspecified\\",
-      \\"name\\": \\"Country not specified\\",
-    },
-    Object {
-      \\"id\\": \\"CU\\",
-      \\"name\\": \\"Cuba\\",
-    },
-    Object {
-      \\"id\\": \\"DJ\\",
-      \\"name\\": \\"Djibouti\\",
-    },
-    Object {
-      \\"id\\": \\"DM\\",
-      \\"name\\": \\"Dominica\\",
-    },
-    Object {
-      \\"id\\": \\"DO\\",
-      \\"name\\": \\"Dominican Republic\\",
-    },
-    Object {
-      \\"id\\": \\"EC\\",
-      \\"name\\": \\"Ecuador\\",
-    },
-    Object {
-      \\"id\\": \\"EG\\",
-      \\"name\\": \\"Egypt\\",
-    },
-    Object {
-      \\"id\\": \\"SV\\",
-      \\"name\\": \\"El Salvador\\",
-    },
-    Object {
-      \\"id\\": \\"GQ\\",
-      \\"name\\": \\"Equatorial Guinea\\",
-    },
-    Object {
-      \\"id\\": \\"ER\\",
-      \\"name\\": \\"Eritrea\\",
-    },
-    Object {
-      \\"id\\": \\"ET\\",
-      \\"name\\": \\"Ethiopia\\",
-    },
-    Object {
-      \\"id\\": \\"europe\\",
-      \\"name\\": \\"Europe, regional\\",
-    },
-    Object {
-      \\"id\\": \\"east-asia\\",
-      \\"name\\": \\"Far East Asia, regional\\",
-    },
-    Object {
-      \\"id\\": \\"FJ\\",
-      \\"name\\": \\"Fiji\\",
-    },
-    Object {
-      \\"id\\": \\"GA\\",
-      \\"name\\": \\"Gabon\\",
-    },
-    Object {
-      \\"id\\": \\"GM\\",
-      \\"name\\": \\"Gambia\\",
-    },
-    Object {
-      \\"id\\": \\"GE\\",
-      \\"name\\": \\"Georgia\\",
-    },
-    Object {
-      \\"id\\": \\"GH\\",
-      \\"name\\": \\"Ghana\\",
-    },
-    Object {
-      \\"id\\": \\"GD\\",
-      \\"name\\": \\"Grenada\\",
-    },
-    Object {
-      \\"id\\": \\"GT\\",
-      \\"name\\": \\"Guatemala\\",
-    },
-    Object {
-      \\"id\\": \\"GN\\",
-      \\"name\\": \\"Guinea\\",
-    },
-    Object {
-      \\"id\\": \\"GW\\",
-      \\"name\\": \\"Guinea-Bissau\\",
-    },
-    Object {
-      \\"id\\": \\"GY\\",
-      \\"name\\": \\"Guyana\\",
-    },
-    Object {
-      \\"id\\": \\"HT\\",
-      \\"name\\": \\"Haiti\\",
-    },
-    Object {
-      \\"id\\": \\"HN\\",
-      \\"name\\": \\"Honduras\\",
-    },
-    Object {
-      \\"id\\": \\"IN\\",
-      \\"name\\": \\"India\\",
-    },
-    Object {
-      \\"id\\": \\"ID\\",
-      \\"name\\": \\"Indonesia\\",
-    },
-    Object {
-      \\"id\\": \\"IR\\",
-      \\"name\\": \\"Iran\\",
-    },
-    Object {
-      \\"id\\": \\"IQ\\",
-      \\"name\\": \\"Iraq\\",
-    },
-    Object {
-      \\"id\\": \\"JM\\",
-      \\"name\\": \\"Jamaica\\",
-    },
-    Object {
-      \\"id\\": \\"JO\\",
-      \\"name\\": \\"Jordan\\",
-    },
-    Object {
-      \\"id\\": \\"KZ\\",
-      \\"name\\": \\"Kazakhstan\\",
-    },
-    Object {
-      \\"id\\": \\"KE\\",
-      \\"name\\": \\"Kenya\\",
-    },
-    Object {
-      \\"id\\": \\"KI\\",
-      \\"name\\": \\"Kiribati\\",
-    },
-    Object {
-      \\"id\\": \\"KP\\",
-      \\"name\\": \\"North Korea\\",
-    },
-    Object {
-      \\"id\\": \\"XK\\",
-      \\"name\\": \\"Kosovo\\",
-    },
-    Object {
-      \\"id\\": \\"KG\\",
-      \\"name\\": \\"Kyrgyzstan\\",
-    },
-    Object {
-      \\"id\\": \\"LA\\",
-      \\"name\\": \\"Lao\\",
-    },
-    Object {
-      \\"id\\": \\"LB\\",
-      \\"name\\": \\"Lebanon\\",
-    },
-    Object {
-      \\"id\\": \\"LS\\",
-      \\"name\\": \\"Lesotho\\",
-    },
-    Object {
-      \\"id\\": \\"LR\\",
-      \\"name\\": \\"Liberia\\",
-    },
-    Object {
-      \\"id\\": \\"LY\\",
-      \\"name\\": \\"Libya\\",
-    },
-    Object {
-      \\"id\\": \\"MK\\",
-      \\"name\\": \\"Macedonia\\",
-    },
-    Object {
-      \\"id\\": \\"MG\\",
-      \\"name\\": \\"Madagascar\\",
-    },
-    Object {
-      \\"id\\": \\"MW\\",
-      \\"name\\": \\"Malawi\\",
-    },
-    Object {
-      \\"id\\": \\"MY\\",
-      \\"name\\": \\"Malaysia\\",
-    },
-    Object {
-      \\"id\\": \\"MV\\",
-      \\"name\\": \\"Maldives\\",
-    },
-    Object {
-      \\"id\\": \\"ML\\",
-      \\"name\\": \\"Mali\\",
-    },
-    Object {
-      \\"id\\": \\"MH\\",
-      \\"name\\": \\"Marshall Islands\\",
-    },
-    Object {
-      \\"id\\": \\"MR\\",
-      \\"name\\": \\"Mauritania\\",
-    },
-    Object {
-      \\"id\\": \\"MU\\",
-      \\"name\\": \\"Mauritius\\",
-    },
-    Object {
-      \\"id\\": \\"YT\\",
-      \\"name\\": \\"Mayotte\\",
-    },
-    Object {
-      \\"id\\": \\"MX\\",
-      \\"name\\": \\"Mexico\\",
-    },
-    Object {
-      \\"id\\": \\"FM\\",
-      \\"name\\": \\"Micronesia\\",
-    },
-    Object {
-      \\"id\\": \\"middle-east\\",
-      \\"name\\": \\"Middle East, regional\\",
-    },
-    Object {
-      \\"id\\": \\"MD\\",
-      \\"name\\": \\"Moldova\\",
-    },
-    Object {
-      \\"id\\": \\"MN\\",
-      \\"name\\": \\"Mongolia\\",
-    },
-    Object {
-      \\"id\\": \\"ME\\",
-      \\"name\\": \\"Montenegro\\",
-    },
-    Object {
-      \\"id\\": \\"MS\\",
-      \\"name\\": \\"Montserrat\\",
-    },
-    Object {
-      \\"id\\": \\"MA\\",
-      \\"name\\": \\"Morocco\\",
-    },
-    Object {
-      \\"id\\": \\"MZ\\",
-      \\"name\\": \\"Mozambique\\",
-    },
-    Object {
-      \\"id\\": \\"MM\\",
-      \\"name\\": \\"Myanmar\\",
-    },
-    Object {
-      \\"id\\": \\"NA\\",
-      \\"name\\": \\"Namibia\\",
-    },
-    Object {
-      \\"id\\": \\"NR\\",
-      \\"name\\": \\"Nauru\\",
-    },
-    Object {
-      \\"id\\": \\"NP\\",
-      \\"name\\": \\"Nepal\\",
-    },
-    Object {
-      \\"id\\": \\"NI\\",
-      \\"name\\": \\"Nicaragua\\",
-    },
-    Object {
-      \\"id\\": \\"NE\\",
-      \\"name\\": \\"Niger\\",
-    },
-    Object {
-      \\"id\\": \\"NG\\",
-      \\"name\\": \\"Nigeria\\",
-    },
-    Object {
-      \\"id\\": \\"NU\\",
-      \\"name\\": \\"Niue\\",
-    },
-    Object {
-      \\"id\\": \\"north-central-america\\",
-      \\"name\\": \\"North & Central America, regional\\",
-    },
-    Object {
-      \\"id\\": \\"north-of-sahara\\",
-      \\"name\\": \\"North of Sahara, regional\\",
-    },
-    Object {
-      \\"id\\": \\"oceania\\",
-      \\"name\\": \\"Oceania, regional\\",
-    },
-    Object {
-      \\"id\\": \\"OM\\",
-      \\"name\\": \\"Oman\\",
-    },
-    Object {
-      \\"id\\": \\"PK\\",
-      \\"name\\": \\"Pakistan\\",
-    },
-    Object {
-      \\"id\\": \\"PW\\",
-      \\"name\\": \\"Palau\\",
-    },
-    Object {
-      \\"id\\": \\"PS\\",
-      \\"name\\": \\"Palestine\\",
-    },
-    Object {
-      \\"id\\": \\"PA\\",
-      \\"name\\": \\"Panama\\",
-    },
-    Object {
-      \\"id\\": \\"PG\\",
-      \\"name\\": \\"Papua New Guinea\\",
-    },
-    Object {
-      \\"id\\": \\"PY\\",
-      \\"name\\": \\"Paraguay\\",
-    },
-    Object {
-      \\"id\\": \\"PE\\",
-      \\"name\\": \\"Peru\\",
-    },
-    Object {
-      \\"id\\": \\"PH\\",
-      \\"name\\": \\"Philippines\\",
-    },
-    Object {
-      \\"id\\": \\"region-unspecified\\",
-      \\"name\\": \\"Region, unspecified\\",
-    },
-    Object {
-      \\"id\\": \\"RW\\",
-      \\"name\\": \\"Rwanda\\",
-    },
-    Object {
-      \\"id\\": \\"SH\\",
-      \\"name\\": \\"Saint Helena, Ascension & Tristan da Cunha\\",
-    },
-    Object {
-      \\"id\\": \\"KN\\",
-      \\"name\\": \\"Saint Kitts and Nevis\\",
-    },
-    Object {
-      \\"id\\": \\"LC\\",
-      \\"name\\": \\"Saint Lucia\\",
-    },
-    Object {
-      \\"id\\": \\"VC\\",
-      \\"name\\": \\"Saint Vincent & the Grenadines\\",
-    },
-    Object {
-      \\"id\\": \\"WS\\",
-      \\"name\\": \\"Samoa\\",
-    },
-    Object {
-      \\"id\\": \\"ST\\",
-      \\"name\\": \\"Sao Tome & Principe\\",
-    },
-    Object {
-      \\"id\\": \\"SN\\",
-      \\"name\\": \\"Senegal\\",
-    },
-    Object {
-      \\"id\\": \\"RS\\",
-      \\"name\\": \\"Serbia\\",
-    },
-    Object {
-      \\"id\\": \\"SC\\",
-      \\"name\\": \\"Seychelles\\",
-    },
-    Object {
-      \\"id\\": \\"SL\\",
-      \\"name\\": \\"Sierra Leone\\",
-    },
-    Object {
-      \\"id\\": \\"SB\\",
-      \\"name\\": \\"Solomon Islands\\",
-    },
-    Object {
-      \\"id\\": \\"SO\\",
-      \\"name\\": \\"Somalia\\",
-    },
-    Object {
-      \\"id\\": \\"south-central-asia\\",
-      \\"name\\": \\"South & Central Asia, regional\\",
-    },
-    Object {
-      \\"id\\": \\"ZA\\",
-      \\"name\\": \\"South Africa\\",
-    },
-    Object {
-      \\"id\\": \\"south-america\\",
-      \\"name\\": \\"South America, regional\\",
-    },
-    Object {
-      \\"id\\": \\"south-asia\\",
-      \\"name\\": \\"South Asia, regional\\",
-    },
-    Object {
-      \\"id\\": \\"south-of-sahara\\",
-      \\"name\\": \\"South of Sahara, regional\\",
-    },
-    Object {
-      \\"id\\": \\"SS\\",
-      \\"name\\": \\"South Sudan\\",
-    },
-    Object {
-      \\"id\\": \\"LK\\",
-      \\"name\\": \\"Sri Lanka\\",
-    },
-    Object {
-      \\"id\\": \\"ex-yugoslavia\\",
-      \\"name\\": \\"States Ex-Yugoslavia unspecified\\",
-    },
-    Object {
-      \\"id\\": \\"SD\\",
-      \\"name\\": \\"Sudan\\",
-    },
-    Object {
-      \\"id\\": \\"SR\\",
-      \\"name\\": \\"Suriname\\",
-    },
-    Object {
-      \\"id\\": \\"SZ\\",
-      \\"name\\": \\"Swaziland\\",
-    },
-    Object {
-      \\"id\\": \\"SY\\",
-      \\"name\\": \\"Syria\\",
-    },
-    Object {
-      \\"id\\": \\"TJ\\",
-      \\"name\\": \\"Tajikistan\\",
-    },
-    Object {
-      \\"id\\": \\"TZ\\",
-      \\"name\\": \\"Tanzania\\",
-    },
-    Object {
-      \\"id\\": \\"TH\\",
-      \\"name\\": \\"Thailand\\",
-    },
-    Object {
-      \\"id\\": \\"TL\\",
-      \\"name\\": \\"Timor-Leste\\",
-    },
-    Object {
-      \\"id\\": \\"TG\\",
-      \\"name\\": \\"Togo\\",
-    },
-    Object {
-      \\"id\\": \\"TK\\",
-      \\"name\\": \\"Tokelau\\",
-    },
-    Object {
-      \\"id\\": \\"TO\\",
-      \\"name\\": \\"Tonga\\",
-    },
-    Object {
-      \\"id\\": \\"TT\\",
-      \\"name\\": \\"Trinidad & Tobago\\",
-    },
-    Object {
-      \\"id\\": \\"TN\\",
-      \\"name\\": \\"Tunisia\\",
-    },
-    Object {
-      \\"id\\": \\"TR\\",
-      \\"name\\": \\"Turkey\\",
-    },
-    Object {
-      \\"id\\": \\"TM\\",
-      \\"name\\": \\"Turkmenistan\\",
-    },
-    Object {
-      \\"id\\": \\"TC\\",
-      \\"name\\": \\"Turks & Caicos Islands\\",
-    },
-    Object {
-      \\"id\\": \\"TV\\",
-      \\"name\\": \\"Tuvalu\\",
-    },
-    Object {
-      \\"id\\": \\"UG\\",
-      \\"name\\": \\"Uganda\\",
-    },
-    Object {
-      \\"id\\": \\"UA\\",
-      \\"name\\": \\"Ukraine\\",
-    },
-    Object {
-      \\"id\\": \\"UY\\",
-      \\"name\\": \\"Uruguay\\",
-    },
-    Object {
-      \\"id\\": \\"UZ\\",
-      \\"name\\": \\"Uzbekistan\\",
-    },
-    Object {
-      \\"id\\": \\"VU\\",
-      \\"name\\": \\"Vanuatu\\",
-    },
-    Object {
-      \\"id\\": \\"VE\\",
-      \\"name\\": \\"Venezuela\\",
-    },
-    Object {
-      \\"id\\": \\"VN\\",
-      \\"name\\": \\"Viet Nam\\",
-    },
-    Object {
-      \\"id\\": \\"WF\\",
-      \\"name\\": \\"Wallis & Futuna\\",
-    },
-    Object {
-      \\"id\\": \\"west-indies\\",
-      \\"name\\": \\"West Indies, regional\\",
-    },
-    Object {
-      \\"id\\": \\"YE\\",
-      \\"name\\": \\"Yemen\\",
-    },
-    Object {
-      \\"id\\": \\"ZM\\",
-      \\"name\\": \\"Zambia\\",
-    },
-    Object {
-      \\"id\\": \\"ZW\\",
-      \\"name\\": \\"Zimbabwe\\",
-    },
-  ],
-  \\"years\\": Array [
-    2015,
-    2014,
-    2013,
-    2012,
-    2011,
-    2010,
-    2009,
-    2008,
-    2007,
-    2006,
-  ],
+  \\"dataODA\\": Object {
+    \\"bundles\\": Array [
+      Object {
+        \\"color\\": \\"red\\",
+        \\"id\\": \\"cash-loan-equity\\",
+        \\"name\\": \\"Cash (loan/equity)\\",
+      },
+      Object {
+        \\"color\\": \\"red-light\\",
+        \\"id\\": \\"cash-grant\\",
+        \\"name\\": \\"Cash grant\\",
+      },
+      Object {
+        \\"color\\": \\"purple-lighter\\",
+        \\"id\\": \\"commodities-food\\",
+        \\"name\\": \\"Commodities & Food\\",
+      },
+      Object {
+        \\"color\\": \\"blue\\",
+        \\"id\\": \\"gpgs-nngos\\",
+        \\"name\\": \\"Global Initiatives & NNGOs\\",
+      },
+      Object {
+        \\"color\\": \\"yellow\\",
+        \\"id\\": \\"mixed-project-aid\\",
+        \\"name\\": \\"Mixed project aid\\",
+      },
+      Object {
+        \\"color\\": \\"orange\\",
+        \\"id\\": \\"non-transfer\\",
+        \\"name\\": \\"Non-transfer\\",
+      },
+      Object {
+        \\"color\\": \\"blue-darker\\",
+        \\"id\\": \\"technical-ooperation\\",
+        \\"name\\": \\"Technical cooperation\\",
+      },
+      Object {
+        \\"color\\": \\"grey-darker\\",
+        \\"id\\": \\"export-credit\\",
+        \\"name\\": \\"Export credit\\",
+      },
+      Object {
+        \\"color\\": \\"blue\\",
+        \\"id\\": \\"oof-grant\\",
+        \\"name\\": \\"OOF Grant\\",
+      },
+      Object {
+        \\"color\\": \\"orange\\",
+        \\"id\\": \\"oof-loan\\",
+        \\"name\\": \\"OOF Loan\\",
+      },
+      Object {
+        \\"color\\": \\"red\\",
+        \\"id\\": \\"oof-export-credit\\",
+        \\"name\\": \\"OOF Export Credit\\",
+      },
+    ],
+    \\"channels\\": Array [
+      Object {
+        \\"id\\": \\"public-sector-unknown\\",
+        \\"name\\": \\"Public sector (unknown country)\\",
+      },
+      Object {
+        \\"id\\": \\"public-sector-donor\\",
+        \\"name\\": \\"Public sector (donor government)\\",
+      },
+      Object {
+        \\"id\\": \\"public-sector-recipient\\",
+        \\"name\\": \\"Public sector (recipient government)\\",
+      },
+      Object {
+        \\"id\\": \\"ngo-unknown\\",
+        \\"name\\": \\"NGO (unknown country)\\",
+      },
+      Object {
+        \\"id\\": \\"ngo-donor\\",
+        \\"name\\": \\"NGO (donor-country based)\\",
+      },
+      Object {
+        \\"id\\": \\"ngo-recipient\\",
+        \\"name\\": \\"NGO (recipient-country based)\\",
+      },
+      Object {
+        \\"id\\": \\"public-private-partnership\\",
+        \\"name\\": \\"Public private partnership\\",
+      },
+      Object {
+        \\"id\\": \\"multilateral\\",
+        \\"name\\": \\"Multilateral\\",
+      },
+      Object {
+        \\"id\\": \\"other\\",
+        \\"name\\": \\"Other (private sector, think-tank, etc.)\\",
+      },
+      Object {
+        \\"id\\": \\"unspecified\\",
+        \\"name\\": \\"Unspecified\\",
+      },
+    ],
+    \\"from\\": Array [
+      Object {
+        \\"id\\": \\"adaptation-fund\\",
+        \\"name\\": \\"Adaptation Fund\\",
+      },
+      Object {
+        \\"id\\": \\"afdb\\",
+        \\"name\\": \\"African Development Bank (AfDB)\\",
+      },
+      Object {
+        \\"id\\": \\"afdf\\",
+        \\"name\\": \\"African Development Fund (AfDF)\\",
+      },
+      Object {
+        \\"id\\": \\"badea\\",
+        \\"name\\": \\"Arab Bank for Economic Development in Africa (BADEA)\\",
+      },
+      Object {
+        \\"id\\": \\"arab-fund-afesd\\",
+        \\"name\\": \\"Arab Fund (AFESD)\\",
+      },
+      Object {
+        \\"id\\": \\"asdb-special-funds\\",
+        \\"name\\": \\"ADB Special Funds\\",
+      },
+      Object {
+        \\"id\\": \\"asdb\\",
+        \\"name\\": \\"Asian Development Bank (ADB)\\",
+      },
+      Object {
+        \\"id\\": \\"AU\\",
+        \\"name\\": \\"Australia\\",
+      },
+      Object {
+        \\"id\\": \\"AT\\",
+        \\"name\\": \\"Austria\\",
+      },
+      Object {
+        \\"id\\": \\"BE\\",
+        \\"name\\": \\"Belgium\\",
+      },
+      Object {
+        \\"id\\": \\"BG\\",
+        \\"name\\": \\"Bulgaria\\",
+      },
+      Object {
+        \\"id\\": \\"CA\\",
+        \\"name\\": \\"Canada\\",
+      },
+      Object {
+        \\"id\\": \\"cardb\\",
+        \\"name\\": \\"Caribbean Development Bank (CarDB)\\",
+      },
+      Object {
+        \\"id\\": \\"cif\\",
+        \\"name\\": \\"Climate Investment Funds (CIF)\\",
+      },
+      Object {
+        \\"id\\": \\"ceb\\",
+        \\"name\\": \\"Council of Europe Development Bank (CEB)\\",
+      },
+      Object {
+        \\"id\\": \\"HR\\",
+        \\"name\\": \\"Croatia\\",
+      },
+      Object {
+        \\"id\\": \\"CY\\",
+        \\"name\\": \\"Cyprus\\",
+      },
+      Object {
+        \\"id\\": \\"CZ\\",
+        \\"name\\": \\"Czech Republic\\",
+      },
+      Object {
+        \\"id\\": \\"DK\\",
+        \\"name\\": \\"Denmark\\",
+      },
+      Object {
+        \\"id\\": \\"EE\\",
+        \\"name\\": \\"Estonia\\",
+      },
+      Object {
+        \\"id\\": \\"ebrd\\",
+        \\"name\\": \\"European Bank for Reconstruction and Development (EBRD)\\",
+      },
+      Object {
+        \\"id\\": \\"EU\\",
+        \\"name\\": \\"European Union\\",
+      },
+      Object {
+        \\"id\\": \\"FI\\",
+        \\"name\\": \\"Finland\\",
+      },
+      Object {
+        \\"id\\": \\"fao\\",
+        \\"name\\": \\"Food and Agriculture Organisation (FAO)\\",
+      },
+      Object {
+        \\"id\\": \\"FR\\",
+        \\"name\\": \\"France\\",
+      },
+      Object {
+        \\"id\\": \\"DE\\",
+        \\"name\\": \\"Germany\\",
+      },
+      Object {
+        \\"id\\": \\"gavi\\",
+        \\"name\\": \\"Global Alliance for Vaccines and Immunization (GAVI)\\",
+      },
+      Object {
+        \\"id\\": \\"gef\\",
+        \\"name\\": \\"Global Environment Facility (GEF)\\",
+      },
+      Object {
+        \\"id\\": \\"global-fund\\",
+        \\"name\\": \\"Global Fund\\",
+      },
+      Object {
+        \\"id\\": \\"gggi\\",
+        \\"name\\": \\"Global Green Growth Institute (GGGI)\\",
+      },
+      Object {
+        \\"id\\": \\"GR\\",
+        \\"name\\": \\"Greece\\",
+      },
+      Object {
+        \\"id\\": \\"HU\\",
+        \\"name\\": \\"Hungary\\",
+      },
+      Object {
+        \\"id\\": \\"IS\\",
+        \\"name\\": \\"Iceland\\",
+      },
+      Object {
+        \\"id\\": \\"idb-special-fund\\",
+        \\"name\\": \\"IDB Special Fund\\",
+      },
+      Object {
+        \\"id\\": \\"imf-concessional-trust-funds\\",
+        \\"name\\": \\"IMF Concessional Trust Funds\\",
+      },
+      Object {
+        \\"id\\": \\"idb\\",
+        \\"name\\": \\"Inter-American Development Bank (IDB)\\",
+      },
+      Object {
+        \\"id\\": \\"iaea\\",
+        \\"name\\": \\"International Atomic Energy Agency (IAEA)\\",
+      },
+      Object {
+        \\"id\\": \\"ibrd\\",
+        \\"name\\": \\"International Bank for Reconstruction and Development (IBRD)\\",
+      },
+      Object {
+        \\"id\\": \\"ida\\",
+        \\"name\\": \\"International Development Association (IDA)\\",
+      },
+      Object {
+        \\"id\\": \\"ifc\\",
+        \\"name\\": \\"International Finance Corporation (IFC)\\",
+      },
+      Object {
+        \\"id\\": \\"ifad\\",
+        \\"name\\": \\"International Fund for Agricultural Development (IFAD)\\",
+      },
+      Object {
+        \\"id\\": \\"international-labour-organisation\\",
+        \\"name\\": \\"International Labour Organisation (ILO)\\",
+      },
+      Object {
+        \\"id\\": \\"imf\\",
+        \\"name\\": \\"International Monetary Fund (IMF)\\",
+      },
+      Object {
+        \\"id\\": \\"IE\\",
+        \\"name\\": \\"Ireland\\",
+      },
+      Object {
+        \\"id\\": \\"islamic-dev-bank\\",
+        \\"name\\": \\"Islamic Development Bank (IsDB)\\",
+      },
+      Object {
+        \\"id\\": \\"IL\\",
+        \\"name\\": \\"Israel\\",
+      },
+      Object {
+        \\"id\\": \\"IT\\",
+        \\"name\\": \\"Italy\\",
+      },
+      Object {
+        \\"id\\": \\"JP\\",
+        \\"name\\": \\"Japan\\",
+      },
+      Object {
+        \\"id\\": \\"unaids\\",
+        \\"name\\": \\"Joint United Nations Programme on HIV/AIDS (UNAIDS)\\",
+      },
+      Object {
+        \\"id\\": \\"KZ\\",
+        \\"name\\": \\"Kazakhstan\\",
+      },
+      Object {
+        \\"id\\": \\"KR\\",
+        \\"name\\": \\"Korea\\",
+      },
+      Object {
+        \\"id\\": \\"KW\\",
+        \\"name\\": \\"Kuwait\\",
+      },
+      Object {
+        \\"id\\": \\"LV\\",
+        \\"name\\": \\"Latvia\\",
+      },
+      Object {
+        \\"id\\": \\"LI\\",
+        \\"name\\": \\"Liechtenstein\\",
+      },
+      Object {
+        \\"id\\": \\"LT\\",
+        \\"name\\": \\"Lithuania\\",
+      },
+      Object {
+        \\"id\\": \\"LU\\",
+        \\"name\\": \\"Luxembourg\\",
+      },
+      Object {
+        \\"id\\": \\"MT\\",
+        \\"name\\": \\"Malta\\",
+      },
+      Object {
+        \\"id\\": \\"montreal-protocol\\",
+        \\"name\\": \\"Montreal Protocol\\",
+      },
+      Object {
+        \\"id\\": \\"NL\\",
+        \\"name\\": \\"Netherlands\\",
+      },
+      Object {
+        \\"id\\": \\"NZ\\",
+        \\"name\\": \\"New Zealand\\",
+      },
+      Object {
+        \\"id\\": \\"nordic-dev-fund\\",
+        \\"name\\": \\"Nordic Development Fund (NDF)\\",
+      },
+      Object {
+        \\"id\\": \\"NO\\",
+        \\"name\\": \\"Norway\\",
+      },
+      Object {
+        \\"id\\": \\"ofid\\",
+        \\"name\\": \\"OPEC Fund for International Development (OFID)\\",
+      },
+      Object {
+        \\"id\\": \\"osce\\",
+        \\"name\\": \\"Organization for Security and Co-operation in Europe (OSCE)\\",
+      },
+      Object {
+        \\"id\\": \\"PL\\",
+        \\"name\\": \\"Poland\\",
+      },
+      Object {
+        \\"id\\": \\"PT\\",
+        \\"name\\": \\"Portugal\\",
+      },
+      Object {
+        \\"id\\": \\"RO\\",
+        \\"name\\": \\"Romania\\",
+      },
+      Object {
+        \\"id\\": \\"RU\\",
+        \\"name\\": \\"Russian Federation\\",
+      },
+      Object {
+        \\"id\\": \\"SA\\",
+        \\"name\\": \\"Saudi Arabia\\",
+      },
+      Object {
+        \\"id\\": \\"SK\\",
+        \\"name\\": \\"Slovak Republic\\",
+      },
+      Object {
+        \\"id\\": \\"SI\\",
+        \\"name\\": \\"Slovenia\\",
+      },
+      Object {
+        \\"id\\": \\"ES\\",
+        \\"name\\": \\"Spain\\",
+      },
+      Object {
+        \\"id\\": \\"SE\\",
+        \\"name\\": \\"Sweden\\",
+      },
+      Object {
+        \\"id\\": \\"CH\\",
+        \\"name\\": \\"Switzerland\\",
+      },
+      Object {
+        \\"id\\": \\"TW\\",
+        \\"name\\": \\"Taiwan\\",
+      },
+      Object {
+        \\"id\\": \\"TH\\",
+        \\"name\\": \\"Thailand\\",
+      },
+      Object {
+        \\"id\\": \\"TL\\",
+        \\"name\\": \\"Timor-Leste\\",
+      },
+      Object {
+        \\"id\\": \\"TR\\",
+        \\"name\\": \\"Turkey\\",
+      },
+      Object {
+        \\"id\\": \\"GB\\",
+        \\"name\\": \\"United Kingdom\\",
+      },
+      Object {
+        \\"id\\": \\"un-agencies\\",
+        \\"name\\": \\"UN Agencies\\",
+      },
+      Object {
+        \\"id\\": \\"AE\\",
+        \\"name\\": \\"UAE\\",
+      },
+      Object {
+        \\"id\\": \\"unicef\\",
+        \\"name\\": \\"United Nations Children's Fund (UNICEF)\\",
+      },
+      Object {
+        \\"id\\": \\"undp\\",
+        \\"name\\": \\"United Nations Development Programme (UNDP)\\",
+      },
+      Object {
+        \\"id\\": \\"unece\\",
+        \\"name\\": \\"United Nations Economic Commission for Europe (UNECE)\\",
+      },
+      Object {
+        \\"id\\": \\"unep\\",
+        \\"name\\": \\"United Nations Environment Programme (UNEP)\\",
+      },
+      Object {
+        \\"id\\": \\"unhcr\\",
+        \\"name\\": \\"United Nations High Commissioner for Refugees (UNHCR)\\",
+      },
+      Object {
+        \\"id\\": \\"unpbf\\",
+        \\"name\\": \\"United Nations Peacebuilding Fund (UNPBF)\\",
+      },
+      Object {
+        \\"id\\": \\"unfpa\\",
+        \\"name\\": \\"United Nations Population Fund (UNFPA)\\",
+      },
+      Object {
+        \\"id\\": \\"unta\\",
+        \\"name\\": \\"United Nations Regular Programme for Technical Assistance (UNTA)\\",
+      },
+      Object {
+        \\"id\\": \\"unrwa\\",
+        \\"name\\": \\"United Nations Relief and Works Agency (UNRWA)\\",
+      },
+      Object {
+        \\"id\\": \\"US\\",
+        \\"name\\": \\"United States\\",
+      },
+      Object {
+        \\"id\\": \\"wfp\\",
+        \\"name\\": \\"World Food Programme (WFP)\\",
+      },
+      Object {
+        \\"id\\": \\"who\\",
+        \\"name\\": \\"World Health Organization (WHO)\\",
+      },
+    ],
+    \\"sectors\\": Array [
+      Object {
+        \\"color\\": \\"red\\",
+        \\"id\\": \\"agriculture-and-food-security\\",
+        \\"name\\": \\"Agriculture and food security\\",
+      },
+      Object {
+        \\"color\\": \\"pink-light\\",
+        \\"id\\": \\"banking-and-business\\",
+        \\"name\\": \\"Banking and business\\",
+      },
+      Object {
+        \\"color\\": \\"red-darker\\",
+        \\"id\\": \\"debt-relief\\",
+        \\"name\\": \\"Debt relief\\",
+      },
+      Object {
+        \\"color\\": \\"red\\",
+        \\"id\\": \\"education\\",
+        \\"name\\": \\"Education\\",
+      },
+      Object {
+        \\"color\\": \\"orange-light\\",
+        \\"id\\": \\"environment\\",
+        \\"name\\": \\"Environment\\",
+      },
+      Object {
+        \\"color\\": \\"purple\\",
+        \\"id\\": \\"general-budget-support\\",
+        \\"name\\": \\"General budget support\\",
+      },
+      Object {
+        \\"color\\": \\"orange\\",
+        \\"id\\": \\"governance-and-security\\",
+        \\"name\\": \\"Governance and security\\",
+      },
+      Object {
+        \\"color\\": \\"green-dark\\",
+        \\"id\\": \\"health\\",
+        \\"name\\": \\"Health\\",
+      },
+      Object {
+        \\"color\\": \\"red-dark\\",
+        \\"id\\": \\"humanitarian\\",
+        \\"name\\": \\"Humanitarian\\",
+      },
+      Object {
+        \\"color\\": \\"blue-light\\",
+        \\"id\\": \\"industry-and-trade\\",
+        \\"name\\": \\"Industry and trade\\",
+      },
+      Object {
+        \\"color\\": \\"orange-light\\",
+        \\"id\\": \\"infrastructure\\",
+        \\"name\\": \\"Infrastructure\\",
+      },
+      Object {
+        \\"color\\": \\"purple-dark\\",
+        \\"id\\": \\"other\\",
+        \\"name\\": \\"Other\\",
+      },
+      Object {
+        \\"color\\": \\"purple\\",
+        \\"id\\": \\"other-social-services\\",
+        \\"name\\": \\"Other social services\\",
+      },
+      Object {
+        \\"color\\": \\"blue\\",
+        \\"id\\": \\"water-and-sanitation\\",
+        \\"name\\": \\"Water and sanitation\\",
+      },
+      Object {
+        \\"color\\": \\"grey-dark\\",
+        \\"id\\": \\"other-sectors-grouped\\",
+        \\"name\\": \\"Other sectors (grouped)\\",
+      },
+    ],
+    \\"to\\": Array [
+      Object {
+        \\"id\\": \\"AF\\",
+        \\"name\\": \\"Afghanistan\\",
+      },
+      Object {
+        \\"id\\": \\"africa\\",
+        \\"name\\": \\"Africa, regional\\",
+      },
+      Object {
+        \\"id\\": \\"AL\\",
+        \\"name\\": \\"Albania\\",
+      },
+      Object {
+        \\"id\\": \\"DZ\\",
+        \\"name\\": \\"Algeria\\",
+      },
+      Object {
+        \\"id\\": \\"america\\",
+        \\"name\\": \\"America, regional\\",
+      },
+      Object {
+        \\"id\\": \\"AO\\",
+        \\"name\\": \\"Angola\\",
+      },
+      Object {
+        \\"id\\": \\"AI\\",
+        \\"name\\": \\"Anguilla\\",
+      },
+      Object {
+        \\"id\\": \\"AG\\",
+        \\"name\\": \\"Antigua & Barbuda\\",
+      },
+      Object {
+        \\"id\\": \\"AR\\",
+        \\"name\\": \\"Argentina\\",
+      },
+      Object {
+        \\"id\\": \\"AM\\",
+        \\"name\\": \\"Armenia\\",
+      },
+      Object {
+        \\"id\\": \\"asia\\",
+        \\"name\\": \\"Asia, regional\\",
+      },
+      Object {
+        \\"id\\": \\"AZ\\",
+        \\"name\\": \\"Azerbaijan\\",
+      },
+      Object {
+        \\"id\\": \\"BH\\",
+        \\"name\\": \\"Bahrain\\",
+      },
+      Object {
+        \\"id\\": \\"BD\\",
+        \\"name\\": \\"Bangladesh\\",
+      },
+      Object {
+        \\"id\\": \\"BB\\",
+        \\"name\\": \\"Barbados\\",
+      },
+      Object {
+        \\"id\\": \\"BY\\",
+        \\"name\\": \\"Belarus\\",
+      },
+      Object {
+        \\"id\\": \\"BZ\\",
+        \\"name\\": \\"Belize\\",
+      },
+      Object {
+        \\"id\\": \\"BJ\\",
+        \\"name\\": \\"Benin\\",
+      },
+      Object {
+        \\"id\\": \\"BT\\",
+        \\"name\\": \\"Bhutan\\",
+      },
+      Object {
+        \\"id\\": \\"bilateral-unspecified\\",
+        \\"name\\": \\"Bilateral, unspecified\\",
+      },
+      Object {
+        \\"id\\": \\"BO\\",
+        \\"name\\": \\"Bolivia\\",
+      },
+      Object {
+        \\"id\\": \\"BA\\",
+        \\"name\\": \\"Bosnia & Herzegovina\\",
+      },
+      Object {
+        \\"id\\": \\"BW\\",
+        \\"name\\": \\"Botswana\\",
+      },
+      Object {
+        \\"id\\": \\"BR\\",
+        \\"name\\": \\"Brazil\\",
+      },
+      Object {
+        \\"id\\": \\"BF\\",
+        \\"name\\": \\"Burkina Faso\\",
+      },
+      Object {
+        \\"id\\": \\"BI\\",
+        \\"name\\": \\"Burundi\\",
+      },
+      Object {
+        \\"id\\": \\"KH\\",
+        \\"name\\": \\"Cambodia\\",
+      },
+      Object {
+        \\"id\\": \\"CM\\",
+        \\"name\\": \\"Cameroon\\",
+      },
+      Object {
+        \\"id\\": \\"CV\\",
+        \\"name\\": \\"Cape Verde\\",
+      },
+      Object {
+        \\"id\\": \\"CF\\",
+        \\"name\\": \\"CAR\\",
+      },
+      Object {
+        \\"id\\": \\"central-asia\\",
+        \\"name\\": \\"Central Asia, regional\\",
+      },
+      Object {
+        \\"id\\": \\"TD\\",
+        \\"name\\": \\"Chad\\",
+      },
+      Object {
+        \\"id\\": \\"CL\\",
+        \\"name\\": \\"Chile\\",
+      },
+      Object {
+        \\"id\\": \\"CN\\",
+        \\"name\\": \\"China\\",
+      },
+      Object {
+        \\"id\\": \\"CO\\",
+        \\"name\\": \\"Colombia\\",
+      },
+      Object {
+        \\"id\\": \\"KM\\",
+        \\"name\\": \\"Comoros\\",
+      },
+      Object {
+        \\"id\\": \\"CG\\",
+        \\"name\\": \\"Congo\\",
+      },
+      Object {
+        \\"id\\": \\"CD\\",
+        \\"name\\": \\"DRC\\",
+      },
+      Object {
+        \\"id\\": \\"CK\\",
+        \\"name\\": \\"Cook Islands\\",
+      },
+      Object {
+        \\"id\\": \\"CR\\",
+        \\"name\\": \\"Costa Rica\\",
+      },
+      Object {
+        \\"id\\": \\"CI\\",
+        \\"name\\": \\"Côte d'Ivoire\\",
+      },
+      Object {
+        \\"id\\": \\"country-unspecified\\",
+        \\"name\\": \\"Country not specified\\",
+      },
+      Object {
+        \\"id\\": \\"CU\\",
+        \\"name\\": \\"Cuba\\",
+      },
+      Object {
+        \\"id\\": \\"DJ\\",
+        \\"name\\": \\"Djibouti\\",
+      },
+      Object {
+        \\"id\\": \\"DM\\",
+        \\"name\\": \\"Dominica\\",
+      },
+      Object {
+        \\"id\\": \\"DO\\",
+        \\"name\\": \\"Dominican Republic\\",
+      },
+      Object {
+        \\"id\\": \\"EC\\",
+        \\"name\\": \\"Ecuador\\",
+      },
+      Object {
+        \\"id\\": \\"EG\\",
+        \\"name\\": \\"Egypt\\",
+      },
+      Object {
+        \\"id\\": \\"SV\\",
+        \\"name\\": \\"El Salvador\\",
+      },
+      Object {
+        \\"id\\": \\"GQ\\",
+        \\"name\\": \\"Equatorial Guinea\\",
+      },
+      Object {
+        \\"id\\": \\"ER\\",
+        \\"name\\": \\"Eritrea\\",
+      },
+      Object {
+        \\"id\\": \\"ET\\",
+        \\"name\\": \\"Ethiopia\\",
+      },
+      Object {
+        \\"id\\": \\"europe\\",
+        \\"name\\": \\"Europe, regional\\",
+      },
+      Object {
+        \\"id\\": \\"east-asia\\",
+        \\"name\\": \\"Far East Asia, regional\\",
+      },
+      Object {
+        \\"id\\": \\"FJ\\",
+        \\"name\\": \\"Fiji\\",
+      },
+      Object {
+        \\"id\\": \\"GA\\",
+        \\"name\\": \\"Gabon\\",
+      },
+      Object {
+        \\"id\\": \\"GM\\",
+        \\"name\\": \\"Gambia\\",
+      },
+      Object {
+        \\"id\\": \\"GE\\",
+        \\"name\\": \\"Georgia\\",
+      },
+      Object {
+        \\"id\\": \\"GH\\",
+        \\"name\\": \\"Ghana\\",
+      },
+      Object {
+        \\"id\\": \\"GD\\",
+        \\"name\\": \\"Grenada\\",
+      },
+      Object {
+        \\"id\\": \\"GT\\",
+        \\"name\\": \\"Guatemala\\",
+      },
+      Object {
+        \\"id\\": \\"GN\\",
+        \\"name\\": \\"Guinea\\",
+      },
+      Object {
+        \\"id\\": \\"GW\\",
+        \\"name\\": \\"Guinea-Bissau\\",
+      },
+      Object {
+        \\"id\\": \\"GY\\",
+        \\"name\\": \\"Guyana\\",
+      },
+      Object {
+        \\"id\\": \\"HT\\",
+        \\"name\\": \\"Haiti\\",
+      },
+      Object {
+        \\"id\\": \\"HN\\",
+        \\"name\\": \\"Honduras\\",
+      },
+      Object {
+        \\"id\\": \\"IN\\",
+        \\"name\\": \\"India\\",
+      },
+      Object {
+        \\"id\\": \\"ID\\",
+        \\"name\\": \\"Indonesia\\",
+      },
+      Object {
+        \\"id\\": \\"IR\\",
+        \\"name\\": \\"Iran\\",
+      },
+      Object {
+        \\"id\\": \\"IQ\\",
+        \\"name\\": \\"Iraq\\",
+      },
+      Object {
+        \\"id\\": \\"JM\\",
+        \\"name\\": \\"Jamaica\\",
+      },
+      Object {
+        \\"id\\": \\"JO\\",
+        \\"name\\": \\"Jordan\\",
+      },
+      Object {
+        \\"id\\": \\"KZ\\",
+        \\"name\\": \\"Kazakhstan\\",
+      },
+      Object {
+        \\"id\\": \\"KE\\",
+        \\"name\\": \\"Kenya\\",
+      },
+      Object {
+        \\"id\\": \\"KI\\",
+        \\"name\\": \\"Kiribati\\",
+      },
+      Object {
+        \\"id\\": \\"KP\\",
+        \\"name\\": \\"North Korea\\",
+      },
+      Object {
+        \\"id\\": \\"XK\\",
+        \\"name\\": \\"Kosovo\\",
+      },
+      Object {
+        \\"id\\": \\"KG\\",
+        \\"name\\": \\"Kyrgyzstan\\",
+      },
+      Object {
+        \\"id\\": \\"LA\\",
+        \\"name\\": \\"Lao\\",
+      },
+      Object {
+        \\"id\\": \\"LB\\",
+        \\"name\\": \\"Lebanon\\",
+      },
+      Object {
+        \\"id\\": \\"LS\\",
+        \\"name\\": \\"Lesotho\\",
+      },
+      Object {
+        \\"id\\": \\"LR\\",
+        \\"name\\": \\"Liberia\\",
+      },
+      Object {
+        \\"id\\": \\"LY\\",
+        \\"name\\": \\"Libya\\",
+      },
+      Object {
+        \\"id\\": \\"MK\\",
+        \\"name\\": \\"Macedonia\\",
+      },
+      Object {
+        \\"id\\": \\"MG\\",
+        \\"name\\": \\"Madagascar\\",
+      },
+      Object {
+        \\"id\\": \\"MW\\",
+        \\"name\\": \\"Malawi\\",
+      },
+      Object {
+        \\"id\\": \\"MY\\",
+        \\"name\\": \\"Malaysia\\",
+      },
+      Object {
+        \\"id\\": \\"MV\\",
+        \\"name\\": \\"Maldives\\",
+      },
+      Object {
+        \\"id\\": \\"ML\\",
+        \\"name\\": \\"Mali\\",
+      },
+      Object {
+        \\"id\\": \\"MH\\",
+        \\"name\\": \\"Marshall Islands\\",
+      },
+      Object {
+        \\"id\\": \\"MR\\",
+        \\"name\\": \\"Mauritania\\",
+      },
+      Object {
+        \\"id\\": \\"MU\\",
+        \\"name\\": \\"Mauritius\\",
+      },
+      Object {
+        \\"id\\": \\"YT\\",
+        \\"name\\": \\"Mayotte\\",
+      },
+      Object {
+        \\"id\\": \\"MX\\",
+        \\"name\\": \\"Mexico\\",
+      },
+      Object {
+        \\"id\\": \\"FM\\",
+        \\"name\\": \\"Micronesia\\",
+      },
+      Object {
+        \\"id\\": \\"middle-east\\",
+        \\"name\\": \\"Middle East, regional\\",
+      },
+      Object {
+        \\"id\\": \\"MD\\",
+        \\"name\\": \\"Moldova\\",
+      },
+      Object {
+        \\"id\\": \\"MN\\",
+        \\"name\\": \\"Mongolia\\",
+      },
+      Object {
+        \\"id\\": \\"ME\\",
+        \\"name\\": \\"Montenegro\\",
+      },
+      Object {
+        \\"id\\": \\"MS\\",
+        \\"name\\": \\"Montserrat\\",
+      },
+      Object {
+        \\"id\\": \\"MA\\",
+        \\"name\\": \\"Morocco\\",
+      },
+      Object {
+        \\"id\\": \\"MZ\\",
+        \\"name\\": \\"Mozambique\\",
+      },
+      Object {
+        \\"id\\": \\"MM\\",
+        \\"name\\": \\"Myanmar\\",
+      },
+      Object {
+        \\"id\\": \\"NA\\",
+        \\"name\\": \\"Namibia\\",
+      },
+      Object {
+        \\"id\\": \\"NR\\",
+        \\"name\\": \\"Nauru\\",
+      },
+      Object {
+        \\"id\\": \\"NP\\",
+        \\"name\\": \\"Nepal\\",
+      },
+      Object {
+        \\"id\\": \\"NI\\",
+        \\"name\\": \\"Nicaragua\\",
+      },
+      Object {
+        \\"id\\": \\"NE\\",
+        \\"name\\": \\"Niger\\",
+      },
+      Object {
+        \\"id\\": \\"NG\\",
+        \\"name\\": \\"Nigeria\\",
+      },
+      Object {
+        \\"id\\": \\"NU\\",
+        \\"name\\": \\"Niue\\",
+      },
+      Object {
+        \\"id\\": \\"north-central-america\\",
+        \\"name\\": \\"North & Central America, regional\\",
+      },
+      Object {
+        \\"id\\": \\"north-of-sahara\\",
+        \\"name\\": \\"North of Sahara, regional\\",
+      },
+      Object {
+        \\"id\\": \\"oceania\\",
+        \\"name\\": \\"Oceania, regional\\",
+      },
+      Object {
+        \\"id\\": \\"OM\\",
+        \\"name\\": \\"Oman\\",
+      },
+      Object {
+        \\"id\\": \\"PK\\",
+        \\"name\\": \\"Pakistan\\",
+      },
+      Object {
+        \\"id\\": \\"PW\\",
+        \\"name\\": \\"Palau\\",
+      },
+      Object {
+        \\"id\\": \\"PS\\",
+        \\"name\\": \\"Palestine\\",
+      },
+      Object {
+        \\"id\\": \\"PA\\",
+        \\"name\\": \\"Panama\\",
+      },
+      Object {
+        \\"id\\": \\"PG\\",
+        \\"name\\": \\"Papua New Guinea\\",
+      },
+      Object {
+        \\"id\\": \\"PY\\",
+        \\"name\\": \\"Paraguay\\",
+      },
+      Object {
+        \\"id\\": \\"PE\\",
+        \\"name\\": \\"Peru\\",
+      },
+      Object {
+        \\"id\\": \\"PH\\",
+        \\"name\\": \\"Philippines\\",
+      },
+      Object {
+        \\"id\\": \\"region-unspecified\\",
+        \\"name\\": \\"Region, unspecified\\",
+      },
+      Object {
+        \\"id\\": \\"RW\\",
+        \\"name\\": \\"Rwanda\\",
+      },
+      Object {
+        \\"id\\": \\"SH\\",
+        \\"name\\": \\"Saint Helena, Ascension & Tristan da Cunha\\",
+      },
+      Object {
+        \\"id\\": \\"KN\\",
+        \\"name\\": \\"Saint Kitts and Nevis\\",
+      },
+      Object {
+        \\"id\\": \\"LC\\",
+        \\"name\\": \\"Saint Lucia\\",
+      },
+      Object {
+        \\"id\\": \\"VC\\",
+        \\"name\\": \\"Saint Vincent & the Grenadines\\",
+      },
+      Object {
+        \\"id\\": \\"WS\\",
+        \\"name\\": \\"Samoa\\",
+      },
+      Object {
+        \\"id\\": \\"ST\\",
+        \\"name\\": \\"Sao Tome & Principe\\",
+      },
+      Object {
+        \\"id\\": \\"SN\\",
+        \\"name\\": \\"Senegal\\",
+      },
+      Object {
+        \\"id\\": \\"RS\\",
+        \\"name\\": \\"Serbia\\",
+      },
+      Object {
+        \\"id\\": \\"SC\\",
+        \\"name\\": \\"Seychelles\\",
+      },
+      Object {
+        \\"id\\": \\"SL\\",
+        \\"name\\": \\"Sierra Leone\\",
+      },
+      Object {
+        \\"id\\": \\"SB\\",
+        \\"name\\": \\"Solomon Islands\\",
+      },
+      Object {
+        \\"id\\": \\"SO\\",
+        \\"name\\": \\"Somalia\\",
+      },
+      Object {
+        \\"id\\": \\"south-central-asia\\",
+        \\"name\\": \\"South & Central Asia, regional\\",
+      },
+      Object {
+        \\"id\\": \\"ZA\\",
+        \\"name\\": \\"South Africa\\",
+      },
+      Object {
+        \\"id\\": \\"south-america\\",
+        \\"name\\": \\"South America, regional\\",
+      },
+      Object {
+        \\"id\\": \\"south-asia\\",
+        \\"name\\": \\"South Asia, regional\\",
+      },
+      Object {
+        \\"id\\": \\"south-of-sahara\\",
+        \\"name\\": \\"South of Sahara, regional\\",
+      },
+      Object {
+        \\"id\\": \\"SS\\",
+        \\"name\\": \\"South Sudan\\",
+      },
+      Object {
+        \\"id\\": \\"LK\\",
+        \\"name\\": \\"Sri Lanka\\",
+      },
+      Object {
+        \\"id\\": \\"ex-yugoslavia\\",
+        \\"name\\": \\"States Ex-Yugoslavia unspecified\\",
+      },
+      Object {
+        \\"id\\": \\"SD\\",
+        \\"name\\": \\"Sudan\\",
+      },
+      Object {
+        \\"id\\": \\"SR\\",
+        \\"name\\": \\"Suriname\\",
+      },
+      Object {
+        \\"id\\": \\"SZ\\",
+        \\"name\\": \\"Swaziland\\",
+      },
+      Object {
+        \\"id\\": \\"SY\\",
+        \\"name\\": \\"Syria\\",
+      },
+      Object {
+        \\"id\\": \\"TJ\\",
+        \\"name\\": \\"Tajikistan\\",
+      },
+      Object {
+        \\"id\\": \\"TZ\\",
+        \\"name\\": \\"Tanzania\\",
+      },
+      Object {
+        \\"id\\": \\"TH\\",
+        \\"name\\": \\"Thailand\\",
+      },
+      Object {
+        \\"id\\": \\"TL\\",
+        \\"name\\": \\"Timor-Leste\\",
+      },
+      Object {
+        \\"id\\": \\"TG\\",
+        \\"name\\": \\"Togo\\",
+      },
+      Object {
+        \\"id\\": \\"TK\\",
+        \\"name\\": \\"Tokelau\\",
+      },
+      Object {
+        \\"id\\": \\"TO\\",
+        \\"name\\": \\"Tonga\\",
+      },
+      Object {
+        \\"id\\": \\"TT\\",
+        \\"name\\": \\"Trinidad & Tobago\\",
+      },
+      Object {
+        \\"id\\": \\"TN\\",
+        \\"name\\": \\"Tunisia\\",
+      },
+      Object {
+        \\"id\\": \\"TR\\",
+        \\"name\\": \\"Turkey\\",
+      },
+      Object {
+        \\"id\\": \\"TM\\",
+        \\"name\\": \\"Turkmenistan\\",
+      },
+      Object {
+        \\"id\\": \\"TC\\",
+        \\"name\\": \\"Turks & Caicos Islands\\",
+      },
+      Object {
+        \\"id\\": \\"TV\\",
+        \\"name\\": \\"Tuvalu\\",
+      },
+      Object {
+        \\"id\\": \\"UG\\",
+        \\"name\\": \\"Uganda\\",
+      },
+      Object {
+        \\"id\\": \\"UA\\",
+        \\"name\\": \\"Ukraine\\",
+      },
+      Object {
+        \\"id\\": \\"UY\\",
+        \\"name\\": \\"Uruguay\\",
+      },
+      Object {
+        \\"id\\": \\"UZ\\",
+        \\"name\\": \\"Uzbekistan\\",
+      },
+      Object {
+        \\"id\\": \\"VU\\",
+        \\"name\\": \\"Vanuatu\\",
+      },
+      Object {
+        \\"id\\": \\"VE\\",
+        \\"name\\": \\"Venezuela\\",
+      },
+      Object {
+        \\"id\\": \\"VN\\",
+        \\"name\\": \\"Viet Nam\\",
+      },
+      Object {
+        \\"id\\": \\"WF\\",
+        \\"name\\": \\"Wallis & Futuna\\",
+      },
+      Object {
+        \\"id\\": \\"west-indies\\",
+        \\"name\\": \\"West Indies, regional\\",
+      },
+      Object {
+        \\"id\\": \\"YE\\",
+        \\"name\\": \\"Yemen\\",
+      },
+      Object {
+        \\"id\\": \\"ZM\\",
+        \\"name\\": \\"Zambia\\",
+      },
+      Object {
+        \\"id\\": \\"ZW\\",
+        \\"name\\": \\"Zimbabwe\\",
+      },
+    ],
+    \\"years\\": Array [
+      2015,
+      2014,
+      2013,
+      2012,
+      2011,
+      2010,
+      2009,
+      2008,
+      2007,
+      2006,
+    ],
+  },
+  \\"dataOOF\\": Object {
+    \\"bundles\\": Array [
+      Object {
+        \\"color\\": \\"blue\\",
+        \\"id\\": \\"oof-grant\\",
+        \\"name\\": \\"OOF Grant\\",
+      },
+      Object {
+        \\"color\\": \\"orange\\",
+        \\"id\\": \\"oof-loan\\",
+        \\"name\\": \\"OOF Loan\\",
+      },
+      Object {
+        \\"color\\": \\"red\\",
+        \\"id\\": \\"oof-export-credit\\",
+        \\"name\\": \\"OOF Export Credit\\",
+      },
+    ],
+    \\"channels\\": Array [
+      Object {
+        \\"id\\": \\"public-sector-unknown\\",
+        \\"name\\": \\"Public sector (unknown country)\\",
+      },
+      Object {
+        \\"id\\": \\"public-sector-donor\\",
+        \\"name\\": \\"Public sector (donor government)\\",
+      },
+      Object {
+        \\"id\\": \\"public-sector-recipient\\",
+        \\"name\\": \\"Public sector (recipient government)\\",
+      },
+      Object {
+        \\"id\\": \\"ngo-unknown\\",
+        \\"name\\": \\"NGO (unknown country)\\",
+      },
+      Object {
+        \\"id\\": \\"ngo-donor\\",
+        \\"name\\": \\"NGO (donor-country based)\\",
+      },
+      Object {
+        \\"id\\": \\"ngo-recipient\\",
+        \\"name\\": \\"NGO (recipient-country based)\\",
+      },
+      Object {
+        \\"id\\": \\"public-private-partnership\\",
+        \\"name\\": \\"Public private partnership\\",
+      },
+      Object {
+        \\"id\\": \\"multilateral\\",
+        \\"name\\": \\"Multilateral\\",
+      },
+      Object {
+        \\"id\\": \\"other\\",
+        \\"name\\": \\"Other (private sector, think-tank, etc.)\\",
+      },
+      Object {
+        \\"id\\": \\"unspecified\\",
+        \\"name\\": \\"Unspecified\\",
+      },
+    ],
+    \\"from\\": Array [
+      Object {
+        \\"id\\": \\"adaptation-fund\\",
+        \\"name\\": \\"Adaptation Fund\\",
+      },
+      Object {
+        \\"id\\": \\"afdb\\",
+        \\"name\\": \\"African Development Bank (AfDB)\\",
+      },
+      Object {
+        \\"id\\": \\"afdf\\",
+        \\"name\\": \\"African Development Fund (AfDF)\\",
+      },
+      Object {
+        \\"id\\": \\"badea\\",
+        \\"name\\": \\"Arab Bank for Economic Development in Africa (BADEA)\\",
+      },
+      Object {
+        \\"id\\": \\"arab-fund-afesd\\",
+        \\"name\\": \\"Arab Fund (AFESD)\\",
+      },
+      Object {
+        \\"id\\": \\"asdb-special-funds\\",
+        \\"name\\": \\"ADB Special Funds\\",
+      },
+      Object {
+        \\"id\\": \\"asdb\\",
+        \\"name\\": \\"Asian Development Bank (ADB)\\",
+      },
+      Object {
+        \\"id\\": \\"AU\\",
+        \\"name\\": \\"Australia\\",
+      },
+      Object {
+        \\"id\\": \\"AT\\",
+        \\"name\\": \\"Austria\\",
+      },
+      Object {
+        \\"id\\": \\"BE\\",
+        \\"name\\": \\"Belgium\\",
+      },
+      Object {
+        \\"id\\": \\"BG\\",
+        \\"name\\": \\"Bulgaria\\",
+      },
+      Object {
+        \\"id\\": \\"CA\\",
+        \\"name\\": \\"Canada\\",
+      },
+      Object {
+        \\"id\\": \\"cardb\\",
+        \\"name\\": \\"Caribbean Development Bank (CarDB)\\",
+      },
+      Object {
+        \\"id\\": \\"cif\\",
+        \\"name\\": \\"Climate Investment Funds (CIF)\\",
+      },
+      Object {
+        \\"id\\": \\"ceb\\",
+        \\"name\\": \\"Council of Europe Development Bank (CEB)\\",
+      },
+      Object {
+        \\"id\\": \\"HR\\",
+        \\"name\\": \\"Croatia\\",
+      },
+      Object {
+        \\"id\\": \\"CY\\",
+        \\"name\\": \\"Cyprus\\",
+      },
+      Object {
+        \\"id\\": \\"CZ\\",
+        \\"name\\": \\"Czech Republic\\",
+      },
+      Object {
+        \\"id\\": \\"DK\\",
+        \\"name\\": \\"Denmark\\",
+      },
+      Object {
+        \\"id\\": \\"EE\\",
+        \\"name\\": \\"Estonia\\",
+      },
+      Object {
+        \\"id\\": \\"ebrd\\",
+        \\"name\\": \\"European Bank for Reconstruction and Development (EBRD)\\",
+      },
+      Object {
+        \\"id\\": \\"EU\\",
+        \\"name\\": \\"European Union\\",
+      },
+      Object {
+        \\"id\\": \\"FI\\",
+        \\"name\\": \\"Finland\\",
+      },
+      Object {
+        \\"id\\": \\"fao\\",
+        \\"name\\": \\"Food and Agriculture Organisation (FAO)\\",
+      },
+      Object {
+        \\"id\\": \\"FR\\",
+        \\"name\\": \\"France\\",
+      },
+      Object {
+        \\"id\\": \\"DE\\",
+        \\"name\\": \\"Germany\\",
+      },
+      Object {
+        \\"id\\": \\"gavi\\",
+        \\"name\\": \\"Global Alliance for Vaccines and Immunization (GAVI)\\",
+      },
+      Object {
+        \\"id\\": \\"gef\\",
+        \\"name\\": \\"Global Environment Facility (GEF)\\",
+      },
+      Object {
+        \\"id\\": \\"global-fund\\",
+        \\"name\\": \\"Global Fund\\",
+      },
+      Object {
+        \\"id\\": \\"gggi\\",
+        \\"name\\": \\"Global Green Growth Institute (GGGI)\\",
+      },
+      Object {
+        \\"id\\": \\"GR\\",
+        \\"name\\": \\"Greece\\",
+      },
+      Object {
+        \\"id\\": \\"HU\\",
+        \\"name\\": \\"Hungary\\",
+      },
+      Object {
+        \\"id\\": \\"IS\\",
+        \\"name\\": \\"Iceland\\",
+      },
+      Object {
+        \\"id\\": \\"idb-special-fund\\",
+        \\"name\\": \\"IDB Special Fund\\",
+      },
+      Object {
+        \\"id\\": \\"imf-concessional-trust-funds\\",
+        \\"name\\": \\"IMF Concessional Trust Funds\\",
+      },
+      Object {
+        \\"id\\": \\"idb\\",
+        \\"name\\": \\"Inter-American Development Bank (IDB)\\",
+      },
+      Object {
+        \\"id\\": \\"iaea\\",
+        \\"name\\": \\"International Atomic Energy Agency (IAEA)\\",
+      },
+      Object {
+        \\"id\\": \\"ibrd\\",
+        \\"name\\": \\"International Bank for Reconstruction and Development (IBRD)\\",
+      },
+      Object {
+        \\"id\\": \\"ida\\",
+        \\"name\\": \\"International Development Association (IDA)\\",
+      },
+      Object {
+        \\"id\\": \\"ifc\\",
+        \\"name\\": \\"International Finance Corporation (IFC)\\",
+      },
+      Object {
+        \\"id\\": \\"ifad\\",
+        \\"name\\": \\"International Fund for Agricultural Development (IFAD)\\",
+      },
+      Object {
+        \\"id\\": \\"international-labour-organisation\\",
+        \\"name\\": \\"International Labour Organisation (ILO)\\",
+      },
+      Object {
+        \\"id\\": \\"imf\\",
+        \\"name\\": \\"International Monetary Fund (IMF)\\",
+      },
+      Object {
+        \\"id\\": \\"IE\\",
+        \\"name\\": \\"Ireland\\",
+      },
+      Object {
+        \\"id\\": \\"islamic-dev-bank\\",
+        \\"name\\": \\"Islamic Development Bank (IsDB)\\",
+      },
+      Object {
+        \\"id\\": \\"IL\\",
+        \\"name\\": \\"Israel\\",
+      },
+      Object {
+        \\"id\\": \\"IT\\",
+        \\"name\\": \\"Italy\\",
+      },
+      Object {
+        \\"id\\": \\"JP\\",
+        \\"name\\": \\"Japan\\",
+      },
+      Object {
+        \\"id\\": \\"unaids\\",
+        \\"name\\": \\"Joint United Nations Programme on HIV/AIDS (UNAIDS)\\",
+      },
+      Object {
+        \\"id\\": \\"KZ\\",
+        \\"name\\": \\"Kazakhstan\\",
+      },
+      Object {
+        \\"id\\": \\"KR\\",
+        \\"name\\": \\"Korea\\",
+      },
+      Object {
+        \\"id\\": \\"KW\\",
+        \\"name\\": \\"Kuwait\\",
+      },
+      Object {
+        \\"id\\": \\"LV\\",
+        \\"name\\": \\"Latvia\\",
+      },
+      Object {
+        \\"id\\": \\"LI\\",
+        \\"name\\": \\"Liechtenstein\\",
+      },
+      Object {
+        \\"id\\": \\"LT\\",
+        \\"name\\": \\"Lithuania\\",
+      },
+      Object {
+        \\"id\\": \\"LU\\",
+        \\"name\\": \\"Luxembourg\\",
+      },
+      Object {
+        \\"id\\": \\"MT\\",
+        \\"name\\": \\"Malta\\",
+      },
+      Object {
+        \\"id\\": \\"montreal-protocol\\",
+        \\"name\\": \\"Montreal Protocol\\",
+      },
+      Object {
+        \\"id\\": \\"NL\\",
+        \\"name\\": \\"Netherlands\\",
+      },
+      Object {
+        \\"id\\": \\"NZ\\",
+        \\"name\\": \\"New Zealand\\",
+      },
+      Object {
+        \\"id\\": \\"nordic-dev-fund\\",
+        \\"name\\": \\"Nordic Development Fund (NDF)\\",
+      },
+      Object {
+        \\"id\\": \\"NO\\",
+        \\"name\\": \\"Norway\\",
+      },
+      Object {
+        \\"id\\": \\"ofid\\",
+        \\"name\\": \\"OPEC Fund for International Development (OFID)\\",
+      },
+      Object {
+        \\"id\\": \\"osce\\",
+        \\"name\\": \\"Organization for Security and Co-operation in Europe (OSCE)\\",
+      },
+      Object {
+        \\"id\\": \\"PL\\",
+        \\"name\\": \\"Poland\\",
+      },
+      Object {
+        \\"id\\": \\"PT\\",
+        \\"name\\": \\"Portugal\\",
+      },
+      Object {
+        \\"id\\": \\"RO\\",
+        \\"name\\": \\"Romania\\",
+      },
+      Object {
+        \\"id\\": \\"RU\\",
+        \\"name\\": \\"Russian Federation\\",
+      },
+      Object {
+        \\"id\\": \\"SA\\",
+        \\"name\\": \\"Saudi Arabia\\",
+      },
+      Object {
+        \\"id\\": \\"SK\\",
+        \\"name\\": \\"Slovak Republic\\",
+      },
+      Object {
+        \\"id\\": \\"SI\\",
+        \\"name\\": \\"Slovenia\\",
+      },
+      Object {
+        \\"id\\": \\"ES\\",
+        \\"name\\": \\"Spain\\",
+      },
+      Object {
+        \\"id\\": \\"SE\\",
+        \\"name\\": \\"Sweden\\",
+      },
+      Object {
+        \\"id\\": \\"CH\\",
+        \\"name\\": \\"Switzerland\\",
+      },
+      Object {
+        \\"id\\": \\"TW\\",
+        \\"name\\": \\"Taiwan\\",
+      },
+      Object {
+        \\"id\\": \\"TH\\",
+        \\"name\\": \\"Thailand\\",
+      },
+      Object {
+        \\"id\\": \\"TL\\",
+        \\"name\\": \\"Timor-Leste\\",
+      },
+      Object {
+        \\"id\\": \\"TR\\",
+        \\"name\\": \\"Turkey\\",
+      },
+      Object {
+        \\"id\\": \\"GB\\",
+        \\"name\\": \\"United Kingdom\\",
+      },
+      Object {
+        \\"id\\": \\"un-agencies\\",
+        \\"name\\": \\"UN Agencies\\",
+      },
+      Object {
+        \\"id\\": \\"AE\\",
+        \\"name\\": \\"UAE\\",
+      },
+      Object {
+        \\"id\\": \\"unicef\\",
+        \\"name\\": \\"United Nations Children's Fund (UNICEF)\\",
+      },
+      Object {
+        \\"id\\": \\"undp\\",
+        \\"name\\": \\"United Nations Development Programme (UNDP)\\",
+      },
+      Object {
+        \\"id\\": \\"unece\\",
+        \\"name\\": \\"United Nations Economic Commission for Europe (UNECE)\\",
+      },
+      Object {
+        \\"id\\": \\"unep\\",
+        \\"name\\": \\"United Nations Environment Programme (UNEP)\\",
+      },
+      Object {
+        \\"id\\": \\"unhcr\\",
+        \\"name\\": \\"United Nations High Commissioner for Refugees (UNHCR)\\",
+      },
+      Object {
+        \\"id\\": \\"unpbf\\",
+        \\"name\\": \\"United Nations Peacebuilding Fund (UNPBF)\\",
+      },
+      Object {
+        \\"id\\": \\"unfpa\\",
+        \\"name\\": \\"United Nations Population Fund (UNFPA)\\",
+      },
+      Object {
+        \\"id\\": \\"unta\\",
+        \\"name\\": \\"United Nations Regular Programme for Technical Assistance (UNTA)\\",
+      },
+      Object {
+        \\"id\\": \\"unrwa\\",
+        \\"name\\": \\"United Nations Relief and Works Agency (UNRWA)\\",
+      },
+      Object {
+        \\"id\\": \\"US\\",
+        \\"name\\": \\"United States\\",
+      },
+      Object {
+        \\"id\\": \\"wfp\\",
+        \\"name\\": \\"World Food Programme (WFP)\\",
+      },
+      Object {
+        \\"id\\": \\"who\\",
+        \\"name\\": \\"World Health Organization (WHO)\\",
+      },
+    ],
+    \\"sectors\\": Array [
+      Object {
+        \\"color\\": \\"red\\",
+        \\"id\\": \\"agriculture-and-food-security\\",
+        \\"name\\": \\"Agriculture and food security\\",
+      },
+      Object {
+        \\"color\\": \\"pink-light\\",
+        \\"id\\": \\"banking-and-business\\",
+        \\"name\\": \\"Banking and business\\",
+      },
+      Object {
+        \\"color\\": \\"red-darker\\",
+        \\"id\\": \\"debt-relief\\",
+        \\"name\\": \\"Debt relief\\",
+      },
+      Object {
+        \\"color\\": \\"red\\",
+        \\"id\\": \\"education\\",
+        \\"name\\": \\"Education\\",
+      },
+      Object {
+        \\"color\\": \\"orange-light\\",
+        \\"id\\": \\"environment\\",
+        \\"name\\": \\"Environment\\",
+      },
+      Object {
+        \\"color\\": \\"purple\\",
+        \\"id\\": \\"general-budget-support\\",
+        \\"name\\": \\"General budget support\\",
+      },
+      Object {
+        \\"color\\": \\"orange\\",
+        \\"id\\": \\"governance-and-security\\",
+        \\"name\\": \\"Governance and security\\",
+      },
+      Object {
+        \\"color\\": \\"green-dark\\",
+        \\"id\\": \\"health\\",
+        \\"name\\": \\"Health\\",
+      },
+      Object {
+        \\"color\\": \\"red-dark\\",
+        \\"id\\": \\"humanitarian\\",
+        \\"name\\": \\"Humanitarian\\",
+      },
+      Object {
+        \\"color\\": \\"blue-light\\",
+        \\"id\\": \\"industry-and-trade\\",
+        \\"name\\": \\"Industry and trade\\",
+      },
+      Object {
+        \\"color\\": \\"orange-light\\",
+        \\"id\\": \\"infrastructure\\",
+        \\"name\\": \\"Infrastructure\\",
+      },
+      Object {
+        \\"color\\": \\"purple-dark\\",
+        \\"id\\": \\"other\\",
+        \\"name\\": \\"Other\\",
+      },
+      Object {
+        \\"color\\": \\"purple\\",
+        \\"id\\": \\"other-social-services\\",
+        \\"name\\": \\"Other social services\\",
+      },
+      Object {
+        \\"color\\": \\"blue\\",
+        \\"id\\": \\"water-and-sanitation\\",
+        \\"name\\": \\"Water and sanitation\\",
+      },
+      Object {
+        \\"color\\": \\"grey-dark\\",
+        \\"id\\": \\"other-sectors-grouped\\",
+        \\"name\\": \\"Other sectors (grouped)\\",
+      },
+    ],
+    \\"to\\": Array [
+      Object {
+        \\"id\\": \\"AF\\",
+        \\"name\\": \\"Afghanistan\\",
+      },
+      Object {
+        \\"id\\": \\"africa\\",
+        \\"name\\": \\"Africa, regional\\",
+      },
+      Object {
+        \\"id\\": \\"AL\\",
+        \\"name\\": \\"Albania\\",
+      },
+      Object {
+        \\"id\\": \\"DZ\\",
+        \\"name\\": \\"Algeria\\",
+      },
+      Object {
+        \\"id\\": \\"america\\",
+        \\"name\\": \\"America, regional\\",
+      },
+      Object {
+        \\"id\\": \\"AO\\",
+        \\"name\\": \\"Angola\\",
+      },
+      Object {
+        \\"id\\": \\"AI\\",
+        \\"name\\": \\"Anguilla\\",
+      },
+      Object {
+        \\"id\\": \\"AG\\",
+        \\"name\\": \\"Antigua & Barbuda\\",
+      },
+      Object {
+        \\"id\\": \\"AR\\",
+        \\"name\\": \\"Argentina\\",
+      },
+      Object {
+        \\"id\\": \\"AM\\",
+        \\"name\\": \\"Armenia\\",
+      },
+      Object {
+        \\"id\\": \\"asia\\",
+        \\"name\\": \\"Asia, regional\\",
+      },
+      Object {
+        \\"id\\": \\"AZ\\",
+        \\"name\\": \\"Azerbaijan\\",
+      },
+      Object {
+        \\"id\\": \\"BH\\",
+        \\"name\\": \\"Bahrain\\",
+      },
+      Object {
+        \\"id\\": \\"BD\\",
+        \\"name\\": \\"Bangladesh\\",
+      },
+      Object {
+        \\"id\\": \\"BB\\",
+        \\"name\\": \\"Barbados\\",
+      },
+      Object {
+        \\"id\\": \\"BY\\",
+        \\"name\\": \\"Belarus\\",
+      },
+      Object {
+        \\"id\\": \\"BZ\\",
+        \\"name\\": \\"Belize\\",
+      },
+      Object {
+        \\"id\\": \\"BJ\\",
+        \\"name\\": \\"Benin\\",
+      },
+      Object {
+        \\"id\\": \\"BT\\",
+        \\"name\\": \\"Bhutan\\",
+      },
+      Object {
+        \\"id\\": \\"bilateral-unspecified\\",
+        \\"name\\": \\"Bilateral, unspecified\\",
+      },
+      Object {
+        \\"id\\": \\"BO\\",
+        \\"name\\": \\"Bolivia\\",
+      },
+      Object {
+        \\"id\\": \\"BA\\",
+        \\"name\\": \\"Bosnia & Herzegovina\\",
+      },
+      Object {
+        \\"id\\": \\"BW\\",
+        \\"name\\": \\"Botswana\\",
+      },
+      Object {
+        \\"id\\": \\"BR\\",
+        \\"name\\": \\"Brazil\\",
+      },
+      Object {
+        \\"id\\": \\"BF\\",
+        \\"name\\": \\"Burkina Faso\\",
+      },
+      Object {
+        \\"id\\": \\"BI\\",
+        \\"name\\": \\"Burundi\\",
+      },
+      Object {
+        \\"id\\": \\"KH\\",
+        \\"name\\": \\"Cambodia\\",
+      },
+      Object {
+        \\"id\\": \\"CM\\",
+        \\"name\\": \\"Cameroon\\",
+      },
+      Object {
+        \\"id\\": \\"CV\\",
+        \\"name\\": \\"Cape Verde\\",
+      },
+      Object {
+        \\"id\\": \\"CF\\",
+        \\"name\\": \\"CAR\\",
+      },
+      Object {
+        \\"id\\": \\"central-asia\\",
+        \\"name\\": \\"Central Asia, regional\\",
+      },
+      Object {
+        \\"id\\": \\"TD\\",
+        \\"name\\": \\"Chad\\",
+      },
+      Object {
+        \\"id\\": \\"CL\\",
+        \\"name\\": \\"Chile\\",
+      },
+      Object {
+        \\"id\\": \\"CN\\",
+        \\"name\\": \\"China\\",
+      },
+      Object {
+        \\"id\\": \\"CO\\",
+        \\"name\\": \\"Colombia\\",
+      },
+      Object {
+        \\"id\\": \\"KM\\",
+        \\"name\\": \\"Comoros\\",
+      },
+      Object {
+        \\"id\\": \\"CG\\",
+        \\"name\\": \\"Congo\\",
+      },
+      Object {
+        \\"id\\": \\"CD\\",
+        \\"name\\": \\"DRC\\",
+      },
+      Object {
+        \\"id\\": \\"CK\\",
+        \\"name\\": \\"Cook Islands\\",
+      },
+      Object {
+        \\"id\\": \\"CR\\",
+        \\"name\\": \\"Costa Rica\\",
+      },
+      Object {
+        \\"id\\": \\"CI\\",
+        \\"name\\": \\"Côte d'Ivoire\\",
+      },
+      Object {
+        \\"id\\": \\"country-unspecified\\",
+        \\"name\\": \\"Country not specified\\",
+      },
+      Object {
+        \\"id\\": \\"CU\\",
+        \\"name\\": \\"Cuba\\",
+      },
+      Object {
+        \\"id\\": \\"DJ\\",
+        \\"name\\": \\"Djibouti\\",
+      },
+      Object {
+        \\"id\\": \\"DM\\",
+        \\"name\\": \\"Dominica\\",
+      },
+      Object {
+        \\"id\\": \\"DO\\",
+        \\"name\\": \\"Dominican Republic\\",
+      },
+      Object {
+        \\"id\\": \\"EC\\",
+        \\"name\\": \\"Ecuador\\",
+      },
+      Object {
+        \\"id\\": \\"EG\\",
+        \\"name\\": \\"Egypt\\",
+      },
+      Object {
+        \\"id\\": \\"SV\\",
+        \\"name\\": \\"El Salvador\\",
+      },
+      Object {
+        \\"id\\": \\"GQ\\",
+        \\"name\\": \\"Equatorial Guinea\\",
+      },
+      Object {
+        \\"id\\": \\"ER\\",
+        \\"name\\": \\"Eritrea\\",
+      },
+      Object {
+        \\"id\\": \\"ET\\",
+        \\"name\\": \\"Ethiopia\\",
+      },
+      Object {
+        \\"id\\": \\"europe\\",
+        \\"name\\": \\"Europe, regional\\",
+      },
+      Object {
+        \\"id\\": \\"east-asia\\",
+        \\"name\\": \\"Far East Asia, regional\\",
+      },
+      Object {
+        \\"id\\": \\"FJ\\",
+        \\"name\\": \\"Fiji\\",
+      },
+      Object {
+        \\"id\\": \\"GA\\",
+        \\"name\\": \\"Gabon\\",
+      },
+      Object {
+        \\"id\\": \\"GM\\",
+        \\"name\\": \\"Gambia\\",
+      },
+      Object {
+        \\"id\\": \\"GE\\",
+        \\"name\\": \\"Georgia\\",
+      },
+      Object {
+        \\"id\\": \\"GH\\",
+        \\"name\\": \\"Ghana\\",
+      },
+      Object {
+        \\"id\\": \\"GD\\",
+        \\"name\\": \\"Grenada\\",
+      },
+      Object {
+        \\"id\\": \\"GT\\",
+        \\"name\\": \\"Guatemala\\",
+      },
+      Object {
+        \\"id\\": \\"GN\\",
+        \\"name\\": \\"Guinea\\",
+      },
+      Object {
+        \\"id\\": \\"GW\\",
+        \\"name\\": \\"Guinea-Bissau\\",
+      },
+      Object {
+        \\"id\\": \\"GY\\",
+        \\"name\\": \\"Guyana\\",
+      },
+      Object {
+        \\"id\\": \\"HT\\",
+        \\"name\\": \\"Haiti\\",
+      },
+      Object {
+        \\"id\\": \\"HN\\",
+        \\"name\\": \\"Honduras\\",
+      },
+      Object {
+        \\"id\\": \\"IN\\",
+        \\"name\\": \\"India\\",
+      },
+      Object {
+        \\"id\\": \\"ID\\",
+        \\"name\\": \\"Indonesia\\",
+      },
+      Object {
+        \\"id\\": \\"IR\\",
+        \\"name\\": \\"Iran\\",
+      },
+      Object {
+        \\"id\\": \\"IQ\\",
+        \\"name\\": \\"Iraq\\",
+      },
+      Object {
+        \\"id\\": \\"JM\\",
+        \\"name\\": \\"Jamaica\\",
+      },
+      Object {
+        \\"id\\": \\"JO\\",
+        \\"name\\": \\"Jordan\\",
+      },
+      Object {
+        \\"id\\": \\"KZ\\",
+        \\"name\\": \\"Kazakhstan\\",
+      },
+      Object {
+        \\"id\\": \\"KE\\",
+        \\"name\\": \\"Kenya\\",
+      },
+      Object {
+        \\"id\\": \\"KI\\",
+        \\"name\\": \\"Kiribati\\",
+      },
+      Object {
+        \\"id\\": \\"KP\\",
+        \\"name\\": \\"North Korea\\",
+      },
+      Object {
+        \\"id\\": \\"XK\\",
+        \\"name\\": \\"Kosovo\\",
+      },
+      Object {
+        \\"id\\": \\"KG\\",
+        \\"name\\": \\"Kyrgyzstan\\",
+      },
+      Object {
+        \\"id\\": \\"LA\\",
+        \\"name\\": \\"Lao\\",
+      },
+      Object {
+        \\"id\\": \\"LB\\",
+        \\"name\\": \\"Lebanon\\",
+      },
+      Object {
+        \\"id\\": \\"LS\\",
+        \\"name\\": \\"Lesotho\\",
+      },
+      Object {
+        \\"id\\": \\"LR\\",
+        \\"name\\": \\"Liberia\\",
+      },
+      Object {
+        \\"id\\": \\"LY\\",
+        \\"name\\": \\"Libya\\",
+      },
+      Object {
+        \\"id\\": \\"MK\\",
+        \\"name\\": \\"Macedonia\\",
+      },
+      Object {
+        \\"id\\": \\"MG\\",
+        \\"name\\": \\"Madagascar\\",
+      },
+      Object {
+        \\"id\\": \\"MW\\",
+        \\"name\\": \\"Malawi\\",
+      },
+      Object {
+        \\"id\\": \\"MY\\",
+        \\"name\\": \\"Malaysia\\",
+      },
+      Object {
+        \\"id\\": \\"MV\\",
+        \\"name\\": \\"Maldives\\",
+      },
+      Object {
+        \\"id\\": \\"ML\\",
+        \\"name\\": \\"Mali\\",
+      },
+      Object {
+        \\"id\\": \\"MH\\",
+        \\"name\\": \\"Marshall Islands\\",
+      },
+      Object {
+        \\"id\\": \\"MR\\",
+        \\"name\\": \\"Mauritania\\",
+      },
+      Object {
+        \\"id\\": \\"MU\\",
+        \\"name\\": \\"Mauritius\\",
+      },
+      Object {
+        \\"id\\": \\"YT\\",
+        \\"name\\": \\"Mayotte\\",
+      },
+      Object {
+        \\"id\\": \\"MX\\",
+        \\"name\\": \\"Mexico\\",
+      },
+      Object {
+        \\"id\\": \\"FM\\",
+        \\"name\\": \\"Micronesia\\",
+      },
+      Object {
+        \\"id\\": \\"middle-east\\",
+        \\"name\\": \\"Middle East, regional\\",
+      },
+      Object {
+        \\"id\\": \\"MD\\",
+        \\"name\\": \\"Moldova\\",
+      },
+      Object {
+        \\"id\\": \\"MN\\",
+        \\"name\\": \\"Mongolia\\",
+      },
+      Object {
+        \\"id\\": \\"ME\\",
+        \\"name\\": \\"Montenegro\\",
+      },
+      Object {
+        \\"id\\": \\"MS\\",
+        \\"name\\": \\"Montserrat\\",
+      },
+      Object {
+        \\"id\\": \\"MA\\",
+        \\"name\\": \\"Morocco\\",
+      },
+      Object {
+        \\"id\\": \\"MZ\\",
+        \\"name\\": \\"Mozambique\\",
+      },
+      Object {
+        \\"id\\": \\"MM\\",
+        \\"name\\": \\"Myanmar\\",
+      },
+      Object {
+        \\"id\\": \\"NA\\",
+        \\"name\\": \\"Namibia\\",
+      },
+      Object {
+        \\"id\\": \\"NR\\",
+        \\"name\\": \\"Nauru\\",
+      },
+      Object {
+        \\"id\\": \\"NP\\",
+        \\"name\\": \\"Nepal\\",
+      },
+      Object {
+        \\"id\\": \\"NI\\",
+        \\"name\\": \\"Nicaragua\\",
+      },
+      Object {
+        \\"id\\": \\"NE\\",
+        \\"name\\": \\"Niger\\",
+      },
+      Object {
+        \\"id\\": \\"NG\\",
+        \\"name\\": \\"Nigeria\\",
+      },
+      Object {
+        \\"id\\": \\"NU\\",
+        \\"name\\": \\"Niue\\",
+      },
+      Object {
+        \\"id\\": \\"north-central-america\\",
+        \\"name\\": \\"North & Central America, regional\\",
+      },
+      Object {
+        \\"id\\": \\"north-of-sahara\\",
+        \\"name\\": \\"North of Sahara, regional\\",
+      },
+      Object {
+        \\"id\\": \\"oceania\\",
+        \\"name\\": \\"Oceania, regional\\",
+      },
+      Object {
+        \\"id\\": \\"OM\\",
+        \\"name\\": \\"Oman\\",
+      },
+      Object {
+        \\"id\\": \\"PK\\",
+        \\"name\\": \\"Pakistan\\",
+      },
+      Object {
+        \\"id\\": \\"PW\\",
+        \\"name\\": \\"Palau\\",
+      },
+      Object {
+        \\"id\\": \\"PS\\",
+        \\"name\\": \\"Palestine\\",
+      },
+      Object {
+        \\"id\\": \\"PA\\",
+        \\"name\\": \\"Panama\\",
+      },
+      Object {
+        \\"id\\": \\"PG\\",
+        \\"name\\": \\"Papua New Guinea\\",
+      },
+      Object {
+        \\"id\\": \\"PY\\",
+        \\"name\\": \\"Paraguay\\",
+      },
+      Object {
+        \\"id\\": \\"PE\\",
+        \\"name\\": \\"Peru\\",
+      },
+      Object {
+        \\"id\\": \\"PH\\",
+        \\"name\\": \\"Philippines\\",
+      },
+      Object {
+        \\"id\\": \\"region-unspecified\\",
+        \\"name\\": \\"Region, unspecified\\",
+      },
+      Object {
+        \\"id\\": \\"RW\\",
+        \\"name\\": \\"Rwanda\\",
+      },
+      Object {
+        \\"id\\": \\"SH\\",
+        \\"name\\": \\"Saint Helena, Ascension & Tristan da Cunha\\",
+      },
+      Object {
+        \\"id\\": \\"KN\\",
+        \\"name\\": \\"Saint Kitts and Nevis\\",
+      },
+      Object {
+        \\"id\\": \\"LC\\",
+        \\"name\\": \\"Saint Lucia\\",
+      },
+      Object {
+        \\"id\\": \\"VC\\",
+        \\"name\\": \\"Saint Vincent & the Grenadines\\",
+      },
+      Object {
+        \\"id\\": \\"WS\\",
+        \\"name\\": \\"Samoa\\",
+      },
+      Object {
+        \\"id\\": \\"ST\\",
+        \\"name\\": \\"Sao Tome & Principe\\",
+      },
+      Object {
+        \\"id\\": \\"SN\\",
+        \\"name\\": \\"Senegal\\",
+      },
+      Object {
+        \\"id\\": \\"RS\\",
+        \\"name\\": \\"Serbia\\",
+      },
+      Object {
+        \\"id\\": \\"SC\\",
+        \\"name\\": \\"Seychelles\\",
+      },
+      Object {
+        \\"id\\": \\"SL\\",
+        \\"name\\": \\"Sierra Leone\\",
+      },
+      Object {
+        \\"id\\": \\"SB\\",
+        \\"name\\": \\"Solomon Islands\\",
+      },
+      Object {
+        \\"id\\": \\"SO\\",
+        \\"name\\": \\"Somalia\\",
+      },
+      Object {
+        \\"id\\": \\"south-central-asia\\",
+        \\"name\\": \\"South & Central Asia, regional\\",
+      },
+      Object {
+        \\"id\\": \\"ZA\\",
+        \\"name\\": \\"South Africa\\",
+      },
+      Object {
+        \\"id\\": \\"south-america\\",
+        \\"name\\": \\"South America, regional\\",
+      },
+      Object {
+        \\"id\\": \\"south-asia\\",
+        \\"name\\": \\"South Asia, regional\\",
+      },
+      Object {
+        \\"id\\": \\"south-of-sahara\\",
+        \\"name\\": \\"South of Sahara, regional\\",
+      },
+      Object {
+        \\"id\\": \\"SS\\",
+        \\"name\\": \\"South Sudan\\",
+      },
+      Object {
+        \\"id\\": \\"LK\\",
+        \\"name\\": \\"Sri Lanka\\",
+      },
+      Object {
+        \\"id\\": \\"ex-yugoslavia\\",
+        \\"name\\": \\"States Ex-Yugoslavia unspecified\\",
+      },
+      Object {
+        \\"id\\": \\"SD\\",
+        \\"name\\": \\"Sudan\\",
+      },
+      Object {
+        \\"id\\": \\"SR\\",
+        \\"name\\": \\"Suriname\\",
+      },
+      Object {
+        \\"id\\": \\"SZ\\",
+        \\"name\\": \\"Swaziland\\",
+      },
+      Object {
+        \\"id\\": \\"SY\\",
+        \\"name\\": \\"Syria\\",
+      },
+      Object {
+        \\"id\\": \\"TJ\\",
+        \\"name\\": \\"Tajikistan\\",
+      },
+      Object {
+        \\"id\\": \\"TZ\\",
+        \\"name\\": \\"Tanzania\\",
+      },
+      Object {
+        \\"id\\": \\"TH\\",
+        \\"name\\": \\"Thailand\\",
+      },
+      Object {
+        \\"id\\": \\"TL\\",
+        \\"name\\": \\"Timor-Leste\\",
+      },
+      Object {
+        \\"id\\": \\"TG\\",
+        \\"name\\": \\"Togo\\",
+      },
+      Object {
+        \\"id\\": \\"TK\\",
+        \\"name\\": \\"Tokelau\\",
+      },
+      Object {
+        \\"id\\": \\"TO\\",
+        \\"name\\": \\"Tonga\\",
+      },
+      Object {
+        \\"id\\": \\"TT\\",
+        \\"name\\": \\"Trinidad & Tobago\\",
+      },
+      Object {
+        \\"id\\": \\"TN\\",
+        \\"name\\": \\"Tunisia\\",
+      },
+      Object {
+        \\"id\\": \\"TR\\",
+        \\"name\\": \\"Turkey\\",
+      },
+      Object {
+        \\"id\\": \\"TM\\",
+        \\"name\\": \\"Turkmenistan\\",
+      },
+      Object {
+        \\"id\\": \\"TC\\",
+        \\"name\\": \\"Turks & Caicos Islands\\",
+      },
+      Object {
+        \\"id\\": \\"TV\\",
+        \\"name\\": \\"Tuvalu\\",
+      },
+      Object {
+        \\"id\\": \\"UG\\",
+        \\"name\\": \\"Uganda\\",
+      },
+      Object {
+        \\"id\\": \\"UA\\",
+        \\"name\\": \\"Ukraine\\",
+      },
+      Object {
+        \\"id\\": \\"UY\\",
+        \\"name\\": \\"Uruguay\\",
+      },
+      Object {
+        \\"id\\": \\"UZ\\",
+        \\"name\\": \\"Uzbekistan\\",
+      },
+      Object {
+        \\"id\\": \\"VU\\",
+        \\"name\\": \\"Vanuatu\\",
+      },
+      Object {
+        \\"id\\": \\"VE\\",
+        \\"name\\": \\"Venezuela\\",
+      },
+      Object {
+        \\"id\\": \\"VN\\",
+        \\"name\\": \\"Viet Nam\\",
+      },
+      Object {
+        \\"id\\": \\"WF\\",
+        \\"name\\": \\"Wallis & Futuna\\",
+      },
+      Object {
+        \\"id\\": \\"west-indies\\",
+        \\"name\\": \\"West Indies, regional\\",
+      },
+      Object {
+        \\"id\\": \\"YE\\",
+        \\"name\\": \\"Yemen\\",
+      },
+      Object {
+        \\"id\\": \\"ZM\\",
+        \\"name\\": \\"Zambia\\",
+      },
+      Object {
+        \\"id\\": \\"ZW\\",
+        \\"name\\": \\"Zimbabwe\\",
+      },
+    ],
+    \\"years\\": Array [
+      2013,
+      2012,
+      2011,
+      2010,
+      2009,
+      2008,
+      2007,
+      2006,
+    ],
+  },
 }"
 `;
 
