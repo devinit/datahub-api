@@ -14,6 +14,7 @@ interface IUnbundlingAidQuery {
     to_di_id?: string;
     year?: number;
     sector?: string;
+    oof_bundle?: string;
     bundle?: string;
     channel?: string;
 }
@@ -36,7 +37,11 @@ interface IUnbundlingAidResult extends IUnbundlingAidQuery {
 
 export default class UnbundlingAid {
     public static getSqlQueryArgs(args: DH.IUnbundlingAidQuery): IUnbundlingAidQuery {
-        return R.omit(['groupBy', 'aidType'], args) as IUnbundlingAidQuery;
+        let newArgs = args;
+        if (args.aidType === 'oof' && args.bundle) {
+            newArgs = {...R.omit(['bundle'], args), oof_bundle: args.bundle};
+        }
+        return R.omit(['groupBy', 'aidType'], newArgs) as IUnbundlingAidQuery;
     }
     private db: IDatabase<IExtensions> & IExtensions;
     private donorsBlackList = ['country-unspecified', 'region-unspecified', 'organisation-unspecified',
@@ -55,10 +60,12 @@ export default class UnbundlingAid {
             const regions: IRegional[] = await getRegional();
             const colors = await getColors();
             return raw.map((obj) => {
-                const entity: IUnbundlingEnitity | undefined = entites.find(item => obj[args.groupBy] === item.id);
-                if (!entity) throw new Error(`error getting unbundling aid entity ${entity}`);
-                let color = 'grey';
-                if (entity.color) color = entity.color;
+                const entity: IUnbundlingEnitity | undefined = entites.find(item => obj[groupBy] === item.id);
+                if (!entity) {
+                    throw new Error(`error getting unbundling aid entity
+                        ${entity} \n for object ${JSON.stringify(obj)}`);
+                }
+                let color = entity.color || 'grey';
                 if (entity.type && entity.region) {
                     const region: IRegional | undefined = getEntityByIdGeneric<IRegional>(entity.region, regions);
                     if (region && region.color) color = region ? region.color : color;

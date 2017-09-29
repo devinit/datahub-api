@@ -5,7 +5,7 @@ import db from '../../db';
 describe('Unbundling aid DW module tests', () => {
     const unbundlingAid = new UnbundlingAid(db);
 
-    it.skip('getting unbundling aid data of various types', async () => {
+    it('getting unbundling aid data of various types', async () => {
         const argsA = { aidType: 'oda', year: 2015, groupBy: 'to_di_id'};
         const argsB = { aidType: 'oda', year: 2015, sector: 'banking-and-business', groupBy: 'to_di_id'};
         const argsC = { aidType: 'oof', year: 2015, groupBy: 'bundle'};
@@ -30,7 +30,7 @@ describe('Unbundling aid DW module tests', () => {
         const totalAndYearOOF = await unbundlingAid.getUnbundlingAidDataTotal({aidType: 'oof'});
         expect(prettyFormat({totalAndYearODA, totalAndYearOOF})).toMatchSnapshot();
     }, 10000);
-    it('getting unbundling aid selection options', async () => {
+    it.skip('getting unbundling aid selection options', async () => {
         const dataODA = await unbundlingAid.getUnbundlingSelectionData({aidType: 'oda'});
         const dataOOF = await unbundlingAid.getUnbundlingSelectionData({aidType: 'oof'});
         expect(prettyFormat({dataODA, dataOOF})).toMatchSnapshot();
