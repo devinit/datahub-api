@@ -2,7 +2,7 @@ import {IDatabase} from 'pg-promise';
 import * as R from 'ramda';
 import {IExtensions} from '../../db';
 import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
-import {getDistrictBySlugAsync} from '../../../cms/modules/spotlight';
+import {getDistrictBySlugAsync, IDistrict} from '../../../cms/modules/spotlight';
 import * as shortid from 'shortid';
 import {IEntity, getEntityByIdGeneric, getFinancingType, getCreditorType, getColors, IColor,
         getDestinationInstitutionType, getFlowType, ICurrency, getCurrency,
@@ -231,7 +231,7 @@ export async function getIndicatorDataSpotlights<T>(opts: ISpotlightGetIndicator
     const {db, query, id, conceptType, country, table} = opts;
     const tableName = !table && country && query ? getSpotlightTableName(country, query) : table;
     if (!tableName) throw new Error('Provide a valid table name or query string');
-    const spotlightEntity =  await getDistrictBySlugAsync(country, id);
+    const spotlightEntity: IDistrict =  await getDistrictBySlugAsync(country, id);
     const concept: IConcept = await getConceptAsync(conceptType, tableName);
     const queryArgs = {...opts, ...concept, id: spotlightEntity.id, country, schema: `spotlight_on_${country}`};
     return db.manyCacheable(query, queryArgs);
