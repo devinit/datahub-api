@@ -185,6 +185,41 @@ export default class Resources {
            throw error;
        }
     }
+    public async getSpendingAllocation(id: string): Promise<DH.ISpendingAllocationWithToolTip> {
+        try {
+            const indicatorArgs: IGetIndicatorArgs = {
+                ...this.defaultArgs,
+                query: sql.spendingAllocation,
+                id
+            };
+            const toolTip = await getIndicatorToolTip({...this.defaultArgs, id: 'spending-allocation'});
+            const raw: IRAWSpending[] = await getIndicatorData<IRAWSpending>(indicatorArgs);
+            if (!raw.length) return  {data: null, toolTip};
+            // group by budget_type
+            const bugdetTypeGroups = R.groupBy<IRAWSpending>(R.prop('budget_type'))(raw);
+            const budgetTypes: string[] = R.keys(bugdetTypeGroups);
+            const activeType = R.contains('actual', budgetTypes) ? 'actual' : 'proj';
+            const activeLevel2s: {[key: string]: IRAWSpending[]} =
+                R.groupBy(R.prop('l2'), bugdetTypeGroups[activeType]);
+            const refined: IRAWSpending[] = R.keys(activeLevel2s).map(l2 => {
+                const value = getTotal(activeLevel2s[l2]);
+                return {value, l2, budget_type: activeType};
+            });
+            const colors: IColor[] = await getColors();
+            // TODO: we have null names from raw data
+            const budgetRefs: IBudgetLevelRef[] = await getBudgetLevels();
+            const data = refined
+                .filter(obj => obj.l2 !== null)
+                .map(obj => {
+                    const level = R.find(R.propEq('id', obj.l2), budgetRefs) as IBudgetLevelRef;
+                    const colorObj = getEntityByIdGeneric(level.color || 'pink', colors);
+                    return {value: Number(obj.value), ...level, color: colorObj.value, uid: shortid.generate()};
+                });
+            return {data, toolTip};
+       } catch (error) {
+           throw error;
+       }
+    }
     private async getResourceflowsOvertime(id: string): Promise<DH.IFlowsOverTimeWithToolTip > {
         const isDonorCountry =  await isDonor(id);
         const query = isDonorCountry ? sql.OutflowsDonors : sql.InflowsRecipient;
@@ -225,42 +260,6 @@ export default class Resources {
             throw error;
         }
     }
-
-    private async getSpendingAllocation(id: string): Promise<DH.ISpendingAllocationWithToolTip> {
-        try {
-            const indicatorArgs: IGetIndicatorArgs = {
-            ...this.defaultArgs,
-            query: sql.spendingAllocation,
-            id
-        };
-            const raw: IRAWSpending[] = await getIndicatorData<IRAWSpending>(indicatorArgs);
-            // group by budget_type
-            const bugdetTypeGroups = R.groupBy<IRAWSpending>(R.prop('budget_type'))(raw);
-            const budgetTypes: string[] = R.keys(bugdetTypeGroups);
-            const activeType = R.contains('actual', budgetTypes) ? 'actual' : 'proj';
-            const activeLevel2s: {[key: string]: IRAWSpending[]} =
-                R.groupBy(R.prop('l2'), bugdetTypeGroups[activeType]);
-            const refined: IRAWSpending[] = R.keys(activeLevel2s).map(l2 => {
-                const value = getTotal(activeLevel2s[l2]);
-                return {value, l2, budget_type: activeType};
-            });
-            const colors: IColor[] = await getColors();
-            // TODO: we have null names from raw data
-            const budgetRefs: IBudgetLevelRef[] = await getBudgetLevels();
-            const data = refined
-                .filter(obj => obj.l2 !== null)
-                .map(obj => {
-                    const level = R.find(R.propEq('id', obj.l2), budgetRefs) as IBudgetLevelRef;
-                    const colorObj = getEntityByIdGeneric(level.color || 'pink', colors);
-                    return {value: Number(obj.value), ...level, color: colorObj.value, uid: shortid.generate()};
-                });
-            const toolTip = await getIndicatorToolTip({...this.defaultArgs, id: 'spending-allocation'});
-            return {data, toolTip};
-       } catch (error) {
-           throw error;
-       }
-    }
-
     private async getGrantsAsPcOfRevenue(id: string): Promise<DH.IIndicatorValueWithToolTip> {
         try {
             const indicatorArgs: IGetIndicatorArgs[] = [sql.totalDomesticRevenueAndGrants, sql.grants]
@@ -282,10 +281,10 @@ export default class Resources {
     private async getGNI(id: string): Promise<number> {
         try {
             const indicatorArgs: IGetIndicatorArgs = {
-            ...this.defaultArgs,
-            query: sql.GNI,
-            id
-        };
+                ...this.defaultArgs,
+                query: sql.GNI,
+                id
+            };
             const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
             return Number(data[0].value);
         } catch (error) {

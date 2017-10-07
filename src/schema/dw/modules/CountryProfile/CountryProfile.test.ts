@@ -51,6 +51,11 @@ describe('country profile DW module tests', () => {
         const turkey  = await resources.getInternationalResources({id: 'turkey'});
         expect(prettyFormat({austria, turkey})).toMatchSnapshot();
     }, 30000);
+    it('should return spending allocation for palestine', async () => {
+        const palestine = await resources.getSpendingAllocation('palestine');
+        const uganda = await resources.getSpendingAllocation('uganda');
+        expect(prettyFormat({palestine, uganda})).toMatchSnapshot();
+    }, 10000);
     it('should return government finance data for Uganda && somalia && Turkey', async () => {
         const gvtUg = await resources.getGovernmentFinance({id: 'uganda'});
         const gvtTurkey = await resources.getGovernmentFinance({id: 'turkey'});
