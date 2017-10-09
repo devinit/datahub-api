@@ -379,10 +379,21 @@ export const addSuffix = (val) => {
     }
     return val + 'th';
 };
-
+export const getMaxAndMin = (data: Array<{year?: number | null}>): number[] => {
+    const years = data
+        .map(obj => {
+            if (obj && obj.year) return Number(obj.year);
+            return null;
+        })
+        .filter(year => year !== null);
+    if (!years) return [0, 0];
+    const max: number = Math.max.apply(null, years);
+    const min: number = Math.min.apply(null, years);
+    return [max, min];
+};
 // (10 ** length) == Math.pow(10, length);
 const roundNum = (num, length): string =>
-(Math.round(num * (10 ** length)) / (10 ** length)).toFixed(length);
+    (Math.round(num * (10 ** length)) / (10 ** length)).toFixed(length);
 
 export const formatNumbers =
     (value: number | string | undefined | null,

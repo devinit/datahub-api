@@ -7,7 +7,8 @@ import * as shortid from 'shortid';
 import {IColor, getFlowType, getColors, getEntityByIdGeneric, IEntityBasic} from '../../../cms/modules/global';
 import {getIndicatorData, RECIPIENT, DONOR, IGetIndicatorArgs, CROSSOVER, capitalize, getCurrencyCode, getTotal,
         indicatorDataProcessingSimple, makeSqlAggregateQuery, formatNumbers, getIndicatorsValue, getIndicatorToolTip,
-        isDonor, IRAW, IRAWFlow, IProcessedSimple, entitesFnMap, IRAWDomestic, domesticDataProcessing} from '../utils';
+        isDonor, IRAW, IRAWFlow, IProcessedSimple, entitesFnMap, IRAWDomestic, domesticDataProcessing,
+        getMaxAndMin} from '../utils';
 import {getFlowByTypeAsync, getFlows, getFlowByIdAsync, getBudgetLevels, IBudgetLevelRef,
         getAllFlowSelections, IFlowRef, IFlowSelectionRaw} from '../../../cms/modules/countryProfile';
 
@@ -78,9 +79,11 @@ export default class Resources {
                 [sql.resourcesRecipient, sql.resourcesRecipientMix];
             const [resourcesOverTime, mixOfResources] = await this.getResourcesGeneric(id, resourcesSql);
             const resourceflowsOverTime = await this.getResourceflowsOvertime(id);
-            // TODO: we are currently getting start year for various viz
-            // from data_series.intl_flows_recipients concept /indicator. They shouldb be a better way of doing this.
             const concept: IConcept = await getConceptAsync('country-profile', 'data_series.intl_flows_recipients');
+            const maxYear = resourceflowsOverTime && resourceflowsOverTime.data ?
+                getMaxAndMin(resourceflowsOverTime.data)[0] : concept.end_year;
+            // TODO: we are currently getting start year for various viz
+            // from data_series.intl_flows_recipients concept /indicator. They shouldb be a better way of doing this
             return {
                 GNI: {value: formatNumbers(GNI, 0), toolTip: gniToolTip},
                 netODAOfGNIIn,
@@ -88,7 +91,7 @@ export default class Resources {
                 resourcesOverTime,
                 mixOfResources,
                 resourceflowsOverTime,
-                startYear: concept.end_year || 2015
+                startYear : maxYear && maxYear < concept.end_year ? maxYear : concept.end_year
           };
         } catch (error) {
            console.error(error);
