@@ -201,7 +201,8 @@ export default class Resources {
             // group by budget_type
             const bugdetTypeGroups = R.groupBy<IRAWSpending>(R.prop('budget_type'))(raw);
             const budgetTypes: string[] = R.keys(bugdetTypeGroups);
-            const activeType = R.contains('actual', budgetTypes) ? 'actual' : 'proj';
+            if (!budgetTypes) return  {data: null, toolTip};
+            const activeType = R.contains('actual', budgetTypes) ? 'actual' : budgetTypes[0];
             const activeLevel2s: {[key: string]: IRAWSpending[]} =
                 R.groupBy(R.prop('l2'), bugdetTypeGroups[activeType]);
             const refined: IRAWSpending[] = R.keys(activeLevel2s).map(l2 => {
