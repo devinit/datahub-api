@@ -124,7 +124,7 @@ export default class Resources {
             const colorObj: IColor = getEntityByIdGeneric<IColor>(flow.color, colors);
             return {
                 resources,
-                color: colorObj.value,
+                color: colorObj.value || 'grey',
             };
        } catch (error) {
            console.error(error);
@@ -286,7 +286,8 @@ export default class Resources {
                 id
             };
             const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
-            return Number(data[0].value);
+            if (data && data[0] && data[0].value) return Number(data[0].value);
+            return 0;
         } catch (error) {
             throw error;
         }
@@ -300,7 +301,7 @@ export default class Resources {
             };
             const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
             const toolTip = await getIndicatorToolTip(indicatorArgs);
-            if (data[0].value === undefined || !gni) return { value: 'No data', toolTip};
+            if (!data[0] || !data[0].value || !gni) return { value: 'No data', toolTip};
             if (Number(data[0].value) < 0) return { value: '0.0', toolTip};
             const value = ((Number(data[0].value) / gni) * 100).toFixed(1);
             return {value, toolTip};
