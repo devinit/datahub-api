@@ -32,4 +32,4 @@ ENV PORT=3000
 
 EXPOSE ${PORT}
 
-CMD ["node", "dist/main.js"]
+CMD ["pm2-docker", "process.yml"]
