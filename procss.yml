@@ -1,0 +1,9 @@
+apps:
+  - script   : 'dist/main.js'
+    name     : 'APP'
+    exec_mode: 'cluster'
+    instances: 3
+    watch    : false
+    env      :
+      NODE_ENV   : production
+      PORT       : 3000
