@@ -1,5 +1,5 @@
 # The official nodejs docker image
-FROM node:8.4-alpine
+FROM node:8.6-alpine
 
 LABEL maintainer="epicallan.al@gmail.com"
 # Copy package.json only to temp folder, install its dependencies,
@@ -31,5 +31,7 @@ ENV NODE_ENV='production'
 ENV PORT=3000
 
 EXPOSE ${PORT}
+
+RUN npm install pm2 -g --silent
 
 CMD ["pm2-docker", "process.yml"]
