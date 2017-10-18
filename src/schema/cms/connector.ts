@@ -7,7 +7,7 @@ import {queue} from '../../lib/cache';
 const options: https.RequestOptions = {
   hostname: 'raw.githubusercontent.com',
   port: 443,
-  path: '/devinit/datahub-cms/master',
+  path: '/devinit/datahub-cms/dev',
   timeout: 120000 * 2, // 4 mins
   method: 'GET',
   agent: false
