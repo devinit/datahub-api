@@ -26,7 +26,7 @@ export default class SpotLight {
     public static getConceptType = (country: string): string => `spotlight-${country}`;
 
     public static getTableName(indicator: string, country: string): string {
-        return `spotlight_on_${country}.${country}_${indicator}`;
+        return `spotlight_on_${country}_2017.${country}_${indicator}`;
     }
     public static rankDistrict(indicatorRaw: IRAW[], districtId: string): string {
         const groupedByValue = R.groupBy(obj => obj.value, indicatorRaw);
@@ -62,7 +62,7 @@ export default class SpotLight {
         data: DH.IDomestic[], colors: IColor[], budgetRefs: IBudgetLevelRef[]): DH.IDomestic[] {
        return data.reduce((acc: DH.IDomestic[], datum: DH.IDomestic) => {
             const aggregatedLevels: DH.IDomestic[] =
-                [1, 2, 3].map((level) => SpotLight.buildAggregatedLevel(level, datum, acc));
+                [1, 2, 3, 4].map((level) => SpotLight.buildAggregatedLevel(level, datum, acc));
             const accumulated = acc.concat(aggregatedLevels);
             // eliminate duplicates
             return R.uniqBy(obj => {
@@ -188,6 +188,7 @@ export default class SpotLight {
                 }));
             const resourcesRaw: IRAWDomestic[][]  =
                 await Promise.all(indicatorArgs.map((args) => getIndicatorDataSpotlights<IRAWDomestic>(args)));
+
             const resources: DH.IDomestic[][] =
                 await Promise.all(resourcesRaw.map(async (data) => {
                     const disaggregated = await domesticDataProcessing(data, country);
@@ -198,7 +199,7 @@ export default class SpotLight {
             return {
                 startYear: concept.end_year || 2015,
                 currencyCode,
-                currencyUSD: 'constant 2012 USD',
+                currencyUSD: 'constant 2015 USD',
                 revenueAndGrants: resources[1],
                 expenditure: resources[0]
             };

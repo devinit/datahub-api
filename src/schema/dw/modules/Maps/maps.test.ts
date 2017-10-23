@@ -23,16 +23,16 @@ describe('Maps module tests', () => {
         expect(country).toBe('uganda');
         expect(global).toBe('global');
     }, 10000);
-    it.skip('should return spotlight on uganda indicator data', async () => {
+    it('should return spotlight on uganda indicator data', async () => {
         const linearColored =
-            await maps.getMapData('spotlight_on_uganda.uganda_poverty_headcount');
+            await maps.getMapData('spotlight_on_uganda_2017.uganda_poverty_headcount');
         expect(prettyFormat({linearColored})).toMatchSnapshot();
     }, 20000);
     it.skip('should return global picture indicator for map styled data  ', async () => {
         const surveryP20 = await maps.getMapData('survey_p20');
         expect(prettyFormat({surveryP20})).toMatchSnapshot();
     }, 20000);
-    it('should return global picture indicators data ', async () => {
+    it.skip('should return global picture indicators data ', async () => {
         // const linearColored = await maps.getMapData('data_series.in_ha');
         const categoricalLinear = await maps.getMapData( 'data_series.fragile_states');
         // const dataRevolution = await maps.getMapData( 'data_series.latest_census');

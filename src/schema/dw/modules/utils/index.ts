@@ -267,7 +267,7 @@ export const getIndicatorDataSimple = async <T extends {}> (opts: IGetIndicatorA
         const tableName = !table ? getTableNameFromSql(queryStr) : table;
         if (isError(tableName)) throw new Error('No valid table name provided');
         if (!queryStr.length) throw new Error('invalid query string');
-        console.log(queryStr, {start_year, end_year, table: tableName});
+        // console.log(queryStr, {start_year, end_year, table: tableName});
         return db.manyCacheable(queryStr, {start_year, end_year, table: tableName});
 };
 
@@ -297,8 +297,11 @@ export const addColorToDomesticLevels =
             .map(level => budgetRefs.find(ref => ref.name === level)) as IBudgetLevelRef[];
         const colorObjs: IColor[] =
             levelRefs
-            .map(levelRef => getEntityByIdGeneric(levelRef.color || 'blue-light', colors));
-        if (levels.length < 2) return colorObjs[0].value;
+            .map(levelRef => {
+                const levelRefColor = levelRef && levelRef.color ? levelRef.color : 'blue-light';
+                return getEntityByIdGeneric(levelRefColor, colors);
+            });
+        if (levels.length < 2) return colorObjs[0].value; // we only use the 1st and 2nd level colors
         return colorObjs[1].value;
 };
 export const domesticDataProcessing = async (data: IRAWDomestic[], country?: string)
