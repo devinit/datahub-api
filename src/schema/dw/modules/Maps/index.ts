@@ -9,7 +9,9 @@ import {getDataRevolutionColors, IRevolutionColorMap} from '../../../cms/modules
 import {getDistrictEntities, IDistrict} from '../../../cms/modules/spotlight';
 import sql, {DAC, dataRevolution} from './sql';
 import * as Color from 'color';
-import {scaleThreshold, interpolateRgb, hsl} from 'd3';
+import { hsl } from 'd3-color';
+import { interpolateRgb } from 'd3-interpolate';
+import { scaleThreshold } from 'd3-scale';
 import * as R from 'ramda';
 
 interface IColorMap {
