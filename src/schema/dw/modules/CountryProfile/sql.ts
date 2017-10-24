@@ -1,7 +1,7 @@
+/* tslint:disable */
 export default {
     population: 'SELECT value FROM fact.population_total WHERE di_id = ${id} AND year = ${start_year}',
     gdp: 'SELECT value FROM fact.gdp_usd_2015 WHERE di_id = ${id} AND year = ${start_year}',
-    /* tslint:disable-next-line:max-line-length */
     domesticResourcesOverTime: 'SELECT * FROM data_series.domestic WHERE di_id =${id} AND l1 = ${l1} AND year >= ${start_year} AND value is NOT NULL',
     spendingAllocation: 'SELECT l2, value, budget_type FROM data_series.domestic WHERE di_id = ${id} AND year = ${end_year} AND l1 = \'total-expenditure\' AND l2 IS NOT NULL AND value > 0',
     // tslint:disable-next-line:max-line-length

@@ -1,3 +1,4 @@
+/* tslint:disable */
 export default {
     // tslint:disable-next-line:max-line-length
     poorestPeople: 'SELECT * FROM ${schema^}_2017.${country^}_poverty_headcount WHERE district_id = ${id} AND year = ${start_year}',
