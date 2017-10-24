@@ -137,7 +137,7 @@ export default class Maps {
                 [{color, backgroundColor: lastBackgroundColor, label: `${secondSign}${currentVal} ${uom}`}];
             return [...acc, ...lastEntry, Maps.noDataLegendEntry];
         }, []);
-        return isAscendingOrder ? legend :  [...R.dropLast(1, legend).reverse(), R.last(legend)];
+        return isAscendingOrder ? legend :  [...R.dropLast(1, legend).reverse(), R.last(legend)] as DH.ILegendField[];
     }
     public static categoricalLegendFromLinear(cMappings: ICategoricalMapping[], linearLegend: DH.ILegendField[]):
         DH.ILegendField[] {

@@ -70,8 +70,9 @@ export default class SpotLight {
         }, [])
         .filter(obj => {
             if (!obj.levels) return false;
-            if (obj.levels.length < 4) return true;
-            // if (obj.levels[3] === obj.levels[2]) return false;
+            if (obj.levels.length < 3) return true;
+            if (obj.levels[2] === obj.levels[1]) return false; // date error
+            // if (obj.levels[3] === obj.levels[2]) return false; // data error
             return true;
         })
         .map(obj => {
@@ -196,7 +197,7 @@ export default class SpotLight {
             // const concept: IConcept =
             // await getConceptAsync(conceptType, SpotLight.getTableName('finance', 'uganda'));
             return {
-                startYear: 2013,
+                startYear: 2017,
                 currencyCode,
                 currencyUSD: 'constant 2015 USD',
                 revenueAndGrants: resources[1],

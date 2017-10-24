@@ -34,5 +34,5 @@ export default {
     crResources: 'SELECT value, value_ncu FROM ${schema^}_2017.${country^}_central_resources WHERE district_id =${id} AND year = ${start_year}',
     // tslint:disable-next-line:max-line-length
     dResources: 'SELECT value, value_ncu FROM ${schema^}_2017.${country^}_donor_resources WHERE district_id = ${id} AND year = ${start_year}',
-    localGovernmentFinance: 'SELECT * FROM ${schema^}_2017.${country^}_finance WHERE district_id = ${id} AND l1 = ${l1} AND year = ${start_year} AND value is NOT NULL'
+    localGovernmentFinance: 'SELECT * FROM ${schema^}_2017.${country^}_finance WHERE district_id = ${id} AND l1 = ${l1} AND year >= ${start_year} AND value is NOT NULL'
 };
