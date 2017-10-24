@@ -45,6 +45,7 @@ export default class SpotLight {
             obj.year === datum.year &&
             obj.budget_type === datum.budget_type &&
             obj.levels !== null && datum.levels !== null &&
+            // say we are on level 1 expenditure, we will be matching all breakdowns below level 1 under expenditure
             obj.levels.join('') === R.take(level, datum.levels).join('')
         );
         if (!aggregatedLevel) {
@@ -62,18 +63,15 @@ export default class SpotLight {
         data: DH.IDomestic[], colors: IColor[], budgetRefs: IBudgetLevelRef[]): DH.IDomestic[] {
        return data.reduce((acc: DH.IDomestic[], datum: DH.IDomestic) => {
             const aggregatedLevels: DH.IDomestic[] =
-                [1, 2, 3, 4].map((level) => SpotLight.buildAggregatedLevel(level, datum, acc));
+                [1, 2, 3].map((level) => SpotLight.buildAggregatedLevel(level, datum, acc));
             const accumulated = acc.concat(aggregatedLevels);
             // eliminate duplicates
-            return R.uniqBy(obj => {
-                const levels = obj.levels ? obj.levels.join('') : '';
-                return `${obj.uid}${obj.budget_type}${levels}${obj.year}`;
-            }, accumulated);
+            return R.uniqBy(obj => obj.uid, accumulated);
         }, [])
         .filter(obj => {
             if (!obj.levels) return false;
-            if (obj.levels.length < 2) return true;
-            if (obj.levels[2] === obj.levels[1]) return false;
+            if (obj.levels.length < 4) return true;
+            // if (obj.levels[3] === obj.levels[2]) return false;
             return true;
         })
         .map(obj => {
@@ -198,7 +196,7 @@ export default class SpotLight {
             // const concept: IConcept =
             // await getConceptAsync(conceptType, SpotLight.getTableName('finance', 'uganda'));
             return {
-                startYear: 2017,
+                startYear: 2013,
                 currencyCode,
                 currencyUSD: 'constant 2015 USD',
                 revenueAndGrants: resources[1],
