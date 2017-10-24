@@ -3,14 +3,14 @@
 mkdir -p ~/datahub-api
 cd ~/datahub-api || exit
 
-rm -rf datahub-api.git && \
+rm -rf datahub-api-staging.git && \
   git clone --depth 1 -b spotlights --single-branch git@github.com:devinit/datahub-api.git datahub-api-staging.git
 
 echo 'finished clonning'
 
-cd datahub-api-staging || exit # go into application directory
+cd datahub-api-staging.git || exit # go into application directory
 
-rm -rf datahub-api-staging/.git # no need for git history
+rm -rf datahub-api-staging.git/.git # no need for git history
 
 echo 'rebuilding datahub-api docker containers'
 

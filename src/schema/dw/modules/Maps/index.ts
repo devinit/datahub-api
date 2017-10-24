@@ -117,7 +117,7 @@ export default class Maps {
         const secondSign = '>';
         const domain = scale.domain(); // numbers
         const range = scale.range();
-        const legend: DH.ILegendField[] = domain.reduce((acc: DH.ILegendField[], val: number, index: number) => {
+        const legend = domain.reduce((acc: DH.ILegendField[], val: number, index: number) => {
             const backgroundColor = range[index];
             const hslColor = hsl(backgroundColor);
             const color = (hslColor.l > 0.7) ? 'black' : 'white';
@@ -139,7 +139,7 @@ export default class Maps {
                 [{color, backgroundColor: lastBackgroundColor, label: `${secondSign}${currentVal} ${uom}`}];
             return [...acc, ...lastEntry, Maps.noDataLegendEntry];
         }, []);
-        return isAscendingOrder ? legend :  [...R.dropLast(1, legend).reverse(), R.last(legend)];
+        return isAscendingOrder ? legend :  [...R.dropLast(1, legend).reverse(), R.last(legend)] as DH.ILegendField[];
     }
     public static categoricalLegendFromLinear(cMappings: ICategoricalMapping[], linearLegend: DH.ILegendField[]):
         DH.ILegendField[] {
