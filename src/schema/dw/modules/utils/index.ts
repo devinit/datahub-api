@@ -127,6 +127,8 @@ export const MULTILATERAL = 'multilateral';
 export const  CROSSOVER = 'crossover';
 export const  budgetTypesRefs = {
     actual: 'Actual',
+    proposed: 'Proposed',
+    approved: 'Approved',
     budget: 'Budget',
     proj: 'Projected'
 };

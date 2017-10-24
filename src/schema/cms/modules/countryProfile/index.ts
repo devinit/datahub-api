@@ -33,7 +33,7 @@ export interface IBudgetLevelRef {
 export const getFlows = (): Promise<IFlowRef[]> => get<IFlowRef>('country-profile/flow-name.csv');
 
 export const getBudgetLevels = (country?: string): Promise<IBudgetLevelRef[]> => {
-    if (country && country.length) return get<IBudgetLevelRef>(`spotlight-${country}/${country}-budget-level.csv`);
+    if (country && country.length) return get<IBudgetLevelRef>(`spotlight-${country}/budget_level.csv`);
     return get<IBudgetLevelRef>('country-profile/domestic-budget-level.csv');
 };
 

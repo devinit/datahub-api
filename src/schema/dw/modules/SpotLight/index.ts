@@ -3,7 +3,7 @@ import {IExtensions} from '../../db';
 import sql from './sql';
 import * as R from 'ramda';
 import * as shortid from 'shortid';
-import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
+import { getConceptAsync } from '../../../cms/modules/concept';
 import {IColor, getColors, getEntityByIdGeneric} from '../../../cms/modules/global';
 import {isError} from '../../../../lib/isType';
 import {getDistrictBySlugAsync, IDistrict} from '../../../cms/modules/spotlight';
@@ -195,9 +195,10 @@ export default class SpotLight {
                     return SpotLight.aggregateResources(disaggregated, colors, budgetRefs);
                 }));
             const currencyCode = await getCurrencyCode(country);
-            const concept: IConcept = await getConceptAsync(conceptType, SpotLight.getTableName('finance', 'uganda'));
+            // const concept: IConcept =
+            // await getConceptAsync(conceptType, SpotLight.getTableName('finance', 'uganda'));
             return {
-                startYear: concept.end_year || 2015,
+                startYear: 2017,
                 currencyCode,
                 currencyUSD: 'constant 2015 USD',
                 revenueAndGrants: resources[1],
