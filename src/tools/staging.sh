@@ -22,9 +22,4 @@ docker stop datahub-app-api-staging
 
 docker rm datahub-app-api-staging
 
-docker run -it -d -p 6000:3000 --name datahub-app-api datahub-api
-
-
-
-
-
+docker run -it -d -p 6000:3000 --name datahub-app-api-staging datahub-api-staging
