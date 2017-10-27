@@ -10,7 +10,7 @@ import {getDistrictBySlugAsync, IDistrict} from '../../../cms/modules/spotlight'
 import {IBudgetLevelRef, getBudgetLevels} from '../../../cms/modules/countryProfile';
 import {getIndicatorDataSpotlights, ISpotlightGetIndicatorArgs, IRAW, getSpotlightTableName, getCurrencyCode, addSuffix,
         IRAWPopulationGroup, IRAWDomestic, domesticDataProcessing, formatNumbers,
-        addColorToDomesticLevels, getIndicatorToolTip} from '../utils';
+        addColorToDomesticLevels, getIndicatorToolTip, getTotal} from '../utils';
 
 interface ISpotlightArgs {
     id: string;
@@ -259,7 +259,8 @@ export default class SpotLight {
                 regionalResources: {
                     value: formatNumbers(resourcesSum.value, 1),
                     value_ncu: formatNumbers(resourcesSum.value_ncu, 1),
-                    toolTip: regionalResourcesToolTip},
+                    toolTip: regionalResourcesToolTip
+                },
                 regionalResourcesBreakdown: resources
             };
          } catch (error) {
@@ -298,11 +299,13 @@ export default class SpotLight {
                 ...opts
             };
             const raw: IRAWPopulationGroup[] = await getIndicatorDataSpotlights<IRAWPopulationGroup>(indicatorArgs);
-            const data: DH.IPopulationDistribution[] = raw.reduce((acc: DH.IPopulationDistribution[], row) => {
+            const dataGrouped: DH.IPopulationDistribution[] = raw.reduce((acc: DH.IPopulationDistribution[], row) => {
                 const rural = {group: 'rural', value: Number(row.value_rural), year: Number(row.year) };
                 const urban = {group: 'urban', value: Number(row.value_urban),  year: Number(row.year) };
                 return [...acc, rural, urban];
             }, []);
+            const total = getTotal(dataGrouped);
+            const data = dataGrouped.map(obj => ({...obj, value: ((obj.value || 0 ) / total ) * 100 }));
             const toolTip = await getIndicatorToolTip(indicatorArgs);
             return {toolTip, data};
        } catch (error) {

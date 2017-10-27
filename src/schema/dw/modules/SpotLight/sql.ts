@@ -3,7 +3,7 @@ export default {
     // tslint:disable-next-line:max-line-length
     poorestPeople: 'SELECT * FROM ${schema^}_2017.${country^}_poverty_headcount WHERE district_id = ${id} AND year = ${start_year}',
     // tslint:disable-next-line:max-line-length
-    localGovernmentSpendPerPerson: 'SELECT * FROM ${schema^}_2017.${country^}_gov_spend_pp WHERE district_id = ${id} AND year = ${start_year}',
+    localGovernmentSpendPerPerson: 'SELECT * FROM ${schema^}_2017.${country^}_gov_spend_pp WHERE district_id = ${id} AND year = ${end_year}',
     stdOfLiving: 'SELECT * FROM ${schema^}_2017.${country^}_deprivation_living WHERE district_id = ${id} AND year = ${start_year}',
     // tslint:disable-next-line:max-line-length
     lifeExpectancy: 'SELECT * FROM ${schema^}_2017.${country^}_life_expectancy WHERE district_id = ${id} AND year = ${start_year}',
@@ -31,9 +31,9 @@ export default {
     // tslint:disable-next-line:max-line-length
     healthCareFunding: 'SELECT value, value_ncu FROM ${schema^}_2017.${country^}_health_funding WHERE district_id =${id} AND year = ${start_year}',
     // tslint:disable-next-line:max-line-length
-    lGFResources: 'SELECT value, value_ncu FROM ${schema^}_2017.${country^}_igf_resources WHERE district_id =${id} AND year = ${start_year}',
-    crResources: 'SELECT value, value_ncu FROM ${schema^}_2017.${country^}_central_resources WHERE district_id =${id} AND year = ${start_year}',
+    lGFResources: 'SELECT value, value_ncu FROM ${schema^}_2017.${country^}_igf_resources WHERE district_id =${id} AND year = ${end_year}',
+    crResources: 'SELECT value, value_ncu FROM ${schema^}_2017.${country^}_central_resources WHERE district_id =${id} AND year = ${end_year}',
     // tslint:disable-next-line:max-line-length
-    dResources: 'SELECT value, value_ncu FROM ${schema^}_2017.${country^}_donor_resources WHERE district_id = ${id} AND year = ${start_year}',
+    dResources: 'SELECT * FROM ${schema^}_2017.${country^}_donor_resources WHERE district_id = ${id} AND year = ${end_year}',
     localGovernmentFinance: 'SELECT * FROM ${schema^}_2017.${country^}_finance WHERE district_id = ${id} AND l1 = ${l1} AND year >= ${start_year} AND value is NOT NULL'
 };

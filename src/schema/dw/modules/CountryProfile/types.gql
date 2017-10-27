@@ -81,7 +81,7 @@ type PovertyTab {
 
 type PopulationDistribution {
   group: String
-  value: Int 
+  value: Float
   year: Int
 }
 
