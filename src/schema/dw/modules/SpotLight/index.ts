@@ -176,7 +176,7 @@ export default class SpotLight {
             const conceptType = SpotLight.getConceptType(country);
             const budgetRefs: IBudgetLevelRef[] = await getBudgetLevels(country);
             const colors: IColor[] = await getColors();
-            const indicatorArgs: ISpotlightGetIndicatorArgs[] = ['expenditure', 'revenue']
+            const indicatorArgs: ISpotlightGetIndicatorArgs[] = ['Expenditure', 'Revenue']
                 .map(l1 => ({
                     db: this.db,
                     conceptType,

@@ -1,35 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Github concept data tests should get data from concept.csv of an Id in a module Async 1`] = `
-"Object {
-  \\"conceptA\\": Object {
-    \\"color\\": \\"\\",
-    \\"description\\": \\"Non-grant government revenue. Data is for 2015.\\",
-    \\"end_year\\": 2015,
-    \\"id\\": \\"data_series.domestic\\",
-    \\"include_in_methodology\\": 1,
-    \\"name\\": \\"Non-grant government revenue\\",
-    \\"source\\": \\"Development Initiatives based on IMF Staff reports.\\",
-    \\"source_link\\": \\"\\",
-    \\"start_year\\": 2000,
-    \\"theme\\": \\"recipient\\",
-    \\"uom\\": \\"constant 2015 US$, NCU\\",
-    \\"uom_display\\": \\"constant 2015 US$, NCU\\",
-  },
-  \\"conceptB\\": Object {
-    \\"color\\": \\"red\\",
-    \\"description\\": \\"Percentage of people in poverty, in relation to the total population in a given area, based on the national poverty line. It does not take into account the depth of poverty. The data year is given as the document publication date, but is based on estimates from previous household surveys by the Uganda Bureau of Statistics.\\",
-    \\"end_year\\": 2014,
-    \\"id\\": \\"spotlight_on_uganda_2017.uganda_poverty_headcount\\",
-    \\"name\\": \\"Poverty headcount\\",
-    \\"position\\": 1,
-    \\"range\\": \\"30,50,70,90\\",
-    \\"source\\": \\"Profiles of higher (district and municipal) local governments 2014, Uganda Bureau of Statistics.\\",
-    \\"start_year\\": 2014,
-    \\"theme\\": \\"poverty_and_vulnerability\\",
-    \\"tooltip\\": \\"Poverty headcount.\\",
-    \\"uom\\": \\"percent\\",
-    \\"uom_display\\": \\"%\\",
-  },
-}"
-`;
+exports[`Github concept data tests should get methodology data 1`] = `"Array []"`;
