@@ -47,12 +47,16 @@ declare namespace DH {
     flows: IFlows | null;
     singleResource: ISingleResourceData | null;
     mapData: IMapData | null;
-    overviewTabRegionalUg: IOverviewTabRegional | null;
+    overviewTabRegionalUg: IOverviewTabRegionalUg | null;
+    overviewTabRegionalKe: IOverviewTabRegionalKe | null;
     povertyTabUg: IPovertyTabUg | null;
     povertyTabKe: IPovertyTabKe | null;
-    populationTabRegional: IPopulationTabRegional | null;
-    educationTabRegional: IEducationTabRegional | null;
-    healthTabRegional: IHealthTabRegional | null;
+    populationTabRegionalUg: IPopulationTabRegionalUg | null;
+    populationTabRegionalKe: IPopulationTabRegionalKe | null;
+    educationTabRegionalUg: IEducationTabRegionalUg | null;
+    educationTabRegionalKe: IEducationTabRegionalKe | null;
+    healthTabRegionalKe: IHealthTabRegionalKe | null;
+    healthTabRegionalUg: IHealthTabRegionalUg | null;
     localGovernmentFinance: ILocalGovernmentFinance | null;
     unbundlingAidDataTotal: IUnbundlingAidTotal | null;
     unbundlingAidData: Array<IAidUnit> | null;
@@ -491,7 +495,7 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IOverviewTabRegional {
+  interface IOverviewTabRegionalUg {
     poorestPeople: IIndicatorValueWithToolTip | null;
     regionalResources: IIndicatorValueNCUWithToolTip | null;
     regionalResourcesBreakdown: Array<IIndicatorDataColoredWithToolTip> | null;
@@ -518,6 +522,16 @@ declare namespace DH {
   /*
     description: 
   */
+  interface IOverviewTabRegionalKe {
+    poorestPeople: IIndicatorValueWithToolTip | null;
+    agricAllocation: IIndicatorValueNCUWithToolTip | null;
+    healthAllocation: IIndicatorValueNCUWithToolTip | null;
+    educAllocation: IIndicatorValueWithToolTip | null;
+  }
+
+  /*
+    description: 
+  */
   interface IPovertyTabUg {
     poorestPeople: IIndicatorValueWithToolTip | null;
     lifeExpectancy: IIndicatorValueWithToolTip | null;
@@ -536,7 +550,7 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IPopulationTabRegional {
+  interface IPopulationTabRegionalUg {
     totalPopulation: IIndicatorValueWithToolTip | null;
     populationDensity: IIndicatorValueWithToolTip | null;
     populationDistribution: IPopulationDistributionWithToolTip | null;
@@ -547,7 +561,16 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IEducationTabRegional {
+  interface IPopulationTabRegionalKe {
+    totalPopulation: IIndicatorValueWithToolTip | null;
+    populationDensity: IIndicatorValueWithToolTip | null;
+    populationBirthRate: IIndicatorValueWithToolTip | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IEducationTabRegionalUg {
     pupilTeacherRatioGovtSchl: IIndicatorValueWithToolTip | null;
     pupilTeacherRatioOtherSchl: IIndicatorValueWithToolTip | null;
     studentsPassRate: IIndicatorValueWithToolTip | null;
@@ -558,7 +581,25 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IHealthTabRegional {
+  interface IEducationTabRegionalKe {
+    primaryPupilTeacherRatioAllSchl: IIndicatorValueWithToolTip | null;
+    primaryTeacherRatioPublicSchl: IIndicatorValueWithToolTip | null;
+    primaryTeacherRatioPrivateSchl: IIndicatorValueWithToolTip | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IHealthTabRegionalKe {
+    birthAttendanceSkilled: IIndicatorValueWithToolTip | null;
+    contraceptiveUse: IIndicatorValueWithToolTip | null;
+    healthCareFunding: IIndicatorValueNCUWithToolTip | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IHealthTabRegionalUg {
     districtPerformance: IIndicatorValueWithToolTip | null;
     treatmeantOfTb: IIndicatorValueWithToolTip | null;
     districtHealthRank: IIndicatorValueWithToolTip | null;
@@ -642,16 +683,6 @@ declare namespace DH {
     region: string | null;
     value: number | null;
     uid: string | null;
-  }
-
-  /*
-    description: 
-  */
-  interface IOverviewTabRegionalUg {
-    poorestPeople: IIndicatorValueWithToolTip | null;
-    regionalResources: IIndicatorValueNCUWithToolTip | null;
-    regionalResourcesBreakdown: Array<IIndicatorDataColoredWithToolTip> | null;
-    localGovernmentSpendPerPerson: IIndicatorValueWithToolTip | null;
   }
 }
 
