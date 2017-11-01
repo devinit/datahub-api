@@ -17,11 +17,11 @@ export default class Uganda {
         this.db = db;
     }
     // id eg uganda or kenya
-    public async getOverViewTabRegional(opts: ISpotlightArgs): Promise<DH.IOverviewTabRegional> {
+    public async getOverViewTabRegional({id}): Promise<DH.IOverviewTabRegional> {
         try {
-            const regionalResources = await getRegionalResources({...opts, sql});
+            const regionalResources = await getRegionalResources({id, sql, country});
             const [poorestPeople, localGovernmentSpendPerPerson] =
-                await getIndicatorsGeneric(opts, [sql.poorestPeople, sql.localGovernmentSpendPerPerson]);
+                await getIndicatorsGenericUg(opts, [sql.poorestPeople, sql.localGovernmentSpendPerPerson]);
             return {
                 ...regionalResources,
                 poorestPeople,
