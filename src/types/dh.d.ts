@@ -47,8 +47,9 @@ declare namespace DH {
     flows: IFlows | null;
     singleResource: ISingleResourceData | null;
     mapData: IMapData | null;
-    overviewTabRegional: IOverviewTabRegional | null;
-    povertyTabRegional: IPovertyTabRegional | null;
+    overviewTabRegionalUg: IOverviewTabRegional | null;
+    povertyTabUg: IPovertyTabUg | null;
+    povertyTabKe: IPovertyTabKe | null;
     populationTabRegional: IPopulationTabRegional | null;
     educationTabRegional: IEducationTabRegional | null;
     healthTabRegional: IHealthTabRegional | null;
@@ -517,10 +518,19 @@ declare namespace DH {
   /*
     description: 
   */
-  interface IPovertyTabRegional {
+  interface IPovertyTabUg {
     poorestPeople: IIndicatorValueWithToolTip | null;
     lifeExpectancy: IIndicatorValueWithToolTip | null;
     stdOfLiving: IIndicatorValueWithToolTip | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IPovertyTabKe {
+    poorestPeople: IIndicatorValueWithToolTip | null;
+    meanExpenditure: IIndicatorValueWithToolTip | null;
+    povertyGap: IIndicatorValueWithToolTip | null;
   }
 
   /*
@@ -632,6 +642,16 @@ declare namespace DH {
     region: string | null;
     value: number | null;
     uid: string | null;
+  }
+
+  /*
+    description: 
+  */
+  interface IOverviewTabRegionalUg {
+    poorestPeople: IIndicatorValueWithToolTip | null;
+    regionalResources: IIndicatorValueNCUWithToolTip | null;
+    regionalResourcesBreakdown: Array<IIndicatorDataColoredWithToolTip> | null;
+    localGovernmentSpendPerPerson: IIndicatorValueWithToolTip | null;
   }
 }
 

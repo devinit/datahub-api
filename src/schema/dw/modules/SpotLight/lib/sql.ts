@@ -1,5 +1,11 @@
 /* tslint:disable */
-export default {
+
+export const kenya = {
+    poorestPeople: 'SELECT * FROM ${schema^}_2017.${country^}_poverty_headcount WHERE district_id = ${id} AND year = ${start_year}',
+    povertyGap: 'SELECT * FROM ${schema^}_2017.${country^}_poverty_gap WHERE district_id = ${id} AND year = ${start_year}',
+    meanExpenditure: 'SELECT * FROM ${schema^}_2017.${country^}_meanpp_exp WHERE district_id = ${id} AND year = ${start_year}',
+};
+export const uganda = {
     // tslint:disable-next-line:max-line-length
     poorestPeople: 'SELECT * FROM ${schema^}_2017.${country^}_poverty_headcount WHERE district_id = ${id} AND year = ${start_year}',
     // tslint:disable-next-line:max-line-length
@@ -36,4 +42,5 @@ export default {
     // tslint:disable-next-line:max-line-length
     dResources: 'SELECT * FROM ${schema^}_2017.${country^}_donor_resources WHERE district_id = ${id} AND year = ${end_year}',
     localGovernmentFinance: 'SELECT * FROM ${schema^}_2017.${country^}_finance WHERE district_id = ${id} AND l1 = ${l1} AND year >= ${start_year} AND value is NOT NULL'
+
 };
