@@ -1,6 +1,7 @@
 import * as R from 'ramda';
 import * as shortid from 'shortid';
 import { getConceptAsync } from '../../../../cms/modules/concept';
+import {kenya, uganda} from './sql';
 import {IColor, getColors, getEntityByIdGeneric} from '../../../../cms/modules/global';
 import {isError} from '../../../../../lib/isType';
 import {getDistrictBySlugAsync, IDistrict} from '../../../../cms/modules/spotlight';
@@ -9,10 +10,9 @@ import {getIndicatorDataSpotlights, ISpotlightGetIndicatorArgs, IRAW, getSpotlig
         IRAWPopulationGroup, IRAWDomestic, domesticDataProcessing, formatNumbers,
         addColorToDomesticLevels, getIndicatorToolTip, getTotal} from '../../utils';
 
-interface ISpotlightArgs {
+export interface ISpotlightArgs {
     id: string;
     country: string;
-    sql?: any;
 }
 
 interface IRegionalResources {
@@ -20,10 +20,12 @@ interface IRegionalResources {
     regionalResourcesBreakdown: DH.IIndicatorDataColoredWithToolTip[];
 }
 
-export const getConceptType = (country: string): string => `spotlight-${country}`;
+const  getSql = (country: string) => country === 'uganda' ? uganda : kenya;
 
-export const getTableName = (indicator: string, country: string): string =>
-        `spotlight_on_${country}_2017.${country}_${indicator}`;
+const getConceptType = (country: string): string => `spotlight-${country}`;
+
+// const getTableName = (indicator: string, country: string): string =>
+//         `spotlight_on_${country}_2017.${country}_${indicator}`;
 
 const rankDistrict = (indicatorRaw: IRAW[], districtId: string): string {
         const groupedByValue = R.groupBy(obj => obj.value, indicatorRaw);
@@ -130,9 +132,10 @@ export const getDistrictIndicatorRank =
           throw error;
       }
 };
-export const getRegionalResources = async ({id, country, sql}): Promise<IRegionalResources> => {
+export const getRegionalResources = async ({id, country}): Promise<IRegionalResources> => {
         try  {
             const conceptType = getConceptType(country);
+            const sql = getSql(country);
             const indicatorArgs: ISpotlightGetIndicatorArgs[] = [sql.lGFResources, sql.crResources, sql.dResources]
                 .map(query => ({query, db: this.db, conceptType, id, country}));
             const resourcesRaw: IRAW[][] =
@@ -198,26 +201,44 @@ export const getIndicatorsGeneric = (country: string) =>
           throw error;
       }
 };
+
+export const getOverViewTabRegional = async ({id, country}): Promise<DH.IOverviewTabRegional> => {
+    try {
+        const sql = getSql(country);
+        const regionalResources = await getRegionalResources({id, sql, country});
+        const [poorestPeople, localGovernmentSpendPerPerson] =
+            await getIndicatorsGeneric(country)(id, [sql.poorestPeople, sql.localGovernmentSpendPerPerson]);
+        return {
+            ...regionalResources,
+            poorestPeople,
+            localGovernmentSpendPerPerson
+       };
+    } catch (error) {
+       console.error(error);
+       throw error;
+    }
+};
 export const getPopulationDistribution =
-    async ({country, id, sql}: ISpotlightArgs): Promise<DH.IPopulationDistributionWithToolTip> => {
-        try {
-            const conceptType = getConceptType(country);
-            const indicatorArgs: ISpotlightGetIndicatorArgs = {
-                db: this.db, conceptType,
-                query: sql.populationDistribution,
-                ...{country, id}
-            };
-            const raw: IRAWPopulationGroup[] = await getIndicatorDataSpotlights<IRAWPopulationGroup>(indicatorArgs);
-            const dataGrouped: DH.IPopulationDistribution[] = raw.reduce((acc: DH.IPopulationDistribution[], row) => {
-                const rural = {group: 'rural', value: Number(row.value_rural), year: Number(row.year) };
-                const urban = {group: 'urban', value: Number(row.value_urban),  year: Number(row.year) };
-                return [...acc, rural, urban];
-            }, []);
-            const total = getTotal(dataGrouped);
-            const data = dataGrouped.map(obj => ({...obj, value: ((obj.value || 0 ) / total ) * 100 }));
-            const toolTip = await getIndicatorToolTip(indicatorArgs);
-            return {toolTip, data};
-       } catch (error) {
-           throw error;
-       }
+async ({country, id}: ISpotlightArgs): Promise<DH.IPopulationDistributionWithToolTip> => {
+    try {
+        const conceptType = getConceptType(country);
+        const sql = uganda;
+        const indicatorArgs: ISpotlightGetIndicatorArgs = {
+            db: this.db, conceptType,
+            query: sql.populationDistribution,
+            ...{country, id}
+        };
+        const raw: IRAWPopulationGroup[] = await getIndicatorDataSpotlights<IRAWPopulationGroup>(indicatorArgs);
+        const dataGrouped: DH.IPopulationDistribution[] = raw.reduce((acc: DH.IPopulationDistribution[], row) => {
+            const rural = {group: 'rural', value: Number(row.value_rural), year: Number(row.year) };
+            const urban = {group: 'urban', value: Number(row.value_urban),  year: Number(row.year) };
+            return [...acc, rural, urban];
+        }, []);
+        const total = getTotal(dataGrouped);
+        const data = dataGrouped.map(obj => ({...obj, value: ((obj.value || 0 ) / total ) * 100 }));
+        const toolTip = await getIndicatorToolTip(indicatorArgs);
+        return {toolTip, data};
+   } catch (error) {
+       throw error;
+   }
 };

@@ -4,6 +4,21 @@ export const kenya = {
     poorestPeople: 'SELECT * FROM ${schema^}_2017.${country^}_poverty_headcount WHERE district_id = ${id} AND year = ${start_year}',
     povertyGap: 'SELECT * FROM ${schema^}_2017.${country^}_poverty_gap WHERE district_id = ${id} AND year = ${start_year}',
     meanExpenditure: 'SELECT * FROM ${schema^}_2017.${country^}_meanpp_exp WHERE district_id = ${id} AND year = ${start_year}',
+    healthCareFunding: 'SELECT * FROM ${schema^}_2017.${country^}_health_funding WHERE district_id = ${id} AND year = ${end_year}',
+    birthAttendanceSkilled: 'SELECT * FROM ${schema^}_2017.${country^}_births_attendance WHERE district_id = ${id} AND year = ${start_year}',
+    contraceptiveUse: 'SELECT * FROM ${schema^}_2017.${country^}_contraceptives WHERE district_id = ${id} AND year = ${start_year}',
+    primaryPupilTeacherRatioAllSchl: 'SELECT * FROM ${schema^}_2017.${country^}_primary_stu_teach_ratio WHERE district_id = ${id} AND year = ${start_year}',
+    primaryTeacherRatioPublicSchl: 'SELECT * FROM ${schema^}_2017.${country^}_primary_stu_teach_ratio_gov WHERE district_id = ${id} AND year = ${start_year}',
+    primaryTeacherRatioPrivateSchl: 'SELECT * FROM ${schema^}_2017.${country^}_primary_stu_teach_ratio_priv WHERE district_id = ${id} AND year = ${start_year}',
+    totalPopulation: 'SELECT * FROM ${schema^}_2017.${country^}_total_pop WHERE district_id = ${id} AND year = ${end_year}',
+    populationDensity: 'SELECT * FROM ${schema^}_2017.${country^}_pop_dens WHERE district_id = ${id} AND year = ${end_year}',
+    populationBirthRate: 'SELECT * FROM ${schema^}_2017.${country^}_pop_birthrate WHERE district_id = ${id} AND year = ${start_year}',
+    lGFResources: 'SELECT value, value_ncu FROM ${schema^}_2017.${country^}_igf_resources WHERE district_id =${id} AND year = ${end_year}',
+    crResources: 'SELECT value, value_ncu FROM ${schema^}_2017.${country^}_central_resources WHERE district_id =${id} AND year = ${end_year}',
+    dResources: 'SELECT * FROM ${schema^}_2017.${country^}_donor_resources WHERE district_id = ${id} AND year = ${end_year}',
+    localGovernmentFinance: 'SELECT * FROM ${schema^}_2017.${country^}_finance WHERE district_id = ${id} AND l1 = ${l1} AND year >= ${start_year} AND value is NOT NULL',
+    localGovernmentSpendPerPerson: 'SELECT * FROM ${schema^}_2017.${country^}_gov_spend_pp WHERE district_id = ${id} AND year = ${end_year}',
+
 };
 export const uganda = {
     // tslint:disable-next-line:max-line-length
