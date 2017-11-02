@@ -3,7 +3,7 @@
 export const kenya = {
     poorestPeople: 'SELECT * FROM ${schema^}_2017.${country^}_poverty_headcount WHERE district_id = ${id} AND year = ${start_year}',
     povertyGap: 'SELECT * FROM ${schema^}_2017.${country^}_poverty_gap WHERE district_id = ${id} AND year = ${start_year}',
-    meanExpenditure: 'SELECT * FROM ${schema^}_2017.${country^}_meanpp_exp WHERE district_id = ${id} AND year = ${start_year}',
+    meanExpenditure: 'SELECT * FROM ${schema^}_2017.${country^}_poverty_meanpp_exp WHERE district_id = ${id} AND year = ${start_year}',
     healthCareFunding: 'SELECT * FROM ${schema^}_2017.${country^}_health_funding WHERE district_id = ${id} AND year = ${end_year}',
     birthAttendanceSkilled: 'SELECT * FROM ${schema^}_2017.${country^}_births_attendance WHERE district_id = ${id} AND year = ${start_year}',
     contraceptiveUse: 'SELECT * FROM ${schema^}_2017.${country^}_contraceptives WHERE district_id = ${id} AND year = ${start_year}',

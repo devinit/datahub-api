@@ -23,6 +23,7 @@ export interface ISpotlightGetIndicatorArgs {
     query: string;
     country: string;
     l1?: string;
+    schema: string;
     table?: string;
     conceptType: string; // folder with concept file
     db: IDatabase<IExtensions> & IExtensions;
@@ -235,7 +236,7 @@ export async function getIndicatorDataSpotlights<T>(opts: ISpotlightGetIndicator
     if (!tableName) throw new Error('Provide a valid table name or query string');
     const spotlightEntity: IDistrict =  await getDistrictBySlugAsync(country, id);
     const concept: IConcept = await getConceptAsync(conceptType, tableName);
-    const queryArgs = {...opts, ...concept, id: spotlightEntity.id, country, schema: `spotlight_on_${country}`};
+    const queryArgs = {...opts, ...concept, id: spotlightEntity.id, country};
     return db.manyCacheable(query, queryArgs);
 }
 

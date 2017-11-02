@@ -1,21 +1,24 @@
 import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../../db';
 import {kenya} from './sql';
-import {getIndicatorsGeneric} from './utils';
+import {getIndicatorsGeneric, getLocalGovernmentFinance, GetIndicatorFn} from './utils';
 
 const sql = kenya;
-const getIndicatorsGenericKe = getIndicatorsGeneric('kenya');
-
+const country = 'kenya';
 export default class Uganda {
+    public getIndicatorsGeneric: GetIndicatorFn;
     private db: IDatabase<IExtensions> & IExtensions;
     constructor(db: any) {
         this.db = db;
+        this.getIndicatorsGeneric = getIndicatorsGeneric({country, db: this.db});
     }
-
+    public async getLocalGovernmentFinance({id}): Promise<DH.ILocalGovernmentFinance> {
+        return getLocalGovernmentFinance(this.db)({id, country, startYear: 2014});
+    }
     public async getPopulationTabRegional({id}): Promise<DH.IPopulationTabRegionalKe> {
         try {
             const [totalPopulation, populationDensity, populationBirthRate]
-             = await getIndicatorsGenericKe(id,
+             = await this.getIndicatorsGeneric(id,
                 [sql.totalPopulation, sql.populationDensity,
                 sql.populationBirthRate]);
             return {
@@ -31,7 +34,7 @@ export default class Uganda {
     public async getPovertyTabRegional({id}): Promise<DH.IPovertyTabKe> {
         try {
             const [poorestPeople, povertyGap, meanExpenditure] =
-                await getIndicatorsGenericKe(id, [sql.poorestPeople, sql.povertyGap, sql.meanExpenditure]);
+                await this.getIndicatorsGeneric(id, [sql.poorestPeople, sql.povertyGap, sql.meanExpenditure]);
             return {
                 poorestPeople,
                 povertyGap,
@@ -45,7 +48,7 @@ export default class Uganda {
     public async getEducationTabRegional({id}): Promise<DH.IEducationTabRegionalKe> {
          try {
             const [primaryPupilTeacherRatioAllSchl, primaryTeacherRatioPublicSchl,  primaryTeacherRatioPrivateSchl] =
-                await getIndicatorsGenericKe(id, [sql.primaryPupilTeacherRatioAllSchl,
+                await this.getIndicatorsGeneric(id, [sql.primaryPupilTeacherRatioAllSchl,
                     sql.primaryTeacherRatioPublicSchl,
                     sql. primaryTeacherRatioPrivateSchl]);
             return {
@@ -61,7 +64,7 @@ export default class Uganda {
     public async getHealthTabRegional(id): Promise<DH.IHealthTabRegionalKe> {
         try {
             const [healthCareFunding,  birthAttendanceSkilled, contraceptiveUse] =
-                await getIndicatorsGenericKe(id, [sql.healthCareFunding, sql.birthAttendanceSkilled,
+                await this.getIndicatorsGeneric(id, [sql.healthCareFunding, sql.birthAttendanceSkilled,
                     sql.contraceptiveUse]);
             return {
                 healthCareFunding,
