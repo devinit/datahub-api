@@ -13,9 +13,12 @@ export const kenya = {
     totalPopulation: 'SELECT * FROM ${schema^}_2017.${country^}_total_pop WHERE district_id = ${id} AND year = ${end_year}',
     populationDensity: 'SELECT * FROM ${schema^}_2017.${country^}_pop_dens WHERE district_id = ${id} AND year = ${end_year}',
     populationBirthRate: 'SELECT * FROM ${schema^}_2017.${country^}_pop_birthrate WHERE district_id = ${id} AND year = ${start_year}',
-    agricAllocation: 'SELECT * FROM ${schema^}_2017.${country^}_agri_percent WHERE district_id = ${id} AND year = ${end_year}',
-    educAllocation: 'SELECT * FROM ${schema^}_2017.${country^}_educ_percent WHERE district_id = ${id} AND year = ${end_year}',
-    healthAllocation: 'SELECT * FROM ${schema^}_2017.${country^}_health_percent WHERE district_id = ${id} AND year = ${end_year}',
+    lGFResources: 'SELECT value, value_ncu FROM ${schema^}_2017.${country^}_igf_resources WHERE district_id =${id} AND year = ${end_year}',
+    crResources: 'SELECT value, value_ncu FROM ${schema^}_2017.${country^}_central_resources WHERE district_id =${id} AND year = ${end_year}',
+    dResources: 'SELECT * FROM ${schema^}_2017.${country^}_donor_resources WHERE district_id = ${id} AND year = ${end_year}',
+    localGovernmentFinance: 'SELECT * FROM ${schema^}_2017.${country^}_finance WHERE district_id = ${id} AND l1 = ${l1} AND year >= ${start_year} AND value is NOT NULL',
+    localGovernmentSpendPerPerson: 'SELECT * FROM ${schema^}_2017.${country^}_gov_spend_pp WHERE district_id = ${id} AND year = ${end_year}',
+
 };
 export const uganda = {
     // tslint:disable-next-line:max-line-length

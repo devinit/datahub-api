@@ -1,12 +1,7 @@
 import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../../db';
 import {kenya} from './sql';
-import {getRegionalResources, getIndicatorsGeneric, getPopulationDistribution, getDistrictIndicatorRank} from './utils';
-
-interface ISpotlightArgs {
-    id: string;
-    country: string;
-}
+import {getIndicatorsGeneric} from './utils';
 
 const sql = kenya;
 const getIndicatorsGenericKe = getIndicatorsGeneric('kenya');
@@ -16,35 +11,17 @@ export default class Uganda {
     constructor(db: any) {
         this.db = db;
     }
-    // id eg uganda or kenya
-    public async getOverViewTabRegional(opts: ISpotlightArgs): Promise<DH.IOverviewTabRegional> {
+
+    public async getPopulationTabRegional({id}): Promise<DH.IPopulationTabRegionalKe> {
         try {
-            const regionalResources = await getRegionalResources({...opts, sql});
-            const [poorestPeople, localGovernmentSpendPerPerson] =
-                await getIndicatorsGeneric(opts, [sql.poorestPeople, sql.localGovernmentSpendPerPerson]);
-            return {
-                ...regionalResources,
-                poorestPeople,
-                localGovernmentSpendPerPerson
-           };
-        } catch (error) {
-           console.error(error);
-           throw error;
-        }
-    }
-    public async getPopulationTabRegional(opts: ISpotlightArgs): Promise<DH.IPopulationTabRegional> {
-        try {
-            const [totalPopulation, populationDensity, averageDependencyRatio, allAverageDependencyRatio]
-             = await getIndicatorsGeneric(opts,
+            const [totalPopulation, populationDensity, populationBirthRate]
+             = await getIndicatorsGenericKe(id,
                 [sql.totalPopulation, sql.populationDensity,
-                sql.averageDependencyRatio, sql.allAverageDependencyRatio]);
-            const populationDistribution = await getPopulationDistribution(opts);
+                sql.populationBirthRate]);
             return {
             totalPopulation,
             populationDensity,
-            populationDistribution,
-            averageDependencyRatio,
-            allAverageDependencyRatio
+            populationBirthRate
            };
         } catch (error) {
             console.error(error);
@@ -65,36 +42,31 @@ export default class Uganda {
            throw error;
        }
     }
-    public async getEducationTabRegional(opts: ISpotlightArgs): Promise<DH.IEducationTabRegional> {
+    public async getEducationTabRegional({id}): Promise<DH.IEducationTabRegionalKe> {
          try {
-            const [pupilTeacherRatioGovtSchl, pupilTeacherRatioOtherSchl, primaryEducationfunding] =
-                await getIndicatorsGeneric(opts, [sql.pupilTeacherRatioGovtSchl, sql.pupilTeacherRatioOtherSchl,
-                    sql.primaryEducationfunding]);
-            const [studentsPassRate] = await getIndicatorsGeneric(opts, [sql.studentsPassRate], false);
-            const studentsPassDistrictRank = await getDistrictIndicatorRank(opts, sql.studentsPassDistrictRank);
+            const [primaryPupilTeacherRatioAllSchl, primaryTeacherRatioPublicSchl,  primaryTeacherRatioPrivateSchl] =
+                await getIndicatorsGenericKe(id, [sql.primaryPupilTeacherRatioAllSchl,
+                    sql.primaryTeacherRatioPublicSchl,
+                    sql. primaryTeacherRatioPrivateSchl]);
             return {
-                pupilTeacherRatioGovtSchl,
-                pupilTeacherRatioOtherSchl,
-                studentsPassRate,
-                studentsPassDistrictRank,
-                primaryEducationfunding
+                primaryPupilTeacherRatioAllSchl,
+                primaryTeacherRatioPublicSchl,
+                primaryTeacherRatioPrivateSchl
           };
        } catch (error) {
            console.error(error);
            throw error;
        }
     }
-    public async getHealthTabRegional(opts): Promise<DH.IHealthTabRegional> {
+    public async getHealthTabRegional(id): Promise<DH.IHealthTabRegionalKe> {
         try {
-            const [districtPerformance, treatmeantOfTb] =
-                await getIndicatorsGeneric(opts, [sql.districtHealthPerformance, sql.treatmeantOfTb]);
-            const [healthCareFunding] = await getIndicatorsGeneric(opts, [sql.healthCareFunding], true);
-            const districtHealthRank = await getDistrictIndicatorRank(opts, sql.districtHealthPerformanceRank);
+            const [healthCareFunding,  birthAttendanceSkilled, contraceptiveUse] =
+                await getIndicatorsGenericKe(id, [sql.healthCareFunding, sql.birthAttendanceSkilled,
+                    sql.contraceptiveUse]);
             return {
-                districtPerformance,
-                districtHealthRank,
-                treatmeantOfTb,
-                healthCareFunding // Fix me
+                healthCareFunding,
+                birthAttendanceSkilled,
+                contraceptiveUse,
             };
        }    catch (error) {
            console.error(error);

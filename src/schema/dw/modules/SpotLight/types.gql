@@ -17,16 +17,8 @@ type IndicatorValueNCUWithToolTip {
   value_ncu: String 
   toolTip: ToolTip
 }
-type OverviewTabRegionalKe {
-  # WHAT PERCENTAGE OF PEOPLE IN WAKISO LIVE BELOW THE NATIONAL POVERTY LINE? 
-  # can be no data or '12%'
-  poorestPeople: IndicatorValueWithToolTip
-  agricAllocation: IndicatorValueNCUWithToolTip
-  healthAllocation: IndicatorValueNCUWithToolTip
-  educAllocation: IndicatorValueWithToolTip
-}
 
-type OverviewTabRegionalUg {
+type OverviewTabRegional {
   # WHAT PERCENTAGE OF PEOPLE IN WAKISO LIVE BELOW THE NATIONAL POVERTY LINE? 
   # can be no data or '12%'
   poorestPeople: IndicatorValueWithToolTip
@@ -118,8 +110,7 @@ type LocalGovernmentFinance {
 
 type Query {  
   # id is district slug
-  overviewTabRegionalUg(id: String!):OverviewTabRegionalUg
-  overviewTabRegionalKe(id: String!):OverviewTabRegionalKe
+  overviewTabRegional(id: String!, country: String!):OverviewTabRegional
   povertyTabUg(id: String!): PovertyTabUg
   povertyTabKe(id: String!): PovertyTabKe
   populationTabRegionalUg(id: String!):PopulationTabRegionalUg

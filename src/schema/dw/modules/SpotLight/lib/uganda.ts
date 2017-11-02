@@ -1,11 +1,7 @@
 import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../../db';
 import {uganda} from './sql';
-import {getRegionalResources, getIndicatorsGeneric, getPopulationDistribution, getDistrictIndicatorRank} from './utils';
-
-interface ISpotlightArgs {
-    id: string;
-}
+import {getIndicatorsGeneric, getPopulationDistribution, getDistrictIndicatorRank} from './utils';
 
 const sql = uganda;
 const country = 'uganda';
@@ -17,22 +13,8 @@ export default class Uganda {
         this.db = db;
     }
     // id eg uganda or kenya
-    public async getOverViewTabRegional({id}): Promise<DH.IOverviewTabRegional> {
-        try {
-            const regionalResources = await getRegionalResources({id, sql, country});
-            const [poorestPeople, localGovernmentSpendPerPerson] =
-                await getIndicatorsGenericUg(opts, [sql.poorestPeople, sql.localGovernmentSpendPerPerson]);
-            return {
-                ...regionalResources,
-                poorestPeople,
-                localGovernmentSpendPerPerson
-           };
-        } catch (error) {
-           console.error(error);
-           throw error;
-        }
-    }
-    public async getPopulationTabRegional({id}): Promise<DH.IPopulationTabRegional> {
+
+    public async getPopulationTabRegional({id}): Promise<DH.IPopulationTabRegionalUg> {
         try {
             const [totalPopulation, populationDensity, averageDependencyRatio, allAverageDependencyRatio]
              = await getIndicatorsGenericUg(id,
@@ -65,7 +47,7 @@ export default class Uganda {
            throw error;
        }
     }
-    public async getEducationTabRegional({id}): Promise<DH.IEducationTabRegional> {
+    public async getEducationTabRegional({id}): Promise<DH.IEducationTabRegionalUg> {
          try {
             const opts = {id, country: 'uganda'};
             const [pupilTeacherRatioGovtSchl, pupilTeacherRatioOtherSchl, primaryEducationfunding] =
@@ -85,7 +67,7 @@ export default class Uganda {
            throw error;
        }
     }
-    public async getHealthTabRegional({id}): Promise<DH.IHealthTabRegional> {
+    public async getHealthTabRegional({id}): Promise<DH.IHealthTabRegionalUg> {
         try {
             const [districtPerformance, treatmeantOfTb] =
                 await getIndicatorsGenericUg(id, [sql.districtHealthPerformance, sql.treatmeantOfTb]);
