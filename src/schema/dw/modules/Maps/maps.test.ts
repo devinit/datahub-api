@@ -1,6 +1,5 @@
 import Maps from '.';
 import * as prettyFormat from 'pretty-format';
-import * as d3 from 'd3';
 import db from '../../db';
 
 describe('Maps module tests', () => {
@@ -30,7 +29,7 @@ describe('Maps module tests', () => {
     }, 20000);
     it('should return spotlight on kenya indicator data', async () => {
         const linearColored =
-            await maps.getMapData('spotlight_on_kenat_2017.kenya_poverty_headcount');
+            await maps.getMapData('spotlight_on_kenya_2017.kenya_poverty_headcount');
         expect(prettyFormat({linearColored})).toMatchSnapshot();
     }, 20000);
     it.skip('should return global picture indicator for map styled data  ', async () => {
