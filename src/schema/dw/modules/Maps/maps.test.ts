@@ -23,9 +23,14 @@ describe('Maps module tests', () => {
         expect(country).toBe('uganda');
         expect(global).toBe('global');
     }, 10000);
-    it('should return spotlight on uganda indicator data', async () => {
+    it.skip('should return spotlight on uganda indicator data', async () => {
         const linearColored =
             await maps.getMapData('spotlight_on_uganda_2017.uganda_poverty_headcount');
+        expect(prettyFormat({linearColored})).toMatchSnapshot();
+    }, 20000);
+    it('should return spotlight on kenya indicator data', async () => {
+        const linearColored =
+            await maps.getMapData('spotlight_on_kenat_2017.kenya_poverty_headcount');
         expect(prettyFormat({linearColored})).toMatchSnapshot();
     }, 20000);
     it.skip('should return global picture indicator for map styled data  ', async () => {
