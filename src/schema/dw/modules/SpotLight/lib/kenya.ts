@@ -61,7 +61,7 @@ export default class Uganda {
            throw error;
        }
     }
-    public async getHealthTabRegional(id): Promise<DH.IHealthTabRegionalKe> {
+    public async getHealthTabRegional({id}): Promise<DH.IHealthTabRegionalKe> {
         try {
             const [healthCareFunding,  birthAttendanceSkilled, contraceptiveUse] =
                 await this.getIndicatorsGeneric(id, [sql.healthCareFunding, sql.birthAttendanceSkilled,

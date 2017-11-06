@@ -4,7 +4,8 @@ const getPageData = (moduleName: string): Promise <DH.IPage[]> => {
     const endPoint: string = `${moduleName}/page.csv`;
     return get<DH.IPage>(endPoint);
 };
-export const getDistrictPageData = (): Promise<DH.IPage[]> => getPageData('spotlight-uganda/district-profile');
+export const getDistrictPageData = (country: string): Promise<DH.IPage[]> =>
+    getPageData(`spotlight-${country}/district-profile`);
 export const getCountryProfilePageData = (): Promise<DH.IPage[]> => getPageData('country-profile');
 export const getGlobalPicturePageData = (): Promise<DH.IPage[]> => getPageData('global-picture');
 export const getPovertyBubbleChartPageData = (): Promise<DH.IPage[]> => getPageData('bubble-chart-poverty');

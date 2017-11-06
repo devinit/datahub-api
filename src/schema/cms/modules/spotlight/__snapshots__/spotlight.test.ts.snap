@@ -8,454 +8,834 @@ exports[`spotlight reference module test should return details about a uganda di
 `;
 
 exports[`spotlight reference module test should return uganda district entities 1`] = `
-"Array [
-  Object {
-    \\"id\\": \\"d101\\",
-    \\"name\\": \\"Kalangala\\",
-  },
-  Object {
-    \\"id\\": \\"d102\\",
-    \\"name\\": \\"Kampala\\",
-  },
-  Object {
-    \\"id\\": \\"d103\\",
-    \\"name\\": \\"Kiboga\\",
-  },
-  Object {
-    \\"id\\": \\"d104\\",
-    \\"name\\": \\"Luwero\\",
-  },
-  Object {
-    \\"id\\": \\"d105\\",
-    \\"name\\": \\"Masaka\\",
-  },
-  Object {
-    \\"id\\": \\"d106\\",
-    \\"name\\": \\"Mpigi\\",
-  },
-  Object {
-    \\"id\\": \\"d107\\",
-    \\"name\\": \\"Mubende\\",
-  },
-  Object {
-    \\"id\\": \\"d108\\",
-    \\"name\\": \\"Mukono\\",
-  },
-  Object {
-    \\"id\\": \\"d109\\",
-    \\"name\\": \\"Nakasongola\\",
-  },
-  Object {
-    \\"id\\": \\"d110\\",
-    \\"name\\": \\"Rakai\\",
-  },
-  Object {
-    \\"id\\": \\"d111\\",
-    \\"name\\": \\"Ssembabule\\",
-  },
-  Object {
-    \\"id\\": \\"d112\\",
-    \\"name\\": \\"Kayunga\\",
-  },
-  Object {
-    \\"id\\": \\"d113\\",
-    \\"name\\": \\"Wakiso\\",
-  },
-  Object {
-    \\"id\\": \\"d114\\",
-    \\"name\\": \\"Lyantonde\\",
-  },
-  Object {
-    \\"id\\": \\"d115\\",
-    \\"name\\": \\"Mityana\\",
-  },
-  Object {
-    \\"id\\": \\"d116\\",
-    \\"name\\": \\"Nakaseke\\",
-  },
-  Object {
-    \\"id\\": \\"d117\\",
-    \\"name\\": \\"Buikwe\\",
-  },
-  Object {
-    \\"id\\": \\"d118\\",
-    \\"name\\": \\"Bukomansimbi\\",
-  },
-  Object {
-    \\"id\\": \\"d119\\",
-    \\"name\\": \\"Butambala\\",
-  },
-  Object {
-    \\"id\\": \\"d120\\",
-    \\"name\\": \\"Buvuma\\",
-  },
-  Object {
-    \\"id\\": \\"d121\\",
-    \\"name\\": \\"Gomba\\",
-  },
-  Object {
-    \\"id\\": \\"d122\\",
-    \\"name\\": \\"Kalungu\\",
-  },
-  Object {
-    \\"id\\": \\"d123\\",
-    \\"name\\": \\"Kyankwanzi\\",
-  },
-  Object {
-    \\"id\\": \\"d124\\",
-    \\"name\\": \\"Lwengo\\",
-  },
-  Object {
-    \\"id\\": \\"d201\\",
-    \\"name\\": \\"Bugiri\\",
-  },
-  Object {
-    \\"id\\": \\"d202\\",
-    \\"name\\": \\"Busia\\",
-  },
-  Object {
-    \\"id\\": \\"d203\\",
-    \\"name\\": \\"Iganga\\",
-  },
-  Object {
-    \\"id\\": \\"d204\\",
-    \\"name\\": \\"Jinja\\",
-  },
-  Object {
-    \\"id\\": \\"d205\\",
-    \\"name\\": \\"Kamuli\\",
-  },
-  Object {
-    \\"id\\": \\"d206\\",
-    \\"name\\": \\"Kapchorwa\\",
-  },
-  Object {
-    \\"id\\": \\"d207\\",
-    \\"name\\": \\"Katakwi\\",
-  },
-  Object {
-    \\"id\\": \\"d208\\",
-    \\"name\\": \\"Kumi\\",
-  },
-  Object {
-    \\"id\\": \\"d209\\",
-    \\"name\\": \\"Mbale\\",
-  },
-  Object {
-    \\"id\\": \\"d210\\",
-    \\"name\\": \\"Pallisa\\",
-  },
-  Object {
-    \\"id\\": \\"d211\\",
-    \\"name\\": \\"Soroti\\",
-  },
-  Object {
-    \\"id\\": \\"d212\\",
-    \\"name\\": \\"Tororo\\",
-  },
-  Object {
-    \\"id\\": \\"d213\\",
-    \\"name\\": \\"Kaberamaido\\",
-  },
-  Object {
-    \\"id\\": \\"d214\\",
-    \\"name\\": \\"Mayuge\\",
-  },
-  Object {
-    \\"id\\": \\"d215\\",
-    \\"name\\": \\"Sironko\\",
-  },
-  Object {
-    \\"id\\": \\"d216\\",
-    \\"name\\": \\"Amuria\\",
-  },
-  Object {
-    \\"id\\": \\"d217\\",
-    \\"name\\": \\"Budaka\\",
-  },
-  Object {
-    \\"id\\": \\"d218\\",
-    \\"name\\": \\"Bududa\\",
-  },
-  Object {
-    \\"id\\": \\"d219\\",
-    \\"name\\": \\"Bukedea\\",
-  },
-  Object {
-    \\"id\\": \\"d220\\",
-    \\"name\\": \\"Bukwo\\",
-  },
-  Object {
-    \\"id\\": \\"d221\\",
-    \\"name\\": \\"Butaleja\\",
-  },
-  Object {
-    \\"id\\": \\"d222\\",
-    \\"name\\": \\"Kaliro\\",
-  },
-  Object {
-    \\"id\\": \\"d223\\",
-    \\"name\\": \\"Manafwa\\",
-  },
-  Object {
-    \\"id\\": \\"d224\\",
-    \\"name\\": \\"Namutumba\\",
-  },
-  Object {
-    \\"id\\": \\"d225\\",
-    \\"name\\": \\"Bulambuli\\",
-  },
-  Object {
-    \\"id\\": \\"d226\\",
-    \\"name\\": \\"Buyende\\",
-  },
-  Object {
-    \\"id\\": \\"d227\\",
-    \\"name\\": \\"Kibuku\\",
-  },
-  Object {
-    \\"id\\": \\"d228\\",
-    \\"name\\": \\"Kween\\",
-  },
-  Object {
-    \\"id\\": \\"d229\\",
-    \\"name\\": \\"Luuka\\",
-  },
-  Object {
-    \\"id\\": \\"d230\\",
-    \\"name\\": \\"Namayingo\\",
-  },
-  Object {
-    \\"id\\": \\"d231\\",
-    \\"name\\": \\"Ngora\\",
-  },
-  Object {
-    \\"id\\": \\"d232\\",
-    \\"name\\": \\"Serere\\",
-  },
-  Object {
-    \\"id\\": \\"d301\\",
-    \\"name\\": \\"Adjumani\\",
-  },
-  Object {
-    \\"id\\": \\"d302\\",
-    \\"name\\": \\"Apac\\",
-  },
-  Object {
-    \\"id\\": \\"d303\\",
-    \\"name\\": \\"Arua\\",
-  },
-  Object {
-    \\"id\\": \\"d304\\",
-    \\"name\\": \\"Gulu\\",
-  },
-  Object {
-    \\"id\\": \\"d305\\",
-    \\"name\\": \\"Kitgum\\",
-  },
-  Object {
-    \\"id\\": \\"d306\\",
-    \\"name\\": \\"Kotido\\",
-  },
-  Object {
-    \\"id\\": \\"d307\\",
-    \\"name\\": \\"Lira\\",
-  },
-  Object {
-    \\"id\\": \\"d308\\",
-    \\"name\\": \\"Moroto\\",
-  },
-  Object {
-    \\"id\\": \\"d309\\",
-    \\"name\\": \\"Moyo\\",
-  },
-  Object {
-    \\"id\\": \\"d310\\",
-    \\"name\\": \\"Nebbi\\",
-  },
-  Object {
-    \\"id\\": \\"d311\\",
-    \\"name\\": \\"Nakapiripirit\\",
-  },
-  Object {
-    \\"id\\": \\"d312\\",
-    \\"name\\": \\"Pader\\",
-  },
-  Object {
-    \\"id\\": \\"d313\\",
-    \\"name\\": \\"Yumbe\\",
-  },
-  Object {
-    \\"id\\": \\"d314\\",
-    \\"name\\": \\"Abim\\",
-  },
-  Object {
-    \\"id\\": \\"d315\\",
-    \\"name\\": \\"Amolatar\\",
-  },
-  Object {
-    \\"id\\": \\"d316\\",
-    \\"name\\": \\"Amuru\\",
-  },
-  Object {
-    \\"id\\": \\"d317\\",
-    \\"name\\": \\"Dokolo\\",
-  },
-  Object {
-    \\"id\\": \\"d318\\",
-    \\"name\\": \\"Kaabong\\",
-  },
-  Object {
-    \\"id\\": \\"d319\\",
-    \\"name\\": \\"Koboko\\",
-  },
-  Object {
-    \\"id\\": \\"d320\\",
-    \\"name\\": \\"Maracha\\",
-  },
-  Object {
-    \\"id\\": \\"d321\\",
-    \\"name\\": \\"Oyam\\",
-  },
-  Object {
-    \\"id\\": \\"d322\\",
-    \\"name\\": \\"Agago\\",
-  },
-  Object {
-    \\"id\\": \\"d323\\",
-    \\"name\\": \\"Alebtong\\",
-  },
-  Object {
-    \\"id\\": \\"d324\\",
-    \\"name\\": \\"Amudat\\",
-  },
-  Object {
-    \\"id\\": \\"d325\\",
-    \\"name\\": \\"Kole\\",
-  },
-  Object {
-    \\"id\\": \\"d326\\",
-    \\"name\\": \\"Lamwo\\",
-  },
-  Object {
-    \\"id\\": \\"d327\\",
-    \\"name\\": \\"Napak\\",
-  },
-  Object {
-    \\"id\\": \\"d328\\",
-    \\"name\\": \\"Nwoya\\",
-  },
-  Object {
-    \\"id\\": \\"d329\\",
-    \\"name\\": \\"Otuke\\",
-  },
-  Object {
-    \\"id\\": \\"d330\\",
-    \\"name\\": \\"Zombo\\",
-  },
-  Object {
-    \\"id\\": \\"d401\\",
-    \\"name\\": \\"Bundibugyo\\",
-  },
-  Object {
-    \\"id\\": \\"d402\\",
-    \\"name\\": \\"Bushenyi\\",
-  },
-  Object {
-    \\"id\\": \\"d403\\",
-    \\"name\\": \\"Hoima\\",
-  },
-  Object {
-    \\"id\\": \\"d404\\",
-    \\"name\\": \\"Kabale\\",
-  },
-  Object {
-    \\"id\\": \\"d405\\",
-    \\"name\\": \\"Kabarole\\",
-  },
-  Object {
-    \\"id\\": \\"d406\\",
-    \\"name\\": \\"Kasese\\",
-  },
-  Object {
-    \\"id\\": \\"d407\\",
-    \\"name\\": \\"Kibaale\\",
-  },
-  Object {
-    \\"id\\": \\"d408\\",
-    \\"name\\": \\"Kisoro\\",
-  },
-  Object {
-    \\"id\\": \\"d409\\",
-    \\"name\\": \\"Masindi\\",
-  },
-  Object {
-    \\"id\\": \\"d410\\",
-    \\"name\\": \\"Mbarara\\",
-  },
-  Object {
-    \\"id\\": \\"d411\\",
-    \\"name\\": \\"Ntungamo\\",
-  },
-  Object {
-    \\"id\\": \\"d412\\",
-    \\"name\\": \\"Rukungiri\\",
-  },
-  Object {
-    \\"id\\": \\"d413\\",
-    \\"name\\": \\"Kamwenge\\",
-  },
-  Object {
-    \\"id\\": \\"d414\\",
-    \\"name\\": \\"Kanungu\\",
-  },
-  Object {
-    \\"id\\": \\"d415\\",
-    \\"name\\": \\"Kyenjojo\\",
-  },
-  Object {
-    \\"id\\": \\"d416\\",
-    \\"name\\": \\"Buliisa\\",
-  },
-  Object {
-    \\"id\\": \\"d417\\",
-    \\"name\\": \\"Ibanda\\",
-  },
-  Object {
-    \\"id\\": \\"d418\\",
-    \\"name\\": \\"Isingiro\\",
-  },
-  Object {
-    \\"id\\": \\"d419\\",
-    \\"name\\": \\"Kiruhura\\",
-  },
-  Object {
-    \\"id\\": \\"d420\\",
-    \\"name\\": \\"Buhweju\\",
-  },
-  Object {
-    \\"id\\": \\"d421\\",
-    \\"name\\": \\"Kiryandongo\\",
-  },
-  Object {
-    \\"id\\": \\"d422\\",
-    \\"name\\": \\"Kyegegwa\\",
-  },
-  Object {
-    \\"id\\": \\"d423\\",
-    \\"name\\": \\"Mitooma\\",
-  },
-  Object {
-    \\"id\\": \\"d424\\",
-    \\"name\\": \\"Ntoroko\\",
-  },
-  Object {
-    \\"id\\": \\"d425\\",
-    \\"name\\": \\"Rubirizi\\",
-  },
-  Object {
-    \\"id\\": \\"d426\\",
-    \\"name\\": \\"Sheema\\",
-  },
-]"
+"Object {
+  \\"kenya\\": Array [
+    Object {
+      \\"administration_id\\": 1518,
+      \\"administration_name\\": \\"Central\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.2100209347,
+      \\"id\\": \\"d18943\\",
+      \\"name\\": \\"Kiambu\\",
+    },
+    Object {
+      \\"administration_id\\": 1518,
+      \\"administration_name\\": \\"Central\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.1203510382,
+      \\"id\\": \\"d18944\\",
+      \\"name\\": \\"Kirinyaga\\",
+    },
+    Object {
+      \\"administration_id\\": 1518,
+      \\"administration_name\\": \\"Central\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.206353614,
+      \\"id\\": \\"d18946\\",
+      \\"name\\": \\"Murang'a\\",
+    },
+    Object {
+      \\"administration_id\\": 1518,
+      \\"administration_name\\": \\"Central\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.2649308741,
+      \\"id\\": \\"d18947\\",
+      \\"name\\": \\"Nyandarua\\",
+    },
+    Object {
+      \\"administration_id\\": 1518,
+      \\"administration_name\\": \\"Central\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.2727435091,
+      \\"id\\": \\"d18948\\",
+      \\"name\\": \\"Nyeri\\",
+    },
+    Object {
+      \\"administration_id\\": 1519,
+      \\"administration_name\\": \\"Coast\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 1.0022802909,
+      \\"id\\": \\"d18949\\",
+      \\"name\\": \\"Kilifi\\",
+    },
+    Object {
+      \\"administration_id\\": 1519,
+      \\"administration_name\\": \\"Coast\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.6821159972,
+      \\"id\\": \\"d18950\\",
+      \\"name\\": \\"Kwale\\",
+    },
+    Object {
+      \\"administration_id\\": 1519,
+      \\"administration_name\\": \\"Coast\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.5590110858,
+      \\"id\\": \\"d18951\\",
+      \\"name\\": \\"Lamu\\",
+    },
+    Object {
+      \\"administration_id\\": 1519,
+      \\"administration_name\\": \\"Coast\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.0240764937,
+      \\"id\\": \\"d18952\\",
+      \\"name\\": \\"Mombasa\\",
+    },
+    Object {
+      \\"administration_id\\": 1519,
+      \\"administration_name\\": \\"Coast\\",
+      \\"alternative_name\\": \\"Taita\\",
+      \\"area\\": 1.4056854885,
+      \\"id\\": \\"d18953\\",
+      \\"name\\": \\"Taita Taveta\\",
+    },
+    Object {
+      \\"administration_id\\": 1519,
+      \\"administration_name\\": \\"Coast\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 3.1402067672,
+      \\"id\\": \\"d18954\\",
+      \\"name\\": \\"Tana River\\",
+    },
+    Object {
+      \\"administration_id\\": 1520,
+      \\"administration_name\\": \\"Eastern\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.2243125559,
+      \\"id\\": \\"d18955\\",
+      \\"name\\": \\"Embu\\",
+    },
+    Object {
+      \\"administration_id\\": 1520,
+      \\"administration_name\\": \\"Eastern\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 2.0230252644,
+      \\"id\\": \\"d18956\\",
+      \\"name\\": \\"Isiolo\\",
+    },
+    Object {
+      \\"administration_id\\": 1520,
+      \\"administration_name\\": \\"Eastern\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 2.4499426216,
+      \\"id\\": \\"d18957\\",
+      \\"name\\": \\"Kitui\\",
+    },
+    Object {
+      \\"administration_id\\": 1520,
+      \\"administration_name\\": \\"Eastern\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.4923056427,
+      \\"id\\": \\"d18958\\",
+      \\"name\\": \\"Machakos\\",
+    },
+    Object {
+      \\"administration_id\\": 1520,
+      \\"administration_name\\": \\"Eastern\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.6690581238,
+      \\"id\\": \\"d18959\\",
+      \\"name\\": \\"Makueni\\",
+    },
+    Object {
+      \\"administration_id\\": 1520,
+      \\"administration_name\\": \\"Eastern\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 6.1499856336,
+      \\"id\\": \\"d18960\\",
+      \\"name\\": \\"Marsabit\\",
+    },
+    Object {
+      \\"administration_id\\": 1520,
+      \\"administration_name\\": \\"Eastern\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.5828579423,
+      \\"id\\": \\"d18961\\",
+      \\"name\\": \\"Meru\\",
+    },
+    Object {
+      \\"administration_id\\": 1520,
+      \\"administration_name\\": \\"Eastern\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.1845623749,
+      \\"id\\": \\"d18962\\",
+      \\"name\\": \\"Nithi\\",
+    },
+    Object {
+      \\"administration_id\\": 1521,
+      \\"administration_name\\": \\"Nairobi\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.0598740645,
+      \\"id\\": \\"d18964\\",
+      \\"name\\": \\"Nairobi\\",
+    },
+    Object {
+      \\"administration_id\\": 1522,
+      \\"administration_name\\": \\"North-Eastern\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 3.6130976488,
+      \\"id\\": \\"d18965\\",
+      \\"name\\": \\"Garissa\\",
+    },
+    Object {
+      \\"administration_id\\": 1522,
+      \\"administration_name\\": \\"North-Eastern\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 2.3029222974,
+      \\"id\\": \\"d18966\\",
+      \\"name\\": \\"Mandera\\",
+    },
+    Object {
+      \\"administration_id\\": 1522,
+      \\"administration_name\\": \\"North-Eastern\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 4.3434424087,
+      \\"id\\": \\"d18967\\",
+      \\"name\\": \\"Wajir\\",
+    },
+    Object {
+      \\"administration_id\\": 1523,
+      \\"administration_name\\": \\"Nyanza\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.5510936713,
+      \\"id\\": \\"d18968\\",
+      \\"name\\": \\"Homa Bay\\",
+    },
+    Object {
+      \\"administration_id\\": 1523,
+      \\"administration_name\\": \\"Nyanza\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.1091825083,
+      \\"id\\": \\"d18969\\",
+      \\"name\\": \\"Kisii\\",
+    },
+    Object {
+      \\"administration_id\\": 1523,
+      \\"administration_name\\": \\"Nyanza\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.1711335424,
+      \\"id\\": \\"d18970\\",
+      \\"name\\": \\"Kisumu\\",
+    },
+    Object {
+      \\"administration_id\\": 1523,
+      \\"administration_name\\": \\"Nyanza\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.2069872766,
+      \\"id\\": \\"d18971\\",
+      \\"name\\": \\"Migori\\",
+    },
+    Object {
+      \\"administration_id\\": 1523,
+      \\"administration_name\\": \\"Nyanza\\",
+      \\"alternative_name\\": \\"North Kisii\\",
+      \\"area\\": 0.0723835245,
+      \\"id\\": \\"d18972\\",
+      \\"name\\": \\"Nyamira\\",
+    },
+    Object {
+      \\"administration_id\\": 1523,
+      \\"administration_name\\": \\"Nyanza\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.2052418338,
+      \\"id\\": \\"d18973\\",
+      \\"name\\": \\"Siaya\\",
+    },
+    Object {
+      \\"administration_id\\": 1524,
+      \\"administration_name\\": \\"Rift Valley\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.8871841503,
+      \\"id\\": \\"d18974\\",
+      \\"name\\": \\"Baringo\\",
+    },
+    Object {
+      \\"administration_id\\": 1524,
+      \\"administration_name\\": \\"Rift Valley\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.1923838193,
+      \\"id\\": \\"d18975\\",
+      \\"name\\": \\"Bomet\\",
+    },
+    Object {
+      \\"administration_id\\": 1524,
+      \\"administration_name\\": \\"Rift Valley\\",
+      \\"alternative_name\\": \\"E. Marakwet\\",
+      \\"area\\": 0.2467072928,
+      \\"id\\": \\"d18976\\",
+      \\"name\\": \\"Elgeyo-Marakwet\\",
+    },
+    Object {
+      \\"administration_id\\": 1524,
+      \\"administration_name\\": \\"Rift Valley\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.2095153008,
+      \\"id\\": \\"d18977\\",
+      \\"name\\": \\"Kericho\\",
+    },
+    Object {
+      \\"administration_id\\": 1524,
+      \\"administration_name\\": \\"Rift Valley\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.7876325084,
+      \\"id\\": \\"d18978\\",
+      \\"name\\": \\"Laikipia\\",
+    },
+    Object {
+      \\"administration_id\\": 1524,
+      \\"administration_name\\": \\"Rift Valley\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 2.378262771,
+      \\"id\\": \\"d18979\\",
+      \\"name\\": \\"Nakuru\\",
+    },
+    Object {
+      \\"administration_id\\": 1524,
+      \\"administration_name\\": \\"Rift Valley\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.2332839873,
+      \\"id\\": \\"d18980\\",
+      \\"name\\": \\"Nandi\\",
+    },
+    Object {
+      \\"administration_id\\": 1524,
+      \\"administration_name\\": \\"Rift Valley\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 1.4381781219,
+      \\"id\\": \\"d18981\\",
+      \\"name\\": \\"Narok\\",
+    },
+    Object {
+      \\"administration_id\\": 1524,
+      \\"administration_name\\": \\"Rift Valley\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 1.7142792517,
+      \\"id\\": \\"d18982\\",
+      \\"name\\": \\"Samburu\\",
+    },
+    Object {
+      \\"administration_id\\": 1524,
+      \\"administration_name\\": \\"Rift Valley\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.1999489037,
+      \\"id\\": \\"d18983\\",
+      \\"name\\": \\"Trans-Nzoia\\",
+    },
+    Object {
+      \\"administration_id\\": 1524,
+      \\"administration_name\\": \\"Rift Valley\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 4.9768925245,
+      \\"id\\": \\"d18984\\",
+      \\"name\\": \\"Turkana\\",
+    },
+    Object {
+      \\"administration_id\\": 1524,
+      \\"administration_name\\": \\"Rift Valley\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.273877612,
+      \\"id\\": \\"d18985\\",
+      \\"name\\": \\"Uasin Gishu\\",
+    },
+    Object {
+      \\"administration_id\\": 1524,
+      \\"administration_name\\": \\"Rift Valley\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.7523718716,
+      \\"id\\": \\"d18986\\",
+      \\"name\\": \\"West Pokot\\",
+    },
+    Object {
+      \\"administration_id\\": 1525,
+      \\"administration_name\\": \\"Western\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.2449468204,
+      \\"id\\": \\"d18987\\",
+      \\"name\\": \\"Bungoma\\",
+    },
+    Object {
+      \\"administration_id\\": 1525,
+      \\"administration_name\\": \\"Western\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.1462176784,
+      \\"id\\": \\"d18988\\",
+      \\"name\\": \\"Busia\\",
+    },
+    Object {
+      \\"administration_id\\": 1525,
+      \\"administration_name\\": \\"Western\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.2464573328,
+      \\"id\\": \\"d18989\\",
+      \\"name\\": \\"Kakamega\\",
+    },
+    Object {
+      \\"administration_id\\": 1525,
+      \\"administration_name\\": \\"Western\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": 0.0465047031,
+      \\"id\\": \\"d18990\\",
+      \\"name\\": \\"Vihiga\\",
+    },
+    Object {
+      \\"administration_id\\": 1524,
+      \\"administration_name\\": \\"Rift Valley\\",
+      \\"alternative_name\\": \\"\\",
+      \\"area\\": \\"0\\",
+      \\"id\\": \\"d18991\\",
+      \\"name\\": \\"Kajiado\\",
+    },
+  ],
+  \\"uganda\\": Array [
+    Object {
+      \\"id\\": \\"d101\\",
+      \\"name\\": \\"Kalangala\\",
+    },
+    Object {
+      \\"id\\": \\"d102\\",
+      \\"name\\": \\"Kampala\\",
+    },
+    Object {
+      \\"id\\": \\"d103\\",
+      \\"name\\": \\"Kiboga\\",
+    },
+    Object {
+      \\"id\\": \\"d104\\",
+      \\"name\\": \\"Luwero\\",
+    },
+    Object {
+      \\"id\\": \\"d105\\",
+      \\"name\\": \\"Masaka\\",
+    },
+    Object {
+      \\"id\\": \\"d106\\",
+      \\"name\\": \\"Mpigi\\",
+    },
+    Object {
+      \\"id\\": \\"d107\\",
+      \\"name\\": \\"Mubende\\",
+    },
+    Object {
+      \\"id\\": \\"d108\\",
+      \\"name\\": \\"Mukono\\",
+    },
+    Object {
+      \\"id\\": \\"d109\\",
+      \\"name\\": \\"Nakasongola\\",
+    },
+    Object {
+      \\"id\\": \\"d110\\",
+      \\"name\\": \\"Rakai\\",
+    },
+    Object {
+      \\"id\\": \\"d111\\",
+      \\"name\\": \\"Ssembabule\\",
+    },
+    Object {
+      \\"id\\": \\"d112\\",
+      \\"name\\": \\"Kayunga\\",
+    },
+    Object {
+      \\"id\\": \\"d113\\",
+      \\"name\\": \\"Wakiso\\",
+    },
+    Object {
+      \\"id\\": \\"d114\\",
+      \\"name\\": \\"Lyantonde\\",
+    },
+    Object {
+      \\"id\\": \\"d115\\",
+      \\"name\\": \\"Mityana\\",
+    },
+    Object {
+      \\"id\\": \\"d116\\",
+      \\"name\\": \\"Nakaseke\\",
+    },
+    Object {
+      \\"id\\": \\"d117\\",
+      \\"name\\": \\"Buikwe\\",
+    },
+    Object {
+      \\"id\\": \\"d118\\",
+      \\"name\\": \\"Bukomansimbi\\",
+    },
+    Object {
+      \\"id\\": \\"d119\\",
+      \\"name\\": \\"Butambala\\",
+    },
+    Object {
+      \\"id\\": \\"d120\\",
+      \\"name\\": \\"Buvuma\\",
+    },
+    Object {
+      \\"id\\": \\"d121\\",
+      \\"name\\": \\"Gomba\\",
+    },
+    Object {
+      \\"id\\": \\"d122\\",
+      \\"name\\": \\"Kalungu\\",
+    },
+    Object {
+      \\"id\\": \\"d123\\",
+      \\"name\\": \\"Kyankwanzi\\",
+    },
+    Object {
+      \\"id\\": \\"d124\\",
+      \\"name\\": \\"Lwengo\\",
+    },
+    Object {
+      \\"id\\": \\"d201\\",
+      \\"name\\": \\"Bugiri\\",
+    },
+    Object {
+      \\"id\\": \\"d202\\",
+      \\"name\\": \\"Busia\\",
+    },
+    Object {
+      \\"id\\": \\"d203\\",
+      \\"name\\": \\"Iganga\\",
+    },
+    Object {
+      \\"id\\": \\"d204\\",
+      \\"name\\": \\"Jinja\\",
+    },
+    Object {
+      \\"id\\": \\"d205\\",
+      \\"name\\": \\"Kamuli\\",
+    },
+    Object {
+      \\"id\\": \\"d206\\",
+      \\"name\\": \\"Kapchorwa\\",
+    },
+    Object {
+      \\"id\\": \\"d207\\",
+      \\"name\\": \\"Katakwi\\",
+    },
+    Object {
+      \\"id\\": \\"d208\\",
+      \\"name\\": \\"Kumi\\",
+    },
+    Object {
+      \\"id\\": \\"d209\\",
+      \\"name\\": \\"Mbale\\",
+    },
+    Object {
+      \\"id\\": \\"d210\\",
+      \\"name\\": \\"Pallisa\\",
+    },
+    Object {
+      \\"id\\": \\"d211\\",
+      \\"name\\": \\"Soroti\\",
+    },
+    Object {
+      \\"id\\": \\"d212\\",
+      \\"name\\": \\"Tororo\\",
+    },
+    Object {
+      \\"id\\": \\"d213\\",
+      \\"name\\": \\"Kaberamaido\\",
+    },
+    Object {
+      \\"id\\": \\"d214\\",
+      \\"name\\": \\"Mayuge\\",
+    },
+    Object {
+      \\"id\\": \\"d215\\",
+      \\"name\\": \\"Sironko\\",
+    },
+    Object {
+      \\"id\\": \\"d216\\",
+      \\"name\\": \\"Amuria\\",
+    },
+    Object {
+      \\"id\\": \\"d217\\",
+      \\"name\\": \\"Budaka\\",
+    },
+    Object {
+      \\"id\\": \\"d218\\",
+      \\"name\\": \\"Bududa\\",
+    },
+    Object {
+      \\"id\\": \\"d219\\",
+      \\"name\\": \\"Bukedea\\",
+    },
+    Object {
+      \\"id\\": \\"d220\\",
+      \\"name\\": \\"Bukwo\\",
+    },
+    Object {
+      \\"id\\": \\"d221\\",
+      \\"name\\": \\"Butaleja\\",
+    },
+    Object {
+      \\"id\\": \\"d222\\",
+      \\"name\\": \\"Kaliro\\",
+    },
+    Object {
+      \\"id\\": \\"d223\\",
+      \\"name\\": \\"Manafwa\\",
+    },
+    Object {
+      \\"id\\": \\"d224\\",
+      \\"name\\": \\"Namutumba\\",
+    },
+    Object {
+      \\"id\\": \\"d225\\",
+      \\"name\\": \\"Bulambuli\\",
+    },
+    Object {
+      \\"id\\": \\"d226\\",
+      \\"name\\": \\"Buyende\\",
+    },
+    Object {
+      \\"id\\": \\"d227\\",
+      \\"name\\": \\"Kibuku\\",
+    },
+    Object {
+      \\"id\\": \\"d228\\",
+      \\"name\\": \\"Kween\\",
+    },
+    Object {
+      \\"id\\": \\"d229\\",
+      \\"name\\": \\"Luuka\\",
+    },
+    Object {
+      \\"id\\": \\"d230\\",
+      \\"name\\": \\"Namayingo\\",
+    },
+    Object {
+      \\"id\\": \\"d231\\",
+      \\"name\\": \\"Ngora\\",
+    },
+    Object {
+      \\"id\\": \\"d232\\",
+      \\"name\\": \\"Serere\\",
+    },
+    Object {
+      \\"id\\": \\"d301\\",
+      \\"name\\": \\"Adjumani\\",
+    },
+    Object {
+      \\"id\\": \\"d302\\",
+      \\"name\\": \\"Apac\\",
+    },
+    Object {
+      \\"id\\": \\"d303\\",
+      \\"name\\": \\"Arua\\",
+    },
+    Object {
+      \\"id\\": \\"d304\\",
+      \\"name\\": \\"Gulu\\",
+    },
+    Object {
+      \\"id\\": \\"d305\\",
+      \\"name\\": \\"Kitgum\\",
+    },
+    Object {
+      \\"id\\": \\"d306\\",
+      \\"name\\": \\"Kotido\\",
+    },
+    Object {
+      \\"id\\": \\"d307\\",
+      \\"name\\": \\"Lira\\",
+    },
+    Object {
+      \\"id\\": \\"d308\\",
+      \\"name\\": \\"Moroto\\",
+    },
+    Object {
+      \\"id\\": \\"d309\\",
+      \\"name\\": \\"Moyo\\",
+    },
+    Object {
+      \\"id\\": \\"d310\\",
+      \\"name\\": \\"Nebbi\\",
+    },
+    Object {
+      \\"id\\": \\"d311\\",
+      \\"name\\": \\"Nakapiripirit\\",
+    },
+    Object {
+      \\"id\\": \\"d312\\",
+      \\"name\\": \\"Pader\\",
+    },
+    Object {
+      \\"id\\": \\"d313\\",
+      \\"name\\": \\"Yumbe\\",
+    },
+    Object {
+      \\"id\\": \\"d314\\",
+      \\"name\\": \\"Abim\\",
+    },
+    Object {
+      \\"id\\": \\"d315\\",
+      \\"name\\": \\"Amolatar\\",
+    },
+    Object {
+      \\"id\\": \\"d316\\",
+      \\"name\\": \\"Amuru\\",
+    },
+    Object {
+      \\"id\\": \\"d317\\",
+      \\"name\\": \\"Dokolo\\",
+    },
+    Object {
+      \\"id\\": \\"d318\\",
+      \\"name\\": \\"Kaabong\\",
+    },
+    Object {
+      \\"id\\": \\"d319\\",
+      \\"name\\": \\"Koboko\\",
+    },
+    Object {
+      \\"id\\": \\"d320\\",
+      \\"name\\": \\"Maracha\\",
+    },
+    Object {
+      \\"id\\": \\"d321\\",
+      \\"name\\": \\"Oyam\\",
+    },
+    Object {
+      \\"id\\": \\"d322\\",
+      \\"name\\": \\"Agago\\",
+    },
+    Object {
+      \\"id\\": \\"d323\\",
+      \\"name\\": \\"Alebtong\\",
+    },
+    Object {
+      \\"id\\": \\"d324\\",
+      \\"name\\": \\"Amudat\\",
+    },
+    Object {
+      \\"id\\": \\"d325\\",
+      \\"name\\": \\"Kole\\",
+    },
+    Object {
+      \\"id\\": \\"d326\\",
+      \\"name\\": \\"Lamwo\\",
+    },
+    Object {
+      \\"id\\": \\"d327\\",
+      \\"name\\": \\"Napak\\",
+    },
+    Object {
+      \\"id\\": \\"d328\\",
+      \\"name\\": \\"Nwoya\\",
+    },
+    Object {
+      \\"id\\": \\"d329\\",
+      \\"name\\": \\"Otuke\\",
+    },
+    Object {
+      \\"id\\": \\"d330\\",
+      \\"name\\": \\"Zombo\\",
+    },
+    Object {
+      \\"id\\": \\"d401\\",
+      \\"name\\": \\"Bundibugyo\\",
+    },
+    Object {
+      \\"id\\": \\"d402\\",
+      \\"name\\": \\"Bushenyi\\",
+    },
+    Object {
+      \\"id\\": \\"d403\\",
+      \\"name\\": \\"Hoima\\",
+    },
+    Object {
+      \\"id\\": \\"d404\\",
+      \\"name\\": \\"Kabale\\",
+    },
+    Object {
+      \\"id\\": \\"d405\\",
+      \\"name\\": \\"Kabarole\\",
+    },
+    Object {
+      \\"id\\": \\"d406\\",
+      \\"name\\": \\"Kasese\\",
+    },
+    Object {
+      \\"id\\": \\"d407\\",
+      \\"name\\": \\"Kibaale\\",
+    },
+    Object {
+      \\"id\\": \\"d408\\",
+      \\"name\\": \\"Kisoro\\",
+    },
+    Object {
+      \\"id\\": \\"d409\\",
+      \\"name\\": \\"Masindi\\",
+    },
+    Object {
+      \\"id\\": \\"d410\\",
+      \\"name\\": \\"Mbarara\\",
+    },
+    Object {
+      \\"id\\": \\"d411\\",
+      \\"name\\": \\"Ntungamo\\",
+    },
+    Object {
+      \\"id\\": \\"d412\\",
+      \\"name\\": \\"Rukungiri\\",
+    },
+    Object {
+      \\"id\\": \\"d413\\",
+      \\"name\\": \\"Kamwenge\\",
+    },
+    Object {
+      \\"id\\": \\"d414\\",
+      \\"name\\": \\"Kanungu\\",
+    },
+    Object {
+      \\"id\\": \\"d415\\",
+      \\"name\\": \\"Kyenjojo\\",
+    },
+    Object {
+      \\"id\\": \\"d416\\",
+      \\"name\\": \\"Buliisa\\",
+    },
+    Object {
+      \\"id\\": \\"d417\\",
+      \\"name\\": \\"Ibanda\\",
+    },
+    Object {
+      \\"id\\": \\"d418\\",
+      \\"name\\": \\"Isingiro\\",
+    },
+    Object {
+      \\"id\\": \\"d419\\",
+      \\"name\\": \\"Kiruhura\\",
+    },
+    Object {
+      \\"id\\": \\"d420\\",
+      \\"name\\": \\"Buhweju\\",
+    },
+    Object {
+      \\"id\\": \\"d421\\",
+      \\"name\\": \\"Kiryandongo\\",
+    },
+    Object {
+      \\"id\\": \\"d422\\",
+      \\"name\\": \\"Kyegegwa\\",
+    },
+    Object {
+      \\"id\\": \\"d423\\",
+      \\"name\\": \\"Mitooma\\",
+    },
+    Object {
+      \\"id\\": \\"d424\\",
+      \\"name\\": \\"Ntoroko\\",
+    },
+    Object {
+      \\"id\\": \\"d425\\",
+      \\"name\\": \\"Rubirizi\\",
+    },
+    Object {
+      \\"id\\": \\"d426\\",
+      \\"name\\": \\"Sheema\\",
+    },
+  ],
+}"
 `;

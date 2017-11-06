@@ -5,7 +5,7 @@ type Page {
     donor_title: String
 }
 type Query {
-  districtPageData: [Page]
+  districtPageData(country: String!): [Page]
   countryProfilePageData: [Page]
   odaDonorBubbleChartPageData: [Page]
   globalPicturePageData: [Page]

@@ -23,17 +23,17 @@ describe('spotlight on uganda tests', () => {
     it('should return education tab data for wakiso and nairobi district', async () => {
         const wakiso = await spotLight.uganda.getEducationTabRegional({id: 'wakiso'});
         const nairobi = await spotLight.kenya.getEducationTabRegional({id: 'nairobi'});
-        expect(prettyFormat(wakiso, nairobi)).toMatchSnapshot();
+        expect(prettyFormat({nairobi, wakiso})).toMatchSnapshot();
     }, 10000);
     it('should return health tab data for wakiso and nairobi district', async () => {
-        const wakiso = await spotLight.uganda.getHealthTabRegional({id: 'wakiso'});
+        // const wakiso = await spotLight.uganda.getHealthTabRegional({id: 'wakiso'});
         const nairobi = await spotLight.kenya.getHealthTabRegional({id: 'nairobi'});
-        expect(prettyFormat(wakiso, nairobi)).toMatchSnapshot();
+        expect(prettyFormat({nairobi})).toMatchSnapshot();
     }, 10000);
     it('should return finance data for wakiso and nairobi district', async () => {
         const wakiso = await spotLight.uganda.getLocalGovernmentFinance({id: 'wakiso'});
         const nairobi = await spotLight.kenya.getLocalGovernmentFinance({id: 'nairobi'});
-        expect(prettyFormat(wakiso, nairobi)).toMatchSnapshot();
+        expect(prettyFormat({nairobi, wakiso})).toMatchSnapshot();
     }, 50000);
 
     afterAll(() => {

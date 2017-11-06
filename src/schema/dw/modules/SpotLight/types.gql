@@ -9,13 +9,13 @@ type IndicatorDataColored {
 }
 type  IndicatorDataColoredWithToolTip {
   data: IndicatorDataColored
-  toolTip: ToolTip
+  toolTip: ToolTip!
 }
 
 type IndicatorValueNCUWithToolTip {
-  value: String 
+  value: String
   value_ncu: String 
-  toolTip: ToolTip
+  toolTip: ToolTip!
 }
 
 type OverviewTabRegional {
@@ -27,7 +27,7 @@ type OverviewTabRegional {
   regionalResources: IndicatorValueNCUWithToolTip
   # IndicatorDataColored is defined in country profile types
   # has local government, donor and central government
-  regionalResourcesBreakdown: [IndicatorDataColoredWithToolTip]
+  regionalResourcesBreakdown: [IndicatorDataColoredWithToolTip]!
   # HOW MUCH DOES THE LOCAL GOVERNMENT SPEND PER PERSON?
   localGovernmentSpendPerPerson: IndicatorValueWithToolTip
 }
@@ -104,20 +104,21 @@ type LocalGovernmentFinance {
   currencyUSD: String
   currencyCode: String
   # come from finance file
-  revenueAndGrants: [Domestic]
-  expenditure: [Domestic]
+  revenueAndGrants: [Domestic]!
+  expenditure: [Domestic]!
 }
+
+union PovertyTabRegional = PovertyTabUg | PovertyTabKe
+union PopulationTabRegional = PopulationTabRegionalUg | PopulationTabRegionalKe
+union EducationTabRegional = EducationTabRegionalUg | EducationTabRegionalKe
+union HealthTabRegional = HealthTabRegionalKe | HealthTabRegionalUg
 
 type Query {  
   # id is district slug
   overviewTabRegional(id: String!, country: String!):OverviewTabRegional
-  povertyTabUg(id: String!): PovertyTabUg
-  povertyTabKe(id: String!): PovertyTabKe
-  populationTabRegionalUg(id: String!):PopulationTabRegionalUg
-  populationTabRegionalKe(id: String!):PopulationTabRegionalKe
-  educationTabRegionalUg(id: String!): EducationTabRegionalUg
-  educationTabRegionalKe(id: String!): EducationTabRegionalKe
-  healthTabRegionalKe(id: String!): HealthTabRegionalKe 
-  healthTabRegionalUg(id: String!): HealthTabRegionalUg 
+  povertyTabRegional(id: String!, country: String!): PovertyTabRegional
+  populationTabRegional(id: String!, country: String!):PopulationTabRegional
+  educationTabRegional(id: String!, country: String!):  EducationTabRegional
+  healthTabRegional(id: String!, country: String!): HealthTabRegional
   localGovernmentFinance(id: String!, country: String!): LocalGovernmentFinance
 }

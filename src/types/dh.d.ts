@@ -48,14 +48,10 @@ declare namespace DH {
     singleResource: ISingleResourceData | null;
     mapData: IMapData | null;
     overviewTabRegional: IOverviewTabRegional | null;
-    povertyTabUg: IPovertyTabUg | null;
-    povertyTabKe: IPovertyTabKe | null;
-    populationTabRegionalUg: IPopulationTabRegionalUg | null;
-    populationTabRegionalKe: IPopulationTabRegionalKe | null;
-    educationTabRegionalUg: IEducationTabRegionalUg | null;
-    educationTabRegionalKe: IEducationTabRegionalKe | null;
-    healthTabRegionalKe: IHealthTabRegionalKe | null;
-    healthTabRegionalUg: IHealthTabRegionalUg | null;
+    povertyTabRegional: PovertyTabRegional | null;
+    populationTabRegional: PopulationTabRegional | null;
+    educationTabRegional: EducationTabRegional | null;
+    healthTabRegional: HealthTabRegional | null;
     localGovernmentFinance: ILocalGovernmentFinance | null;
     unbundlingAidDataTotal: IUnbundlingAidTotal | null;
     unbundlingAidData: Array<IAidUnit> | null;
@@ -208,22 +204,22 @@ declare namespace DH {
   */
   interface IIndicatorValueWithToolTip {
     value: string | null;
-    toolTip: IToolTip | null;
+    toolTip: IToolTip;
   }
 
   /*
     description: 
   */
   interface IToolTip {
-    source: string | null;
-    heading: string | null;
+    source: string;
+    heading: string;
   }
 
   /*
     description: 
   */
   interface IIndicatorDataWithToolTip {
-    data: Array<IIndicatorData> | null;
+    data: Array<IIndicatorData>;
     toolTip: IToolTip | null;
   }
 
@@ -242,7 +238,7 @@ declare namespace DH {
     description: 
   */
   interface IQuintileDataWithToolTip {
-    data: Array<IQuintile> | null;
+    data: Array<IQuintile>;
     toolTip: IToolTip | null;
   }
 
@@ -497,7 +493,7 @@ declare namespace DH {
   interface IOverviewTabRegional {
     poorestPeople: IIndicatorValueWithToolTip | null;
     regionalResources: IIndicatorValueNCUWithToolTip | null;
-    regionalResourcesBreakdown: Array<IIndicatorDataColoredWithToolTip> | null;
+    regionalResourcesBreakdown: Array<IIndicatorDataColoredWithToolTip>;
     localGovernmentSpendPerPerson: IIndicatorValueWithToolTip | null;
   }
 
@@ -507,7 +503,7 @@ declare namespace DH {
   interface IIndicatorValueNCUWithToolTip {
     value: string | null;
     value_ncu: string | null;
-    toolTip: IToolTip | null;
+    toolTip: IToolTip;
   }
 
   /*
@@ -515,8 +511,15 @@ declare namespace DH {
   */
   interface IIndicatorDataColoredWithToolTip {
     data: IIndicatorDataColored | null;
-    toolTip: IToolTip | null;
+    toolTip: IToolTip;
   }
+
+  /*
+    description: 
+  */
+  type PovertyTabRegional = IPovertyTabUg | IPovertyTabKe;
+
+
 
   /*
     description: 
@@ -535,6 +538,13 @@ declare namespace DH {
     meanExpenditure: IIndicatorValueWithToolTip | null;
     povertyGap: IIndicatorValueWithToolTip | null;
   }
+
+  /*
+    description: 
+  */
+  type PopulationTabRegional = IPopulationTabRegionalUg | IPopulationTabRegionalKe;
+
+
 
   /*
     description: 
@@ -559,6 +569,13 @@ declare namespace DH {
   /*
     description: 
   */
+  type EducationTabRegional = IEducationTabRegionalUg | IEducationTabRegionalKe;
+
+
+
+  /*
+    description: 
+  */
   interface IEducationTabRegionalUg {
     pupilTeacherRatioGovtSchl: IIndicatorValueWithToolTip | null;
     pupilTeacherRatioOtherSchl: IIndicatorValueWithToolTip | null;
@@ -575,6 +592,13 @@ declare namespace DH {
     primaryTeacherRatioPublicSchl: IIndicatorValueWithToolTip | null;
     primaryTeacherRatioPrivateSchl: IIndicatorValueWithToolTip | null;
   }
+
+  /*
+    description: 
+  */
+  type HealthTabRegional = IHealthTabRegionalKe | IHealthTabRegionalUg;
+
+
 
   /*
     description: 
@@ -602,8 +626,8 @@ declare namespace DH {
     startYear: number | null;
     currencyUSD: string | null;
     currencyCode: string | null;
-    revenueAndGrants: Array<IDomestic> | null;
-    expenditure: Array<IDomestic> | null;
+    revenueAndGrants: Array<IDomestic>;
+    expenditure: Array<IDomestic>;
   }
 
   /*

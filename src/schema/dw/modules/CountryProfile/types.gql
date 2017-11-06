@@ -6,17 +6,17 @@ type IndicatorData {
   uid: String
 }
 type ToolTip {
-  source: String
-  heading: String
+  source: String!
+  heading: String!
 }
 type IndicatorDataWithToolTip {
-  data: [IndicatorData]
+  data: [IndicatorData]!
   toolTip: ToolTip
 }
 
 type IndicatorValueWithToolTip {
   value: String
-  toolTip: ToolTip
+  toolTip: ToolTip!
 }
 type SpendingAllocation {
   value: Float
@@ -32,7 +32,7 @@ type Quintile {
   color: String
 }
 type QuintileDataWithToolTip {
-  data: [Quintile]
+  data: [Quintile]!
   toolTip: ToolTip
 }
 type ResourceData {

@@ -4,8 +4,9 @@ import {getDistrictBySlugAsync, getDistrictEntities} from '.';
 describe('spotlight reference module test', () => {
 
     it('should return uganda district entities', async () => {
-        const districts = await getDistrictEntities('uganda');
-        expect(prettyFormat(districts)).toMatchSnapshot();
+        const uganda = await getDistrictEntities('uganda');
+        const kenya = await getDistrictEntities('kenya');
+        expect(prettyFormat({kenya, uganda})).toMatchSnapshot();
     }, 10000);
     it('should return details about a uganda district', async () => {
         const districts = await getDistrictBySlugAsync('uganda', 'wakiso');

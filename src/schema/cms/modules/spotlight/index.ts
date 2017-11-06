@@ -8,8 +8,10 @@ export interface IDistrict {
     name: string;
 }
 
-export const getDistrictEntities = (country: string): Promise<IDistrict[]> =>
-    get<IDistrict>(`spotlight-${country}/district.csv`);
+export const getDistrictEntities = async (country: string): Promise<IDistrict[]> => {
+    const data = await get<IDistrict>(`spotlight-${country}/district.csv`);
+    return data.map(obj => ({id: obj.id, name: obj.name}));
+};
 
 export const getDistrictBySlugAsync = async (country: string, slug: string): Promise<IDistrict> => {
      const entities: IDistrict[] = await getDistrictEntities(country);
