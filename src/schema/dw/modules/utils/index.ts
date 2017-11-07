@@ -126,8 +126,10 @@ export const RECIPIENT = 'recipient';
 export const DONOR = 'donor';
 export const MULTILATERAL = 'multilateral';
 export const  CROSSOVER = 'crossover';
+// TODO: should get from a refrence file
 export const  budgetTypesRefs = {
     actual: 'Actual',
+    estimated: 'Estimated',
     proposed: 'Proposed',
     approved: 'Approved',
     budget: 'Budget',

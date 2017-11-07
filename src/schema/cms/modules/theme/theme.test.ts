@@ -8,7 +8,8 @@ describe('Themes data tests', () => {
         expect(prettyFormat(themes)).toMatchSnapshot();
     }, 100000);
     it('should return spotlight on uganda themes', async () => {
-        const themes = await getSpotlightThemes('uganda');
-        expect(prettyFormat(themes)).toMatchSnapshot();
+        const themesUg = await getSpotlightThemes('uganda');
+        const themesKe = await getSpotlightThemes('kenya');
+        expect(prettyFormat({themesUg, themesKe})).toMatchSnapshot();
     }, 30000);
 });

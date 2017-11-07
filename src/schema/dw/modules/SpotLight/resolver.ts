@@ -52,7 +52,7 @@ export default {
             if (obj.districtPerformance) {
                 return 'HealthTabRegionalUg';
             }
-            return 'PHealthTabRegionalKe';
+            return 'HealthTabRegionalKe';
         },
     }
 };
