@@ -203,8 +203,9 @@ export const getIndicatorsGeneric = ({country, db}: ISpotlightIndicatorArgs) =>
         try {
             const conceptType = getConceptType(country);
             const schema = getSchema(country);
+            const date: Date = new Date();
             const indicatorArgs: ISpotlightGetIndicatorArgs[] =
-                sqlList.map(query => ({db, conceptType, query, id, country, schema}));
+                sqlList.map(query => ({db, conceptType, query, id, country, schema, year: date.getFullYear()}));
             const indicatorRaw: IRAW[][] =
                 await Promise.all(indicatorArgs.map(args => getIndicatorDataSpotlights<IRAW>(args)));
             const toolTips: DH.IToolTip[] =

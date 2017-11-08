@@ -28,7 +28,7 @@ export const uganda = {
     stdOfLiving: 'SELECT * FROM ${schema^}_2017.${country^}_deprivation_living WHERE district_id = ${id} AND year = ${start_year}',
     // tslint:disable-next-line:max-line-length
     lifeExpectancy: 'SELECT * FROM ${schema^}_2017.${country^}_life_expectancy WHERE district_id = ${id} AND year = ${start_year}',
-    totalPopulation: 'SELECT * FROM ${schema^}_2017.${country^}_total_pop WHERE district_id = ${id} AND year = ${end_year}',
+    totalPopulation: 'SELECT * FROM ${schema^}_2017.${country^}_total_pop WHERE district_id = ${id} AND year = ${year}',
     // tslint:disable-next-line:max-line-length
     populationDensity: 'SELECT * FROM ${schema^}_2017.${country^}_pop_dens WHERE district_id = ${id} AND year = ${start_year}',
     // tslint:disable-next-line:max-line-length
