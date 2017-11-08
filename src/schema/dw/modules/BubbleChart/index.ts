@@ -27,10 +27,9 @@ export default class BubbleChart {
             });
     }
     private db: IDatabase<IExtensions> & IExtensions;
-    private defaultArgs;
+
     constructor(db: any) {
         this.db = db;
-        this.defaultArgs = {db: this.db, conceptType: 'bubble-chart'};
     }
 
     public async getBubbleChartOda(id?: string): Promise<DH.IBubbleChartOda[]> {
