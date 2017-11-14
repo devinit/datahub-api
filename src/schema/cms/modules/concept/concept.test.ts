@@ -16,7 +16,8 @@ describe('Github concept data tests', () => {
         expect(prettyFormat({conceptA, conceptB})).toMatchSnapshot();
     }, 50000);
     it('should get methodology data', async () => {
-        const data = await getMethodologyData('spotlight-uganda');
-        expect(prettyFormat(data)).toMatchSnapshot();
+        const spotlightUganda = await getMethodologyData('spotlight-uganda');
+        const spotlightKenya = await getMethodologyData('spotlight-kenya');
+        expect(prettyFormat({spotlightUganda, spotlightKenya})).toMatchSnapshot();
     }, 50000);
 });
