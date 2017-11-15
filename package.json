@@ -1,6 +1,6 @@
 {
   "name": "datahub-api",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Apollo GraphQL server using webpack and typescript",
   "main": "dist/main.min.js",
   "now": {
