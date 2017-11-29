@@ -271,7 +271,7 @@ export default class Maps {
         const entities: IDistrict[] | IEntity[]  = country === 'global' ?
             await getEntities() :  await getDistrictEntities(country);
         const processedData: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(data, country);
-        const hasBudgeTypes: boolean = processedData[0].budget_type ? true : false;
+        const hasBudgeTypes: boolean = processedData && processedData[0] && processedData[0].budget_type ? true : false;
         const processed: DH.IMapUnit[] = processedData
             .filter((obj) => {
                 const entity = getEntityByIdGeneric<IDistrict | IEntity>(obj.id, entities);
@@ -304,6 +304,7 @@ export default class Maps {
         const entities: IEntity[] | IDistrict[] = country === 'global' ?
             await getEntities() : await getDistrictEntities(country) ;
         const processedData: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(data, country);
+        console.log(processedData[0]);
         const mapData = processedData.map(obj => {
            const cMapping = Maps.getValueDetail(obj.value, cMappings);
            const entity = getEntityByIdGeneric<IEntity | IDistrict>(obj.id, entities);
