@@ -655,9 +655,8 @@ declare namespace DH {
     groupBy: string;
     to_di_id?: string | null;
     from_di_id?: string | null;
-    oof_bundle?: string | null;
-    sector?: string | null;
     bundle?: string | null;
+    sector?: string | null;
     channel?: string | null;
   }
 
