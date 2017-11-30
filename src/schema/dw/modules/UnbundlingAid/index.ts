@@ -113,7 +113,7 @@ export default class UnbundlingAid {
         }
     }
     private getUnbundlingAidDataTable(aidType) {
-        return aidType === 'oda' ? 'fact.oda_2015' : 'data_series.oof';
+        return aidType === 'oda' ? 'fact.oda_2015' : 'fact.oof_2015';
     }
     private async getCountries(): Promise<IUnBundlingAidCountries> {
         try {
