@@ -53,14 +53,13 @@ export default class UnbundlingAid {
         try {
             const queryArgs: IUnbundlingAidQuery = UnbundlingAid.getSqlQueryArgs(args);
             const table = this.getUnbundlingAidDataTable(args.aidType);
-            const groupBy = args.aidType === 'oof' && args.groupBy === 'bundle' ? 'oof_bundle' : args.groupBy;
-            const queryStr: string = makeSqlAggregateQuery(queryArgs, groupBy, table);
+            const queryStr: string = makeSqlAggregateQuery(queryArgs, args.groupBy, table);
             const raw: IUnbundlingAidResult[] = await this.db.manyCacheable(queryStr, null);
             const entites: IUnbundlingEnitity[] = await entitesFnMap[args.groupBy]();
             const regions: IRegional[] = await getRegional();
             const colors = await getColors();
             return raw.map((obj) => {
-                const entity: IUnbundlingEnitity | undefined = entites.find(item => obj[groupBy] === item.id);
+                const entity: IUnbundlingEnitity | undefined = entites.find(item => obj[args.groupBy] === item.id);
                 if (!entity) {
                     throw new Error(`error getting unbundling aid entity
                         ${entity} \n for object ${JSON.stringify(obj)}`);

@@ -2,7 +2,24 @@
 
 exports[`Unbundling aid DW module tests getting unbundling aid data of various types 1`] = `
 "Object {
-  \\"dataC\\": Array [],
+  \\"dataA\\": Array [
+    Object {
+      \\"color\\": \\"#eb642b\\",
+      \\"id\\": \\"oof-loan\\",
+      \\"name\\": \\"OOF Loan\\",
+      \\"uid\\": \\"ryQ_uU6xf\\",
+      \\"value\\": 71110025028,
+      \\"year\\": 2015,
+    },
+    Object {
+      \\"color\\": \\"#0089cc\\",
+      \\"id\\": \\"oof-grant\\",
+      \\"name\\": \\"OOF Grant\\",
+      \\"uid\\": \\"B1xXdOUpeG\\",
+      \\"value\\": 434896706,
+      \\"year\\": 2015,
+    },
+  ],
 }"
 `;
 
@@ -46,11 +63,6 @@ exports[`Unbundling aid DW module tests getting unbundling aid selection options
         \\"name\\": \\"Technical cooperation\\",
       },
       Object {
-        \\"color\\": \\"grey-darker\\",
-        \\"id\\": \\"export-credit\\",
-        \\"name\\": \\"Export credit\\",
-      },
-      Object {
         \\"color\\": \\"blue\\",
         \\"id\\": \\"oof-grant\\",
         \\"name\\": \\"OOF Grant\\",
@@ -59,11 +71,6 @@ exports[`Unbundling aid DW module tests getting unbundling aid selection options
         \\"color\\": \\"orange\\",
         \\"id\\": \\"oof-loan\\",
         \\"name\\": \\"OOF Loan\\",
-      },
-      Object {
-        \\"color\\": \\"red\\",
-        \\"id\\": \\"oof-export-credit\\",
-        \\"name\\": \\"OOF Export Credit\\",
       },
     ],
     \\"channels\\": Array [
@@ -1278,11 +1285,6 @@ exports[`Unbundling aid DW module tests getting unbundling aid selection options
         \\"id\\": \\"oof-loan\\",
         \\"name\\": \\"OOF Loan\\",
       },
-      Object {
-        \\"color\\": \\"red\\",
-        \\"id\\": \\"oof-export-credit\\",
-        \\"name\\": \\"OOF Export Credit\\",
-      },
     ],
     \\"channels\\": Array [
       Object {
@@ -2472,6 +2474,8 @@ exports[`Unbundling aid DW module tests getting unbundling aid selection options
       },
     ],
     \\"years\\": Array [
+      2015,
+      2014,
       2013,
       2012,
       2011,
@@ -2492,8 +2496,8 @@ exports[`Unbundling aid DW module tests should return unbundling aid total 1`] =
     \\"year\\": 2015,
   },
   \\"totalAndYearOOF\\": Object {
-    \\"total\\": \\"73.1bn\\",
-    \\"year\\": 2013,
+    \\"total\\": \\"71.5bn\\",
+    \\"year\\": 2015,
   },
 }"
 `;

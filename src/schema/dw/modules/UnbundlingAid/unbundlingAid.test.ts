@@ -6,15 +6,15 @@ describe('Unbundling aid DW module tests', () => {
     const unbundlingAid = new UnbundlingAid(db);
 
     it('getting unbundling aid data of various types', async () => {
-        const argsA = { aidType: 'oda', year: 2015, groupBy: 'to_di_id'};
-        const argsB = { aidType: 'oda', year: 2015, sector: 'banking-and-business', groupBy: 'to_di_id'};
+        // const argsA = { aidType: 'oda', year: 2015, groupBy: 'to_di_id'};
+        // const argsB = { aidType: 'oda', year: 2015, sector: 'banking-and-business', groupBy: 'to_di_id'};
         const argsC = { aidType: 'oof', year: 2015, groupBy: 'bundle'};
-        const argsD = { aidType: 'oda', year: 2015, groupBy: 'sector'};
-        const dataA = await unbundlingAid.getUnbundlingAidData(argsA);
-        const dataB = await unbundlingAid.getUnbundlingAidData(argsB);
-        const dataC = await unbundlingAid.getUnbundlingAidData(argsC);
-        const dataD = await unbundlingAid.getUnbundlingAidData(argsD);
-        expect(prettyFormat({dataA, dataB, dataC, dataD})).toMatchSnapshot();
+        // const argsD = { aidType: 'oda', year: 2015, groupBy: 'sector'};
+        const dataA = await unbundlingAid.getUnbundlingAidData(argsC);
+        // const dataB = await unbundlingAid.getUnbundlingAidData(argsB);
+        // const dataC = await unbundlingAid.getUnbundlingAidData(argsC);
+        // const dataD = await unbundlingAid.getUnbundlingAidData(argsD);
+        expect(prettyFormat({dataA})).toMatchSnapshot();
     }, 100000);
     it.skip('should create sql query args for getting data', () => {
         const argsA = {
@@ -25,12 +25,12 @@ describe('Unbundling aid DW module tests', () => {
         const formatted = UnbundlingAid.getSqlQueryArgs(argsA);
         expect(prettyFormat(formatted)).toMatchSnapshot();
     });
-    it.skip('should return unbundling aid total', async () => {
+    it('should return unbundling aid total', async () => {
         const totalAndYearODA = await unbundlingAid.getUnbundlingAidDataTotal({aidType: 'oda'});
         const totalAndYearOOF = await unbundlingAid.getUnbundlingAidDataTotal({aidType: 'oof'});
         expect(prettyFormat({totalAndYearODA, totalAndYearOOF})).toMatchSnapshot();
     }, 10000);
-    it.skip('getting unbundling aid selection options', async () => {
+    it('getting unbundling aid selection options', async () => {
         const dataODA = await unbundlingAid.getUnbundlingSelectionData({aidType: 'oda'});
         const dataOOF = await unbundlingAid.getUnbundlingSelectionData({aidType: 'oof'});
         expect(prettyFormat({dataODA, dataOOF})).toMatchSnapshot();
