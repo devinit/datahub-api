@@ -89,7 +89,6 @@ declare namespace DH {
     has_domestic_data: string | null;
     hasPDF: boolean | null;
     countryType: string | null;
-    hasPDF: boolean | null;
   }
 
   /*
