@@ -4,7 +4,7 @@ mkdir -p ~/datahub-api
 cd ~/datahub-api || exit
 
 rm -rf datahub-api-staging.git && \
-  git clone --depth 1 -b spotlights --single-branch git@github.com:devinit/datahub-api.git datahub-api-staging.git
+  git clone --depth 1 -b dev --single-branch git@github.com:devinit/datahub-api.git datahub-api-staging.git
 
 echo 'finished clonning'
 

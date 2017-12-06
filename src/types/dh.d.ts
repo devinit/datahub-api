@@ -87,6 +87,7 @@ declare namespace DH {
     name: string | null;
     slug: string | null;
     has_domestic_data: string | null;
+    hasPDF: boolean | null;
     countryType: string | null;
     hasPDF: boolean | null;
   }
@@ -656,9 +657,8 @@ declare namespace DH {
     groupBy: string;
     to_di_id?: string | null;
     from_di_id?: string | null;
-    oof_bundle?: string | null;
-    sector?: string | null;
     bundle?: string | null;
+    sector?: string | null;
     channel?: string | null;
   }
 

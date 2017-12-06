@@ -14,7 +14,6 @@ interface IUnbundlingAidQuery {
     to_di_id?: string;
     year?: number;
     sector?: string;
-    oof_bundle?: string;
     bundle?: string;
     channel?: string;
 }
@@ -36,13 +35,9 @@ interface IUnbundlingAidResult extends IUnbundlingAidQuery {
 }
 
 export default class UnbundlingAid {
-    public static getSqlQueryArgs(args: DH.IUnbundlingAidQuery): IUnbundlingAidQuery {
-        let newArgs = args;
-        if (args.aidType === 'oof' && args.bundle) {
-            newArgs = {...R.omit(['bundle'], args), oof_bundle: args.bundle};
-        }
-        return R.omit(['groupBy', 'aidType'], newArgs) as IUnbundlingAidQuery;
-    }
+    public static getSqlQueryArgs = (args: DH.IUnbundlingAidQuery): IUnbundlingAidQuery =>
+        R.omit(['groupBy', 'aidType'], args) as IUnbundlingAidQuery
+
     private db: IDatabase<IExtensions> & IExtensions;
     private donorsBlackList = ['country-unspecified', 'region-unspecified', 'organisation-unspecified',
                     'arab-fund', 'afesd', 'idb-sp-fund'];
@@ -88,7 +83,8 @@ export default class UnbundlingAid {
             const channels = await getChannels();
             const sectors = await getSectors();
             const allBundles = await getBundles();
-            const bundles = aidType === 'oda' ? allBundles : allBundles.filter(bundle => bundle.id.includes('oof'));
+            const bundles = aidType === 'oda' ? allBundles.filter(bundle => !bundle.id.includes('oof'))
+                : allBundles.filter(bundle => bundle.id.includes('oof'));
             return {years, ...countries, channels, sectors, bundles};
        } catch (error) {
            console.error(error);

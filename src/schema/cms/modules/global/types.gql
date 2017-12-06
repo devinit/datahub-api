@@ -3,6 +3,7 @@ type Entity {
   name: String
   slug: String
   has_domestic_data: String
+  hasPDF: Boolean
   countryType: String
   hasPDF: Boolean
 }

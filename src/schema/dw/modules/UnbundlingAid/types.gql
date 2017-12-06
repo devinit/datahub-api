@@ -39,7 +39,7 @@ input UnbundlingAidQuery {
     groupBy: String!
     to_di_id: String
     from_di_id: String
-    oof_bundle: String
+    bundle: String
     sector: String
     # form is same as buddle
     bundle: String

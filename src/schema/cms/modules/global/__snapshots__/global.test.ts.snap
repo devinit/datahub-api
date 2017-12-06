@@ -4,6 +4,7 @@ exports[`Site Global narratives and refrence module should return all countries 
 "Array [
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"AF\\",
     \\"name\\": \\"Afghanistan\\",
@@ -11,6 +12,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"AL\\",
     \\"name\\": \\"Albania\\",
@@ -18,6 +20,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"DZ\\",
     \\"name\\": \\"Algeria\\",
@@ -25,6 +28,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"AD\\",
     \\"name\\": \\"Andorra\\",
@@ -32,6 +36,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"AO\\",
     \\"name\\": \\"Angola\\",
@@ -39,6 +44,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"AI\\",
     \\"name\\": \\"Anguilla\\",
@@ -46,6 +52,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"AG\\",
     \\"name\\": \\"Antigua & Barbuda\\",
@@ -53,6 +60,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"AR\\",
     \\"name\\": \\"Argentina\\",
@@ -60,6 +68,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"AM\\",
     \\"name\\": \\"Armenia\\",
@@ -67,6 +76,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"AU\\",
     \\"name\\": \\"Australia\\",
@@ -74,6 +84,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"AT\\",
     \\"name\\": \\"Austria\\",
@@ -81,6 +92,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"AZ\\",
     \\"name\\": \\"Azerbaijan\\",
@@ -88,6 +100,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"BH\\",
     \\"name\\": \\"Bahrain\\",
@@ -95,6 +108,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"BD\\",
     \\"name\\": \\"Bangladesh\\",
@@ -102,6 +116,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"BB\\",
     \\"name\\": \\"Barbados\\",
@@ -109,6 +124,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"BY\\",
     \\"name\\": \\"Belarus\\",
@@ -116,6 +132,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"BE\\",
     \\"name\\": \\"Belgium\\",
@@ -123,6 +140,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"BZ\\",
     \\"name\\": \\"Belize\\",
@@ -130,6 +148,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"BJ\\",
     \\"name\\": \\"Benin\\",
@@ -137,6 +156,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"BT\\",
     \\"name\\": \\"Bhutan\\",
@@ -144,20 +164,15 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"BO\\",
     \\"name\\": \\"Bolivia\\",
     \\"slug\\": \\"bolivia\\",
   },
   Object {
-    \\"countryType\\": \\"\\",
-    \\"has_domestic_data\\": \\"\\",
-    \\"id\\": \\"BQ\\",
-    \\"name\\": \\"BES Islands\\",
-    \\"slug\\": \\"bes-islands\\",
-  },
-  Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"BA\\",
     \\"name\\": \\"Bosnia & Herzegovina\\",
@@ -165,20 +180,15 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"BW\\",
     \\"name\\": \\"Botswana\\",
     \\"slug\\": \\"botswana\\",
   },
   Object {
-    \\"countryType\\": \\"\\",
-    \\"has_domestic_data\\": \\"\\",
-    \\"id\\": \\"BV\\",
-    \\"name\\": \\"Bouvet Island\\",
-    \\"slug\\": \\"bouvet-island\\",
-  },
-  Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"BR\\",
     \\"name\\": \\"Brazil\\",
@@ -186,6 +196,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": false,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"BG\\",
     \\"name\\": \\"Bulgaria\\",
@@ -193,6 +204,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"BF\\",
     \\"name\\": \\"Burkina Faso\\",
@@ -200,6 +212,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"BI\\",
     \\"name\\": \\"Burundi\\",
@@ -207,6 +220,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"KH\\",
     \\"name\\": \\"Cambodia\\",
@@ -214,6 +228,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"CM\\",
     \\"name\\": \\"Cameroon\\",
@@ -221,6 +236,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"CA\\",
     \\"name\\": \\"Canada\\",
@@ -228,6 +244,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"CV\\",
     \\"name\\": \\"Cape Verde\\",
@@ -235,6 +252,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"CF\\",
     \\"name\\": \\"CAR\\",
@@ -242,6 +260,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"TD\\",
     \\"name\\": \\"Chad\\",
@@ -249,6 +268,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"CL\\",
     \\"name\\": \\"Chile\\",
@@ -256,6 +276,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"CN\\",
     \\"name\\": \\"China\\",
@@ -263,6 +284,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"CO\\",
     \\"name\\": \\"Colombia\\",
@@ -270,6 +292,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"KM\\",
     \\"name\\": \\"Comoros\\",
@@ -277,6 +300,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"CG\\",
     \\"name\\": \\"Congo\\",
@@ -284,6 +308,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"CD\\",
     \\"name\\": \\"DRC\\",
@@ -291,6 +316,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"CK\\",
     \\"name\\": \\"Cook Islands\\",
@@ -298,6 +324,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"CR\\",
     \\"name\\": \\"Costa Rica\\",
@@ -305,6 +332,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"CI\\",
     \\"name\\": \\"Côte d'Ivoire\\",
@@ -312,6 +340,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": false,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"HR\\",
     \\"name\\": \\"Croatia\\",
@@ -319,6 +348,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"CU\\",
     \\"name\\": \\"Cuba\\",
@@ -326,6 +356,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": false,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"CY\\",
     \\"name\\": \\"Cyprus\\",
@@ -333,6 +364,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"CZ\\",
     \\"name\\": \\"Czech Republic\\",
@@ -340,6 +372,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"DK\\",
     \\"name\\": \\"Denmark\\",
@@ -347,6 +380,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"DJ\\",
     \\"name\\": \\"Djibouti\\",
@@ -354,6 +388,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"DM\\",
     \\"name\\": \\"Dominica\\",
@@ -361,6 +396,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"DO\\",
     \\"name\\": \\"Dominican Republic\\",
@@ -368,6 +404,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"EC\\",
     \\"name\\": \\"Ecuador\\",
@@ -375,6 +412,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"EG\\",
     \\"name\\": \\"Egypt\\",
@@ -382,6 +420,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"SV\\",
     \\"name\\": \\"El Salvador\\",
@@ -389,6 +428,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"GQ\\",
     \\"name\\": \\"Equatorial Guinea\\",
@@ -396,6 +436,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"ER\\",
     \\"name\\": \\"Eritrea\\",
@@ -403,6 +444,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": false,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"EE\\",
     \\"name\\": \\"Estonia\\",
@@ -410,6 +452,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"ET\\",
     \\"name\\": \\"Ethiopia\\",
@@ -417,6 +460,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"FJ\\",
     \\"name\\": \\"Fiji\\",
@@ -424,6 +468,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"FI\\",
     \\"name\\": \\"Finland\\",
@@ -431,6 +476,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"FR\\",
     \\"name\\": \\"France\\",
@@ -438,6 +484,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"GA\\",
     \\"name\\": \\"Gabon\\",
@@ -445,6 +492,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"GM\\",
     \\"name\\": \\"Gambia\\",
@@ -452,6 +500,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"GE\\",
     \\"name\\": \\"Georgia\\",
@@ -459,6 +508,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"DE\\",
     \\"name\\": \\"Germany\\",
@@ -466,6 +516,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"GH\\",
     \\"name\\": \\"Ghana\\",
@@ -473,6 +524,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"GR\\",
     \\"name\\": \\"Greece\\",
@@ -480,6 +532,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"GD\\",
     \\"name\\": \\"Grenada\\",
@@ -487,6 +540,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"GT\\",
     \\"name\\": \\"Guatemala\\",
@@ -494,6 +548,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"GN\\",
     \\"name\\": \\"Guinea\\",
@@ -501,6 +556,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"GW\\",
     \\"name\\": \\"Guinea-Bissau\\",
@@ -508,6 +564,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"GY\\",
     \\"name\\": \\"Guyana\\",
@@ -515,6 +572,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"HT\\",
     \\"name\\": \\"Haiti\\",
@@ -522,6 +580,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"HN\\",
     \\"name\\": \\"Honduras\\",
@@ -529,6 +588,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"HU\\",
     \\"name\\": \\"Hungary\\",
@@ -536,6 +596,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"IS\\",
     \\"name\\": \\"Iceland\\",
@@ -543,6 +604,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"IN\\",
     \\"name\\": \\"India\\",
@@ -550,6 +612,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"ID\\",
     \\"name\\": \\"Indonesia\\",
@@ -557,6 +620,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"IR\\",
     \\"name\\": \\"Iran\\",
@@ -564,6 +628,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"IQ\\",
     \\"name\\": \\"Iraq\\",
@@ -571,6 +636,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"IE\\",
     \\"name\\": \\"Ireland\\",
@@ -578,6 +644,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": false,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"IL\\",
     \\"name\\": \\"Israel\\",
@@ -585,6 +652,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"IT\\",
     \\"name\\": \\"Italy\\",
@@ -592,6 +660,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"JM\\",
     \\"name\\": \\"Jamaica\\",
@@ -599,6 +668,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"JP\\",
     \\"name\\": \\"Japan\\",
@@ -606,6 +676,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"JO\\",
     \\"name\\": \\"Jordan\\",
@@ -613,6 +684,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"crossover\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"KZ\\",
     \\"name\\": \\"Kazakhstan\\",
@@ -620,6 +692,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"KE\\",
     \\"name\\": \\"Kenya\\",
@@ -627,6 +700,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"KI\\",
     \\"name\\": \\"Kiribati\\",
@@ -634,6 +708,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"KP\\",
     \\"name\\": \\"North Korea\\",
@@ -641,6 +716,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"KR\\",
     \\"name\\": \\"Korea\\",
@@ -648,6 +724,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"XK\\",
     \\"name\\": \\"Kosovo\\",
@@ -655,6 +732,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": false,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"KW\\",
     \\"name\\": \\"Kuwait\\",
@@ -662,6 +740,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"KG\\",
     \\"name\\": \\"Kyrgyzstan\\",
@@ -669,6 +748,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"LA\\",
     \\"name\\": \\"Lao\\",
@@ -676,6 +756,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": false,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"LV\\",
     \\"name\\": \\"Latvia\\",
@@ -683,6 +764,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"LB\\",
     \\"name\\": \\"Lebanon\\",
@@ -690,6 +772,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"LS\\",
     \\"name\\": \\"Lesotho\\",
@@ -697,6 +780,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"LR\\",
     \\"name\\": \\"Liberia\\",
@@ -704,6 +788,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"LY\\",
     \\"name\\": \\"Libya\\",
@@ -711,6 +796,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": false,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"LI\\",
     \\"name\\": \\"Liechtenstein\\",
@@ -718,6 +804,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": false,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"LT\\",
     \\"name\\": \\"Lithuania\\",
@@ -725,6 +812,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"LU\\",
     \\"name\\": \\"Luxembourg\\",
@@ -732,6 +820,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"MK\\",
     \\"name\\": \\"Macedonia\\",
@@ -739,6 +828,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"MG\\",
     \\"name\\": \\"Madagascar\\",
@@ -746,6 +836,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"MW\\",
     \\"name\\": \\"Malawi\\",
@@ -753,6 +844,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"MY\\",
     \\"name\\": \\"Malaysia\\",
@@ -760,6 +852,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"MV\\",
     \\"name\\": \\"Maldives\\",
@@ -767,6 +860,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"ML\\",
     \\"name\\": \\"Mali\\",
@@ -774,6 +868,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": false,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"MT\\",
     \\"name\\": \\"Malta\\",
@@ -781,6 +876,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"MH\\",
     \\"name\\": \\"Marshall Islands\\",
@@ -788,6 +884,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"MR\\",
     \\"name\\": \\"Mauritania\\",
@@ -795,6 +892,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"MU\\",
     \\"name\\": \\"Mauritius\\",
@@ -802,6 +900,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"YT\\",
     \\"name\\": \\"Mayotte\\",
@@ -809,6 +908,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"MX\\",
     \\"name\\": \\"Mexico\\",
@@ -816,6 +916,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"FM\\",
     \\"name\\": \\"Micronesia\\",
@@ -823,6 +924,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"MD\\",
     \\"name\\": \\"Moldova\\",
@@ -830,6 +932,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"MN\\",
     \\"name\\": \\"Mongolia\\",
@@ -837,6 +940,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"ME\\",
     \\"name\\": \\"Montenegro\\",
@@ -844,6 +948,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"MS\\",
     \\"name\\": \\"Montserrat\\",
@@ -851,6 +956,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"MA\\",
     \\"name\\": \\"Morocco\\",
@@ -858,6 +964,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"MZ\\",
     \\"name\\": \\"Mozambique\\",
@@ -865,6 +972,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"MM\\",
     \\"name\\": \\"Myanmar\\",
@@ -872,6 +980,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"NA\\",
     \\"name\\": \\"Namibia\\",
@@ -879,6 +988,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"NR\\",
     \\"name\\": \\"Nauru\\",
@@ -886,6 +996,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"NP\\",
     \\"name\\": \\"Nepal\\",
@@ -893,6 +1004,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"NL\\",
     \\"name\\": \\"Netherlands\\",
@@ -900,6 +1012,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"NZ\\",
     \\"name\\": \\"New Zealand\\",
@@ -907,6 +1020,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"NI\\",
     \\"name\\": \\"Nicaragua\\",
@@ -914,6 +1028,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"NE\\",
     \\"name\\": \\"Niger\\",
@@ -921,6 +1036,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"NG\\",
     \\"name\\": \\"Nigeria\\",
@@ -928,6 +1044,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"NU\\",
     \\"name\\": \\"Niue\\",
@@ -935,6 +1052,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"NO\\",
     \\"name\\": \\"Norway\\",
@@ -942,6 +1060,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"OM\\",
     \\"name\\": \\"Oman\\",
@@ -949,6 +1068,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"PK\\",
     \\"name\\": \\"Pakistan\\",
@@ -956,6 +1076,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"PW\\",
     \\"name\\": \\"Palau\\",
@@ -963,6 +1084,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"PS\\",
     \\"name\\": \\"Palestine\\",
@@ -970,6 +1092,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"PA\\",
     \\"name\\": \\"Panama\\",
@@ -977,6 +1100,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"PG\\",
     \\"name\\": \\"Papua New Guinea\\",
@@ -984,6 +1108,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"PY\\",
     \\"name\\": \\"Paraguay\\",
@@ -991,6 +1116,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"PE\\",
     \\"name\\": \\"Peru\\",
@@ -998,6 +1124,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"PH\\",
     \\"name\\": \\"Philippines\\",
@@ -1005,6 +1132,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"PL\\",
     \\"name\\": \\"Poland\\",
@@ -1012,6 +1140,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"PT\\",
     \\"name\\": \\"Portugal\\",
@@ -1019,6 +1148,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": false,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"RO\\",
     \\"name\\": \\"Romania\\",
@@ -1026,6 +1156,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": false,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"RU\\",
     \\"name\\": \\"Russian Federation\\",
@@ -1033,6 +1164,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"RW\\",
     \\"name\\": \\"Rwanda\\",
@@ -1040,13 +1172,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
-    \\"has_domestic_data\\": \\"\\",
-    \\"id\\": \\"SH\\",
-    \\"name\\": \\"Saint Helena, Ascension & Tristan da Cunha\\",
-    \\"slug\\": \\"saint-helena-ascension-and-tristan-da-cunha\\",
-  },
-  Object {
-    \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"KN\\",
     \\"name\\": \\"Saint Kitts and Nevis\\",
@@ -1054,6 +1180,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"LC\\",
     \\"name\\": \\"Saint Lucia\\",
@@ -1061,6 +1188,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"VC\\",
     \\"name\\": \\"Saint Vincent & the Grenadines\\",
@@ -1068,6 +1196,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"WS\\",
     \\"name\\": \\"Samoa\\",
@@ -1075,6 +1204,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"ST\\",
     \\"name\\": \\"Sao Tome & Principe\\",
@@ -1082,6 +1212,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": false,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"SA\\",
     \\"name\\": \\"Saudi Arabia\\",
@@ -1089,6 +1220,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"SN\\",
     \\"name\\": \\"Senegal\\",
@@ -1096,6 +1228,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"RS\\",
     \\"name\\": \\"Serbia\\",
@@ -1103,6 +1236,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"SC\\",
     \\"name\\": \\"Seychelles\\",
@@ -1110,6 +1244,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"SL\\",
     \\"name\\": \\"Sierra Leone\\",
@@ -1117,6 +1252,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"SK\\",
     \\"name\\": \\"Slovak Republic\\",
@@ -1124,6 +1260,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"SI\\",
     \\"name\\": \\"Slovenia\\",
@@ -1131,6 +1268,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"SB\\",
     \\"name\\": \\"Solomon Islands\\",
@@ -1138,6 +1276,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"SO\\",
     \\"name\\": \\"Somalia\\",
@@ -1145,6 +1284,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"ZA\\",
     \\"name\\": \\"South Africa\\",
@@ -1152,6 +1292,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"SS\\",
     \\"name\\": \\"South Sudan\\",
@@ -1159,6 +1300,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"ES\\",
     \\"name\\": \\"Spain\\",
@@ -1166,6 +1308,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"LK\\",
     \\"name\\": \\"Sri Lanka\\",
@@ -1173,6 +1316,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"SD\\",
     \\"name\\": \\"Sudan\\",
@@ -1180,6 +1324,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"SR\\",
     \\"name\\": \\"Suriname\\",
@@ -1187,6 +1332,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"SZ\\",
     \\"name\\": \\"Swaziland\\",
@@ -1194,6 +1340,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"SE\\",
     \\"name\\": \\"Sweden\\",
@@ -1201,6 +1348,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"CH\\",
     \\"name\\": \\"Switzerland\\",
@@ -1208,6 +1356,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"SY\\",
     \\"name\\": \\"Syria\\",
@@ -1215,6 +1364,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": false,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"TW\\",
     \\"name\\": \\"Taiwan\\",
@@ -1222,6 +1372,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"TJ\\",
     \\"name\\": \\"Tajikistan\\",
@@ -1229,6 +1380,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"TZ\\",
     \\"name\\": \\"Tanzania\\",
@@ -1236,6 +1388,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"crossover\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"TH\\",
     \\"name\\": \\"Thailand\\",
@@ -1243,6 +1396,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"crossover\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"TL\\",
     \\"name\\": \\"Timor-Leste\\",
@@ -1250,6 +1404,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"TG\\",
     \\"name\\": \\"Togo\\",
@@ -1257,6 +1412,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"TK\\",
     \\"name\\": \\"Tokelau\\",
@@ -1264,6 +1420,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"TO\\",
     \\"name\\": \\"Tonga\\",
@@ -1271,6 +1428,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"TT\\",
     \\"name\\": \\"Trinidad & Tobago\\",
@@ -1278,6 +1436,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"TN\\",
     \\"name\\": \\"Tunisia\\",
@@ -1285,6 +1444,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"crossover\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"TR\\",
     \\"name\\": \\"Turkey\\",
@@ -1292,6 +1452,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"TM\\",
     \\"name\\": \\"Turkmenistan\\",
@@ -1299,6 +1460,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"TC\\",
     \\"name\\": \\"Turks & Caicos Islands\\",
@@ -1306,6 +1468,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"TV\\",
     \\"name\\": \\"Tuvalu\\",
@@ -1313,6 +1476,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"UG\\",
     \\"name\\": \\"Uganda\\",
@@ -1320,6 +1484,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"GB\\",
     \\"name\\": \\"United Kingdom\\",
@@ -1327,6 +1492,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"UA\\",
     \\"name\\": \\"Ukraine\\",
@@ -1334,6 +1500,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": false,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"AE\\",
     \\"name\\": \\"UAE\\",
@@ -1341,6 +1508,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"US\\",
     \\"name\\": \\"United States\\",
@@ -1348,6 +1516,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"UY\\",
     \\"name\\": \\"Uruguay\\",
@@ -1355,6 +1524,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"UZ\\",
     \\"name\\": \\"Uzbekistan\\",
@@ -1362,6 +1532,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"VU\\",
     \\"name\\": \\"Vanuatu\\",
@@ -1369,6 +1540,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"VE\\",
     \\"name\\": \\"Venezuela\\",
@@ -1376,6 +1548,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"VN\\",
     \\"name\\": \\"Viet Nam\\",
@@ -1383,6 +1556,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"WF\\",
     \\"name\\": \\"Wallis & Futuna\\",
@@ -1390,6 +1564,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"EH\\",
     \\"name\\": \\"Western Sahara\\",
@@ -1397,6 +1572,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"YE\\",
     \\"name\\": \\"Yemen\\",
@@ -1404,6 +1580,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"ZM\\",
     \\"name\\": \\"Zambia\\",
@@ -1411,6 +1588,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"recipient\\",
+    \\"hasPDF\\": true,
     \\"has_domestic_data\\": 1,
     \\"id\\": \\"ZW\\",
     \\"name\\": \\"Zimbabwe\\",
@@ -1439,7 +1617,7 @@ exports[`Site Global narratives and refrence module should return colors 1`] = `
   },
   Object {
     \\"id\\": \\"red-darker\\",
-    \\"value\\": \\"#6b120a\\",
+    \\"value\\": \\"#8f1b13\\",
   },
   Object {
     \\"id\\": \\"white\\",
@@ -1483,7 +1661,7 @@ exports[`Site Global narratives and refrence module should return colors 1`] = `
   },
   Object {
     \\"id\\": \\"orange-darker\\",
-    \\"value\\": \\"#7a2e05\\",
+    \\"value\\": \\"#973915\\",
   },
   Object {
     \\"id\\": \\"pink\\",
@@ -1503,7 +1681,7 @@ exports[`Site Global narratives and refrence module should return colors 1`] = `
   },
   Object {
     \\"id\\": \\"pink-darker\\",
-    \\"value\\": \\"#65093d\\",
+    \\"value\\": \\"#7e1850\\",
   },
   Object {
     \\"id\\": \\"purple\\",
@@ -1523,7 +1701,7 @@ exports[`Site Global narratives and refrence module should return colors 1`] = `
   },
   Object {
     \\"id\\": \\"purple-darker\\",
-    \\"value\\": \\"#42184c\\",
+    \\"value\\": \\"#0089cc\\",
   },
   Object {
     \\"id\\": \\"blue\\",
@@ -1563,7 +1741,7 @@ exports[`Site Global narratives and refrence module should return colors 1`] = `
   },
   Object {
     \\"id\\": \\"green-darker\\",
-    \\"value\\": \\"#08492f\\",
+    \\"value\\": \\"#065139\\",
   },
   Object {
     \\"id\\": \\"grey\\",
