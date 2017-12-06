@@ -5,7 +5,6 @@ type Entity {
   has_domestic_data: String
   hasPDF: Boolean
   countryType: String
-  hasPDF: Boolean
 }
 type Query {
   countries: [Entity]
