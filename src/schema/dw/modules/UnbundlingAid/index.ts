@@ -36,7 +36,7 @@ interface IUnbundlingAidResult extends IUnbundlingAidQuery {
 
 export default class UnbundlingAid {
     public static getSqlQueryArgs = (args: DH.IUnbundlingAidQuery): IUnbundlingAidQuery =>
-        R.omit(['groupBy', 'aidType'], args) as IUnbundlingAidQuery
+        R.omit(['groupBy', 'aidType'], args) as IUnbundlingAidQuery;
 
     private db: IDatabase<IExtensions> & IExtensions;
     private donorsBlackList = ['country-unspecified', 'region-unspecified', 'organisation-unspecified',
