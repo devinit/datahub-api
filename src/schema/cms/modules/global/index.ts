@@ -22,6 +22,7 @@ export interface IEntity extends IEntityBasic {
     name: string;
     region: string;
     income_group: string;
+    has_no_pdf?: number;
     donor_recipient_type: string;
     has_domestic_data: string;
 }
@@ -51,7 +52,7 @@ export const getCountries = async (): Promise<DH.IEntity[]> => {
     const entities = await getEntities();
     return entities
         .filter(entity => entity.type === 'country')
-        .map(entity => ({id: entity.id, name: entity.name, slug: entity.slug,
+        .map(entity => ({id: entity.id, name: entity.name, slug: entity.slug, hasPDF: !entity.has_no_pdf,
             has_domestic_data: entity.has_domestic_data, countryType: entity.donor_recipient_type}));
 };
 

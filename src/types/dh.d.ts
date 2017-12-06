@@ -88,6 +88,7 @@ declare namespace DH {
     slug: string | null;
     has_domestic_data: string | null;
     countryType: string | null;
+    hasPDF: boolean | null;
   }
 
   /*

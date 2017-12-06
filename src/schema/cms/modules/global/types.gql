@@ -4,6 +4,7 @@ type Entity {
   slug: String
   has_domestic_data: String
   countryType: String
+  hasPDF: Boolean
 }
 type Query {
   countries: [Entity]
