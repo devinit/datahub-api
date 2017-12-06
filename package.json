@@ -111,5 +111,11 @@
       "js",
       "json"
     ]
+  },
+  "git-pre-hooks": {
+    "pre-push": [
+      "npm run lint",
+      "npm run build"
+    ]
   }
 }
