@@ -143,7 +143,8 @@ export default class Maps {
     }
     public static categoricalLegendFromLinear(cMappings: ICategoricalMapping[], linearLegend: DH.ILegendField[]):
         DH.ILegendField[] {
-        return linearLegend.map(legendField => {
+        // remove second last item, its not useful for 1 - 2 keys it, will have >2 label
+        return R.remove(linearLegend.length - 2, 1, linearLegend).map(legendField => {
             if (!legendField.label) throw new Error('legend field is missing a label');
             if (legendField.label.includes('no data')) return legendField;
             const hasDash = legendField.label.includes('-');
@@ -261,6 +262,7 @@ export default class Maps {
         const scale = Maps.colorScale({rangeStr, ramp, offset: 0});
         const linearLegend = Maps.createLinearLegend(concept.uom_display, rangeStr, scale);
         const legend = Maps.categoricalLegendFromLinear(categoricalMappings, linearLegend);
+        // console.log('legend categorical', legend);
         const mapData = await this.processScaleData(scale, data, country, categoricalMappings);
         return {legend, mapData};
     }
