@@ -13,7 +13,6 @@ import { hsl } from 'd3-color';
 import { interpolateRgb } from 'd3-interpolate';
 import { scaleThreshold } from 'd3-scale';
 import * as R from 'ramda';
-
 interface IColorMap {
     high: string;
     low: string;
@@ -49,13 +48,19 @@ interface IColorScaleArgs {
     rangeStr: string;
     ramp: IColorMap;
     isHighBetter?: boolean;
-    offset?: number;
 }
 interface IScaleThreshold <Input, Output> {
     (value: Input): Output;
     range(): Output[];
     domain(): Input[];
 }
+
+interface IProcessScaleData {
+    scale: IScaleThreshold<number, string>;
+    data: IRAWMapData[];
+    country: string;
+}
+
 const lightGrey = '#d0cccf';
 
 export default class Maps {
@@ -86,12 +91,12 @@ export default class Maps {
     }
     public static colorScale(args: IColorScaleArgs): IScaleThreshold<number, string> {
         const {rangeStr, ramp} = args;
-        const offset = args.offset || 1;
+        const offset = 1;
         const domain = rangeStr.split (',').map(val => Number(val));
         const isHighBetter = args.isHighBetter || false;
         const effectiveDomain =  domain.length + offset;
         const range = R.range(0, effectiveDomain).map((index) => {
-            return interpolateRgb(ramp.low, ramp.high)(index / (effectiveDomain - offset));
+            return interpolateRgb(ramp.low, ramp.high)(index / (domain.length));
         });
         return scaleThreshold()
             .domain(domain[0] > domain[1] ? domain.reverse() : domain)
@@ -109,7 +114,8 @@ export default class Maps {
     }
     public static createLinearLegend(
         uom_display: string,
-        rangeStr: string, scale: IScaleThreshold<number, string>): DH.ILegendField[] {
+        rangeStr: string,
+        scale: IScaleThreshold<number, string>): DH.ILegendField[] {
         const uom = uom_display ? uom_display : '';
         const inputDomain = rangeStr.split(',').map(val => Number(val));
         const isAscendingOrder = inputDomain[0] < inputDomain[1];
@@ -122,7 +128,9 @@ export default class Maps {
             const hslColor = hsl(backgroundColor);
             const color = (hslColor.l > 0.7) ? 'black' : 'white';
             const currentVal = formatNumbers(val, 1, true);
-            if (index === 0 ) return [{backgroundColor, color,  label: `${firstSign}${currentVal} ${uom}`}];
+            if (index === 0 ) {
+                return [{backgroundColor, color,  label: `${firstSign}${currentVal} ${uom}`}];
+            }
             const prevVal = formatNumbers(domain[index - 1], 1, true);
             if (index < (domain.length - 1)) {
                 const label = `${prevVal}-${currentVal}`;
@@ -140,20 +148,6 @@ export default class Maps {
             return [...acc, ...lastEntry, Maps.noDataLegendEntry];
         }, []);
         return isAscendingOrder ? legend :  [...R.dropLast(1, legend).reverse(), R.last(legend)] as DH.ILegendField[];
-    }
-    public static categoricalLegendFromLinear(cMappings: ICategoricalMapping[], linearLegend: DH.ILegendField[]):
-        DH.ILegendField[] {
-        // remove second last item, its not useful for 1 - 2 keys it, will have >2 label
-        return R.remove(linearLegend.length - 2, 1, linearLegend).map(legendField => {
-            if (!legendField.label) throw new Error('legend field is missing a label');
-            if (legendField.label.includes('no data')) return legendField;
-            const hasDash = legendField.label.includes('-');
-            const label = !hasDash ? R.match(/\d+/g, legendField.label)[0]
-                : legendField.label.split('-')[1];
-            const obj = cMappings.find(mapping => Number(mapping.id) === Number(label));
-            if (!obj) throw new Error(`failed to find obj in category mapping for ${JSON.stringify(legendField)}`);
-            return {...legendField, label: obj.name};
-        });
     }
     public static async getCategoricalMapping(indicator: string, theme?: string): Promise<ICategoricalMapping[]> {
         const categoryMapName = theme === 'data-revolution' ?  'data-revolution-colors' :
@@ -240,7 +234,6 @@ export default class Maps {
         // eliminate non country data
         if (concept.range && concept.color)
             return this.linearDataProcessing(concept, country, data);
-        if (concept.color)  return this.categoricalLinearDataProcessing(concept, country, data);
         return this.categoricalDataProcessing(concept, country, data);
     }
     private async linearDataProcessing(concept: IConcept, country: string, data: IRAWMapData[]):
@@ -250,26 +243,11 @@ export default class Maps {
         const isHighBetter = concept.is_high_better && concept.is_high_better > 0 ? true : false;
         const scale = Maps.colorScale({rangeStr: concept.range, ramp, isHighBetter});
         const legend = Maps.createLinearLegend(concept.uom_display, concept.range, scale);
-        const mapData = await this.processScaleData(scale, data, country);
+        const mapData = await this.processLinearScaleData({scale, data, country});
         return {legend, mapData};
     }
-    private async categoricalLinearDataProcessing(concept: IConcept, country: string, data: IRAWMapData[]):
-        Promise<IMapDataWithLegend> {
-        if (!concept.color) throw new Error (`color missing for ${concept.id}`);
-        const categoricalMappings: ICategoricalMapping[] = await Maps.getCategoricalMapping(concept.id, concept.theme);
-        const rangeStr = categoricalMappings.map(obj => obj.id).join(',');
-        const ramp = await Maps.getColorRamp(concept.color);
-        const scale = Maps.colorScale({rangeStr, ramp, offset: 0});
-        const linearLegend = Maps.createLinearLegend(concept.uom_display, rangeStr, scale);
-        const legend = Maps.categoricalLegendFromLinear(categoricalMappings, linearLegend);
-        // console.log('legend categorical', legend);
-        const mapData = await this.processScaleData(scale, data, country, categoricalMappings);
-        return {legend, mapData};
-    }
-    private async processScaleData(
-        scale: IScaleThreshold<number, string>,
-        data: IRAWMapData[], country: string, cMappings?: ICategoricalMapping[]):
-        Promise< DH.IMapUnit[]> {
+    private async processLinearScaleData(args: IProcessScaleData): Promise< DH.IMapUnit[]> {
+        const {scale, data, country} = args;
         const entities: IDistrict[] | IEntity[]  = country === 'global' ?
             await getEntities() :  await getDistrictEntities(country);
         const processedData: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(data, country);
@@ -284,16 +262,16 @@ export default class Maps {
             .map((obj) => {
                 const entity = getEntityByIdGeneric<IDistrict | IEntity>(obj.id, entities);
                 let detail: any = null;
-                if (cMappings) detail = Maps.getValueDetail(obj.value, cMappings).name;
+                // if (cMappings) detail = Maps.getValueDetail(obj.value, cMappings).name;
                 if (hasBudgeTypes) detail = obj.budget_type;
-                const colorObj = Color(scale(obj.value));
+                const color = Color(scale(obj.value)).hex();
                 const slug = (entity as IEntity).slug ? (entity as IEntity).slug : entity.name.toLowerCase();
                 return {
                     ...obj,
                     detail,
                     slug,
                     name: entity.name,
-                    color: colorObj.hex(),
+                    color
                 };
             });
         if (hasBudgeTypes) return Maps.processBudgetData(processed);

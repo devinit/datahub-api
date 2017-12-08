@@ -45,7 +45,7 @@ describe('Maps module tests', () => {
         // const dacCountries = await maps.getMapData( 'fact.oda_percent_gni');
         expect(prettyFormat({categoricalLinear })).toMatchSnapshot();
     }, 20000);
-    it('should return categorical value mappings for indicators', async () => {
+    it.skip('should return categorical value mappings for indicators', async () => {
         const fragileSates = await Maps.getCategoricalMapping('data_series.fragile_states');
         const dataRevolution = await Maps.getCategoricalMapping('data_series.agricultural_census', 'data-revolution');
         expect(prettyFormat({fragileSates, dataRevolution})).toMatchSnapshot();
