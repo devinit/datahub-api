@@ -16,7 +16,7 @@ describe('Unbundling aid DW module tests', () => {
         // const dataD = await unbundlingAid.getUnbundlingAidData(argsD);
         expect(prettyFormat({dataA})).toMatchSnapshot();
     }, 100000);
-    it.skip('should create sql query args for getting data', () => {
+    it('should create sql query args for getting data', () => {
         const argsA = {
             aidType: 'oda',
             year: 2015,

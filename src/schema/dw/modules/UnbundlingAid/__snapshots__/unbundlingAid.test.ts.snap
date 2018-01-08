@@ -7,7 +7,7 @@ exports[`Unbundling aid DW module tests getting unbundling aid data of various t
       \\"color\\": \\"#eb642b\\",
       \\"id\\": \\"oof-loan\\",
       \\"name\\": \\"OOF Loan\\",
-      \\"uid\\": \\"rybKpoxEf\\",
+      \\"uid\\": \\"BJu4x3g4M\\",
       \\"value\\": 71110023769,
       \\"year\\": 2015,
     },
@@ -15,7 +15,7 @@ exports[`Unbundling aid DW module tests getting unbundling aid data of various t
       \\"color\\": \\"#0089cc\\",
       \\"id\\": \\"oof-grant\\",
       \\"name\\": \\"OOF Grant\\",
-      \\"uid\\": \\"B1eZYTsgVf\\",
+      \\"uid\\": \\"SygO4gnx4M\\",
       \\"value\\": 434896707,
       \\"year\\": 2015,
     },
@@ -2476,6 +2476,12 @@ exports[`Unbundling aid DW module tests getting unbundling aid selection options
       2006,
     ],
   },
+}"
+`;
+
+exports[`Unbundling aid DW module tests should create sql query args for getting data 1`] = `
+"Object {
+  \\"year\\": 2015,
 }"
 `;
 
