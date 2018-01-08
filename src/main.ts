@@ -125,7 +125,7 @@ if (require.main === module) {
     enableCors: true,
     enableGraphiql: true,
     env: NODE_ENV,
-    port: PORT,
+    port: Number(PORT),
     verbose: true,
   }).catch(console.error);
   if (NODE_ENV === 'production') preCacheAll();

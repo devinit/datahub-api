@@ -11,7 +11,7 @@
     "build": "webpack -p",
     "build:watch": "webpack --watch",
     "gqlToTs": "tsc -p src/lib/makeTypeDefs && node src/lib/makeTypeDefs/cli/gqlToTs.js",
-    "test": "jest src/schema/dw/modules/Maps/maps.test.ts",
+    "test": "jest",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "test:watch": "npm test -- --watch",
     "codecov": "npm run build && jest -u && codecov",
@@ -39,15 +39,14 @@
   },
   "homepage": "https://github.com/devinit/datahub-api#readme",
   "peerDependencies": {
-    "apollo-link": "0.8.0",
-    "@types/zen-observable": "0.5.3"
+    "graphql": "0.12.3"
   },
   "dependencies": {
-    "apollo-link": "^1.0.7",
     "apollo-server-express": "^1.3.2",
     "body-parser": "^1.18.2",
     "color": "^2.0.1",
-    "compression": "^2.0.1",
+    "graphql": "0.12.3",
+    "compression": "^1.7.1",
     "cors": "^2.8.4",
     "csvtojson": "^1.1.9",
     "d3-color": "^1.0.3",
@@ -74,7 +73,6 @@
     "@types/cors": "^2.8.3",
     "@types/express": "^4.11.0",
     "@types/fs-extra": "^5.0.0",
-    "@types/graphql": "^0.11.7",
     "@types/helmet": "^0.0.37",
     "@types/jest": "^22.0.1",
     "@types/lru-cache": "^4.1.0",

@@ -588,7 +588,7 @@ exports[`Site Global narratives and refrence module should return all countries 
   },
   Object {
     \\"countryType\\": \\"donor\\",
-    \\"hasPDF\\": true,
+    \\"hasPDF\\": false,
     \\"has_domestic_data\\": \\"\\",
     \\"id\\": \\"HU\\",
     \\"name\\": \\"Hungary\\",

@@ -175,7 +175,7 @@ exports[`Github concept data tests should get methodology data 1`] = `
       \\"methodology\\": \\"\\",
       \\"name\\": \\"Primary average number of students-government schools\\",
       \\"position\\": 4,
-      \\"range\\": 200400600800900,
+      \\"range\\": \\"200,400,600,800,900\\",
       \\"source\\": Object {
         \\"link\\": undefined,
         \\"name\\": \\"Basic Statistics Booklet, Ministry of Education Kenya\\",
@@ -661,7 +661,7 @@ exports[`Github concept data tests should get methodology data 1`] = `
       \\"range\\": \\"4.3,4.6,4.9,5.2\\",
       \\"source\\": Object {
         \\"link\\": undefined,
-        \\"name\\": \\"Kenya Population and Housing Census, 2009, Kenya National Bureau of Statistics\\",
+        \\"name\\": \\"The Socio-Economic Atlas of Kenya 2006\\",
       },
       \\"start_year\\": 2013,
       \\"theme\\": \\"population\\",
@@ -684,7 +684,7 @@ exports[`Github concept data tests should get methodology data 1`] = `
       \\"range\\": \\"1,2,4,6\\",
       \\"source\\": Object {
         \\"link\\": undefined,
-        \\"name\\": \\"Kenya Population and Housing Census, 2009, Kenya National Bureau of Statistics\\",
+        \\"name\\": \\"The Socio-Economic Atlas of Kenya 2007\\",
       },
       \\"start_year\\": 2013,
       \\"theme\\": \\"population\\",
@@ -707,9 +707,9 @@ exports[`Github concept data tests should get methodology data 1`] = `
       \\"range\\": \\"20,30,35,45\\",
       \\"source\\": Object {
         \\"link\\": undefined,
-        \\"name\\": \\"Kenya Population and Housing Census, 2009, Kenya National Bureau of Statistics\\",
+        \\"name\\": \\"The Socio-Economic Atlas of Kenya 2008\\",
       },
-      \\"start_year\\": 2014,
+      \\"start_year\\": 2013,
       \\"theme\\": \\"population\\",
       \\"tooltip\\": \\"Female headed households\\",
       \\"uom\\": \\"%\\",
@@ -730,7 +730,7 @@ exports[`Github concept data tests should get methodology data 1`] = `
       \\"range\\": \\"50000,150000,300000,500000,900000\\",
       \\"source\\": Object {
         \\"link\\": undefined,
-        \\"name\\": \\"Kenya Population and Housing Census, 2009, Kenya National Bureau of Statistics\\",
+        \\"name\\": \\"The Socio-Economic Atlas of Kenya 2009\\",
       },
       \\"start_year\\": 2013,
       \\"theme\\": \\"population\\",
@@ -753,7 +753,7 @@ exports[`Github concept data tests should get methodology data 1`] = `
       \\"range\\": \\"10,20,40,60\\",
       \\"source\\": Object {
         \\"link\\": undefined,
-        \\"name\\": \\"Kenya Population and Housing Census, 2009, Kenya National Bureau of Statistics\\",
+        \\"name\\": \\"The Socio-Economic Atlas of Kenya 2010\\",
       },
       \\"start_year\\": 2013,
       \\"theme\\": \\"population\\",
@@ -776,7 +776,7 @@ exports[`Github concept data tests should get methodology data 1`] = `
       \\"range\\": \\"1,5,10,15\\",
       \\"source\\": Object {
         \\"link\\": undefined,
-        \\"name\\": \\"Kenya Population and Housing Census, 2009, Kenya National Bureau of Statistics\\",
+        \\"name\\": \\"The Socio-Economic Atlas of Kenya 2011\\",
       },
       \\"start_year\\": 2013,
       \\"theme\\": \\"population\\",
@@ -799,7 +799,7 @@ exports[`Github concept data tests should get methodology data 1`] = `
       \\"range\\": \\"35,70,140,210,280\\",
       \\"source\\": Object {
         \\"link\\": undefined,
-        \\"name\\": \\"Kenya Population and Housing Census, 2009, Kenya National Bureau of Statistics\\",
+        \\"name\\": \\"The Socio-Economic Atlas of Kenya 2012\\",
       },
       \\"start_year\\": 2013,
       \\"theme\\": \\"population\\",
@@ -822,7 +822,7 @@ exports[`Github concept data tests should get methodology data 1`] = `
       \\"range\\": \\"80,90,100,120\\",
       \\"source\\": Object {
         \\"link\\": undefined,
-        \\"name\\": \\"Kenya Population and Housing Census, 2009, Kenya National Bureau of Statistics\\",
+        \\"name\\": \\"The Socio-Economic Atlas of Kenya 2013\\",
       },
       \\"start_year\\": 2013,
       \\"theme\\": \\"population\\",
@@ -845,7 +845,7 @@ exports[`Github concept data tests should get methodology data 1`] = `
       \\"range\\": \\"150000,300000,500000,1000000,2000000\\",
       \\"source\\": Object {
         \\"link\\": undefined,
-        \\"name\\": \\"Kenya Population and Housing Census, 2009, Kenya National Bureau of Statistics\\",
+        \\"name\\": \\"The Socio-Economic Atlas of Kenya 2014\\",
       },
       \\"start_year\\": 2013,
       \\"theme\\": \\"population\\",
@@ -868,7 +868,7 @@ exports[`Github concept data tests should get methodology data 1`] = `
       \\"range\\": \\"5,8,15,20\\",
       \\"source\\": Object {
         \\"link\\": undefined,
-        \\"name\\": \\"Kenya Population and Housing Census, 2009, Kenya National Bureau of Statistics\\",
+        \\"name\\": \\"The Socio-Economic Atlas of Kenya 2015\\",
       },
       \\"start_year\\": 2014,
       \\"theme\\": \\"population\\",
@@ -891,7 +891,7 @@ exports[`Github concept data tests should get methodology data 1`] = `
       \\"range\\": \\"1,2,4,6\\",
       \\"source\\": Object {
         \\"link\\": undefined,
-        \\"name\\": \\"Kenya Population and Housing Census and Kenya Integrated Household Budget Survey 2005/06, Kenya National Bureau of Statistics\\",
+        \\"name\\": \\"The Socio-Economic Atlas of Kenya 2015\\",
       },
       \\"start_year\\": 2009,
       \\"theme\\": \\"poverty_and_vulnerability\\",
@@ -937,7 +937,7 @@ exports[`Github concept data tests should get methodology data 1`] = `
       \\"range\\": \\"0,10,20,40\\",
       \\"source\\": Object {
         \\"link\\": undefined,
-        \\"name\\": \\"Kenya Population and Housing Census and Kenya Integrated Household Budget Survey 2005/06, Kenya National Bureau of Statistics\\",
+        \\"name\\": \\"The Socio-Economic Atlas of Kenya 2015\\",
       },
       \\"start_year\\": 2013,
       \\"theme\\": \\"poverty_and_vulnerability\\",
@@ -960,7 +960,7 @@ exports[`Github concept data tests should get methodology data 1`] = `
       \\"range\\": \\"30,50,70,90\\",
       \\"source\\": Object {
         \\"link\\": undefined,
-        \\"name\\": \\"Kenya Population and Housing Census and Kenya Integrated Household Budget Survey 2005/06, Kenya National Bureau of Statistics\\",
+        \\"name\\": \\"The Socio-Economic Atlas of Kenya 2015\\",
       },
       \\"start_year\\": 2013,
       \\"theme\\": \\"poverty_and_vulnerability\\",
@@ -983,7 +983,7 @@ exports[`Github concept data tests should get methodology data 1`] = `
       \\"range\\": \\"2000,4000,6000,8000,10000\\",
       \\"source\\": Object {
         \\"link\\": undefined,
-        \\"name\\": \\"Kenya Population and Housing Census and Kenya Integrated Household Budget Survey 2005/06, Kenya National Bureau of Statistics\\",
+        \\"name\\": \\"The Socio-Economic Atlas of Kenya 2015\\",
       },
       \\"start_year\\": 2013,
       \\"theme\\": \\"poverty_and_vulnerability\\",
@@ -1006,7 +1006,7 @@ exports[`Github concept data tests should get methodology data 1`] = `
       \\"range\\": \\"50,70,80,90\\",
       \\"source\\": Object {
         \\"link\\": undefined,
-        \\"name\\": \\"Kenya Population and Housing Census, 2009, Kenya National Bureau of Statistics\\",
+        \\"name\\": \\"The Socio-Economic Atlas of Kenya 2014\\",
       },
       \\"start_year\\": 2013,
       \\"theme\\": \\"water_and_sanitation\\",
@@ -1029,7 +1029,7 @@ exports[`Github concept data tests should get methodology data 1`] = `
       \\"range\\": \\"50,65,75,85\\",
       \\"source\\": Object {
         \\"link\\": undefined,
-        \\"name\\": \\"Kenya Population and Housing Census, 2009, Kenya National Bureau of Statistics\\",
+        \\"name\\": \\"The Socio-Economic Atlas of Kenya 2014\\",
       },
       \\"start_year\\": 2013,
       \\"theme\\": \\"water_and_sanitation\\",
@@ -1580,7 +1580,7 @@ exports[`Github concept data tests should get methodology data 1`] = `
       \\"methodology\\": \\"\\",
       \\"name\\": \\"Total population\\",
       \\"position\\": 1,
-      \\"range\\": \\"150000,200000,300000,450000\\",
+      \\"range\\": \\"100000,150000,200000,300000,500000,1000000\\",
       \\"source\\": Object {
         \\"link\\": undefined,
         \\"name\\": \\"National Population and Housing Census 2014 and Population projections 2014 to 2020, Uganda Bureau of Statistics.\\",
@@ -1672,7 +1672,7 @@ exports[`Github concept data tests should get methodology data 1`] = `
       \\"methodology\\": \\"\\",
       \\"name\\": \\"Average dependency ratio\\",
       \\"position\\": 5,
-      \\"range\\": \\"40,60,80,120\\",
+      \\"range\\": \\"30,50,100,120\\",
       \\"source\\": Object {
         \\"link\\": undefined,
         \\"name\\": \\"Profiles of higher (district and municipal) local governments 2014, Uganda Bureau of Statistics.\\",
@@ -1695,7 +1695,7 @@ exports[`Github concept data tests should get methodology data 1`] = `
       \\"methodology\\": \\"\\",
       \\"name\\": \\"Urban population (%)\\",
       \\"position\\": 6,
-      \\"range\\": \\"5,8,15,20\\",
+      \\"range\\": \\"5,10,20,50,80\\",
       \\"source\\": Object {
         \\"link\\": undefined,
         \\"name\\": \\"National Population and Housing Census 2014, Uganda Bureau of Statistics.\\",
@@ -1741,7 +1741,7 @@ exports[`Github concept data tests should get methodology data 1`] = `
       \\"methodology\\": \\"\\",
       \\"name\\": \\"Number of households\\",
       \\"position\\": 8,
-      \\"range\\": \\"1000,5000,10000,50000,100000\\",
+      \\"range\\": \\"15000,20000,30000,50000,100000,150000\\",
       \\"source\\": Object {
         \\"link\\": undefined,
         \\"name\\": \\"National Population and Housing Census 2014, Uganda Bureau of Statistics.\\",
@@ -1902,7 +1902,7 @@ exports[`Github concept data tests should get methodology data 1`] = `
       \\"methodology\\": \\"\\",
       \\"name\\": \\"Primary pupil to teacher ratio-government schools\\",
       \\"position\\": 7,
-      \\"range\\": \\"35,45,55,65\\",
+      \\"range\\": \\"25,50,75,100\\",
       \\"source\\": Object {
         \\"link\\": undefined,
         \\"name\\": \\"Education statistics abstracts 2010-2016, Ministry of Education.\\",
@@ -1925,7 +1925,7 @@ exports[`Github concept data tests should get methodology data 1`] = `
       \\"methodology\\": \\"\\",
       \\"name\\": \\"Primary pupil to teacher ratio-private schools\\",
       \\"position\\": 8,
-      \\"range\\": \\"35,45,55,65\\",
+      \\"range\\": \\"10,45,55,65\\",
       \\"source\\": Object {
         \\"link\\": undefined,
         \\"name\\": \\"Education statistics abstracts 2010-2016, Ministry of Education.\\",

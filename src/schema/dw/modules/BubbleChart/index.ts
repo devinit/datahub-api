@@ -2,7 +2,6 @@ import {IDatabase} from 'pg-promise';
 import {IExtensions} from '../../db';
 import sql from './sql';
 import {getConceptAsync, IConcept, getConcepts} from '../../../cms/modules/concept';
-import * as R from 'ramda';
 import * as shortid from 'shortid';
 import {IEntity, getEntities, getEntityByIdGeneric, IEntityBasic,
     getIncomeGroups, getRegional, getColors} from '../../../cms/modules/global';
@@ -131,9 +130,11 @@ export default class BubbleChart {
             const odaFromRaw: Array<{ from_di_id: string}> = await getIndicatorDataSimple<{ from_di_id: string}>(args);
             const entities: IEntity[] =  await getEntities();
             const concepts: IConcept[] = await getConcepts('global-picture');
-            const odaFrom = odaFromRaw.map(obj => getEntityByIdGeneric<IEntity>(obj.from_di_id, entities));
-            const otherIndicators = concepts.filter(obj => Number(obj.appear_in_bubble_chart) === 1);
-            return R.append(odaFrom, otherIndicators);
+            const odaFrom =
+                odaFromRaw.map(obj => getEntityByIdGeneric<IEntity>(obj.from_di_id, entities)) as DH.IIdNamePair[];
+            const otherIndicators =
+                concepts.filter(obj => Number(obj.appear_in_bubble_chart) === 1) as DH.IIdNamePair[];
+            return odaFrom.concat(otherIndicators);
        } catch (error) {
            console.error(error);
            throw error;
