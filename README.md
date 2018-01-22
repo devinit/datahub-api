@@ -1,5 +1,7 @@
 # Data hub graphql-server
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/devinit/datahub-api.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/devinit/datahub-api.svg?branch=master)](https://travis-ci.org/devinit/datahub-api)
 ![Code Climate](https://codeclimate.com/github/devinit/datahub-api.svg)
 [![codecov](https://codecov.io/gh/devinit/datahub-api/branch/master/graph/badge.svg)](https://codecov.io/gh/devinit/datahub-api)
