@@ -1,9 +1,9 @@
 type IndicatorData {
-  year: Int
-  value: Float
-  id: String
-  name: String
-  uid: String
+  year: Int!
+  value: Float!
+  id: String!
+  name: String!
+  uid: String!
 }
 type ToolTip {
   source: String!
@@ -11,25 +11,25 @@ type ToolTip {
 }
 type IndicatorDataWithToolTip {
   data: [IndicatorData]!
-  toolTip: ToolTip
+  toolTip: ToolTip!
 }
 
 type IndicatorValueWithToolTip {
-  value: String
+  value: String!
   toolTip: ToolTip!
 }
 type SpendingAllocation {
-  value: Float
-  name: String
-  color: String
-  uid: String
+  value: Float!
+  name: String!
+  color: String!
+  uid: String!
 }
 
 type Quintile {
-  value: Float
-  quintileName: String
-  uid: String
-  color: String
+  value: Float!
+  quintileName: String!
+  uid: String!
+  color: String!
 }
 type QuintileDataWithToolTip {
   data: [Quintile]!
@@ -41,18 +41,18 @@ type ResourceData {
   flow_name: String!
   flow_id: String!
   # a position value for a flow generated from flow_type, flow_category and flow name order
-  position: Int
-  short_name: String
+  position: Int!
+  short_name: String!
   # Category i.e FDI, ODA
-  flow_category: String
+  flow_category: String!
   # flow either inflow or outflow
-  flow_type: String
+  flow_type: String!
   # i.e contains flow type as 1st level, flow category as second and flow name as 3rd
   # levels: [String]
   # in or out
-  direction: String
-  color: String
-  uid: String
+  direction: String!
+  color: String!
+  uid: String!
 }
 
 type OverviewTab {
@@ -72,119 +72,119 @@ type OverviewTab {
 
 type PovertyTab {
   # Poverty reduction over time area chart trend
-  poverty190Trend: IndicatorDataWithToolTip
+  poverty190Trend: IndicatorDataWithToolTip!
   # how deep is poverty %
-  depthOfExtremePoverty: IndicatorValueWithToolTip
+  depthOfExtremePoverty: IndicatorValueWithToolTip!
   # Recipients: how income is distributed, % of income received by each quintil
-  incomeDistTrend: QuintileDataWithToolTip
+  incomeDistTrend: QuintileDataWithToolTip!
 }
 
 type PopulationDistribution {
-  group: String
-  value: Float
-  year: Int
+  group: String!
+  value: Float!
+  year: Int!
 }
 
 type PopulationPerAgeBand {
-  band: String
-  value: Int
-  year: Int
-  uid: String
+  band: String!
+  value: Int!
+  year: Int!
+  uid: String!
 }
 type PopulationDistributionWithToolTip {
-  data: [PopulationDistribution]
-  toolTip: ToolTip
+  data: [PopulationDistribution]!
+  toolTip: ToolTip!
 }
 type PopulationPerAgeBandWithToolTip {
-  data: [PopulationPerAgeBand]
-  toolTip: ToolTip
+  data: [PopulationPerAgeBand]!
+  toolTip: ToolTip!
 }
 type PopulationTab {
   # total population in a country
-  population: IndicatorValueWithToolTip
+  population: IndicatorValueWithToolTip!
   # Urban vs Rural population level
-  populationDistribution: PopulationDistributionWithToolTip
+  populationDistribution: PopulationDistributionWithToolTip!
   # Number of people in 3 age bands (65+, 15- 65, 0 - 14)
-  populationPerAgeBand: PopulationPerAgeBandWithToolTip
+  populationPerAgeBand: PopulationPerAgeBandWithToolTip!
 }
 
 type Domestic {
   # eg Actual or budget
-  budget_type: String
-  levels: [String]
-  year: Int 
-  value: Float
-  value_ncu: Float
-  uid: String
-  color: String
+  budget_type: String!
+  levels: [String]!
+  year: Int !
+  value: Float!
+  value_ncu: Float!
+  uid: String!
+  color: String!
 }
 type SpendingAllocationWithToolTip {
-  data:  [SpendingAllocation]
-  toolTip: ToolTip
+  data:  [SpendingAllocation]!
+  toolTip: ToolTip!
 }
 
 type GovernmentFinance {
-  startYear: Int
+  startYear: Int!
   #Total revenue for a particular
-  totalRevenue: IndicatorValueWithToolTip
-  grantsAsPcOfRevenue: IndicatorValueWithToolTip
+  totalRevenue: IndicatorValueWithToolTip!
+  grantsAsPcOfRevenue: IndicatorValueWithToolTip!
   # for donut chart 
-  spendingAllocation: SpendingAllocationWithToolTip
+  spendingAllocation: SpendingAllocationWithToolTip!
   # for treemap
   # such as constant 2015 USD for tree map
-  currencyCode: String
-  currencyUSD: String
+  currencyCode: String!
+  currencyUSD: String!
   # use resourcesRecipient sql
-  expenditure: [Domestic]
-  revenueAndGrants: [Domestic]
-  finance: [Domestic]
+  expenditure: [Domestic]!
+  revenueAndGrants: [Domestic]!
+  finance: [Domestic]!
 }
 type ResourceDataWithToolTip {
-  data: [ResourceData]
-  toolTip: ToolTip
+  data: [ResourceData]!
+  toolTip: ToolTip!
 }
 type FlowSelection {
-  name: String
+  name: String!
   # this is the group ID
-  id: String
-  unbundle: Boolean
+  id: String!
+  unbundle: Boolean!
 }
 
 type Flow {
-  name: String
-  id: String
-  selections: [FlowSelection]
+  name: String!
+  id: String!
+  selections: [FlowSelection]!
 }
 type FlowsOverTimeWithToolTip  {
-  data: [IndicatorDataColored]
-  toolTip: ToolTip
+  data: [IndicatorDataColored]!
+  toolTip: ToolTip!
 }
 type InternationalResources {
-  startYear: Int
+  startYear: Int!
   # Gross National Income
-  GNI: IndicatorValueWithToolTip
+  GNI: IndicatorValueWithToolTip!
   #Net ODA received, % of GNI for recipient countries
-  netODAOfGNIIn: IndicatorValueWithToolTip
+  netODAOfGNIIn: IndicatorValueWithToolTip!
   #Net ODA out, % of GNI for recipient countries
-  netODAOfGNIOut: IndicatorValueWithToolTip
+  netODAOfGNIOut: IndicatorValueWithToolTip!
   # for line chart in the  international resources tabs section,
   # IndicatorDataColoredWithToolTip  is defined in spotlight types
-  resourceflowsOverTime: FlowsOverTimeWithToolTip 
+  resourceflowsOverTime: FlowsOverTimeWithToolTip! 
   # for sidebar chart in international resources section & area partition tree chart default data
-  resourcesOverTime: ResourceDataWithToolTip
+  resourcesOverTime: ResourceDataWithToolTip!
   # Whats the mix of resources can be for donors (out flows) or receipient (in flows)
   # this is for the donut chart
-  mixOfResources: ResourceDataWithToolTip
+  mixOfResources: ResourceDataWithToolTip!
 }
 type Flows {
   # an array of inflows for a particular countryType for area & partition chart
-  inflows: [Flow]
+  inflows: [Flow]!
    # an array of outflows for a particular countryType
-  outflows: [Flow]
+  outflows: [Flow]!
 }
 type SingleResourceData {
-  resources: [IndicatorData]
-  color: String
+  resources: [IndicatorData]!
+  color: String!
 }
 
 type Query {  

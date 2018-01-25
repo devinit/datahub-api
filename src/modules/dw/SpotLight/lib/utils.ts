@@ -2,12 +2,12 @@
 import * as R from 'ramda';
 import * as shortid from 'shortid';
 import {IDB} from '@devinit/graphql-next/lib/db';
-import { getConceptAsync } from '../'../../refs/concept';
+import { getConceptAsync } from '../../refs/concept';
 import {kenya, uganda} from './sql';
-import {IColor, getColors, getEntityByIdGeneric} from '../'../../refs/global';
+import {IColor, getColors, getEntityByIdGeneric} from '../../refs/global';
 import {isError} from '../../../../../lib/isType';
-import {getDistrictBySlugAsync, IDistrict} from '../'../../refs/spotlight';
-import {IBudgetLevelRef, getBudgetLevels} from '../'../../refs/countryProfile';
+import {getDistrictBySlugAsync, IDistrict} from '../../refs/spotlight';
+import {IBudgetLevelRef, getBudgetLevels} from '../../refs/countryProfile';
 import {getIndicatorDataSpotlights, ISpotlightGetIndicatorArgs, IRAW, getSpotlightTableName, getCurrencyCode, addSuffix,
         IRAWPopulationGroup, IRAWDomestic, domesticDataProcessing, formatNumbers,
         addColorToDomesticLevels, getIndicatorToolTip, getTotal} from '../../utils';

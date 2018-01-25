@@ -1,108 +1,108 @@
 
 type IndicatorDataColored {
-  year: Int
-  value: Float
-  id: String
-  name: String
-  color: String
-  uid: String
+  year: Int!
+  value: Float!
+  id: String!
+  name: String!
+  color: String!
+  uid: String!
 }
 type  IndicatorDataColoredWithToolTip {
-  data: IndicatorDataColored
+  data: IndicatorDataColored!
   toolTip: ToolTip!
 }
 
 type IndicatorValueNCUWithToolTip {
-  value: String
-  value_ncu: String 
+  value: String!
+  value_ncu: String !
   toolTip: ToolTip!
 }
 
 type OverviewTabRegional {
   # WHAT PERCENTAGE OF PEOPLE IN WAKISO LIVE BELOW THE NATIONAL POVERTY LINE? 
   # can be no data or '12%'
-  poorestPeople: IndicatorValueWithToolTip
+  poorestPeople: IndicatorValueWithToolTip!
   # WHAT RESOURCES ARE AVAILABLE TO LOCAL GOVERNMENTS IN WAKISO? eg 3.6m or 2.7bn
   # this is a total of local, donor and central government resources
-  regionalResources: IndicatorValueNCUWithToolTip
+  regionalResources: IndicatorValueNCUWithToolTip!
   # IndicatorDataColored is defined in country profile types
   # has local government, donor and central government
   regionalResourcesBreakdown: [IndicatorDataColoredWithToolTip]!
   # HOW MUCH DOES THE LOCAL GOVERNMENT SPEND PER PERSON?
-  localGovernmentSpendPerPerson: IndicatorValueWithToolTip
+  localGovernmentSpendPerPerson: IndicatorValueWithToolTip!
 }
 
 type PovertyTabKe {
-  poorestPeople: IndicatorValueWithToolTip
+  poorestPeople: IndicatorValueWithToolTip!
   #WHAT IS THE AVERAGE LIFE EXPECTANCY? 
-  meanExpenditure: IndicatorValueWithToolTip
+  meanExpenditure: IndicatorValueWithToolTip!
   #WHAT IS THE STANDARD OF LIVING SCORE? 
-  povertyGap: IndicatorValueWithToolTip
+  povertyGap: IndicatorValueWithToolTip!
 }
 type PovertyTabUg {
-  poorestPeople: IndicatorValueWithToolTip
+  poorestPeople: IndicatorValueWithToolTip!
   #WHAT IS THE AVERAGE LIFE EXPECTANCY? 
-  lifeExpectancy: IndicatorValueWithToolTip
+  lifeExpectancy: IndicatorValueWithToolTip!
   #WHAT IS THE STANDARD OF LIVING SCORE? 
-  stdOfLiving: IndicatorValueWithToolTip
+  stdOfLiving: IndicatorValueWithToolTip!
 }
 
 type PopulationTabRegionalKe {
   #The total population of a given district and the population density in per sq km
-  totalPopulation: IndicatorValueWithToolTip
-  populationDensity: IndicatorValueWithToolTip
-  populationBirthRate: IndicatorValueWithToolTip
+  totalPopulation: IndicatorValueWithToolTip!
+  populationDensity: IndicatorValueWithToolTip!
+  populationBirthRate: IndicatorValueWithToolTip!
 }
 
 type PopulationTabRegionalUg {
   #The total population of a given district and the population density in per sq km
-  totalPopulation: IndicatorValueWithToolTip
-  populationDensity: IndicatorValueWithToolTip
+  totalPopulation: IndicatorValueWithToolTip!
+  populationDensity: IndicatorValueWithToolTip!
    # Urban vs Rural population level
-  populationDistribution: PopulationDistributionWithToolTip
-  averageDependencyRatio: IndicatorValueWithToolTip
-  allAverageDependencyRatio: IndicatorValueWithToolTip
+  populationDistribution: PopulationDistributionWithToolTip!
+  averageDependencyRatio: IndicatorValueWithToolTip!
+  allAverageDependencyRatio: IndicatorValueWithToolTip!
 }
 
 type EducationTabRegionalUg {
   #WHAT IS THE PUPIL–TEACHER RATIO IN PRIMARY EDUCATION?...in government schools  and...in all schools 
-  pupilTeacherRatioGovtSchl: IndicatorValueWithToolTip
-  pupilTeacherRatioOtherSchl: IndicatorValueWithToolTip
+  pupilTeacherRatioGovtSchl: IndicatorValueWithToolTip!
+  pupilTeacherRatioOtherSchl: IndicatorValueWithToolTip!
   #WHAT PERCENTAGE OF STUDENTS PASS THE PRIMARY LEAVING EXAM? 
-  studentsPassRate: IndicatorValueWithToolTip
-  studentsPassDistrictRank: IndicatorValueWithToolTip
+  studentsPassRate: IndicatorValueWithToolTip!
+  studentsPassDistrictRank: IndicatorValueWithToolTip!
   #HOW MUCH PRIMARY EDUCATION FUNDING IS THERE? 
-  primaryEducationfunding:  IndicatorValueNCUWithToolTip
+  primaryEducationfunding:  IndicatorValueNCUWithToolTip!
 }
 
 type EducationTabRegionalKe {
   #WHAT IS THE PUPIL–TEACHER RATIO IN PRIMARY EDUCATION?...in government schools  and...in all schools 
-  primaryPupilTeacherRatioAllSchl: IndicatorValueWithToolTip
-  primaryTeacherRatioPublicSchl: IndicatorValueWithToolTip 
-  primaryTeacherRatioPrivateSchl: IndicatorValueWithToolTip
+  primaryPupilTeacherRatioAllSchl: IndicatorValueWithToolTip!
+  primaryTeacherRatioPublicSchl: IndicatorValueWithToolTip !
+  primaryTeacherRatioPrivateSchl: IndicatorValueWithToolTip!
 }
 
 type HealthTabRegionalUg {
   #WHAT IS THE DISTRICT LEAGUE HEALTH PERFORMANCE SCORE?
-  districtPerformance: IndicatorValueWithToolTip
+  districtPerformance: IndicatorValueWithToolTip!
   #WHAT PERCENTAGE OF TUBERCULOSIS CASES HAVE BEEN SUCCESSFULLY TREATED? 
-  treatmeantOfTb: IndicatorValueWithToolTip
-  districtHealthRank: IndicatorValueWithToolTip
+  treatmeantOfTb: IndicatorValueWithToolTip!
+  districtHealthRank: IndicatorValueWithToolTip!
   #HOW MUCH LOCAL GOVERNMENT HEALTHCARE FUNDING IS THERE? 
-  healthCareFunding: IndicatorValueNCUWithToolTip
+  healthCareFunding: IndicatorValueNCUWithToolTip!
 }
 
 type HealthTabRegionalKe {
-  birthAttendanceSkilled: IndicatorValueWithToolTip 
-  contraceptiveUse: IndicatorValueWithToolTip 
-  healthCareFunding: IndicatorValueNCUWithToolTip
+  birthAttendanceSkilled: IndicatorValueWithToolTip! 
+  contraceptiveUse: IndicatorValueWithToolTip !
+  healthCareFunding: IndicatorValueNCUWithToolTip!
 }
 
 
 type LocalGovernmentFinance {
-  startYear: Int
-  currencyUSD: String
-  currencyCode: String
+  startYear: Int!
+  currencyUSD: String!
+  currencyCode: String!
   # come from finance file
   revenueAndGrants: [Domestic]!
   expenditure: [Domestic]!

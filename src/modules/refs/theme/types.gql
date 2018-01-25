@@ -1,15 +1,15 @@
 type ThemeIndicator {
-  heading: String
-  source: String
-  tooltip: String
-  id: String
-  name: String
+  heading: String!
+  source: String!
+  tooltip: String!
+  id: String!
+  name: String!
 }
 type Theme {
-  id: String
-  name: String
-  default_indicator: String
-  indicators: [ThemeIndicator]
+  id: String!
+  name: String!
+  default_indicator: String!
+  indicators: [ThemeIndicator]!
 }
 
 type Query {

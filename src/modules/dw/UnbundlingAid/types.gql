@@ -1,35 +1,35 @@
 type AidUnit {
   # this will usually be a summed up aggregate value
-  value: Float
+  value: Float!
   # country or organisation or channel or bundle name
-  name: String
-  color: String
-  id: String
-  year: Int
-  uid: String
+  name: String!
+  color: String!
+  id: String!
+  year: Int!
+  uid: String!
 }
 type IdNamePair {
-  id: String
-  name: String
+  id: String!
+  name: String!
 }
 type UnbundlingAidTotal {
-  year: Int
-  total: String
+  year: Int!
+  total: String!
 }
 type UnbundlingAidSelections {
   # unbundling aid selection options
-  to: [IdNamePair]
-  from: [IdNamePair]   
-  channels: [IdNamePair]
-  sectors: [IdNamePair]
+  to: [IdNamePair]!
+  from: [IdNamePair]!   
+  channels: [IdNamePair]!
+  sectors: [IdNamePair]!
   # same as form
-  bundles: [IdNamePair]
-  years: [Int]
+  bundles: [IdNamePair]!
+  years: [Int]!
 }
 input UnbundlingAidToTalQuery {
     # oda or oof 
     aidType: String!
-    year: Int
+    year: Int!
 }
 input UnbundlingAidQuery {
     # oda or oof 

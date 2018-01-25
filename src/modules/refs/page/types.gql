@@ -1,6 +1,6 @@
 type Page {
-    id: String
-    title: String
+    id: String!
+    title: String!
     narrative: String
     donor_title: String
 }

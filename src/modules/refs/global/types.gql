@@ -1,10 +1,10 @@
 type Entity {
-  id: String
-  name: String
-  slug: String
-  has_domestic_data: String
-  hasPDF: Boolean
-  countryType: String
+  id: String!
+  name: String!
+  slug: String!
+  has_domestic_data: String!
+  hasPDF: Boolean!
+  countryType: String!
 }
 type Query {
   countries: [Entity]

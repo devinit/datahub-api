@@ -8,16 +8,18 @@
     "type": "npm"
   },
   "scripts": {
-    "build": "webpack -p",
-    "build:watch": "webpack --watch",
-    "gqlToTs": "tsc -p src/lib/makeTypeDefs && node src/lib/makeTypeDefs/cli/gqlToTs.js",
     "test": "jest ",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "test:watch": "npm test -- --watch",
     "codecov": "npm run build && jest -u && codecov",
-    "start": "NODE_ENV=production node dist/main.js",
-    "dev": "NODE_ENV=development concurrently \"npm run build:watch\" \"node-dev dist/main.js\"",
-    "deploy": "now -e DB_USER -e DB_HOST -e DB_PORT -e DB_PASSWORD -e DB_DATABASE"
+    "start": "npm run build && NODE_ENV=production node lib/main.js",
+    "build": "NODE_ENV=production tsc",
+    "build:watch": "NODE_ENV=development tsc -w",
+    "patch": "release-it -i patch -n",
+    "feature": "release-it -i minor -n",
+    "breaking": "release-it -i major -n",
+    "gqlToTs": "node node_modules/@devinit/graphql-next/lib/makeTypeDefs",
+    "dev": "NODE_ENV=development concurrently \"npm run build:watch\" \"node-dev lib/main.js\""
   },
   "repository": {
     "type": "git",
@@ -65,9 +67,8 @@
     "ts-jest": "22.0.1",
     "tslint": "5.9.1",
     "git-pre-hooks": "^1.2.0",
-    "typescript": "^2.6.2",
-    "webpack": "^3.10.0",
-    "webpack-node-externals": "^1.6.0"
+    "release-it": "6.1.0",
+    "typescript": "^2.6.2"
   },
   "jest": {
     "transform": {

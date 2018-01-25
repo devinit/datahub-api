@@ -73,10 +73,10 @@ export default class Maps {
         .filter(obj => obj !== undefined) as DH.IMapUnit[];
     }
     public static processBudgetData(data: DH.IMapUnit[]): DH.IMapUnit[] {
-        const grouped = R.groupBy(R.prop('year'), data);
+        const grouped = R.groupBy<DH.IMapUnit>(R.prop('year'), data);
         return R.keys(grouped).reduce((acc: DH.IMapUnit[], year) => {
             const yearData = grouped[year];
-            const groupedById = R.groupBy(R.prop('id'), yearData);
+            const groupedById = R.groupBy<DH.IMapUnit>(R.prop('id'), yearData);
             const filterdData = R.keys(groupedById).map(id => {
                const countryDataArr = groupedById[id] as DH.IMapUnit[];
                if (countryDataArr.length) {

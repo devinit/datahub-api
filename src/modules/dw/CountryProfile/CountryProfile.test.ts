@@ -2,7 +2,6 @@ import * as prettyFormat from 'pretty-format';
 // import {uidPatchForTabData} from '../utils/test-utils';
 import {getFlows} from '../../refs/countryProfile';
 import CountryProfile from '.';
-import * as R from 'ramda';
 import Resources from './Resources';
 import db from '@devinit/graphql-next/lib/db';
 
