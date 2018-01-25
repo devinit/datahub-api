@@ -1,31 +1,23 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "lib": ["es2017", "esnext"],
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "removeComments": true,
-    "sourceMap": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "declaration": false,
-    "outDir": "dist",
-    "noFallthroughCasesInSwitch": true,
-    "strictNullChecks": true,
-    "suppressExcessPropertyErrors": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "baseUrl": ".",
-    "paths":{
-      "*": ["node_modules", "src"],
-      "utils": ["src/utils/index.ts"]
+    "compilerOptions": {
+      "module": "commonjs",
+      "target": "es6",
+      "sourceMap": false,
+      "declaration": false,
+      "strictNullChecks": true,
+      "strict": true,
+      "lib": ["es2017", "dom"],
+      "experimentalDecorators": true,
+      "noUnusedParameters": true,
+      "typeRoots": ["node_modules/@types", "src/types"],
+      "noImplicitAny": false,
+      "noUnusedLocals": true,
+      "outDir": "dist",
+      "removeComments": true
     },
-    "rootDirs": [
-      "src"
-    ]  
-  },
-  "files": [
-    "src/main.ts",
-    "src/types/dh.d.ts"
-  ]
-}
+    "exclude": [
+      "node_modules",
+      "out",
+      "lib"
+    ]
+  }
