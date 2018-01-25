@@ -3,6 +3,7 @@ type IndicatorData {
   value: Float!
   id: String!
   name: String!
+  color: String
   uid: String!
 }
 type ToolTip {
@@ -156,7 +157,7 @@ type Flow {
   selections: [FlowSelection]!
 }
 type FlowsOverTimeWithToolTip  {
-  data: [IndicatorDataColored]!
+  data: [IndicatorData]!
   toolTip: ToolTip!
 }
 type InternationalResources {

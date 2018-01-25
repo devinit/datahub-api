@@ -8,14 +8,12 @@ type AidUnit {
   year: Int!
   uid: String!
 }
-type IdNamePair {
-  id: String!
-  name: String!
-}
+
 type UnbundlingAidTotal {
   year: Int!
   total: String!
 }
+
 type UnbundlingAidSelections {
   # unbundling aid selection options
   to: [IdNamePair]!

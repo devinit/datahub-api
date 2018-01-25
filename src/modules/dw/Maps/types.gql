@@ -41,7 +41,5 @@ type MapData {
 }
 
 type Query {
-  mapData(
-    id: String!
-  ): MapData
+  mapData(id: String!): MapData
 }
