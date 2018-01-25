@@ -12,7 +12,6 @@ interface IBubbleSizeResults {
     value: string;
     year: string;
 }
-
 export default class BubbleChart {
     public static async addColorValue(data: IEntityBasic[]): Promise<IEntityBasic[]> {
         const colors = await getColors();

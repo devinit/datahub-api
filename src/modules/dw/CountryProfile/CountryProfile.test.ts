@@ -4,7 +4,7 @@ import {getFlows} from '../../refs/countryProfile';
 import CountryProfile from '.';
 import * as R from 'ramda';
 import Resources from './Resources';
-import db from '../../db';
+import db from '@devinit/graphql-next/lib/db';
 
 describe('country profile DW module tests', () => {
     const countryProfile = new CountryProfile(db);

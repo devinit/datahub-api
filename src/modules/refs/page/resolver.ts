@@ -1,29 +1,29 @@
-import {IContext} from '../../../../schema';
+import {IContext} from '../../../modules';
 export default {
     Query: {
         async countryProfilePageData(_root, _args, ctx: IContext) {
-           return ctx.modules.getCountryProfilePageData();
+           return ctx.modules.refs.getCountryProfilePageData();
         },
         async districtPageData(_root, args, ctx: IContext) {
-            return ctx.modules.getDistrictPageData(args.country);
+            return ctx.modules.refs.getDistrictPageData(args.country);
          },
         async globalPicturePageData(_root, _args, ctx: IContext) {
-           return ctx.modules.getGlobalPicturePageData();
+           return ctx.modules.refs.getGlobalPicturePageData();
         },
-        async odaDonorBubbleChartPageData(_root, _args, ctx) {
-           return ctx.modules.getOdaDonorBubbleChartPageData();
+        async odaDonorBubbleChartPageData(_root, _args, ctx: IContext) {
+           return ctx.modules.refs.getOdaDonorBubbleChartPageData();
         },
-         async povertyBubbleChartPageData(_root, _args, ctx) {
-           return ctx.modules.getPovertyBubbleChartPageData();
+         async povertyBubbleChartPageData(_root, _args, ctx: IContext) {
+           return ctx.modules.refs.getPovertyBubbleChartPageData();
         },
-        async unbundlingOdaPageData(_root, _args, ctx) {
-           return ctx.modules.getUnbundlingOdaPageData();
+        async unbundlingOdaPageData(_root, _args, ctx: IContext) {
+           return ctx.modules.refs.getUnbundlingOdaPageData();
         },
-        async unbundlingOOfPageData(_root, _args, ctx) {
-           return ctx.modules.getUnbundlingOOfPageData();
+        async unbundlingOOfPageData(_root, _args, ctx: IContext) {
+           return ctx.modules.refs.getUnbundlingOOfPageData();
         },
-        async whereThePoorPageData(_root, _args, ctx) {
-           return ctx.modules.getWhereThePoorPageData();
+        async whereThePoorPageData(_root, _args, ctx: IContext) {
+           return ctx.modules.refs.getWhereThePoorPageData();
         }
     }
 };

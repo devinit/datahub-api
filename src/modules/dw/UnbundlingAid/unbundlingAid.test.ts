@@ -1,6 +1,6 @@
 import * as prettyFormat from 'pretty-format';
 import UnbundlingAid from '.';
-import db from '../../db';
+import db from '@devinit/graphql-next/lib/db';
 
 describe('Unbundling aid DW module tests', () => {
     const unbundlingAid = new UnbundlingAid(db);

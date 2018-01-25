@@ -1,8 +1,8 @@
-import {IContext} from '../../../../schema';
+import {IContext} from '../../../modules';
 export default {
     Query: {
         async methodology(_root, args, ctx: IContext) {
-           return ctx.modules.getMethodologyData(args.moduleName);
+           return ctx.modules.refs.getMethodologyData(args.moduleName);
         }
     }
 };

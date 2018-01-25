@@ -1,14 +1,14 @@
-import * as prettyFormat from 'pretty-format';
+import {prettyLists} from '@devinit/graphql-next/lib/utils/test.utils';
 import BubbleChart from '.';
-import db from '../../db';
+import db from '@devinit/graphql-next/lib/db';
 
 describe('Bubble chart DW module tests', () => {
     const bubbleChart = new BubbleChart(db);
 
     it('getting poverty  bubble chart data i.e poverty & revenue per person data', async () => {
-        const data = await bubbleChart.getBubbleChartPoverty(null);
+        const data = await bubbleChart.getBubbleChartPoverty();
         const dataB = await bubbleChart.getBubbleChartPoverty('AT');
-        expect({generic: data, WithATODa: dataB}).toMatchSnapshot();
+        expect({generic: prettyLists(data), WithATODa: prettyLists(dataB)}).toMatchSnapshot();
     }, 30000);
 
     it('getting oda  bubble chart ODA data', async () => {

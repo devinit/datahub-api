@@ -1,6 +1,6 @@
 import Maps from '.';
 import * as prettyFormat from 'pretty-format';
-import db from '../../db';
+import db from '@devinit/graphql-next/lib/db';
 
 describe('Maps module tests', () => {
     const maps = new Maps(db);

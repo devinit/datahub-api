@@ -1,4 +1,4 @@
-import {IContext} from '../../../../schema';
+import {IContext} from '../../../modules';
 
 export default {
     Query: {

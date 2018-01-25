@@ -1,6 +1,6 @@
 import * as prettyFormat from 'pretty-format';
 import SpotLight from '.';
-import db from '../../db';
+import db from '@devinit/graphql-next/lib/db';
 
 describe('spotlight on uganda tests', () => {
     const spotLight = new SpotLight(db);
