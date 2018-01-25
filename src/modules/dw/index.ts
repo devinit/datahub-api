@@ -8,7 +8,7 @@ import CountryProfile from './CountryProfile';
 export interface IDW {
     bubbleChart: BubbleChart;
     maps: Maps;
-    countryProfiles: CountryProfile;
+    countryProfile: CountryProfile;
     unbundlingAid: UnbundlingAid;
     spotLight: SpotLight;
 }

@@ -45,4 +45,4 @@ const refs: IRefs = {
     getCountries,
 };
 
-export default {refs: () => refs};
+export default [{refs: () => refs}];
