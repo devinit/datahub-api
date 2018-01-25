@@ -1,11 +1,11 @@
-import {IDatabase} from 'pg-promise';
-import {IExtensions} from '../../db';
+
+import {IDB} from '@devinit/graphql-next/lib/db';
 import sql from './sql';
 import * as shortid from 'shortid';
 import * as R from 'ramda';
 import {getIndicatorData, IGetIndicatorArgs, isDonor, indicatorDataProcessingNamed,
         IRAWPopulationAgeBand, normalizeKeyName, IRAW, IRAWQuintile,
-        IRAWPopulationGroup, getIndicatorToolTip, getIndicatorsValue} from '../utils';
+        IRAWPopulationGroup, getIndicatorToolTip, getIndicatorsValue} from '../../utils';
 
 interface IOverViewTabRecipients {
     poorestPeople: DH.IIndicatorValueWithToolTip;
@@ -20,7 +20,7 @@ interface IOverViewTabDonors {
 const red = '#e8443a';
 const grey = '#847e84';
 export default class CountryProfileTabs {
-    private db: IDatabase<IExtensions> & IExtensions;
+    private db: IDB;
     private defaultArgs;
 
     constructor(db: any) {

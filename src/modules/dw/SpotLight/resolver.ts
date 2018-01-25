@@ -5,22 +5,22 @@ import {
 export default {
     Query: {
         async educationTabRegional(_root, args, ctx: IContext) {
-            return ctx.dw.spotLight[args.country].getEducationTabRegional(args);
+            return ctx.modules.spotLight[args.country].getEducationTabRegional(args);
         },
         async healthTabRegional(_root, args, ctx: IContext) {
-            return ctx.dw.spotLight[args.country].getHealthTabRegional(args);
+            return ctx.modules.spotLight[args.country].getHealthTabRegional(args);
         },
         async localGovernmentFinance(_root, args, ctx: IContext) {
-            return ctx.dw.spotLight[args.country].getLocalGovernmentFinance(args);
+            return ctx.modules.spotLight[args.country].getLocalGovernmentFinance(args);
         },
         async overviewTabRegional(_root, args, ctx: IContext) {
-            return ctx.dw.spotLight.getOverViewTabRegional(args);
+            return ctx.modules.spotLight.getOverViewTabRegional(args);
         },
         async populationTabRegional(_root, args, ctx: IContext) {
-            return ctx.dw.spotLight[args.country].getPopulationTabRegional(args);
+            return ctx.modules.spotLight[args.country].getPopulationTabRegional(args);
         },
         async povertyTabRegional(_root, args, ctx: IContext) {
-            return ctx.dw.spotLight[args.country].getPovertyTabRegional(args);
+            return ctx.modules.spotLight[args.country].getPovertyTabRegional(args);
         }
     },
     PovertyTabRegional: {

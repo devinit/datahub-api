@@ -1,13 +1,13 @@
 export default {
     Query: {
         async unbundlingAidData(_root, {args}, ctx) {
-            return ctx.dw.unbundlingAid.getUnbundlingAidData(args);
+            return ctx.modules.unbundlingAid.getUnbundlingAidData(args);
         },
         async unbundlingAidDataTotal(_root, {args}, ctx) {
-            return ctx.dw.unbundlingAid.getUnbundlingAidDataTotal(args);
+            return ctx.modules.unbundlingAid.getUnbundlingAidDataTotal(args);
         },
         async unbundlingSelectionData(_root, args, ctx) {
-            return ctx.dw.unbundlingAid.getUnbundlingSelectionData(args);
+            return ctx.modules.unbundlingAid.getUnbundlingSelectionData(args);
         }
     }
 };

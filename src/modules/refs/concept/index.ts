@@ -1,4 +1,4 @@
-import {get} from '../../connector';
+import {githubGet} from '@devinit/graphql-next/lib/github';
 export interface IConcept {
     id: string;
     theme: string;
@@ -26,7 +26,7 @@ export interface IConcept {
 
 export const getConcepts = (moduleName: string): Promise <IConcept[]> => {
     const endPoint: string = `${moduleName}/concept.csv`;
-    return get<IConcept>(endPoint);
+    return githubGet<IConcept>(endPoint);
 };
 const methodologyDownloadsMap = {
     'data_series.percent_in_p20_national': 'poorest-20-percent',
@@ -48,10 +48,10 @@ export const getMethodologyData = async (moduleName: string): Promise <DH.IMetho
 export const getConceptAsync = async (moduleName: string, id: string, theme?: string): Promise <IConcept> => {
     const allConcepts: IConcept[]  = await getConcepts(moduleName);
     const concepts: IConcept[] = allConcepts.filter(obj => obj.id === id.trim());
-    if (!concepts[0]) throw new Error(`failed to get concept for ${moduleName} ID: ${id}`);
+    if (!concepts[0]) throw new Error(`failed to githubGet concept for ${moduleName} ID: ${id}`);
     if (theme) {
        const concept: IConcept | undefined =  concepts.find(obj => obj.theme === theme);
-       if (!concept) throw new Error(`failed to get concept for ${moduleName} id: ${id} theme: ${theme}`);
+       if (!concept) throw new Error(`failed to githubGet concept for ${moduleName} id: ${id} theme: ${theme}`);
        return concept;
     }
     return concepts[0];

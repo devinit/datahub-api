@@ -5,25 +5,25 @@ import {
 export default {
     Query: {
         async governmentFinance(_root, args, ctx: IContext) {
-            return ctx.dw.countryProfile.resources.getGovernmentFinance(args);
+            return ctx.modules.countryProfile.resources.getGovernmentFinance(args);
         },
         async internationalResources(_root, args, ctx: IContext) {
-            return ctx.dw.countryProfile.resources.getInternationalResources(args);
+            return ctx.modules.countryProfile.resources.getInternationalResources(args);
         },
         async singleResource(_root, args, ctx: IContext) {
-            return ctx.dw.countryProfile.resources.getSingleResource(args);
+            return ctx.modules.countryProfile.resources.getSingleResource(args);
         },
         async overviewTab(_root, args, ctx: IContext) {
-            return ctx.dw.countryProfile.tabs.getOverViewTab(args);
+            return ctx.modules.countryProfile.tabs.getOverViewTab(args);
         },
         async flows(_root, args, ctx: IContext) {
-            return ctx.dw.countryProfile.resources.getFlows(args.countryType);
+            return ctx.modules.countryProfile.resources.getFlows(args.countryType);
         },
         async populationTab(_root, args, ctx: IContext) {
-            return ctx.dw.countryProfile.tabs.getPopulationTab(args);
+            return ctx.modules.countryProfile.tabs.getPopulationTab(args);
         },
         async povertyTab(_root, args, ctx: IContext) {
-            return ctx.dw.countryProfile.tabs.getPovertyTab(args);
+            return ctx.modules.countryProfile.tabs.getPovertyTab(args);
         }
     }
 };

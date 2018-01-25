@@ -1,12 +1,12 @@
-import {IDatabase} from 'pg-promise';
-import {IExtensions} from '../../db';
+
+import {IDB} from '@devinit/graphql-next/lib/db';
 import {getIndicatorDataSimple, indicatorDataProcessingSimple, IGetIndicatorArgsSimple,
-    IProcessedSimple, normalizeKeyName, formatNumbers} from '../utils';
-import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
-import {getColors, getEntityByIdGeneric, IColor, IEntity, getEntities} from '../../../cms/modules/global';
-import {get} from '../../../cms/connector';
-import {getDataRevolutionColors, IRevolutionColorMap} from '../../../cms/modules/globalPicture';
-import {getDistrictEntities, IDistrict} from '../../../cms/modules/spotlight';
+    IProcessedSimple, normalizeKeyName, formatNumbers} from '../../utils';
+import {getConceptAsync, IConcept} from '../../refs/concept';
+import {getColors, getEntityByIdGeneric, IColor, IEntity, getEntities} from '../../refs/global';
+import {githubGet} from '@devinit/graphql-next/lib/github';
+import {getDataRevolutionColors, IRevolutionColorMap} from '../../refs/globalPicture';
+import {getDistrictEntities, IDistrict} from '../../refs/spotlight';
 import sql, {DAC, dataRevolution} from './sql';
 import * as Color from 'color';
 import { hsl } from 'd3-color';
@@ -152,7 +152,7 @@ export default class Maps {
     public static async getCategoricalMapping(indicator: string, theme?: string): Promise<ICategoricalMapping[]> {
         const categoryMapName = theme === 'data-revolution' ?  'data-revolution-colors' :
             normalizeKeyName(indicator.split('.')[1]);
-        return await get<ICategoricalMapping>(`global-picture/${categoryMapName}.csv`);
+        return await githubGet<ICategoricalMapping>(`global-picture/${categoryMapName}.csv`);
     }
     public static getValueDetail(value: number, categoryMappings: ICategoricalMapping[]): ICategoricalMapping {
         const categoryMapping: ICategoricalMapping | undefined =
@@ -190,7 +190,7 @@ export default class Maps {
             return obj;
         });
     }
-    private db: IDatabase<IExtensions> & IExtensions;
+    private db: IDB;
 
     constructor(db: any) {
         this.db = db;

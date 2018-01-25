@@ -1,5 +1,5 @@
-import {IDatabase} from 'pg-promise';
-import {IExtensions} from '../../../db';
+
+import {IDB} from '@devinit/graphql-next/lib/db';
 import {kenya} from './sql';
 import {getIndicatorsGeneric, getLocalGovernmentFinance, GetIndicatorFn} from './utils';
 
@@ -7,8 +7,8 @@ const sql = kenya;
 const country = 'kenya';
 export default class Uganda {
     public getIndicatorsGeneric: GetIndicatorFn;
-    private db: IDatabase<IExtensions> & IExtensions;
-    constructor(db: any) {
+    private db: IDB;
+    constructor(db: IDB) {
         this.db = db;
         this.getIndicatorsGeneric = getIndicatorsGeneric({country, db: this.db});
     }

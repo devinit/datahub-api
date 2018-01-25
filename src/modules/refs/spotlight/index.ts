@@ -1,7 +1,7 @@
 /**
  * regional / district entities
  */
-import {get} from '../../connector';
+import {githubGet} from '@devinit/graphql-next/lib/github';
 
 export interface IDistrict {
     id: string;
@@ -9,7 +9,7 @@ export interface IDistrict {
 }
 
 export const getDistrictEntities = async (country: string): Promise<IDistrict[]> => {
-    const data = await get<IDistrict>(`spotlight-${country}/district.csv`);
+    const data = await githubGet<IDistrict>(`spotlight-${country}/district.csv`);
     return data.map(obj => ({id: obj.id, name: obj.name}));
 };
 

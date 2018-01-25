@@ -1,16 +1,15 @@
-import {IDatabase} from 'pg-promise';
-import {IExtensions} from '../../db';
+import {IDB} from '@devinit/graphql-next/lib/db';
 import sql from './sql';
-import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
+import {getConceptAsync, IConcept} from '../../refs/concept';
 import * as R from 'ramda';
 import * as shortid from 'shortid';
-import {IColor, getFlowType, getColors, getEntityByIdGeneric, IEntityBasic} from '../../../cms/modules/global';
+import {IColor, getFlowType, getColors, getEntityByIdGeneric, IEntityBasic} from '../../refs/global';
 import {getIndicatorData, RECIPIENT, DONOR, IGetIndicatorArgs, CROSSOVER, capitalize, getCurrencyCode, getTotal,
         indicatorDataProcessingSimple, makeSqlAggregateQuery, formatNumbers, getIndicatorsValue, getIndicatorToolTip,
         isDonor, IRAW, IRAWFlow, IProcessedSimple, entitesFnMap, IRAWDomestic, domesticDataProcessing,
-        getMaxAndMin} from '../utils';
+        getMaxAndMin} from '../../utils';
 import {getFlowByTypeAsync, getFlows, getFlowByIdAsync, getBudgetLevels, IBudgetLevelRef,
-        getAllFlowSelections, IFlowRef, IFlowSelectionRaw} from '../../../cms/modules/countryProfile';
+        getAllFlowSelections, IFlowRef, IFlowSelectionRaw} from '../../refs/countryProfile';
 
 interface IflowTypes {
     inflows: DH.IFlow[];
@@ -61,9 +60,9 @@ export default class Resources {
         // add plus 1 to make non zero indexed
         return Number(`${typePos + 1}${catPos + 1}${flow.flow_category_order}`);
     }
-    private db: IDatabase<IExtensions> & IExtensions;
+    private db: IDB;
     private defaultArgs;
-    constructor(db: any) {
+    constructor(db: IDB) {
         this.db = db;
         this.defaultArgs = {db: this.db, conceptType: 'country-profile'};
     }

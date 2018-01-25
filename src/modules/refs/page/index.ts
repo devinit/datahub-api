@@ -1,8 +1,8 @@
-import {get} from '../../connector';
+import {githubGet} from '@devinit/graphql-next/lib/github';
 
 const getPageData = (moduleName: string): Promise <DH.IPage[]> => {
     const endPoint: string = `${moduleName}/page.csv`;
-    return get<DH.IPage>(endPoint);
+    return githubGet<DH.IPage>(endPoint);
 };
 export const getDistrictPageData = (country: string): Promise<DH.IPage[]> =>
     getPageData(`spotlight-${country}/district-profile`);

@@ -1,4 +1,4 @@
-import {get} from '../../connector';
+import {githubGet} from '@devinit/graphql-next/lib/github';
 import {getConcepts, IConcept} from '../concept';
 
 export interface IRawTheme {
@@ -10,7 +10,7 @@ export interface IRawTheme {
 
 export const getThemes = async (themesType: string): Promise<DH.ITheme[]> => {
     const concepts: IConcept[] = await getConcepts(themesType);
-    const themes: IRawTheme[] = await get<IRawTheme>(`${themesType}/theme.csv`);
+    const themes: IRawTheme[] = await githubGet<IRawTheme>(`${themesType}/theme.csv`);
     return themes
         .map(theme => {
             const indicators = concepts

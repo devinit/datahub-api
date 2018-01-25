@@ -1,6 +1,6 @@
 import * as prettyFormat from 'pretty-format';
 // import {uidPatchForTabData} from '../utils/test-utils';
-import {getFlows} from '../../../cms/modules/countryProfile';
+import {getFlows} from '../../refs/countryProfile';
 import CountryProfile from '.';
 import * as R from 'ramda';
 import Resources from './Resources';

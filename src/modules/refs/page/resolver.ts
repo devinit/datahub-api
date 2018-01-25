@@ -2,28 +2,28 @@ import {IContext} from '../../../../schema';
 export default {
     Query: {
         async countryProfilePageData(_root, _args, ctx: IContext) {
-           return ctx.cms.getCountryProfilePageData();
+           return ctx.modules.getCountryProfilePageData();
         },
         async districtPageData(_root, args, ctx: IContext) {
-            return ctx.cms.getDistrictPageData(args.country);
+            return ctx.modules.getDistrictPageData(args.country);
          },
         async globalPicturePageData(_root, _args, ctx: IContext) {
-           return ctx.cms.getGlobalPicturePageData();
+           return ctx.modules.getGlobalPicturePageData();
         },
         async odaDonorBubbleChartPageData(_root, _args, ctx) {
-           return ctx.cms.getOdaDonorBubbleChartPageData();
+           return ctx.modules.getOdaDonorBubbleChartPageData();
         },
          async povertyBubbleChartPageData(_root, _args, ctx) {
-           return ctx.cms.getPovertyBubbleChartPageData();
+           return ctx.modules.getPovertyBubbleChartPageData();
         },
         async unbundlingOdaPageData(_root, _args, ctx) {
-           return ctx.cms.getUnbundlingOdaPageData();
+           return ctx.modules.getUnbundlingOdaPageData();
         },
         async unbundlingOOfPageData(_root, _args, ctx) {
-           return ctx.cms.getUnbundlingOOfPageData();
+           return ctx.modules.getUnbundlingOOfPageData();
         },
         async whereThePoorPageData(_root, _args, ctx) {
-           return ctx.cms.getWhereThePoorPageData();
+           return ctx.modules.getWhereThePoorPageData();
         }
     }
 };

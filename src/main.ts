@@ -1,5 +1,5 @@
 import {main} from '@devinit/graphql-next';
-import {preCacheAll} from '@devinit/graphql-next/schema';
+import {preCacheAll} from '@devinit/graphql-next/lib/schema';
 // import brazil from './modules/brazil';
 // import china from './modules/china';
 // import india from './modules/india';
@@ -14,4 +14,4 @@ main({
     apiModules,
     port: process.env.PORT || 3000
   });
-if (NODE_ENV === 'production') preCacheAll();
+if (process.env.NODE_ENV === 'production') preCacheAll();

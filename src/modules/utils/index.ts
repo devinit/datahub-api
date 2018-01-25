@@ -1,14 +1,14 @@
-import {IDatabase} from 'pg-promise';
+
 import * as R from 'ramda';
-import {IExtensions} from '../../db';
-import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
-import {getDistrictBySlugAsync, IDistrict} from '../../../cms/modules/spotlight';
+import {IDB} from '@devinit/graphql-next/lib/db';
+import {getConceptAsync, IConcept} from '../../refs/concept';
+import {getDistrictBySlugAsync, IDistrict} from '../../refs/spotlight';
 import * as shortid from 'shortid';
 import {IEntity, getEntityByIdGeneric, getFinancingType, getCreditorType, getColors, IColor,
         getDestinationInstitutionType, getFlowType, ICurrency, getCurrency,
-        getSectors, getBundles, getChannels, getEntities, getEntityBySlugAsync} from '../../../cms/modules/global';
+        getSectors, getBundles, getChannels, getEntities, getEntityBySlugAsync} from '../../refs/global';
 import {isError} from '../../../../lib/isType';
-import {getBudgetLevels, IBudgetLevelRef} from '../../../cms/modules/countryProfile';
+import {getBudgetLevels, IBudgetLevelRef} from '../../refs/countryProfile';
 
 export interface IGetIndicatorArgs {
     id?: string;
@@ -16,7 +16,7 @@ export interface IGetIndicatorArgs {
     country?: string;
     table?: string;
     conceptType: string; // folder with concept file
-    db: IDatabase<IExtensions> & IExtensions;
+    db: IDB;
 }
 export interface ISpotlightGetIndicatorArgs {
     id: string;
@@ -26,7 +26,7 @@ export interface ISpotlightGetIndicatorArgs {
     schema: string;
     table?: string;
     conceptType: string; // folder with concept file
-    db: IDatabase<IExtensions> & IExtensions;
+    db: IDB;
 }
 export interface IRAWPopulationGroup {
     di_id: string;
@@ -47,7 +47,7 @@ interface ISqlSimple {
 }
 export interface IGetIndicatorArgsSimple {
     id?: string;
-    db: IDatabase<IExtensions> & IExtensions;
+    db: IDB;
     start_year?: number;
     end_year?: number;
     sql?: ISqlSimple;
@@ -119,7 +119,7 @@ export interface IGetIndicatorValueArgs {
     id: string;
     sqlList: string[];
     precision?: number;
-    db: IDatabase<IExtensions> & IExtensions;
+    db: IDB;
     format: boolean;
 }
 export const RECIPIENT = 'recipient';

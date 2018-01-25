@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import {get} from '../../connector';
+import {githubGet} from '@devinit/graphql-next/lib/github';
 
 export interface IFlowRef {
     id: string;
@@ -30,25 +30,25 @@ export interface IBudgetLevelRef {
     color: string;
 }
 
-export const getFlows = (): Promise<IFlowRef[]> => get<IFlowRef>('country-profile/flow-name.csv');
+export const getFlows = (): Promise<IFlowRef[]> => githubGet<IFlowRef>('country-profile/flow-name.csv');
 
 export const getBudgetLevels = (country?: string): Promise<IBudgetLevelRef[]> => {
-    if (country && country.length) return get<IBudgetLevelRef>(`spotlight-${country}/budget_level.csv`);
-    return get<IBudgetLevelRef>('country-profile/domestic-budget-level.csv');
+    if (country && country.length) return githubGet<IBudgetLevelRef>(`spotlight-${country}/budget_level.csv`);
+    return githubGet<IBudgetLevelRef>('country-profile/domestic-budget-level.csv');
 };
 
-export const getFlowTypes = (): Promise<IFlowRef[]> => get<IFlowRef>('country-profile/flow-type.csv');
+export const getFlowTypes = (): Promise<IFlowRef[]> => githubGet<IFlowRef>('country-profile/flow-type.csv');
 
 export const getFlowByType = (type: string, flows: IFlowRef[]): IFlowRef[] => {
     const flowRefs: IFlowRef[] = R.filter(R.propEq('type', type), flows);
-    if (!flowRefs.length) throw new Error (`failed to get any flows for type ${type}`);
+    if (!flowRefs.length) throw new Error (`failed to githubGet any flows for type ${type}`);
     return flowRefs;
 };
 
 export const getFlowByTypeAsync = async (type: string): Promise<IFlowRef[]> => {
     const flows: IFlowRef[] = await getFlows();
     const flowRefs: IFlowRef[] = R.filter(R.propEq('type', type), flows);
-    if (!flowRefs.length) throw new Error (`failed to get any flows for type ${type}`);
+    if (!flowRefs.length) throw new Error (`failed to githubGet any flows for type ${type}`);
     return flowRefs;
 };
 
@@ -60,4 +60,4 @@ export const getFlowByIdAsync = async (countryType: string): Promise<IFlowRef> =
 };
 
 export const getAllFlowSelections = (): Promise<IFlowSelectionRaw[]> =>
-    get<IFlowSelectionRaw>('country-profile/flow-selections.csv');
+    githubGet<IFlowSelectionRaw>('country-profile/flow-selections.csv');

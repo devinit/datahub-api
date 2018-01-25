@@ -1,4 +1,4 @@
-import {get} from '../../connector';
+import {githubGet} from '@devinit/graphql-next/lib/github';
 
 export interface IRevolutionColorMap {
     id: string;
@@ -8,4 +8,4 @@ export interface IRevolutionColorMap {
 }
 
 export const getDataRevolutionColors = (): Promise<IRevolutionColorMap[]> =>
-    get<IRevolutionColorMap>('global-picture/data-revolution-colors.csv');
+    githubGet<IRevolutionColorMap>('global-picture/data-revolution-colors.csv');

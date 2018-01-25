@@ -1,12 +1,12 @@
-import {IDatabase} from 'pg-promise';
-import {IExtensions} from '../../db';
+
+import {IDB} from '@devinit/graphql-next/lib/db';
 import {makeSqlAggregateQuery, entitesFnMap, DONOR, RECIPIENT, MULTILATERAL, CROSSOVER,
-    formatNumbers} from '../utils';
-import {getConceptAsync, IConcept} from '../../../cms/modules/concept';
+    formatNumbers} from '../../utils';
+import {getConceptAsync, IConcept} from '../../refs/concept';
 import * as shortid from 'shortid';
 import sql from './sql';
 import {IEntity, getEntities, getRegional, IRegional, getEntityByIdGeneric,
-        getSectors, getBundles, getChannels, getColors, IColor} from '../../../cms/modules/global';
+        getSectors, getBundles, getChannels, getColors, IColor} from '../../refs/global';
 import * as R from 'ramda';
 
 interface IUnbundlingAidQuery {
@@ -38,7 +38,7 @@ export default class UnbundlingAid {
     public static getSqlQueryArgs = (args: DH.IUnbundlingAidQuery): IUnbundlingAidQuery =>
         R.omit(['groupBy', 'aidType'], args) as IUnbundlingAidQuery
 
-    private db: IDatabase<IExtensions> & IExtensions;
+    private db: IDB;
     private donorsBlackList = ['country-unspecified', 'region-unspecified', 'organisation-unspecified',
                     'arab-fund', 'afesd', 'idb-sp-fund'];
     constructor(db: any) {

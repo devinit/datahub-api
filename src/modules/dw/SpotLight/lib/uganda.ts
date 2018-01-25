@@ -1,5 +1,5 @@
-import {IDatabase} from 'pg-promise';
-import {IExtensions} from '../../../db';
+
+import {IDB} from '@devinit/graphql-next/lib/db';
 import {uganda} from './sql';
 import {getIndicatorsGeneric, getPopulationDistribution, getDistrictIndicatorRank,
     getLocalGovernmentFinance, GetIndicatorFn, ISpotlightArgs} from './utils';
@@ -10,8 +10,8 @@ const country = 'uganda';
 export default class Uganda {
     public getIndicatorsGeneric: GetIndicatorFn;
     public getDistrictIndicatorRank: (args: ISpotlightArgs, query: string) => Promise<DH.IIndicatorValueWithToolTip>;
-    private db: IDatabase<IExtensions> & IExtensions;
-    constructor(db: any) {
+    private db: IDB;
+    constructor(db: IDB) {
         this.db = db;
         this.getDistrictIndicatorRank = getDistrictIndicatorRank(this.db);
         this.getIndicatorsGeneric = getIndicatorsGeneric({country, db: this.db});

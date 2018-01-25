@@ -1,4 +1,4 @@
-import {get} from '../../connector';
+import {githubGet} from '@devinit/graphql-next/lib/github';
 import * as R from 'ramda';
 
 export interface IEntityBasic {
@@ -32,19 +32,19 @@ export interface IRegional extends IEntityBasic {
     dac_continent: string;
 }
 
-export const getEntities = (): Promise<IEntity[]> => get<IEntity>('global/entity.csv');
+export const getEntities = (): Promise<IEntity[]> => githubGet<IEntity>('global/entity.csv');
 
 export const getEntityBySlugAsync = async (slug: string): Promise<IEntity> => {
      const entities: IEntity[] = await getEntities();
      const entity: IEntity | undefined = entities.find(obj => obj.slug === slug);
-     if (!entity) throw new Error (`failed to get entity for ${slug}`);
+     if (!entity) throw new Error (`failed to githubGet entity for ${slug}`);
      return entity;
 };
 
 export const getEntityByIdAsync = async (id: string): Promise<IEntity> => {
     const entities: IEntity[] = await getEntities();
     const entity =  R.find(R.propEq('id', id), entities);
-    if (!entity) throw new Error(`failed to get entity for ${id}`);
+    if (!entity) throw new Error(`failed to githubGet entity for ${id}`);
     return entity as IEntity;
 };
 
@@ -68,15 +68,15 @@ export const getEntityByNameGeneric = <T extends {name: string}>(name: string, e
     return entity;
 };
 
-export const getSectors = (): Promise<IEntityBasic[]> => get<IEntityBasic>('global/sector.csv');
-export const getChannels = (): Promise<IEntityBasic[]> => get<IEntityBasic>('global/channel.csv');
-export const getBundles = (): Promise<IEntityBasic[]> => get<IEntityBasic>('global/bundle.csv');
-export const getRegional = (): Promise<IRegional[]> => get<IRegional>('global/regional.csv');
-export const getIncomeGroups = (): Promise<IEntityBasic[]> => get<IEntityBasic>('global/income-group.csv');
-export const getFinancingType = (): Promise<IEntityBasic[]> => get<IEntityBasic>('country-profile/financing-type.csv');
-export const getCreditorType = (): Promise<IEntityBasic[]> => get<IEntityBasic>('country-profile/creditor-type.csv');
-export const getFlowType = (): Promise<IEntityBasic[]> => get<IEntityBasic>('country-profile/flow-type.csv');
+export const getSectors = (): Promise<IEntityBasic[]> => githubGet<IEntityBasic>('global/sector.csv');
+export const getChannels = (): Promise<IEntityBasic[]> => githubGet<IEntityBasic>('global/channel.csv');
+export const getBundles = (): Promise<IEntityBasic[]> => githubGet<IEntityBasic>('global/bundle.csv');
+export const getRegional = (): Promise<IRegional[]> => githubGet<IRegional>('global/regional.csv');
+export const getIncomeGroups = (): Promise<IEntityBasic[]> => githubGet<IEntityBasic>('global/income-group.csv');
+export const getFinancingType = (): Promise<IEntityBasic[]> => githubGet<IEntityBasic>('country-profile/financing-type.csv');
+export const getCreditorType = (): Promise<IEntityBasic[]> => githubGet<IEntityBasic>('country-profile/creditor-type.csv');
+export const getFlowType = (): Promise<IEntityBasic[]> => githubGet<IEntityBasic>('country-profile/flow-type.csv');
 export const getDestinationInstitutionType = (): Promise<IEntityBasic[]> =>
-    get<IEntityBasic>('country-profile/destination-institution-type.csv');
-export const getCurrency = (): Promise<ICurrency[]> => get<ICurrency>('global/currency.csv');
-export const getColors = (): Promise<IColor[]> => get<IColor>('global/colors.csv');
+    githubGet<IEntityBasic>('country-profile/destination-institution-type.csv');
+export const getCurrency = (): Promise<ICurrency[]> => githubGet<ICurrency>('global/currency.csv');
+export const getColors = (): Promise<IColor[]> => githubGet<IColor>('global/colors.csv');

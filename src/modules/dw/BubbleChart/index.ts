@@ -1,12 +1,11 @@
-import {IDatabase} from 'pg-promise';
-import {IExtensions} from '../../db';
+import {IDB} from '@devinit/graphql-next/lib/db';
 import sql from './sql';
-import {getConceptAsync, IConcept, getConcepts} from '../../../cms/modules/concept';
 import * as shortid from 'shortid';
+import {getConceptAsync, IConcept, getConcepts} from '../../refs/concept';
 import {IEntity, getEntities, getEntityByIdGeneric, IEntityBasic,
-    getIncomeGroups, getRegional, getColors} from '../../../cms/modules/global';
+    getIncomeGroups, getRegional, getColors} from '../../refs/global';
 import {getIndicatorData, IGetIndicatorArgs, IProcessedSimple, IRAW, getIndicatorDataSimple,
-        indicatorDataProcessingSimple, makeSqlAggregateQuery} from '../utils';
+        indicatorDataProcessingSimple, makeSqlAggregateQuery} from '../../utils';
 
 interface IBubbleSizeResults {
     to_di_id: string;
@@ -15,7 +14,6 @@ interface IBubbleSizeResults {
 }
 
 export default class BubbleChart {
-
     public static async addColorValue(data: IEntityBasic[]): Promise<IEntityBasic[]> {
         const colors = await getColors();
         return data
@@ -25,9 +23,9 @@ export default class BubbleChart {
                 return {...obj, color: colorObj.value};
             });
     }
-    private db: IDatabase<IExtensions> & IExtensions;
+    private db: IDB;
 
-    constructor(db: any) {
+    constructor(db: IDB) {
         this.db = db;
     }
 
