@@ -49,7 +49,7 @@ export default class UnbundlingAid {
             const queryArgs: IUnbundlingAidQuery = UnbundlingAid.getSqlQueryArgs(args);
             const table = this.getUnbundlingAidDataTable(args.aidType);
             const queryStr: string = makeSqlAggregateQuery(queryArgs, args.groupBy, table);
-            const raw: IUnbundlingAidResult[] = await this.db.manyCacheable(queryStr, null);
+            const raw: IUnbundlingAidResult[] = await this.db.manyCacheable(queryStr);
             const entites: IUnbundlingEnitity[] = await entitesFnMap[args.groupBy]();
             const regions: IRegional[] = await getRegional();
             const colors = await getColors();

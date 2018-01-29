@@ -12,7 +12,7 @@ describe('Maps module tests', () => {
             {value: 2000, id: 'uk', name: 'England', year: 2000},
             {value: 2000, id: 'pl', name: 'Poland', year: 2000},
             ];
-        const onlyDacCountries = Maps.DACOnlyData(dacCountries, data);
+        const onlyDacCountries = Maps.DACOnlyData(dacCountries, data as DH.IMapUnit[]);
         expect(prettyFormat({onlyDacCountries})).toMatchSnapshot();
         expect(onlyDacCountries.length).toBe(2);
     }, 10000);
@@ -77,7 +77,7 @@ describe('Maps module tests', () => {
         expect(prettyFormat({legendB, legendC, legendA})).toMatchSnapshot();
     });
     it('should create color ramp', async () => {
-        const ramp = {high: '#e84439', low: '#f8c1b2'};
+        // const ramp = {high: '#e84439', low: '#f8c1b2'};
         const colorRamp = await Maps.getColorRamp('red');
         expect(prettyFormat(colorRamp)).toMatchSnapshot();
     }, 20000);

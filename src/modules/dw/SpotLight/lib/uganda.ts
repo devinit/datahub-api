@@ -23,7 +23,7 @@ export default class Uganda {
              = await this.getIndicatorsGeneric(id,
                 [sql.totalPopulation, sql.populationDensity,
                 sql.averageDependencyRatio, sql.allAverageDependencyRatio]);
-            const populationDistribution = await getPopulationDistribution(this.db)({id, country, sql});
+            const populationDistribution = await getPopulationDistribution(this.db)({id, country});
             return {
             totalPopulation,
             populationDensity,

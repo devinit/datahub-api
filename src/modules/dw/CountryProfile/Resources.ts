@@ -113,7 +113,7 @@ export default class Resources {
                 if (flow.type === RECIPIENT) args = {...args, to_di_id: countryId };
             }
             const sqlQuery = makeSqlAggregateQuery(args, groupById, flow.concept);
-            const data: IRAW[] = await this.db.manyCacheable(sqlQuery, null);
+            const data: IRAW[] = await this.db.manyCacheable(sqlQuery);
             const processedData: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(data);
             // TODO: types for  entitesFnMap
             const entities = await entitesFnMap[groupById]();
@@ -230,7 +230,7 @@ export default class Resources {
         const raw: IRAWFlow[] = await getIndicatorData<IRAWFlow>(queryArgs);
         const flowTypeRefs = await getFlowType();
         const colors = await getColors();
-        const data: DH.IIndicatorDataColored[] = raw.map(obj => {
+        const data: DH.IIndicatorData[] = raw.map(obj => {
             const flow: IEntityBasic | undefined = flowTypeRefs.find(ref => ref.id === obj.flow_type);
             if (!flow) throw new Error(`No flow type refrence for ${obj.flow_type}`);
             const colorObj: IColor | undefined = colors.find(c => c.id === flow.color);

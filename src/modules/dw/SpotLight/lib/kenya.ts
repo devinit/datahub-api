@@ -22,9 +22,9 @@ export default class Uganda {
                 [sql.totalPopulation, sql.populationDensity,
                 sql.populationBirthRate]);
             return {
-            totalPopulation,
-            populationDensity,
-            populationBirthRate
+                totalPopulation,
+                populationDensity,
+                populationBirthRate
            };
         } catch (error) {
             console.error(error);

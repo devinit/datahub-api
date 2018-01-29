@@ -1,6 +1,6 @@
 type IndicatorData {
   year: Int!
-  value: Float!
+  value: Float
   id: String!
   name: String!
   color: String
@@ -120,7 +120,7 @@ type Domestic {
   color: String!
 }
 type SpendingAllocationWithToolTip {
-  data:  [SpendingAllocation]!
+  data:  [SpendingAllocation]
   toolTip: ToolTip!
 }
 
@@ -133,8 +133,8 @@ type GovernmentFinance {
   spendingAllocation: SpendingAllocationWithToolTip
   # for treemap
   # such as constant 2015 USD for tree map
-  currencyCode: String!
-  currencyUSD: String!
+  currencyCode: String
+  currencyUSD: String
   # use resourcesRecipient sql
   expenditure: [Domestic]
   revenueAndGrants: [Domestic]

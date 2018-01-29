@@ -18,7 +18,7 @@
     "patch": "release-it -i patch -n",
     "feature": "release-it -i minor -n",
     "breaking": "release-it -i major -n",
-    "gqlToTs": "node node_modules/@devinit/graphql-next/lib/makeTypeDefs",
+    "gqlToTs": "node node_modules/@devinit/graphql-next/lib/typeDefs",
     "dev": "NODE_ENV=development concurrently \"npm run build:watch\" \"node-dev lib/main.js\""
   },
   "repository": {
@@ -41,17 +41,18 @@
   },
   "homepage": "https://github.com/devinit/datahub-api#readme",
   "dependencies": {
-    "@devinit/graphql-next": "0.0.16",
+    "@devinit/graphql-next": "0.1.6",
     "color": "^3.0.0",
     "d3-color": "^1.0.3",
     "d3-interpolate": "^1.1.6",
     "d3-scale": "^1.0.7",
-    "graphql": "0.9.1",
+    "graphql": ">= 0.10 < 0.12.0",
     "ramda": "^0.25.0",
     "shortid": "^2.2.8"
   },
   "devDependencies": {
     "@types/color": "^2.0.0",
+    "@types/graphql": "^0.11.4",
     "@types/jest": "^22.0.1",
     "@types/lru-cache": "^4.1.0",
     "@types/morgan": "^1.7.35",

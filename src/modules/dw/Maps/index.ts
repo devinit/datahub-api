@@ -73,7 +73,7 @@ export default class Maps {
         .filter(obj => obj !== undefined) as DH.IMapUnit[];
     }
     public static processBudgetData(data: DH.IMapUnit[]): DH.IMapUnit[] {
-        const grouped = R.groupBy<DH.IMapUnit>(R.prop('year'), data);
+        const grouped = R.groupBy<DH.IMapUnit>(obj => obj.year.toString(), data);
         return R.keys(grouped).reduce((acc: DH.IMapUnit[], year) => {
             const yearData = grouped[year];
             const groupedById = R.groupBy<DH.IMapUnit>(R.prop('id'), yearData);
@@ -109,7 +109,7 @@ export default class Maps {
             const colorObj = getEntityByIdGeneric<IColor>(colorStr, colors);
             const colorValue = colorObj.value;
             return  {...colorMap, [variation]: colorValue};
-        }, {}) as IColorMap;
+        }, {} as IColorMap) as IColorMap;
         return baseRamp;
     }
     public static createLinearLegend(
@@ -323,7 +323,7 @@ export default class Maps {
                 ...obj,
                 detail: obj.detail.toString(),
                 value: null,
-                year: null,
+                year: 0, // make ts happy
                 slug: entity.slug,
                 name: entity.name,
                 color: colorObj.value
