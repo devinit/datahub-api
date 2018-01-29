@@ -9,35 +9,35 @@ type BubbleChartData {
 }
 
 type BubbleChartOda {
-  year: Int!
+  year: Int
   # country id
-  id: String!
+  id: String
   # country name
-  name: String!
-  income_group: String!
-  region: String!
-  uid: String!
-  value: Float!
-  revenuePerPerson: Float!
-  numberInExtremePoverty: Float!
+  name: String
+  income_group: String
+  region: String
+  uid: String
+  value: Float
+  revenuePerPerson: Float
+  numberInExtremePoverty: Float
 }
 
 type BubbleChartPoverty {
-  year: Int!
-  value: Float!
-  id: String!
-  name: String!
-  income_group: String!
-  region: String!
-  uid: String!
-  revenuePerPerson: Float!
-  numberInExtremePoverty: Float!
-  percentageInExtremePoverty: Float!
+  year: Int
+  value: Float
+  id: String
+  name: String
+  income_group: String
+  region: String
+  uid: String
+  revenuePerPerson: Float
+  numberInExtremePoverty: Float
+  percentageInExtremePoverty: Float
 }
 type Region {
-  name: String!
-  id: String!
-  color: String!
+  name: String
+  id: String
+  color: String
 }
 
 type IdNamePair {

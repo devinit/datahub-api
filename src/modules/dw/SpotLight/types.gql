@@ -102,10 +102,10 @@ union PovertyTabRegional = PovertyTabUg | PovertyTabKe
 
 type Query {  
   # id is district slug
-  overviewTabRegional(id: String!, country: String!):OverviewTabRegional
-  # povertyTabRegional(id: String!, country: String!): PovertyTabRegional
+  # overviewTabRegional(id: String!, country: String!):OverviewTabRegional
+  povertyTabRegional(id: String!, country: String!): PovertyTabRegional
   # populationTabRegional(id: String!, country: String!):PopulationTabRegional
   # educationTabRegional(id: String!, country: String!):  EducationTabRegional
   # healthTabRegional(id: String!, country: String!): HealthTabRegional
-  # localGovernmentFinance(id: String!, country: String!): LocalGovernmentFinance
+  localGovernmentFinance(id: String!, country: String!): LocalGovernmentFinance
 }

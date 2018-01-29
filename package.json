@@ -41,13 +41,12 @@
   },
   "homepage": "https://github.com/devinit/datahub-api#readme",
   "dependencies": {
-    "@devinit/graphql-next": "0.0.14",
-    "@devinit/pdf-base": "1.0.4",
-    "graphql": "0.9.0",
-    "color": "^2.0.1",
+    "@devinit/graphql-next": "0.0.16",
+    "color": "^3.0.0",
     "d3-color": "^1.0.3",
     "d3-interpolate": "^1.1.6",
     "d3-scale": "^1.0.7",
+    "graphql": "0.9.1",
     "ramda": "^0.25.0",
     "shortid": "^2.2.8"
   },
@@ -60,14 +59,14 @@
     "@types/ramda": "^0.25.13",
     "@types/shortid": "0.0.29",
     "concurrently": "3.5.1",
+    "git-pre-hooks": "^1.2.0",
     "jest": "22.1.4",
     "jest-cli": "22.1.4",
     "node-dev": "3.1.3",
     "pretty-format": "22.1.0",
+    "release-it": "6.1.0",
     "ts-jest": "22.0.1",
     "tslint": "5.9.1",
-    "git-pre-hooks": "^1.2.0",
-    "release-it": "6.1.0",
     "typescript": "^2.6.2"
   },
   "jest": {

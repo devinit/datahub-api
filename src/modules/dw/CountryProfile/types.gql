@@ -73,11 +73,11 @@ type OverviewTab {
 
 type PovertyTab {
   # Poverty reduction over time area chart trend
-  poverty190Trend: IndicatorDataWithToolTip!
+  poverty190Trend: IndicatorDataWithToolTip
   # how deep is poverty %
-  depthOfExtremePoverty: IndicatorValueWithToolTip!
+  depthOfExtremePoverty: IndicatorValueWithToolTip
   # Recipients: how income is distributed, % of income received by each quintil
-  incomeDistTrend: QuintileDataWithToolTip!
+  incomeDistTrend: QuintileDataWithToolTip
 }
 
 type PopulationDistribution {
@@ -102,11 +102,11 @@ type PopulationPerAgeBandWithToolTip {
 }
 type PopulationTab {
   # total population in a country
-  population: IndicatorValueWithToolTip!
+  population: IndicatorValueWithToolTip
   # Urban vs Rural population level
-  populationDistribution: PopulationDistributionWithToolTip!
+  populationDistribution: PopulationDistributionWithToolTip
   # Number of people in 3 age bands (65+, 15- 65, 0 - 14)
-  populationPerAgeBand: PopulationPerAgeBandWithToolTip!
+  populationPerAgeBand: PopulationPerAgeBandWithToolTip
 }
 
 type Domestic {
@@ -127,18 +127,18 @@ type SpendingAllocationWithToolTip {
 type GovernmentFinance {
   startYear: Int!
   #Total revenue for a particular
-  totalRevenue: IndicatorValueWithToolTip!
-  grantsAsPcOfRevenue: IndicatorValueWithToolTip!
+  totalRevenue: IndicatorValueWithToolTip
+  grantsAsPcOfRevenue: IndicatorValueWithToolTip
   # for donut chart 
-  spendingAllocation: SpendingAllocationWithToolTip!
+  spendingAllocation: SpendingAllocationWithToolTip
   # for treemap
   # such as constant 2015 USD for tree map
   currencyCode: String!
   currencyUSD: String!
   # use resourcesRecipient sql
-  expenditure: [Domestic]!
-  revenueAndGrants: [Domestic]!
-  finance: [Domestic]!
+  expenditure: [Domestic]
+  revenueAndGrants: [Domestic]
+  finance: [Domestic]
 }
 type ResourceDataWithToolTip {
   data: [ResourceData]!
@@ -161,21 +161,21 @@ type FlowsOverTimeWithToolTip  {
   toolTip: ToolTip!
 }
 type InternationalResources {
-  startYear: Int!
+  startYear: Int
   # Gross National Income
-  GNI: IndicatorValueWithToolTip!
+  GNI: IndicatorValueWithToolTip
   #Net ODA received, % of GNI for recipient countries
-  netODAOfGNIIn: IndicatorValueWithToolTip!
+  netODAOfGNIIn: IndicatorValueWithToolTip
   #Net ODA out, % of GNI for recipient countries
-  netODAOfGNIOut: IndicatorValueWithToolTip!
+  netODAOfGNIOut: IndicatorValueWithToolTip
   # for line chart in the  international resources tabs section,
   # IndicatorDataColoredWithToolTip  is defined in spotlight types
-  resourceflowsOverTime: FlowsOverTimeWithToolTip! 
+  resourceflowsOverTime: FlowsOverTimeWithToolTip
   # for sidebar chart in international resources section & area partition tree chart default data
-  resourcesOverTime: ResourceDataWithToolTip!
+  resourcesOverTime: ResourceDataWithToolTip
   # Whats the mix of resources can be for donors (out flows) or receipient (in flows)
   # this is for the donut chart
-  mixOfResources: ResourceDataWithToolTip!
+  mixOfResources: ResourceDataWithToolTip
 }
 type Flows {
   # an array of inflows for a particular countryType for area & partition chart

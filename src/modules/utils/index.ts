@@ -1,14 +1,14 @@
 
 import * as R from 'ramda';
 import {IDB} from '@devinit/graphql-next/lib/db';
-import {getConceptAsync, IConcept} from '../../refs/concept';
-import {getDistrictBySlugAsync, IDistrict} from '../../refs/spotlight';
+import {getConceptAsync, IConcept} from '../refs/concept';
+import {getDistrictBySlugAsync, IDistrict} from '../refs/spotlight';
 import * as shortid from 'shortid';
 import {IEntity, getEntityByIdGeneric, getFinancingType, getCreditorType, getColors, IColor,
         getDestinationInstitutionType, getFlowType, ICurrency, getCurrency,
-        getSectors, getBundles, getChannels, getEntities, getEntityBySlugAsync} from '../../refs/global';
-import {isError} from '../../../../lib/isType';
-import {getBudgetLevels, IBudgetLevelRef} from '../../refs/countryProfile';
+        getSectors, getBundles, getChannels, getEntities, getEntityBySlugAsync} from '../refs/global';
+import {isError} from '@devinit/graphql-next/lib/isType';
+import {getBudgetLevels, IBudgetLevelRef} from '../refs/countryProfile';
 
 export interface IGetIndicatorArgs {
     id?: string;
@@ -167,7 +167,7 @@ export const toId: (obj: IhasDiId ) => any = (obj) => {
 };
 
 export const getTotal = (data: Isummable[]): number =>
-    R.reduce((sum: number, obj: Isummable): number => {
+    R.reduce<Isummable, number>((sum: number, obj: Isummable): number => {
         if (obj.value) sum += Number(obj.value);
         return sum;
     }, 0, data);
@@ -292,7 +292,7 @@ export const indicatorDataProcessingNamed = async (data: IhasDiId[]):
     const entities: IEntity[] =  await getEntities();
     return processed.map(obj => {
         const entity = getEntityByIdGeneric<IEntity>(obj.id, entities);
-        return {...obj, name: entity.name, uid: shortid.generate()};
+        return {...obj, name: entity.name, uid: shortid.generate(), color: null};
     });
 };
 export const addColorToDomesticLevels =
