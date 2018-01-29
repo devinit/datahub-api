@@ -25,7 +25,7 @@ type IFinanceArgs = ISpotlightArgs & {startYear: number};
 
 interface IRegionalResources {
     regionalResources: DH.IIndicatorValueNCUWithToolTip;
-    regionalResourcesBreakdown: DH.IIndicatorDataWithToolTip[];
+    regionalResourcesBreakdown: DH.IResourcesBreakDown[];
 }
 
 const  getSql = (country: string) => country === 'uganda' ? uganda : kenya;
@@ -163,7 +163,7 @@ export const getRegionalResources = (db: DB) => async ({id, country}): Promise<I
                     return {value, value_ncu};
                 }, {value: 0, value_ncu: 0});
             const colors: IColor[] = await getColors();
-            const resourceWithConceptPromises: Array<Promise<DH.IIndicatorDataWithToolTip>> = indicatorArgs
+            const resourceWithConceptPromises: Array<Promise<DH.IResourcesBreakDown>> = indicatorArgs
                 .map(async (args: ISpotlightGetIndicatorArgs , index) => {
                     const conceptId = getSpotlightTableName(country, args.query);
                     if (isError(conceptId)) throw conceptId;
@@ -180,7 +180,7 @@ export const getRegionalResources = (db: DB) => async ({id, country}): Promise<I
                     const toolTip = await getIndicatorToolTip(args);
                     return {data, toolTip};
                 });
-            const resources: DH.IIndicatorDataWithToolTip[] = await Promise.all(resourceWithConceptPromises);
+            const resources: DH.IResourcesBreakDown[] = await Promise.all(resourceWithConceptPromises);
             const regionalResourcesToolTip = await getIndicatorToolTip(indicatorArgs[0]);
             return {
                 regionalResources: {

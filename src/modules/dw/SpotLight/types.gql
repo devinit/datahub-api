@@ -5,6 +5,11 @@ type IndicatorValueNCUWithToolTip {
   toolTip: ToolTip!
 }
 
+type ResourcesBreakDown {
+  data: IndicatorData! 
+  toolTip: ToolTip!
+}
+
 type OverviewTabRegional {
   # WHAT PERCENTAGE OF PEOPLE IN WAKISO LIVE BELOW THE NATIONAL POVERTY LINE? 
   # can be no data or '12%'
@@ -14,7 +19,7 @@ type OverviewTabRegional {
   regionalResources: IndicatorValueNCUWithToolTip
   # IndicatorDataColored is defined in country profile types
   # has local government, donor and central government
-  regionalResourcesBreakdown: [IndicatorDataWithToolTip]
+  regionalResourcesBreakdown: [ResourcesBreakDown]
   # HOW MUCH DOES THE LOCAL GOVERNMENT SPEND PER PERSON?
   localGovernmentSpendPerPerson: IndicatorValueWithToolTip
 }

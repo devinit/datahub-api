@@ -656,6 +656,12 @@ in or out
   }
 
 
+  interface IResourcesBreakDown {
+    data: IIndicatorData;
+    toolTip: IToolTip;
+  }
+
+
   interface IOverviewTabRegional {
     /**
     description: WHAT PERCENTAGE OF PEOPLE IN WAKISO LIVE BELOW THE NATIONAL POVERTY LINE? 
@@ -671,7 +677,7 @@ this is a total of local, donor and central government resources
     description: IndicatorDataColored is defined in country profile types
 has local government, donor and central government
   */
-    regionalResourcesBreakdown: Array<IIndicatorDataWithToolTip> | null;
+    regionalResourcesBreakdown: Array<IResourcesBreakDown> | null;
     /**
     description: HOW MUCH DOES THE LOCAL GOVERNMENT SPEND PER PERSON?
   */
