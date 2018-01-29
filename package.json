@@ -8,7 +8,7 @@
     "type": "npm"
   },
   "scripts": {
-    "test": "jest ",
+    "test": "jest",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "test:watch": "npm test -- --watch",
     "codecov": "npm run build && jest -u && codecov",
@@ -70,6 +70,12 @@
     "tslint": "5.9.1",
     "typescript": "2.6.2"
   },
+  "git-pre-hooks": {
+		"pre-push": [
+			"npm run lint",
+			"npm run build"
+		]
+	},
   "jest": {
     "transform": {
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
