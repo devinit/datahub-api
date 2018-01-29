@@ -152,7 +152,7 @@ IdNamePair is defined in unbundling aid types
 
 
   interface IIndicatorValueWithToolTip {
-    value: string;
+    value: string | null;
     toolTip: IToolTip;
   }
 

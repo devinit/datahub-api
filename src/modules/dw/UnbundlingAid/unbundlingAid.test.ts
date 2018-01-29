@@ -26,8 +26,8 @@ describe('Unbundling aid DW module tests', () => {
         expect(prettyFormat(formatted)).toMatchSnapshot();
     });
     it('should return unbundling aid total', async () => {
-        const totalAndYearODA = await unbundlingAid.getUnbundlingAidDataTotal({aidType: 'oda'});
-        const totalAndYearOOF = await unbundlingAid.getUnbundlingAidDataTotal({aidType: 'oof'});
+        const totalAndYearODA = await unbundlingAid.getUnbundlingAidDataTotal({aidType: 'oda', year: 2015});
+        const totalAndYearOOF = await unbundlingAid.getUnbundlingAidDataTotal({aidType: 'oof', year: 2013});
         expect(prettyFormat({totalAndYearODA, totalAndYearOOF})).toMatchSnapshot();
     }, 10000);
     it('getting unbundling aid selection options', async () => {

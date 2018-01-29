@@ -16,7 +16,7 @@ type IndicatorDataWithToolTip {
 }
 
 type IndicatorValueWithToolTip {
-  value: String!
+  value: String
   toolTip: ToolTip!
 }
 type SpendingAllocation {

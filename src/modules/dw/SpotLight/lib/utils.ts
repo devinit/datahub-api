@@ -231,7 +231,7 @@ export const getOverViewTabRegional = (db: DB) =>
     async ({id, country}: ISpotlightArgs): Promise<DH.IOverviewTabRegional> => {
     try {
         const sql = getSql(country);
-        const regionalResources = await getRegionalResources(db)({id, sql, country});
+        const regionalResources = await getRegionalResources(db)({id, country});
         const [poorestPeople, localGovernmentSpendPerPerson] =
             await getIndicatorsGeneric({country, db})(id, [sql.poorestPeople, sql.localGovernmentSpendPerPerson]);
         return {
