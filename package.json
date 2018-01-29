@@ -51,24 +51,24 @@
     "shortid": "^2.2.8"
   },
   "devDependencies": {
-    "@types/color": "^2.0.0",
-    "@types/graphql": "^0.11.4",
-    "@types/jest": "^22.0.1",
-    "@types/lru-cache": "^4.1.0",
-    "@types/morgan": "^1.7.35",
-    "@types/node": "9.3.0",
-    "@types/ramda": "^0.25.13",
+    "@types/color": "2.0.1",
+    "@types/graphql": "0.11.8",
+    "@types/jest": "22.1.0",
+    "@types/lru-cache": "4.1.0",
+    "@types/morgan": "1.7.35",
+    "@types/node": "9.4.0",
+    "@types/ramda": "0.25.16",
     "@types/shortid": "0.0.29",
     "concurrently": "3.5.1",
-    "git-pre-hooks": "^1.2.0",
+    "git-pre-hooks": "1.2.0",
     "jest": "22.1.4",
     "jest-cli": "22.1.4",
     "node-dev": "3.1.3",
     "pretty-format": "22.1.0",
-    "release-it": "6.1.0",
+    "release-it": "6.1.1å",
     "ts-jest": "22.0.1",
     "tslint": "5.9.1",
-    "typescript": "^2.6.2"
+    "typescript": "2.6.2"
   },
   "jest": {
     "transform": {
