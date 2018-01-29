@@ -1,5 +1,5 @@
 # The official nodejs docker image
-FROM node:8.6-alpine
+FROM node:8.6-alpine@sha256:60cd58a7a2bd9fec161f53f8886e451f92db06b91f4f72d9188eeea040d195eb
 
 LABEL maintainer="epicallan.al@gmail.com"
 # Copy package.json only to temp folder, install its dependencies,
