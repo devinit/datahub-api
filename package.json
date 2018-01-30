@@ -51,7 +51,7 @@
     "shortid": "^2.2.8"
   },
   "devDependencies": {
-    "@types/color": "2.0.1",
+    "@types/color": "3.0.0",
     "@types/graphql": "0.11.8",
     "@types/jest": "22.1.1",
     "@types/lru-cache": "4.1.0",
