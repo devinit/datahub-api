@@ -4,7 +4,7 @@ import apiModules from './modules';
 
 // starts app
 main({
-    resolverPattern: '**/lib/modules/**/resolver.js', // we want compile resolvers
+    resolverPattern: '**/dist/modules/**/resolver.js', // we want compile resolvers
     apiModules,
     port: process.env.PORT || 3000
 });

@@ -101,16 +101,16 @@ type LocalGovernmentFinance {
 }
 
 union PovertyTabRegional = PovertyTabUg | PovertyTabKe
-# union PopulationTabRegional = PopulationTabRegionalUg | PopulationTabRegionalKe
-# union EducationTabRegional = EducationTabRegionalUg | EducationTabRegionalKe
-# union HealthTabRegional = HealthTabRegionalKe | HealthTabRegionalUg
+union PopulationTabRegional = PopulationTabRegionalUg | PopulationTabRegionalKe
+union EducationTabRegional = EducationTabRegionalUg | EducationTabRegionalKe
+union HealthTabRegional = HealthTabRegionalKe | HealthTabRegionalUg
 
 type Query {  
   # id is district slug
-  # overviewTabRegional(id: String!, country: String!):OverviewTabRegional
+  overviewTabRegional(id: String!, country: String!):OverviewTabRegional
   povertyTabRegional(id: String!, country: String!): PovertyTabRegional
-  # populationTabRegional(id: String!, country: String!):PopulationTabRegional
-  # educationTabRegional(id: String!, country: String!):  EducationTabRegional
-  # healthTabRegional(id: String!, country: String!): HealthTabRegional
+  populationTabRegional(id: String!, country: String!):PopulationTabRegional
+  educationTabRegional(id: String!, country: String!):  EducationTabRegional
+  healthTabRegional(id: String!, country: String!): HealthTabRegional
   localGovernmentFinance(id: String!, country: String!): LocalGovernmentFinance
 }

@@ -12,7 +12,7 @@
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "test:watch": "npm test -- --watch",
     "codecov": "npm run build && jest -u && codecov",
-    "start": "npm run build && NODE_ENV=production node lib/main.js",
+    "start": "npm run build && NODE_ENV=production node dist/main.js",
     "build": "NODE_ENV=production tsc",
     "build:watch": "NODE_ENV=development tsc -w",
     "patch": "release-it -i patch -n",
@@ -41,7 +41,7 @@
   },
   "homepage": "https://github.com/devinit/datahub-api#readme",
   "dependencies": {
-    "@devinit/graphql-next": "0.1.6",
+    "@devinit/graphql-next": "0.1.7",
     "color": "^3.0.0",
     "d3-color": "^1.0.3",
     "d3-interpolate": "^1.1.6",
