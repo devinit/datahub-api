@@ -1,8 +1,8 @@
 language: node_js
 node_js:
-- v8
+- v9
 install:
-- npm install --ignore-scripts
+- npm install
 - npm install -g codecov
 script:
 - npm run lint
