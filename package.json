@@ -19,7 +19,7 @@
     "feature": "release-it -i minor -n",
     "breaking": "release-it -i major -n",
     "gqlToTs": "node node_modules/@devinit/graphql-next/lib/typeDefs",
-    "dev": "NODE_ENV=development concurrently \"npm run build:watch\" \"node-dev lib/main.js\""
+    "dev": "NODE_ENV=development concurrently \"npm run build:watch\" \"node-dev dist/main.js\""
   },
   "repository": {
     "type": "git",

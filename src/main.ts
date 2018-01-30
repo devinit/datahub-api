@@ -1,5 +1,7 @@
 import {main} from '@devinit/graphql-next';
-import {preCacheAll} from '@devinit/graphql-next/lib/schema';
+import {precache} from '@devinit/graphql-next/lib/cache';
+import db from '@devinit/graphql-next/lib/db';
+import {githubGet} from '@devinit/graphql-next/lib/github';
 import apiModules from './modules';
 
 // starts app
@@ -9,4 +11,7 @@ main({
     port: process.env.PORT || 3000
 });
 
-if (process.env.NODE_ENV === 'production') preCacheAll();
+precache({
+    cms: githubGet, // can be change to ref look in .cache
+    dw: db.manyCacheable
+}).catch(console.error);
