@@ -40,14 +40,12 @@ declare namespace DH {
     mapData: IMapData | null;
     /**
     description: id is district slug
-overviewTabRegional(id: String!, country: String!):OverviewTabRegional
   */
+    overviewTabRegional: IOverviewTabRegional | null;
     povertyTabRegional: PovertyTabRegional | null;
-    /**
-    description: populationTabRegional(id: String!, country: String!):PopulationTabRegional
-educationTabRegional(id: String!, country: String!):  EducationTabRegional
-healthTabRegional(id: String!, country: String!): HealthTabRegional
-  */
+    populationTabRegional: PopulationTabRegional | null;
+    educationTabRegional: EducationTabRegional | null;
+    healthTabRegional: HealthTabRegional | null;
     localGovernmentFinance: ILocalGovernmentFinance | null;
     unbundlingAidDataTotal: IUnbundlingAidTotal | null;
     unbundlingAidData: Array<IAidUnit> | null;
@@ -466,6 +464,42 @@ in or out
   }
 
 
+  interface IOverviewTabRegional {
+    /**
+    description: WHAT PERCENTAGE OF PEOPLE IN WAKISO LIVE BELOW THE NATIONAL POVERTY LINE? 
+can be no data or '12%'
+  */
+    poorestPeople: IIndicatorValueWithToolTip | null;
+    /**
+    description: WHAT RESOURCES ARE AVAILABLE TO LOCAL GOVERNMENTS IN WAKISO? eg 3.6m or 2.7bn
+this is a total of local, donor and central government resources
+  */
+    regionalResources: IIndicatorValueNCUWithToolTip | null;
+    /**
+    description: IndicatorDataColored is defined in country profile types
+has local government, donor and central government
+  */
+    regionalResourcesBreakdown: Array<IResourcesBreakDown> | null;
+    /**
+    description: HOW MUCH DOES THE LOCAL GOVERNMENT SPEND PER PERSON?
+  */
+    localGovernmentSpendPerPerson: IIndicatorValueWithToolTip | null;
+  }
+
+
+  interface IIndicatorValueNCUWithToolTip {
+    value: string | null;
+    value_ncu: string | null;
+    toolTip: IToolTip;
+  }
+
+
+  interface IResourcesBreakDown {
+    data: IIndicatorData;
+    toolTip: IToolTip;
+  }
+
+
   type PovertyTabRegional = IPovertyTabUg | IPovertyTabKe;
 
 
@@ -497,6 +531,98 @@ in or out
   }
 
 
+  type PopulationTabRegional = IPopulationTabRegionalUg | IPopulationTabRegionalKe;
+
+
+
+
+  interface IPopulationTabRegionalUg {
+    /**
+    description: The total population of a given district and the population density in per sq km
+  */
+    totalPopulation: IIndicatorValueWithToolTip | null;
+    populationDensity: IIndicatorValueWithToolTip | null;
+    /**
+    description: Urban vs Rural population level
+  */
+    populationDistribution: IPopulationDistributionWithToolTip | null;
+    averageDependencyRatio: IIndicatorValueWithToolTip | null;
+    allAverageDependencyRatio: IIndicatorValueWithToolTip | null;
+  }
+
+
+  interface IPopulationTabRegionalKe {
+    /**
+    description: The total population of a given district and the population density in per sq km
+  */
+    totalPopulation: IIndicatorValueWithToolTip | null;
+    populationDensity: IIndicatorValueWithToolTip | null;
+    populationBirthRate: IIndicatorValueWithToolTip | null;
+  }
+
+
+  type EducationTabRegional = IEducationTabRegionalUg | IEducationTabRegionalKe;
+
+
+
+
+  interface IEducationTabRegionalUg {
+    /**
+    description: WHAT IS THE PUPIL–TEACHER RATIO IN PRIMARY EDUCATION?...in government schools  and...in all schools 
+  */
+    pupilTeacherRatioGovtSchl: IIndicatorValueWithToolTip | null;
+    pupilTeacherRatioOtherSchl: IIndicatorValueWithToolTip | null;
+    /**
+    description: WHAT PERCENTAGE OF STUDENTS PASS THE PRIMARY LEAVING EXAM? 
+  */
+    studentsPassRate: IIndicatorValueWithToolTip | null;
+    studentsPassDistrictRank: IIndicatorValueWithToolTip | null;
+    /**
+    description: HOW MUCH PRIMARY EDUCATION FUNDING IS THERE? 
+  */
+    primaryEducationfunding: IIndicatorValueNCUWithToolTip | null;
+  }
+
+
+  interface IEducationTabRegionalKe {
+    /**
+    description: WHAT IS THE PUPIL–TEACHER RATIO IN PRIMARY EDUCATION?...in government schools  and...in all schools 
+  */
+    primaryPupilTeacherRatioAllSchl: IIndicatorValueWithToolTip | null;
+    primaryTeacherRatioPublicSchl: IIndicatorValueWithToolTip | null;
+    primaryTeacherRatioPrivateSchl: IIndicatorValueWithToolTip | null;
+  }
+
+
+  type HealthTabRegional = IHealthTabRegionalKe | IHealthTabRegionalUg;
+
+
+
+
+  interface IHealthTabRegionalKe {
+    birthAttendanceSkilled: IIndicatorValueWithToolTip | null;
+    contraceptiveUse: IIndicatorValueWithToolTip | null;
+    healthCareFunding: IIndicatorValueNCUWithToolTip | null;
+  }
+
+
+  interface IHealthTabRegionalUg {
+    /**
+    description: WHAT IS THE DISTRICT LEAGUE HEALTH PERFORMANCE SCORE?
+  */
+    districtPerformance: IIndicatorValueWithToolTip | null;
+    /**
+    description: WHAT PERCENTAGE OF TUBERCULOSIS CASES HAVE BEEN SUCCESSFULLY TREATED? 
+  */
+    treatmeantOfTb: IIndicatorValueWithToolTip | null;
+    districtHealthRank: IIndicatorValueWithToolTip | null;
+    /**
+    description: HOW MUCH LOCAL GOVERNMENT HEALTHCARE FUNDING IS THERE? 
+  */
+    healthCareFunding: IIndicatorValueNCUWithToolTip | null;
+  }
+
+
   interface ILocalGovernmentFinance {
     startYear: number;
     currencyUSD: string;
@@ -514,7 +640,7 @@ in or out
     description: oda or oof 
   */
     aidType: string;
-    year: number;
+    year?: number | null;
   }
 
 
@@ -584,8 +710,8 @@ in or out
     /**
     description: think units
   */
-    uom: string;
-    source: ISource;
+    uom: string | null;
+    source: ISource | null;
     csv: string;
     zip: string;
   }
@@ -593,7 +719,7 @@ in or out
 
   interface ISource {
     name: string;
-    link: string;
+    link: string | null;
   }
 
 
@@ -646,119 +772,6 @@ in or out
     region: string | null;
     value: number | null;
     uid: string | null;
-  }
-
-
-  interface IIndicatorValueNCUWithToolTip {
-    value: string | null;
-    value_ncu: string | null;
-    toolTip: IToolTip;
-  }
-
-
-  interface IResourcesBreakDown {
-    data: IIndicatorData;
-    toolTip: IToolTip;
-  }
-
-
-  interface IOverviewTabRegional {
-    /**
-    description: WHAT PERCENTAGE OF PEOPLE IN WAKISO LIVE BELOW THE NATIONAL POVERTY LINE? 
-can be no data or '12%'
-  */
-    poorestPeople: IIndicatorValueWithToolTip | null;
-    /**
-    description: WHAT RESOURCES ARE AVAILABLE TO LOCAL GOVERNMENTS IN WAKISO? eg 3.6m or 2.7bn
-this is a total of local, donor and central government resources
-  */
-    regionalResources: IIndicatorValueNCUWithToolTip | null;
-    /**
-    description: IndicatorDataColored is defined in country profile types
-has local government, donor and central government
-  */
-    regionalResourcesBreakdown: Array<IResourcesBreakDown> | null;
-    /**
-    description: HOW MUCH DOES THE LOCAL GOVERNMENT SPEND PER PERSON?
-  */
-    localGovernmentSpendPerPerson: IIndicatorValueWithToolTip | null;
-  }
-
-
-  interface IPopulationTabRegionalKe {
-    /**
-    description: The total population of a given district and the population density in per sq km
-  */
-    totalPopulation: IIndicatorValueWithToolTip | null;
-    populationDensity: IIndicatorValueWithToolTip | null;
-    populationBirthRate: IIndicatorValueWithToolTip | null;
-  }
-
-
-  interface IPopulationTabRegionalUg {
-    /**
-    description: The total population of a given district and the population density in per sq km
-  */
-    totalPopulation: IIndicatorValueWithToolTip | null;
-    populationDensity: IIndicatorValueWithToolTip | null;
-    /**
-    description: Urban vs Rural population level
-  */
-    populationDistribution: IPopulationDistributionWithToolTip | null;
-    averageDependencyRatio: IIndicatorValueWithToolTip | null;
-    allAverageDependencyRatio: IIndicatorValueWithToolTip | null;
-  }
-
-
-  interface IEducationTabRegionalUg {
-    /**
-    description: WHAT IS THE PUPIL–TEACHER RATIO IN PRIMARY EDUCATION?...in government schools  and...in all schools 
-  */
-    pupilTeacherRatioGovtSchl: IIndicatorValueWithToolTip | null;
-    pupilTeacherRatioOtherSchl: IIndicatorValueWithToolTip | null;
-    /**
-    description: WHAT PERCENTAGE OF STUDENTS PASS THE PRIMARY LEAVING EXAM? 
-  */
-    studentsPassRate: IIndicatorValueWithToolTip | null;
-    studentsPassDistrictRank: IIndicatorValueWithToolTip | null;
-    /**
-    description: HOW MUCH PRIMARY EDUCATION FUNDING IS THERE? 
-  */
-    primaryEducationfunding: IIndicatorValueNCUWithToolTip | null;
-  }
-
-
-  interface IEducationTabRegionalKe {
-    /**
-    description: WHAT IS THE PUPIL–TEACHER RATIO IN PRIMARY EDUCATION?...in government schools  and...in all schools 
-  */
-    primaryPupilTeacherRatioAllSchl: IIndicatorValueWithToolTip | null;
-    primaryTeacherRatioPublicSchl: IIndicatorValueWithToolTip | null;
-    primaryTeacherRatioPrivateSchl: IIndicatorValueWithToolTip | null;
-  }
-
-
-  interface IHealthTabRegionalUg {
-    /**
-    description: WHAT IS THE DISTRICT LEAGUE HEALTH PERFORMANCE SCORE?
-  */
-    districtPerformance: IIndicatorValueWithToolTip | null;
-    /**
-    description: WHAT PERCENTAGE OF TUBERCULOSIS CASES HAVE BEEN SUCCESSFULLY TREATED? 
-  */
-    treatmeantOfTb: IIndicatorValueWithToolTip | null;
-    districtHealthRank: IIndicatorValueWithToolTip | null;
-    /**
-    description: HOW MUCH LOCAL GOVERNMENT HEALTHCARE FUNDING IS THERE? 
-  */
-    healthCareFunding: IIndicatorValueNCUWithToolTip | null;
-  }
-
-
-  interface IHealthTabRegionalKe {
-    birthAttendanceSkilled: IIndicatorValueWithToolTip | null;
-    contraceptiveUse: IIndicatorValueWithToolTip | null;
-    healthCareFunding: IIndicatorValueNCUWithToolTip | null;
   }
 }
 

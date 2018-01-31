@@ -92,13 +92,9 @@ export default class UnbundlingAid {
        }
     }
     public async getUnbundlingAidDataTotal(args: DH.IUnbundlingAidToTalQuery): Promise<DH.IUnbundlingAidTotal> {
-        let year: number | undefined | null = args.year;
         const id: string = this.getUnbundlingAidDataTable(args.aidType);
         try {
-            if (!year) {
-                const concept: IConcept = await getConceptAsync(`unbundling-${args.aidType}`, id);
-                year = concept.end_year || 2015;
-            }
+            const year: number = args.year || (await getConceptAsync(`unbundling-${args.aidType}`, id)).end_year;
             const  queryArgs = {table: id, year};
             const raw: Array<{sum: string}> = await this.db.manyCacheable(sql.total, queryArgs);
             const total = formatNumbers(raw[0].sum, 1);

@@ -27,7 +27,7 @@ type UnbundlingAidSelections {
 input UnbundlingAidToTalQuery {
     # oda or oof 
     aidType: String!
-    year: Int!
+    year: Int
 }
 input UnbundlingAidQuery {
     # oda or oof 

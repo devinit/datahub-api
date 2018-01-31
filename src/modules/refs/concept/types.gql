@@ -1,17 +1,16 @@
 type Source {
     name: String!
-    link: String!
+    link: String
 }
 type Methodology {
     name: String!
     description: String!
     methodology: String!
     #think units
-    uom: String!
-    source: Source!
+    uom: String
+    source: Source
     csv: String!
     zip: String!
 }
 type Query {
-    methodology(moduleName: String!): [Methodology]
-}
+    methodology(moduleName: String!): [Methodology]}
