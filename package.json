@@ -71,11 +71,11 @@
     "typescript": "2.7.1"
   },
   "git-pre-hooks": {
-		"pre-push": [
-			"npm run lint",
-			"npm run build"
-		]
-	},
+    "pre-push": [
+      "npm run lint",
+      "npm run build"
+    ]
+  },
   "jest": {
     "transform": {
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
