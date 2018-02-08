@@ -26,32 +26,21 @@ Useful commands:
 How to run it:
 ----
 ```bash
-    npm install 
+    npm install -g yarn # if you dont have yarn installed
+    yarn # install dependencies
     ## development mode
     npm run dev
-    ## production
-    npm run build & npm start
+    ## run in production
+    npm start
 ```
 
-When you install a new dependency add its types from definetly typed typescript incase it doesnt come with any
 
-eg ```  yarn add --dev @types/ramda ```
-
-Files explained:
-----
-    1. src                         - directory is used for typescript code that is part of the project
-        1a. main.ts                - Main server file.
-        1c. dw/schema              - Contains modules used to build dataware house schemas
-            - modules/             - directory for modules
-    3. package.json                - file is used to describe the library
-    4. tsconfig.json               - configuration file for the library compilation
-    6. tslint.json                 - configuration file for the linter
-    8. webpack.config.js           - configuration file of the compilation automation process for the library
-    10. Dockerfile                 - Dockerfile used to describe how to make a container for the server
 
 Development guidelines
 ------
+- When you install a new dependency add its types from definetly typed typescript incase it doesnt come with any
 
+eg ```  yarn add --dev @types/ramda ```
 - Whenever you change the .gql files run ```npm run gqlToTs``` so that resolvers and type definitions are generated for use in graphql
 
 
