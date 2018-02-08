@@ -2,7 +2,8 @@ language: node_js
 node_js:
 - v9
 install:
-- npm install
+- npm install -g yarn
+- yarn
 script:
 - npm run lint
 - npm run build

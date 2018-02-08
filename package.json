@@ -41,18 +41,17 @@
   },
   "homepage": "https://github.com/devinit/datahub-api#readme",
   "dependencies": {
-    "@devinit/graphql-next": "0.1.9",
+    "@devinit/graphql-next": "^0.1.10",
     "color": "^3.0.0",
     "d3-color": "^1.0.3",
     "d3-interpolate": "^1.1.6",
     "d3-scale": "^2.0.0",
-    "graphql": ">= 0.10.0 < 0.14.0",
+    "graphql": "^0.11.7",
     "ramda": "^0.25.0",
     "shortid": "^2.2.8"
   },
   "devDependencies": {
     "@types/color": "3.0.0",
-    "@types/graphql": "0.12.3",
     "@types/jest": "22.1.1",
     "@types/lru-cache": "4.1.0",
     "@types/morgan": "1.7.35",

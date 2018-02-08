@@ -27,7 +27,6 @@ type MapData {
   uom_display: String!
   uom: String!
   map_style: String
-  source: String
   start_year: Int!
   end_year: Int!
   default_year: Int!

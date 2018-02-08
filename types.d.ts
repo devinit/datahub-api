@@ -30,16 +30,16 @@ declare namespace DH {
     governmentFinance: IGovernmentFinance | null;
     internationalResources: IInternationalResources | null;
     /**
-    description: eg recipient or donor
+    eg recipient or donor
   */
     flows: IFlows | null;
     /**
-    description: for area tree map chart dropdown selectoion
+    for area tree map chart dropdown selectoion
   */
     singleResource: ISingleResourceData | null;
     mapData: IMapData | null;
     /**
-    description: id is district slug
+    id is district slug
   */
     overviewTabRegional: IOverviewTabRegional | null;
     povertyTabRegional: PovertyTabRegional | null;
@@ -69,11 +69,11 @@ declare namespace DH {
   interface IBubbleChartOda {
     year: number | null;
     /**
-    description: country id
+    country id
   */
     id: string | null;
     /**
-    description: country name
+    country name
   */
     name: string | null;
     income_group: string | null;
@@ -101,7 +101,7 @@ declare namespace DH {
 
   interface IBubbleChartOptions {
     /**
-    description: this list feeds off oda table from countries and global/concept file
+    this list feeds off oda table from countries and global/concept file
 IdNamePair is defined in unbundling aid types 
   */
     indicators: Array<IIdNamePair>;
@@ -125,25 +125,25 @@ IdNamePair is defined in unbundling aid types
 
   interface IOverviewTab {
     /**
-    description: how many of the poorest people globally live in a country
+    how many of the poorest people globally live in a country
   */
     poorestPeople: IIndicatorValueWithToolTip | null;
     /**
-    description: total population for a given country
+    total population for a given country
   */
     population: IIndicatorValueWithToolTip | null;
     domesticResources: IIndicatorValueWithToolTip | null;
     internationalResources: IIndicatorValueWithToolTip | null;
     /**
-    description: recipient countries $PPP, both donor and recipient
+    recipient countries $PPP, both donor and recipient
   */
     governmentSpendPerPerson: IIndicatorValueWithToolTip | null;
     /**
-    description: donor: gross nation income per capit GNI
+    donor: gross nation income per capit GNI
   */
     averageIncomerPerPerson: IIndicatorDataWithToolTip | null;
     /**
-    description: donor: Income share by quintile
+    donor: Income share by quintile
   */
     incomeDistTrend: IQuintileDataWithToolTip | null;
   }
@@ -193,15 +193,15 @@ IdNamePair is defined in unbundling aid types
 
   interface IPovertyTab {
     /**
-    description: Poverty reduction over time area chart trend
+    Poverty reduction over time area chart trend
   */
     poverty190Trend: IIndicatorDataWithToolTip | null;
     /**
-    description: how deep is poverty %
+    how deep is poverty %
   */
     depthOfExtremePoverty: IIndicatorValueWithToolTip | null;
     /**
-    description: Recipients: how income is distributed, % of income received by each quintil
+    Recipients: how income is distributed, % of income received by each quintil
   */
     incomeDistTrend: IQuintileDataWithToolTip | null;
   }
@@ -209,15 +209,15 @@ IdNamePair is defined in unbundling aid types
 
   interface IPopulationTab {
     /**
-    description: total population in a country
+    total population in a country
   */
     population: IIndicatorValueWithToolTip | null;
     /**
-    description: Urban vs Rural population level
+    Urban vs Rural population level
   */
     populationDistribution: IPopulationDistributionWithToolTip | null;
     /**
-    description: Number of people in 3 age bands (65+, 15- 65, 0 - 14)
+    Number of people in 3 age bands (65+, 15- 65, 0 - 14)
   */
     populationPerAgeBand: IPopulationPerAgeBandWithToolTip | null;
   }
@@ -253,22 +253,22 @@ IdNamePair is defined in unbundling aid types
   interface IGovernmentFinance {
     startYear: number;
     /**
-    description: Total revenue for a particular
+    Total revenue for a particular
   */
     totalRevenue: IIndicatorValueWithToolTip | null;
     grantsAsPcOfRevenue: IIndicatorValueWithToolTip | null;
     /**
-    description: for donut chart 
+    for donut chart 
   */
     spendingAllocation: ISpendingAllocationWithToolTip | null;
     /**
-    description: for treemap
+    for treemap
 such as constant 2015 USD for tree map
   */
     currencyCode: string | null;
     currencyUSD: string | null;
     /**
-    description: use resourcesRecipient sql
+    use resourcesRecipient sql
   */
     expenditure: Array<IDomestic> | null;
     revenueAndGrants: Array<IDomestic> | null;
@@ -292,7 +292,7 @@ such as constant 2015 USD for tree map
 
   interface IDomestic {
     /**
-    description: eg Actual or budget
+    eg Actual or budget
   */
     budget_type: string;
     levels: Array<string>;
@@ -307,28 +307,28 @@ such as constant 2015 USD for tree map
   interface IInternationalResources {
     startYear: number | null;
     /**
-    description: Gross National Income
+    Gross National Income
   */
     GNI: IIndicatorValueWithToolTip | null;
     /**
-    description: Net ODA received, % of GNI for recipient countries
+    Net ODA received, % of GNI for recipient countries
   */
     netODAOfGNIIn: IIndicatorValueWithToolTip | null;
     /**
-    description: Net ODA out, % of GNI for recipient countries
+    Net ODA out, % of GNI for recipient countries
   */
     netODAOfGNIOut: IIndicatorValueWithToolTip | null;
     /**
-    description: for line chart in the  international resources tabs section,
+    for line chart in the  international resources tabs section,
 IndicatorDataColoredWithToolTip  is defined in spotlight types
   */
     resourceflowsOverTime: IFlowsOverTimeWithToolTip | null;
     /**
-    description: for sidebar chart in international resources section & area partition tree chart default data
+    for sidebar chart in international resources section & area partition tree chart default data
   */
     resourcesOverTime: IResourceDataWithToolTip | null;
     /**
-    description: Whats the mix of resources can be for donors (out flows) or receipient (in flows)
+    Whats the mix of resources can be for donors (out flows) or receipient (in flows)
 this is for the donut chart
   */
     mixOfResources: IResourceDataWithToolTip | null;
@@ -353,20 +353,20 @@ this is for the donut chart
     flow_name: string;
     flow_id: string;
     /**
-    description: a position value for a flow generated from flow_type, flow_category and flow name order
+    a position value for a flow generated from flow_type, flow_category and flow name order
   */
     position: number;
     short_name: string;
     /**
-    description: Category i.e FDI, ODA
+    Category i.e FDI, ODA
   */
     flow_category: string;
     /**
-    description: flow either inflow or outflow
+    flow either inflow or outflow
   */
     flow_type: string;
     /**
-    description: i.e contains flow type as 1st level, flow category as second and flow name as 3rd
+    i.e contains flow type as 1st level, flow category as second and flow name as 3rd
 levels: [String]
 in or out
   */
@@ -378,11 +378,11 @@ in or out
 
   interface IFlows {
     /**
-    description: an array of inflows for a particular countryType for area & partition chart
+    an array of inflows for a particular countryType for area & partition chart
   */
     inflows: Array<IFlow>;
     /**
-    description: an array of outflows for a particular countryType
+    an array of outflows for a particular countryType
   */
     outflows: Array<IFlow>;
   }
@@ -398,7 +398,7 @@ in or out
   interface IFlowSelection {
     name: string;
     /**
-    description: this is the group ID
+    this is the group ID
   */
     id: string;
     unbundle: boolean;
@@ -414,20 +414,20 @@ in or out
   interface IMapData {
     map: Array<IMapUnit>;
     /**
-    description: map indicator user friendly label / slug eg Poverty
+    map indicator user friendly label / slug eg Poverty
   */
     name: string;
     /**
-    description: map value unit eg US $ or %
+    map value unit eg US $ or %
   */
     uom_display: string;
     uom: string;
     map_style: string | null;
-    source: string;
     start_year: number;
     end_year: number;
     default_year: number;
     description: string | null;
+    source: string;
     theme: string;
     heading: string;
     country: string;
@@ -438,15 +438,15 @@ in or out
 
   interface IMapUnit {
     /**
-    description: country code Id in DW this is di_id
+    country code Id in DW this is di_id
   */
     id: string;
     /**
-    description: country slug
+    country slug
   */
     slug: string;
     /**
-    description: countryName derived from entity.csv
+    countryName derived from entity.csv
   */
     name: string;
     year: number;
@@ -466,22 +466,22 @@ in or out
 
   interface IOverviewTabRegional {
     /**
-    description: WHAT PERCENTAGE OF PEOPLE IN WAKISO LIVE BELOW THE NATIONAL POVERTY LINE? 
+    WHAT PERCENTAGE OF PEOPLE IN WAKISO LIVE BELOW THE NATIONAL POVERTY LINE? 
 can be no data or '12%'
   */
     poorestPeople: IIndicatorValueWithToolTip | null;
     /**
-    description: WHAT RESOURCES ARE AVAILABLE TO LOCAL GOVERNMENTS IN WAKISO? eg 3.6m or 2.7bn
+    WHAT RESOURCES ARE AVAILABLE TO LOCAL GOVERNMENTS IN WAKISO? eg 3.6m or 2.7bn
 this is a total of local, donor and central government resources
   */
     regionalResources: IIndicatorValueNCUWithToolTip | null;
     /**
-    description: IndicatorDataColored is defined in country profile types
+    IndicatorDataColored is defined in country profile types
 has local government, donor and central government
   */
     regionalResourcesBreakdown: Array<IResourcesBreakDown> | null;
     /**
-    description: HOW MUCH DOES THE LOCAL GOVERNMENT SPEND PER PERSON?
+    HOW MUCH DOES THE LOCAL GOVERNMENT SPEND PER PERSON?
   */
     localGovernmentSpendPerPerson: IIndicatorValueWithToolTip | null;
   }
@@ -508,11 +508,11 @@ has local government, donor and central government
   interface IPovertyTabUg {
     poorestPeople: IIndicatorValueWithToolTip | null;
     /**
-    description: WHAT IS THE AVERAGE LIFE EXPECTANCY? 
+    WHAT IS THE AVERAGE LIFE EXPECTANCY? 
   */
     lifeExpectancy: IIndicatorValueWithToolTip | null;
     /**
-    description: WHAT IS THE STANDARD OF LIVING SCORE? 
+    WHAT IS THE STANDARD OF LIVING SCORE? 
   */
     stdOfLiving: IIndicatorValueWithToolTip | null;
   }
@@ -521,11 +521,11 @@ has local government, donor and central government
   interface IPovertyTabKe {
     poorestPeople: IIndicatorValueWithToolTip | null;
     /**
-    description: WHAT IS THE AVERAGE LIFE EXPECTANCY? 
+    WHAT IS THE AVERAGE LIFE EXPECTANCY? 
   */
     meanExpenditure: IIndicatorValueWithToolTip | null;
     /**
-    description: WHAT IS THE STANDARD OF LIVING SCORE? 
+    WHAT IS THE STANDARD OF LIVING SCORE? 
   */
     povertyGap: IIndicatorValueWithToolTip | null;
   }
@@ -538,12 +538,12 @@ has local government, donor and central government
 
   interface IPopulationTabRegionalUg {
     /**
-    description: The total population of a given district and the population density in per sq km
+    The total population of a given district and the population density in per sq km
   */
     totalPopulation: IIndicatorValueWithToolTip | null;
     populationDensity: IIndicatorValueWithToolTip | null;
     /**
-    description: Urban vs Rural population level
+    Urban vs Rural population level
   */
     populationDistribution: IPopulationDistributionWithToolTip | null;
     averageDependencyRatio: IIndicatorValueWithToolTip | null;
@@ -553,7 +553,7 @@ has local government, donor and central government
 
   interface IPopulationTabRegionalKe {
     /**
-    description: The total population of a given district and the population density in per sq km
+    The total population of a given district and the population density in per sq km
   */
     totalPopulation: IIndicatorValueWithToolTip | null;
     populationDensity: IIndicatorValueWithToolTip | null;
@@ -568,17 +568,17 @@ has local government, donor and central government
 
   interface IEducationTabRegionalUg {
     /**
-    description: WHAT IS THE PUPIL–TEACHER RATIO IN PRIMARY EDUCATION?...in government schools  and...in all schools 
+    WHAT IS THE PUPIL–TEACHER RATIO IN PRIMARY EDUCATION?...in government schools  and...in all schools 
   */
     pupilTeacherRatioGovtSchl: IIndicatorValueWithToolTip | null;
     pupilTeacherRatioOtherSchl: IIndicatorValueWithToolTip | null;
     /**
-    description: WHAT PERCENTAGE OF STUDENTS PASS THE PRIMARY LEAVING EXAM? 
+    WHAT PERCENTAGE OF STUDENTS PASS THE PRIMARY LEAVING EXAM? 
   */
     studentsPassRate: IIndicatorValueWithToolTip | null;
     studentsPassDistrictRank: IIndicatorValueWithToolTip | null;
     /**
-    description: HOW MUCH PRIMARY EDUCATION FUNDING IS THERE? 
+    HOW MUCH PRIMARY EDUCATION FUNDING IS THERE? 
   */
     primaryEducationfunding: IIndicatorValueNCUWithToolTip | null;
   }
@@ -586,7 +586,7 @@ has local government, donor and central government
 
   interface IEducationTabRegionalKe {
     /**
-    description: WHAT IS THE PUPIL–TEACHER RATIO IN PRIMARY EDUCATION?...in government schools  and...in all schools 
+    WHAT IS THE PUPIL–TEACHER RATIO IN PRIMARY EDUCATION?...in government schools  and...in all schools 
   */
     primaryPupilTeacherRatioAllSchl: IIndicatorValueWithToolTip | null;
     primaryTeacherRatioPublicSchl: IIndicatorValueWithToolTip | null;
@@ -608,16 +608,16 @@ has local government, donor and central government
 
   interface IHealthTabRegionalUg {
     /**
-    description: WHAT IS THE DISTRICT LEAGUE HEALTH PERFORMANCE SCORE?
+    WHAT IS THE DISTRICT LEAGUE HEALTH PERFORMANCE SCORE?
   */
     districtPerformance: IIndicatorValueWithToolTip | null;
     /**
-    description: WHAT PERCENTAGE OF TUBERCULOSIS CASES HAVE BEEN SUCCESSFULLY TREATED? 
+    WHAT PERCENTAGE OF TUBERCULOSIS CASES HAVE BEEN SUCCESSFULLY TREATED? 
   */
     treatmeantOfTb: IIndicatorValueWithToolTip | null;
     districtHealthRank: IIndicatorValueWithToolTip | null;
     /**
-    description: HOW MUCH LOCAL GOVERNMENT HEALTHCARE FUNDING IS THERE? 
+    HOW MUCH LOCAL GOVERNMENT HEALTHCARE FUNDING IS THERE? 
   */
     healthCareFunding: IIndicatorValueNCUWithToolTip | null;
   }
@@ -628,7 +628,7 @@ has local government, donor and central government
     currencyUSD: string;
     currencyCode: string;
     /**
-    description: come from finance file
+    come from finance file
   */
     revenueAndGrants: Array<IDomestic>;
     expenditure: Array<IDomestic>;
@@ -637,7 +637,7 @@ has local government, donor and central government
 
   interface IUnbundlingAidToTalQuery {
     /**
-    description: oda or oof 
+    oda or oof 
   */
     aidType: string;
     year?: number | null;
@@ -652,18 +652,18 @@ has local government, donor and central government
 
   interface IUnbundlingAidQuery {
     /**
-    description: oda or oof 
+    oda or oof 
   */
     aidType: string;
     year: number;
     /**
-    description: eg channel, bundle
+    eg channel, bundle
   */
     groupBy: string;
     to_di_id?: string | null;
     from_di_id?: string | null;
     /**
-    description: form is same as buddle
+    form is same as buddle
   */
     bundle?: string | null;
     sector?: string | null;
@@ -673,11 +673,11 @@ has local government, donor and central government
 
   interface IAidUnit {
     /**
-    description: this will usually be a summed up aggregate value
+    this will usually be a summed up aggregate value
   */
     value: number;
     /**
-    description: country or organisation or channel or bundle name
+    country or organisation or channel or bundle name
   */
     name: string;
     color: string;
@@ -689,14 +689,14 @@ has local government, donor and central government
 
   interface IUnbundlingAidSelections {
     /**
-    description: unbundling aid selection options
+    unbundling aid selection options
   */
     to: Array<IIdNamePair>;
     from: Array<IIdNamePair>;
     channels: Array<IIdNamePair>;
     sectors: Array<IIdNamePair>;
     /**
-    description: same as form
+    same as form
   */
     bundles: Array<IIdNamePair>;
     years: Array<number>;
@@ -708,7 +708,7 @@ has local government, donor and central government
     description: string;
     methodology: string;
     /**
-    description: think units
+    think units
   */
     uom: string | null;
     source: ISource | null;
