@@ -68,9 +68,7 @@ export default class Maps {
         color: 'white', backgroundColor: lightGrey, label: 'no data/not applicable'};
 
     public static DACOnlyData(DACCountries: string[], indicatorData: DH.IMapUnit[]): DH.IMapUnit[] {
-       return DACCountries
-        .map(name => indicatorData.find((obj: DH.IMapUnit) => obj.name === name))
-        .filter(obj => obj !== undefined) as DH.IMapUnit[];
+        return indicatorData.filter(obj => DACCountries.includes(obj.name));
     }
     public static processBudgetData(data: DH.IMapUnit[]): DH.IMapUnit[] {
         const grouped = R.groupBy<DH.IMapUnit>(obj => obj.year.toString(), data);
@@ -284,7 +282,6 @@ export default class Maps {
         const entities: IEntity[] | IDistrict[] = country === 'global' ?
             await getEntities() : await getDistrictEntities(country) ;
         const processedData: IProcessedSimple[] = indicatorDataProcessingSimple<IProcessedSimple>(data, country);
-        console.log(processedData[0]);
         const mapData = processedData.map(obj => {
            const cMapping = Maps.getValueDetail(obj.value, cMappings);
            const entity = getEntityByIdGeneric<IEntity | IDistrict>(obj.id, entities);
