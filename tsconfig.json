@@ -9,7 +9,6 @@
       "lib": ["es2017", "esnext.asynciterable", "dom"],
       "experimentalDecorators": true,
       "noUnusedParameters": true,
-      "typeRoots": ["node_modules/@types", "src/types"],
       "noImplicitAny": false,
       "noUnusedLocals": true,
       "outDir": "dist",
