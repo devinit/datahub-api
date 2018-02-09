@@ -62,8 +62,8 @@ We are currently test deploying with now and they freeze inactive normal deploym
 ```now scale my-deployment-ntahoeato.now.sh 1```
 
 Notes
-
 -------
+
 This repo is published to npm so that we can reuse its types
 
 
