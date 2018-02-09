@@ -3,6 +3,9 @@
   "version": "1.0.1",
   "description": "Apollo GraphQL server using webpack and typescript",
   "main": "dist/main.min.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "now": {
     "name": "datahub-api",
     "type": "npm"
