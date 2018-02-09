@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/devinit/datahub-api/branch/master/graph/badge.svg)](https://codecov.io/gh/devinit/datahub-api)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e501f77141774b74979c60d5cfd219ac)](https://www.codacy.com/app/epicallan/datahub-api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=devinit/datahub-api&amp;utm_campaign=Badge_Grade)
 [![Dependency Status](https://gemnasium.com/badges/github.com/devinit/datahub-api.svg)](https://gemnasium.com/github.com/devinit/datahub-api)
-
+[![npm version](https://badge.fury.io/js/%40devinit%2Fdatahub-api.svg)](https://badge.fury.io/js/%40devinit%2Fdatahub-api)
 ### Graphql server for the data-hub application.
 
 Dataware house & Github CMS integration
@@ -60,6 +60,12 @@ Deployment
 We are currently test deploying with now and they freeze inactive normal deployments. In order to create a deployment that's always active consider scaling your deploy
 
 ```now scale my-deployment-ntahoeato.now.sh 1```
+
+Notes
+
+-------
+This repo is published to npm so that we can reuse its types
+
 
 TODO
 - [ ] remove console.info & console.error and replace with function that logs to an info & error file
