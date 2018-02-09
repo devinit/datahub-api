@@ -68,8 +68,9 @@ This repo is published to npm so that we can reuse its types
 
 
 TODO
+----------
+
 - [ ] remove console.info & console.error and replace with function that logs to an info & error file
 - [ ] fix testing on travis
-- [ ] pull in color data into the repo
 - [ ] pull in di_id as id in sql queries
 - [ ] Perf: breakdown tabs data fetching function into individual functions
