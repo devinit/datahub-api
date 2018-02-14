@@ -2,6 +2,12 @@ export interface IColorMap {
     high: string;
     low: string;
 }
+export interface ILinearLegendArgs {
+    uom_display: string;
+    rangeStr: string;
+    precision?: number;
+    scale: IScaleThreshold<number, string>;
+}
 export interface IRAWDataRevolution {
     detail: string; // this is year
     colour: string;

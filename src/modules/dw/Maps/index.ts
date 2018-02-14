@@ -14,7 +14,8 @@ import { interpolateRgb } from 'd3-interpolate';
 import { scaleThreshold } from 'd3-scale';
 import * as R from 'ramda';
 import {IColorMap, ICategoricalMapping, IColorScaleArgs, IDataRevolution,
-    IScaleThreshold, IRAWDataRevolution, IProcessScaleData, IRAWMapData, IMapDataWithLegend} from './types';
+    IScaleThreshold, IRAWDataRevolution, IProcessScaleData, IRAWMapData,
+    IMapDataWithLegend, ILinearLegendArgs} from './types';
 
 const lightGrey = '#d0cccf';
 
@@ -65,10 +66,8 @@ export default class Maps {
         }, {} as IColorMap) as IColorMap;
         return baseRamp;
     }
-    public static createLinearLegend(
-        uom_display: string,
-        rangeStr: string,
-        scale: IScaleThreshold<number, string>): DH.ILegendField[] {
+    public static createLinearLegend(opts: ILinearLegendArgs): DH.ILegendField[] {
+        const {uom_display, rangeStr, scale, precision = 1} = opts;
         const uom = uom_display ? uom_display : '';
         const inputDomain = rangeStr.split(',').map(val => Number(val));
         const isAscendingOrder = inputDomain[0] < inputDomain[1];
@@ -80,11 +79,11 @@ export default class Maps {
             const backgroundColor = range[index];
             const hslColor = hsl(backgroundColor);
             const color = (hslColor.l > 0.7) ? 'black' : 'white';
-            const currentVal = formatNumbers(val, 1, true);
+            const currentVal = formatNumbers(val, precision, true);
             if (index === 0 ) {
                 return [{backgroundColor, color,  label: `${firstSign}${currentVal} ${uom}`}];
             }
-            const prevVal = formatNumbers(domain[index - 1], 1, true);
+            const prevVal = formatNumbers(domain[index - 1], precision, true);
             if (index < (domain.length - 1)) {
                 const label = `${prevVal}-${currentVal}`;
                 return [...acc, {backgroundColor, color, label}];
@@ -175,7 +174,11 @@ export default class Maps {
         if (!concept.range || !concept.color) throw new Error('indicator with mapbox map style msissing color & range');
         const ramp = await Maps.getColorRamp(concept.color);
         const scale = Maps.colorScale({rangeStr: concept.range, ramp});
-        return Maps.createLinearLegend(concept.uom_display, concept.range, scale);
+        return Maps.createLinearLegend({
+            uom_display: concept.uom_display,
+            rangeStr: concept.range,
+            scale
+        });
     }
     private async getMapIndicatorData(concept: IConcept, country: string): Promise<IMapDataWithLegend> {
         if (concept.theme === 'data-revolution') {
@@ -195,7 +198,13 @@ export default class Maps {
         const ramp = await Maps.getColorRamp(concept.color);
         const isHighBetter = concept.is_high_better && concept.is_high_better > 0 ? true : false;
         const scale = Maps.colorScale({rangeStr: concept.range, ramp, isHighBetter});
-        const legend = Maps.createLinearLegend(concept.uom_display, concept.range, scale);
+        const twoDPIndicators = ['fact.oda_to_ldcs_percent_gni', 'fact.oda_percent_gni'];
+        const legend = Maps.createLinearLegend({
+            uom_display: concept.uom_display,
+            rangeStr: concept.range,
+            scale,
+            precision:  twoDPIndicators.includes(concept.id)  ? 2 : 1
+        });
         const mapData = await this.processLinearScaleData({scale, data, country});
         return {legend, mapData};
     }

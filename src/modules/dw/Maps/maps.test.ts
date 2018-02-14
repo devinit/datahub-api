@@ -36,9 +36,9 @@ describe('Maps module tests', () => {
         const surveryP20 = await maps.getMapData('survey_p20');
         expect(prettyFormat({surveryP20})).toMatchSnapshot();
     }, 20000);
-    it.skip('should return global picture indicators data ', async () => {
+    it('should return global picture indicators data ', async () => {
         // const linearColored = await maps.getMapData('data_series.in_ha');
-        const categoricalLinear = await maps.getMapData( 'fact.out_oda_net_2015');
+        const categoricalLinear = await maps.getMapData('fact.oda_percent_gni');
         // const dataRevolution = await maps.getMapData( 'data_series.latest_census');
         // const largestIntlFinance = await maps.getMapData( 'data_series.largest_intl_flow');
         // const governmentFinance = await maps.getMapData( 'data_series.non_grant_revenue_ppp_pc');
@@ -71,9 +71,9 @@ describe('Maps module tests', () => {
         const scaleA = Maps.colorScale({rangeStr: rangeA, ramp: rampA});
         const scaleB = Maps.colorScale({rangeStr: rangeB, ramp: rampB, isHighBetter: true});
         const scaleC = Maps.colorScale({rangeStr: rangeC, ramp: rampA});
-        const legendA = Maps.createLinearLegend('%', rangeA, scaleA);
-        const legendB = Maps.createLinearLegend('', rangeB, scaleB);
-        const legendC = Maps.createLinearLegend('%', rangeC, scaleC);
+        const legendA = Maps.createLinearLegend({uom_display: '%', rangeStr: rangeA, scale: scaleA});
+        const legendB = Maps.createLinearLegend({uom_display: '', rangeStr: rangeB, scale: scaleB});
+        const legendC = Maps.createLinearLegend({uom_display: '%', rangeStr: rangeC, scale: scaleC});
         expect(prettyFormat({legendB, legendC, legendA})).toMatchSnapshot();
     });
     it.skip('should create color ramp', async () => {
