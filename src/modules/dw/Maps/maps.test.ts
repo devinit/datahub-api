@@ -36,7 +36,7 @@ describe('Maps module tests', () => {
         const surveryP20 = await maps.getMapData('survey_p20');
         expect(prettyFormat({surveryP20})).toMatchSnapshot();
     }, 20000);
-    it('should return global picture indicators data ', async () => {
+    it.skip('should return global picture indicators data ', async () => {
         // const linearColored = await maps.getMapData('data_series.in_ha');
         const categoricalLinear = await maps.getMapData( 'fact.out_oda_net_2015');
         // const dataRevolution = await maps.getMapData( 'data_series.latest_census');

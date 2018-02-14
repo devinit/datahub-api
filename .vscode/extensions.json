@@ -1,5 +1,6 @@
  {
      "recommendations": [
-         "egamma.TSLint"
+         "egamma.TSLint",
+         "kumar-harsh.graphql-for-vscode"
      ]
  }

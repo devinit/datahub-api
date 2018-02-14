@@ -3,9 +3,9 @@ import {IDB} from '@devinit/graphql-next/lib/db';
 import sql from './sql';
 import * as shortid from 'shortid';
 import * as R from 'ramda';
-import {getIndicatorData, IGetIndicatorArgs, isDonor, indicatorDataProcessingNamed,
-        IRAWPopulationAgeBand, normalizeKeyName, IRAW, IRAWQuintile,
-        IRAWPopulationGroup, getIndicatorToolTip, getIndicatorsValue} from '../../utils';
+import {IRAW, IRAWQuintile, IGetIndicatorArgs, IRAWPopulationGroup, IRAWPopulationAgeBand} from '../../utils/types';
+import {getIndicatorData, isDonor, indicatorDataProcessingNamed,
+        normalizeKeyName, getIndicatorToolTip, getIndicatorsValue} from '../../utils';
 
 interface IOverViewTabRecipients {
     poorestPeople: DH.IIndicatorValueWithToolTip;

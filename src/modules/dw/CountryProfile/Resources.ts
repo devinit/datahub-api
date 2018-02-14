@@ -4,10 +4,10 @@ import {getConceptAsync, IConcept} from '../../refs/concept';
 import * as R from 'ramda';
 import * as shortid from 'shortid';
 import {IColor, getFlowType, getColors, getEntityByIdGeneric, IEntityBasic} from '../../refs/global';
-import {getIndicatorData, RECIPIENT, DONOR, IGetIndicatorArgs, CROSSOVER, capitalize, getCurrencyCode, getTotal,
+import {IGetIndicatorArgs, IProcessedSimple, IRAWDomestic, IRAW, IRAWFlow} from '../../utils/types';
+import {getIndicatorData, RECIPIENT, DONOR, CROSSOVER, capitalize, getCurrencyCode, getTotal,
         indicatorDataProcessingSimple, makeSqlAggregateQuery, formatNumbers, getIndicatorsValue, getIndicatorToolTip,
-        isDonor, IRAW, IRAWFlow, IProcessedSimple, entitesFnMap, IRAWDomestic, domesticDataProcessing,
-        getMaxAndMin} from '../../utils';
+        isDonor, entitesFnMap, domesticDataProcessing, getMaxAndMin} from '../../utils';
 import {getFlowByTypeAsync, getFlows, getFlowByIdAsync, getBudgetLevels, IBudgetLevelRef,
         getAllFlowSelections, IFlowRef, IFlowSelectionRaw} from '../../refs/countryProfile';
 

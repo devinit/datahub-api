@@ -1,7 +1,7 @@
 
 import {IDB} from '@devinit/graphql-next/lib/db';
-import {getIndicatorDataSimple, indicatorDataProcessingSimple, IGetIndicatorArgsSimple,
-    IProcessedSimple, normalizeKeyName, formatNumbers} from '../../utils';
+import {getIndicatorDataSimple, indicatorDataProcessingSimple, normalizeKeyName, formatNumbers} from '../../utils';
+import {IGetIndicatorArgsSimple, IProcessedSimple} from '../../utils/types';
 import {getConceptAsync, IConcept} from '../../refs/concept';
 import {getColors, getEntityByIdGeneric, IColor, IEntity, getEntities} from '../../refs/global';
 import {githubGet} from '@devinit/graphql-next/lib/github';
@@ -13,53 +13,8 @@ import { hsl } from 'd3-color';
 import { interpolateRgb } from 'd3-interpolate';
 import { scaleThreshold } from 'd3-scale';
 import * as R from 'ramda';
-interface IColorMap {
-    high: string;
-    low: string;
-}
-interface IRAWDataRevolution {
-    detail: string; // this is year
-    colour: string;
-    di_id: string;
-}
-interface IDataRevolution {
-    detail: number; // this is year
-    colour: string;
-    id: string;
-    uid: string;
-}
-interface ICategoricalMapping {
-    id: string;
-    name: string;
-    color?: string;
-}
-interface IRAWMapData {
-    id?: string;
-    district_id?: string;
-    budget_type?: string;
-    value: string | number;
-    year: string;
-}
-interface IMapDataWithLegend {
-    mapData: DH.IMapUnit[];
-    legend: DH.ILegendField[];
-}
-interface IColorScaleArgs {
-    rangeStr: string;
-    ramp: IColorMap;
-    isHighBetter?: boolean;
-}
-interface IScaleThreshold <Input, Output> {
-    (value: Input): Output;
-    range(): Output[];
-    domain(): Input[];
-}
-
-interface IProcessScaleData {
-    scale: IScaleThreshold<number, string>;
-    data: IRAWMapData[];
-    country: string;
-}
+import {IColorMap, ICategoricalMapping, IColorScaleArgs, IDataRevolution,
+    IScaleThreshold, IRAWDataRevolution, IProcessScaleData, IRAWMapData, IMapDataWithLegend} from './types';
 
 const lightGrey = '#d0cccf';
 
@@ -67,9 +22,9 @@ export default class Maps {
     public static noDataLegendEntry: DH.ILegendField = {
         color: 'white', backgroundColor: lightGrey, label: 'no data/not applicable'};
 
-    public static DACOnlyData(DACCountries: string[], indicatorData: DH.IMapUnit[]): DH.IMapUnit[] {
-        return indicatorData.filter(obj => DACCountries.includes(obj.name));
-    }
+    public static DACOnlyData = (DACCountries: string[], indicatorData: DH.IMapUnit[]): DH.IMapUnit[] =>
+        indicatorData.filter(obj => DACCountries.includes(obj.name))
+
     public static processBudgetData(data: DH.IMapUnit[]): DH.IMapUnit[] {
         const grouped = R.groupBy<DH.IMapUnit>(obj => obj.year.toString(), data);
         return R.keys(grouped).reduce((acc: DH.IMapUnit[], year) => {

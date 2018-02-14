@@ -8,9 +8,10 @@ import {IColor, getColors, getEntityByIdGeneric} from '../../../refs/global';
 import {isError} from '@devinit/graphql-next/lib/isType';
 import {getDistrictBySlugAsync, IDistrict} from '../../../refs/spotlight';
 import {IBudgetLevelRef, getBudgetLevels} from '../../../refs/countryProfile';
-import {getIndicatorDataSpotlights, ISpotlightGetIndicatorArgs, IRAW, getSpotlightTableName, getCurrencyCode, addSuffix,
-        IRAWPopulationGroup, IRAWDomestic, domesticDataProcessing, formatNumbers,
-        addColorToDomesticLevels, getIndicatorToolTip, getTotal} from '../../../utils';
+import {ISpotlightGetIndicatorArgs, IRAW, IRAWPopulationGroup, IRAWDomestic, } from '../../../utils/types';
+import {getIndicatorDataSpotlights, getSpotlightTableName, getCurrencyCode, addSuffix,
+        domesticDataProcessing, formatNumbers, addColorToDomesticLevels, getIndicatorToolTip,
+        getTotal} from '../../../utils';
 
 export interface ISpotlightArgs {
     id: string;

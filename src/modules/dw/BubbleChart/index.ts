@@ -4,8 +4,9 @@ import * as shortid from 'shortid';
 import {getConceptAsync, IConcept, getConcepts} from '../../refs/concept';
 import {IEntity, getEntities, getEntityByIdGeneric, IEntityBasic,
     getIncomeGroups, getRegional, getColors} from '../../refs/global';
-import {getIndicatorData, IGetIndicatorArgs, IProcessedSimple, IRAW, getIndicatorDataSimple,
-        indicatorDataProcessingSimple, makeSqlAggregateQuery} from '../../utils';
+import {IGetIndicatorArgs, IProcessedSimple, IRAW} from '../../utils/types';
+import {getIndicatorData, getIndicatorDataSimple, indicatorDataProcessingSimple,
+    makeSqlAggregateQuery} from '../../utils';
 
 interface IBubbleSizeResults {
     to_di_id: string;
