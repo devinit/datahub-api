@@ -72,5 +72,6 @@ TODO
 
 - [ ] remove console.info & console.error and replace with function that logs to an info & error file
 - [ ] fix testing on travis
+- [ ] Make uid immutable for testing purposes
 - [ ] pull in di_id as id in sql queries
 - [ ] Perf: breakdown tabs data fetching function into individual functions
