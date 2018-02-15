@@ -1,6 +1,6 @@
 {
   "name": "@devinit/datahub-api",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Apollo GraphQL server using webpack and typescript",
   "main": "dist/main.min.js",
   "publishConfig": {
