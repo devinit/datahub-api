@@ -305,7 +305,7 @@ such as constant 2015 USD for tree map
 
 
   interface IInternationalResources {
-    startYear: number | null;
+    startYear: number;
     /**
     Gross National Income
   */
@@ -322,16 +322,16 @@ such as constant 2015 USD for tree map
     for line chart in the  international resources tabs section,
 IndicatorDataColoredWithToolTip  is defined in spotlight types
   */
-    resourceflowsOverTime: IFlowsOverTimeWithToolTip | null;
+    resourceflowsOverTime: IFlowsOverTimeWithToolTip;
     /**
     for sidebar chart in international resources section & area partition tree chart default data
   */
-    resourcesOverTime: IResourceDataWithToolTip | null;
+    resourcesOverTime: IResourceDataWithToolTip;
     /**
     Whats the mix of resources can be for donors (out flows) or receipient (in flows)
 this is for the donut chart
   */
-    mixOfResources: IResourceDataWithToolTip | null;
+    mixOfResources: IResourceDataWithToolTip;
   }
 
 
