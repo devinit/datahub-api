@@ -54,7 +54,7 @@
     "shortid": "^2.2.8"
   },
   "devDependencies": {
-    "@playlyfe/gql": "^2.5.0",
+    "@playlyfe/gql": "2.6.0",
     "@types/color": "3.0.0",
     "@types/jest": "22.1.2",
     "@types/lru-cache": "4.1.0",
