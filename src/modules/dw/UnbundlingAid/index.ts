@@ -104,7 +104,8 @@ export default class UnbundlingAid {
         }
     }
     private getUnbundlingAidDataTable(aidType) {
-        return aidType === 'oda' ? 'fact.oda_2015' : 'fact.oof_2015';
+        // TODO: should come from concept file
+        return aidType === 'oda' ? 'fact.oda_2015_new' : 'fact.oof_2015';
     }
     private async getCountries(): Promise<IUnBundlingAidCountries> {
         try {
