@@ -1,6 +1,7 @@
 import * as prettyFormat from 'pretty-format';
 import UnbundlingAid from '.';
 import db from '@devinit/graphql-next/lib/db';
+import { uidPatchForObjs } from '@devinit/graphql-next/lib/utils/test.utils';
 
 describe('Unbundling aid DW module tests', () => {
     const unbundlingAid = new UnbundlingAid(db);
@@ -14,7 +15,8 @@ describe('Unbundling aid DW module tests', () => {
         const dataA = await unbundlingAid.getUnbundlingAidData(argsA);
         // const dataC = await unbundlingAid.getUnbundlingAidData(argsC);
         // const dataD = await unbundlingAid.getUnbundlingAidData(argsD);
-        expect(prettyFormat({dataA, dataC})).toMatchSnapshot();
+        const result = {dataC: uidPatchForObjs(dataC), dataA: uidPatchForObjs(dataA)};
+        expect(prettyFormat(result)).toMatchSnapshot();
     }, 100000);
     it('should create sql query args for getting data', () => {
         const argsA = {

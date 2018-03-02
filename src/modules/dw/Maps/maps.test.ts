@@ -1,6 +1,7 @@
 import Maps from '.';
 import * as prettyFormat from 'pretty-format';
 import db from '@devinit/graphql-next/lib/db';
+import {prettyDataObjs, uidPatchForObjs } from '@devinit/graphql-next/lib/utils/test.utils';
 
 describe('Maps module tests', () => {
     const maps = new Maps(db);

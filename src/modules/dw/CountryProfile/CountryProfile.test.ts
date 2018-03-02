@@ -1,9 +1,9 @@
 import * as prettyFormat from 'pretty-format';
-// import {uidPatchForTabData} from '../utils/test-utils';
 import {getFlows} from '../../refs/countryProfile';
 import CountryProfile from '.';
 import Resources from './Resources';
 import db from '@devinit/graphql-next/lib/db';
+import {prettyDataObjs, uidPatchForObjs } from '@devinit/graphql-next/lib/utils/test.utils';
 
 describe('country profile DW module tests', () => {
     const countryProfile = new CountryProfile(db);
@@ -22,43 +22,47 @@ describe('country profile DW module tests', () => {
     it('should return overview tab data for uganda && turkey', async () => {
         const uganda = await tab.getOverViewTab({id: 'uganda'});
         const turkey = await tab.getOverViewTab({id: 'turkey'});
-        expect(prettyFormat({uganda, turkey})).toMatchSnapshot();
+        const result = {uganda: uidPatchForObjs(uganda), turkey: uidPatchForObjs(turkey)};
+        expect(prettyFormat(result)).toMatchSnapshot();
     }, 10000);
     it('should return overview tab data for Austria', async () => {
         const overViewTab = await tab.getOverViewTab({id: 'romania'});
-        expect(prettyFormat(overViewTab)).toMatchSnapshot();
+        expect(prettyDataObjs(overViewTab)).toMatchSnapshot();
     }, 10000);
     it('should return population tab data for Austria', async () => {
         const populationTab = await tab.getPopulationTab({id: 'austria'});
-        expect(prettyFormat(populationTab)).toMatchSnapshot();
+        expect(prettyDataObjs(populationTab)).toMatchSnapshot();
     }, 10000);
     it('should return population tab data for Uganda', async () => {
         const populationTab = await tab.getPopulationTab({id: 'uganda'});
-        expect(prettyFormat(populationTab)).toMatchSnapshot();
+        expect(prettyDataObjs(populationTab)).toMatchSnapshot();
     }, 10000);
     it('should return poverty tab data for Uganda', async () => {
         const povertyTab = await tab.getPovertyTab({id: 'uganda'});
-        expect(prettyFormat(povertyTab)).toMatchSnapshot();
+        expect(prettyDataObjs(povertyTab)).toMatchSnapshot();
     }, 10000);
     it('should return international resources tab & charts data for Uganda', async () => {
         const internationalA = await resources.getInternationalResources({id: 'andorra'});
         // const internationalB = await resources.getInternationalResources({id: 'china'});
-        expect(prettyFormat(internationalA)).toMatchSnapshot();
+        expect(prettyDataObjs(internationalA)).toMatchSnapshot();
     }, 30000);
     it('should return international resources tab & charts data for Austria & turkey', async () => {
         const austria  = await resources.getInternationalResources({id: 'austria'});
         const turkey  = await resources.getInternationalResources({id: 'turkey'});
-        expect(prettyFormat({austria, turkey})).toMatchSnapshot();
+        const result = {austria: uidPatchForObjs(austria), turkey: uidPatchForObjs(turkey)};
+        expect(prettyFormat(result)).toMatchSnapshot();
     }, 30000);
     it('should return spending allocation for palestine', async () => {
         const palestine = await resources.getSpendingAllocation('palestine');
         const uganda = await resources.getSpendingAllocation('uganda');
-        expect(prettyFormat({palestine, uganda})).toMatchSnapshot();
+        const result = {palestine: uidPatchForObjs(palestine), uganda: uidPatchForObjs(uganda)};
+        expect(prettyFormat(result)).toMatchSnapshot();
     }, 10000);
     it('should return government finance data for Uganda && somalia && Turkey', async () => {
         const gvtUg = await resources.getGovernmentFinance({id: 'uganda'});
         const gvtSamoa = await resources.getGovernmentFinance({id: 'samoa'});
-        expect(prettyFormat({gvtSamoa, gvtUg})).toMatchSnapshot();
+        const result = {gvtUg: uidPatchForObjs(gvtUg), gvtSamoa: uidPatchForObjs(gvtSamoa)};
+        expect(prettyFormat(result)).toMatchSnapshot();
     }, 10000);
     it('should return single resources data for use in international resources chart', async () => {
         const FDIOut = await resources.getSingleResource(
@@ -73,7 +77,10 @@ describe('country profile DW module tests', () => {
             { resourceId: 'long-debt-net-official-in', countryId: 'UG', groupById: 'flow_type'});
         const LDCommercialIn = await resources.getSingleResource(
                 { resourceId: 'long-debt-disbursement-in', countryId: 'UG', groupById: 'flow_type'});
-        expect(prettyFormat({ shortDebtOut, FDIOut, ODAOut, LDIn, LDCommercialIn, ODAIn})).toMatchSnapshot();
+        const result = {FDIOut: uidPatchForObjs(FDIOut), shortDebtOut: uidPatchForObjs(shortDebtOut),
+            ODAOut: uidPatchForObjs(ODAOut), ODAIn: uidPatchForObjs(ODAIn),
+            LDIn: uidPatchForObjs(LDIn), LDCommercialIn: uidPatchForObjs(LDCommercialIn)};
+        expect(prettyFormat(result)).toMatchSnapshot();
     }, 50000);
     afterAll(() => {
        db.$config.pgp.end();
