@@ -1,0 +1,303 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Maps module tests should create color ramp 1`] = `
+"Object {
+  \\"high\\": \\"#e8443a\\",
+  \\"low\\": \\"#fbd7cb\\",
+}"
+`;
+
+exports[`Maps module tests should create legend for map data 1`] = `
+"Object {
+  \\"legendA\\": Array [
+    Object {
+      \\"backgroundColor\\": \\"rgb(251, 215, 203)\\",
+      \\"color\\": \\"black\\",
+      \\"label\\": \\"<1 %\\",
+    },
+    Object {
+      \\"backgroundColor\\": \\"rgb(246, 178, 167)\\",
+      \\"color\\": \\"black\\",
+      \\"label\\": \\"1-5\\",
+    },
+    Object {
+      \\"backgroundColor\\": \\"rgb(242, 142, 130)\\",
+      \\"color\\": \\"black\\",
+      \\"label\\": \\"5-10\\",
+    },
+    Object {
+      \\"backgroundColor\\": \\"rgb(237, 105, 94)\\",
+      \\"color\\": \\"white\\",
+      \\"label\\": \\"10-20\\",
+    },
+    Object {
+      \\"backgroundColor\\": \\"rgb(232, 68, 57)\\",
+      \\"color\\": \\"white\\",
+      \\"label\\": \\">20 %\\",
+    },
+    Object {
+      \\"backgroundColor\\": \\"#d0cccf\\",
+      \\"color\\": \\"white\\",
+      \\"label\\": \\"no data/not applicable\\",
+    },
+  ],
+  \\"legendB\\": Array [
+    Object {
+      \\"backgroundColor\\": \\"rgb(12, 69, 123)\\",
+      \\"color\\": \\"white\\",
+      \\"label\\": \\"<200 \\",
+    },
+    Object {
+      \\"backgroundColor\\": \\"rgb(41, 93, 143)\\",
+      \\"color\\": \\"white\\",
+      \\"label\\": \\"200-500\\",
+    },
+    Object {
+      \\"backgroundColor\\": \\"rgb(71, 117, 162)\\",
+      \\"color\\": \\"white\\",
+      \\"label\\": \\"500-1k\\",
+    },
+    Object {
+      \\"backgroundColor\\": \\"rgb(100, 141, 182)\\",
+      \\"color\\": \\"white\\",
+      \\"label\\": \\"1k-1.5k\\",
+    },
+    Object {
+      \\"backgroundColor\\": \\"rgb(129, 164, 201)\\",
+      \\"color\\": \\"white\\",
+      \\"label\\": \\"1.5k-2k\\",
+    },
+    Object {
+      \\"backgroundColor\\": \\"rgb(159, 188, 221)\\",
+      \\"color\\": \\"black\\",
+      \\"label\\": \\"2k-10k\\",
+    },
+    Object {
+      \\"backgroundColor\\": \\"rgb(188, 212, 240)\\",
+      \\"color\\": \\"black\\",
+      \\"label\\": \\">10k \\",
+    },
+    Object {
+      \\"backgroundColor\\": \\"#d0cccf\\",
+      \\"color\\": \\"white\\",
+      \\"label\\": \\"no data/not applicable\\",
+    },
+  ],
+  \\"legendC\\": Array [
+    Object {
+      \\"backgroundColor\\": \\"rgb(232, 68, 57)\\",
+      \\"color\\": \\"white\\",
+      \\"label\\": \\">80 %\\",
+    },
+    Object {
+      \\"backgroundColor\\": \\"rgb(237, 105, 94)\\",
+      \\"color\\": \\"white\\",
+      \\"label\\": \\"60-80\\",
+    },
+    Object {
+      \\"backgroundColor\\": \\"rgb(242, 142, 130)\\",
+      \\"color\\": \\"black\\",
+      \\"label\\": \\"40-60\\",
+    },
+    Object {
+      \\"backgroundColor\\": \\"rgb(246, 178, 167)\\",
+      \\"color\\": \\"black\\",
+      \\"label\\": \\"20-40\\",
+    },
+    Object {
+      \\"backgroundColor\\": \\"rgb(251, 215, 203)\\",
+      \\"color\\": \\"black\\",
+      \\"label\\": \\"<20 %\\",
+    },
+    Object {
+      \\"backgroundColor\\": \\"#d0cccf\\",
+      \\"color\\": \\"white\\",
+      \\"label\\": \\"no data/not applicable\\",
+    },
+  ],
+}"
+`;
+
+exports[`Maps module tests should return categorical value mappings for indicators 1`] = `
+"Object {
+  \\"surveryP20\\": Object {
+    \\"appear_in_bubble_chart\\": \\"\\",
+    \\"color\\": \\"red\\",
+    \\"country\\": \\"global\\",
+    \\"dac_only\\": \\"\\",
+    \\"default_year\\": 2013,
+    \\"description\\": \\"The percentage of people in each household survey region who are in the global poorest 20%\\",
+    \\"end_year\\": 2013,
+    \\"heading\\": \\"% of people in the P20 (survey level)\\",
+    \\"id\\": \\"survey_p20\\",
+    \\"include_in_methodology\\": \\"\\",
+    \\"is_high_better\\": \\"\\",
+    \\"legend\\": Array [
+      Object {
+        \\"backgroundColor\\": \\"rgb(251, 215, 203)\\",
+        \\"color\\": \\"black\\",
+        \\"label\\": \\"<10 %\\",
+      },
+      Object {
+        \\"backgroundColor\\": \\"rgb(247, 186, 174)\\",
+        \\"color\\": \\"black\\",
+        \\"label\\": \\"10-20\\",
+      },
+      Object {
+        \\"backgroundColor\\": \\"rgb(243, 156, 145)\\",
+        \\"color\\": \\"black\\",
+        \\"label\\": \\"20-40\\",
+      },
+      Object {
+        \\"backgroundColor\\": \\"rgb(240, 127, 116)\\",
+        \\"color\\": \\"white\\",
+        \\"label\\": \\"40-60\\",
+      },
+      Object {
+        \\"backgroundColor\\": \\"rgb(236, 97, 87)\\",
+        \\"color\\": \\"white\\",
+        \\"label\\": \\"60-80\\",
+      },
+      Object {
+        \\"backgroundColor\\": \\"rgb(232, 68, 58)\\",
+        \\"color\\": \\"white\\",
+        \\"label\\": \\">80 %\\",
+      },
+      Object {
+        \\"backgroundColor\\": \\"#d0cccf\\",
+        \\"color\\": \\"white\\",
+        \\"label\\": \\"no data/not applicable\\",
+      },
+    ],
+    \\"map\\": Array [],
+    \\"map_style\\": \\"http://178.79.185.236:8080/styles/clustersgeojson.json\\",
+    \\"name\\": \\"% of people in the P20 (survey level)\\",
+    \\"position\\": 8,
+    \\"range\\": \\"10, 20, 40, 60, 80\\",
+    \\"source\\": \\"Development Initiatives based on PovcalNet as well as selected Demographic and health Surveys (DHS), Multiple Indicator Cluster Surveys (MICS), China Family Panel Studies (CFPS), and Brazil National Demographic and Healtj Surveys (PNDS)\\",
+    \\"source_link\\": \\"\\",
+    \\"start_year\\": 2013,
+    \\"theme\\": \\"poverty\\",
+    \\"tooltip\\": \\"The percentage of people in each household survey region who are in the global poorest 20%\\",
+    \\"uom\\": \\"percent\\",
+    \\"uom_display\\": \\"%\\",
+  },
+}"
+`;
+
+exports[`Maps module tests should return color values from a scale 1`] = `
+"Object {
+  \\"domainA\\": Array [
+    1,
+    5,
+    10,
+    50,
+  ],
+  \\"domainB\\": Array [
+    20,
+    40,
+    60,
+    80,
+  ],
+  \\"rangeA\\": Array [
+    \\"rgb(251, 215, 203)\\",
+    \\"rgb(246, 178, 167)\\",
+    \\"rgb(242, 142, 130)\\",
+    \\"rgb(237, 105, 94)\\",
+    \\"rgb(232, 68, 57)\\",
+  ],
+  \\"rangeB\\": Array [
+    \\"rgb(232, 68, 57)\\",
+    \\"rgb(237, 105, 94)\\",
+    \\"rgb(242, 142, 130)\\",
+    \\"rgb(246, 178, 167)\\",
+    \\"rgb(251, 215, 203)\\",
+  ],
+}"
+`;
+
+exports[`Maps module tests should return global picture indicators data  1`] = `
+"Object {
+  \\"surveryP20\\": Object {
+    \\"appear_in_bubble_chart\\": \\"\\",
+    \\"color\\": \\"red\\",
+    \\"country\\": \\"global\\",
+    \\"dac_only\\": \\"\\",
+    \\"default_year\\": 2013,
+    \\"description\\": \\"The percentage of people in each household survey region who are in the global poorest 20%\\",
+    \\"end_year\\": 2013,
+    \\"heading\\": \\"% of people in the P20 (survey level)\\",
+    \\"id\\": \\"survey_p20\\",
+    \\"include_in_methodology\\": \\"\\",
+    \\"is_high_better\\": \\"\\",
+    \\"legend\\": Array [
+      Object {
+        \\"backgroundColor\\": \\"rgb(251, 215, 203)\\",
+        \\"color\\": \\"black\\",
+        \\"label\\": \\"<10 %\\",
+      },
+      Object {
+        \\"backgroundColor\\": \\"rgb(247, 186, 174)\\",
+        \\"color\\": \\"black\\",
+        \\"label\\": \\"10-20\\",
+      },
+      Object {
+        \\"backgroundColor\\": \\"rgb(243, 156, 145)\\",
+        \\"color\\": \\"black\\",
+        \\"label\\": \\"20-40\\",
+      },
+      Object {
+        \\"backgroundColor\\": \\"rgb(240, 127, 116)\\",
+        \\"color\\": \\"white\\",
+        \\"label\\": \\"40-60\\",
+      },
+      Object {
+        \\"backgroundColor\\": \\"rgb(236, 97, 87)\\",
+        \\"color\\": \\"white\\",
+        \\"label\\": \\"60-80\\",
+      },
+      Object {
+        \\"backgroundColor\\": \\"rgb(232, 68, 58)\\",
+        \\"color\\": \\"white\\",
+        \\"label\\": \\">80 %\\",
+      },
+      Object {
+        \\"backgroundColor\\": \\"#d0cccf\\",
+        \\"color\\": \\"white\\",
+        \\"label\\": \\"no data/not applicable\\",
+      },
+    ],
+    \\"map\\": Array [],
+    \\"map_style\\": \\"http://178.79.185.236:8080/styles/clustersgeojson.json\\",
+    \\"name\\": \\"% of people in the P20 (survey level)\\",
+    \\"position\\": 8,
+    \\"range\\": \\"10, 20, 40, 60, 80\\",
+    \\"source\\": \\"Development Initiatives based on PovcalNet as well as selected Demographic and health Surveys (DHS), Multiple Indicator Cluster Surveys (MICS), China Family Panel Studies (CFPS), and Brazil National Demographic and Healtj Surveys (PNDS)\\",
+    \\"source_link\\": \\"\\",
+    \\"start_year\\": 2013,
+    \\"theme\\": \\"poverty\\",
+    \\"tooltip\\": \\"The percentage of people in each household survey region who are in the global poorest 20%\\",
+    \\"uom\\": \\"percent\\",
+    \\"uom_display\\": \\"%\\",
+  },
+}"
+`;
+
+exports[`Maps module tests should return only DAC countries from the data 1`] = `
+"Object {
+  \\"result\\": Object {
+    \\"0\\": Object {
+      \\"id\\": \\"sp\\",
+      \\"name\\": \\"Spain\\",
+      \\"value\\": 2000,
+      \\"year\\": 2000,
+    },
+    \\"1\\": Object {
+      \\"id\\": \\"uk\\",
+      \\"name\\": \\"England\\",
+      \\"value\\": 2000,
+      \\"year\\": 2000,
+    },
+  },
+}"
+`;

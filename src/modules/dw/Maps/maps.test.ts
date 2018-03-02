@@ -1,7 +1,7 @@
 import Maps from '.';
 import * as prettyFormat from 'pretty-format';
 import db from '@devinit/graphql-next/lib/db';
-import {prettyDataObjs, uidPatchForObjs } from '@devinit/graphql-next/lib/utils/test.utils';
+import { uidPatchForObjs } from '@devinit/graphql-next/lib/utils/test.utils';
 
 describe('Maps module tests', () => {
     const maps = new Maps(db);
@@ -14,7 +14,8 @@ describe('Maps module tests', () => {
             {value: 2000, id: 'pl', name: 'Poland', year: 2000},
             ];
         const onlyDacCountries = Maps.DACOnlyData(dacCountries, data as DH.IMapUnit[]);
-        expect(prettyFormat({onlyDacCountries})).toMatchSnapshot();
+        const result = uidPatchForObjs(onlyDacCountries, 'map');
+        expect(prettyFormat({result})).toMatchSnapshot();
         expect(onlyDacCountries.length).toBe(2);
     }, 10000);
     it.skip('should know if an indicator is for a country spotlight or for global picture', async () => {
@@ -23,20 +24,22 @@ describe('Maps module tests', () => {
         expect(country).toBe('uganda');
         expect(global).toBe('global');
     }, 10000);
-    it.skip('should return spotlight on uganda indicator data', async () => {
+    it('should return spotlight on uganda indicator data', async () => {
         const linearColored =
             await maps.getMapData('spotlight_on_uganda_2017.uganda_total_pop');
-        expect(prettyFormat({linearColored})).toMatchSnapshot();
-    }, 20000);
-    it.skip('should return spotlight on kenya indicator data', async () => {
+        const result = uidPatchForObjs(linearColored, 'map');
+        expect(prettyFormat(result)).toMatchSnapshot();
+    }, 30000);
+    it('should return spotlight on kenya indicator data', async () => {
         const linearColored =
             await maps.getMapData('spotlight_on_kenya_2017.kenya_disability');
-        expect(prettyFormat({linearColored})).toMatchSnapshot();
-    }, 20000);
-    it.skip('should return global picture indicator for map styled data  ', async () => {
+        const result = uidPatchForObjs(linearColored, 'map');
+        expect(prettyFormat(result)).toMatchSnapshot();
+    }, 30000);
+    it('should return global picture indicator for map styled data  ', async () => {
         const surveryP20 = await maps.getMapData('survey_p20');
         expect(prettyFormat({surveryP20})).toMatchSnapshot();
-    }, 20000);
+    }, 30000);
     it('should return global picture indicators data ', async () => {
         // const linearColored = await maps.getMapData('data_series.in_ha');
         const categoricalLinear = await maps.getMapData('fact.oda_percent_gni');
@@ -44,9 +47,10 @@ describe('Maps module tests', () => {
         // const largestIntlFinance = await maps.getMapData( 'data_series.largest_intl_flow');
         // const governmentFinance = await maps.getMapData( 'data_series.non_grant_revenue_ppp_pc');
         // const dacCountries = await maps.getMapData( 'fact.oda_percent_gni');
-        expect(prettyFormat({categoricalLinear })).toMatchSnapshot();
-    }, 20000);
-    it.skip('should return categorical value mappings for indicators', async () => {
+        const result = uidPatchForObjs(categoricalLinear, 'map');
+        expect(prettyFormat(result)).toMatchSnapshot();
+    }, 30000);
+    it('should return categorical value mappings for indicators', async () => {
         const fragileSates = await Maps.getCategoricalMapping('data_series.fragile_states');
         const dataRevolution = await Maps.getCategoricalMapping('data_series.agricultural_census', 'data-revolution');
         expect(prettyFormat({fragileSates, dataRevolution})).toMatchSnapshot();

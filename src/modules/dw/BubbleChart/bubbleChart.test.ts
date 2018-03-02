@@ -1,6 +1,7 @@
-import {prettyLists} from '@devinit/graphql-next/lib/utils/test.utils';
+import {prettyListMany, replaceUidInList} from '@devinit/graphql-next/lib/utils/test.utils';
 import BubbleChart from '.';
 import db from '@devinit/graphql-next/lib/db';
+import * as prettyFormat from 'pretty-format';
 
 describe('Bubble chart DW module tests', () => {
     const bubbleChart = new BubbleChart(db);
@@ -8,13 +9,13 @@ describe('Bubble chart DW module tests', () => {
     it('getting poverty  bubble chart data i.e poverty & revenue per person data', async () => {
         const data = await bubbleChart.getBubbleChartPoverty();
         const dataB = await bubbleChart.getBubbleChartPoverty('AT');
-        expect({generic: prettyLists(data), WithATODa: prettyLists(dataB)}).toMatchSnapshot();
+        expect(prettyListMany([data, dataB])).toMatchSnapshot();
     }, 30000);
 
     it('getting oda  bubble chart ODA data', async () => {
         const data = await bubbleChart.getBubbleChartOda();
         const dataB = await bubbleChart.getBubbleChartOda('data_series.fdi_pp');
-        expect({'generic': data, 'with data_series.fdi_pp': dataB}).toMatchSnapshot();
+        expect(prettyListMany([data, dataB])).toMatchSnapshot();
     }, 30000);
     it('getting bubble chart options', async () => {
         const data = await bubbleChart.getBubbleChartOptions();
@@ -22,11 +23,13 @@ describe('Bubble chart DW module tests', () => {
     }, 30000);
     it('should get bubble chart size data for a countrys ODA in poverty chart', async () => {
         const data = await bubbleChart.getBubbleSize('AT');
-        expect(data).toMatchSnapshot();
+        const result = replaceUidInList(data);
+        expect(prettyFormat(result)).toMatchSnapshot();
     }, 30000);
     it('should get bubble chart size data for a generic indicator', async () => {
         const data = await bubbleChart.getBubbleSize('data_series.fdi_pp');
-        expect(data).toMatchSnapshot();
+        const result = replaceUidInList(data);
+        expect(prettyFormat(result)).toMatchSnapshot();
     }, 30000);
 
     afterAll(() => {
