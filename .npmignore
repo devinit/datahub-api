@@ -1,3 +1,6 @@
 .vscode
+src
+lib
 __snapshots__
 **/*.test*
+tools
