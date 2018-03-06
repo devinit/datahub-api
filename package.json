@@ -11,7 +11,7 @@
     "type": "npm"
   },
   "scripts": {
-    "test": "jest src/modules/dw/Maps/maps.test.ts",
+    "test": "jest src/modules/dw/CountryProfile/countryProfile.test.ts",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "test:watch": "npm test -- --watch",
     "codecov": "npm run build && jest -u && codecov",
@@ -44,7 +44,7 @@
   },
   "homepage": "https://github.com/devinit/datahub-api#readme",
   "dependencies": {
-    "@devinit/graphql-next": "^0.1.20",
+    "@devinit/graphql-next": "^0.3.0",
     "color": "^3.0.0",
     "d3-color": "^1.0.3",
     "d3-interpolate": "^1.1.6",
@@ -56,20 +56,20 @@
   "devDependencies": {
     "@playlyfe/gql": "2.6.0",
     "@types/color": "3.0.0",
-    "@types/jest": "22.1.3",
+    "@types/jest": "22.2.0",
     "@types/lru-cache": "4.1.0",
     "@types/morgan": "1.7.35",
     "@types/node": "9.4.6",
-    "@types/ramda": "0.25.18",
+    "@types/ramda": "0.25.19",
     "@types/shortid": "0.0.29",
     "concurrently": "3.5.1",
     "git-pre-hooks": "1.2.0",
-    "jest": "22.3.0",
-    "jest-cli": "22.3.0",
+    "jest": "22.4.2",
+    "jest-cli": "22.4.2",
     "node-dev": "3.1.3",
-    "pretty-format": "22.1.0",
+    "pretty-format": "22.4.0",
     "release-it": "7.0.2",
-    "ts-jest": "22.0.4",
+    "ts-jest": "22.4.1",
     "tslint": "5.9.1",
     "typescript": "2.7.2"
   },
@@ -83,7 +83,6 @@
     "transform": {
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
-    "mapCoverage": true,
     "coverageDirectory": "./coverage/",
     "collectCoverage": true,
     "testEnvironment": "node",
