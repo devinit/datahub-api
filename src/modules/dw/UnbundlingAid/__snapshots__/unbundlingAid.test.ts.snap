@@ -2,142 +2,155 @@
 
 exports[`Unbundling aid DW module tests getting unbundling aid data of various types 1`] = `
 "Object {
-  \\"dataA\\": Array [
-    Object {
+  \\"dataA\\": Object {
+    \\"0\\": Object {
       \\"color\\": \\"#0089cc\\",
       \\"id\\": \\"water-and-sanitation\\",
       \\"name\\": \\"Water and sanitation\\",
-      \\"uid\\": \\"r122n41UG\\",
+      \\"uid\\": \\"r1PMq6oOM\\",
       \\"value\\": 256626315,
       \\"year\\": 2016,
     },
-    Object {
+    \\"1\\": Object {
       \\"color\\": \\"#e8443a\\",
       \\"id\\": \\"agriculture-and-food-security\\",
       \\"name\\": \\"Agriculture and food security\\",
-      \\"uid\\": \\"rkeh23Vy8z\\",
+      \\"uid\\": \\"H1lwz5Tj_z\\",
       \\"value\\": 601266533,
       \\"year\\": 2016,
     },
-    Object {
-      \\"color\\": \\"#f18e5e\\",
-      \\"id\\": \\"infrastructure\\",
-      \\"name\\": \\"Infrastructure\\",
-      \\"uid\\": \\"BJZ2n3E1LG\\",
-      \\"value\\": 557242274,
-      \\"year\\": 2016,
-    },
-    Object {
-      \\"color\\": \\"#bc2629\\",
-      \\"id\\": \\"humanitarian\\",
-      \\"name\\": \\"Humanitarian\\",
-      \\"uid\\": \\"BkM3n3VJ8z\\",
-      \\"value\\": 1956247242,
-      \\"year\\": 2016,
-    },
-    Object {
-      \\"color\\": \\"#893f90\\",
-      \\"id\\": \\"other-social-services\\",
-      \\"name\\": \\"Other social services\\",
-      \\"uid\\": \\"rkm3nnVJLf\\",
-      \\"value\\": 650290388,
-      \\"year\\": 2016,
-    },
-    Object {
-      \\"color\\": \\"#d85b31\\",
-      \\"id\\": \\"governance-security-and-civil-society\\",
-      \\"name\\": \\"Governance, security and civil society\\",
-      \\"uid\\": \\"BkN2234yUz\\",
-      \\"value\\": 1705654206,
-      \\"year\\": 2016,
-    },
-    Object {
-      \\"color\\": \\"#7b3b89\\",
-      \\"id\\": \\"other\\",
-      \\"name\\": \\"Other\\",
-      \\"uid\\": \\"ByShhhN1Uf\\",
-      \\"value\\": 2692965557,
-      \\"year\\": 2016,
-    },
-    Object {
-      \\"color\\": \\"#d64278\\",
-      \\"id\\": \\"banking-and-business\\",
-      \\"name\\": \\"Banking and business\\",
-      \\"uid\\": \\"S1Inn3VJ8G\\",
-      \\"value\\": 726234481,
-      \\"year\\": 2016,
-    },
-    Object {
-      \\"color\\": \\"#f18e5e\\",
-      \\"id\\": \\"environment\\",
-      \\"name\\": \\"Environment\\",
-      \\"uid\\": \\"SyP3h34kIG\\",
-      \\"value\\": 479942454,
-      \\"year\\": 2016,
-    },
-    Object {
-      \\"color\\": \\"#007851\\",
-      \\"id\\": \\"health\\",
-      \\"name\\": \\"Health\\",
-      \\"uid\\": \\"Hy_3h24yLf\\",
-      \\"value\\": 1588831733,
-      \\"year\\": 2016,
-    },
-    Object {
+    \\"10\\": Object {
       \\"color\\": \\"#8f1b13\\",
       \\"id\\": \\"debt-relief\\",
       \\"name\\": \\"Debt relief\\",
-      \\"uid\\": \\"BythhnEk8G\\",
+      \\"uid\\": \\"ryKwMc6sdG\\",
       \\"value\\": 3385670,
       \\"year\\": 2016,
     },
-    Object {
+    \\"11\\": Object {
       \\"color\\": \\"#5da3d9\\",
       \\"id\\": \\"industry-and-trade\\",
       \\"name\\": \\"Industry and trade\\",
-      \\"uid\\": \\"B15nnn4JLM\\",
+      \\"uid\\": \\"BycvG9asdz\\",
       \\"value\\": 251511854,
       \\"year\\": 2016,
     },
-    Object {
+    \\"12\\": Object {
       \\"color\\": \\"#e8443a\\",
       \\"id\\": \\"education\\",
       \\"name\\": \\"Education\\",
-      \\"uid\\": \\"S1j2334yLG\\",
+      \\"uid\\": \\"S1iDGcToOz\\",
       \\"value\\": 1456829853,
       \\"year\\": 2016,
     },
-    Object {
+    \\"13\\": Object {
       \\"color\\": \\"#893f90\\",
       \\"id\\": \\"general-budget-support\\",
       \\"name\\": \\"General budget support\\",
-      \\"uid\\": \\"Bkn22hVy8f\\",
+      \\"uid\\": \\"r12vz5ajOf\\",
       \\"value\\": 90330700,
       \\"year\\": 2016,
     },
-  ],
-  \\"dataC\\": Array [
-    Object {
+    \\"2\\": Object {
+      \\"color\\": \\"#f18e5e\\",
+      \\"id\\": \\"infrastructure\\",
+      \\"name\\": \\"Infrastructure\\",
+      \\"uid\\": \\"Hk-DGq6jOf\\",
+      \\"value\\": 557242274,
+      \\"year\\": 2016,
+    },
+    \\"3\\": Object {
+      \\"color\\": \\"#bc2629\\",
+      \\"id\\": \\"humanitarian\\",
+      \\"name\\": \\"Humanitarian\\",
+      \\"uid\\": \\"HyMDzcaoOz\\",
+      \\"value\\": 1956247242,
+      \\"year\\": 2016,
+    },
+    \\"4\\": Object {
+      \\"color\\": \\"#893f90\\",
+      \\"id\\": \\"other-social-services\\",
+      \\"name\\": \\"Other social services\\",
+      \\"uid\\": \\"HJQPG5TiOz\\",
+      \\"value\\": 650290388,
+      \\"year\\": 2016,
+    },
+    \\"5\\": Object {
+      \\"color\\": \\"#d85b31\\",
+      \\"id\\": \\"governance-security-and-civil-society\\",
+      \\"name\\": \\"Governance, security and civil society\\",
+      \\"uid\\": \\"B1NvzqasdM\\",
+      \\"value\\": 1705654205,
+      \\"year\\": 2016,
+    },
+    \\"6\\": Object {
+      \\"color\\": \\"#7b3b89\\",
+      \\"id\\": \\"other\\",
+      \\"name\\": \\"Other\\",
+      \\"uid\\": \\"SySPf9piOz\\",
+      \\"value\\": 2692965557,
+      \\"year\\": 2016,
+    },
+    \\"7\\": Object {
+      \\"color\\": \\"#d64278\\",
+      \\"id\\": \\"banking-and-business\\",
+      \\"name\\": \\"Banking and business\\",
+      \\"uid\\": \\"SJLPMc6odz\\",
+      \\"value\\": 726234481,
+      \\"year\\": 2016,
+    },
+    \\"8\\": Object {
+      \\"color\\": \\"#f18e5e\\",
+      \\"id\\": \\"environment\\",
+      \\"name\\": \\"Environment\\",
+      \\"uid\\": \\"HkPvzqTi_M\\",
+      \\"value\\": 479942454,
+      \\"year\\": 2016,
+    },
+    \\"9\\": Object {
+      \\"color\\": \\"#007851\\",
+      \\"id\\": \\"health\\",
+      \\"name\\": \\"Health\\",
+      \\"uid\\": \\"BJdPz9aiOG\\",
+      \\"value\\": 1588831733,
+      \\"year\\": 2016,
+    },
+  },
+  \\"dataC\\": Object {
+    \\"0\\": Object {
       \\"color\\": \\"#eb642b\\",
       \\"id\\": \\"oof-loan\\",
       \\"name\\": \\"OOF Loan\\",
-      \\"uid\\": \\"Bk533NJ8z\\",
+      \\"uid\\": \\"BJQG9psOG\\",
       \\"value\\": 47093434145,
       \\"year\\": 2013,
     },
-    Object {
+    \\"1\\": Object {
       \\"color\\": \\"#0089cc\\",
       \\"id\\": \\"oof-grant\\",
       \\"name\\": \\"OOF Grant\\",
-      \\"uid\\": \\"Hkxc2341IM\\",
+      \\"uid\\": \\"rkgmz9ai_M\\",
       \\"value\\": 723462217,
       \\"year\\": 2013,
     },
-  ],
+  },
 }"
 `;
 
 exports[`Unbundling aid DW module tests getting unbundling aid selection options 1`] = `
+"Object {
+  \\"totalAndYearODA\\": Object {
+    \\"total\\": \\"181.1bn\\",
+    \\"year\\": 2016,
+  },
+  \\"totalAndYearOOF\\": Object {
+    \\"total\\": \\"47.8bn\\",
+    \\"year\\": 2013,
+  },
+}"
+`;
+
+exports[`Unbundling aid DW module tests getting unbundling aid selection options 2`] = `
 "Object {
   \\"dataODA\\": Object {
     \\"bundles\\": Array [
@@ -2609,6 +2622,7 @@ exports[`Unbundling aid DW module tests getting unbundling aid selection options
       },
     ],
     \\"years\\": Array [
+      2016,
       2015,
       2014,
       2013,
