@@ -9,16 +9,15 @@ declare namespace DH {
   }
 
   interface IGraphQLResponseError {
-    message: string;            // Required for all errors
+    message: string; // Required for all errors
     locations?: Array<IGraphQLResponseErrorLocation>;
-    [propName: string]: any;    // 7.2.2 says 'GraphQL servers may provide additional entries to error'
+    [propName: string]: any; // 7.2.2 says 'GraphQL servers may provide additional entries to error'
   }
 
   interface IGraphQLResponseErrorLocation {
     line: number;
     column: number;
   }
-
 
   interface IQuery {
     bubbleChartOda: Array<IBubbleChartOda> | null;
@@ -65,7 +64,6 @@ declare namespace DH {
     spotlightThemes: Array<ITheme> | null;
   }
 
-
   interface IBubbleChartOda {
     year: number | null;
     /**
@@ -84,7 +82,6 @@ declare namespace DH {
     numberInExtremePoverty: number | null;
   }
 
-
   interface IBubbleChartPoverty {
     year: number | null;
     value: number | null;
@@ -98,7 +95,6 @@ declare namespace DH {
     percentageInExtremePoverty: number | null;
   }
 
-
   interface IBubbleChartOptions {
     /**
     this list feeds off oda table from countries and global/concept file
@@ -109,19 +105,16 @@ IdNamePair is defined in unbundling aid types
     regions: Array<IRegion>;
   }
 
-
   interface IIdNamePair {
     id: string;
     name: string;
   }
-
 
   interface IRegion {
     name: string | null;
     id: string | null;
     color: string | null;
   }
-
 
   interface IOverviewTab {
     /**
@@ -148,24 +141,20 @@ IdNamePair is defined in unbundling aid types
     incomeDistTrend: IQuintileDataWithToolTip | null;
   }
 
-
   interface IIndicatorValueWithToolTip {
     value: string | null;
     toolTip: IToolTip;
   }
-
 
   interface IToolTip {
     source: string;
     heading: string;
   }
 
-
   interface IIndicatorDataWithToolTip {
     data: Array<IIndicatorData>;
     toolTip: IToolTip;
   }
-
 
   interface IIndicatorData {
     year: number;
@@ -176,12 +165,10 @@ IdNamePair is defined in unbundling aid types
     uid: string;
   }
 
-
   interface IQuintileDataWithToolTip {
     data: Array<IQuintile>;
     toolTip: IToolTip | null;
   }
-
 
   interface IQuintile {
     value: number;
@@ -189,7 +176,6 @@ IdNamePair is defined in unbundling aid types
     uid: string;
     color: string;
   }
-
 
   interface IPovertyTab {
     /**
@@ -206,7 +192,6 @@ IdNamePair is defined in unbundling aid types
     incomeDistTrend: IQuintileDataWithToolTip | null;
   }
 
-
   interface IPopulationTab {
     /**
     total population in a country
@@ -222,12 +207,10 @@ IdNamePair is defined in unbundling aid types
     populationPerAgeBand: IPopulationPerAgeBandWithToolTip | null;
   }
 
-
   interface IPopulationDistributionWithToolTip {
     data: Array<IPopulationDistribution>;
     toolTip: IToolTip;
   }
-
 
   interface IPopulationDistribution {
     group: string;
@@ -235,12 +218,10 @@ IdNamePair is defined in unbundling aid types
     year: number;
   }
 
-
   interface IPopulationPerAgeBandWithToolTip {
     data: Array<IPopulationPerAgeBand>;
     toolTip: IToolTip;
   }
-
 
   interface IPopulationPerAgeBand {
     band: string;
@@ -248,7 +229,6 @@ IdNamePair is defined in unbundling aid types
     year: number;
     uid: string;
   }
-
 
   interface IGovernmentFinance {
     startYear: number;
@@ -275,12 +255,10 @@ such as constant 2015 USD for tree map
     finance: Array<IDomestic> | null;
   }
 
-
   interface ISpendingAllocationWithToolTip {
     data: Array<ISpendingAllocation> | null;
     toolTip: IToolTip;
   }
-
 
   interface ISpendingAllocation {
     value: number;
@@ -288,7 +266,6 @@ such as constant 2015 USD for tree map
     color: string;
     uid: string;
   }
-
 
   interface IDomestic {
     /**
@@ -302,7 +279,6 @@ such as constant 2015 USD for tree map
     uid: string;
     color: string;
   }
-
 
   interface IInternationalResources {
     startYear: number;
@@ -334,18 +310,15 @@ this is for the donut chart
     mixOfResources: IResourceDataWithToolTip;
   }
 
-
   interface IFlowsOverTimeWithToolTip {
     data: Array<IIndicatorData>;
     toolTip: IToolTip;
   }
 
-
   interface IResourceDataWithToolTip {
     data: Array<IResourceData>;
     toolTip: IToolTip;
   }
-
 
   interface IResourceData {
     year: number;
@@ -375,7 +348,6 @@ in or out
     uid: string;
   }
 
-
   interface IFlows {
     /**
     an array of inflows for a particular countryType for area & partition chart
@@ -387,13 +359,11 @@ in or out
     outflows: Array<IFlow>;
   }
 
-
   interface IFlow {
     name: string;
     id: string;
     selections: Array<IFlowSelection>;
   }
-
 
   interface IFlowSelection {
     name: string;
@@ -404,12 +374,10 @@ in or out
     unbundle: boolean;
   }
 
-
   interface ISingleResourceData {
     resources: Array<IIndicatorData>;
     color: string;
   }
-
 
   interface IMapData {
     map: Array<IMapUnit>;
@@ -435,7 +403,6 @@ in or out
     legend: Array<ILegendField>;
   }
 
-
   interface IMapUnit {
     /**
     country code Id in DW this is di_id
@@ -456,13 +423,11 @@ in or out
     uid: string;
   }
 
-
   interface ILegendField {
     label: string;
     color: string;
     backgroundColor: string;
   }
-
 
   interface IOverviewTabRegional {
     /**
@@ -486,24 +451,18 @@ has local government, donor and central government
     localGovernmentSpendPerPerson: IIndicatorValueWithToolTip | null;
   }
 
-
   interface IIndicatorValueNCUWithToolTip {
     value: string | null;
     value_ncu: string | null;
     toolTip: IToolTip;
   }
 
-
   interface IResourcesBreakDown {
     data: IIndicatorData;
     toolTip: IToolTip;
   }
 
-
   type PovertyTabRegional = IPovertyTabUg | IPovertyTabKe;
-
-
-
 
   interface IPovertyTabUg {
     poorestPeople: IIndicatorValueWithToolTip | null;
@@ -517,7 +476,6 @@ has local government, donor and central government
     stdOfLiving: IIndicatorValueWithToolTip | null;
   }
 
-
   interface IPovertyTabKe {
     poorestPeople: IIndicatorValueWithToolTip | null;
     /**
@@ -530,11 +488,9 @@ has local government, donor and central government
     povertyGap: IIndicatorValueWithToolTip | null;
   }
 
-
-  type PopulationTabRegional = IPopulationTabRegionalUg | IPopulationTabRegionalKe;
-
-
-
+  type PopulationTabRegional =
+    | IPopulationTabRegionalUg
+    | IPopulationTabRegionalKe;
 
   interface IPopulationTabRegionalUg {
     /**
@@ -550,7 +506,6 @@ has local government, donor and central government
     allAverageDependencyRatio: IIndicatorValueWithToolTip | null;
   }
 
-
   interface IPopulationTabRegionalKe {
     /**
     The total population of a given district and the population density in per sq km
@@ -560,11 +515,7 @@ has local government, donor and central government
     populationBirthRate: IIndicatorValueWithToolTip | null;
   }
 
-
   type EducationTabRegional = IEducationTabRegionalUg | IEducationTabRegionalKe;
-
-
-
 
   interface IEducationTabRegionalUg {
     /**
@@ -583,7 +534,6 @@ has local government, donor and central government
     primaryEducationfunding: IIndicatorValueNCUWithToolTip | null;
   }
 
-
   interface IEducationTabRegionalKe {
     /**
     WHAT IS THE PUPIL–TEACHER RATIO IN PRIMARY EDUCATION?...in government schools  and...in all schools 
@@ -593,18 +543,13 @@ has local government, donor and central government
     primaryTeacherRatioPrivateSchl: IIndicatorValueWithToolTip | null;
   }
 
-
   type HealthTabRegional = IHealthTabRegionalKe | IHealthTabRegionalUg;
-
-
-
 
   interface IHealthTabRegionalKe {
     birthAttendanceSkilled: IIndicatorValueWithToolTip | null;
     contraceptiveUse: IIndicatorValueWithToolTip | null;
     healthCareFunding: IIndicatorValueNCUWithToolTip | null;
   }
-
 
   interface IHealthTabRegionalUg {
     /**
@@ -622,7 +567,6 @@ has local government, donor and central government
     healthCareFunding: IIndicatorValueNCUWithToolTip | null;
   }
 
-
   interface ILocalGovernmentFinance {
     startYear: number;
     currencyUSD: string;
@@ -634,7 +578,6 @@ has local government, donor and central government
     expenditure: Array<IDomestic>;
   }
 
-
   interface IUnbundlingAidToTalQuery {
     /**
     oda or oof 
@@ -643,12 +586,10 @@ has local government, donor and central government
     year?: number | null;
   }
 
-
   interface IUnbundlingAidTotal {
     year: number;
     total: string;
   }
-
 
   interface IUnbundlingAidQuery {
     /**
@@ -670,7 +611,6 @@ has local government, donor and central government
     channel?: string | null;
   }
 
-
   interface IAidUnit {
     /**
     this will usually be a summed up aggregate value
@@ -685,7 +625,6 @@ has local government, donor and central government
     year: number;
     uid: string;
   }
-
 
   interface IUnbundlingAidSelections {
     /**
@@ -702,7 +641,6 @@ has local government, donor and central government
     years: Array<number>;
   }
 
-
   interface IMethodology {
     name: string;
     description: string;
@@ -716,12 +654,10 @@ has local government, donor and central government
     zip: string;
   }
 
-
   interface ISource {
     name: string;
     link: string | null;
   }
-
 
   interface IEntity {
     id: string;
@@ -732,7 +668,6 @@ has local government, donor and central government
     countryType: string;
   }
 
-
   interface IPage {
     id: string;
     title: string;
@@ -740,12 +675,10 @@ has local government, donor and central government
     donor_title: string | null;
   }
 
-
   interface IDistrict {
     id: string;
     name: string;
   }
-
 
   interface ITheme {
     id: string;
@@ -754,7 +687,6 @@ has local government, donor and central government
     indicators: Array<IThemeIndicator>;
   }
 
-
   interface IThemeIndicator {
     heading: string;
     source: string;
@@ -762,7 +694,6 @@ has local government, donor and central government
     id: string;
     name: string;
   }
-
 
   interface IBubbleChartData {
     year: number | null;

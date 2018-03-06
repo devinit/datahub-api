@@ -11,7 +11,7 @@
     "type": "npm"
   },
   "scripts": {
-    "test": "jest src/modules/dw/CountryProfile/countryProfile.test.ts",
+    "test": "jest src/modules/refs/page/page.test.ts",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "test:watch": "npm test -- --watch",
     "codecov": "npm run build && jest -u && codecov",
@@ -44,7 +44,7 @@
   },
   "homepage": "https://github.com/devinit/datahub-api#readme",
   "dependencies": {
-    "@devinit/graphql-next": "^0.3.0",
+    "@devinit/graphql-next": "^0.3.3",
     "color": "^3.0.0",
     "d3-color": "^1.0.3",
     "d3-interpolate": "^1.1.6",
