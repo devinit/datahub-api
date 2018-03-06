@@ -56,7 +56,7 @@
   "devDependencies": {
     "@playlyfe/gql": "2.6.0",
     "@types/color": "3.0.0",
-    "@types/jest": "22.1.3",
+    "@types/jest": "22.2.0",
     "@types/lru-cache": "4.1.0",
     "@types/morgan": "1.7.35",
     "@types/node": "9.4.6",
