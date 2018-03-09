@@ -5,7 +5,12 @@ import {
     getOdaDonorBubbleChartPageData,
     getUnbundlingOdaPageData,
     getUnbundlingOOfPageData,
-    getWhereThePoorPageData
+    getWhereThePoorPageData,
+    getAboutPageData,
+    getFooterPageData,
+    getFrontPageData,
+    getSpotlightGeneralPageData,
+    getUnbundlingAidPageData
 } from '.';
 import * as prettyFormat from 'pretty-format';
 
@@ -39,6 +44,31 @@ describe('Page data', () => {
     }, 10000);
     it('should return page data for Where The Poor', async () => {
         const pageData = await getWhereThePoorPageData();
+        expect(pageData.length).toBeGreaterThan(0);
+        expect(prettyFormat(pageData)).toMatchSnapshot();
+    }, 10000);
+    it('should return page data for about', async () => {
+        const pageData = await getAboutPageData();
+        expect(pageData.length).toBeGreaterThan(0);
+        expect(prettyFormat(pageData)).toMatchSnapshot();
+    }, 10000);
+    it('should return page data for footer', async () => {
+        const pageData = await getFooterPageData();
+        expect(pageData.length).toBeGreaterThan(0);
+        expect(prettyFormat(pageData)).toMatchSnapshot();
+    }, 10000);
+    it('should return page data for front page', async () => {
+        const pageData = await getFrontPageData();
+        expect(pageData.length).toBeGreaterThan(0);
+        expect(prettyFormat(pageData)).toMatchSnapshot();
+    }, 10000);
+    it('should return page data for spotlight-general page', async () => {
+        const pageData = await getSpotlightGeneralPageData();
+        expect(pageData.length).toBeGreaterThan(0);
+        expect(prettyFormat(pageData)).toMatchSnapshot();
+    }, 10000);
+    it('should return page data for unbundling-aid page', async () => {
+        const pageData = await getUnbundlingAidPageData();
         expect(pageData.length).toBeGreaterThan(0);
         expect(prettyFormat(pageData)).toMatchSnapshot();
     }, 10000);

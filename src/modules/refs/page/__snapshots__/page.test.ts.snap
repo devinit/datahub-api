@@ -5,6 +5,17 @@ exports[`Page data should return page data for  Unbundling OOf 1`] = `
   Object {
     \\"id\\": \\"Unbundling aid\\",
     \\"meta\\": \\"\\",
+    \\"narrative\\": \\"Explore and compare funding priorities for official development assistance\\",
+    \\"title\\": \\"Unbundling aid\\",
+  },
+]"
+`;
+
+exports[`Page data should return page data for  Unbundling OOf 2`] = `
+"Array [
+  Object {
+    \\"id\\": \\"Unbundling aid\\",
+    \\"meta\\": \\"\\",
     \\"narrative\\": \\"Explore and compare funding priorities for other official flows (OOFs)\\",
     \\"title\\": \\"Unbundling aid\\",
   },
@@ -14,46 +25,10 @@ exports[`Page data should return page data for  Unbundling OOf 1`] = `
 exports[`Page data should return page data for Where The Poor 1`] = `
 "Array [
   Object {
-    \\"id\\": \\"poverty-visualisation\\",
+    \\"id\\": \\"Unbundling aid\\",
     \\"meta\\": \\"\\",
-    \\"narrative\\": \\"Between 1990 and 2010, extreme poverty was cut in half and Explore plausible poverty outcomes for 2030 based on models of consumption\\",
-    \\"title\\": \\"Where are the poor and where will they be?\\",
-  },
-  Object {
-    \\"id\\": \\"Source\\",
-    \\"meta\\": \\"\\",
-    \\"narrative\\": \\"Development Initiatives based on OECD DAC data.Note that figures are rounded: precise data are available for download on the methodology page\\",
-    \\"title\\": \\"Source\\",
-  },
-  Object {
-    \\"id\\": \\"download-the-data\\",
-    \\"meta\\": \\"\\",
-    \\"narrative\\": \\"For more information, see the DI data hub methodology page\\",
-    \\"title\\": \\"Download the data\\",
-  },
-  Object {
-    \\"id\\": \\"poverty-visualisation\\",
-    \\"meta\\": \\"\\",
-    \\"narrative\\": \\"Between 1990 and 2010, extreme poverty was cut in half and Explore plausible poverty outcomes for 2030 based on models of consumption\\",
-    \\"title\\": \\"Where are the poor and where will they be?\\",
-  },
-  Object {
-    \\"id\\": \\"about-this-visualization\\",
-    \\"meta\\": \\"\\",
-    \\"narrative\\": \\"This page allows you to explore three scenarios for future poverty levels both globally and by region up to 2030. The baseline scenario uses current forecasts for growth in consumption and current inequality levels. The best-case scenario shows what happens with more rapid growth that is shared more equally. By contrast, the worst-case scenario sees slower growth and increasing inequality. Forecasting future poverty levels is difficult, given the inherent uncertainties involved. Poverty modelling develops future scenarios to help inform policymaking. These models rely on simplifying assumptions, often focusing on economic growth and income distribution trends which determine how much poor people benefit from that growth.Data accessed from source: 20 August 2013.\\",
-    \\"title\\": \\"About this visualization\\",
-  },
-  Object {
-    \\"id\\": \\"scenario details\\",
-    \\"meta\\": \\"\\",
-    \\"narrative\\": \\"The best and worst case scenarios are based on the extremes of two elements: For growth, a +/- 2 percentage point margin of error either side of baseline projections of consumption growth (which are driven by economic growth). This is in line with differences observed between past forecasts and actual outcomes. For inequality, an annual 0.25 percentage point change in the shares of national consumption between the poorest 40% and the richest 10%\\",
-    \\"title\\": \\"Scenario details\\",
-  },
-  Object {
-    \\"id\\": \\"about-the-data\\",
-    \\"meta\\": \\"\\",
-    \\"narrative\\": \\"Projections based on Chandy, Ledlie and Penciakova, The Final Countdown: Prospects for Ending Extreme Poverty by 2030 (2013), using the same methodology applied to a dataset updated with 40 country surveys. All data for years after 2010 are forecasts\\",
-    \\"title\\": \\"About the data\\",
+    \\"narrative\\": \\"Explore and compare funding priorities for other official flows (OOFs)\\",
+    \\"title\\": \\"Unbundling aid\\",
   },
 ]"
 `;
@@ -189,13 +164,159 @@ exports[`Page data should return page data for a country profile 1`] = `
 ]"
 `;
 
+exports[`Page data should return page data for about 1`] = `
+"Array [
+  Object {
+    \\"id\\": \\"about-the-development-data-hub\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"ABOUT THE DEVELOPMENT DATA HUB\\",
+  },
+  Object {
+    \\"id\\": \\"the-development-data-hub\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"The Development Data Hub is the most comprehensive online resource for financial and resource flow data alongside poverty, social and vulnerability indicators. It combines an extensive data store with interactive visualisations enabling you to chart, map and compare data at the global, national and local level.\\",
+    \\"title\\": \\"The Development Data Hub\\",
+  },
+  Object {
+    \\"id\\": \\"how-does-it-work?\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"It brings together many data sets,enabling you to dig into these through interactive maps, charts and visualisations. It turns complex data around poverty and resource flows into easy to understand robust information and evidence about what is really going on. The Data Hub is an accessible and easy to use tool for anyone wanting to know more about how resources for development are spent.\\",
+    \\"title\\": \\"How does it work?\\",
+  },
+]"
+`;
+
+exports[`Page data should return page data for footer 1`] = `
+"Array [
+  Object {
+    \\"id\\": \\"data-blog\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Data blog\\",
+  },
+  Object {
+    \\"id\\": \\"publications\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Publications\\",
+  },
+  Object {
+    \\"id\\": \\"events\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Events\\",
+  },
+  Object {
+    \\"id\\": \\"working-with-us\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Working with us\\",
+  },
+  Object {
+    \\"id\\": \\"quick-links\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Quick Links\\",
+  },
+  Object {
+    \\"id\\": \\"contact-us\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Contact us\\",
+  },
+  Object {
+    \\"id\\": \\"topics\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Topics\\",
+  },
+  Object {
+    \\"id\\": \\"our-consultancy-services\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Our consultancy services\\",
+  },
+  Object {
+    \\"id\\": \\"open-DI-publishing\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Open DI - publishing to IATI\\",
+  },
+  Object {
+    \\"id\\": \\"Newsletter\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Newsletter\\",
+  },
+  Object {
+    \\"id\\": \\"development-Initiatives-newsletter\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Development Initiatives newsletter\\",
+  },
+  Object {
+    \\"id\\": \\"to-receive-regular\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"to receive regular news and updates from DI.\\",
+  },
+  Object {
+    \\"id\\": \\"this-sites-content\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"This sites content is licensed under a\\",
+  },
+  Object {
+    \\"id\\": \\"creative\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International license.\\",
+  },
+  Object {
+    \\"id\\": \\"development-Initiatives\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"© Development Initiatives 2017. Development Initiatives is the trading name of DIInternational Ltd. Registered in England and Wales No. 05802543. DevelopmentInitiatives Poverty Research is the not-for-profit partner of DI International Ltd.Registered in England and Wales No. 06368740. Read our\\",
+    \\"title\\": \\"\\",
+  },
+]"
+`;
+
+exports[`Page data should return page data for front page 1`] = `
+"Array [
+  Object {
+    \\"id\\": \\"comprehensive\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"is the most comprehensive source for financial resource flow data alongside poverty,social and vulnerability indicators.\\",
+    \\"title\\": \\"comprehensive\\",
+  },
+  Object {
+    \\"id\\": \\"read\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Read more about the data hub.\\",
+  },
+]"
+`;
+
+exports[`Page data should return page data for spotlight-general page 1`] = `
+"Array [
+  Object {
+    \\"id\\": \\"comprehensive-source\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"is a comprehensive source of {countryName}'s financial resource flow data at the sub-national ({region}) level, alongside indicators on poverty, population, education,health, water, hygiene and sanitation. It highlights the geographical variance in sector performance and financial resources, and seeks to answer whether resources are allocated according to need. Explore the country picture by selecting topics and click on a {region} for an in-depth profile.\\",
+    \\"title\\": \\"\\",
+  },
+]"
+`;
+
 exports[`Page data should return page data for the ODA donor bubble chart 1`] = `
 "Array [
   Object {
-    \\"id\\": \\"diff-providers-priorities\\",
+    \\"id\\": \\"resources-able-to-meet-needs\\",
     \\"meta\\": \\"\\",
-    \\"narrative\\": \\"How effectively are donors targeting the countries with the highest numbers of people in poverty and the least domestic public resources to address it? This chart allows you to select a provider of aid to see how it allocates aid across countries\\",
-    \\"title\\": \\"Different providers, different priorities\\",
+    \\"narrative\\": \\"The proportion of people living in extreme poverty worldwide has more than halved since 2000, yet progress is varied across countries. Although domestic public resources are an important resource to drive efforts to end poverty, they remain scarce in many countries where poverty is high\\",
+    \\"title\\": \\"Are domestic public resources able to meet the needs of the poorest people?\\",
   },
 ]"
 `;
@@ -214,10 +335,33 @@ exports[`Page data should return page data for the Poverty bubble chart 1`] = `
 exports[`Page data should return page data for the Unbundling Oda 1`] = `
 "Array [
   Object {
-    \\"id\\": \\"Unbundling aid\\",
+    \\"id\\": \\"diff-providers-priorities\\",
     \\"meta\\": \\"\\",
-    \\"narrative\\": \\"Explore and compare funding priorities for official development assistance\\",
-    \\"title\\": \\"Unbundling aid\\",
+    \\"narrative\\": \\"How effectively are donors targeting the countries with the highest numbers of people in poverty and the least domestic public resources to address it? This chart allows you to select a provider of aid to see how it allocates aid across countries\\",
+    \\"title\\": \\"Different providers, different priorities\\",
+  },
+]"
+`;
+
+exports[`Page data should return page data for unbundling-aid page 1`] = `
+"Array [
+  Object {
+    \\"id\\": \\"explore\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Explore and compare funding priorities for\\",
+  },
+  Object {
+    \\"id\\": \\"oofs\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"The Other Official Flows (OOF) data shown does not include export credits and the quality and completeness of data is reliant on the reporting of OOF activities by individual donors to the CRS.\\",
+    \\"title\\": \\"\\",
+  },
+  Object {
+    \\"id\\": \\"click-boxes\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\" Click the boxes to drill down into {aid} bundle. Drag and drop the buttons below to change the order and take different journeys through the data. Use the ’Compare +’ button to see how different countries’ {aid} bundles compare.\\",
+    \\"title\\": \\"\\",
   },
 ]"
 `;

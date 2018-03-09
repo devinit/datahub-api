@@ -13,3 +13,8 @@ export const getOdaDonorBubbleChartPageData = (): Promise<DH.IPage[]> => getPage
 export const getUnbundlingOdaPageData = (): Promise<DH.IPage[]> => getPageData('unbundling-oda');
 export const getUnbundlingOOfPageData = (): Promise<DH.IPage[]> => getPageData('unbundling-oof');
 export const getWhereThePoorPageData = (): Promise<DH.IPage[]> => getPageData('where-the-poor');
+export const getAboutPageData = (): Promise<DH.IPage[]> => getPageData('about');
+export const getFooterPageData = (): Promise<DH.IPage[]> => getPageData('footer');
+export const getFrontPageData = (): Promise<DH.IPage[]> => getPageData('front');
+export const getSpotlightGeneralPageData = (): Promise<DH.IPage[]> => getPageData('spotlight-general');
+export const getUnbundlingAidPageData = (): Promise<DH.IPage[]> => getPageData('unbundling-aid');

@@ -9,6 +9,11 @@ import {
     getUnbundlingOOfPageData,
     getWhereThePoorPageData,
     getDistrictPageData,
+    getAboutPageData,
+    getFooterPageData,
+    getFrontPageData,
+    getSpotlightGeneralPageData,
+    getUnbundlingAidPageData
 } from './page';
 import {getCountries} from './global';
 import {getDistrictEntities} from './spotlight';
@@ -27,6 +32,11 @@ export interface IRefs {
     getDistrictEntities;
     getWhereThePoorPageData;
     getCountries;
+    getAboutPageData;
+    getFooterPageData;
+    getFrontPageData;
+    getSpotlightGeneralPageData;
+    getUnbundlingAidPageData;
 }
 
 const refs: IRefs = {
@@ -43,6 +53,11 @@ const refs: IRefs = {
     getDistrictEntities,
     getWhereThePoorPageData,
     getCountries,
+    getAboutPageData,
+    getFooterPageData,
+    getFrontPageData,
+    getSpotlightGeneralPageData,
+    getUnbundlingAidPageData
 };
 
 export default [{refs: () => refs}];
