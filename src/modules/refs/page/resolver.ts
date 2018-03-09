@@ -24,6 +24,9 @@ export default {
         },
         async whereThePoorPageData(_root, _args, ctx: IContext) {
            return ctx.modules.refs.getWhereThePoorPageData();
-        }
+        },
+        async aboutPageData(_root, _args, ctx: IContext) {
+            return ctx.modules.refs.getAboutPageData();
+         }
     }
 };

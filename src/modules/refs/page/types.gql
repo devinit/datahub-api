@@ -13,4 +13,5 @@ type Query {
   unbundlingOdaPageData: [Page]
   unbundlingOOfPageData: [Page]
   whereThePoorPageData: [Page]
+  aboutPageData: [Page]
 }

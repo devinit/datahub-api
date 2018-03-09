@@ -13,3 +13,4 @@ export const getOdaDonorBubbleChartPageData = (): Promise<DH.IPage[]> => getPage
 export const getUnbundlingOdaPageData = (): Promise<DH.IPage[]> => getPageData('unbundling-oda');
 export const getUnbundlingOOfPageData = (): Promise<DH.IPage[]> => getPageData('unbundling-oof');
 export const getWhereThePoorPageData = (): Promise<DH.IPage[]> => getPageData('where-the-poor');
+export const getAboutPageData = (): Promise<DH.IPage[]> => getPageData('about');
