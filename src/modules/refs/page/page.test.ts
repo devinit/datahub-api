@@ -6,7 +6,9 @@ import {
     getUnbundlingOdaPageData,
     getUnbundlingOOfPageData,
     getWhereThePoorPageData,
-    getAboutPageData
+    getAboutPageData,
+    getFooterPageData,
+    getFrontPageData
 } from '.';
 import * as prettyFormat from 'pretty-format';
 
@@ -43,8 +45,18 @@ describe('Page data', () => {
         expect(pageData.length).toBeGreaterThan(0);
         expect(prettyFormat(pageData)).toMatchSnapshot();
     }, 10000);
-    it('should return page data for about', async () => {
+    it.skip('should return page data for about', async () => {
         const pageData = await getAboutPageData();
+        expect(pageData.length).toBeGreaterThan(0);
+        expect(prettyFormat(pageData)).toMatchSnapshot();
+    }, 10000);
+    it.skip('should return page data for footer', async () => {
+        const pageData = await getFooterPageData();
+        expect(pageData.length).toBeGreaterThan(0);
+        expect(prettyFormat(pageData)).toMatchSnapshot();
+    }, 10000);
+    it('should return page data for front page', async () => {
+        const pageData = await getFrontPageData();
         expect(pageData.length).toBeGreaterThan(0);
         expect(prettyFormat(pageData)).toMatchSnapshot();
     }, 10000);

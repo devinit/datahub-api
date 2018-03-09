@@ -27,6 +27,12 @@ export default {
         },
         async aboutPageData(_root, _args, ctx: IContext) {
             return ctx.modules.refs.getAboutPageData();
+         },
+         async footerPageData(_root, _args, ctx: IContext) {
+            return ctx.modules.refs.getFooterPageData();
+         },
+         async frontPageData(_root, _args, ctx: IContext) {
+            return ctx.modules.refs.getFrontPageData();
          }
     }
 };

@@ -187,6 +187,118 @@ exports[`Page data should return page data for about 1`] = `
 ]"
 `;
 
+exports[`Page data should return page data for footer 1`] = `
+"Array [
+  Object {
+    \\"id\\": \\"data-blog\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Data blog\\",
+  },
+  Object {
+    \\"id\\": \\"publications\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Publications\\",
+  },
+  Object {
+    \\"id\\": \\"events\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Events\\",
+  },
+  Object {
+    \\"id\\": \\"working-with-us\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Working with us\\",
+  },
+  Object {
+    \\"id\\": \\"quick-links\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Quick Links\\",
+  },
+  Object {
+    \\"id\\": \\"contact-us\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Contact us\\",
+  },
+  Object {
+    \\"id\\": \\"topics\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Topics\\",
+  },
+  Object {
+    \\"id\\": \\"our-consultancy-services\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Our consultancy services\\",
+  },
+  Object {
+    \\"id\\": \\"open-DI-publishing\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Open DI - publishing to IATI\\",
+  },
+  Object {
+    \\"id\\": \\"Newsletter\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Newsletter\\",
+  },
+  Object {
+    \\"id\\": \\"development-Initiatives-newsletter\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Development Initiatives newsletter\\",
+  },
+  Object {
+    \\"id\\": \\"to-receive-regular\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"to receive regular news and updates from DI.\\",
+  },
+  Object {
+    \\"id\\": \\"this-sites-content\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"This sites content is licensed under a\\",
+  },
+  Object {
+    \\"id\\": \\"creative\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International license.\\",
+  },
+  Object {
+    \\"id\\": \\"development-Initiatives\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"© Development Initiatives 2017. Development Initiatives is the trading name of DIInternational Ltd. Registered in England and Wales No. 05802543. DevelopmentInitiatives Poverty Research is the not-for-profit partner of DI International Ltd.Registered in England and Wales No. 06368740. Read our\\",
+    \\"title\\": \\"\\",
+  },
+]"
+`;
+
+exports[`Page data should return page data for  page 1`] = `
+"Array [
+  Object {
+    \\"id\\": \\"comprehensive\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"is the most comprehensive source for financial resource flow data alongside poverty,social and vulnerability indicators.\\",
+    \\"title\\": \\"comprehensive\\",
+  },
+  Object {
+    \\"id\\": \\"read\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Read more about the data hub.\\",
+  },
+]"
+`;
+
 exports[`Page data should return page data for the ODA donor bubble chart 1`] = `
 "Array [
   Object {
