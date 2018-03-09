@@ -16,4 +16,6 @@ type Query {
   aboutPageData: [Page]
   footerPageData: [Page]
   frontPageData: [Page]
+  spotlightGeneralPageData: [Page]
+  unbundlingAidPageData: [Page]
 }

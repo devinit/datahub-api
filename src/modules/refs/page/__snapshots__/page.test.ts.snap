@@ -282,7 +282,7 @@ exports[`Page data should return page data for footer 1`] = `
 ]"
 `;
 
-exports[`Page data should return page data for  page 1`] = `
+exports[`Page data should return page data for front page 1`] = `
 "Array [
   Object {
     \\"id\\": \\"comprehensive\\",
@@ -295,6 +295,17 @@ exports[`Page data should return page data for  page 1`] = `
     \\"meta\\": \\"\\",
     \\"narrative\\": \\"\\",
     \\"title\\": \\"Read more about the data hub.\\",
+  },
+]"
+`;
+
+exports[`Page data should return page data for spotlight-general page 1`] = `
+"Array [
+  Object {
+    \\"id\\": \\"comprehensive-source\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"is a comprehensive source of {countryName}'s financial resource flow data at the sub-national ({region}) level, alongside indicators on poverty, population, education,health, water, hygiene and sanitation. It highlights the geographical variance in sector performance and financial resources, and seeks to answer whether resources are allocated according to need. Explore the country picture by selecting topics and click on a {region} for an in-depth profile.\\",
+    \\"title\\": \\"\\",
   },
 ]"
 `;
@@ -328,6 +339,29 @@ exports[`Page data should return page data for the Unbundling Oda 1`] = `
     \\"meta\\": \\"\\",
     \\"narrative\\": \\"How effectively are donors targeting the countries with the highest numbers of people in poverty and the least domestic public resources to address it? This chart allows you to select a provider of aid to see how it allocates aid across countries\\",
     \\"title\\": \\"Different providers, different priorities\\",
+  },
+]"
+`;
+
+exports[`Page data should return page data for unbundling-aid page 1`] = `
+"Array [
+  Object {
+    \\"id\\": \\"explore\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"Explore and compare funding priorities for\\",
+  },
+  Object {
+    \\"id\\": \\"oofs\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"The Other Official Flows (OOF) data shown does not include export credits and the quality and completeness of data is reliant on the reporting of OOF activities by individual donors to the CRS.\\",
+    \\"title\\": \\"\\",
+  },
+  Object {
+    \\"id\\": \\"click-boxes\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\" Click the boxes to drill down into {aid} bundle. Drag and drop the buttons below to change the order and take different journeys through the data. Use the ’Compare +’ button to see how different countries’ {aid} bundles compare.\\",
+    \\"title\\": \\"\\",
   },
 ]"
 `;
