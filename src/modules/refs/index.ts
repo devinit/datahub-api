@@ -10,7 +10,6 @@ import {
     getWhereThePoorPageData,
     getDistrictPageData,
     getAboutPageData,
-    getFooterPageData,
     getFrontPageData,
     getSpotlightGeneralPageData,
     getUnbundlingAidPageData
@@ -33,7 +32,6 @@ export interface IRefs {
     getWhereThePoorPageData;
     getCountries;
     getAboutPageData;
-    getFooterPageData;
     getFrontPageData;
     getSpotlightGeneralPageData;
     getUnbundlingAidPageData;
@@ -54,7 +52,6 @@ const refs: IRefs = {
     getWhereThePoorPageData,
     getCountries,
     getAboutPageData,
-    getFooterPageData,
     getFrontPageData,
     getSpotlightGeneralPageData,
     getUnbundlingAidPageData
