@@ -7,9 +7,9 @@ describe('spotlight reference module test', () => {
         const uganda = await getDistrictEntities('uganda');
         const kenya = await getDistrictEntities('kenya');
         expect(prettyFormat({kenya, uganda})).toMatchSnapshot();
-    }, 10000);
+    }, 20000);
     it('should return details about a uganda district', async () => {
         const districts = await getDistrictBySlugAsync('uganda', 'wakiso');
         expect(prettyFormat(districts)).toMatchSnapshot();
-    }, 10000);
+    }, 20000);
 });

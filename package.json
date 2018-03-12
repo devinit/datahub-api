@@ -11,7 +11,7 @@
     "type": "npm"
   },
   "scripts": {
-    "test": "jest src/modules/refs/page/page.test.ts",
+    "test": "jest",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "test:watch": "npm test -- --watch",
     "codecov": "npm run build && jest -u && codecov",
@@ -60,7 +60,7 @@
     "@types/jest": "22.2.0",
     "@types/lru-cache": "4.1.0",
     "@types/morgan": "1.7.35",
-    "@types/node": "9.4.6",
+    "@types/node": "9.4.7",
     "@types/ramda": "0.25.19",
     "@types/shortid": "0.0.29",
     "concurrently": "3.5.1",

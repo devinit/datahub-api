@@ -51,6 +51,14 @@ describe('Page data', () => {
         expect(pageData.length).toBeGreaterThan(0);
         expect(prettyFormat(pageData)).toMatchSnapshot();
     }, 10000);
+<<<<<<< HEAD
+=======
+    it('should return page data for footer', async () => {
+        const pageData = await getFooterPageData();
+        expect(pageData.length).toBeGreaterThan(0);
+        expect(prettyFormat(pageData)).toMatchSnapshot();
+    }, 10000);
+>>>>>>> a2f6e0708b72f2b8f7d72bce4ada1db5f2096076
     it('should return page data for front page', async () => {
         const pageData = await getFrontPageData();
         expect(pageData.length).toBeGreaterThan(0);
