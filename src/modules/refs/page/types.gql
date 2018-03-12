@@ -15,6 +15,6 @@ type Query {
   whereThePoorPageData: [Page]
   aboutPageData: [Page]
   frontPageData: [Page]
-  spotlightGeneralPageData: [Page]
+  spotlightPageData: [Page]
   unbundlingAidPageData: [Page]
 }
