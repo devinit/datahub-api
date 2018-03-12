@@ -5,11 +5,12 @@ import * as R from 'ramda';
 import * as shortid from 'shortid';
 import {IColor, getFlowType, getColors, getEntityByIdGeneric, IEntityBasic} from '../../refs/global';
 import {IGetIndicatorArgs, IProcessedSimple, IRAWDomestic, IRAW, IRAWFlow} from '../../utils/types';
-import {getIndicatorData, RECIPIENT, DONOR, CROSSOVER, capitalize, getCurrencyCode, getTotal,
-        indicatorDataProcessingSimple, makeSqlAggregateQuery, formatNumbers, getIndicatorsValue, getIndicatorToolTip,
-        isDonor, entitesFnMap, domesticDataProcessing, getMaxAndMin} from '../../utils';
+import {getIndicatorData, RECIPIENT, DONOR, CROSSOVER, getCurrencyCode,
+        indicatorDataProcessingSimple, makeSqlAggregateQuery, getIndicatorsValue, getIndicatorToolTip,
+        isDonor, entitesFnMap, domesticDataProcessing } from '../../utils';
 import {getFlowByTypeAsync, getFlows, getFlowByIdAsync, getBudgetLevels, IBudgetLevelRef,
         getAllFlowSelections, IFlowRef, IFlowSelectionRaw} from '../../refs/countryProfile';
+import { getMaxAndMin, approximate, capitalize, getTotal } from '@devinit/prelude';
 
 interface IflowTypes {
     inflows: DH.IFlow[];
@@ -84,7 +85,7 @@ export default class Resources {
             // TODO: we are currently getting start year for various viz
             // from data_series.intl_flows_recipients concept /indicator. They shouldb be a better way of doing this
             return {
-                GNI: {value: formatNumbers(GNI, 0), toolTip: gniToolTip},
+                GNI: {value: approximate(GNI, 0), toolTip: gniToolTip},
                 netODAOfGNIIn,
                 netODAOfGNIOut: netODAOfGNIOutArr ? netODAOfGNIOutArr[0] : null,
                 resourcesOverTime,

@@ -1,6 +1,6 @@
-import {toId, getTotal, formatNumbers,
-        makeSqlAggregateQuery, normalizeKeyName, isDonor} from '.';
+import {makeSqlAggregateQuery, isDonor} from '.';
 import * as prettyFormat from 'pretty-format';
+import {approximate, toId, getTotal, normalizeKeyName} from '@devinit/prelude';
 
 const dataA = [
         {di_id: 'AL', value: 3000, year: 2000},
@@ -23,8 +23,8 @@ describe('Utility functions test', () => {
         expect(getTotal(dataA)).toBe(6000);
     });
     it('should create human friendly numbers i.e 1.5k for 1500', () => {
-        // const formattedA = [150, 1500, 15000, 200000000].map(val => formatNumbers(val, 0));
-        const formattedB = [150, 1500, 15000, 200000000].map(val => formatNumbers(val, 1, true));
+        // const formattedA = [150, 1500, 15000, 200000000].map(val => approximate(val, 0));
+        const formattedB = [150, 1500, 15000, 200000000].map(val => approximate(val, 1, true));
         expect(prettyFormat({formattedB})).toMatchSnapshot();
     });
     it('should create an aggregate sql query for multiple years', () => {

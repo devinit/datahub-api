@@ -1,7 +1,7 @@
 import * as prettyFormat from 'pretty-format';
 import SpotLight from '.';
 import db from '@devinit/graphql-next/lib/db';
-import {prettyDataObjs, uidPatchForObjs } from '@devinit/graphql-next/lib/utils/test.utils';
+import {prettyDataObjs, uidPatchForObjs } from '@devinit/prelude';
 
 describe('spotlight on uganda tests', () => {
     const spotLight = new SpotLight(db);

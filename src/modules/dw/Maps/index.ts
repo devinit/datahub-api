@@ -1,6 +1,6 @@
 
 import {IDB} from '@devinit/graphql-next/lib/db';
-import {getIndicatorDataSimple, indicatorDataProcessingSimple, normalizeKeyName, formatNumbers} from '../../utils';
+import {getIndicatorDataSimple, indicatorDataProcessingSimple } from '../../utils';
 import {IGetIndicatorArgsSimple, IProcessedSimple} from '../../utils/types';
 import {getConceptAsync, IConcept} from '../../refs/concept';
 import {getColors, getEntityByIdGeneric, IColor, IEntity, getEntities} from '../../refs/global';
@@ -16,6 +16,7 @@ import * as R from 'ramda';
 import {IColorMap, ICategoricalMapping, IColorScaleArgs, IDataRevolution,
     IScaleThreshold, IRAWDataRevolution, IProcessScaleData, IRAWMapData,
     IMapDataWithLegend, ILinearLegendArgs} from './types';
+import {approximate, normalizeKeyName} from '@devinit/prelude';
 
 const lightGrey = '#d0cccf';
 
@@ -79,11 +80,11 @@ export default class Maps {
             const backgroundColor = range[index];
             const hslColor = hsl(backgroundColor);
             const color = (hslColor.l > 0.7) ? 'black' : 'white';
-            const currentVal = formatNumbers(val, precision, true);
+            const currentVal = approximate(val, precision, true);
             if (index === 0 ) {
                 return [{backgroundColor, color,  label: `${firstSign}${currentVal} ${uom}`}];
             }
-            const prevVal = formatNumbers(domain[index - 1], precision, true);
+            const prevVal = approximate(domain[index - 1], precision, true);
             if (index < (domain.length - 1)) {
                 const label = `${prevVal}-${currentVal}`;
                 return [...acc, {backgroundColor, color, label}];

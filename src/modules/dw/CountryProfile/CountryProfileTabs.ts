@@ -5,7 +5,8 @@ import * as shortid from 'shortid';
 import * as R from 'ramda';
 import {IRAW, IRAWQuintile, IGetIndicatorArgs, IRAWPopulationGroup, IRAWPopulationAgeBand} from '../../utils/types';
 import {getIndicatorData, isDonor, indicatorDataProcessingNamed,
-        normalizeKeyName, getIndicatorToolTip, getIndicatorsValue} from '../../utils';
+         getIndicatorToolTip, getIndicatorsValue} from '../../utils';
+import {normalizeKeyName} from '@devinit/prelude';
 
 interface IOverViewTabRecipients {
     poorestPeople: DH.IIndicatorValueWithToolTip;

@@ -3,7 +3,7 @@ import {getFlows} from '../../refs/countryProfile';
 import CountryProfile from '.';
 import Resources from './Resources';
 import db from '@devinit/graphql-next/lib/db';
-import {prettyDataObjs, uidPatchForObjs } from '@devinit/graphql-next/lib/utils/test.utils';
+import {prettyDataObjs, uidPatchForObjs } from '@devinit/prelude';
 
 describe('country profile DW module tests', () => {
     const countryProfile = new CountryProfile(db);

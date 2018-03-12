@@ -1,13 +1,13 @@
 
 import {IDB} from '@devinit/graphql-next/lib/db';
-import {makeSqlAggregateQuery, entitesFnMap, DONOR, RECIPIENT, MULTILATERAL, CROSSOVER,
-    formatNumbers} from '../../utils';
+import {makeSqlAggregateQuery, entitesFnMap, DONOR, RECIPIENT, MULTILATERAL, CROSSOVER } from '../../utils';
 import {getConceptAsync, IConcept} from '../../refs/concept';
 import * as shortid from 'shortid';
 import sql from './sql';
 import {IEntity, getEntities, getRegional, IRegional, getEntityByIdGeneric,
         getSectors, getBundles, getChannels, getColors, IColor} from '../../refs/global';
 import * as R from 'ramda';
+import {approximate} from '@devinit/prelude';
 
 interface IUnbundlingAidQuery {
     from_di_id?: string;
@@ -97,7 +97,7 @@ export default class UnbundlingAid {
             const year: number = args.year || (await getConceptAsync(`unbundling-${args.aidType}`, id)).end_year;
             const  queryArgs = {table: id, year};
             const raw: Array<{sum: string}> = await this.db.manyCacheable(sql.total, queryArgs);
-            const total = formatNumbers(raw[0].sum, 1);
+            const total = approximate(raw[0].sum, 1);
             return {total, year};
         } catch (error) {
             throw error;

@@ -1,4 +1,3 @@
-
 import * as R from 'ramda';
 import {getConceptAsync, IConcept} from '../refs/concept';
 import {getDistrictBySlugAsync, IDistrict} from '../refs/spotlight';
@@ -9,8 +8,9 @@ import {IEntity, getEntityByIdGeneric, getFinancingType, getCreditorType, getCol
 import {isError} from '@devinit/graphql-next/lib/isType';
 import {getBudgetLevels, IBudgetLevelRef} from '../refs/countryProfile';
 import {IGetIndicatorArgs, IGetIndicatorValueArgs, IhasDiId, IProcessedSimple,
-        IRAW, IRAWDomestic, Isummable, IToolTipArgs, ISpotlightGetIndicatorArgs,
+        IRAW, IRAWDomestic, IToolTipArgs, ISpotlightGetIndicatorArgs,
         IGetIndicatorArgsSimple} from './types';
+import {approximate, toNumericFields, toId, getTableNameFromSql} from '@devinit/prelude';
 
 export const RECIPIENT = 'recipient';
 export const DONOR = 'donor';
@@ -39,29 +39,6 @@ export const entitesFnMap = {
     from: getEntities,
 };
 
-export const toNumericFields: (obj: any) => any = (obj) => {
-    return R.keys(obj).reduce((newObj: any, key: string) => {
-        const isKeyNumerical = Number(obj[key]) ? true : false;
-        if (isKeyNumerical) {
-            return {...newObj, [key]:  Number(obj[key])};
-        }
-        return {...newObj, [key]: obj[key]};
-    }, {});
-};
-
-export const toId: (obj: IhasDiId ) => any = (obj) => {
-    if (!obj.di_id) return obj;
-    const id = obj.di_id;
-    const newObj = R.omit(['di_id'], obj);
-    return {...newObj, id };
-};
-
-export const getTotal = (data: Isummable[]): number =>
-    R.reduce<Isummable, number>((sum: number, obj: Isummable): number => {
-        if (obj.value) sum += Number(obj.value);
-        return sum;
-    }, 0, data);
-
 export const getCurrencyCode = async (id: string): Promise<string>  => {
     try {
         const currencyList: ICurrency[] = await getCurrency();
@@ -72,14 +49,6 @@ export const getCurrencyCode = async (id: string): Promise<string>  => {
     } catch (error) {
         throw error;
     }
-};
-
-export const getTableNameFromSql = (sqlStr: string): string | Error => {
-    const matches = sqlStr.match(/FROM(.*)WHERE/);
-    if (matches && matches.length) {
-        return matches[0].split(/\s/)[1];
-    }
-    return new Error(`couldnt get table name from sql string ${sqlStr}`);
 };
 
 export const getSpotlightTableName = (country: string, query: string): string => {
@@ -144,7 +113,7 @@ export const getIndicatorsValue = async ({id, sqlList, db, format = true, precis
         return indicatorRaw.map((data, index) => {
             const toolTip = toolTips[index];
             let value = 'No data';
-            if (data && data[0] && data[0].value && format) value = formatNumbers(data[0].value, precisionFix, true);
+            if (data && data[0] && data[0].value && format) value = approximate(data[0].value, precisionFix, true);
             if (data && data[0] && data[0].value && !format) value = Math.round(Number(data[0].value)).toString();
             return {value, toolTip};
         });
@@ -226,22 +195,6 @@ export const isDonor = async (slug: string): Promise<boolean>  => {
     return false;
 };
 
-export const normalizeKeyName = (columnName: string): string => {
-    const str = columnName.includes('value_') ? columnName.split(/value\_/)[1] : columnName;
-    return str.replace(/\_/g, '-');
-};
-
-export const normalizeKeyNames = (obj: {}) => {
-    return R.keys(obj).reduce((acc, key) => {
-        const newKeyName = key.includes('_') ? normalizeKeyName(key) : key;
-        if (newKeyName) {
-            const newObj = R.omit([key], obj);
-            return {...newObj, [newKeyName]: obj[newKeyName]};
-        }
-        return {...acc, [key]: obj[key]}; // return to default
-    }, {});
-};
-
 export const makeSqlAggregateQuery = (queryArgs: any, groupByField: string, table: string): string => {
         const queryArgsKeys = R.keys(queryArgs);
         return queryArgsKeys.reduce((query, field, index) => {
@@ -252,68 +205,4 @@ export const makeSqlAggregateQuery = (queryArgs: any, groupByField: string, tabl
             return field === 'year' ? `${query} ${field} = ${queryArgs[field]} ${AND}`
                 : `${query} ${field} = '${queryArgs[field]}' ${AND}`; // we need to enclose field values in quotes
         }, `SELECT ${groupByField}, year, sum(value) AS value from ${table} WHERE value > 0 AND`);
-};
-
-export const getCurrentYear = (): number => {
-    const date = new Date();
-    return date.getFullYear();
-};
-
-const removeTrailingZero = (value: string): string => {
-    const val = Number(value);
-    return  Math.round(val) === val ? val.toString() : value;
-};
-export const capitalize = (val: string) =>
-    `${val[0].toUpperCase()}${R.drop(1, val)}`;
-
-export const addSuffix = (val) => {
-    // Borrowed from old datahub codebase
-    const lastDigit = (val % 10);
-    const lastTwoDigits = (val % 100);
-    const suffixObj = ['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'];
-    const exceptions = [11, 12, 13];
-    if (exceptions.indexOf(lastTwoDigits) === -1) {
-        return val + suffixObj[lastDigit];
-    }
-    return val + 'th';
-};
-export const getMaxAndMin = (data: Array<{year?: number | null}>): number[] => {
-    const years = data
-        .map(obj => {
-            if (obj && obj.year) return Number(obj.year);
-            return null;
-        })
-        .filter(year => year !== null);
-    if (!years) return [0, 0];
-    const max: number = Math.max.apply(null, years);
-    const min: number = Math.min.apply(null, years);
-    return [max, min];
-};
-// (10 ** length) == Math.pow(10, length);
-const roundNum = (num, length): string =>
-    (Math.round(num * (10 ** length)) / (10 ** length)).toFixed(length);
-
-export const formatNumbers =
-    (value: number | string | undefined | null,
-     precision: number = 1,
-     shouldrRemoveTrailingZero: boolean = false): string => {
-    if (value === undefined || value === null) return 'No data';
-    const val = Number(value);
-    const absValue = Math.abs(val);
-    if (absValue < 1e3) {
-        const fixed = roundNum(val, precision);
-        return shouldrRemoveTrailingZero ? `${removeTrailingZero(fixed)}` : fixed;
-    } else if (absValue >= 1e3 && absValue < 1e6) {
-        const newValue = val / 1e3;
-        const fixed = roundNum(newValue, precision);
-        return shouldrRemoveTrailingZero ? `${removeTrailingZero(fixed)}k` : `${fixed}k`;
-    } else if (absValue >= 1e6 && absValue < 1e9) {
-        const newValue = val / 1e6;
-        const fixed = roundNum(newValue, precision);
-        return shouldrRemoveTrailingZero ? `${removeTrailingZero(fixed)}m` : `${fixed}m`;
-    } else {
-        const newValue = val / 1e9;
-        const fixed = roundNum(newValue, precision);
-        return shouldrRemoveTrailingZero ? `${removeTrailingZero(fixed)}bn` : `${fixed}bn`;
-    }
 };

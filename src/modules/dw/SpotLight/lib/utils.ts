@@ -9,9 +9,10 @@ import {isError} from '@devinit/graphql-next/lib/isType';
 import {getDistrictBySlugAsync, IDistrict} from '../../../refs/spotlight';
 import {IBudgetLevelRef, getBudgetLevels} from '../../../refs/countryProfile';
 import {ISpotlightGetIndicatorArgs, IRAW, IRAWPopulationGroup, IRAWDomestic, } from '../../../utils/types';
-import {getIndicatorDataSpotlights, getSpotlightTableName, getCurrencyCode, addSuffix,
-        domesticDataProcessing, formatNumbers, addColorToDomesticLevels, getIndicatorToolTip,
-        getTotal} from '../../../utils';
+import {getIndicatorDataSpotlights, getSpotlightTableName, getCurrencyCode,
+        domesticDataProcessing, addColorToDomesticLevels, getIndicatorToolTip,
+        } from '../../../utils';
+import {addSuffix, approximate, getTotal} from '@devinit/prelude';
 
 export interface ISpotlightArgs {
     id: string;
@@ -185,8 +186,8 @@ export const getRegionalResources = (db: DB) => async ({id, country}): Promise<I
             const regionalResourcesToolTip = await getIndicatorToolTip(indicatorArgs[0]);
             return {
                 regionalResources: {
-                    value: resourcesSum.value ? formatNumbers(resourcesSum.value, 1) : null,
-                    value_ncu:  resourcesSum.value_ncu ? formatNumbers(resourcesSum.value_ncu, 1) : null,
+                    value: resourcesSum.value ? approximate(resourcesSum.value, 1) : null,
+                    value_ncu:  resourcesSum.value_ncu ? approximate(resourcesSum.value_ncu, 1) : null,
                     toolTip: regionalResourcesToolTip
                 },
                 regionalResourcesBreakdown: resources
@@ -218,8 +219,8 @@ export const getIndicatorsGeneric = ({country, db}: ISpotlightIndicatorArgs) =>
                 const toolTip = toolTips[index];
                 let value = 'No data';
                 let value_ncu = 'No data';
-                if (data[0] && data[0].value && format) value = formatNumbers(data[0].value, 1);
-                if (data[0] && data[0].value_ncu && format) value_ncu = formatNumbers(data[0].value_ncu, 1);
+                if (data[0] && data[0].value && format) value = approximate(data[0].value, 1);
+                if (data[0] && data[0].value_ncu && format) value_ncu = approximate(data[0].value_ncu, 1);
                 if (data[0] && data[0].value && !format) value = data[0].value;
                 return {value, value_ncu, toolTip};
             });

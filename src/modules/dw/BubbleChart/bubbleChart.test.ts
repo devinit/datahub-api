@@ -1,4 +1,4 @@
-import {prettyListMany, replaceUidInList} from '@devinit/graphql-next/lib/utils/test.utils';
+import {prettyListMany, replaceUidInList} from '@devinit/prelude';
 import BubbleChart from '.';
 import db from '@devinit/graphql-next/lib/db';
 import * as prettyFormat from 'pretty-format';
