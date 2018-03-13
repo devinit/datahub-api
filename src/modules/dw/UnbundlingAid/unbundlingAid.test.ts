@@ -1,7 +1,7 @@
 import * as prettyFormat from 'pretty-format';
 import UnbundlingAid from '.';
 import db from '@devinit/graphql-next/lib/db';
-import { uidPatchForObjs } from '@devinit/graphql-next/lib/utils/test.utils';
+import { uidPatchForObjs } from '@devinit/prelude';
 
 describe('Unbundling aid DW module tests', () => {
     const unbundlingAid = new UnbundlingAid(db);
