@@ -15,5 +15,5 @@ export const getUnbundlingOOfPageData = (): Promise<DH.IPage[]> => getPageData('
 export const getWhereThePoorPageData = (): Promise<DH.IPage[]> => getPageData('where-the-poor');
 export const getAboutPageData = (): Promise<DH.IPage[]> => getPageData('about-page');
 export const getFrontPageData = (): Promise<DH.IPage[]> => getPageData('front-page');
-export const getSpotlightGeneralPageData = (): Promise<DH.IPage[]> => getPageData('spotlight-general');
+export const getSpotlightPageData = (): Promise<DH.IPage[]> => getPageData('spotlight-page');
 export const getUnbundlingAidPageData = (): Promise<DH.IPage[]> => getPageData('unbundling-aid-page');

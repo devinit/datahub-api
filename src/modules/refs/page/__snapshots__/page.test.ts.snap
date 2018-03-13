@@ -5,17 +5,6 @@ exports[`Page data should return page data for  Unbundling OOf 1`] = `
   Object {
     \\"id\\": \\"Unbundling aid\\",
     \\"meta\\": \\"\\",
-    \\"narrative\\": \\"Explore and compare funding priorities for official development assistance\\",
-    \\"title\\": \\"Unbundling aid\\",
-  },
-]"
-`;
-
-exports[`Page data should return page data for  Unbundling OOf 2`] = `
-"Array [
-  Object {
-    \\"id\\": \\"Unbundling aid\\",
-    \\"meta\\": \\"\\",
     \\"narrative\\": \\"Explore and compare funding priorities for other official flows (OOFs)\\",
     \\"title\\": \\"Unbundling aid\\",
   },
@@ -29,6 +18,53 @@ exports[`Page data should return page data for Where The Poor 1`] = `
     \\"meta\\": \\"\\",
     \\"narrative\\": \\"Explore and compare funding priorities for other official flows (OOFs)\\",
     \\"title\\": \\"Unbundling aid\\",
+  },
+]"
+`;
+
+exports[`Page data should return page data for Where The Poor 2`] = `
+"Array [
+  Object {
+    \\"id\\": \\"poverty-visualisation\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"Between 1990 and 2010, extreme poverty was cut in half and Explore plausible poverty outcomes for 2030 based on models of consumption\\",
+    \\"title\\": \\"Where are the poor and where will they be?\\",
+  },
+  Object {
+    \\"id\\": \\"Source\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"Development Initiatives based on OECD DAC data.Note that figures are rounded: precise data are available for download on the methodology page\\",
+    \\"title\\": \\"Source\\",
+  },
+  Object {
+    \\"id\\": \\"download-the-data\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"For more information, see the DI data hub methodology page\\",
+    \\"title\\": \\"Download the data\\",
+  },
+  Object {
+    \\"id\\": \\"poverty-visualisation\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"Between 1990 and 2010, extreme poverty was cut in half and Explore plausible poverty outcomes for 2030 based on models of consumption\\",
+    \\"title\\": \\"Where are the poor and where will they be?\\",
+  },
+  Object {
+    \\"id\\": \\"about-this-visualization\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"This page allows you to explore three scenarios for future poverty levels both globally and by region up to 2030. The baseline scenario uses current forecasts for growth in consumption and current inequality levels. The best-case scenario shows what happens with more rapid growth that is shared more equally. By contrast, the worst-case scenario sees slower growth and increasing inequality. Forecasting future poverty levels is difficult, given the inherent uncertainties involved. Poverty modelling develops future scenarios to help inform policymaking. These models rely on simplifying assumptions, often focusing on economic growth and income distribution trends which determine how much poor people benefit from that growth.Data accessed from source: 20 August 2013.\\",
+    \\"title\\": \\"About this visualization\\",
+  },
+  Object {
+    \\"id\\": \\"scenario details\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"The best and worst case scenarios are based on the extremes of two elements: For growth, a +/- 2 percentage point margin of error either side of baseline projections of consumption growth (which are driven by economic growth). This is in line with differences observed between past forecasts and actual outcomes. For inequality, an annual 0.25 percentage point change in the shares of national consumption between the poorest 40% and the richest 10%\\",
+    \\"title\\": \\"Scenario details\\",
+  },
+  Object {
+    \\"id\\": \\"about-the-data\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"Projections based on Chandy, Ledlie and Penciakova, The Final Countdown: Prospects for Ending Extreme Poverty by 2030 (2013), using the same methodology applied to a dataset updated with 40 country surveys. All data for years after 2010 are forecasts\\",
+    \\"title\\": \\"About the data\\",
   },
 ]"
 `;
@@ -167,46 +203,22 @@ exports[`Page data should return page data for a country profile 1`] = `
 exports[`Page data should return page data for about 1`] = `
 "Array [
   Object {
-    \\"id\\": \\"poverty-visualisation\\",
+    \\"id\\": \\"about-the-development-data-hub\\",
     \\"meta\\": \\"\\",
-    \\"narrative\\": \\"Between 1990 and 2010, extreme poverty was cut in half and Explore plausible poverty outcomes for 2030 based on models of consumption\\",
-    \\"title\\": \\"Where are the poor and where will they be?\\",
+    \\"narrative\\": \\"\\",
+    \\"title\\": \\"ABOUT THE DEVELOPMENT DATA HUB\\",
   },
   Object {
-    \\"id\\": \\"Source\\",
+    \\"id\\": \\"the-development-data-hub\\",
     \\"meta\\": \\"\\",
-    \\"narrative\\": \\"Development Initiatives based on OECD DAC data.Note that figures are rounded: precise data are available for download on the methodology page\\",
-    \\"title\\": \\"Source\\",
+    \\"narrative\\": \\"The Development Data Hub is the most comprehensive online resource for financial and resource flow data alongside poverty, social and vulnerability indicators. It combines an extensive data store with interactive visualisations enabling you to chart, map and compare data at the global, national and local level.\\",
+    \\"title\\": \\"The Development Data Hub\\",
   },
   Object {
-    \\"id\\": \\"download-the-data\\",
+    \\"id\\": \\"how-does-it-work?\\",
     \\"meta\\": \\"\\",
-    \\"narrative\\": \\"For more information, see the DI data hub methodology page\\",
-    \\"title\\": \\"Download the data\\",
-  },
-  Object {
-    \\"id\\": \\"poverty-visualisation\\",
-    \\"meta\\": \\"\\",
-    \\"narrative\\": \\"Between 1990 and 2010, extreme poverty was cut in half and Explore plausible poverty outcomes for 2030 based on models of consumption\\",
-    \\"title\\": \\"Where are the poor and where will they be?\\",
-  },
-  Object {
-    \\"id\\": \\"about-this-visualization\\",
-    \\"meta\\": \\"\\",
-    \\"narrative\\": \\"This page allows you to explore three scenarios for future poverty levels both globally and by region up to 2030. The baseline scenario uses current forecasts for growth in consumption and current inequality levels. The best-case scenario shows what happens with more rapid growth that is shared more equally. By contrast, the worst-case scenario sees slower growth and increasing inequality. Forecasting future poverty levels is difficult, given the inherent uncertainties involved. Poverty modelling develops future scenarios to help inform policymaking. These models rely on simplifying assumptions, often focusing on economic growth and income distribution trends which determine how much poor people benefit from that growth.Data accessed from source: 20 August 2013.\\",
-    \\"title\\": \\"About this visualization\\",
-  },
-  Object {
-    \\"id\\": \\"scenario details\\",
-    \\"meta\\": \\"\\",
-    \\"narrative\\": \\"The best and worst case scenarios are based on the extremes of two elements: For growth, a +/- 2 percentage point margin of error either side of baseline projections of consumption growth (which are driven by economic growth). This is in line with differences observed between past forecasts and actual outcomes. For inequality, an annual 0.25 percentage point change in the shares of national consumption between the poorest 40% and the richest 10%\\",
-    \\"title\\": \\"Scenario details\\",
-  },
-  Object {
-    \\"id\\": \\"about-the-data\\",
-    \\"meta\\": \\"\\",
-    \\"narrative\\": \\"Projections based on Chandy, Ledlie and Penciakova, The Final Countdown: Prospects for Ending Extreme Poverty by 2030 (2013), using the same methodology applied to a dataset updated with 40 country surveys. All data for years after 2010 are forecasts\\",
-    \\"title\\": \\"About the data\\",
+    \\"narrative\\": \\"It brings together many data sets,enabling you to dig into these through interactive maps, charts and visualisations. It turns complex data around poverty and resource flows into easy to understand robust information and evidence about what is really going on. The Data Hub is an accessible and easy to use tool for anyone wanting to know more about how resources for development are spent.\\",
+    \\"title\\": \\"How does it work?\\",
   },
 ]"
 `;
@@ -234,7 +246,7 @@ exports[`Page data should return page data for front page 1`] = `
 ]"
 `;
 
-exports[`Page data should return page data for spotlight-general page 1`] = `
+exports[`Page data should return page data for front page 2`] = `
 "Array [
   Object {
     \\"id\\": \\"comprehensive\\",
@@ -251,13 +263,24 @@ exports[`Page data should return page data for spotlight-general page 1`] = `
 ]"
 `;
 
+exports[`Page data should return page data for spotlight page 1`] = `
+"Array [
+  Object {
+    \\"id\\": \\"comprehensive-source\\",
+    \\"meta\\": \\"\\",
+    \\"narrative\\": \\"is a comprehensive source of {countryName}'s financial resource flow data at the sub-national ({region}) level, alongside indicators on poverty, population, education,health, water, hygiene and sanitation. It highlights the geographical variance in sector performance and financial resources, and seeks to answer whether resources are allocated according to need. Explore the country picture by selecting topics and click on a {region} for an in-depth profile.\\",
+    \\"title\\": \\"\\",
+  },
+]"
+`;
+
 exports[`Page data should return page data for the ODA donor bubble chart 1`] = `
 "Array [
   Object {
-    \\"id\\": \\"resources-able-to-meet-needs\\",
+    \\"id\\": \\"diff-providers-priorities\\",
     \\"meta\\": \\"\\",
-    \\"narrative\\": \\"The proportion of people living in extreme poverty worldwide has more than halved since 2000, yet progress is varied across countries. Although domestic public resources are an important resource to drive efforts to end poverty, they remain scarce in many countries where poverty is high\\",
-    \\"title\\": \\"Are domestic public resources able to meet the needs of the poorest people?\\",
+    \\"narrative\\": \\"How effectively are donors targeting the countries with the highest numbers of people in poverty and the least domestic public resources to address it? This chart allows you to select a provider of aid to see how it allocates aid across countries\\",
+    \\"title\\": \\"Different providers, different priorities\\",
   },
 ]"
 `;

@@ -31,8 +31,8 @@ export default {
          async frontPageData(_root, _args, ctx: IContext) {
             return ctx.modules.refs.getFrontPageData();
          },
-         async spotlightGeneralPageData(_root, _args, ctx: IContext) {
-            return ctx.modules.refs.getSpotlightGeneralPageData();
+         async spotlightPageData(_root, _args, ctx: IContext) {
+            return ctx.modules.refs.getSpotlightPageData();
          },
          async unbundlingAidPageData(_root, _args, ctx: IContext) {
             return ctx.modules.refs.getUnbundlingAidPageData();

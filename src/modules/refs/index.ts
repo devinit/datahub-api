@@ -11,7 +11,7 @@ import {
     getDistrictPageData,
     getAboutPageData,
     getFrontPageData,
-    getSpotlightGeneralPageData,
+    getSpotlightPageData,
     getUnbundlingAidPageData
 } from './page';
 import {getCountries} from './global';
@@ -33,7 +33,7 @@ export interface IRefs {
     getCountries;
     getAboutPageData;
     getFrontPageData;
-    getSpotlightGeneralPageData;
+    getSpotlightPageData;
     getUnbundlingAidPageData;
 }
 
@@ -53,7 +53,7 @@ const refs: IRefs = {
     getCountries,
     getAboutPageData,
     getFrontPageData,
-    getSpotlightGeneralPageData,
+    getSpotlightPageData,
     getUnbundlingAidPageData
 };
 
