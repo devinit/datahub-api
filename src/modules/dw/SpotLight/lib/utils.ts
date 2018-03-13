@@ -5,7 +5,7 @@ import {IDB} from '@devinit/graphql-next/lib/db';
 import { getConceptAsync } from '../../../refs/concept';
 import {kenya, uganda} from './sql';
 import {IColor, getColors, getEntityByIdGeneric} from '../../../refs/global';
-import {isError} from '@devinit/graphql-next/lib/isType';
+import {isError} from '@devinit/prelude';
 import {getDistrictBySlugAsync, IDistrict} from '../../../refs/spotlight';
 import {IBudgetLevelRef, getBudgetLevels} from '../../../refs/countryProfile';
 import {ISpotlightGetIndicatorArgs, IRAW, IRAWPopulationGroup, IRAWDomestic, } from '../../../utils/types';
