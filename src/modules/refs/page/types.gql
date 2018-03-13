@@ -17,4 +17,5 @@ type Query {
   frontPageData: [Page]
   spotlightPageData: [Page]
   unbundlingAidPageData: [Page]
+  bubbleChartAnnotationPageData: [Page]
 }

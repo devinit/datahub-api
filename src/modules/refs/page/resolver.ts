@@ -36,6 +36,9 @@ export default {
          },
          async unbundlingAidPageData(_root, _args, ctx: IContext) {
             return ctx.modules.refs.getUnbundlingAidPageData();
+         },
+         async bubbleChartAnnotationPageData(_root, _args, ctx: IContext) {
+            return ctx.modules.refs.getBubbleChartAnnotationPageData();
          }
     }
 };

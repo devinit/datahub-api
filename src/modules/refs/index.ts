@@ -12,7 +12,8 @@ import {
     getAboutPageData,
     getFrontPageData,
     getSpotlightPageData,
-    getUnbundlingAidPageData
+    getUnbundlingAidPageData,
+    getBubbleChartAnnotationPageData
 } from './page';
 import {getCountries} from './global';
 import {getDistrictEntities} from './spotlight';
@@ -35,6 +36,7 @@ export interface IRefs {
     getFrontPageData;
     getSpotlightPageData;
     getUnbundlingAidPageData;
+    getBubbleChartAnnotationPageData;
 }
 
 const refs: IRefs = {
@@ -54,7 +56,8 @@ const refs: IRefs = {
     getAboutPageData,
     getFrontPageData,
     getSpotlightPageData,
-    getUnbundlingAidPageData
+    getUnbundlingAidPageData,
+    getBubbleChartAnnotationPageData
 };
 
 export default [{refs: () => refs}];

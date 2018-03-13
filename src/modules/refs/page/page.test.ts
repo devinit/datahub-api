@@ -9,7 +9,8 @@ import {
     getAboutPageData,
     getFrontPageData,
     getSpotlightPageData,
-    getUnbundlingAidPageData
+    getUnbundlingAidPageData,
+    getBubbleChartAnnotationPageData
 } from '.';
 import * as prettyFormat from 'pretty-format';
 
@@ -56,13 +57,18 @@ describe('Page data', () => {
         expect(pageData.length).toBeGreaterThan(0);
         expect(prettyFormat(pageData)).toMatchSnapshot();
     }, 10000);
-    it('should return page data for spotlight page', async () => {
+    it.skip('should return page data for spotlight page', async () => {
         const pageData = await getSpotlightPageData();
         expect(pageData.length).toBeGreaterThan(0);
         expect(prettyFormat(pageData)).toMatchSnapshot();
     }, 10000);
     it.skip('should return page data for unbundling-aid page', async () => {
         const pageData = await getUnbundlingAidPageData();
+        expect(pageData.length).toBeGreaterThan(0);
+        expect(prettyFormat(pageData)).toMatchSnapshot();
+    }, 10000);
+    it('should return page data for bubblechartAnnotation page', async () => {
+        const pageData = await getBubbleChartAnnotationPageData();
         expect(pageData.length).toBeGreaterThan(0);
         expect(prettyFormat(pageData)).toMatchSnapshot();
     }, 10000);

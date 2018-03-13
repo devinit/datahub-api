@@ -17,3 +17,5 @@ export const getAboutPageData = (): Promise<DH.IPage[]> => getPageData('about-pa
 export const getFrontPageData = (): Promise<DH.IPage[]> => getPageData('front-page');
 export const getSpotlightPageData = (): Promise<DH.IPage[]> => getPageData('spotlight-page');
 export const getUnbundlingAidPageData = (): Promise<DH.IPage[]> => getPageData('unbundling-aid-page');
+export const getBubbleChartAnnotationPageData = (): Promise<DH.IPage[]> =>
+    getPageData('bubble-chart-annotation-page');
