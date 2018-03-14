@@ -18,5 +18,5 @@ type Query {
   spotlightPageData: [Page]
   unbundlingAidPageData: [Page]
   bubbleChartAnnotationPageData: [Page]
-  whoAreTheGlobalP20PageDta: [Page]
+  whoAreTheGlobalP20PageData: [Page]
 }
