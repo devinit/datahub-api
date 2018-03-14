@@ -39,6 +39,9 @@ export default {
          },
          async bubbleChartAnnotationPageData(_root, _args, ctx: IContext) {
             return ctx.modules.refs.getBubbleChartAnnotationPageData();
+         },
+         async whoAreTheGlobalP20PageData(_root, _args, ctx: IContext) {
+            return ctx.modules.refs.getWhoAreTheGlobalP20PageData();
          }
     }
 };
