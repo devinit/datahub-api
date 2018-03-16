@@ -42,6 +42,9 @@ export default {
          },
          async whoAreTheGlobalP20PageData(_root, _args, ctx: IContext) {
             return ctx.modules.refs.getWhoAreTheGlobalP20PageData();
+         },
+         async profileHeaderPageData(_root, _args, ctx: IContext) {
+            return ctx.modules.refs.getProfileHeaderPageData();
          }
     }
 };

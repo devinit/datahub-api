@@ -21,3 +21,5 @@ export const getBubbleChartAnnotationPageData = (): Promise<DH.IPage[]> =>
     getPageData('bubble-chart-annotation-page');
 export const getWhoAreTheGlobalP20PageData = (): Promise<DH.IPage[]> =>
     getPageData('who-are-the-global-P20-page');
+export const getProfileHeaderPageData = (): Promise<DH.IPage[]> =>
+    getPageData('profile-header-page');

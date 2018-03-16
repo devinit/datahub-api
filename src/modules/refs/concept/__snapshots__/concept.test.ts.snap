@@ -2900,6 +2900,8 @@ exports[`Github concept data tests should get methodology data 1`] = `
     \\"uom_display\\": \\"%\\",
   },
 ]"
+<<<<<<< HEAD
+=======
 `;
 
 exports[`Github concept data tests should get methodology data 2`] = `
@@ -5738,4 +5740,5 @@ exports[`Github concept data tests should get methodology data 2`] = `
     },
   ],
 }"
+>>>>>>> 3c55e0d00b61103b6276ae31697335e9d2230590
 `;
