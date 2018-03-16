@@ -8,5 +8,5 @@ lib/
 *.yaml
 .idea/
 .DS_Store
-yarn.lock
+package-json.lock
 db.errors.log

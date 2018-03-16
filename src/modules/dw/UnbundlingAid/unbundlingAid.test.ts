@@ -1,7 +1,7 @@
 import * as prettyFormat from 'pretty-format';
 import UnbundlingAid from '.';
 import db from '@devinit/graphql-next/lib/db';
-import { uidPatchForObjs } from '@devinit/prelude';
+import { replaceUidInList } from '@devinit/prelude';
 
 describe('Unbundling aid DW module tests', () => {
     const unbundlingAid = new UnbundlingAid(db);
@@ -10,14 +10,18 @@ describe('Unbundling aid DW module tests', () => {
         const argsA = { aidType: 'oda', year: 2016, groupBy: 'sector', from_di_id: 'GB'};
         // const argsB = { aidType: 'oda', year: 2015, sector: 'banking-and-business', groupBy: 'to_di_id'};
         const argsC = { aidType: 'oof', year: 2013, groupBy: 'bundle'};
-        // const argsD = { aidType: 'oda', year: 2015, groupBy: 'sector'};
+        const argsD = { aidType: 'oda', year: 2015, groupBy: 'channel'};
         const dataC = await unbundlingAid.getUnbundlingAidData(argsC);
         const dataA = await unbundlingAid.getUnbundlingAidData(argsA);
         // const dataC = await unbundlingAid.getUnbundlingAidData(argsC);
-        // const dataD = await unbundlingAid.getUnbundlingAidData(argsD);
-        const result = {dataC: uidPatchForObjs(dataC), dataA: uidPatchForObjs(dataA)};
-        expect(prettyFormat(result)).toMatchSnapshot();
+        const dataD = await unbundlingAid.getUnbundlingAidData(argsD);
+        const result = [dataC, dataA, dataD].map(replaceUidInList);
+        expect(result).toMatchSnapshot();
     }, 100000);
+    it('should get unbundling aid options from db', async () => {
+        const options = await unbundlingAid.getUnbundlingOptionsIds('oda');
+        expect(options).toMatchSnapshot();
+    }, 10000);
     it('should create sql query args for getting data', () => {
         const argsA = {
             aidType: 'oda',

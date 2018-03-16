@@ -8,5 +8,5 @@ script:
 - npm run build
 - npm run gqlToTs
 cache:
-- node_modules
+  yarn: true
 sudo: false

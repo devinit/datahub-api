@@ -1,5 +1,5 @@
 # The official nodejs docker image
-FROM node:9-alpine@sha256:551f3d5b0d41d09a4e68a2200332bebf00367090fb21d999bad95b97611aab83
+FROM node:9-alpine@sha256:1fbcd77d0eb2af765d24ae4758b5a94b0d55c6002a15a4431d55795a449ebd3d
 
 LABEL maintainer="epicallan.al@gmail.com"
 # Copy package.json only to temp folder, install its dependencies,
@@ -7,7 +7,7 @@ LABEL maintainer="epicallan.al@gmail.com"
 RUN mkdir /src
 # This way, dependnecies are cached without the need of cacheing all files.
 ADD package.json /tmp/
-RUN cd /tmp && npm install -g yarn --silent && yarn --silent
+RUN cd /tmp && npm install --silent
 RUN cp -a /tmp/node_modules /src/
 
 WORKDIR /src

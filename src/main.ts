@@ -11,7 +11,10 @@ main({
     port: process.env.PORT || 3000
 });
 
-precache({
-    cms: githubGet, // can be change to ref look in .cache
-    dw: db.manyCacheable
-}).catch(console.error);
+if (process.env.NODE_ENV === 'production') {
+    // run queries in the .cache file, subsequently caching their results in an LRU cache
+    precache({
+        cms: githubGet, // can be change to ref look in .cache
+        dw: db.manyCacheable
+    }).catch(console.error);
+}
