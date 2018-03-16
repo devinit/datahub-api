@@ -11,7 +11,8 @@ import {
     getSpotlightPageData,
     getUnbundlingAidPageData,
     getBubbleChartAnnotationPageData,
-    getWhoAreTheGlobalP20PageData
+    getWhoAreTheGlobalP20PageData,
+    getProfileHeaderPageData
 } from '.';
 import * as prettyFormat from 'pretty-format';
 
@@ -73,8 +74,13 @@ describe('Page data', () => {
         expect(pageData.length).toBeGreaterThan(0);
         expect(prettyFormat(pageData)).toMatchSnapshot();
     }, 10000);
-    it('should return page data for whoAreTheGlobalP20 page', async () => {
+    it.skip('should return page data for whoAreTheGlobalP20 page', async () => {
         const pageData = await getWhoAreTheGlobalP20PageData();
+        expect(pageData.length).toBeGreaterThan(0);
+        expect(prettyFormat(pageData)).toMatchSnapshot();
+    }, 10000);
+    it('should return page data for profileHeader page', async () => {
+        const pageData = await getProfileHeaderPageData();
         expect(pageData.length).toBeGreaterThan(0);
         expect(prettyFormat(pageData)).toMatchSnapshot();
     }, 10000);
