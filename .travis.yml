@@ -10,3 +10,5 @@ script:
 cache:
   yarn: true
 sudo: false
+notifications:
+  slack: devinitorg:TFrmOb61t4X0PRFdZyHBU04F
