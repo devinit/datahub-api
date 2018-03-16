@@ -91,7 +91,6 @@ SELECT value FROM data_series.poorest_20_percent WHERE di_id = 'UG' AND year = 2
 SELECT value FROM fact.gdp_usd_2015 WHERE di_id = 'UG' AND year = 2015:dw
 SELECT value FROM data_series.govt_spend_pc WHERE di_id = 'UG' AND year = 2015:dw
 SELECT * FROM fact.population_rural_urban WHERE di_id = 'UG' AND year >= 1960 AND year <= 2015:dw
-SELECT value FROM fact.in_oda_net_2015 WHERE di_id = 'UG' AND year = 2015:dw
 SELECT value FROM data_series.depth_of_extreme_poverty_190 WHERE di_id = 'UG' AND year = 2015:dw
 SELECT * FROM fact.population_by_age WHERE di_id = 'UG' AND year >= 1960 AND year <= 2015:dw
 SELECT value FROM data_series.domestic WHERE di_id ='UG' AND budget_type = 'actual' AND year = 2015 AND l1 = 'total-revenue-and-grants' AND l2 is NULL AND l3 is NULL AND l4 is NULL:dw
