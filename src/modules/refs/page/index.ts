@@ -19,3 +19,5 @@ export const getSpotlightPageData = (): Promise<DH.IPage[]> => getPageData('spot
 export const getUnbundlingAidPageData = (): Promise<DH.IPage[]> => getPageData('unbundling-aid-page');
 export const getBubbleChartAnnotationPageData = (): Promise<DH.IPage[]> =>
     getPageData('bubble-chart-annotation-page');
+export const getWhoAreTheGlobalP20PageData = (): Promise<DH.IPage[]> =>
+    getPageData('who-are-the-global-P20-page');
