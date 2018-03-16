@@ -5,7 +5,7 @@ import * as shortid from 'shortid';
 import {IEntity, getEntityByIdGeneric, getFinancingType, getCreditorType, getColors, IColor,
         getDestinationInstitutionType, getFlowType, ICurrency, getCurrency,
         getSectors, getBundles, getChannels, getEntities, getEntityBySlugAsync} from '../refs/global';
-import {isError} from '@devinit/prelude';
+import {isError, capitalize} from '@devinit/prelude';
 import {getBudgetLevels, IBudgetLevelRef} from '../refs/countryProfile';
 import {IGetIndicatorArgs, IGetIndicatorValueArgs, IhasDiId, IProcessedSimple,
         IRAW, IRAWDomestic, IToolTipArgs, ISpotlightGetIndicatorArgs,

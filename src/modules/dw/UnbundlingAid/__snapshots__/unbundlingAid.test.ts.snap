@@ -204,6 +204,7 @@ exports[`Unbundling aid DW module tests getting unbundling aid selection options
         \\"name\\": \\"Multilateral\\",
       },
       Object {
+        \\"color\\": \\"grey\\",
         \\"id\\": \\"private-sector-institution\\",
         \\"name\\": \\"private-sector-institution\\",
       },
@@ -218,6 +219,7 @@ exports[`Unbundling aid DW module tests getting unbundling aid selection options
         \\"name\\": \\"Public sector (recipient government)\\",
       },
       Object {
+        \\"color\\": \\"grey\\",
         \\"id\\": \\"university-research-institute-etc\\",
         \\"name\\": \\"university-research-institute-etc\\",
       },

@@ -7,7 +7,7 @@ import sql from './sql';
 import {IEntity, getEntities, getRegional, IRegional, getEntityByIdGeneric,
         getSectors, getBundles, getChannels, getColors, IColor, IEntityBasic} from '../../refs/global';
 import * as R from 'ramda';
-import {approximate} from '@devinit/prelude';
+import {approximate, capitalize} from '@devinit/prelude';
 
 interface IUnbundlingAidQuery {
     from_di_id?: string;
@@ -132,7 +132,8 @@ export default class UnbundlingAid {
         const options = dBOptionsData[optionName];
         return options.map(id => {
             const option = cmsOptions.find(obj => obj.id === id);
-            if (!option) return {id, name: id, color: 'grey'};
+            const name = capitalize(id.replace(/\-/g, ' '));
+            if (!option) return {id, name, color: 'grey'};
             return option;
         });
     }
