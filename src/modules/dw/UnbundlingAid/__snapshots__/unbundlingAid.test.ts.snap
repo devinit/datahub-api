@@ -1,140 +1,140 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Unbundling aid DW module tests getting unbundling aid data of various types 1`] = `
-"Object {
-  \\"dataA\\": Object {
-    \\"0\\": Object {
-      \\"color\\": \\"#0089cc\\",
-      \\"id\\": \\"water-and-sanitation\\",
-      \\"name\\": \\"Water and sanitation\\",
-      \\"uid\\": \\"S1qF3lHKz\\",
-      \\"value\\": 256626315,
-      \\"year\\": 2016,
+Array [
+  Array [
+    Object {
+      "color": "#eb642b",
+      "id": "oof-loan",
+      "name": "OOF Loan",
+      "uid": "unique_id_stub",
+      "value": 47093434145,
+      "year": 2013,
     },
-    \\"1\\": Object {
-      \\"color\\": \\"#e8443a\\",
-      \\"id\\": \\"agriculture-and-food-security\\",
-      \\"name\\": \\"Agriculture and food security\\",
-      \\"uid\\": \\"HkxqFnlBYM\\",
-      \\"value\\": 601266533,
-      \\"year\\": 2016,
+    Object {
+      "color": "#0089cc",
+      "id": "oof-grant",
+      "name": "OOF Grant",
+      "uid": "unique_id_stub",
+      "value": 723462217,
+      "year": 2013,
     },
-    \\"10\\": Object {
-      \\"color\\": \\"#8f1b13\\",
-      \\"id\\": \\"debt-relief\\",
-      \\"name\\": \\"Debt relief\\",
-      \\"uid\\": \\"HyYqt3eHYM\\",
-      \\"value\\": 3385670,
-      \\"year\\": 2016,
+  ],
+  Array [
+    Object {
+      "color": "#0089cc",
+      "id": "water-and-sanitation",
+      "name": "Water and sanitation",
+      "uid": "unique_id_stub",
+      "value": 256626315,
+      "year": 2016,
     },
-    \\"11\\": Object {
-      \\"color\\": \\"#5da3d9\\",
-      \\"id\\": \\"industry-and-trade\\",
-      \\"name\\": \\"Industry and trade\\",
-      \\"uid\\": \\"Bk9ct2xSFM\\",
-      \\"value\\": 251511854,
-      \\"year\\": 2016,
+    Object {
+      "color": "#e8443a",
+      "id": "agriculture-and-food-security",
+      "name": "Agriculture and food security",
+      "uid": "unique_id_stub",
+      "value": 601266533,
+      "year": 2016,
     },
-    \\"12\\": Object {
-      \\"color\\": \\"#e8443a\\",
-      \\"id\\": \\"education\\",
-      \\"name\\": \\"Education\\",
-      \\"uid\\": \\"S1jcF3lrFG\\",
-      \\"value\\": 1456829853,
-      \\"year\\": 2016,
+    Object {
+      "color": "#f18e5e",
+      "id": "infrastructure",
+      "name": "Infrastructure",
+      "uid": "unique_id_stub",
+      "value": 557242274,
+      "year": 2016,
     },
-    \\"13\\": Object {
-      \\"color\\": \\"#893f90\\",
-      \\"id\\": \\"general-budget-support\\",
-      \\"name\\": \\"General budget support\\",
-      \\"uid\\": \\"rkhcY3xrFz\\",
-      \\"value\\": 90330700,
-      \\"year\\": 2016,
+    Object {
+      "color": "#bc2629",
+      "id": "humanitarian",
+      "name": "Humanitarian",
+      "uid": "unique_id_stub",
+      "value": 1956247242,
+      "year": 2016,
     },
-    \\"2\\": Object {
-      \\"color\\": \\"#f18e5e\\",
-      \\"id\\": \\"infrastructure\\",
-      \\"name\\": \\"Infrastructure\\",
-      \\"uid\\": \\"SJbcY2xStf\\",
-      \\"value\\": 557242274,
-      \\"year\\": 2016,
+    Object {
+      "color": "#893f90",
+      "id": "other-social-services",
+      "name": "Other social services",
+      "uid": "unique_id_stub",
+      "value": 650290388,
+      "year": 2016,
     },
-    \\"3\\": Object {
-      \\"color\\": \\"#bc2629\\",
-      \\"id\\": \\"humanitarian\\",
-      \\"name\\": \\"Humanitarian\\",
-      \\"uid\\": \\"ByMcF3gHKz\\",
-      \\"value\\": 1956247242,
-      \\"year\\": 2016,
+    Object {
+      "color": "#d85b31",
+      "id": "governance-security-and-civil-society",
+      "name": "Governance, security and civil society",
+      "uid": "unique_id_stub",
+      "value": 1705654205,
+      "year": 2016,
     },
-    \\"4\\": Object {
-      \\"color\\": \\"#893f90\\",
-      \\"id\\": \\"other-social-services\\",
-      \\"name\\": \\"Other social services\\",
-      \\"uid\\": \\"ryXqY2grtf\\",
-      \\"value\\": 650290388,
-      \\"year\\": 2016,
+    Object {
+      "color": "#7b3b89",
+      "id": "other",
+      "name": "Other",
+      "uid": "unique_id_stub",
+      "value": 2692965557,
+      "year": 2016,
     },
-    \\"5\\": Object {
-      \\"color\\": \\"#d85b31\\",
-      \\"id\\": \\"governance-security-and-civil-society\\",
-      \\"name\\": \\"Governance, security and civil society\\",
-      \\"uid\\": \\"rkV5t3eHYM\\",
-      \\"value\\": 1705654205,
-      \\"year\\": 2016,
+    Object {
+      "color": "#d64278",
+      "id": "banking-and-business",
+      "name": "Banking and business",
+      "uid": "unique_id_stub",
+      "value": 726234481,
+      "year": 2016,
     },
-    \\"6\\": Object {
-      \\"color\\": \\"#7b3b89\\",
-      \\"id\\": \\"other\\",
-      \\"name\\": \\"Other\\",
-      \\"uid\\": \\"S1rcY2gSFf\\",
-      \\"value\\": 2692965557,
-      \\"year\\": 2016,
+    Object {
+      "color": "#f18e5e",
+      "id": "environment",
+      "name": "Environment",
+      "uid": "unique_id_stub",
+      "value": 479942454,
+      "year": 2016,
     },
-    \\"7\\": Object {
-      \\"color\\": \\"#d64278\\",
-      \\"id\\": \\"banking-and-business\\",
-      \\"name\\": \\"Banking and business\\",
-      \\"uid\\": \\"rkUqYnxBKG\\",
-      \\"value\\": 726234481,
-      \\"year\\": 2016,
+    Object {
+      "color": "#007851",
+      "id": "health",
+      "name": "Health",
+      "uid": "unique_id_stub",
+      "value": 1588831733,
+      "year": 2016,
     },
-    \\"8\\": Object {
-      \\"color\\": \\"#f18e5e\\",
-      \\"id\\": \\"environment\\",
-      \\"name\\": \\"Environment\\",
-      \\"uid\\": \\"S1Pct3lSYM\\",
-      \\"value\\": 479942454,
-      \\"year\\": 2016,
+    Object {
+      "color": "#8f1b13",
+      "id": "debt-relief",
+      "name": "Debt relief",
+      "uid": "unique_id_stub",
+      "value": 3385670,
+      "year": 2016,
     },
-    \\"9\\": Object {
-      \\"color\\": \\"#007851\\",
-      \\"id\\": \\"health\\",
-      \\"name\\": \\"Health\\",
-      \\"uid\\": \\"Hy_9thxBYf\\",
-      \\"value\\": 1588831733,
-      \\"year\\": 2016,
+    Object {
+      "color": "#5da3d9",
+      "id": "industry-and-trade",
+      "name": "Industry and trade",
+      "uid": "unique_id_stub",
+      "value": 251511854,
+      "year": 2016,
     },
-  },
-  \\"dataC\\": Object {
-    \\"0\\": Object {
-      \\"color\\": \\"#eb642b\\",
-      \\"id\\": \\"oof-loan\\",
-      \\"name\\": \\"OOF Loan\\",
-      \\"uid\\": \\"ByFY3xBYG\\",
-      \\"value\\": 47093434145,
-      \\"year\\": 2013,
+    Object {
+      "color": "#e8443a",
+      "id": "education",
+      "name": "Education",
+      "uid": "unique_id_stub",
+      "value": 1456829853,
+      "year": 2016,
     },
-    \\"1\\": Object {
-      \\"color\\": \\"#0089cc\\",
-      \\"id\\": \\"oof-grant\\",
-      \\"name\\": \\"OOF Grant\\",
-      \\"uid\\": \\"B1xtt2gSKG\\",
-      \\"value\\": 723462217,
-      \\"year\\": 2013,
+    Object {
+      "color": "#893f90",
+      "id": "general-budget-support",
+      "name": "General budget support",
+      "uid": "unique_id_stub",
+      "value": 90330700,
+      "year": 2016,
     },
-  },
-}"
+  ],
+]
 `;
 
 exports[`Unbundling aid DW module tests getting unbundling aid selection options 1`] = `
@@ -142,9 +142,24 @@ exports[`Unbundling aid DW module tests getting unbundling aid selection options
   \\"dataODA\\": Object {
     \\"bundles\\": Array [
       Object {
+        \\"color\\": \\"yellow\\",
+        \\"id\\": \\"mixed-project-aid\\",
+        \\"name\\": \\"Mixed project aid\\",
+      },
+      Object {
         \\"color\\": \\"red\\",
         \\"id\\": \\"cash-loan-equity\\",
         \\"name\\": \\"Cash (loan/equity)\\",
+      },
+      Object {
+        \\"color\\": \\"orange\\",
+        \\"id\\": \\"non-transfer\\",
+        \\"name\\": \\"Non-transfer\\",
+      },
+      Object {
+        \\"color\\": \\"blue-darker\\",
+        \\"id\\": \\"technical-ooperation\\",
+        \\"name\\": \\"Technical cooperation\\",
       },
       Object {
         \\"color\\": \\"red-light\\",
@@ -161,43 +176,8 @@ exports[`Unbundling aid DW module tests getting unbundling aid selection options
         \\"id\\": \\"gpgs-nngos\\",
         \\"name\\": \\"Global Initiatives & NNGOs\\",
       },
-      Object {
-        \\"color\\": \\"yellow\\",
-        \\"id\\": \\"mixed-project-aid\\",
-        \\"name\\": \\"Mixed project aid\\",
-      },
-      Object {
-        \\"color\\": \\"orange\\",
-        \\"id\\": \\"non-transfer\\",
-        \\"name\\": \\"Non-transfer\\",
-      },
-      Object {
-        \\"color\\": \\"blue-darker\\",
-        \\"id\\": \\"technical-ooperation\\",
-        \\"name\\": \\"Technical cooperation\\",
-      },
     ],
     \\"channels\\": Array [
-      Object {
-        \\"color\\": \\"red\\",
-        \\"id\\": \\"public-sector-unknown\\",
-        \\"name\\": \\"Public sector (unknown country)\\",
-      },
-      Object {
-        \\"color\\": \\"blue\\",
-        \\"id\\": \\"public-sector-donor\\",
-        \\"name\\": \\"Public sector (donor government)\\",
-      },
-      Object {
-        \\"color\\": \\"purple\\",
-        \\"id\\": \\"public-sector-recipient\\",
-        \\"name\\": \\"Public sector (recipient government)\\",
-      },
-      Object {
-        \\"color\\": \\"green\\",
-        \\"id\\": \\"ngo-unknown\\",
-        \\"name\\": \\"NGO (unknown country)\\",
-      },
       Object {
         \\"color\\": \\"pink\\",
         \\"id\\": \\"ngo-donor\\",
@@ -209,9 +189,14 @@ exports[`Unbundling aid DW module tests getting unbundling aid selection options
         \\"name\\": \\"NGO (recipient-country based)\\",
       },
       Object {
-        \\"color\\": \\"orange\\",
-        \\"id\\": \\"public-private-partnership\\",
-        \\"name\\": \\"Public private partnership\\",
+        \\"color\\": \\"blue\\",
+        \\"id\\": \\"public-sector-donor\\",
+        \\"name\\": \\"Public sector (donor government)\\",
+      },
+      Object {
+        \\"color\\": \\"red\\",
+        \\"id\\": \\"public-sector-unknown\\",
+        \\"name\\": \\"Public sector (unknown country)\\",
       },
       Object {
         \\"color\\": \\"purple-light\\",
@@ -219,14 +204,37 @@ exports[`Unbundling aid DW module tests getting unbundling aid selection options
         \\"name\\": \\"Multilateral\\",
       },
       Object {
-        \\"color\\": \\"blue-light\\",
-        \\"id\\": \\"other\\",
-        \\"name\\": \\"Other (private sector, think-tank, etc.)\\",
+        \\"id\\": \\"private-sector-institution\\",
+        \\"name\\": \\"private-sector-institution\\",
+      },
+      Object {
+        \\"color\\": \\"green\\",
+        \\"id\\": \\"ngo-unknown\\",
+        \\"name\\": \\"NGO (unknown country)\\",
+      },
+      Object {
+        \\"color\\": \\"purple\\",
+        \\"id\\": \\"public-sector-recipient\\",
+        \\"name\\": \\"Public sector (recipient government)\\",
+      },
+      Object {
+        \\"id\\": \\"university-research-institute-etc\\",
+        \\"name\\": \\"university-research-institute-etc\\",
       },
       Object {
         \\"color\\": \\"grey\\",
         \\"id\\": \\"unspecified\\",
         \\"name\\": \\"Unspecified\\",
+      },
+      Object {
+        \\"color\\": \\"orange-light\\",
+        \\"id\\": \\"ppps-and-networks\\",
+        \\"name\\": \\"Public private partnership and Networks\\",
+      },
+      Object {
+        \\"color\\": \\"blue-light\\",
+        \\"id\\": \\"other\\",
+        \\"name\\": \\"Other (private sector, think-tank, etc.)\\",
       },
     ],
     \\"from\\": Array [
@@ -605,74 +613,14 @@ exports[`Unbundling aid DW module tests getting unbundling aid selection options
     ],
     \\"sectors\\": Array [
       Object {
-        \\"color\\": \\"red\\",
-        \\"id\\": \\"agriculture-and-food-security\\",
-        \\"name\\": \\"Agriculture and food security\\",
-      },
-      Object {
-        \\"color\\": \\"pink-light\\",
-        \\"id\\": \\"banking-and-business\\",
-        \\"name\\": \\"Banking and business\\",
-      },
-      Object {
-        \\"color\\": \\"red-darker\\",
-        \\"id\\": \\"debt-relief\\",
-        \\"name\\": \\"Debt relief\\",
-      },
-      Object {
-        \\"color\\": \\"red\\",
-        \\"id\\": \\"education\\",
-        \\"name\\": \\"Education\\",
-      },
-      Object {
-        \\"color\\": \\"orange-light\\",
-        \\"id\\": \\"environment\\",
-        \\"name\\": \\"Environment\\",
-      },
-      Object {
-        \\"color\\": \\"purple\\",
-        \\"id\\": \\"general-budget-support\\",
-        \\"name\\": \\"General budget support\\",
-      },
-      Object {
-        \\"color\\": \\"orange\\",
-        \\"id\\": \\"governance-and-security\\",
-        \\"name\\": \\"Governance and security\\",
-      },
-      Object {
-        \\"color\\": \\"orange-dark\\",
-        \\"id\\": \\"governance-security-and-civil-society\\",
-        \\"name\\": \\"Governance, security and civil society\\",
-      },
-      Object {
-        \\"color\\": \\"green-dark\\",
-        \\"id\\": \\"health\\",
-        \\"name\\": \\"Health\\",
-      },
-      Object {
         \\"color\\": \\"red-dark\\",
         \\"id\\": \\"humanitarian\\",
         \\"name\\": \\"Humanitarian\\",
       },
       Object {
-        \\"color\\": \\"blue-light\\",
-        \\"id\\": \\"industry-and-trade\\",
-        \\"name\\": \\"Industry and trade\\",
-      },
-      Object {
-        \\"color\\": \\"orange-light\\",
-        \\"id\\": \\"infrastructure\\",
-        \\"name\\": \\"Infrastructure\\",
-      },
-      Object {
-        \\"color\\": \\"purple-dark\\",
-        \\"id\\": \\"other\\",
-        \\"name\\": \\"Other\\",
-      },
-      Object {
-        \\"color\\": \\"purple\\",
-        \\"id\\": \\"other-social-services\\",
-        \\"name\\": \\"Other social services\\",
+        \\"color\\": \\"red\\",
+        \\"id\\": \\"agriculture-and-food-security\\",
+        \\"name\\": \\"Agriculture and food security\\",
       },
       Object {
         \\"color\\": \\"blue\\",
@@ -680,9 +628,59 @@ exports[`Unbundling aid DW module tests getting unbundling aid selection options
         \\"name\\": \\"Water and sanitation\\",
       },
       Object {
-        \\"color\\": \\"grey-dark\\",
-        \\"id\\": \\"other-sectors-grouped\\",
-        \\"name\\": \\"Other sectors (grouped)\\",
+        \\"color\\": \\"purple\\",
+        \\"id\\": \\"general-budget-support\\",
+        \\"name\\": \\"General budget support\\",
+      },
+      Object {
+        \\"color\\": \\"red\\",
+        \\"id\\": \\"education\\",
+        \\"name\\": \\"Education\\",
+      },
+      Object {
+        \\"color\\": \\"green-dark\\",
+        \\"id\\": \\"health\\",
+        \\"name\\": \\"Health\\",
+      },
+      Object {
+        \\"color\\": \\"orange-dark\\",
+        \\"id\\": \\"governance-security-and-civil-society\\",
+        \\"name\\": \\"Governance, security and civil society\\",
+      },
+      Object {
+        \\"color\\": \\"purple\\",
+        \\"id\\": \\"other-social-services\\",
+        \\"name\\": \\"Other social services\\",
+      },
+      Object {
+        \\"color\\": \\"red-darker\\",
+        \\"id\\": \\"debt-relief\\",
+        \\"name\\": \\"Debt relief\\",
+      },
+      Object {
+        \\"color\\": \\"orange-light\\",
+        \\"id\\": \\"infrastructure\\",
+        \\"name\\": \\"Infrastructure\\",
+      },
+      Object {
+        \\"color\\": \\"orange-light\\",
+        \\"id\\": \\"environment\\",
+        \\"name\\": \\"Environment\\",
+      },
+      Object {
+        \\"color\\": \\"pink-light\\",
+        \\"id\\": \\"banking-and-business\\",
+        \\"name\\": \\"Banking and business\\",
+      },
+      Object {
+        \\"color\\": \\"purple-dark\\",
+        \\"id\\": \\"other\\",
+        \\"name\\": \\"Other\\",
+      },
+      Object {
+        \\"color\\": \\"blue-light\\",
+        \\"id\\": \\"industry-and-trade\\",
+        \\"name\\": \\"Industry and trade\\",
       },
     ],
     \\"to\\": Array [
@@ -1408,39 +1406,19 @@ exports[`Unbundling aid DW module tests getting unbundling aid selection options
     ],
     \\"channels\\": Array [
       Object {
-        \\"color\\": \\"red\\",
-        \\"id\\": \\"public-sector-unknown\\",
-        \\"name\\": \\"Public sector (unknown country)\\",
-      },
-      Object {
-        \\"color\\": \\"blue\\",
-        \\"id\\": \\"public-sector-donor\\",
-        \\"name\\": \\"Public sector (donor government)\\",
-      },
-      Object {
         \\"color\\": \\"purple\\",
         \\"id\\": \\"public-sector-recipient\\",
         \\"name\\": \\"Public sector (recipient government)\\",
       },
       Object {
-        \\"color\\": \\"green\\",
-        \\"id\\": \\"ngo-unknown\\",
-        \\"name\\": \\"NGO (unknown country)\\",
+        \\"color\\": \\"red\\",
+        \\"id\\": \\"public-sector-unknown\\",
+        \\"name\\": \\"Public sector (unknown country)\\",
       },
       Object {
-        \\"color\\": \\"pink\\",
-        \\"id\\": \\"ngo-donor\\",
-        \\"name\\": \\"NGO (donor-country based)\\",
-      },
-      Object {
-        \\"color\\": \\"red-light\\",
-        \\"id\\": \\"ngo-recipient\\",
-        \\"name\\": \\"NGO (recipient-country based)\\",
-      },
-      Object {
-        \\"color\\": \\"orange\\",
-        \\"id\\": \\"public-private-partnership\\",
-        \\"name\\": \\"Public private partnership\\",
+        \\"color\\": \\"grey\\",
+        \\"id\\": \\"unspecified\\",
+        \\"name\\": \\"Unspecified\\",
       },
       Object {
         \\"color\\": \\"purple-light\\",
@@ -1451,11 +1429,6 @@ exports[`Unbundling aid DW module tests getting unbundling aid selection options
         \\"color\\": \\"blue-light\\",
         \\"id\\": \\"other\\",
         \\"name\\": \\"Other (private sector, think-tank, etc.)\\",
-      },
-      Object {
-        \\"color\\": \\"grey\\",
-        \\"id\\": \\"unspecified\\",
-        \\"name\\": \\"Unspecified\\",
       },
     ],
     \\"from\\": Array [
@@ -1839,69 +1812,9 @@ exports[`Unbundling aid DW module tests getting unbundling aid selection options
         \\"name\\": \\"Agriculture and food security\\",
       },
       Object {
-        \\"color\\": \\"pink-light\\",
-        \\"id\\": \\"banking-and-business\\",
-        \\"name\\": \\"Banking and business\\",
-      },
-      Object {
-        \\"color\\": \\"red-darker\\",
-        \\"id\\": \\"debt-relief\\",
-        \\"name\\": \\"Debt relief\\",
-      },
-      Object {
-        \\"color\\": \\"red\\",
-        \\"id\\": \\"education\\",
-        \\"name\\": \\"Education\\",
-      },
-      Object {
-        \\"color\\": \\"orange-light\\",
-        \\"id\\": \\"environment\\",
-        \\"name\\": \\"Environment\\",
-      },
-      Object {
-        \\"color\\": \\"purple\\",
-        \\"id\\": \\"general-budget-support\\",
-        \\"name\\": \\"General budget support\\",
-      },
-      Object {
-        \\"color\\": \\"orange\\",
-        \\"id\\": \\"governance-and-security\\",
-        \\"name\\": \\"Governance and security\\",
-      },
-      Object {
-        \\"color\\": \\"orange-dark\\",
-        \\"id\\": \\"governance-security-and-civil-society\\",
-        \\"name\\": \\"Governance, security and civil society\\",
-      },
-      Object {
-        \\"color\\": \\"green-dark\\",
-        \\"id\\": \\"health\\",
-        \\"name\\": \\"Health\\",
-      },
-      Object {
         \\"color\\": \\"red-dark\\",
         \\"id\\": \\"humanitarian\\",
         \\"name\\": \\"Humanitarian\\",
-      },
-      Object {
-        \\"color\\": \\"blue-light\\",
-        \\"id\\": \\"industry-and-trade\\",
-        \\"name\\": \\"Industry and trade\\",
-      },
-      Object {
-        \\"color\\": \\"orange-light\\",
-        \\"id\\": \\"infrastructure\\",
-        \\"name\\": \\"Infrastructure\\",
-      },
-      Object {
-        \\"color\\": \\"purple-dark\\",
-        \\"id\\": \\"other\\",
-        \\"name\\": \\"Other\\",
-      },
-      Object {
-        \\"color\\": \\"purple\\",
-        \\"id\\": \\"other-social-services\\",
-        \\"name\\": \\"Other social services\\",
       },
       Object {
         \\"color\\": \\"blue\\",
@@ -1909,9 +1822,59 @@ exports[`Unbundling aid DW module tests getting unbundling aid selection options
         \\"name\\": \\"Water and sanitation\\",
       },
       Object {
-        \\"color\\": \\"grey-dark\\",
-        \\"id\\": \\"other-sectors-grouped\\",
-        \\"name\\": \\"Other sectors (grouped)\\",
+        \\"color\\": \\"purple\\",
+        \\"id\\": \\"general-budget-support\\",
+        \\"name\\": \\"General budget support\\",
+      },
+      Object {
+        \\"color\\": \\"red\\",
+        \\"id\\": \\"education\\",
+        \\"name\\": \\"Education\\",
+      },
+      Object {
+        \\"color\\": \\"green-dark\\",
+        \\"id\\": \\"health\\",
+        \\"name\\": \\"Health\\",
+      },
+      Object {
+        \\"color\\": \\"orange-dark\\",
+        \\"id\\": \\"governance-security-and-civil-society\\",
+        \\"name\\": \\"Governance, security and civil society\\",
+      },
+      Object {
+        \\"color\\": \\"purple\\",
+        \\"id\\": \\"other-social-services\\",
+        \\"name\\": \\"Other social services\\",
+      },
+      Object {
+        \\"color\\": \\"red-darker\\",
+        \\"id\\": \\"debt-relief\\",
+        \\"name\\": \\"Debt relief\\",
+      },
+      Object {
+        \\"color\\": \\"orange-light\\",
+        \\"id\\": \\"infrastructure\\",
+        \\"name\\": \\"Infrastructure\\",
+      },
+      Object {
+        \\"color\\": \\"orange-light\\",
+        \\"id\\": \\"environment\\",
+        \\"name\\": \\"Environment\\",
+      },
+      Object {
+        \\"color\\": \\"pink-light\\",
+        \\"id\\": \\"banking-and-business\\",
+        \\"name\\": \\"Banking and business\\",
+      },
+      Object {
+        \\"color\\": \\"purple-dark\\",
+        \\"id\\": \\"other\\",
+        \\"name\\": \\"Other\\",
+      },
+      Object {
+        \\"color\\": \\"blue-light\\",
+        \\"id\\": \\"industry-and-trade\\",
+        \\"name\\": \\"Industry and trade\\",
       },
     ],
     \\"to\\": Array [
@@ -2629,6 +2592,50 @@ exports[`Unbundling aid DW module tests should create sql query args for getting
 "Object {
   \\"year\\": 2015,
 }"
+`;
+
+exports[`Unbundling aid DW module tests should get unbundling aid options from db 1`] = `
+Object {
+  "bundle": Array [
+    "mixed-project-aid",
+    "cash-loan-equity",
+    "non-transfer",
+    "technical-ooperation",
+    "cash-grant",
+    "commodities-food",
+    "gpgs-nngos",
+  ],
+  "channel": Array [
+    "ngo-donor",
+    "ngo-recipient",
+    "public-sector-donor",
+    "public-sector-unknown",
+    "multilateral",
+    "private-sector-institution",
+    "ngo-unknown",
+    "public-sector-recipient",
+    "university-research-institute-etc",
+    "unspecified",
+    "ppps-and-networks",
+    "other",
+  ],
+  "sector": Array [
+    "humanitarian",
+    "agriculture-and-food-security",
+    "water-and-sanitation",
+    "general-budget-support",
+    "education",
+    "health",
+    "governance-security-and-civil-society",
+    "other-social-services",
+    "debt-relief",
+    "infrastructure",
+    "environment",
+    "banking-and-business",
+    "other",
+    "industry-and-trade",
+  ],
+}
 `;
 
 exports[`Unbundling aid DW module tests should return unbundling aid total 1`] = `
