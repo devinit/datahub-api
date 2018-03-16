@@ -10,12 +10,12 @@ describe('Unbundling aid DW module tests', () => {
         const argsA = { aidType: 'oda', year: 2016, groupBy: 'sector', from_di_id: 'GB'};
         // const argsB = { aidType: 'oda', year: 2015, sector: 'banking-and-business', groupBy: 'to_di_id'};
         const argsC = { aidType: 'oof', year: 2013, groupBy: 'bundle'};
-        // const argsD = { aidType: 'oda', year: 2015, groupBy: 'sector'};
+        const argsD = { aidType: 'oda', year: 2015, groupBy: 'channel'};
         const dataC = await unbundlingAid.getUnbundlingAidData(argsC);
         const dataA = await unbundlingAid.getUnbundlingAidData(argsA);
         // const dataC = await unbundlingAid.getUnbundlingAidData(argsC);
-        // const dataD = await unbundlingAid.getUnbundlingAidData(argsD);
-        const result = [dataC, dataA].map(replaceUidInList);
+        const dataD = await unbundlingAid.getUnbundlingAidData(argsD);
+        const result = [dataC, dataA, dataD].map(replaceUidInList);
         expect(result).toMatchSnapshot();
     }, 100000);
     it('should get unbundling aid options from db', async () => {

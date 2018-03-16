@@ -60,10 +60,12 @@ export default class UnbundlingAid {
             const regions: IRegional[] = await getRegional();
             const colors = await getColors();
             return raw.map((obj) => {
-                const entity: IUnbundlingEnitity | undefined = entites.find(item => obj[args.groupBy] === item.id );
+                let entity: IUnbundlingEnitity | undefined = entites.find(item => obj[args.groupBy] === item.id );
                 if (!entity) {
-                    throw new Error(`error getting unbundling aid entity
-                        ${entity} \n for object ${JSON.stringify(obj)}`);
+                    console.error(`error getting unbundling aid entity ${entity} \n for object ${JSON.stringify(obj)}`);
+                    const id = obj[args.groupBy];
+                    const name = capitalize(id.replace(/\-/g, ' '));
+                    entity = {name, id};
                 }
                 let color = entity.color || 'grey';
                 if (entity.type && entity.region) {
