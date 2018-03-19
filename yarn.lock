@@ -45,9 +45,9 @@
     ramda "0.25.0"
     shortid "2.2.8"
 
-"@devinit/prelude@1.1.1:":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@devinit/prelude/-/prelude-1.1.0.tgz#a997f680f0cad8de531ee251a36bb6d8a4ab225f"
+"@devinit/prelude@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@devinit/prelude/-/prelude-1.1.1.tgz#1b03aaa6c23c1cff70268ec850530fa2ecadffb6"
   dependencies:
     "@types/node-fetch" "^1.6.7"
     apollo-fetch "0.7.0"
