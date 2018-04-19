@@ -64,7 +64,8 @@ We are currently test deploying with now and they freeze inactive normal deploym
 Notes
 -------
 
-This repo is published to npm so that we can reuse its types
+- This repo is published to npm so that we can reuse its types
+- for database access look in the @devinit/graphql/next package
 
 
 TODO
