@@ -45,7 +45,7 @@
     ramda "0.25.0"
     shortid "2.2.8"
 
-"@devinit/prelude@1.1.1:":
+"@devinit/prelude@1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@devinit/prelude/-/prelude-1.1.0.tgz#a997f680f0cad8de531ee251a36bb6d8a4ab225f"
   dependencies:
@@ -1912,9 +1912,15 @@ d3-format@1:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/d3-format/-/d3-format-1.2.2.tgz#1a39c479c8a57fe5051b2e67a3bee27061a74e7a"
 
-d3-interpolate@1, d3-interpolate@1.1.6:
+d3-interpolate@1:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/d3-interpolate/-/d3-interpolate-1.1.6.tgz#2cf395ae2381804df08aa1bf766b7f97b5f68fb6"
+  dependencies:
+    d3-color "1"
+
+d3-interpolate@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/d3-interpolate/-/d3-interpolate-1.2.0.tgz#40d81bd8e959ff021c5ea7545bc79b8d22331c41"
   dependencies:
     d3-color "1"
 
