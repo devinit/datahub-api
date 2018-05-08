@@ -1,5 +1,6 @@
-import {makeSqlAggregateQuery, isDonor} from '.';
+import {makeSqlAggregateQuery, isDonor, missingParentsData} from '.';
 import * as prettyFormat from 'pretty-format';
+import data from './testData/tree';
 import {approximate, toId, getTotal, normalizeKeyName} from '@devinit/prelude';
 
 const dataA = [
@@ -61,4 +62,8 @@ describe('Utility functions test', () => {
         expect(isDonorCountryA).toBe(false);
         expect(isDonorCountryB).toBe(true);
     }, 10000);
+    it('should make tree data', () => {
+        const result = missingParentsData(data);
+        expect(prettyFormat(result)).toMatchSnapshot();
+    });
 });

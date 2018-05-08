@@ -9,7 +9,7 @@ import {isError} from '@devinit/prelude';
 import {getBudgetLevels, IBudgetLevelRef} from '../refs/countryProfile';
 import {IGetIndicatorArgs, IGetIndicatorValueArgs, IhasDiId, IProcessedSimple,
         IRAW, IRAWDomestic, IToolTipArgs, ISpotlightGetIndicatorArgs,
-        IGetIndicatorArgsSimple} from './types';
+        IGetIndicatorArgsSimple, IMissingDomesticParent} from './types';
 import {approximate, toNumericFields, toId, getTableNameFromSql} from '@devinit/prelude';
 
 export const RECIPIENT = 'recipient';
@@ -205,4 +205,53 @@ export const makeSqlAggregateQuery = (queryArgs: any, groupByField: string, tabl
             return field === 'year' ? `${query} ${field} = ${queryArgs[field]} ${AND}`
                 : `${query} ${field} = '${queryArgs[field]}' ${AND}`; // we need to enclose field values in quotes
         }, `SELECT ${groupByField}, year, sum(value) AS value from ${table} WHERE value > 0 AND`);
+};
+
+// A patch of domestic data with missing parent entries
+// Ideally every entry in domestic table should have a parent entry i,e data of the form [l1: a, l2: b, l3:c]
+// l1: a, l2: b, l3:d]  should have a corresponding entry with [l1: a, l2: b] as parent so to speak.
+// solution find data with missing parent levels, get that datas children and sum it up to create new parent entry
+
+export const missingParentsData = (data: DH.IDomestic[]): DH.IDomestic[][] => {
+    return [3, 4].map((level) => {
+        const levelParentData = data.filter(obj => obj.levels.length === level - 1);
+        const levelChildrenData = data.filter(obj => obj.levels.length === level);
+        // parents that are missing in the raw data
+        const missingParents = levelChildrenData.map(child => {
+            // for each child confirm it has a standalone parent
+            const childParent = levelParentData.filter(parent => {
+                // the last parent item in level 2 should be the 2nd last item in level 3
+                return R.last(parent.levels) === R.last(R.init(child.levels));
+            });
+            if (!childParent.length) {
+                return {
+                    levels: R.init(child.levels),
+                    uid: R.init(child.levels).join(''),
+                    level: `l${level - 1}`,
+                    child
+                };
+            }
+            return undefined;
+        })
+        .filter(item => item && item.level) as IMissingDomesticParent[];
+        // create the missing parents
+        return missingParents.reduce((acc, obj) => {
+            const baseParent = {...obj.child, levels: obj.levels, uid: obj.uid};
+            if (acc.length) {
+                const similarParent = acc.find(parent => parent.uid === obj.uid);
+                if (similarParent) {
+                    const joinedParent = {
+                        ...similarParent,
+                        value: obj.child.value + similarParent.value,
+                        value_ncu: obj.child.value_ncu + similarParent.value_ncu
+                    };
+                    // remove previous parent from list
+                    const newParentsList = acc.filter(objP => objP.uid !== joinedParent.uid);
+                    return [...newParentsList, joinedParent];
+                }
+                return [...acc, baseParent];
+            }
+            return [baseParent];
+        }, [] as DH.IDomestic[]);
+    });
 };

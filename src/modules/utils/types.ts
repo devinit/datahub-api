@@ -1,5 +1,12 @@
 import {IDB} from '@devinit/graphql-next/lib/db';
 
+export interface IMissingDomesticParent {
+    level: string;
+    levels: string[]; // for debugging
+    child: DH.IDomestic;
+    uid: string;
+}
+
 export interface IGetIndicatorArgs {
     id?: string;
     query: string;
@@ -84,10 +91,12 @@ export interface IRAWDomestic {
     di_id: string;
     year: string;
     budget_type: string;
+    value: number;
+    value_ncu: number;
     l1: string;
-    l2: string;
-    l3: string;
-    l4: string;
+    l2?: string;
+    l3?: string;
+    l4?: string;
 }
 export interface IToolTipArgs {
     query?: string;
@@ -111,4 +120,13 @@ export interface IGetIndicatorValueArgs {
     precision?: number;
     db: IDB;
     format: boolean;
+}
+
+export interface IDomesticTree {
+    id: string;
+    year: string;
+    budget_type: string;
+    value: number;
+    value_ncu: number;
+    children: IDomesticTree[];
 }
