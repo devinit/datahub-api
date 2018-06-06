@@ -45,7 +45,7 @@
     ramda "0.25.0"
     shortid "2.2.8"
 
-"@devinit/prelude@1.1.1:":
+"@devinit/prelude@1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@devinit/prelude/-/prelude-1.1.0.tgz#a997f680f0cad8de531ee251a36bb6d8a4ab225f"
   dependencies:
@@ -171,9 +171,9 @@
   version "22.2.0"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-22.2.0.tgz#55ce83139f7ad1b48b414c3927746614c6963c0f"
 
-"@types/lru-cache@4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@types/lru-cache/-/lru-cache-4.1.0.tgz#ef69ce9c3ebb46bd146f0d80f0c1ce38b0508eae"
+"@types/lru-cache@4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@types/lru-cache/-/lru-cache-4.1.1.tgz#b2d87a5e3df8d4b18ca426c5105cd701c2306d40"
 
 "@types/mime@*":
   version "2.0.0"
