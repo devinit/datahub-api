@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "noEmitOnError": false,
+    "sourceMap": false,
+    "target": "es6",
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "lib": [
+      "dom",
+      "es2017",
+      "esnext.asynciterable"
+    ],
+    "declaration": false,
+    "removeComments": true,
+    "noLib": false,
+    "watch": false,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "strict": true,
+    "strictFunctionTypes": false,
+    "skipLibCheck": false,
+    "jsx": "react",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
+  },
+  "exclude": [
+    "out",
+    "lib",
+    "node_modules"
+  ]
+}
