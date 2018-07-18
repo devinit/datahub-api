@@ -214,3 +214,12 @@ SELECT value FROM fact.gni_usd_2015 WHERE di_id = 'IT' AND year = 2015:dw
 country-profile/flow-type.csv:cms
 SELECT flow_name, year,flow_type,direction,value FROM data_series.intl_flows_donors WHERE di_id = 'IT' AND year >= 2000 AND year <= 2015 AND value > 0 GROUP BY flow_name,year,flow_type,direction,value:dw
 SELECT flow_name, year,flow_type,direction,value FROM data_series.intl_flows_donors WHERE di_id = 'IT' AND year = 2015 AND direction = 'out' AND value > 0 GROUP BY flow_name,year,flow_type,direction,value:dw
+SELECT * FROM data_series.2013_p20_population WHERE year = 2013 AND value IS NOT NULL:dw
+SELECT * FROM data_series."2013_p20_population" WHERE year >= 1990 AND year <= 2013 AND value IS NOT NULL:dw
+SELECT * FROM data_series."2013_p20_population" WHERE year = 2013 AND value IS NOT NULL:dw
+SELECT * FROM "data_series".“2013_p20_population” WHERE year = 2013 AND value IS NOT NULL:dw
+SELECT * FROM data_series.“2013_p20_population” WHERE year = 2013 AND value IS NOT NULL:dw
+SELECT * FROM "data_series"."2013_p20_population" WHERE year = 2013 AND value IS NOT NULL:dw
+SELECT * FROM "data_series"."depth_of_extreme_poverty_190" WHERE year = 2013 AND value IS NOT NULL:dw
+SELECT * FROM "data_series"."poverty_310" WHERE year >= 1981 AND year <= 2013 AND value IS NOT NULL:dw
+SELECT * FROM "spotlight_on_uganda_2017"."uganda_life_expectancy" WHERE year = 2014 AND value IS NOT NULL:dw

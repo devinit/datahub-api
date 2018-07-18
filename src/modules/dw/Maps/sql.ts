@@ -1,3 +1,4 @@
+// tslint:disable no-invalid-template-strings
 export default {
     indicatorRange: 'SELECT * FROM ${table^} WHERE year >= ${start_year} AND year <= ${end_year} AND value IS NOT NULL',
     indicator: 'SELECT * FROM ${table^} WHERE year = ${start_year} AND value IS NOT NULL'

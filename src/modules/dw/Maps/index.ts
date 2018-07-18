@@ -185,23 +185,28 @@ export default class Maps {
         this.db = db;
     }
 
-    public async getMapData(id: string): Promise<DH.IMapData> {
+    async getMapData(id: string): Promise<DH.IMapData> {
         try {
             const country = await Maps.getCountry(id);
-            const concept: IConcept = country === 'global' ?
-            await getConceptAsync('global-picture', id)
-            : await getConceptAsync(`spotlight-${country}`, id);
+            const concept: IConcept = country === 'global'
+                ? await getConceptAsync('global-picture', id)
+                : await getConceptAsync(`spotlight-${country}`, id);
+
             const end_year = concept.end_year ? concept.end_year : concept.start_year;
             const default_year = concept.default_year ? concept.default_year : end_year;
             if (concept.map_style) {
                 const styledMapLegend = await this.getStyledMapData(concept);
 
                 return {
-                    map: [], legend: styledMapLegend,
-                    ...concept, country, end_year, default_year
+                    ...concept,
+                    map: [],
+                    legend: styledMapLegend,
+                    country,
+                    end_year,
+                    default_year
                 } as DH.IMapData;
             }
-            // we merge concept and graphql qery options, they have startYear and endYear variables
+            // we merge concept and graphql query options, they have startYear and endYear variables
             const { mapData, legend } = await this.getMapIndicatorData(concept, country);
             const DACCountries = concept.dac_only ? await this.getDACCountries() : [];
             const data = DACCountries.length ? Maps.DACOnlyData(DACCountries, mapData) : mapData;
@@ -213,7 +218,7 @@ export default class Maps {
         }
     }
 
-    private async getStyledMapData(concept: IConcept): Promise<DH.ILegendField[]> {
+    async getStyledMapData(concept: IConcept): Promise<DH.ILegendField[]> {
         if (!concept.range || !concept.color) {
             throw new Error('indicator with mapbox map style msissing color & range');
         }
