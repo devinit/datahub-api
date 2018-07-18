@@ -1,16 +1,16 @@
 import * as R from 'ramda';
-import {getConceptAsync, IConcept} from '../refs/concept';
-import {getDistrictBySlugAsync, IDistrict} from '../refs/spotlight';
+import { IConcept, getConceptAsync } from '../refs/concept';
+import { IDistrict, getDistrictBySlugAsync } from '../refs/spotlight';
 import * as shortid from 'shortid';
-import {IEntity, getEntityByIdGeneric, getFinancingType, getCreditorType, getColors, IColor,
-        getDestinationInstitutionType, getFlowType, ICurrency, getCurrency,
-        getSectors, getBundles, getChannels, getEntities, getEntityBySlugAsync} from '../refs/global';
-import {isError} from '@devinit/prelude';
-import {getBudgetLevels, IBudgetLevelRef} from '../refs/countryProfile';
-import {IGetIndicatorArgs, IGetIndicatorValueArgs, IhasDiId, IProcessedSimple,
-        IRAW, IRAWDomestic, IToolTipArgs, ISpotlightGetIndicatorArgs,
-        IGetIndicatorArgsSimple, IMissingDomesticParent} from './types';
-import {approximate, toNumericFields, toId, getTableNameFromSql} from '@devinit/prelude';
+import { IColor, ICurrency, IEntity, getBundles, getChannels, getColors,
+        getCreditorType, getCurrency, getDestinationInstitutionType, getEntities,
+        getEntityByIdGeneric, getEntityBySlugAsync, getFinancingType, getFlowType, getSectors } from '../refs/global';
+import { isError } from '@devinit/prelude';
+import { IBudgetLevelRef, getBudgetLevels } from '../refs/countryProfile';
+import { IGetIndicatorArgs, IGetIndicatorArgsSimple, IGetIndicatorValueArgs, IMissingDomesticParent,
+        IProcessedSimple, IRAW, IRAWDomestic, ISpotlightGetIndicatorArgs,
+        IToolTipArgs, IhasDiId } from './types';
+import { approximate, getTableNameFromSql, toId, toNumericFields } from '@devinit/prelude';
 
 export const RECIPIENT = 'recipient';
 export const DONOR = 'donor';
@@ -36,14 +36,14 @@ export const entitesFnMap = {
     flow_type: getFlowType,
     from_di_id:  getEntities,
     to_di_id: getEntities,
-    from: getEntities,
+    from: getEntities
 };
 
 export const getCurrencyCode = async (id: string): Promise<string>  => {
     try {
         const currencyList: ICurrency[] = await getCurrency();
         const entity: IEntity | undefined = await getEntityBySlugAsync(id);
-        if (!entity) throw new Error(`entity was not found for slug: ${id}`);
+        if (!entity) { throw new Error(`entity was not found for slug: ${id}`); }
         const currency: ICurrency | undefined = R.find(R.propEq('id', entity.id), currencyList) as ICurrency;
         return currency ? currency.code : 'NCU';
     } catch (error) {
@@ -53,38 +53,38 @@ export const getCurrencyCode = async (id: string): Promise<string>  => {
 
 export const getSpotlightTableName = (country: string, query: string): string => {
     const tableStr = getTableNameFromSql(query);
-    if (isError(tableStr)) throw new Error(`error getting table name for : ${query}`);
+    if (isError(tableStr)) { throw new Error(`error getting table name for : ${query}`); }
     const schema =  `spotlight_on_${country}`;
     return tableStr
             .replace(/\${schema\^}/, schema)
             .replace(/\${country\^}/, country);
 };
 
-export const getIndicatorToolTip = async ({query, conceptType, id}: IToolTipArgs): Promise<DH.IToolTip> => {
+export const getIndicatorToolTip = async ({ query, conceptType, id }: IToolTipArgs): Promise<DH.IToolTip> => {
     const country: string = conceptType.includes('spotlight-') ?  conceptType.split('-')[1] : '';
     let indicatorId: string = id || '';
     if (query) {
         const eitherId: string | Error = !country ? getTableNameFromSql(query) : getSpotlightTableName(country, query);
-        if (isError(eitherId)) throw new Error (`failed to get indicator id from sql query; ${indicatorId}`);
+        if (isError(eitherId)) { throw new Error (`failed to get indicator id from sql query; ${indicatorId}`); }
         indicatorId = eitherId as string;
     }
     const concept: IConcept = await getConceptAsync(conceptType, indicatorId);
-    return {source: concept.source, heading: concept.description || concept.heading};
+    return { source: concept.source, heading: concept.description || concept.heading };
 };
 
 // used by country profile and spotlights
 export async function getIndicatorData<T>(opts: IGetIndicatorArgs): Promise<T[]> {
-    const {db, query, id, conceptType, table} = opts;
+    const { db, query, id, conceptType, table } = opts;
     const tableName = !table ? getTableNameFromSql(query) : table;
-    if (isError(tableName)) throw Error(`error getting table name: ${query}`);
+    if (isError(tableName)) { throw Error(`error getting table name: ${query}`); }
     let countryEntity: any = {};
-    if ( conceptType === 'country-profile' && id) countryEntity =  await getEntityBySlugAsync(id);
+    if (conceptType === 'country-profile' && id) { countryEntity =  await getEntityBySlugAsync(id); }
     let theme =  conceptType === 'country-profile' ? countryEntity.donor_recipient_type : undefined;
-    if (theme === 'crossover') theme = RECIPIENT;
+    if (theme === 'crossover') { theme = RECIPIENT; }
     const concept: IConcept = await getConceptAsync(conceptType, tableName, theme);
-    const baseQueryArgs = {...concept, ...opts, table: tableName };
+    const baseQueryArgs = { ...concept, ...opts, table: tableName };
     if (conceptType === 'country-profile') {
-        const queryArgs = {...baseQueryArgs, id: countryEntity.id};
+        const queryArgs = { ...baseQueryArgs, id: countryEntity.id };
         return db.manyCacheable(query, queryArgs);
     }
     return db.manyCacheable(query, baseQueryArgs);
@@ -92,20 +92,20 @@ export async function getIndicatorData<T>(opts: IGetIndicatorArgs): Promise<T[]>
 
 // used by spotlights
 export async function getIndicatorDataSpotlights<T>(opts: ISpotlightGetIndicatorArgs): Promise<T[]> {
-    const {db, query, id, conceptType, country, table} = opts;
+    const { db, query, id, conceptType, country, table } = opts;
     const tableName = !table && country && query ? getSpotlightTableName(country, query) : table;
-    if (!tableName) throw new Error('Provide a valid table name or query string');
+    if (!tableName) { throw new Error('Provide a valid table name or query string'); }
     const spotlightEntity: IDistrict =  await getDistrictBySlugAsync(country, id);
     const concept: IConcept = await getConceptAsync(conceptType, tableName);
-    const queryArgs = {...opts, ...concept, id: spotlightEntity.id, country};
+    const queryArgs = { ...opts, ...concept, id: spotlightEntity.id, country };
     return db.manyCacheable(query, queryArgs);
 }
 
-export const getIndicatorsValue = async ({id, sqlList, db, format = true, precision}: IGetIndicatorValueArgs)
+export const getIndicatorsValue = async ({ id, sqlList, db, format = true, precision }: IGetIndicatorValueArgs)
     : Promise<DH.IIndicatorValueWithToolTip[]>  => {
     try {
         const indicatorArgs: IGetIndicatorArgs[] =
-                sqlList.map(query => ({db, conceptType: 'country-profile', query, id}));
+                sqlList.map(query => ({ db, conceptType: 'country-profile', query, id }));
         const indicatorRaw: IRAW[][] = await Promise.all(indicatorArgs.map(args => getIndicatorData<IRAW>(args)));
         const toolTips: DH.IToolTip[] =
             await Promise.all(indicatorArgs.map(args => getIndicatorToolTip(args)));
@@ -113,9 +113,9 @@ export const getIndicatorsValue = async ({id, sqlList, db, format = true, precis
         return indicatorRaw.map((data, index) => {
             const toolTip = toolTips[index];
             let value = 'No data';
-            if (data && data[0] && data[0].value && format) value = approximate(data[0].value, precisionFix, true);
-            if (data && data[0] && data[0].value && !format) value = Math.round(Number(data[0].value)).toString();
-            return {value, toolTip};
+            if (data && data[0] && data[0].value && format) { value = approximate(data[0].value, precisionFix, true); }
+            if (data && data[0] && data[0].value && !format) { value = Math.round(Number(data[0].value)).toString(); }
+            return { value, toolTip };
         });
     } catch (error) {
         throw error;
@@ -124,24 +124,36 @@ export const getIndicatorsValue = async ({id, sqlList, db, format = true, precis
 
 // used by maps module
 export const getIndicatorDataSimple = async <T extends {}> (opts: IGetIndicatorArgsSimple): Promise<T[]> => {
-        const {table, sql, db, query, start_year, end_year} = opts;
-        let queryStr = '';
-        if (!query && sql) queryStr = Number(end_year) ? sql.indicatorRange :  sql.indicator;
-        if (query) queryStr = query;
-        const tableName = !table ? getTableNameFromSql(queryStr) : table;
-        if (isError(tableName)) throw new Error('No valid table name provided');
-        if (!queryStr.length) throw new Error('invalid query string');
-        // console.log(queryStr, {start_year, end_year, table: tableName});
-        return db.manyCacheable(queryStr, {start_year, end_year, table: tableName});
+  const { table, sql, db, query, start_year, end_year } = opts;
+  let queryStr = '';
+  if (!query && sql) {
+    queryStr = Number(end_year) ? sql.indicatorRange : sql.indicator;
+  }
+  if (query) {
+    queryStr = query;
+  }
+  const tableName = table || getTableNameFromSql(queryStr);
+  if (isError(tableName)) {
+    throw new Error('No valid table name provided');
+  }
+  if (!queryStr.length) {
+    throw new Error('invalid query string');
+  }
+
+  return db.manyCacheable(queryStr, { start_year, end_year, table: formatTableName(tableName) });
+};
+
+export const formatTableName = (tableName: string): string => {
+  return tableName.split('.').map(portion => `"${portion}"`).join('.');
 };
 
 export const indicatorDataProcessingSimple = <T extends {}>(data: any, country?: string): T[] => {
-    return data
-            .map(toId)
-            .map((obj) =>
-                country === 'global' || !country  ?  obj :  {...obj, id: obj.district_id})
-            .map(obj => ({...obj, uid: shortid.generate()}))
-            .map(toNumericFields);
+  return data
+    .map(toId)
+    .map((obj) =>
+      country === 'global' || !country ? obj : { ...obj, id: obj.district_id })
+    .map(obj => ({ ...obj, uid: shortid.generate() }))
+    .map(toNumericFields);
 };
 
 // adds reference names to Ids
@@ -151,7 +163,7 @@ export const indicatorDataProcessingNamed = async (data: IhasDiId[]):
     const entities: IEntity[] =  await getEntities();
     return processed.map(obj => {
         const entity = getEntityByIdGeneric<IEntity>(obj.id, entities);
-        return {...obj, name: entity.name, uid: shortid.generate(), color: null};
+        return { ...obj, name: entity.name, uid: shortid.generate(), color: null };
     });
 };
 export const addColorToDomesticLevels =
@@ -165,7 +177,7 @@ export const addColorToDomesticLevels =
                 const levelRefColor = levelRef && levelRef.color ? levelRef.color : 'blue-light';
                 return getEntityByIdGeneric(levelRefColor, colors);
             });
-        if (levels.length < 2) return colorObjs[0].value; // we only use the 1st and 2nd level colors
+        if (levels.length < 2) { return colorObjs[0].value; } // we only use the 1st and 2nd level colors
         return colorObjs[1].value;
 };
 export const domesticDataProcessing = async (data: IRAWDomestic[], country?: string)
@@ -175,23 +187,23 @@ export const domesticDataProcessing = async (data: IRAWDomestic[], country?: str
     return indicatorDataProcessingSimple(data)
             .map((obj: any) => { // TODO: make type for IRAWDomestic processed
                 const levelKeys: string[] = R.keys(obj).filter(key => R.test(/^l[0-9]/, key));
-                if (!levelKeys) throw new Error(`Levels missing in budget data ${JSON.stringify(obj)}`);
+                if (!levelKeys) { throw new Error(`Levels missing in budget data ${JSON.stringify(obj)}`); }
                 const levels = levelKeys.map(key => {
                     const budgetLevel: IBudgetLevelRef | undefined = budgetRefs.find(ref => ref.id === obj[key]);
-                    if (!budgetLevel)  return obj[key];
+                    if (!budgetLevel) {  return obj[key]; }
                     return budgetLevel.name;
                 }).filter(level => level !== null);
                 const color = addColorToDomesticLevels(levels, budgetRefs, colors);
                 const uid: string = shortid.generate();
                 const budget_type = budgetTypesRefs[obj.budget_type];
-                return {...obj, budget_type, uid, levels, color} as DH.IDomestic;
+                return { ...obj, budget_type, uid, levels, color } as DH.IDomestic;
             });
 };
 
 export const isDonor = async (slug: string): Promise<boolean>  => {
     const obj: IEntity | undefined = await getEntityBySlugAsync(slug);
-    if (!obj) throw new Error('Error in isDonor function, entity is undefined');
-    if (obj.donor_recipient_type === DONOR) return true;
+    if (!obj) { throw new Error('Error in isDonor function, entity is undefined'); }
+    if (obj.donor_recipient_type === DONOR) { return true; }
     return false;
 };
 
@@ -213,7 +225,7 @@ export const makeSqlAggregateQuery = (queryArgs: any, groupByField: string, tabl
 // solution find data with missing parent levels, get that datas children and sum it up to create new parent entry
 
 export const missingParentsData = (data: DH.IDomestic[]): DH.IDomestic[][] => {
-    return [3, 4].map((level) => {
+    return [ 3, 4 ].map((level) => {
         const levelParentData = data.filter(obj => obj.levels.length === level - 1);
         const levelChildrenData = data.filter(obj => obj.levels.length === level);
         // parents that are missing in the raw data
@@ -236,7 +248,7 @@ export const missingParentsData = (data: DH.IDomestic[]): DH.IDomestic[][] => {
         .filter(item => item && item.level) as IMissingDomesticParent[];
         // create the missing parents
         return missingParents.reduce((acc, obj) => {
-            const baseParent = {...obj.child, levels: obj.levels, uid: obj.uid};
+            const baseParent = { ...obj.child, levels: obj.levels, uid: obj.uid };
             if (acc.length) {
                 const similarParent = acc.find(parent => parent.uid === obj.uid);
                 if (similarParent) {
@@ -247,11 +259,11 @@ export const missingParentsData = (data: DH.IDomestic[]): DH.IDomestic[][] => {
                     };
                     // remove previous parent from list
                     const newParentsList = acc.filter(objP => objP.uid !== joinedParent.uid);
-                    return [...newParentsList, joinedParent];
+                    return [ ...newParentsList, joinedParent ];
                 }
-                return [...acc, baseParent];
+                return [ ...acc, baseParent ];
             }
-            return [baseParent];
+            return [ baseParent ];
         }, [] as DH.IDomestic[]);
     });
 };
