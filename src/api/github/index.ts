@@ -1,13 +1,14 @@
 import * as https from 'https';
 import * as LRU from 'lru-cache';
 import * as converter from 'csvtojson';
-import {queue} from '../cache';
+import { queue } from '../cache';
 
+const branch = process.env.NODE_ENV === 'development' ? 'development' : 'master';
 // connections over github connection options
 const options: https.RequestOptions = {
   hostname: 'raw.githubusercontent.com',
   port: 443,
-  path: '/devinit/datahub-cms/master',
+  path: `/devinit/datahub-cms/${branch}`,
   timeout: 120000 * 2, // 4 mins
   method: 'GET',
   agent: false
@@ -15,14 +16,14 @@ const options: https.RequestOptions = {
 
 export const httpsGet = (endPoint: string): Promise<string> => {
     return new Promise((resolve, reject) => {
-        const opts = {...options, path: `${options.path}/${endPoint}` };
+        const opts = { ...options, path: `${options.path}/${endPoint}` };
         let str = '';
         const req = https.request(opts, (res) => {
             res.setEncoding('utf8');
             res.on('data', (data) => {
                 str = str + data;
             });
-            if (res.statusCode === 404) reject(`${opts.path} not found`);
+            if (res.statusCode === 404) { reject(`${opts.path} not found`); }
             res.on('end', () => resolve(str));
             res.on('error', (error) => reject(`Response error: ${error}`));
         });
@@ -46,12 +47,12 @@ export const cache: LRU.Cache<any, any> = LRU(lruOpts);
 export const csvToJson = <T extends {}> (csvStr: string): Promise<T[]>  =>
     new Promise((resolve, reject) => {
         const data: T[] = [];
-        converter({workerNum: 2, delimiter: ','})
+        converter({ workerNum: 2, delimiter: ',' })
         .fromString(csvStr)
         .on('json', (json) => {
             const parsed = Object.keys(json).reduce((acc, key) => {
                 const value = Number(json[key]) ? Number(json[key]) : json[key];
-                return {...acc, [key.trim()]: value};
+                return { ...acc, [key.trim()]: value };
             }, {}) as T;
             data.push(parsed);
         })
