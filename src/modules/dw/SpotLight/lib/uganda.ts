@@ -1,8 +1,8 @@
 
-import {IDB} from '@devinit/graphql-next/lib/db';
-import {uganda} from './sql';
-import {getIndicatorsGeneric, getPopulationDistribution, getDistrictIndicatorRank,
-    getLocalGovernmentFinance, GetIndicatorFn, ISpotlightArgs} from './utils';
+import { IDB } from '../../../../api/db';
+import { uganda } from './sql';
+import { GetIndicatorFn, ISpotlightArgs, getDistrictIndicatorRank,
+    getIndicatorsGeneric, getLocalGovernmentFinance, getPopulationDistribution } from './utils';
 
 const sql = uganda;
 const country = 'uganda';
@@ -14,16 +14,16 @@ export default class Uganda {
     constructor(db: IDB) {
         this.db = db;
         this.getDistrictIndicatorRank = getDistrictIndicatorRank(this.db);
-        this.getIndicatorsGeneric = getIndicatorsGeneric({country, db: this.db});
+        this.getIndicatorsGeneric = getIndicatorsGeneric({ country, db: this.db });
     }
     // id eg uganda or kenya
-    public async getPopulationTabRegional({id}): Promise<DH.IPopulationTabRegionalUg> {
+    public async getPopulationTabRegional({ id }): Promise<DH.IPopulationTabRegionalUg> {
         try {
-            const [totalPopulation, populationDensity, averageDependencyRatio, allAverageDependencyRatio]
+            const [ totalPopulation, populationDensity, averageDependencyRatio, allAverageDependencyRatio ]
              = await this.getIndicatorsGeneric(id,
-                [sql.totalPopulation, sql.populationDensity,
-                sql.averageDependencyRatio, sql.allAverageDependencyRatio]);
-            const populationDistribution = await getPopulationDistribution(this.db)({id, country});
+                [ sql.totalPopulation, sql.populationDensity,
+                sql.averageDependencyRatio, sql.allAverageDependencyRatio ]);
+            const populationDistribution = await getPopulationDistribution(this.db)({ id, country });
             return {
             totalPopulation,
             populationDensity,
@@ -36,13 +36,13 @@ export default class Uganda {
             throw error;
         }
     }
-    public async getLocalGovernmentFinance({id}): Promise<DH.ILocalGovernmentFinance> {
-        return getLocalGovernmentFinance(this.db)({id, country, startYear: 2013});
+    public async getLocalGovernmentFinance({ id }): Promise<DH.ILocalGovernmentFinance> {
+        return getLocalGovernmentFinance(this.db)({ id, country, startYear: 2013 });
     }
-    public async getPovertyTabRegional({id}): Promise<DH.IPovertyTabUg> {
+    public async getPovertyTabRegional({ id }): Promise<DH.IPovertyTabUg> {
         try {
-            const [poorestPeople, lifeExpectancy, stdOfLiving] =
-                await this.getIndicatorsGeneric(id, [sql.poorestPeople, sql.lifeExpectancy, sql.stdOfLiving]);
+            const [ poorestPeople, lifeExpectancy, stdOfLiving ] =
+                await this.getIndicatorsGeneric(id, [ sql.poorestPeople, sql.lifeExpectancy, sql.stdOfLiving ]);
             return {
                 poorestPeople,
                 lifeExpectancy,
@@ -53,13 +53,13 @@ export default class Uganda {
            throw error;
        }
     }
-    public async getEducationTabRegional({id}): Promise<DH.IEducationTabRegionalUg> {
+    public async getEducationTabRegional({ id }): Promise<DH.IEducationTabRegionalUg> {
          try {
-            const opts = {id, country: 'uganda'};
-            const [pupilTeacherRatioGovtSchl, pupilTeacherRatioOtherSchl, primaryEducationfunding] =
-                await this.getIndicatorsGeneric(id, [sql.pupilTeacherRatioGovtSchl, sql.pupilTeacherRatioOtherSchl,
-                    sql.primaryEducationfunding]);
-            const [studentsPassRate] = await this.getIndicatorsGeneric(id, [sql.studentsPassRate], false);
+            const opts = { id, country: 'uganda' };
+            const [ pupilTeacherRatioGovtSchl, pupilTeacherRatioOtherSchl, primaryEducationfunding ] =
+                await this.getIndicatorsGeneric(id, [ sql.pupilTeacherRatioGovtSchl, sql.pupilTeacherRatioOtherSchl,
+                    sql.primaryEducationfunding ]);
+            const [ studentsPassRate ] = await this.getIndicatorsGeneric(id, [ sql.studentsPassRate ], false);
             const studentsPassDistrictRank = await this.getDistrictIndicatorRank(opts, sql.studentsPassDistrictRank);
             return {
                 pupilTeacherRatioGovtSchl,
@@ -73,13 +73,13 @@ export default class Uganda {
            throw error;
        }
     }
-    public async getHealthTabRegional({id}): Promise<DH.IHealthTabRegionalUg> {
+    public async getHealthTabRegional({ id }): Promise<DH.IHealthTabRegionalUg> {
         try {
-            const [districtPerformance, treatmeantOfTb] =
-                await this.getIndicatorsGeneric(id, [sql.districtHealthPerformance, sql.treatmeantOfTb]);
-            const [healthCareFunding] = await this.getIndicatorsGeneric(id, [sql.healthCareFunding], true);
+            const [ districtPerformance, treatmeantOfTb ] =
+                await this.getIndicatorsGeneric(id, [ sql.districtHealthPerformance, sql.treatmeantOfTb ]);
+            const [ healthCareFunding ] = await this.getIndicatorsGeneric(id, [ sql.healthCareFunding ], true);
             const districtHealthRank =
-                await this.getDistrictIndicatorRank({country, id}, sql.districtHealthPerformanceRank);
+                await this.getDistrictIndicatorRank({ country, id }, sql.districtHealthPerformanceRank);
             return {
                 districtPerformance,
                 districtHealthRank,

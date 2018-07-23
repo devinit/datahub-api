@@ -1,21 +1,21 @@
 import Maps from '.';
 import * as prettyFormat from 'pretty-format';
-import db from '@devinit/graphql-next/lib/db';
+import db from '../../../api/db';
 import { uidPatchForObjs } from '@devinit/prelude';
 
 describe('Maps module tests', () => {
     const maps = new Maps(db);
 
     it('should return only DAC countries from the data', async () => {
-        const dacCountries = ['Spain', 'England'];
+        const dacCountries = [ 'Spain', 'England' ];
         const data = [
-            {value: 2000, id: 'sp', name: 'Spain', year: 2000},
-            {value: 2000, id: 'uk', name: 'England', year: 2000},
-            {value: 2000, id: 'pl', name: 'Poland', year: 2000},
+            { value: 2000, id: 'sp', name: 'Spain', year: 2000 },
+            { value: 2000, id: 'uk', name: 'England', year: 2000 },
+            { value: 2000, id: 'pl', name: 'Poland', year: 2000 }
             ];
         const onlyDacCountries = Maps.DACOnlyData(dacCountries, data as DH.IMapUnit[]);
         const result = uidPatchForObjs(onlyDacCountries, 'map');
-        expect(prettyFormat({result})).toMatchSnapshot();
+        expect(prettyFormat({ result })).toMatchSnapshot();
         expect(onlyDacCountries.length).toBe(2);
     }, 10000);
     it('should know if an indicator is for a country spotlight or for global picture', async () => {
@@ -38,7 +38,7 @@ describe('Maps module tests', () => {
     }, 30000);
     it('should return global picture indicator for map styled data  ', async () => {
         const surveryP20 = await maps.getMapData('survey_p20');
-        expect(prettyFormat({surveryP20})).toMatchSnapshot();
+        expect(prettyFormat({ surveryP20 })).toMatchSnapshot();
     }, 30000);
     it('should return global picture indicators data ', async () => {
         // const linearColored = await maps.getMapData('data_series.in_ha');
@@ -53,12 +53,12 @@ describe('Maps module tests', () => {
     it('should return categorical value mappings for indicators', async () => {
         const fragileSates = await Maps.getCategoricalMapping('data_series.fragile_states');
         const dataRevolution = await Maps.getCategoricalMapping('data_series.agricultural_census', 'data-revolution');
-        expect(prettyFormat({fragileSates, dataRevolution})).toMatchSnapshot();
+        expect(prettyFormat({ fragileSates, dataRevolution })).toMatchSnapshot();
     }, 10000);
     it('should return color values from a scale', async () => {
-        const ramp = {high: '#e84439', low: '#fbd7cb'};
-        const scaleA = Maps.colorScale({rangeStr: '1, 5, 10, 50', ramp});
-        const scaleB = Maps.colorScale({rangeStr: '80,60,40,20', ramp, isHighBetter: true});
+        const ramp = { high: '#e84439', low: '#fbd7cb' };
+        const scaleA = Maps.colorScale({ rangeStr: '1, 5, 10, 50', ramp });
+        const scaleB = Maps.colorScale({ rangeStr: '80,60,40,20', ramp, isHighBetter: true });
         const results = {
             rangeB: scaleB.range(),
             domainB:  scaleB.domain(),
@@ -68,18 +68,18 @@ describe('Maps module tests', () => {
         expect(prettyFormat(results)).toMatchSnapshot();
     });
     it('should create legend for map data', async () => {
-        const rampA = {high: '#e84439', low: '#fbd7cb'};
-        const rampB = {high: '#0c457b', low: '#bcd4f0'};
+        const rampA = { high: '#e84439', low: '#fbd7cb' };
+        const rampB = { high: '#0c457b', low: '#bcd4f0' };
         const rangeA = '1, 5, 10, 20';
         const rangeB = '200,500,1000,1500,2000,10000';
         const rangeC = '80,60,40,20';
-        const scaleA = Maps.colorScale({rangeStr: rangeA, ramp: rampA});
-        const scaleB = Maps.colorScale({rangeStr: rangeB, ramp: rampB, isHighBetter: true});
-        const scaleC = Maps.colorScale({rangeStr: rangeC, ramp: rampA});
-        const legendA = Maps.createLinearLegend({uom_display: '%', rangeStr: rangeA, scale: scaleA});
-        const legendB = Maps.createLinearLegend({uom_display: '', rangeStr: rangeB, scale: scaleB});
-        const legendC = Maps.createLinearLegend({uom_display: '%', rangeStr: rangeC, scale: scaleC});
-        expect(prettyFormat({legendB, legendC, legendA})).toMatchSnapshot();
+        const scaleA = Maps.colorScale({ rangeStr: rangeA, ramp: rampA });
+        const scaleB = Maps.colorScale({ rangeStr: rangeB, ramp: rampB, isHighBetter: true });
+        const scaleC = Maps.colorScale({ rangeStr: rangeC, ramp: rampA });
+        const legendA = Maps.createLinearLegend({ uom_display: '%', rangeStr: rangeA, scale: scaleA });
+        const legendB = Maps.createLinearLegend({ uom_display: '', rangeStr: rangeB, scale: scaleB });
+        const legendC = Maps.createLinearLegend({ uom_display: '%', rangeStr: rangeC, scale: scaleC });
+        expect(prettyFormat({ legendB, legendC, legendA })).toMatchSnapshot();
     });
     it('should create color ramp', async () => {
         // const ramp = {high: '#e84439', low: '#f8c1b2'};

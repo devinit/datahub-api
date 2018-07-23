@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Github connector should be able to parse numerical values as numbers 1`] = `
+"Array [
+  Object {
+    \\"id\\": \\"red\\",
+    \\"value\\": 123,
+  },
+  Object {
+    \\"id\\": \\"red-light\\",
+    \\"value\\": \\"hey\\",
+  },
+  Object {
+    \\"id\\": \\"red-lighter\\",
+    \\"value\\": 190,
+  },
+]"
+`;
+
+exports[`Github connector should get data from github and return it as json 1`] = `
+"Array [
+  Object {
+    \\"default_indicator\\": \\"data_series.poor_people_190\\",
+    \\"id\\": \\"poverty\\",
+    \\"name\\": \\"Poverty\\",
+    \\"position\\": 1,
+  },
+  Object {
+    \\"default_indicator\\": \\"data_series.fragile_states\\",
+    \\"id\\": \\"vulnerability\\",
+    \\"name\\": \\"Vulnerability\\",
+    \\"position\\": 2,
+  },
+  Object {
+    \\"default_indicator\\": \\"data_series.non_grant_revenue_ppp_pc\\",
+    \\"id\\": \\"government-finance\\",
+    \\"name\\": \\"Government finance\\",
+    \\"position\\": 3,
+  },
+  Object {
+    \\"default_indicator\\": \\"data_series.largest_intl_flow\\",
+    \\"id\\": \\"international-finance\\",
+    \\"name\\": \\"International finance\\",
+    \\"position\\": 4,
+  },
+  Object {
+    \\"default_indicator\\": \\"fact.in_oda_gross_2015\\",
+    \\"id\\": \\"international-official-finance\\",
+    \\"name\\": \\"International official finance\\",
+    \\"position\\": 5,
+  },
+  Object {
+    \\"default_indicator\\": \\"data_series.in_ha\\",
+    \\"id\\": \\"humanitarian-finance\\",
+    \\"name\\": \\"Humanitarian finance\\",
+    \\"position\\": 6,
+  },
+  Object {
+    \\"default_indicator\\": \\"data_series.latest_census\\",
+    \\"id\\": \\"data-revolution\\",
+    \\"name\\": \\"Data revolution\\",
+    \\"position\\": 7,
+  },
+  Object {
+    \\"default_indicator\\": \\"data_series.iati_budgets_gb\\",
+    \\"id\\": \\"forward-looking-oda\\",
+    \\"name\\": \\"Forward looking ODA\\",
+    \\"position\\": 8,
+  },
+]"
+`;
+
+exports[`Github connector should turn csv string to json Array 1`] = `
+"Array [
+  Object {
+    \\"id\\": \\"red\\",
+    \\"value\\": \\"#e8443\\",
+  },
+  Object {
+    \\"id\\": \\"red-light\\",
+    \\"value\\": \\"#f0826d\\",
+  },
+  Object {
+    \\"id\\": \\"red-lighter\\",
+    \\"value\\": \\"#f8c1b2\\",
+  },
+]"
+`;

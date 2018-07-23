@@ -1,4 +1,4 @@
-import {githubGet} from '@devinit/graphql-next/lib/github';
+import { githubGet } from '../../../api/github';
 
 export interface IRevolutionColorMap {
     id: string;

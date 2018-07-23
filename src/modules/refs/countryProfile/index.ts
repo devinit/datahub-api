@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import {githubGet} from '@devinit/graphql-next/lib/github';
+import { githubGet } from '../../../api/github';
 
 export interface IFlowRef {
     id: string;
@@ -33,7 +33,7 @@ export interface IBudgetLevelRef {
 export const getFlows = (): Promise<IFlowRef[]> => githubGet<IFlowRef>('country-profile/flow-name.csv');
 
 export const getBudgetLevels = (country?: string): Promise<IBudgetLevelRef[]> => {
-    if (country && country.length) return githubGet<IBudgetLevelRef>(`spotlight-${country}/budget_level.csv`);
+    if (country && country.length) { return githubGet<IBudgetLevelRef>(`spotlight-${country}/budget_level.csv`); }
     return githubGet<IBudgetLevelRef>('country-profile/domestic-budget-level.csv');
 };
 
@@ -41,21 +41,21 @@ export const getFlowTypes = (): Promise<IFlowRef[]> => githubGet<IFlowRef>('coun
 
 export const getFlowByType = (type: string, flows: IFlowRef[]): IFlowRef[] => {
     const flowRefs: IFlowRef[] = R.filter(R.propEq('type', type), flows);
-    if (!flowRefs.length) throw new Error (`failed to githubGet any flows for type ${type}`);
+    if (!flowRefs.length) { throw new Error (`failed to githubGet any flows for type ${type}`); }
     return flowRefs;
 };
 
 export const getFlowByTypeAsync = async (type: string): Promise<IFlowRef[]> => {
     const flows: IFlowRef[] = await getFlows();
     const flowRefs: IFlowRef[] = R.filter(R.propEq('type', type), flows);
-    if (!flowRefs.length) throw new Error (`failed to githubGet any flows for type ${type}`);
+    if (!flowRefs.length) { throw new Error (`failed to githubGet any flows for type ${type}`); }
     return flowRefs;
 };
 
 export const getFlowByIdAsync = async (countryType: string): Promise<IFlowRef> => {
     const flows: IFlowRef[] = await getFlows();
     const flow = R.find(R.propEq('id', countryType), flows);
-    if (!flow) throw new Error ('flow is undefeined');
+    if (!flow) { throw new Error ('flow is undefeined'); }
     return flow as IFlowRef;
 };
 

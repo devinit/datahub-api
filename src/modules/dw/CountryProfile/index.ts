@@ -1,4 +1,4 @@
-import {IDB} from '@devinit/graphql-next/lib/db';
+import { IDB } from '../../../api/db';
 import CountryProfileTabs from './CountryProfileTabs';
 import Resources from './Resources';
 

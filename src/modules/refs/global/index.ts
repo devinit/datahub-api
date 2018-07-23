@@ -1,4 +1,4 @@
-import {githubGet} from '@devinit/graphql-next/lib/github';
+import { githubGet } from '../../../api/github';
 import * as R from 'ramda';
 
 export interface IEntityBasic {
@@ -37,14 +37,14 @@ export const getEntities = (): Promise<IEntity[]> => githubGet<IEntity>('global/
 export const getEntityBySlugAsync = async (slug: string): Promise<IEntity> => {
      const entities: IEntity[] = await getEntities();
      const entity: IEntity | undefined = entities.find(obj => obj.slug === slug);
-     if (!entity) throw new Error (`failed to githubGet entity for ${slug}`);
+     if (!entity) { throw new Error (`failed to githubGet entity for ${slug}`); }
      return entity;
 };
 
 export const getEntityByIdAsync = async (id: string): Promise<IEntity> => {
     const entities: IEntity[] = await getEntities();
     const entity =  R.find(R.propEq('id', id), entities);
-    if (!entity) throw new Error(`failed to githubGet entity for ${id}`);
+    if (!entity) { throw new Error(`failed to githubGet entity for ${id}`); }
     return entity as IEntity;
 };
 
@@ -58,13 +58,13 @@ export const getCountries = async (): Promise<DH.IEntity[]> => {
 
 export const getEntityByIdGeneric = <T extends {id: string}>(id: string, entities: T[]): T => {
     const entity: T | undefined = entities.find(obj => obj.id === id);
-    if (!entity) throw new Error (`couldnt find entity by id for ${id}`);
+    if (!entity) { throw new Error (`couldnt find entity by id for ${id}`); }
     return entity;
 };
 
 export const getEntityByNameGeneric = <T extends {name: string}>(name: string, entities: T[]): T => {
     const entity: T | undefined = entities.find(obj => obj.name === name);
-    if (!entity) throw new Error (`couldnt find entity by name for ${name}`);
+    if (!entity) { throw new Error (`couldnt find entity by name for ${name}`); }
     return entity;
 };
 

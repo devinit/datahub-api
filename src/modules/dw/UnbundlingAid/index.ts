@@ -1,13 +1,13 @@
 
-import {IDB} from '@devinit/graphql-next/lib/db';
-import {makeSqlAggregateQuery, entitesFnMap, DONOR, RECIPIENT, MULTILATERAL, CROSSOVER} from '../../utils';
-import {getConceptAsync, IConcept, getConcepts} from '../../refs/concept';
+import { IDB } from '../../../api/db';
+import { CROSSOVER, DONOR, MULTILATERAL, RECIPIENT, entitesFnMap, makeSqlAggregateQuery } from '../../utils';
+import { IConcept, getConceptAsync, getConcepts } from '../../refs/concept';
 import * as shortid from 'shortid';
 import sql from './sql';
-import {IEntity, getEntities, getRegional, IRegional, getEntityByIdGeneric,
-        getSectors, getBundles, getChannels, getColors, IColor, IEntityBasic} from '../../refs/global';
+import { IColor, IEntity, IEntityBasic, IRegional, getBundles,
+        getChannels, getColors, getEntities, getEntityByIdGeneric, getRegional, getSectors } from '../../refs/global';
 import * as R from 'ramda';
-import {approximate, capitalize} from '@devinit/prelude';
+import { approximate, capitalize } from '@devinit/prelude';
 
 interface IUnbundlingAidQuery {
     from_di_id?: string;
@@ -41,11 +41,11 @@ interface IUnbundlingAidResult extends IUnbundlingAidQuery {
 
 export default class UnbundlingAid {
     public static getSqlQueryArgs = (args: DH.IUnbundlingAidQuery): IUnbundlingAidQuery =>
-        R.omit(['groupBy', 'aidType'], args) as IUnbundlingAidQuery
+        R.omit([ 'groupBy', 'aidType' ], args) as IUnbundlingAidQuery
 
     private db: IDB;
-    private donorsBlackList = ['country-unspecified', 'region-unspecified', 'organisation-unspecified',
-                    'arab-fund', 'afesd', 'idb-sp-fund'];
+    private donorsBlackList = [ 'country-unspecified', 'region-unspecified', 'organisation-unspecified',
+                    'arab-fund', 'afesd', 'idb-sp-fund' ];
     constructor(db: any) {
         this.db = db;
     }
@@ -60,17 +60,17 @@ export default class UnbundlingAid {
             const regions: IRegional[] = await getRegional();
             const colors = await getColors();
             return raw.map((obj) => {
-                let entity: IUnbundlingEnitity | undefined = entites.find(item => obj[args.groupBy] === item.id );
+                let entity: IUnbundlingEnitity | undefined = entites.find(item => obj[args.groupBy] === item.id);
                 if (!entity) {
                     console.error(`error getting unbundling aid entity ${entity} \n for object ${JSON.stringify(obj)}`);
                     const id = obj[args.groupBy];
                     const name = capitalize(id.replace(/\-/g, ' '));
-                    entity = {name, id};
+                    entity = { name, id };
                 }
                 let color = entity.color || 'grey';
                 if (entity.type && entity.region) {
                     const region: IRegional | undefined = getEntityByIdGeneric<IRegional>(entity.region, regions);
-                    if (region && region.color) color = region ? region.color : color;
+                    if (region && region.color) { color = region ? region.color : color; }
                 }
                 const colorObj: IColor = getEntityByIdGeneric<IColor>(color, colors);
                 return {id: entity.id, value: Number(obj.value), name: entity.name, uid: shortid.generate(),
@@ -81,10 +81,10 @@ export default class UnbundlingAid {
            throw error;
        }
     }
-    public async getUnbundlingSelectionData({aidType}): Promise<DH.IUnbundlingAidSelections> {
+    public async getUnbundlingSelectionData({ aidType }): Promise<DH.IUnbundlingAidSelections> {
         try {
             const concept = await this.getUnbundlingAidConceptData(aidType);
-            if (!concept) throw new Error('error getting unbundling aid concept');
+            if (!concept) { throw new Error('error getting unbundling aid concept'); }
             const years: number[] = R.range(Number(concept.start_year), Number(concept.end_year + 1)).reverse();
             const optionIds: IUnbundlingAidOptionsData = await this.getUnbundlingOptionsIds(aidType);
             const countries = await this.getCountries();
@@ -94,7 +94,7 @@ export default class UnbundlingAid {
             const sectors = this.getOptionsSet('sector', gSectors, optionIds);
             const gBundles = await getBundles();
             const bundles = this.getOptionsSet('bundle', gBundles, optionIds);
-            return {years, ...countries, channels, sectors, bundles};
+            return { years, ...countries, channels, sectors, bundles };
        } catch (error) {
            console.error(error);
            throw error;
@@ -105,20 +105,20 @@ export default class UnbundlingAid {
         const id: string = concept.id;
         try {
             const year: number = args.year || (await getConceptAsync(`unbundling-${args.aidType}`, id)).end_year;
-            const  queryArgs = {table: id, year};
+            const  queryArgs = { table: id, year };
             const raw: Array<{sum: string}> = await this.db.manyCacheable(sql.total, queryArgs);
             const total = approximate(raw[0].sum, 1);
-            return {total, year};
+            return { total, year };
         } catch (error) {
             throw error;
         }
     }
     public async getUnbundlingOptionsIds(aidType): Promise<IUnbundlingAidOptionsData> {
-        const {id} = await this.getUnbundlingAidConceptData(aidType);
-        const columns = ['bundle', 'channel', 'sector'];
+        const { id } = await this.getUnbundlingAidConceptData(aidType);
+        const columns = [ 'bundle', 'channel', 'sector' ];
         type IRawOptions = Array<{[column: string]: string}>;
         const optionsPromises: Array<Promise<IRawOptions>> = columns.map(async (column) => {
-            const queryArgs = {table: id, column};
+            const queryArgs = { table: id, column };
             const raw: IRawOptions =
                 await this.db.manyCacheable(sql.options, queryArgs);
             return raw;
@@ -127,7 +127,7 @@ export default class UnbundlingAid {
         return options.reduce((acc, optionsObj) => {
             const key = Object.keys(optionsObj[0])[0] as string;
             const columnFields = optionsObj.map(obj => obj[key]);
-            return {...acc, [key]: columnFields };
+            return { ...acc, [key]: columnFields };
         }, {}) as IUnbundlingAidOptionsData;
     }
     private getOptionsSet(optionName, cmsOptions, dBOptionsData): IEntityBasic[] {
@@ -135,14 +135,14 @@ export default class UnbundlingAid {
         return options.map(id => {
             const option = cmsOptions.find(obj => obj.id === id);
             const name = capitalize(id.replace(/\-/g, ' '));
-            if (!option) return {id, name, color: 'grey'};
+            if (!option) { return { id, name, color: 'grey' }; }
             return option;
         });
     }
     private async getUnbundlingAidConceptData(aidType): Promise<IConcept> {
         const allConcepts = await getConcepts(`unbundling-${aidType}`);
         const concept = allConcepts[0];
-        if (!concept) throw new Error(`${aidType} concept file missing`);
+        if (!concept) { throw new Error(`${aidType} concept file missing`); }
         return concept;
     }
     private async getCountries(): Promise<IUnBundlingAidCountries> {
@@ -153,18 +153,18 @@ export default class UnbundlingAid {
             let from: any = [];
             if (entity.donor_recipient_type === RECIPIENT || entity.donor_recipient_type === CROSSOVER
                 || entity.donor_recipient_type === 'region') {
-                to = R.append({id: entity.id, name: entity.name}, countries.to);
+                to = R.append({ id: entity.id, name: entity.name }, countries.to);
             }
             if (entity.donor_recipient_type === DONOR || entity.donor_recipient_type === MULTILATERAL
                 || entity.donor_recipient_type === CROSSOVER) {
                 from = R.contains(entity.id, this.donorsBlackList) ? countries.from :
-                    R.append({id: entity.id, name: entity.name}, countries.from);
+                    R.append({ id: entity.id, name: entity.name }, countries.from);
             }
-            if (to.length && from.length) return {to, from};
-            if (to.length)  return {...countries, to};
-            if (from.length)  return {...countries, from};
+            if (to.length && from.length) { return { to, from }; }
+            if (to.length) {  return { ...countries, to }; }
+            if (from.length) {  return { ...countries, from }; }
             return countries;
-            }, {to: [], from: []});
+            }, { to: [], from: [] });
         } catch (error) {
             throw error;
         }
