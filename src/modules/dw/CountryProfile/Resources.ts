@@ -48,8 +48,12 @@ interface IDomesticResourcesOverTime {
 }
 
 export default class Resources {
+  private db: IDB;
+  private defaultArgs;
+
   public static getMaxYear(data: Array<{ year?: number | null }>): number {
     const years = data.map(obj => Number(obj.year));
+
     return Math.max.apply(null, years);
   }
   // FIXME: This may not be necessary, category order alone maybe enough
@@ -60,17 +64,19 @@ export default class Resources {
       .sort((a, b) => a.flow_category_order - b.flow_category_order);
     const [ typePos, catPos ] = [ 'flow_type', 'flow_category' ].map(cat => {
       const uniqs = R.uniq(sorted.map(obj => obj[cat]));
+
       return R.findIndex(val => val === flow[cat], uniqs);
     });
+
     // add plus 1 to make non zero indexed
     return Number(`${typePos + 1}${catPos + 1}${flow.flow_category_order}`);
   }
-  private db: IDB;
-  private defaultArgs;
+
   constructor(db: IDB) {
     this.db = db;
     this.defaultArgs = { db: this.db, conceptType: 'country-profile' };
   }
+
   public async getInternationalResources({ id }): Promise<DH.IInternationalResources> {
     try {
       const isDonorCountry = await isDonor(id);
@@ -84,8 +90,10 @@ export default class Resources {
       const [ resourcesOverTime, mixOfResources ] = await this.getResourcesGeneric(id, resourcesSql);
       const resourceflowsOverTime = await this.getResourceflowsOvertime(id);
       const concept: IConcept = await getConceptAsync('country-profile', 'data_series.intl_flows_recipients');
-      const maxYear = resourceflowsOverTime && resourceflowsOverTime.data ?
-        getMaxAndMin(resourceflowsOverTime.data)[0] : concept.end_year;
+      const maxYear = resourceflowsOverTime && resourceflowsOverTime.data
+        ? getMaxAndMin(resourceflowsOverTime.data)[0]
+        : concept.end_year;
+
       // TODO: we are currently getting start year for various viz
       // from data_series.intl_flows_recipients concept /indicator. They shouldb be a better way of doing this
       return {
@@ -126,9 +134,11 @@ export default class Resources {
       const resources = processedData.map(obj => {
         let details: { name: string } | undefined = entities.find(entity => entity.id === obj[groupById]);
         if (!details) { details = { name: obj[groupById] }; }
+
         return { ...obj, ...details };
       }) as DH.IIndicatorData[];
       const colorObj: IColor = getEntityByIdGeneric<IColor>(flow.color, colors);
+
       return {
         resources,
         color: colorObj.value || 'grey'
@@ -179,6 +189,7 @@ export default class Resources {
       const type = countryType === CROSSOVER ? RECIPIENT : countryType;
       const flows: IFlowRef[] = await getFlowByTypeAsync(type);
       const flowSelections: IFlowSelectionRaw[] = await getAllFlowSelections();
+
       return flows
         .filter(flow => Number(flow.used_in_area_treemap_chart) === 1)
         .reduce((flowTypes: IflowTypes, flow) => {
@@ -242,18 +253,24 @@ export default class Resources {
     const colors = await getColors();
     const data: DH.IIndicatorData[] = raw.map(obj => {
       const flow: IEntityBasic | undefined = flowTypeRefs.find(ref => ref.id === obj.flow_type);
-      if (!flow) { throw new Error(`No flow type refrence for ${obj.flow_type}`); }
+      if (!flow) {
+        throw new Error(`No flow type refrence for ${obj.flow_type}`);
+      }
       const colorObj: IColor | undefined = colors.find(c => c.id === flow.color);
       const color = colorObj ? colorObj.value : 'grey';
+
       return {
         name: capitalize(obj.flow_type), value: Number(obj.value), id: obj.flow_type,
         color, uid: shortid.generate(), year: Number(obj.year)
       };
     });
-    const toolTip = isDonorCountry ? await getIndicatorToolTip({ ...this.defaultArgs, id: 'resource-outflows' }) :
-      await getIndicatorToolTip({ ...this.defaultArgs, id: 'resource-inflows' });
+    const toolTip = isDonorCountry
+      ? await getIndicatorToolTip({ ...this.defaultArgs, id: 'resource-outflows' })
+      : await getIndicatorToolTip({ ...this.defaultArgs, id: 'resource-inflows' });
+
     return { data, toolTip };
   }
+
   private async getDomesticResourcesOvertime(id: string): Promise<IDomesticResourcesOverTime> {
     try {
       const indicatorArgs: IGetIndicatorArgs[] = [ 'financing', 'total-expenditure', 'total-revenue-and-grants' ]
@@ -263,9 +280,13 @@ export default class Resources {
           query: sql.domesticResourcesOverTime,
           id
         }));
-      const resourcesRaw: IRAWDomestic[][] =
-        await Promise.all(indicatorArgs.map((args) => getIndicatorData<IRAWDomestic>(args)));
-      const resources: DH.IDomestic[][] = await Promise.all(resourcesRaw.map(obj => domesticDataProcessing(obj)));
+      const resourcesRaw: IRAWDomestic[][] = await Promise.all(indicatorArgs.map((args) =>
+        getIndicatorData<IRAWDomestic>(args))
+      );
+      const resources: DH.IDomestic[][] = await Promise.all(resourcesRaw.map(obj =>
+        domesticDataProcessing(obj))
+      );
+
       return {
         finance: resources[0],
         expenditure: resources[1],
