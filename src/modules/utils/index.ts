@@ -238,7 +238,9 @@ export const domesticDataProcessing = async (data: IRAWDomestic[], country?: str
     }
     const levels = levelKeys.map(key => {
       const budgetLevel: IBudgetLevelRef | undefined = budgetRefs.find(ref => ref.id === obj[key]);
-      if (!budgetLevel) { return obj[key]; }
+      if (!budgetLevel) {
+        return obj[key];
+      }
 
       return budgetLevel.name;
     }).filter(level => level !== null);

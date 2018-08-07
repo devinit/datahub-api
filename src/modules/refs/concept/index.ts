@@ -1,4 +1,4 @@
-import { githubGet } from '@devinit/graphql-next/lib/github';
+import { githubGet } from '../../../api/github';
 export interface IConcept {
   id: string;
   theme: string;

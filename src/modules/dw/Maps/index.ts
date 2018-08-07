@@ -1,12 +1,12 @@
 import { IConcept, getConceptAsync } from '../../refs/concept';
-import { IDB } from '@devinit/graphql-next/lib/db';
+import { IDB } from '../../../api/db';
 import { approximate, normalizeKeyName } from '@devinit/prelude';
 import * as Color from 'color';
 import { hsl } from 'd3-color';
 import { interpolateRgb } from 'd3-interpolate';
 import { scaleThreshold } from 'd3-scale';
 import * as R from 'ramda';
-import { githubGet } from '@devinit/graphql-next/lib/github';
+import { githubGet } from '../../../api/github';
 import { IColor, IEntity, getColors, getEntities, getEntityByIdGeneric } from '../../refs/global';
 import { IRevolutionColorMap, getDataRevolutionColors } from '../../refs/globalPicture';
 import { IDistrict, getDistrictEntities } from '../../refs/spotlight';

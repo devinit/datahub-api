@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`main should return query results for a graphql query 1`] = `
+"Object {
+  \\"data\\": Object {
+    \\"apiName\\": \\"Graphql-API\\",
+  },
+}"
+`;

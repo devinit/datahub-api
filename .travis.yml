@@ -1,14 +1,17 @@
 language: node_js
 node_js:
 - v9
+before_install:
+- npm i -g npm
+- npm --version
 install:
-- yarn
+- npm install
 script:
 - npm run lint
 - npm run build
-- npm run gqlToTs
 cache:
-  yarn: true
+  directories:
+  - node_modules
 sudo: false
 notifications:
   slack: devinitorg:TFrmOb61t4X0PRFdZyHBU04F

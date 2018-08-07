@@ -1,6 +1,6 @@
-import {prettyListMany, replaceUidInList} from '@devinit/prelude';
+import { prettyListMany, replaceUidInList } from '@devinit/prelude';
 import BubbleChart from '.';
-import db from '@devinit/graphql-next/lib/db';
+import db from '../../../api/db';
 import * as prettyFormat from 'pretty-format';
 
 describe('Bubble chart DW module tests', () => {
@@ -9,13 +9,13 @@ describe('Bubble chart DW module tests', () => {
     it('getting poverty  bubble chart data i.e poverty & revenue per person data', async () => {
         const data = await bubbleChart.getBubbleChartPoverty();
         const dataB = await bubbleChart.getBubbleChartPoverty('AT');
-        expect(prettyListMany([data, dataB])).toMatchSnapshot();
+        expect(prettyListMany([ data, dataB ])).toMatchSnapshot();
     }, 30000);
 
     it('getting oda  bubble chart ODA data', async () => {
         const data = await bubbleChart.getBubbleChartOda();
         const dataB = await bubbleChart.getBubbleChartOda('data_series.fdi_pp');
-        expect(prettyListMany([data, dataB])).toMatchSnapshot();
+        expect(prettyListMany([ data, dataB ])).toMatchSnapshot();
     }, 30000);
     it('getting bubble chart options', async () => {
         const data = await bubbleChart.getBubbleChartOptions();
