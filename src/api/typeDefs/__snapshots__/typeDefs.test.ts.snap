@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`gql Types to Typescript types End to End test: should create typescript types from graphql files 1`] = `
+"\\"// tslint:disable
+// graphql typescript definitions
+
+declare namespace DH {
+  interface IGraphQLResponseRoot {
+    data?: IQuery;
+    errors?: Array<IGraphQLResponseError>;
+  }
+
+  interface IGraphQLResponseError {
+    message: string; // Required for all errors
+    locations?: Array<IGraphQLResponseErrorLocation>;
+    [propName: string]: any; // 7.2.2 says 'GraphQL servers may provide additional entries to error'
+  }
+
+  interface IGraphQLResponseErrorLocation {
+    line: number;
+    column: number;
+  }
+
+  interface IQuery {
+    /**
+    id is district slug
+  */
+    povertyTabRegional: PovertyTabRegional | null;
+  }
+
+  type PovertyTabRegional = IPovertyTabUg | IPovertyTabKe;
+
+  interface IPovertyTabUg {
+    poorestPeople: IIndicatorValueWithToolTip;
+    /**
+    WHAT IS THE AVERAGE LIFE EXPECTANCY? 
+  */
+    lifeExpectancy: IIndicatorValueWithToolTip;
+    /**
+    WHAT IS THE STANDARD OF LIVING SCORE? 
+  */
+    stdOfLiving: IIndicatorValueWithToolTip;
+  }
+
+  interface IIndicatorValueWithToolTip {
+    value: string;
+    toolTip: IToolTip;
+  }
+
+  interface IToolTip {
+    source: string;
+    heading: string;
+  }
+
+  interface IPovertyTabKe {
+    poorestPeople: IIndicatorValueWithToolTip;
+    /**
+    WHAT IS THE AVERAGE LIFE EXPECTANCY? 
+  */
+    meanExpenditure: IIndicatorValueWithToolTip;
+    /**
+    WHAT IS THE STANDARD OF LIVING SCORE? 
+  */
+    povertyGap: IIndicatorValueWithToolTip;
+  }
+}
+
+// tslint:enable
+\\""
+`;
+
+exports[`gql Types to Typescript types should return merged typedefs 1`] = `
+"\\"schema {
+  query: Query
+}
+
+type Query {
+  # id is district slug
+  povertyTabRegional(id: String!, country: String!): PovertyTabRegional
+}
+
+type ToolTip {
+  source: String!
+  heading: String!
+}
+
+type IndicatorValueWithToolTip {
+  value: String!
+  toolTip: ToolTip!
+}
+
+type PovertyTabKe {
+  poorestPeople: IndicatorValueWithToolTip!
+  # WHAT IS THE AVERAGE LIFE EXPECTANCY? 
+  meanExpenditure: IndicatorValueWithToolTip!
+  # WHAT IS THE STANDARD OF LIVING SCORE? 
+  povertyGap: IndicatorValueWithToolTip!
+}
+
+type PovertyTabUg {
+  poorestPeople: IndicatorValueWithToolTip!
+  # WHAT IS THE AVERAGE LIFE EXPECTANCY? 
+  lifeExpectancy: IndicatorValueWithToolTip!
+  # WHAT IS THE STANDARD OF LIVING SCORE? 
+  stdOfLiving: IndicatorValueWithToolTip!
+}
+
+union PovertyTabRegional = PovertyTabUg | PovertyTabKe
+\\""
+`;

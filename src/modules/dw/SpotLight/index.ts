@@ -1,5 +1,5 @@
-import {IDB} from '@devinit/graphql-next/lib/db';
-import {getOverViewTabRegional, ISpotlightArgs} from './lib/utils';
+import { IDB } from '../../../api/db';
+import { ISpotlightArgs, getOverViewTabRegional } from './lib/utils';
 import Uganda from './lib/uganda';
 import Kenya from './lib/kenya';
 

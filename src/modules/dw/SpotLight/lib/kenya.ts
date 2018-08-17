@@ -1,7 +1,7 @@
 
-import {IDB} from '@devinit/graphql-next/lib/db';
-import {kenya} from './sql';
-import {getIndicatorsGeneric, getLocalGovernmentFinance, GetIndicatorFn} from './utils';
+import { IDB } from '../../../../api/db';
+import { kenya } from './sql';
+import { GetIndicatorFn, getIndicatorsGeneric, getLocalGovernmentFinance } from './utils';
 
 const sql = kenya;
 const country = 'kenya';
@@ -10,17 +10,17 @@ export default class Uganda {
     private db: IDB;
     constructor(db: IDB) {
         this.db = db;
-        this.getIndicatorsGeneric = getIndicatorsGeneric({country, db: this.db});
+        this.getIndicatorsGeneric = getIndicatorsGeneric({ country, db: this.db });
     }
-    public async getLocalGovernmentFinance({id}): Promise<DH.ILocalGovernmentFinance> {
-        return getLocalGovernmentFinance(this.db)({id, country, startYear: 2014});
+    public async getLocalGovernmentFinance({ id }): Promise<DH.ILocalGovernmentFinance> {
+        return getLocalGovernmentFinance(this.db)({ id, country, startYear: 2014 });
     }
-    public async getPopulationTabRegional({id}): Promise<DH.IPopulationTabRegionalKe> {
+    public async getPopulationTabRegional({ id }): Promise<DH.IPopulationTabRegionalKe> {
         try {
-            const [totalPopulation, populationDensity, populationBirthRate]
+            const [ totalPopulation, populationDensity, populationBirthRate ]
              = await this.getIndicatorsGeneric(id,
-                [sql.totalPopulation, sql.populationDensity,
-                sql.populationBirthRate]);
+                [ sql.totalPopulation, sql.populationDensity,
+                sql.populationBirthRate ]);
             return {
                 totalPopulation,
                 populationDensity,
@@ -31,10 +31,10 @@ export default class Uganda {
             throw error;
         }
     }
-    public async getPovertyTabRegional({id}): Promise<DH.IPovertyTabKe> {
+    public async getPovertyTabRegional({ id }): Promise<DH.IPovertyTabKe> {
         try {
-            const [poorestPeople, povertyGap, meanExpenditure] =
-                await this.getIndicatorsGeneric(id, [sql.poorestPeople, sql.povertyGap, sql.meanExpenditure]);
+            const [ poorestPeople, povertyGap, meanExpenditure ] =
+                await this.getIndicatorsGeneric(id, [ sql.poorestPeople, sql.povertyGap, sql.meanExpenditure ]);
             return {
                 poorestPeople,
                 povertyGap,
@@ -45,12 +45,12 @@ export default class Uganda {
            throw error;
        }
     }
-    public async getEducationTabRegional({id}): Promise<DH.IEducationTabRegionalKe> {
+    public async getEducationTabRegional({ id }): Promise<DH.IEducationTabRegionalKe> {
          try {
-            const [primaryPupilTeacherRatioAllSchl, primaryTeacherRatioPublicSchl,  primaryTeacherRatioPrivateSchl] =
-                await this.getIndicatorsGeneric(id, [sql.primaryPupilTeacherRatioAllSchl,
+            const [ primaryPupilTeacherRatioAllSchl, primaryTeacherRatioPublicSchl,  primaryTeacherRatioPrivateSchl ] =
+                await this.getIndicatorsGeneric(id, [ sql.primaryPupilTeacherRatioAllSchl,
                     sql.primaryTeacherRatioPublicSchl,
-                    sql. primaryTeacherRatioPrivateSchl]);
+                    sql. primaryTeacherRatioPrivateSchl ]);
             return {
                 primaryPupilTeacherRatioAllSchl,
                 primaryTeacherRatioPublicSchl,
@@ -61,15 +61,15 @@ export default class Uganda {
            throw error;
        }
     }
-    public async getHealthTabRegional({id}): Promise<DH.IHealthTabRegionalKe> {
+    public async getHealthTabRegional({ id }): Promise<DH.IHealthTabRegionalKe> {
         try {
-            const [healthCareFunding,  birthAttendanceSkilled, contraceptiveUse] =
-                await this.getIndicatorsGeneric(id, [sql.healthCareFunding, sql.birthAttendanceSkilled,
-                    sql.contraceptiveUse]);
+            const [ healthCareFunding,  birthAttendanceSkilled, contraceptiveUse ] =
+                await this.getIndicatorsGeneric(id, [ sql.healthCareFunding, sql.birthAttendanceSkilled,
+                    sql.contraceptiveUse ]);
             return {
                 healthCareFunding,
                 birthAttendanceSkilled,
-                contraceptiveUse,
+                contraceptiveUse
             };
        }    catch (error) {
            console.error(error);

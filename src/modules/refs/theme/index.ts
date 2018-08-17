@@ -1,5 +1,5 @@
-import {githubGet} from '@devinit/graphql-next/lib/github';
-import {getConcepts, IConcept} from '../concept';
+import { githubGet } from '../../../api/github';
+import { IConcept, getConcepts } from '../concept';
 
 export interface IRawTheme {
     id: string;
@@ -18,7 +18,7 @@ export const getThemes = async (themesType: string): Promise<DH.ITheme[]> => {
                 .sort((a, b) => Number(a.position) - Number(b.position))
                 .map(obj => ({id: obj.id, name: obj.name, tooltip: obj.tooltip,
                     heading: obj.description, source: obj.source}));
-            return {...theme, indicators};
+            return { ...theme, indicators };
         })
         .sort((a, b) => a.position - b.position);
 };
