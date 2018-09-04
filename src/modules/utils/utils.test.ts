@@ -1,11 +1,11 @@
-import {makeSqlAggregateQuery, isDonor, missingParentsData} from '.';
+import { isDonor, makeSqlAggregateQuery, missingParentsData } from '.';
 import * as prettyFormat from 'pretty-format';
 import data from './testData/tree';
-import {approximate, toId, getTotal, normalizeKeyName} from '@devinit/prelude';
+import { approximate, getTotal, normalizeKeyName, toId } from '@devinit/prelude';
 
 const dataA = [
-        {di_id: 'AL', value: 3000, year: 2000},
-        {di_id: 'UK', value: 3000, year: 2000}
+        { di_id: 'AL', value: 3000, year: 2000 },
+        { di_id: 'UK', value: 3000, year: 2000 }
         ];
 // const dataB = [
 //     {id: 'AL', value: 3000, year: 2000},
@@ -25,16 +25,16 @@ describe('Utility functions test', () => {
     });
     it('should create human friendly numbers i.e 1.5k for 1500', () => {
         // const formattedA = [150, 1500, 15000, 200000000].map(val => approximate(val, 0));
-        const formattedB = [150, 1500, 15000, 200000000].map(val => approximate(val, 1, true));
-        expect(prettyFormat({formattedB})).toMatchSnapshot();
+        const formattedB = [ 150, 1500, 15000, 200000000 ].map(val => approximate(val, 1, true));
+        expect(prettyFormat({ formattedB })).toMatchSnapshot();
     });
     it('should create an aggregate sql query for multiple years', () => {
         const argsB = {
             from_di_id: 'afdb',
             to_di_id: 'UG',
-            years: [2013, 2015]
+            years: [ 2013, 2015 ]
         };
-        const queryB = makeSqlAggregateQuery(argsB, 'bundle', 'fact.oda_2015');
+        const queryB = makeSqlAggregateQuery(argsB, 'bundle', 'fact.oda_constant');
         expect(prettyFormat(queryB)).toMatchSnapshot();
     });
     it('should create an aggregate sql query for a single year i.e unbundling aid', () => {
@@ -45,11 +45,11 @@ describe('Utility functions test', () => {
         };
         const argsA = {
             year: 2015,
-            sector: 'banking-and-business',
+            sector: 'banking-and-business'
         };
-        const queryB = makeSqlAggregateQuery(argsB, 'bundle', 'fact.oda_2015');
-        const queryA = makeSqlAggregateQuery(argsA, 'to_di_id', 'fact.oda_2015');
-        const querys = {queryA, queryB};
+        const queryB = makeSqlAggregateQuery(argsB, 'bundle', 'fact.oda_constant');
+        const queryA = makeSqlAggregateQuery(argsA, 'to_di_id', 'fact.oda_constant');
+        const querys = { queryA, queryB };
         expect(prettyFormat(querys)).toMatchSnapshot();
     });
     it('should normalize colum name ie remove _ where necessry', () => {

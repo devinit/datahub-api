@@ -97,7 +97,7 @@ export default class BubbleChart {
             const queryArgs = { from_di_id: id, years };
             // TODO: turn fact oda table into a configurable variable
             const queryStr: string =
-                    makeSqlAggregateQuery(queryArgs, 'to_di_id', 'fact.oda_2015');
+                    makeSqlAggregateQuery(queryArgs, 'to_di_id', 'fact.oda_constant');
             const raw: IBubbleSizeResults[] = await this.db.manyCacheable(queryStr);
             return raw.map(obj => {
                 const entity: IEntity = getEntityByIdGeneric<IEntity>(obj.to_di_id, entities);
