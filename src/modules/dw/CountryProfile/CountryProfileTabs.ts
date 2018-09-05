@@ -40,6 +40,7 @@ export default class CountryProfileTabs {
       });
       if (isDonorCountry) {
         const donorsTabData = await this.getOverViewTabDonors(id);
+
         return {
           ...donorsTabData,
           governmentSpendPerPerson,
@@ -48,6 +49,7 @@ export default class CountryProfileTabs {
         };
       }
       const recipientTabData = await this.getOverViewTabRecipients(id);
+
       return {
         ...recipientTabData,
         governmentSpendPerPerson,
@@ -104,6 +106,7 @@ export default class CountryProfileTabs {
       const sqlList = [ sql.internationalResources, sql.population, sql.poorestPeople, sql.domesticRevenue ];
       const [ internationalResources, population, poorestPeople, domesticResources ]
         = await getIndicatorsValue({ id: countryId, sqlList, ...this.defaultArgs });
+
       return {
         internationalResources,
         domesticResources,
@@ -119,6 +122,7 @@ export default class CountryProfileTabs {
     try {
       const averageIncomerPerPerson = await this.getAverageIncomerPerPerson(countryId);
       const incomeDistTrend = await this.getIncomeDistTrend(countryId);
+
       return {
         averageIncomerPerPerson,
         incomeDistTrend
@@ -139,6 +143,7 @@ export default class CountryProfileTabs {
       const toolTip = await getIndicatorToolTip(indicatorArgs);
       const raw: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
       const data: DH.IIndicatorData[] = await indicatorDataProcessingNamed(raw);
+
       return { data, toolTip };
     } catch (error) {
       throw error;
@@ -157,9 +162,11 @@ export default class CountryProfileTabs {
         .map(key => {
           const color = key === 'value_bottom_20pc' ? red : grey;
           const quintileName = key === 'value_bottom_20pc' ? 'value bottom 20%' : key.replace(/_/g, ' ');
+
           return { quintileName, color, value: Number(quintileData[key]), uid: shortid.generate() };
         });
       const toolTip = await getIndicatorToolTip(indicatorArgs);
+
       return { data, toolTip };
     } catch (error) {
       throw error;
@@ -176,9 +183,11 @@ export default class CountryProfileTabs {
       const data = raw.reduce((acc: DH.IPopulationDistribution[], row) => {
         const rural = { group: 'rural', value: Number(row.value_rural), year: Number(row.year) };
         const urban = { group: 'urban', value: Number(row.value_urban), year: Number(row.year) };
+
         return [ ...acc, rural, urban ];
       }, []);
       const toolTip = await getIndicatorToolTip(indicatorArgs);
+
       return { toolTip, data };
     } catch (error) {
       throw error;
@@ -199,9 +208,11 @@ export default class CountryProfileTabs {
             band: normalizeKeyName(key), value: Number(row[key]),
             year: Number(row.year), uid: shortid.generate()
           }));
+
         return [ ...acc, ...groups ];
       }, []);
       const toolTip = await getIndicatorToolTip(indicatorArgs);
+
       return { data, toolTip };
     } catch (error) {
       throw error;
@@ -217,6 +228,7 @@ export default class CountryProfileTabs {
       const raw: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
       const data: DH.IIndicatorData[] = await indicatorDataProcessingNamed(raw);
       const toolTip: DH.IToolTip = await getIndicatorToolTip(indicatorArgs);
+
       return { data, toolTip };
     } catch (error) {
       throw error;

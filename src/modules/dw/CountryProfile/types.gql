@@ -88,7 +88,7 @@ type PopulationDistribution {
 
 type PopulationPerAgeBand {
   band: String!
-  value: Int!
+  value: Float!
   year: Int!
   uid: String!
 }
@@ -129,7 +129,7 @@ type GovernmentFinance {
   #Total revenue for a particular
   totalRevenue: IndicatorValueWithToolTip
   grantsAsPcOfRevenue: IndicatorValueWithToolTip
-  # for donut chart 
+  # for donut chart
   spendingAllocation: SpendingAllocationWithToolTip
   # for treemap
   # such as constant 2015 USD for tree map
@@ -188,7 +188,7 @@ type SingleResourceData {
   color: String!
 }
 
-type Query {  
+type Query {
   overviewTab(id: String!): OverviewTab
   povertyTab(id: String!): PovertyTab
   populationTab(id: String!): PopulationTab
@@ -203,4 +203,3 @@ type Query {
     groupById: String! # id-to
     ): SingleResourceData
 }
-
