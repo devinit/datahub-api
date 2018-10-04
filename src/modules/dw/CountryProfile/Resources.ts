@@ -174,7 +174,7 @@ export default class Resources {
         grantsAsPcOfRevenue,
         spendingAllocation,
         currencyCode,
-        currencyUSD: 'constant 2015 USD',
+        currencyUSD: 'constant 2016 USD',
         ...domestic,
         startYear: maxGovYear < concept.end_year ? maxGovYear : concept.end_year
       };
@@ -347,13 +347,13 @@ export default class Resources {
   }
   private async getResourcesGeneric(id: string, sqlList: string[]): Promise<DH.IResourceDataWithToolTip[]> {
     try {
-      const indicatorArgs: IGetIndicatorArgs[] = sqlList
-        .map(query => ({ query, ...this.defaultArgs, id }));
-      const allRaw: IRAWFlow[][] =
-        await Promise.all(indicatorArgs.map(args => getIndicatorData<IRAWFlow>(args)));
+      const indicatorArgs: IGetIndicatorArgs[] = sqlList.map(query => ({ query, ...this.defaultArgs, id }));
+      const allRaw: IRAWFlow[][] = await Promise.all(indicatorArgs.map(args => getIndicatorData<IRAWFlow>(args)));
+
       return Promise.all(allRaw.map(async (raw, index) => {
         const data = await this.processResourceData(raw);
         const toolTip = await getIndicatorToolTip(indicatorArgs[index]);
+
         return { data, toolTip };
       }));
     } catch (error) {
@@ -362,17 +362,23 @@ export default class Resources {
   }
   private async processResourceData(data: IRAWFlow[]): Promise<DH.IResourceData[]> {
     try {
+      console.log(data);
+
       const processed: IFlowProcessed[] = indicatorDataProcessingSimple<IFlowProcessed>(data);
       const flowRefs: IFlowRef[] = await getFlows();
       const getPosition = Resources.getFlowPositions(flowRefs);
       const colors = await getColors();
+
       return processed
         .filter(obj => obj.flow_name && obj.flow_name.length)
         .map(obj => {
           const flow: IFlowRef | undefined = flowRefs.find(flowRef => flowRef.id === obj.flow_name);
-          if (flow === undefined) { throw new Error(`No flow refrence for ${JSON.stringify(obj)} `); }
+          if (flow === undefined) {
+            throw new Error(`No flow refrence for ${JSON.stringify(obj)} `);
+          }
           const colorObj: IColor = getEntityByIdGeneric<IColor>(flow.color, colors);
           const position = getPosition(flow);
+
           return { ...obj, ...flow, color: colorObj.value, position, flow_id: flow.id } as DH.IResourceData;
         })
         .sort((a, b) => Number(a.position) - Number(b.position));
