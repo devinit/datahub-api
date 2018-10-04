@@ -35,10 +35,13 @@ export interface IRegional extends IEntityBasic {
 export const getEntities = (): Promise<IEntity[]> => githubGet<IEntity>('global/entity.csv');
 
 export const getEntityBySlugAsync = async (slug: string): Promise<IEntity> => {
-     const entities: IEntity[] = await getEntities();
-     const entity: IEntity | undefined = entities.find(obj => obj.slug === slug);
-     if (!entity) { throw new Error (`failed to githubGet entity for ${slug}`); }
-     return entity;
+  const entities: IEntity[] = await getEntities();
+  const entity: IEntity | undefined = entities.find(obj => obj.slug === slug);
+  if (!entity) {
+    throw new Error(`failed to githubGet entity for ${slug}`);
+  }
+
+  return entity;
 };
 
 export const getEntityByIdAsync = async (id: string): Promise<IEntity> => {

@@ -1,7 +1,7 @@
-import {IMain, IDatabase, IOptions} from 'pg-promise';
-import {dwConfig} from './config';
+import { IDatabase, IMain, IOptions } from 'pg-promise';
+import { dwConfig } from './config';
 import * as pgPromise from 'pg-promise';
-import {writeKeyToCacheFile} from '../cache';
+import { writeKeyToCacheFile } from '../cache';
 import * as LRU from 'lru-cache';
 
 export interface IExtensions {
@@ -26,14 +26,15 @@ const options: IOptions<IExtensions> = {
                 return Promise.resolve(dbCache.get(getQuery));
             }
             // TODO: cross check
-            if (process.env.NODE_ENV === 'development') writeKeyToCacheFile(getQuery, 'dw'); // should be an option
+            if (process.env.NODE_ENV === 'development') { writeKeyToCacheFile(getQuery, 'dw'); } // should be an option
+
             return obj.any(getQuery);
         };
     },
     // caching
     receive: (data, _result, event) => {
         // cache recieved
-        if (!dbCache.has(event.query)) dbCache.set(event.query, data);
+        if (!dbCache.has(event.query)) { dbCache.set(event.query, data); }
     }
 };
 
