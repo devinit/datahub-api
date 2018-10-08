@@ -52,9 +52,9 @@ export default class Resources {
   private defaultArgs;
 
   public static getMaxYear(data: Array<{ year?: number | null }>): number {
-    const years = data.map(obj => Number(obj.year));
+    const years = data.map(obj => Number(obj.year)).filter(year => year !== Infinity);
 
-    return Math.max.apply(null, years);
+    return Math.abs(Math.max.apply(null, years));
   }
   // FIXME: This may not be necessary, category order alone maybe enough
   public static getFlowPositions = (flowRefs: IFlowRef[]) => (flow: IFlowRef): number => {
@@ -362,8 +362,6 @@ export default class Resources {
   }
   private async processResourceData(data: IRAWFlow[]): Promise<DH.IResourceData[]> {
     try {
-      console.log(data);
-
       const processed: IFlowProcessed[] = indicatorDataProcessingSimple<IFlowProcessed>(data);
       const flowRefs: IFlowRef[] = await getFlows();
       const getPosition = Resources.getFlowPositions(flowRefs);
