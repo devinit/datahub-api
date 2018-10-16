@@ -303,11 +303,12 @@ export default class Resources {
       const totalRevenueAndGrants: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs[0]);
       const grants: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs[1]);
       let value = 'No data';
-      if (totalRevenueAndGrants[0] && totalRevenueAndGrants[0].value && grants[0] && grants[0].value) {
-        const pc = (Number(grants[0].value) / Number(totalRevenueAndGrants[0].value)) * 100;
+      if (totalRevenueAndGrants[0] && grants[0] && grants[0].value && grants[0].value.trim()) {
+        const pc = (Number(grants[0].value) / (Number(totalRevenueAndGrants[0].value) || 1)) * 100;
         value = pc.toFixed(1);
       }
       const toolTip = await getIndicatorToolTip({ id: 'grants-percent-total-revenue', ...this.defaultArgs });
+
       return { value, toolTip };
     } catch (error) {
       throw error;
