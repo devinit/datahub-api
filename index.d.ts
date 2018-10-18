@@ -247,6 +247,7 @@ such as constant 2015 USD for tree map
   */
     currencyCode: string | null;
     currencyUSD: string | null;
+    supportLocalCurrencyOnly: boolean;
     /**
     use resourcesRecipient sql
   */
