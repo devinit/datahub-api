@@ -90,9 +90,9 @@ export default class Resources {
       const [ resourcesOverTime, mixOfResources ] = await this.getResourcesGeneric(id, resourcesSql);
       const resourceflowsOverTime = await this.getResourceflowsOvertime(id);
       const concept: IConcept = await getConceptAsync('country-profile', 'data_series.intl_flows_recipients');
-      const maxYear = resourceflowsOverTime && resourceflowsOverTime.data
+      const maxYear = Math.abs(resourceflowsOverTime && resourceflowsOverTime.data
         ? getMaxAndMin(resourceflowsOverTime.data)[0]
-        : concept.end_year;
+        : concept.end_year);
 
       // TODO: we are currently getting start year for various viz
       // from data_series.intl_flows_recipients concept /indicator. They shouldb be a better way of doing this
@@ -103,7 +103,7 @@ export default class Resources {
         resourcesOverTime,
         mixOfResources,
         resourceflowsOverTime,
-        startYear: maxYear && maxYear < concept.end_year ? maxYear : concept.end_year
+        startYear: maxYear && maxYear !== Infinity && maxYear < concept.end_year ? maxYear : concept.end_year
       };
     } catch (error) {
       console.error(error);
