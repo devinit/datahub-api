@@ -319,8 +319,8 @@ export const missingParentsData = (data: DH.IDomestic[]): DH.IDomestic[][] => {
         if (similarParent) {
           const joinedParent = {
             ...similarParent,
-            value: obj.child.value + similarParent.value,
-            value_ncu: obj.child.value_ncu + similarParent.value_ncu
+            value: (obj.child.value || 0) + (similarParent.value || 0),
+            value_ncu: (obj.child.value_ncu || 0) + (similarParent.value_ncu || 0)
           };
           // remove previous parent from list
           const newParentsList = acc.filter(objP => objP.uid !== joinedParent.uid);
