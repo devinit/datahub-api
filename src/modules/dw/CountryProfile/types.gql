@@ -114,8 +114,8 @@ type Domestic {
   budget_type: String!
   levels: [String]!
   year: Int !
-  value: Float!
-  value_ncu: Float!
+  value: Float
+  value_ncu: Float
   uid: String!
   color: String!
 }

@@ -98,7 +98,7 @@ declare namespace DH {
   interface IBubbleChartOptions {
     /**
     this list feeds off oda table from countries and global/concept file
-IdNamePair is defined in unbundling aid types 
+IdNamePair is defined in unbundling aid types
   */
     indicators: Array<IIdNamePair>;
     incomeGroups: Array<IIdNamePair>;
@@ -238,7 +238,7 @@ IdNamePair is defined in unbundling aid types
     totalRevenue: IIndicatorValueWithToolTip | null;
     grantsAsPcOfRevenue: IIndicatorValueWithToolTip | null;
     /**
-    for donut chart 
+    for donut chart
   */
     spendingAllocation: ISpendingAllocationWithToolTip | null;
     /**
@@ -274,8 +274,8 @@ such as constant 2015 USD for tree map
     budget_type: string;
     levels: Array<string>;
     year: number;
-    value: number;
-    value_ncu: number;
+    value: number | null;
+    value_ncu: number | null;
     uid: string;
     color: string;
   }
@@ -431,7 +431,7 @@ in or out
 
   interface IOverviewTabRegional {
     /**
-    WHAT PERCENTAGE OF PEOPLE IN WAKISO LIVE BELOW THE NATIONAL POVERTY LINE? 
+    WHAT PERCENTAGE OF PEOPLE IN WAKISO LIVE BELOW THE NATIONAL POVERTY LINE?
 can be no data or '12%'
   */
     poorestPeople: IIndicatorValueWithToolTip | null;
@@ -467,11 +467,11 @@ has local government, donor and central government
   interface IPovertyTabUg {
     poorestPeople: IIndicatorValueWithToolTip | null;
     /**
-    WHAT IS THE AVERAGE LIFE EXPECTANCY? 
+    WHAT IS THE AVERAGE LIFE EXPECTANCY?
   */
     lifeExpectancy: IIndicatorValueWithToolTip | null;
     /**
-    WHAT IS THE STANDARD OF LIVING SCORE? 
+    WHAT IS THE STANDARD OF LIVING SCORE?
   */
     stdOfLiving: IIndicatorValueWithToolTip | null;
   }
@@ -479,11 +479,11 @@ has local government, donor and central government
   interface IPovertyTabKe {
     poorestPeople: IIndicatorValueWithToolTip | null;
     /**
-    WHAT IS THE AVERAGE LIFE EXPECTANCY? 
+    WHAT IS THE AVERAGE LIFE EXPECTANCY?
   */
     meanExpenditure: IIndicatorValueWithToolTip | null;
     /**
-    WHAT IS THE STANDARD OF LIVING SCORE? 
+    WHAT IS THE STANDARD OF LIVING SCORE?
   */
     povertyGap: IIndicatorValueWithToolTip | null;
   }
@@ -519,24 +519,24 @@ has local government, donor and central government
 
   interface IEducationTabRegionalUg {
     /**
-    WHAT IS THE PUPIL–TEACHER RATIO IN PRIMARY EDUCATION?...in government schools  and...in all schools 
+    WHAT IS THE PUPIL–TEACHER RATIO IN PRIMARY EDUCATION?...in government schools  and...in all schools
   */
     pupilTeacherRatioGovtSchl: IIndicatorValueWithToolTip | null;
     pupilTeacherRatioOtherSchl: IIndicatorValueWithToolTip | null;
     /**
-    WHAT PERCENTAGE OF STUDENTS PASS THE PRIMARY LEAVING EXAM? 
+    WHAT PERCENTAGE OF STUDENTS PASS THE PRIMARY LEAVING EXAM?
   */
     studentsPassRate: IIndicatorValueWithToolTip | null;
     studentsPassDistrictRank: IIndicatorValueWithToolTip | null;
     /**
-    HOW MUCH PRIMARY EDUCATION FUNDING IS THERE? 
+    HOW MUCH PRIMARY EDUCATION FUNDING IS THERE?
   */
     primaryEducationfunding: IIndicatorValueNCUWithToolTip | null;
   }
 
   interface IEducationTabRegionalKe {
     /**
-    WHAT IS THE PUPIL–TEACHER RATIO IN PRIMARY EDUCATION?...in government schools  and...in all schools 
+    WHAT IS THE PUPIL–TEACHER RATIO IN PRIMARY EDUCATION?...in government schools  and...in all schools
   */
     primaryPupilTeacherRatioAllSchl: IIndicatorValueWithToolTip | null;
     primaryTeacherRatioPublicSchl: IIndicatorValueWithToolTip | null;
@@ -557,12 +557,12 @@ has local government, donor and central government
   */
     districtPerformance: IIndicatorValueWithToolTip | null;
     /**
-    WHAT PERCENTAGE OF TUBERCULOSIS CASES HAVE BEEN SUCCESSFULLY TREATED? 
+    WHAT PERCENTAGE OF TUBERCULOSIS CASES HAVE BEEN SUCCESSFULLY TREATED?
   */
     treatmeantOfTb: IIndicatorValueWithToolTip | null;
     districtHealthRank: IIndicatorValueWithToolTip | null;
     /**
-    HOW MUCH LOCAL GOVERNMENT HEALTHCARE FUNDING IS THERE? 
+    HOW MUCH LOCAL GOVERNMENT HEALTHCARE FUNDING IS THERE?
   */
     healthCareFunding: IIndicatorValueNCUWithToolTip | null;
   }
@@ -580,7 +580,7 @@ has local government, donor and central government
 
   interface IUnbundlingAidToTalQuery {
     /**
-    oda or oof 
+    oda or oof
   */
     aidType: string;
     year?: number | null;
@@ -593,7 +593,7 @@ has local government, donor and central government
 
   interface IUnbundlingAidQuery {
     /**
-    oda or oof 
+    oda or oof
   */
     aidType: string;
     year: number;
