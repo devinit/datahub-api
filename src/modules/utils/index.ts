@@ -61,14 +61,23 @@ export const entitesFnMap = {
     from: getEntities
 };
 
-export const getCurrencyCode = async (id: string): Promise<string> => {
+export const getCurrencyInfo = async (id: string): Promise<ICurrency | undefined> => {
   try {
     const currencyList: ICurrency[] = await getCurrency();
     const entity: IEntity | undefined = await getEntityBySlugAsync(id);
     if (!entity) {
       throw new Error(`entity was not found for slug: ${id}`);
     }
-    const currency: ICurrency | undefined = R.find(R.propEq('id', entity.id), currencyList) as ICurrency;
+
+    return R.find(R.propEq('id', entity.id), currencyList) as ICurrency;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getCurrencyCode = async (id: string): Promise<string> => {
+  try {
+    const currency = await getCurrencyInfo(id);
 
     return currency ? currency.code : 'NCU';
   } catch (error) {

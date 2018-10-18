@@ -14,6 +14,7 @@ export interface ICurrency {
     code: string;
     id: string;
     name: string;
+    support_only: boolean;
 }
 export interface IEntity extends IEntityBasic {
     type: string;

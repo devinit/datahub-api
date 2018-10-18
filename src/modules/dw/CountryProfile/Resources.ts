@@ -7,8 +7,8 @@ import { IColor, IEntityBasic, getColors, getEntityByIdGeneric, getFlowType } fr
 import { IGetIndicatorArgs, IProcessedSimple, IRAW, IRAWDomestic, IRAWFlow } from '../../utils/types';
 import {
   CROSSOVER, DONOR, RECIPIENT, domesticDataProcessing, entitesFnMap,
-  getCurrencyCode, getIndicatorData, getIndicatorToolTip, getIndicatorsValue,
-  indicatorDataProcessingSimple, isDonor, makeSqlAggregateQuery
+  getCurrencyInfo, getIndicatorData, getIndicatorToolTip,
+  getIndicatorsValue, indicatorDataProcessingSimple, isDonor, makeSqlAggregateQuery
 } from '../../utils';
 import {
   IBudgetLevelRef, IFlowRef, IFlowSelectionRaw, getAllFlowSelections, getBudgetLevels,
@@ -156,11 +156,11 @@ export default class Resources {
       if (isDonorCountry) {
         return {
           totalRevenue: null, grantsAsPcOfRevenue: null, spendingAllocation: null, currencyUSD: null,
-          currencyCode: null, expenditure: null, revenueAndGrants: null, finance: null,
+          currencyCode: null, expenditure: null, revenueAndGrants: null, finance: null, supportLocalCurrencyOnly: false,
           startYear: concept.end_year || 2015
         };
       }
-      const currencyCode = await getCurrencyCode(id);
+      const currency = await getCurrencyInfo(id);
       const [ totalRevenue ] = await getIndicatorsValue(
         { id, sqlList: [ sql.domesticRevenue ], ...this.defaultArgs }
       );
@@ -173,7 +173,8 @@ export default class Resources {
         totalRevenue,
         grantsAsPcOfRevenue,
         spendingAllocation,
-        currencyCode,
+        currencyCode: currency ? currency.code : 'NCU',
+        supportLocalCurrencyOnly: currency ? currency.support_only : false,
         currencyUSD: 'constant 2016 USD',
         ...domestic,
         startYear: maxGovYear < concept.end_year ? maxGovYear : concept.end_year

@@ -135,6 +135,7 @@ type GovernmentFinance {
   # such as constant 2015 USD for tree map
   currencyCode: String
   currencyUSD: String
+  supportLocalCurrencyOnly: Boolean
   # use resourcesRecipient sql
   expenditure: [Domestic]
   revenueAndGrants: [Domestic]
