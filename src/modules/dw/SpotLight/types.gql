@@ -6,12 +6,12 @@ type IndicatorValueNCUWithToolTip {
 }
 
 type ResourcesBreakDown {
-  data: IndicatorData! 
+  data: IndicatorData!
   toolTip: ToolTip!
 }
 
 type OverviewTabRegional {
-  # WHAT PERCENTAGE OF PEOPLE IN WAKISO LIVE BELOW THE NATIONAL POVERTY LINE? 
+  # WHAT PERCENTAGE OF PEOPLE IN WAKISO LIVE BELOW THE NATIONAL POVERTY LINE?
   # can be no data or '12%'
   poorestPeople: IndicatorValueWithToolTip
   # WHAT RESOURCES ARE AVAILABLE TO LOCAL GOVERNMENTS IN WAKISO? eg 3.6m or 2.7bn
@@ -26,16 +26,16 @@ type OverviewTabRegional {
 
 type PovertyTabKe {
   poorestPeople: IndicatorValueWithToolTip
-  #WHAT IS THE AVERAGE LIFE EXPECTANCY? 
+  #WHAT IS THE AVERAGE LIFE EXPECTANCY?
   meanExpenditure: IndicatorValueWithToolTip
-  #WHAT IS THE STANDARD OF LIVING SCORE? 
+  #WHAT IS THE STANDARD OF LIVING SCORE?
   povertyGap: IndicatorValueWithToolTip
 }
 type PovertyTabUg {
   poorestPeople: IndicatorValueWithToolTip
-  #WHAT IS THE AVERAGE LIFE EXPECTANCY? 
+  #WHAT IS THE AVERAGE LIFE EXPECTANCY?
   lifeExpectancy: IndicatorValueWithToolTip
-  #WHAT IS THE STANDARD OF LIVING SCORE? 
+  #WHAT IS THE STANDARD OF LIVING SCORE?
   stdOfLiving: IndicatorValueWithToolTip
 }
 
@@ -57,36 +57,36 @@ type PopulationTabRegionalUg {
 }
 
 type EducationTabRegionalUg {
-  #WHAT IS THE PUPIL–TEACHER RATIO IN PRIMARY EDUCATION?...in government schools  and...in all schools 
+  #WHAT IS THE PUPIL–TEACHER RATIO IN PRIMARY EDUCATION?...in government schools  and...in all schools
   pupilTeacherRatioGovtSchl: IndicatorValueWithToolTip
   pupilTeacherRatioOtherSchl: IndicatorValueWithToolTip
-  #WHAT PERCENTAGE OF STUDENTS PASS THE PRIMARY LEAVING EXAM? 
+  #WHAT PERCENTAGE OF STUDENTS PASS THE PRIMARY LEAVING EXAM?
   studentsPassRate: IndicatorValueWithToolTip
   studentsPassDistrictRank: IndicatorValueWithToolTip
-  #HOW MUCH PRIMARY EDUCATION FUNDING IS THERE? 
+  #HOW MUCH PRIMARY EDUCATION FUNDING IS THERE?
   primaryEducationfunding:  IndicatorValueNCUWithToolTip
 }
 
 type EducationTabRegionalKe {
-  #WHAT IS THE PUPIL–TEACHER RATIO IN PRIMARY EDUCATION?...in government schools  and...in all schools 
+  #WHAT IS THE PUPIL–TEACHER RATIO IN PRIMARY EDUCATION?...in government schools  and...in all schools
   primaryPupilTeacherRatioAllSchl: IndicatorValueWithToolTip
-  primaryTeacherRatioPublicSchl: IndicatorValueWithToolTip 
+  primaryTeacherRatioPublicSchl: IndicatorValueWithToolTip
   primaryTeacherRatioPrivateSchl: IndicatorValueWithToolTip
 }
 
 type HealthTabRegionalUg {
   #WHAT IS THE DISTRICT LEAGUE HEALTH PERFORMANCE SCORE?
   districtPerformance: IndicatorValueWithToolTip
-  #WHAT PERCENTAGE OF TUBERCULOSIS CASES HAVE BEEN SUCCESSFULLY TREATED? 
+  #WHAT PERCENTAGE OF TUBERCULOSIS CASES HAVE BEEN SUCCESSFULLY TREATED?
   treatmeantOfTb: IndicatorValueWithToolTip
   districtHealthRank: IndicatorValueWithToolTip
-  #HOW MUCH LOCAL GOVERNMENT HEALTHCARE FUNDING IS THERE? 
+  #HOW MUCH LOCAL GOVERNMENT HEALTHCARE FUNDING IS THERE?
   healthCareFunding: IndicatorValueNCUWithToolTip
 }
 
 type HealthTabRegionalKe {
   birthAttendanceSkilled: IndicatorValueWithToolTip
-  contraceptiveUse: IndicatorValueWithToolTip 
+  contraceptiveUse: IndicatorValueWithToolTip
   healthCareFunding: IndicatorValueNCUWithToolTip
 }
 
@@ -95,6 +95,7 @@ type LocalGovernmentFinance {
   startYear: Int!
   currencyUSD: String!
   currencyCode: String!
+  supportLocalCurrencyOnly: Boolean
   # come from finance file
   revenueAndGrants: [Domestic]!
   expenditure: [Domestic]!
@@ -105,7 +106,7 @@ union PopulationTabRegional = PopulationTabRegionalUg | PopulationTabRegionalKe
 union EducationTabRegional = EducationTabRegionalUg | EducationTabRegionalKe
 union HealthTabRegional = HealthTabRegionalKe | HealthTabRegionalUg
 
-type Query {  
+type Query {
   # id is district slug
   overviewTabRegional(id: String!, country: String!):OverviewTabRegional
   povertyTabRegional(id: String!, country: String!): PovertyTabRegional

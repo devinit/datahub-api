@@ -572,6 +572,7 @@ has local government, donor and central government
     startYear: number;
     currencyUSD: string;
     currencyCode: string;
+    supportLocalCurrencyOnly: boolean;
     /**
     come from finance file
   */

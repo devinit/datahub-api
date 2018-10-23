@@ -1,17 +1,17 @@
 
+import { IColor, getColors, getEntityByIdGeneric } from '../../../refs/global';
 import * as shortid from 'shortid';
-import { addSuffix, approximate, getTotal, isError } from '@devinit/prelude';
 import { IDB } from '../../../../api/db';
 import { getConceptAsync } from '../../../refs/concept';
 import { kenya, uganda } from './sql';
-import { IColor, getColors, getEntityByIdGeneric } from '../../../refs/global';
+import { addSuffix, approximate, getTotal, isError } from '@devinit/prelude';
 import * as R from 'ramda';
 import { IDistrict, getDistrictBySlugAsync } from '../../../refs/spotlight';
 import { IBudgetLevelRef, getBudgetLevels } from '../../../refs/countryProfile';
 import { IRAW, IRAWDomestic, IRAWPopulationGroup, ISpotlightGetIndicatorArgs } from '../../../utils/types';
 import {
-  addColorToDomesticLevels, domesticDataProcessing, getCurrencyCode,
-  getIndicatorDataSpotlights, getIndicatorToolTip, getSpotlightTableName
+  addColorToDomesticLevels, domesticDataProcessing,
+  getCurrencyInfo, getIndicatorDataSpotlights, getIndicatorToolTip, getSpotlightTableName
 } from '../../../utils';
 
 export interface ISpotlightArgs {
@@ -117,14 +117,15 @@ export const getLocalGovernmentFinance = (db: DB) =>
                     const disaggregated = await domesticDataProcessing(data, country);
                     return aggregateResources(disaggregated, colors, budgetRefs);
                 }));
-            const currencyCode = await getCurrencyCode(country);
+            const currency = await getCurrencyInfo(country);
             // const concept: IConcept =
             // await getConceptAsync(conceptType, SpotLight.getTableName('finance', 'uganda'));
             return {
                 startYear,
-                currencyCode,
+                currencyCode: currency ? currency.code : 'NCU',
                 currencyUSD: 'constant 2015 USD',
                 revenueAndGrants: resources[1],
+                supportLocalCurrencyOnly: currency ? currency.support_only : false,
                 expenditure: resources[0]
             };
         } catch (error) {
