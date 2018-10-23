@@ -1,14 +1,13 @@
 // Place your settings in this file to overwrite default and user settings.
 {
     "files.exclude": {
-        "**/.git": true,
-        "**/.svn": true,
-        "**/.hg": true,
-        "**/CVS": true,
         "**/.DS_Store": true,
-        "**/node_modules": true,
-        "**/lib": false,
-        "**/coverage": true
+        "**/.git": true,
+        "**/.hg": true,
+        "**/.svn": true,
+        "**/coverage": true,
+        "**/CVS": true,
+        "**/lib": false
     },
     "tslint.configFile": "./tslint.strict.json"
 }
