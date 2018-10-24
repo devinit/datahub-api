@@ -245,6 +245,7 @@ export default class Resources {
       throw error;
     }
   }
+
   private async getResourceflowsOvertime(id: string): Promise<DH.IFlowsOverTimeWithToolTip> {
     const isDonorCountry = await isDonor(id);
     const query = isDonorCountry ? sql.OutflowsDonors : sql.InflowsRecipient;

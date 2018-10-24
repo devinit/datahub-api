@@ -189,6 +189,13 @@ type SingleResourceData {
   color: String!
 }
 
+type PrintNarrative {
+  key: String!
+  value: String!
+  type: String!
+  next: String
+}
+
 type Query {
   overviewTab(id: String!): OverviewTab
   povertyTab(id: String!): PovertyTab
@@ -203,4 +210,5 @@ type Query {
     countryId: String!, # AT
     groupById: String! # id-to
     ): SingleResourceData
+  printNarratives(id: String!): [PrintNarrative]
 }

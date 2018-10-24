@@ -2,6 +2,7 @@ import { githubGet } from '../../../api/github';
 
 const getPageData = (moduleName: string): Promise <DH.IPage[]> => {
     const endPoint = `${moduleName}/page.csv`;
+
     return githubGet<DH.IPage>(endPoint);
 };
 export const getDistrictPageData = (country: string): Promise<DH.IPage[]> =>

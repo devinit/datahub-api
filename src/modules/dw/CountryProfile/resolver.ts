@@ -11,6 +11,9 @@ export default {
         async singleResource(_root, args, ctx: IContext) {
             return ctx.modules.countryProfile.resources.getSingleResource(args);
         },
+        async printNarratives(_root, args, ctx: IContext) {
+            return ctx.modules.countryProfile.print.getPrintNarratives(args);
+        },
         async overviewTab(_root, args, ctx: IContext) {
             return ctx.modules.countryProfile.tabs.getOverViewTab(args);
         },
