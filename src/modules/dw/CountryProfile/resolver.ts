@@ -14,6 +14,9 @@ export default {
         async printNarratives(_root, args, ctx: IContext) {
             return ctx.modules.countryProfile.print.getPrintNarratives(args);
         },
+        async recipientODAProfiles(_root, args, ctx: IContext) {
+            return ctx.modules.countryProfile.recipientProfiles.getRecipientODAProfiles(args);
+        },
         async overviewTab(_root, args, ctx: IContext) {
             return ctx.modules.countryProfile.tabs.getOverViewTab(args);
         },

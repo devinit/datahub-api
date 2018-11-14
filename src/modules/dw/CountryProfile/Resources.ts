@@ -203,6 +203,7 @@ export default class Resources {
           const obj = { name: flow.flow_name, id: flow.id, selections };
           if (flow.direction === 'in') { flowTypes.inflows.push(obj); }
           if (flow.direction === 'out') { flowTypes.outflows.push(obj); }
+
           return flowTypes;
         }, { inflows: [], outflows: [] });
     } catch (error) {
@@ -228,6 +229,7 @@ export default class Resources {
         R.groupBy(R.prop('l2'), bugdetTypeGroups[activeType]);
       const refined: IRAWSpending[] = R.keys(activeLevel2s).map(l2 => {
         const value = getTotal(activeLevel2s[l2]);
+
         return { value, l2, budget_type: activeType };
       });
       const colors: IColor[] = await getColors();
@@ -238,8 +240,10 @@ export default class Resources {
         .map(obj => {
           const level = R.find(R.propEq('id', obj.l2), budgetRefs) as IBudgetLevelRef;
           const colorObj = getEntityByIdGeneric(level.color || 'pink', colors);
+
           return { value: Number(obj.value), ...level, color: colorObj.value, uid: shortid.generate() };
         });
+
       return { data, toolTip };
     } catch (error) {
       throw error;
@@ -326,6 +330,7 @@ export default class Resources {
       };
       const data: IRAW[] = await getIndicatorData<IRAW>(indicatorArgs);
       if (data && data[0] && data[0].value) { return Number(data[0].value); }
+
       return 0;
     } catch (error) {
       throw error;
@@ -343,6 +348,7 @@ export default class Resources {
       if (!data[0] || !data[0].value || !gni) { return { value: 'No data', toolTip }; }
       if (Number(data[0].value) < 0) { return { value: '0.0', toolTip }; }
       const value = ((Number(data[0].value) / gni) * 100).toFixed(1);
+
       return { value, toolTip };
     } catch (error) {
       throw error;

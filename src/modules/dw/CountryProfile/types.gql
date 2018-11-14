@@ -196,6 +196,16 @@ type PrintNarrative {
   next: String
 }
 
+type RecipientODAProfile {
+  ODAPerPercentGDP: [ODAData]
+  ODAPerPercentGDPExclNonTransfer: [ODAData]
+}
+
+type ODAData {
+  value: Float!
+  year: Int!
+}
+
 type Query {
   overviewTab(id: String!): OverviewTab
   povertyTab(id: String!): PovertyTab
@@ -211,4 +221,5 @@ type Query {
     groupById: String! # id-to
     ): SingleResourceData
   printNarratives(id: String!): [PrintNarrative]
+  recipientODAProfiles(id: String!): RecipientODAProfile
 }
