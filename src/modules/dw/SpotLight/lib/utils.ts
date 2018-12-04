@@ -93,46 +93,48 @@ const aggregateResources = (data: DH.IDomestic[], colors: IColor[], budgetRefs: 
 };
 
 export const getLocalGovernmentFinance = (db: DB) =>
-    async ({ id, country, startYear }: IFinanceArgs): Promise<DH.ILocalGovernmentFinance> => {
-         try {
-            const conceptType = getConceptType(country);
-            const sql = getSql(country);
-            const budgetRefs: IBudgetLevelRef[] = await getBudgetLevels(country);
-            const colors: IColor[] = await getColors();
-            const indicatorArgs: ISpotlightGetIndicatorArgs[] = [ 'Expenditure', 'Revenue' ]
-                .map(l1 => ({
-                    db,
-                    schema: getSchema(country),
-                    conceptType,
-                    l1,
-                    query: sql.localGovernmentFinance,
-                    country,
-                    id
-                }));
-            const resourcesRaw: IRAWDomestic[][]  =
-                await Promise.all(indicatorArgs.map((args) => getIndicatorDataSpotlights<IRAWDomestic>(args)));
+  async ({ id, country, startYear }: IFinanceArgs): Promise<DH.ILocalGovernmentFinance> => {
+    try {
+      const conceptType = getConceptType(country);
+      const sql = getSql(country);
+      const budgetRefs: IBudgetLevelRef[] = await getBudgetLevels(country);
+      const colors: IColor[] = await getColors();
+      const indicatorArgs: ISpotlightGetIndicatorArgs[] = [ 'Expenditure', 'Revenue' ]
+        .map(l1 => ({
+          db,
+          schema: getSchema(country),
+          conceptType,
+          l1,
+          query: sql.localGovernmentFinance,
+          country,
+          id
+        }));
+      const resourcesRaw: IRAWDomestic[][] =
+        await Promise.all(indicatorArgs.map((args) => getIndicatorDataSpotlights<IRAWDomestic>(args)));
 
-            const resources: DH.IDomestic[][] =
-                await Promise.all(resourcesRaw.map(async (data) => {
-                    const disaggregated = await domesticDataProcessing(data, country);
-                    return aggregateResources(disaggregated, colors, budgetRefs);
-                }));
-            const currency = await getCurrencyInfo(country);
-            // const concept: IConcept =
-            // await getConceptAsync(conceptType, SpotLight.getTableName('finance', 'uganda'));
-            return {
-                startYear,
-                currencyCode: currency ? currency.code : 'NCU',
-                currencyUSD: 'constant 2015 USD',
-                revenueAndGrants: resources[1],
-                supportLocalCurrencyOnly: currency ? currency.support_only : false,
-                expenditure: resources[0]
-            };
-        } catch (error) {
-            console.error(error);
-            throw error;
-        }
-};
+      const resources: DH.IDomestic[][] =
+        await Promise.all(resourcesRaw.map(async (data) => {
+          const disaggregated = await domesticDataProcessing(data, country);
+
+          return aggregateResources(disaggregated, colors, budgetRefs);
+        }));
+      const currency = await getCurrencyInfo(country);
+      // const concept: IConcept =
+      // await getConceptAsync(conceptType, SpotLight.getTableName('finance', 'uganda'));
+
+      return {
+        startYear,
+        currencyCode: currency ? currency.code : 'NCU',
+        currencyUSD: 'constant 2015 USD',
+        revenueAndGrants: resources[1],
+        supportLocalCurrencyOnly: currency ? currency.support_only : false,
+        expenditure: resources[0]
+      };
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
 
 export const getDistrictIndicatorRank = (db: DB) =>
     async ({ country, id }: ISpotlightArgs, query: string): Promise<DH.IIndicatorValueWithToolTip> =>  {
@@ -144,62 +146,68 @@ export const getDistrictIndicatorRank = (db: DB) =>
             const district: IDistrict = await getDistrictBySlugAsync(country, id);
             const value = rankDistrict(indicatorRaw, district.id);
             const toolTip = await getIndicatorToolTip(indicatorArgs);
+
             return { value, toolTip };
       } catch (error) {
           throw error;
       }
 };
 export const getRegionalResources = (db: DB) => async ({ id, country }): Promise<IRegionalResources> => {
-        try  {
-            const conceptType = getConceptType(country);
-            const sql = getSql(country);
-            const schema = getSchema(country);
-            const indicatorArgs: ISpotlightGetIndicatorArgs[] = [ sql.lGFResources, sql.crResources, sql.dResources ]
-                .map(query => ({ query, db, conceptType, id, country, schema }));
-            const resourcesRaw: IRAW[][] =
-                await Promise.all(indicatorArgs.map(args => getIndicatorDataSpotlights<IRAW>(args)));
-            const resourcesSum: {value: number, value_ncu: number} = resourcesRaw
-                .reduce((sum: {value: number, value_ncu: number}, data: IRAW[]) => {
-                    if (!data[0]) { return sum; }
-                    const value = Number(data[0].value) + sum.value;
-                    const value_ncu = Number(data[0].value_ncu) + sum.value_ncu;
-                    return { value, value_ncu };
-                }, { value: 0, value_ncu: 0 });
-            const colors: IColor[] = await getColors();
-            const resourceWithConceptPromises: Array<Promise<DH.IResourcesBreakDown>> = indicatorArgs
-                .map(async (args: ISpotlightGetIndicatorArgs , index) => {
-                    const conceptId = getSpotlightTableName(country, args.query);
-                    if (isError(conceptId)) { throw conceptId; }
-                    const conceptArgs = { conceptType, id:  conceptId };
-                    const concept = await getConceptAsync(conceptArgs.conceptType, conceptArgs.id);
-                    const resource: IRAW = resourcesRaw[index][0];
-                    if (!concept.color) { throw new Error(`${concept.id} missing required color value`); }
-                    const colorObj: IColor = getEntityByIdGeneric<IColor>(concept.color, colors);
-                    const data = {
-                        value: resource ? Number(resource.value) : null,
-                        id: concept.id, name: concept.name,
-                        year: concept.end_year, color: colorObj.value, uid: shortid.generate()
-                    };
-                    const toolTip = await getIndicatorToolTip(args);
-                    return { data, toolTip };
-                });
-            const resources: DH.IResourcesBreakDown[] = await Promise.all(resourceWithConceptPromises);
-            const regionalResourcesToolTip = await getIndicatorToolTip(indicatorArgs[0]);
-            return {
-                regionalResources: {
-                    value: resourcesSum.value ? approximate(resourcesSum.value, 1) : null,
-                    value_ncu:  resourcesSum.value_ncu ? approximate(resourcesSum.value_ncu, 1) : null,
-                    toolTip: regionalResourcesToolTip
-                },
-                regionalResourcesBreakdown: resources
-            };
-         } catch (error) {
-             throw error;
-         }
+  try {
+    const conceptType = getConceptType(country);
+    const sql = getSql(country);
+    const schema = getSchema(country);
+    const indicatorArgs: ISpotlightGetIndicatorArgs[] = [ sql.lGFResources, sql.crResources, sql.dResources ]
+      .map(query => ({ query, db, conceptType, id, country, schema }));
+    const resourcesRaw: IRAW[][] =
+      await Promise.all(indicatorArgs.map(args => getIndicatorDataSpotlights<IRAW>(args)));
+    const resourcesSum: { value: number, value_ncu: number } = resourcesRaw
+      .reduce((sum: { value: number, value_ncu: number }, data: IRAW[]) => {
+        if (!data[0]) { return sum; }
+        const value = Number(data[0].value) + sum.value;
+        const value_ncu = Number(data[0].value_ncu) + sum.value_ncu;
+
+        return { value, value_ncu };
+      }, { value: 0, value_ncu: 0 });
+    const colors: IColor[] = await getColors();
+    const resourceWithConceptPromises: Array<Promise<DH.IResourcesBreakDown>> = indicatorArgs
+      .map(async (args: ISpotlightGetIndicatorArgs, index) => {
+        const conceptId = getSpotlightTableName(country, args.query);
+        if (isError(conceptId)) { throw conceptId; }
+        const conceptArgs = { conceptType, id: conceptId };
+        const concept = await getConceptAsync(conceptArgs.conceptType, conceptArgs.id);
+        const resource: IRAW = resourcesRaw[index][0];
+        if (!concept.color) {
+          throw new Error(`${concept.id} missing required color value`);
+        }
+        const colorObj: IColor = getEntityByIdGeneric<IColor>(concept.color, colors);
+        const data = {
+          value: resource ? Number(resource.value) : null,
+          id: concept.id, name: concept.name,
+          year: concept.end_year, color: colorObj.value, uid: shortid.generate()
+        };
+        const toolTip = await getIndicatorToolTip(args);
+
+        return { data, toolTip };
+      });
+    const resources: DH.IResourcesBreakDown[] = await Promise.all(resourceWithConceptPromises);
+    const regionalResourcesToolTip = await getIndicatorToolTip(indicatorArgs[0]);
+
+    return {
+      regionalResources: {
+        value: resourcesSum.value ? approximate(resourcesSum.value, 1) : null,
+        value_ncu: resourcesSum.value_ncu ? approximate(resourcesSum.value_ncu, 1) : null,
+        toolTip: regionalResourcesToolTip
+      },
+      regionalResourcesBreakdown: resources
+    };
+  } catch (error) {
+    throw error;
+  }
 };
 
 export type GetIndicatorFn = (id: string, sqlList: string[], format?: boolean)
-    =>  Promise<DH.IIndicatorValueNCUWithToolTip[]>;
+    => Promise<DH.IIndicatorValueNCUWithToolTip[]>;
 
 export const getIndicatorsGeneric = ({ country, db }: ISpotlightIndicatorArgs) =>
     async (
@@ -237,14 +245,15 @@ export const getOverViewTabRegional = (db: DB) =>
         const regionalResources = await getRegionalResources(db)({ id, country });
         const [ poorestPeople, localGovernmentSpendPerPerson ] =
             await getIndicatorsGeneric({ country, db })(id, [ sql.poorestPeople, sql.localGovernmentSpendPerPerson ]);
+
         return {
             ...regionalResources,
             poorestPeople,
             localGovernmentSpendPerPerson
-       };
+        };
     } catch (error) {
-       console.error(error);
-       throw error;
+      console.error(error);
+      throw error;
     }
 };
 export const getPopulationDistribution = (db: DB) =>
