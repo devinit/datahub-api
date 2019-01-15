@@ -40,12 +40,12 @@ interface IUnbundlingAidResult extends IUnbundlingAidQuery {
 }
 
 export default class UnbundlingAid {
-    public static getSqlQueryArgs = (args: DH.IUnbundlingAidQuery): IUnbundlingAidQuery =>
-        R.omit([ 'groupBy', 'aidType' ], args) as IUnbundlingAidQuery
 
     private db: IDB;
     private donorsBlackList = [ 'country-unspecified', 'region-unspecified', 'organisation-unspecified',
                     'arab-fund', 'afesd', 'idb-sp-fund' ];
+    public static getSqlQueryArgs = (args: DH.IUnbundlingAidQuery): IUnbundlingAidQuery =>
+        R.omit([ 'groupBy', 'aidType' ], args) as IUnbundlingAidQuery
     constructor(db: any) {
         this.db = db;
     }
@@ -55,6 +55,7 @@ export default class UnbundlingAid {
             const concept = await this.getUnbundlingAidConceptData(args.aidType);
             const table = concept.id;
             const queryStr: string = makeSqlAggregateQuery(queryArgs, args.groupBy, table);
+            console.log('Query String', queryStr);
             const raw: IUnbundlingAidResult[] = await this.db.manyCacheable(queryStr);
             const entites: IUnbundlingEnitity[] = await entitesFnMap[args.groupBy]();
             const regions: IRegional[] = await getRegional();

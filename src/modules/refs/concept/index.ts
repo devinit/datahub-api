@@ -43,8 +43,8 @@ export const getMethodologyData = async (moduleName: string): Promise <DH.IMetho
       const source = { name: obj.source, link: obj.source_link };
       let oldId = obj.id.split('.')[1].replace(/_/g, '-');
       if (methodologyDownloadsMap[obj.id]) { oldId = methodologyDownloadsMap[obj.id]; }
-      const csv = `https://github.com/devinit/digital-platform/blob/master/user-data/${oldId}`;
-      const zip = `${csv}.zip?raw=true`;
+      const csv = `http://212.111.41.68:8000/single_table?indicator=${oldId.replace(/-/g, '_')}&format=csv`;
+      const zip = `https://github.com/devinit/digital-platform/blob/master/user-data/${oldId}.zip?raw=true`;
       const methodology = obj.methodology || '';
 
       return { ...obj, methodology, source, csv, zip };
