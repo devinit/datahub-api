@@ -74,7 +74,7 @@
   },
   "devDependencies": {
     "@gql2ts/types": "^1.8.1",
-    "@playlyfe/gql": "2.6.0",
+    "@playlyfe/gql": "2.6.2",
     "@types/body-parser": "^1.17.0",
     "@types/color": "3.0.0",
     "@types/cors": "^2.8.4",
