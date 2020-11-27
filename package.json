@@ -85,7 +85,7 @@
     "@types/jest": "22.2.0",
     "@types/lru-cache": "^4.1.1",
     "@types/morgan": "1.7.35",
-    "@types/node": "9.4.7",
+    "@types/node": "9.6.61",
     "@types/ramda": "0.25.20",
     "@types/shortid": "0.0.29",
     "concurrently": "^3.6.1",
