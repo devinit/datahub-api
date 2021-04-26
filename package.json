@@ -90,7 +90,7 @@
     "@types/shortid": "0.0.29",
     "concurrently": "^3.6.1",
     "git-pre-hooks": "1.2.0",
-    "graphql-tag": "^2.9.2",
+    "graphql-tag": "2.11.0",
     "jest": "22.4.2",
     "jest-cli": "22.4.2",
     "node-dev": "3.1.3",
