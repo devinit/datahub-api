@@ -84,7 +84,7 @@
     "@types/helmet": "0.0.38",
     "@types/jest": "22.2.0",
     "@types/lru-cache": "^4.1.1",
-    "@types/morgan": "1.7.35",
+    "@types/morgan": "1.9.9",
     "@types/node": "9.4.7",
     "@types/ramda": "0.25.20",
     "@types/shortid": "0.0.29",
